@@ -1452,24 +1452,26 @@ span.chatboxinfo {
  * with the main download before including this file.
  */
 
-#slider {
-	position:relative;
+.slider {
+	position: relative;
 	max-height: 360px;
-	max-width: 100%;
-	margin:30px 30px 60px 30px;
-	background:#202834 url({T_THEME_PATH}/images/loading.gif) no-repeat 50% 50%;
-	-moz-box-shadow:0px 0px 10px #333;
-	-webkit-box-shadow:0px 0px 10px #333;
-	box-shadow:0px 0px 10px #333;
+	max-width: 98%;
+	margin: 10px 1% 10px 1%;
+	background: #202834 url({T_THEME_PATH}/images/loading.gif) no-repeat 50% 50%;
+	-moz-box-shadow: 0px 0px 10px #333;
+	-webkit-box-shadow: 0px 0px 10px #333;
+	-khtml-box-shadow: 0px 0px 10px #333;
+	box-shadow: 0px 0px 10px #333;
 }
-#slider img {
-	position:absolute;
-	top:0px;
-	left:0px;
-	display:none;
+.slider img {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	right: 50%;
+	display: none;
 }
-#slider a {
-	border:0;
+.slider a {
+	border: 0;
 }
 
 .nivo-controlNav {

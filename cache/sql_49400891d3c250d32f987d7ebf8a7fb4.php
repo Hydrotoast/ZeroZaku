@@ -1,8 +1,8 @@
 <?php exit; ?>
-1274570470
+1274571627
 SELECT s.style_id, c.theme_id, c.theme_data, c.theme_path, c.theme_name, c.theme_mtime, i.*, t.template_path FROM phpbb_styles s, phpbb_styles_template t, phpbb_styles_theme c, phpbb_styles_imageset i WHERE s.style_id = 4 AND t.template_id = s.template_id AND c.theme_id = s.theme_id AND i.imageset_id = s.imageset_id
-96277
-a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:95880:"/*  phpBB 3.0 Style Sheet
+96337
+a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:95940:"/*  phpBB 3.0 Style Sheet
     --------------------------------------------------------------
 	Style name:		proSilver
 	Based on style:	proSilver (this is the default phpBB 3 style)
@@ -3881,24 +3881,26 @@ span.chatboxinfo {
  * with the main download before including this file.
  */
 
-#slider {
-	position:relative;
+.slider {
+	position: relative;
 	max-height: 360px;
-	max-width: 100%;
-	margin:30px 30px 60px 30px;
-	background:#202834 url({T_THEME_PATH}/images/loading.gif) no-repeat 50% 50%;
-	-moz-box-shadow:0px 0px 10px #333;
-	-webkit-box-shadow:0px 0px 10px #333;
-	box-shadow:0px 0px 10px #333;
+	max-width: 98%;
+	margin: 10px 1% 10px 1%;
+	background: #202834 url({T_THEME_PATH}/images/loading.gif) no-repeat 50% 50%;
+	-moz-box-shadow: 0px 0px 10px #333;
+	-webkit-box-shadow: 0px 0px 10px #333;
+	-khtml-box-shadow: 0px 0px 10px #333;
+	box-shadow: 0px 0px 10px #333;
 }
-#slider img {
-	position:absolute;
-	top:0px;
-	left:0px;
-	display:none;
+.slider img {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	right: 50%;
+	display: none;
 }
-#slider a {
-	border:0;
+.slider a {
+	border: 0;
 }
 
 .nivo-controlNav {
@@ -5000,4 +5002,4 @@ fieldset.display-options label {color: #FFFFFF;}
 .dropdown ul li span {background: none;}
 
 /* CSS Tabs */
-.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1274570094";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
+.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1274570496";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
