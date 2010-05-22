@@ -1,0 +1,100 @@
+<!-- INCLUDE overall_header.html -->
+<form method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_ACP_FACTIONS_ADD_LADDER}</legend>
+	<dl>
+		<dt><label for="ladder_type">{L_LADDER_TYPE}:</label></dt>
+		<dd>
+			<select name="ladder_type" id="ladder_name" class="inputbox autowidth" onChange="javascript:switch_it(this.value);">
+				<option>-------------------</option>
+				<option value="0">{L_LADDER}</option>
+				<option value="1">{L_SUBLADDER}</option>
+			</select></dd>
+	</dl>
+	<dl>
+		<dt><label for="ladder_name">{L_LADDER_NAME}:</label></dt>
+		<dd><input type="text" name="ladder_name" id="ladder_name" class="inputbox autowidth" /></dd>
+	</dl>
+	<div id="ladder_options" style="display: none;">
+		<dl>
+			<dt><label for="ladder_platform">{L_LADDER_PLATFORM}:</label></dt>
+			<dd>
+				<select name="ladder_platform" id="ladder_platform" class="inputbox autowidth">
+					<!-- BEGIN block_platforms -->
+					<option name="ladder_platform" value="{block_platforms.PLATFORM_ID}">{block_platforms.PLATFORM_NAME}</option>
+					<!-- END block_platforms -->
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="ladder_rules">{L_LADDER_RULES}:</label></dt>
+			<dd><textarea name="ladder_rules" id="ladder_rules" cols="20" rows="5" class="inputbox narrow"></textarea></dd>
+		</dl>
+	</div>
+
+	<div id="subladder_options" style="display: none;">
+		<dl>
+			<dt><label for="ladder_cl">{L_LADDER_CL}</label></td>
+			<dd><input type="checkbox" name="ladder_cl" id="ladder_cl" class="inputbox autowidth" value="1" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="ladder_ranking">{L_LADDER_RANKING}:</label></td>
+			<dd><input type="radio" name="ladder_ranking" id="ladder_ranking" value="0" class="inputbox autowidth" /> {L_ELO} | <input type="radio" name="ladder_ranking" id="ladder_ranking" value="1" class="inputbox autowidth" /> {L_SWAP}</dd>
+		</dl>
+		<dl>
+			<dt><label for="ladder_rm">{L_LADDER_RM}: (optional)</label></td>
+			<dd><input type="text" name="ladder_rm" id="ladder_rm" class="inputbox autowidth" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="ladder_parent">{L_LADDER_PARENT}:</label></td>
+			<dd>
+				<select name="ladder_parent" id="ladder_parent" class="inputbox autowidth">
+					<!-- BEGIN block_ladders -->
+					<option name="ladder_parent" value="{block_ladders.LADDER_ID}">{block_ladders.LADDER_NAME} (P: {block_ladders.LADDER_PLATFORM})</option>
+					<!-- END block_ladders -->
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="ladder_desc">&nbsp;</label></dt>
+			<dd><textarea name="ladder_desc" id="ladder_desc" rows="5" cols="60" class="inputbox narrow"></textarea></dd>
+		</dl>
+	</div>
+
+	<p class="quick">
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</p>
+</fieldset>
+</form>
+
+<script type="text/javascript">
+function dE(n, s, type)
+{
+	if (!type)
+	{
+		type = 'block';
+	}
+
+	var e = document.getElementById(n);
+	if (!s)
+	{
+		s = (e.style.display == '' || e.style.display == 'block') ? -1 : 1;
+	}
+	e.style.display = (s == 1) ? type : 'none';
+}
+
+function switch_it ( value )
+{
+	if ( value == 0 )
+	{
+		dE ( 'ladder_options', 1 );
+		dE ( 'subladder_options', -1 );
+	}
+	else
+	{
+		dE ( 'ladder_options', -1 );
+		dE ( 'subladder_options', 1 );
+	}
+}
+</script>
+<!-- INCLUDE overall_footer.html -->

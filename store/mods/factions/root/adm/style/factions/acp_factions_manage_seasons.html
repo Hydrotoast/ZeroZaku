@@ -1,0 +1,20 @@
+<!-- INCLUDE overall_header.html -->
+<!-- BEGIN block_ladders -->
+<fieldset>
+	<legend>{block_ladders.LADDER_NAME} (P: {block_ladders.PLATFORM_NAME})</legend>
+	<!-- BEGIN block_subladders -->
+	<dl>
+		<dt>-- {block_ladders.block_subladders.LADDER_NAME}</dt>
+		<dd>
+			<a href="{block_ladders.block_subladders.U_ACTION}">{block_ladders.block_subladders.L_LANGUAGE}</a> <!-- IF block_ladders.block_subladders.U_ACTION2 -->| <a href="{block_ladders.block_subladders.U_ACTION2}">{L_EDIT_SEASON}</a><!-- ENDIF -->
+		</dd>
+	</dl>
+	<!-- BEGINELSE -->
+	<dl>
+		<dt>{L_NO_SUBLADDERS}</dt>
+	</dl>
+	<!-- END block_subladders -->
+</fieldset>
+</form>
+<!-- END block_ladders -->
+<!-- INCLUDE overall_footer.html -->

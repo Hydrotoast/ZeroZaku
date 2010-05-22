@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Adaptive Hide BBcodes</title>
+		<title lang="ru">Adaptive Hide BBcodes</title>
+		
+		<description lang="en">This MOD adds BBcodes which allow to hide the text from guests, from the users having insufficient number of posts, from groups of users.
+		Examples: 
+			- [hide]text[/hide] hides the text from guests and bots; 
+			- [hide=30]text[/hide] hides the text from all who has less than 30 posts; 
+			- [ghide]text[/ghide] hides the text from all who does not consist in your default group; 
+			- [ghide=5]text[/ghide] hides the text from all who does not consist in group with ID=5; 
+			- [ghide=4,5,6]text[/ghide] hides the text from all who does not consist in the specified groups. 
+		Notes. 
+		1. The hidden text always is visible to: administrators, moderators of forum in which the post is placed, the author of the post. 
+		2. In order to avoid various incidents the hidden text always is replaced with a phrase "Hidden text" at the reply with quote, at sending PM with quote, at PM quoting, at PM forwarding.</description>
+		<description lang="ru">Этот мод добавляет ББ-коды, которые позволяют скрывать текст от гостей, от пользователей, имеющих недостаточное количество сообщений, от групп пользователей.
+		Примеры:
+			- [hide]текст[/hide] скрывает текст от гостей и ботов;
+			- [hide=30]текст[/hide] скрывает текст от всех, у кого счетчик сообщений меньше 30;
+			- [ghide]текст[/ghide] скрывает текст от всех, кто не состоит в твоей группе по умолчанию;
+			- [ghide=5]текст[/ghide] скрывает текст от всех, кто не состоит в группе с ID=5;
+			- [ghide=4,5,6]текст[/ghide] скрывает текст от всех, кто не состоит ни в одной из указанных групп.
+		Примечания.
+1. Скрытый текст всегда виден: администраторам; модераторам того форума, в котором размещено сообщение; автору сообщения.
+2. Во избежание различных недоразумений скрытый текст всегда заменяется фразой "Скрытый текст" при ответе с цитированием, при отправке ЛС с цитированием, при цитировании ЛС, при пересылке ЛС.</description>
+		
+		<author-notes lang="en">Do not forget to execute "DIY instructions" (at the bottom of page)</author-notes>
+		<author-notes lang="ru">Не забудьте выполнить "Прочие инструкции" (в самом низу страницы)</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Dmitry Gredyushko</realname>
+				<username>Izya</username>
+				<email>izya@nm.ru</email>
+			</author>	
+		</author-group>
+		
+		<mod-version>1.0.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>900</time>
+			<target-version>3.0.4</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2009-01-04</date>
+				<rev-version>0.1.0</rev-version>
+				<changelog lang="en">
+					<change>Initial beta release</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Initial beta release</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-19</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>[Change] Language corrections and cosmetic css changes</change>
+					<change>[Change] Repackaging for validation</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>[Change] Корректировка языковых строк (для английского языка) и косметические изменения.</change>
+					<change>[Change] Перепаковка мода для валидации.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-24</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>[Change] Language corrections</change>
+					<change>[Change] Update to MODX 1.2.2</change>
+					<change>[Fix] Code fix to prevent "undefined index" errors</change>
+					<change>[Fix] Fixed bug that allowed to read the hidden text</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>[Change] Корректировка языковых строк (для английского языка).</change>
+					<change>[Change] Обновление MODX.</change>
+					<change>[Fix] Небольшое исправление кода для предотвращения ошибок типа "undefined index".</change>
+					<change>[Fix] Исправлен баг, позволявший прочитать скрытый текст.</change>
+				</changelog>
+			</entry>			
+		</history>
+		<link-group>
+			<link type="template" href="subsilver2.xml" lang="en">Subsilver2</link>
+			<link type="language" href="ru.xml" lang="en">Russian</link>
+			<link type="language" href="ru.xml" lang="ru">Русский язык</link>
+		</link-group>
+	</header>
+	
+	<action-group>
+		<copy>
+			<file from="root/language/en/mods/adaptive_hide_bbcodes.php" to="language/en/mods/adaptive_hide_bbcodes.php" />
+		</copy>
+		
+		<open src="posting.php">
+			<edit>
+				<find><![CDATA[if (isset($post_data['post_text']))
+{
+	$message_parser->message = &$post_data['post_text'];
+	unset($post_data['post_text']);]]></find>
+				<action type="after-add"><![CDATA[
+	// Adaptive Hide BBcodes MOD
+	if ($mode == 'quote')
+	{
+		$user->add_lang('mods/adaptive_hide_bbcodes');
+		$hide_search_ary = array();
+		$hide_search_ary[] = '!\[hide:' . $post_data['bbcode_uid'] . '\](.*?)\[/hide:' . $post_data['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[hide\=([0-9]+):' . $post_data['bbcode_uid'] . '\](.*?)\[/hide:' . $post_data['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[ghide\=([a-zA-Z0-9-+.,_ ]+):' . $post_data['bbcode_uid'] . '\](.*?)\[/ghide:' . $post_data['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[ghide:' . $post_data['bbcode_uid'] . '\](.*?)\[/ghide:' . $post_data['bbcode_uid'] . '\]!s';
+		$message_parser->message = preg_replace($hide_search_ary, $user->lang('ADAPT_HIDE_QUOTE'), $message_parser->message);
+	}
+	// end Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/bbcode.php">
+			<edit>
+				<find><![CDATA[	function bbcode_second_pass(&$message, $bbcode_uid = '', $bbcode_bitfield = false)
+	{]]></find>
+				<action type="after-add"><![CDATA[
+		global $auth, $db, $user, $row, $author_id, $group_ids; // Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						if (!$undid_bbcode_specialchars)
+						{
+							$message = str_replace(array('&#58;', '&#46;'), array(':', '.'), $message);
+							$undid_bbcode_specialchars = true;
+						}]]></find>
+				<action type="after-add"><![CDATA[
+						// Adaptive Hide BBcodes MOD
+						if (substr_count($preg['search'][0], 'hide'))
+						{
+							$poster_id = isset($row['user_id']) ? $row['user_id'] : (isset($row['poster_id']) ? $row['poster_id'] : (isset($author_id) ? $author_id : 2));
+							if (!isset($row['forum_id']))
+							{
+								$row['forum_id'] = 0;
+							}
+							$user->setup('mods/adaptive_hide_bbcodes');
+							if (substr_count($preg['search'][0], '[hide:') && ($user->data['user_id'] == ANONYMOUS || $user->data['is_bot'] == 1))
+							{							
+								$message = preg_replace($preg['search'], array(0 => '[hide:' . $this->bbcode_uid . ']' . $user->lang('ADAPT_HIDE_GUEST') . '[/hide:' . $this->bbcode_uid . ']'), $message);
+							}
+							if (substr_count($preg['search'][0], '[hide\=') && !$auth->acl_get('m_edit', $row['forum_id']) && $user->data['user_id'] != $poster_id)
+							{
+								$sql = 'SELECT group_id 
+									FROM ' . USER_GROUP_TABLE . ' 
+									WHERE user_id = ' . (int)$poster_id . ' 
+									AND user_pending = 0';
+								$result = $db->sql_query($sql);
+								$poster_groups = array();
+								while ($sql_row = $db->sql_fetchrow($result))
+								{
+									$poster_groups[] = $sql_row['group_id'];
+								}
+								$db->sql_freeresult($result);
+								$ignore_groups = explode(',', ADAPT_HIDE_IGNORE_LIMIT_GROUPS);
+								$ignore_limit = false;
+								foreach ($poster_groups as $poster_group)
+								{
+									if (in_array($poster_group, $ignore_groups))
+									{
+										$ignore_limit = true;
+										break;
+									}
+								}
+								$sql = 'SELECT user_posts 
+									FROM ' . USERS_TABLE . ' 
+									WHERE user_id = ' . (int)$poster_id;
+								$result = $db->sql_query($sql);
+								$sql_row = $db->sql_fetchrow($result);
+								$db->sql_freeresult($result);
+								$poster_posts = $sql_row['user_posts'];
+								$hide_matches = array();
+								preg_match_all($preg['search'][0], $message, $hide_matches);
+								foreach ($hide_matches[1] as $key => $posts)
+								{
+									if (!$ignore_limit)
+									{
+										$posts = min($posts, ADAPT_HIDE_LIMIT_POSTS, $poster_posts);
+									}
+									$hide_cause = false;
+									if ($user->data['user_id'] == ANONYMOUS || $user->data['is_bot'] == 1)
+									{
+										if ($posts == 0)
+										{
+											$hide_cause = $user->lang('ADAPT_HIDE_GUEST');
+										}
+										else
+										{
+											$hide_cause = sprintf($user->lang('ADAPT_HIDE_GUEST_POSTS'), $posts);
+										}
+									}
+									elseif ($user->data['user_posts'] < $posts)
+									{
+										$hide_cause = sprintf($user->lang('ADAPT_HIDE_POSTS'), $posts);
+									}
+									if ($hide_cause)
+									{
+										$message = str_replace($hide_matches[0][$key], '[hide=' . $posts . ':' . $this->bbcode_uid . ']' . $hide_cause . '[/hide:' . $this->bbcode_uid . ']', $message);
+									}
+								}
+							}
+							if (substr_count($preg['search'][0], '[ghide') && !$auth->acl_get('m_edit', $row['forum_id']) && $user->data['user_id'] != $poster_id)
+							{							
+								if (!sizeof($group_ids))
+								{
+									$sql = 'SELECT group_id 
+										FROM ' . USER_GROUP_TABLE . ' 
+										WHERE user_id = ' . (int)$user->data['user_id'] . ' 
+										AND user_pending = 0';
+									$result = $db->sql_query($sql);
+									$group_ids = array();
+									while ($sql_row = $db->sql_fetchrow($result))
+									{
+										$group_ids[] = $sql_row['group_id'];
+									}
+									$db->sql_freeresult($result);
+								}
+						
+								if (substr_count($preg['search'][0], '[ghide:'))
+								{
+									$sql = 'SELECT group_id 
+										FROM ' . USERS_TABLE . ' 
+										WHERE user_id = ' . (int)$poster_id;
+									$result = $db->sql_query($sql);
+									$sql_row = $db->sql_fetchrow($result);
+									$db->sql_freeresult($result);
+									$poster_group = $sql_row['group_id'];
+									if (!in_array($poster_group, $group_ids))
+									{
+										$message = preg_replace($preg['search'], array(0 => '[ghide:' . $this->bbcode_uid . ']' . $user->lang('ADAPT_HIDE_GROUPS') . '[/ghide:' . $this->bbcode_uid . ']'), $message);
+									}
+								}
+								if (substr_count($preg['search'][0], '[ghide\='))
+								{
+									$hide_matches = array();
+									preg_match_all($preg['search'][0], $message, $hide_matches);
+									foreach ($hide_matches[1] as $key => $groups)
+									{
+										$groups_ary = explode(',', $groups);
+										$ghide = true;
+										foreach ($groups_ary as $group)
+										{
+											if (in_array($group, $group_ids))
+											{
+												$ghide = false;
+												break;
+											}
+										}
+										if ($ghide)
+										{
+											$message = str_replace($hide_matches[0][$key], '[ghide=' . $groups . ':' . $this->bbcode_uid . ']' . $user->lang('ADAPT_HIDE_GROUPS') . '[/ghide:' . $this->bbcode_uid . ']', $message);
+										}
+									}
+								}
+							}
+						}
+						// end Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/constants.php">
+			<edit>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[
+// Adaptive Hide BBcodes MOD
+define('ADAPT_HIDE_LIMIT_POSTS', 200);
+define('ADAPT_HIDE_IGNORE_LIMIT_GROUPS', '4,5');
+// end Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions_posting.php">
+			<edit>
+				<find><![CDATA[		$template->assign_block_vars($mode . '_row', array(]]></find>
+				<action type="before-add"><![CDATA[
+		// Adaptive Hide BBcodes MOD
+		$user->add_lang('mods/adaptive_hide_bbcodes');
+		$hide_search_ary = array();
+		$hide_search_ary[] = '!\[hide\](.*?)\[/hide\]!s';
+		$hide_search_ary[] = '!\[hide\=([0-9]+)\](.*?)\[/hide\]!s';
+		$hide_search_ary[] = '!\[ghide\=([a-zA-Z0-9-+.,_ ]+)\](.*?)\[/ghide\]!s';
+		$hide_search_ary[] = '!\[ghide\](.*?)\[/ghide\]!s';
+		$decoded_message = preg_replace($hide_search_ary, $user->lang('ADAPT_HIDE_QUOTE'), $decoded_message);
+		// end Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/ucp/ucp_pm_compose.php">
+			<edit>
+				<find><![CDATA[	$message_parser->message = ($action == 'reply') ? '' : $message_text;
+	unset($message_text);]]></find>
+				<action type="after-add"><![CDATA[
+	// Adaptive Hide BBcodes MOD
+	if ($action == 'quotepost')
+	{
+		$user->add_lang('mods/adaptive_hide_bbcodes');
+		$hide_search_ary = array();
+		$hide_search_ary[] = '!\[hide\](.*?)\[/hide\]!s';
+		$hide_search_ary[] = '!\[hide\=([0-9]+)\](.*?)\[/hide\]!s';
+		$hide_search_ary[] = '!\[ghide\=([a-zA-Z0-9-+.,_ ]+)\](.*?)\[/ghide\]!s';
+		$hide_search_ary[] = '!\[ghide\](.*?)\[/ghide\]!s';
+		$message_parser->message = preg_replace($hide_search_ary, $user->lang('ADAPT_HIDE_QUOTE'), $message_parser->message);
+	}
+	elseif ($action == 'quote' || $action == 'forward')
+	{
+		$user->add_lang('mods/adaptive_hide_bbcodes');
+		$hide_search_ary = array();
+		$hide_search_ary[] = '!\[hide:' . $post['bbcode_uid'] . '\](.*?)\[/hide:' . $post['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[hide\=([0-9]+):' . $post['bbcode_uid'] . '\](.*?)\[/hide:' . $post['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[ghide\=([a-zA-Z0-9-+.,_ ]+):' . $post['bbcode_uid'] . '\](.*?)\[/ghide:' . $post['bbcode_uid'] . '\]!s';
+		$hide_search_ary[] = '!\[ghide:' . $post['bbcode_uid'] . '\](.*?)\[/ghide:' . $post['bbcode_uid'] . '\]!s';
+		$message_parser->message = preg_replace($hide_search_ary, $user->lang('ADAPT_HIDE_QUOTE'), $message_parser->message);
+	}
+	// end Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/ucp/ucp_pm_viewmessage.php">
+			<edit>
+				<find><![CDATA[function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
+{
+	global $user, $template, $auth, $db, $cache;
+	global $phpbb_root_path, $phpEx, $config;]]></find>
+				<action type="after-add"><![CDATA[
+	global $author_id; // Adaptive Hide BBcodes MOD
+]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/theme/content.css">
+			<edit>
+				<find><![CDATA[/* Attachments
+----------------------------------------*/]]></find>
+				<action type="before-add"><![CDATA[
+/* Hide block */
+div.adapthide {
+        border: 1px dashed #000099;
+        background-color: #FFFFFF;
+        margin: 0px 10px 5px 10px;
+        padding: 5px 5px 5px 5px;
+        font-size: 12px;
+}
+]]></action>
+			</edit>
+		</open>
+				
+		<diy-instructions lang="en"><![CDATA[Add 4 custom BBCodes (ACP-> Posting -> BBCodes-> Add a new BBCode): 
+1. 
+BBCode usage - [hide]{TEXT}[/hide] 
+HTML replacement - <div class="adapthide">{TEXT}</div> 
+Help line - Hidden text: [hide]text[/hide] (hide from guests) or [hide=]text[/hide] (hide by number of posts) 
+Display on posting page - Yes (put a tick) 
+2. 
+BBCode usage - [hide={NUMBER}]{TEXT}[/hide] 
+HTML replacement - <div class="adapthide">{TEXT}</div> 
+Display on posting page - No
+3. 
+BBCode usage - [ghide]{TEXT}[/ghide]
+HTML replacement - <div class="adapthide">{TEXT}</div> 
+Help line - Hide text from groups: [ghide]text[/ghide] (is visible only to your default group) or [ghide=1,2,3]text[/ghide] (is visible to the specified groups) 
+Display on posting page - Yes (put a tick) 
+4. 
+BBCode usage - [ghide={SIMPLETEXT}]{TEXT}[/ghide] 
+HTML replacement - <div class="adapthide">{TEXT}</div> 
+Display on posting page - No 
+
+Refresh a theme for Prosilver style (ACP-> Styles -> Style components -> Themes -> Refresh)
+
+By using constants 'ADAPT_HIDE_LIMIT_POSTS' and 'ADAPT_HIDE_IGNORE_LIMIT_GROUPS' in the file includes/constants.php specify the maximum resolved quantity of demanded posts (200 by default) and ID of groups ignoring this restriction (4 and 5 by default - supermoderators and administrators)]]></diy-instructions>
+		
+		<diy-instructions lang="ru"><![CDATA[Добавьте 4 пользовательских ББ-кода (ACP -> Сообщения -> BBCodes -> Добавить BBCode):
+1.
+Использование BBCode - [hide]{TEXT}[/hide]
+Замена HTML - <div class="adapthide">{TEXT}</div>
+Подсказка - Скрытый текст: [hide]текст[/hide] (скрытие от гостей) или [hide=]текст[/hide] (скрытие по количеству сообщений)
+Показывать на странице ответа - Да (поставить галочку)
+2.
+Использование BBCode - [hide={NUMBER}]{TEXT}[/hide]
+Замена HTML - <div class="adapthide">{TEXT}</div>
+Показывать на странице ответа - Нет
+3.
+Использование BBCode - [ghide]{TEXT}[/ghide]
+Замена HTML - <div class="adapthide">{TEXT}</div>
+Подсказка - Скрытие текста от групп: [ghide]текст[/ghide] (виден только Вашей группе по умолчанию) или [ghide=1,2,3]текст[/ghide] (виден указанным группам)
+Показывать на странице ответа - Да (поставить галочку)
+4.
+Использование BBCode - [ghide={SIMPLETEXT}]{TEXT}[/ghide]
+Замена HTML - <div class="adapthide">{TEXT}</div>
+Показывать на странице ответа - Нет
+
+Обновите тему для стиля Prosilver (ACP -> Стили -> Компоненты стилей -> Темы -> Обновить)
+
+С помощью констант 'ADAPT_HIDE_LIMIT_POSTS' и 'ADAPT_HIDE_IGNORE_LIMIT_GROUPS' в файле includes/constants.php укажите максимальное разрешенное количество требуемых сообщений (по умолчанию 200) и ID групп, игнорирующих это ограничение (по умолчанию 4 и 5 - супермодераторы и администраторы)]]></diy-instructions>
+	</action-group>
+</mod>

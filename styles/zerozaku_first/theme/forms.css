@@ -1,0 +1,339 @@
+/* proSilver Form Styles
+---------------------------------------- */
+
+/* General form styles
+----------------------------------------*/
+fieldset {
+	border: none;
+}
+
+input {
+	border: 1px solid;
+	vertical-align: middle;
+	padding: 2px 5px;
+}
+
+input[type=radio], input[type=checkbox] {
+	border: none;
+}
+
+select {
+	vertical-align: middle;
+	padding: 1px;
+}
+
+option {
+	padding-right: 1em;
+}
+
+textarea {
+	border: 1px solid;
+	text-align: left;
+	width: 60%;
+	padding: 2px;
+}
+
+label {
+	cursor: default;
+	padding-right: 6px;
+	line-height: 2em;
+}
+
+label input {
+	border: 1px solid;
+	vertical-align: middle;
+}
+
+label img {
+	vertical-align: middle;
+}
+
+/* Definition list layout for forms
+---------------------------------------- */
+fieldset dl {
+	padding: 6px 0;
+}
+
+fieldset dt {
+	float: left;	
+	width: 15em;
+	text-align: right;
+	display: block;
+}
+
+fieldset dd {
+	margin-left: 16em;
+	vertical-align: top;
+	margin-bottom: 3px;
+}
+
+fieldset dd span {
+	font-size: 0.9166em;
+}
+
+/* Specific layout 1 */
+fieldset.fields1 dt {
+	width: 12em;
+}
+
+fieldset.fields1 dd {
+	margin-left: 12em;
+}
+
+fieldset.fields1 div {
+	margin-bottom: 3px;
+}
+
+/* Specific layout 2 */
+fieldset.fields2 dt {
+	width: 15em;
+}
+
+fieldset.fields2 dd {
+	margin-left: 16em;
+}
+
+/* Form elements */
+dt label {
+	font-weight: bold;
+	text-align: left;
+}
+
+dd label {
+	white-space: nowrap;
+}
+
+dd input, dd textarea {
+	margin-right: 3px;
+}
+
+dd select {
+	width: auto;
+}
+
+dd textarea {
+	width: 85%;
+}
+
+#timezone {
+	width: 95%;
+}
+
+* html #timezone {
+	width: 50%;
+}
+
+/* Quick-login on index page */
+fieldset.quick-login {
+	text-align: right;
+	float: right;
+	width: auto;
+}
+
+fieldset.quick-login input {
+	width: auto;
+}
+
+fieldset.quick-login input.inputbox {
+	width: 120px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+fieldset.quick-login label {
+	white-space: nowrap;
+	padding-right: 2px;
+}
+
+fieldset.quick-login .autologin {
+	text-align: left;
+	padding-top: 10px;
+	clear: both;
+}
+
+/* Display options on viewtopic/viewforum pages  */
+fieldset.display-options {
+	text-align: center;
+	margin: 10px 0 10px 0;
+	padding: 6px 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+fieldset.display-options label {
+	white-space: nowrap;
+	padding-right: 2px;
+}
+
+fieldset.display-options a {
+	border: 1px solid;
+	padding: 3px 0.4em;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* Display actions for ucp and mcp pages */
+fieldset.display-actions {
+	line-height: 2em;
+	text-align: right;
+	white-space: nowrap;
+	padding-right: 1em;
+	margin: 1em 0;
+}
+
+fieldset.display-actions label {
+	white-space: nowrap;
+	padding-right: 2px;
+}
+
+fieldset.sort-options {
+	line-height: 2em;
+}
+
+/* MCP forum selection*/
+fieldset.forum-selection {
+	margin: 5px 0 3px 0;
+	float: right;
+}
+
+fieldset.forum-selection2 {
+	margin: 13px 0 3px 0;
+	float: right;
+}
+
+/* Jumpbox */
+fieldset.jumpbox {
+	text-align: right;
+	margin-top: 15px;
+	height: 2.5em;
+}
+
+fieldset.quickmod {
+	width: 50%;
+	float: right;
+	text-align: right;
+	height: 2.5em;
+}
+
+/* Submit button fieldset */
+fieldset.submit-buttons, .submit-button {
+	text-align: center;
+	vertical-align: middle;
+	margin: 5px 0;
+}
+
+fieldset.submit-buttons input {
+	vertical-align: middle;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/* Posting page styles
+----------------------------------------*/
+
+/* Buttons used in the editor */
+#format-buttons {
+	margin: 10px 0 2px 0;
+}
+
+#format-buttons input, #format-buttons select {
+	vertical-align: middle;
+}
+
+/* Main message box */
+#message-box {
+	width: 80%;
+}
+
+#message-box textarea {
+	font-size: 1em;
+	text-align: left;
+	width: 100%;
+}
+
+/* Emoticons panel */
+#smiley-box {
+	width: 18%;
+	float: right;
+}
+
+#smiley-box img {
+	margin: 3px;
+}
+
+/* Input field styles
+---------------------------------------- */
+.inputbox {
+	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	padding: 3px;
+	cursor: text;
+}
+
+input.inputbox	{ width: 85%; }
+input.medium	{ width: 50%; }
+input.narrow	{ width: 25%; }
+input.tiny		{ width: 125px; }
+
+textarea.inputbox {
+	width: 85%;
+}
+
+.autowidth {
+	width: auto !important;
+}
+
+/* Form button styles
+---------------------------------------- */
+
+a.button1, input.button1, input.button3, a.button2, input.button2 {
+	border: 1px solid;
+	max-height: 24px;
+	width: auto !important;
+}
+
+input.button1, input.button2 {
+	max-height: 30px;
+}
+
+input.button3 {
+	padding: 0;
+	margin: 0;
+	height: 12px;
+}
+
+/* <a> button in the style of the form buttons */
+a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active {
+	display: inline-block;
+	margin: 2px;
+	padding: 3px 0.4em !important;
+	vertical-align: middle;
+	text-decoration: none !important;
+}
+
+a.button1:hover, a.button2:hover, input.button1:hover, input.button2:hover {
+	-moz-box-shadow: 0 0 3px #606060;
+	-webkit-box-shadow: 0 0 3px #606060;
+	-khtml-box-shadow: 0 0 3px #606060;
+	box-shadow: 0 0 3px #606060;
+}
+
+/* Topic and forum Search */
+.search-box {
+	margin-left: 5px;
+	float: left;
+}
+
+input.search {
+	padding-left: 20px !important;
+}
+
+.full { width: 95%; }
+.medium { width: 50%;}
+.narrow { width: 25%;}
+.tiny { width: 10%;}
+

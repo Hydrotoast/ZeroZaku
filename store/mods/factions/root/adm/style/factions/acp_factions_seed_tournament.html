@@ -1,0 +1,24 @@
+<!-- INCLUDE overall_header.html -->
+<form method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_SEED_TOURNAMENT}</legend>
+	<!-- BEGIN block_positions -->
+	<dl>
+		<dt>#{block_positions.POSITION}</td>
+		<dd>
+			<select name="position[]">
+				<!-- BEGIN block_groups -->
+				<option value="{block_positions.block_groups.GROUP_ID}">{block_positions.block_groups.GROUP_NAME}</option>
+				<!-- END block_groups -->
+			</select>
+		</dd>
+		{block_positions.VS}
+	</dl>
+	<!-- END block_positions -->
+
+	<p class="quick">
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</p>
+</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

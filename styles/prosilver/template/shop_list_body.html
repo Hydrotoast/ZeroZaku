@@ -1,0 +1,54 @@
+<!-- INCLUDE overall_header.html -->
+ <h2 class="solo">{L_SHOP_TITLE}</h2>
+
+ <div class="forumbg forumbg-table">
+	<div class="inner"><span class="corners-top"><span></span></span>
+ <table class="table1" cellspacing="1">
+	<thead>
+	<tr>
+	    <th class="name">{L_ICON}</th>
+		<th class="name">{L_NAME}</th>
+		<th class="name">{L_ITEM_S_DESC}</th>
+		<th class="name">{L_ITEM_SOLD}</th>
+		<th class="name">{L_ITEM_LEFT}</th>
+		<th class="name">{L_ITEM_COST}</th>
+	    <th class="name">{L_BUY}</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	<!-- BEGIN listrow -->
+	<tr class="bg1">
+	  <td class="row1">{listrow.ITEM_ICON}</td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall"><a href="{listrow.URL}" alt="{listrow.NAME}" title="{L_SHOP_ITEM_INFO} {listrow.NAME}" class="gensmall"><b>{listrow.NAME}</b></a></span></td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall">{listrow.SDESC}</span></td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall">{listrow.SOLD}</span></td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall">{listrow.STOCK}</span></td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall">{listrow.COST}</span></td>
+	  <td class="{listrow.ROW_CLASS}"><span class="gensmall"><a href="{listrow.BUY_URL}" title="{L_BUY} {listrow.NAME}"><img src="shop/images/buy.jpg" border="0"> </a></span></td>
+	</tr>
+<!-- END listrow -->
+	</tbody>
+  </table>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<br />
+<div class="panel">
+<tr> 
+	  <th class="thHead" colspan="2">{L_SHOP_PERSONAL_INFO}:</th>
+	</tr>
+	<div class="inner"><span class="corners-top"><span></span></span>
+        <a href="{INVENTORY_LINK}" class="gensmall">[{L_SHOP_YOUR_INV}]</a> 
+	   <br>{L_YOU_HAVE}: {USER_POINTS} Points
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+    <table width="99%" cellpadding="4" cellspacing="1" border="0" align="center" class="forumline">
+	<tr>
+		<td width="100%" align="center" class="row1"><br /><span class="gensmall">{L_SHOP_RIGHT1}<br/>{L_SHOP_RIGHT2}</span><br /><br /></td>
+	</tr>
+  </table>
+<br	clear="all" />
+<!-- INCLUDE overall_footer.html -->

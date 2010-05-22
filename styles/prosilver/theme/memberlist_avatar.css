@@ -1,0 +1,38 @@
+/**
+ * @package styles
+ * @version $Id: memberlist_avatar.css 45 2007-09-10 04:49:51Z Highway of Life $
+ * @copyright (c) 2007 David Lewis (Highway of Life) - http://startrekguide.com
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ ---------------------------------------- */
+.thumbnail {
+	z-index: 0;
+	position:relative;
+}
+
+a.thumbnail:hover {
+	background-color: transparent;
+	z-index: 50;
+}
+
+.thumbnail span {
+	position: absolute;
+	background: #e0e5e9 url("{T_THEME_PATH}/images/cellpic1.gif") repeat-x;
+	padding: 4px;
+	border: 1px solid #a9b8c2;
+	left: 0px;
+	display: none;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.thumbnail span img {
+	border-width: 0;
+	padding: 2px;
+}
+
+a.thumbnail:hover span {
+	position:absolute;
+	display:block;
+	top: 20px;
+	left: 7px;
+}

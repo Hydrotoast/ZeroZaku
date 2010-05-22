@@ -1,0 +1,12 @@
+<div class="panel smooth">
+	<div class="inner">
+		<form id="kb_searchform" method="post" action="{U_KB_SEARCH}">
+			<fieldset>
+				<input name="q" id="kb_keywords" type="text" style="width: 128px" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" />
+				<input class="button1" value="{L_GO}" type="submit" /><br />
+				{S_HIDDEN_FIELDS}
+			</fieldset>
+		</form>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>

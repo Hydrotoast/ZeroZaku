@@ -1,0 +1,41 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="tabs">
+	<ul>
+		<li><a href="./points.php?i={USER_ID}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+		<!-- IF POINTS_TRANSFER --><li class="activetab"><a href="./points.php?mode=transfer&i={USER_ID}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_LOGS --><li ><a href="./points.php?mode=logs&i={USER_ID}"><span>{L_POINTS_LOGS}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE --><li ><a href="./points.php?mode=lottery"><span>{L_POINTS_LOTTERY}</span></a></li><!-- ENDIF -->
+		<!-- IF BANK_ENABLE --><li ><a href="./points.php?mode=bank"><span>{L_POINTS_BANK}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_ROBBERY --><li ><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+  </ul>
+</div>
+
+<form id="form1" method="post" action="">
+<div class="panel bg3">
+	<div class="block-header"><span><span></span></span></div>
+	<div class="block-content">
+		<ul class="topiclist"><li class="header" style="padding-left: 4px; padding-bottom: 2px;"><dl><dt>{L_POINTS_TRANSFER}</dt></dl></li></ul>
+		<div class="block-inner">
+			<div style="padding:4px;">
+				<p>
+					<b>{L_USERNAME} : </b><br />
+					<input class="post" type="text" name="name_tr" value="{USERNAME_TR}" /><br />
+					<b>{L_POINTS_TRAN_AMOUNT} : </b><br />
+					<input class="post" type="text" name="amount" value="" /><br />
+					<!-- IF POINTS_COMMENTS -->
+						<br /><b>{L_POINTS_TRAN_COMMENT} : </b><br />
+						<textarea id="comment" name="comment" cols="50" rows="3" >{COMMENT}</textarea>
+					<!-- ENDIF -->	
+					{S_HIDDEN_FIELDS}
+					<br />
+					<div align="center"><input type="submit" name="submit" value="{L_SUBMIT}" class="btnmain" /></div>
+				</p>
+			</div>
+		<div class="block-clear"></div>
+		</div>
+	</div>
+	<div class="block-footer"><span><span></span></span></div><br style="clear:both" />
+</div>
+
+<!-- INCLUDE overall_footer.html -->

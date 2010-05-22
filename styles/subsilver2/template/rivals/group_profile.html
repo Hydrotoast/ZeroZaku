@@ -1,0 +1,142 @@
+<!-- INCLUDE overall_header.html -->
+<div id="pagecontent">
+	<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th colspan="2" nowrap="nowrap">
+				{GROUP_NAME} (ID: {GROUP_ID}) <!-- IF not S_IS_BOT and S_USER_LOGGED_IN and U_CHALLENGE -->-- <a href="{U_CHALLENGE}">{L_CHALLENGE}</a><!-- ENDIF -->
+				<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+				<!-- BEGIN block_request -->
+					| <a href="{block_request.U_REQUEST}" class="forumlink">{L_REQUEST_TO_JOIN}</a> 
+				<!-- END block_request -->
+				<!-- ENDIF -->
+			</th>
+		</tr>
+		<tr>
+			<td class="cat" width="40%" align="center"><h4>{L_GROUP_INFORMATION}</h4></td>
+			<td class="cat" width="60%" align="center"><h4>{L_STATISTICS}</h4></td>
+		</tr>
+		<tr>
+			<td class="row1" align="center" valign="top">
+				<table width="100%" cellspacing="1" cellpadding="2" border="0">
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_GROUP_LEADER}: </td>
+						<td>
+							<b class="gen">{LEADER_NAME}</b> <span class="genmed"> [ <a href="{U_LEADERPROFILE}">{L_VIEW_PROFILE}</a> ]</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_GROUP_INFORMATION}: </td>
+						<td>
+							<span class="gen">{GROUP_DESC}</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td class="row1" align="center" valign="top" rowspan="3">
+				<table width="100%" cellspacing="1" cellpadding="2" border="0">
+					<!-- BEGIN block_ladders -->
+					<tr>
+						<td colspan="2">
+							<h4>P: {block_ladders.PLATFORM}, L: {block_ladders.LADDER}, S: {block_ladders.SUBLADDER}</h4>
+						</td>
+					</tr>
+					<!-- IF .block_ladders.block_seasons -->
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_SEASON}: </td>
+						<td>
+							<form action="{block_ladders.U_ACTION}" method="post">
+							<select name="season_id">
+								<!-- BEGIN block_seasons -->
+								<option value="{block_ladders.block_seasons.SEASON_ID}">{block_ladders.block_seasons.SEASON_NAME}</option>
+								<!-- END block_seasons -->
+							</select>
+							<input type="hidden" name="season_ladder" value="{block_ladders.SUBLADDER_ID}" /> <input type="submit" name="submit" value="{L_SUBMIT}" class="btnlite" />
+							</form>
+						</td>
+					</tr>
+					<!-- ENDIF -->
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_GROUP_WINS}: </td>
+						<td>
+							<b class="gen">{block_ladders.GROUP_WINS}</b>
+						</td>
+					</tr>
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_GROUP_LOSSES}: </td>
+						<td>
+							<b class="gen">{block_ladders.GROUP_LOSSES}</b>
+						</td>
+					</tr>
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_GROUP_SCORE}: </td>
+						<td>
+							<b class="gen">{block_ladders.GROUP_SCORE}</b>
+						</td>
+					</tr>
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_CURRENT_RANK}: </td>
+						<td>
+							<b class="gen">{block_ladders.CURRENT_RANK} ({L_LAST_RANK}: {block_ladders.LAST_RANK})</b>
+						</td>
+					</tr>
+					<tr>
+						<td class="gen" align="right" nowrap="nowrap">{L_BEST_RANK}: </td>
+						<td>
+							<b class="gen">{block_ladders.BEST_RANK} ({L_WORST_RANK}: {block_ladders.WORST_RANK})</b>
+						</td>
+					</tr>
+					<!-- END block_ladders -->
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="cat" align="center"><h4>{L_GROUP_MEMBERS}</h4></td>
+		</tr>
+		<tr>
+			<td class="row1" align="center" valign="top">
+				<table width="100%" cellspacing="1" cellpadding="2" border="0">
+					<!-- BEGIN block_members -->
+					<tr>
+						<td>
+							<b class="gen">{block_members.MEMBER_NAME}</b> <span class="genmed"> [ <a href="{block_members.U_MEMBERPROFILE}">{L_VIEW_PROFILE}</a> ]</span>
+						</td>
+					</tr>
+					<!-- BEGINELSE -->
+					<tr>
+						<td>{L_NO_MEMBERS}</td>
+					</tr>
+					<!-- END block_members -->
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th colspan="4">{L_MATCH_HISTORY}</th>
+		</tr>
+		<!-- BEGIN block_matchhistory -->
+		<tr class="genmed">
+			<td class="{block_matchhistory.ROW_COLOR}" align="center">{block_matchhistory.DATE}</td>
+			<td class="{block_matchhistory.ROW_COLOR}" align="center">{block_matchhistory.STATUS}</td>
+			<td class="{block_matchhistory.ROW_COLOR}">
+				<strong>{L_PLATFORM}</strong>: {block_matchhistory.PLATFORM}<br />
+				<strong>{L_LADDER}</strong>: {block_matchhistory.LADDER}<br />
+				<strong>{L_SUBLADDER}</strong>: {block_matchhistory.SUBLADDER}
+			</td>
+			<td class="{block_matchhistory.ROW_COLOR}" align="center">
+				{block_matchhistory.CHALLENGER} vs {block_matchhistory.CHALLENGEE} (W: {block_matchhistory.WINNER})
+			</td>
+		</tr>
+		<!-- BEGINELSE -->
+		<tr class="genmed" align="center">
+			<td class="row1">{L_NO_MATCHES}</td>
+		</tr>
+		<!-- END block_matchhistory -->
+		<tr class="genmed">
+			<td class="cat" colspan="4">&nbsp;</td>
+		</tr>
+	</table>
+</div>
+<!-- INCLUDE overall_footer.html --> 

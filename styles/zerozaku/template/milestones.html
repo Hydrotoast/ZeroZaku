@@ -1,0 +1,41 @@
+<!-- IF S_KEYWORD_VERSION -->
+<!--
+/**
+*
+* @package - "Milestone Congratulations"
+* @version $Id: milestones.html 3 2008-09-21 MartectX $
+* @copyright (C)2008, MartectX ( http://mods.martectx.de/ )
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
+*
+*/
+-->
+<!-- ENDIF -->
+
+{$TBL_BLOCK_H_L}<img src="{T_THEME_PATH}/images/globe.png" width="16px" height="16px" alt=""/>&nbsp;{L_MILESTONE_HISTORY}{$TBL_BLOCK_H_R}
+
+<!-- BEGIN milestone -->
+<!-- IF milestone.NEWTYPE -->
+<!-- IF not milestone.S_FIRST_ROW -->
+	</tbody>
+	</table>
+
+<p></p>
+<!-- ENDIF -->
+
+	<table class="table1" cellspacing="1">
+	<thead>
+		<tr>
+			<th class="active" style="width: 30%; text-align: right;">{milestone.TYPE}</th>
+			<th class="name" style="text-align: left;">{L_USERNAME}</th>
+		</tr>
+	</thead>
+	<tbody>
+<!-- ENDIF -->
+		<tr class="<!-- IF milestone.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+			<td class="active" style="width: 30%; text-align: right;">{milestone.NUMBER}</td>
+			<td>{milestone.USER}</td>
+		</tr>
+<!-- END milestone -->
+	</tbody>
+	</table>
+{$TBL_BLOCK_F_L}{$TBL_BLOCK_F_R}

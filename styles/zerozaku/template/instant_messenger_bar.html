@@ -1,0 +1,190 @@
+<div id="site-bottom-bar" class="fixed-position">&nbsp;</div>
+<div id="site-bottom-bar-frame" class="fixed-position">
+
+<!-- IF not S_USER_LOGGED_IN -->
+	<div class="block-box" id="im-login">
+		<div class="button">{L_LOGIN}</div>
+		<div class="block">
+			<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN}</a><!-- IF S_REGISTER_ENABLED --> &bull; <a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+			<div class="bcontent">
+        <form method="post" action="{S_LOGIN_ACTION}">
+          <fieldset>
+            <dl>
+            	<dt><label for="username">{L_USERNAME}</label></dt>
+							<dd><input type="text" name="username" id="username" size="10" title="{L_USERNAME}" class="loginbox_input inputbox" /></dd>
+            </dl>
+            <dl>
+            	<dt><label for="password">{L_PASSWORD}</label></dt>
+							<dd><input type="password" name="password" id="password" size="10" title="{L_PASSWORD}" class="loginbox_input inputbox" /></dd>
+            </dl>
+          	<!-- IF S_AUTOLOGIN_ENABLED -->
+				<dl>
+					<dt><label for="autologin"><input type="checkbox" name="autologin" id="autologin" /> {L_REMEMBER_ME}</label></dt>
+				</dl>
+			<!-- ENDIF -->
+				<span>
+		          <input type="submit" name="login" value="{L_LOGIN}" class="button1" />
+				</span>								
+          </fieldset>
+        </form>
+			</div>
+		</div>
+	</div>
+
+	<div class="block-box rightside" id="im-online-list">
+		<div class="button">{L_IM_NOT_LOGGED_IN}</div>
+	</div>
+<!-- ELSE -->
+	<div class="block-box" id="im-login">
+		<div class="button">{L_ACCOUNT}</div>
+		<div class="block">
+      <h3><a href="{U_PROFILE}">{S_USERNAME}</a></h3>
+			<div class="bcontent links">
+		    <ul>
+					<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">&raquo; {L_MANAGE_FRIENDS}</a></li>
+					<li><a href="{U_ACCOUNT_SETTINGS}" title="{L_ACCOUNT_SETTINGS}">&raquo; {L_ACCOUNT_SETTINGS}</a></li>                    
+					<li><a href="{U_MANAGE_BOOKMARKS}" title="{L_MANAGE_BOOKMARKS}">&raquo; {L_MANAGE_BOOKMARKS}</a></li>
+					<li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">&raquo; {L_SEARCH_SELF}</a></li>
+					<li><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}">&raquo; {L_LOGIN_LOGOUT}</a></li>
+		    </ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="block-box" id="im-status">
+		<div class="button">{L_UPDATE_STATUS}</div>
+		<div class="block">
+			<h3>{L_UPDATE_STATUS}</h3>
+			<div class="bcontent">
+				<div class="bubble down">
+					<blockquote class="bubble_status">
+						<!-- IF S_USER_STATUS neq '' -->{S_USER_STATUS}<!-- ELSE -->&nbsp;<!-- ENDIF -->
+					</blockquote>
+					<cite>&nbsp;</cite>
+				</div>
+				<fieldset>
+					<dl>
+						<dt><label for="status_text">{L_UPDATE_STATUS}</label></dt>
+						<dd><input maxlength="1024" id="status_text" name="status_text" type="text" class="inputbox" /></dd>
+					</dl>
+					<p>
+						<input name="add" type="submit" class="button2" disabled="disabled" value="{L_UPDATE_STATUS}" />
+					<!-- IF S_USER_STATUS != '0' -->
+						<input name="delete" type="submit" class="button2" value="{L_REMOVE}" />
+					<!-- ENDIF -->
+					</p>
+				</fieldset>
+			</div>
+			<div class="overlay"></div>
+			<div class="overlay-text add">{L_STATUS_ADDED}</div>
+			<div class="overlay-text delete">{L_STATUS_DELETED}</div>
+		</div>
+	</div>
+	<!-- IF S_DISPLAY_PM -->
+	
+	<div class="block-box" id="im-pms">
+		<div class="button"><img src="{T_THEME_PATH}/images/Mail<!-- IF S_USER_UNREAD_PRIVMSG -->_new<!-- ENDIF -->.png" width="24" height="24" alt="{L_PRIVATE_MESSAGE}" /></div>
+		<div class="block">
+			<h3><a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a></h3>
+			<div class="bcontent links">
+				<ul>
+					<li><a href="{U_COMPOSE_NEW}" title="{L_COMPOSE_MESSAGE}">&raquo; {L_COMPOSE_MESSAGE}</a></li>
+					<li><a href="{U_PRIVATEMSGS}" title="{L_INBOX}">&raquo; {L_INBOX}</a></li>                    
+					<li><a href="{U_OUTBOX}" title="{L_OUTBOX}">&raquo; {L_OUTBOX}</a></li>
+					<li><a href="{U_SENT_MESSAGES}" title="{L_SENT_MESSAGES}">&raquo; {L_SENT_MESSAGES}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- ENDIF -->
+	
+	<div class="block-box" id="im-news">
+		<div class="button"><img src="{T_THEME_PATH}/images/News.png" width="24" height="24" alt="{L_POSTS}" /></div>
+		<div class="block">
+			<h3><a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a></h3>
+			<div class="bcontent links">
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="block-box" id="im-search">
+		<div class="button"><img src="{T_THEME_PATH}/images/Glass.png" width="24" height="24" alt="{L_SEARCH}" /></div>
+		<div class="block">
+			<h3>{L_SEARCH}</h3>
+			<div class="bcontent">
+				<form method="get" action="http://www.google.com/search">
+					<fieldset>
+						<dl>
+							<dt>
+								<input type="text" name="q" maxlength="128" class="inputbox search" value="{L_GOOGLE_SEARCH}" onclick="if(this.value=='{L_GOOGLE_SEARCH}')this.value='';" onblur="if(this.value=='')this.value='{L_GOOGLE_SEARCH}';" />
+							</dt>
+						</dl>
+						<p>
+							<input type="submit" value="{L_GOOGLE_SEARCH}" class="button2" style="margin-bottom:3px;" />
+							<input type="radio" name="sitesearch" value="{S_SERVER_NAME}" style="display:none" checked="checked" />
+						</p>
+					</fieldset>
+				</form>
+			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+				<form action="{U_SEARCH}" method="post" id="search">
+					<fieldset>
+						<dl>
+							<dt>
+								<input name="keywords" type="text" maxlength="128" class="inputbox search" value="{L_BOARD_SEARCH}" onclick="if(this.value=='{L_BOARD_SEARCH}')this.value='';" onblur="if(this.value=='')this.value='{L_BOARD_SEARCH}';" />
+							</dt>
+						</dl>
+						<p>
+							<input class="button2" value="{L_BOARD_SEARCH}" type="submit" />
+							{S_SEARCH_HIDDEN_FIELDS}
+						</p>
+					</fieldset>
+				</form>
+			<!-- ENDIF -->
+			</div>
+		</div>
+	</div>
+	
+	<div class="block-box rightside" id="im-online-list">
+		<div class="button"><img src="{T_THEME_PATH}/images/im_list_<!-- IF S_REG_USERS_ONLINE != '0' -->online<!-- ELSE -->offline<!-- ENDIF -->.gif" alt="{L_IM}" /> {L_IM} (<strong>{S_REG_USERS_ONLINE}</strong>)</div>
+		<div class="block">
+			<h3>{L_ONLINE}</h3>
+			<div class="bcontent links">
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+<!-- ENDIF -->
+
+  <!--[if lt IE 7 ]>
+  	<div class="block-box rightside" id="im-browser-update">
+  		<div class="button">{L_IM_UPDATE_BROSWER}</div>
+  		<div class="block" style="width:500px !important;">
+  			<h3>{L_IM_UPDATE_BROSWER}</h3>
+  			<div class="bcontent" style="width:500px !important;height:300px;display: block;overflow-x:scroll;overflow-y:hidden;">
+  				<!-- INCLUDE instant_messenger_update_browser.html -->
+  			</div>
+  		</div>
+  	</div>
+  <script type="text/javascript">
+  	function move_bottom_bar()
+  	{
+  		var element1 = document.getElementById('site-bottom-bar');
+  		var element2 = document.getElementById('site-bottom-bar-frame');
+  		var offset = document.documentElement.offsetHeight - element1.offsetHeight - 3;
+  		
+  		element1.style.top = (document.documentElement.scrollTop + offset) + 'px';
+  		element2.style.top = (document.documentElement.scrollTop + offset) + 'px';
+  		
+  		setTimeout( 'move_bottom_bar()', 200);
+  	}
+  	
+  	$(document).ready( function(){
+  		move_bottom_bar();
+  	});
+  	
+  </script>
+  <![endif]-->
+  
+  <a id="im_msg_arrived" href="{ROOT_PATH}styles/instant_messenger/im-new-message.mp3" style="display:none"></a> 
+</div>

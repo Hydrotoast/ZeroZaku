@@ -1,0 +1,40 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_EDIT_GROUP}</h2>
+<form action="{U_ACTION}" method="post">
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		
+		<fieldset>
+			<h3>{L_GROUP_DETAILS}</h3>
+			<dl>
+				<dt><label for="group_name">{L_GROUP_NAME}:</label></dt>
+				<dd><input type="text" name="group_name" id="group_name" value="{GROUP_NAME}" class="inputbox autowidth" /> | <b>{L_DELETE}</b> <input type="checkbox" class="radio" name="group_delete" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="group_contact">{L_GROUP_DESC}:</label></td>
+				<dd><textarea cols="40" rows="5" name="group_desc" id="group_desc" class="inputbox narrow">{GROUP_DESC}</textarea></dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset>
+			<h3>{L_GROUP_LOGO}</h3>
+			<dl>
+				<dt><label>{L_CURRENT_IMAGE}:</label><br /><span>{L_AVATAR_EXPLAIN}</span></dt>
+				<dd><!-- IF AVATAR -->{AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF --></dd>
+			</dl>
+			<dl>
+				<dt><label for="group_logo">{L_GROUP_LOGO}</label><br /><span>{L_UPLOAD_AVATAR_URL_EXPLAIN}</span></dt>
+				<dd><input type="text" class="inputbox autowidth" name="group_logo" /></dd>
+			</dl>
+		</fieldset>
+		
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+</form>
+<!-- INCLUDE ucp_footer.html -->

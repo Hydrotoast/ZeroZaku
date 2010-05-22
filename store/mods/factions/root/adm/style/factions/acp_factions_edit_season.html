@@ -1,0 +1,16 @@
+<!-- INCLUDE overall_header.html -->
+<form method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_ACP_FACTIONS_EDIT_SEASON}</legend>
+	<dl>
+		<dt><label for="season_name">{L_SEASON_NAME}:</label></dt>
+		<dd><input type="text" id="season_name" name="season_name" class="inputbox autowidth" value="{SEASON_NAME}" /></dd>
+	</dl>
+
+	<p class="quick">
+		<input type="hidden" name="season_id" value="{SEASON_ID}" />
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</p>
+</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

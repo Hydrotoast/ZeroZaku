@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2 class="pagetitle">{L_UPLOADER}</h2>
+<div class="panel bg2" id="attach-panel">
+	<div class="inner">
+	<form id="postform" method="post" action="{S_POST_ACTION}" enctype="multipart/form-data">
+		<fieldset class="fields2">
+			<dl>
+				<dt><label for="fileupload">{L_FILE_NAME}:</label></dt>
+				<dd>
+					<input type="file" name="fileupload" id="fileupload" maxlength="{FILESIZE}" value="" class="inputbox autowidth" /> 
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="filecomment">{L_FILE_DESC}:</label></dt>
+				<dd><textarea name="filecomment" id="filecomment" rows="1" cols="40" class="inputbox autowidth">{FILE_COMMENT}</textarea></dd>
+			</dl>
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd><input class="button1" type="submit" name="post" value="{L_SUBMIT}" /> <input class="button2" type="submit" name="cancel_unglobalise" value="{L_CANCEL}" /></dd>
+			</dl>
+		</fieldset>
+		{S_FORM_TOKEN}
+	</form>
+	</div>
+</div>
+
+<h2 class="pagetitle">{L_MY_FILES}</h2>
+<div class="forumbg forumbg-table">
+		<div class="inner">
+
+	<table class="table1" cellspacing="1">
+		<thead>
+		<tr>
+			<th>{L_FILE}</th>
+			<th>{L_FILE_DATE}</th>
+			<th>{L_FILE_DOWNLOADS}</th>
+			<th>{L_FILE_PASSWORD}</th>
+			<!-- IF S_MODERATE --><th>{L_FILE_EDIT}</th><!-- ENDIF -->
+		</tr>
+		</thead>
+		<tbody>
+	<!-- IF .reputation_row -->
+	<!-- BEGIN reputation_row -->
+		<tr class="<!-- IF reputation_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+			<td><span>{reputation_row.POINT_IMG}</span></td>
+			<td><span>{reputation_row.FROM}<br /><strong>on</strong> {reputation_row.TIME}</span></td>
+			<td><span>{reputation_row.COMMENT}</span></td>
+			<td><span><!-- IF reputation_row.POST_SUBJECT --><a href="{reputation_row.U_POST}">{reputation_row.POST_SUBJECT}</a><!-- ELSE -->{L_RP_NA}<!-- ENDIF --></span></td>
+			<!-- IF S_MODERATE --><td><a href="{reputation_row.U_DELETE}"><img src="{T_IMAGES_PATH}reputation/icon_delete.gif"></a></td><!-- ENDIF -->
+		</tr>
+	<!-- END reputation_row -->
+	<!-- ELSE -->
+		<tr class="bg1" align="center">
+			<td colspan="<!-- IF S_MODERATE -->5<!-- ELSE -->4<!-- ENDIF -->">{L_NO_FILES}</td>
+		</tr>
+	<!-- ENDIF -->
+	
+		</tbody>
+	</table>
+
+	</div>
+</div>
+
+<!-- IF PAGINATION -->
+		<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{PAGINATION}</span>
+		</div>
+<!-- ENDIF -->
+<br />
+
+<!-- INCLUDE simple_footer.html -->

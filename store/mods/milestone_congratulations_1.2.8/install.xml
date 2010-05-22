@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.1.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+
+		<title lang="en">Milestone Congratulations</title>
+		<title lang="de">Meilenstein-Gratulierer</title>
+
+		<description lang="en">Enables the setup of milestones for members to reach. These may consist of (numbers freely adjustable): Making the 1000th post, creating the 1000th topic or registering as the 50th user. The user accomplishing a goal will be displayed on the index page until the next milestone is reached. Upon reaching a milestone the counter automatically increments by an (once again) adjustable amount.
+
+For every accomplished goal a database entry is created which can be used with medals, cash or points of any kind; also there's a new "history page" that displays all milestones.</description>
+		<description lang="de">Ermöglicht das Setzen von Meilensteinen, welche die Benutzer des Forums erreichen können. Meilensteine können sein (Werte frei einstellbar): Den insgesamt 1000. Beitrag zu schreiben, das insgesamt 100. Thema zu erstellen oder der 50. registrierte Benutzer zu sein. Der Nutzer, der eine der Vorgaben erfüllt, wird auf der Startseite verewigt, bis der nächste Meilenstein erreicht ist. Bei Erreichen eines Zieles wird der Zähler automatisch um eine (ebenfalls) festzulegende Schrittweite erhöht.
+
+Zudem wird über jeden erreichten Meilenstein ein Datenbankeintrag erstellt, der die weitere Nutzung in Cashmods, für Punkte oder Medaillen ermöglicht; es steht auch eine neue Seite zur Verfügung, die die bisher erreichten Meilensteine ausgibt.</description>
+
+		<author-group>
+			<author>
+				<realname>Martin Rauscher</realname>
+				<username>MartectX</username>
+				<homepage>http://mods.martectx.de/</homepage>
+			</author>
+		</author-group>
+
+		<mod-version>1.2.8</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.2</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2008-10-02</date>
+				<rev-version>1.2.8</rev-version>
+				<changelog lang="en">
+					<change>Validation changes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Validierungsänderungen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-09-21</date>
+				<rev-version>1.2.7</rev-version>
+				<changelog lang="en">
+					<change>Now displaying members viewing history page in viewonline.php</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Anzeige von Mitgliedern, welche die Historie betrachten, in "Wer ist online?"</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-09-19</date>
+				<rev-version>1.2.6</rev-version>
+				<changelog lang="en">
+					<change>Validation changes (mostly cross-dbms compatibility)</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Validierungsänderungen (v.a. Kompatibilität mit mehreren Datenbanktypen)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-23</date>
+				<rev-version>1.2.5</rev-version>
+				<changelog lang="en">
+					<change>Now supports MOD Version Check</change>
+					<change>Integration with Simple Points System now available separately because it's not in MODDB</change>
+					<change>Validation changes</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Unterstützung von MOD Version Check</change>
+					<change>Integration mit dem Simple Points System fortan separat, da der Mod nicht in der MODDB aufgenommen ist</change>
+					<change>Validierungsänderungen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-30</date>
+				<rev-version>1.2.4</rev-version>
+				<changelog lang="en">
+					<change>History page now validates under XHTML rules</change>
+					<change>Integration of Milestone Congratulations with Simple Points System by Ganon_master</change>
+					<change>Submitted to Mod Database</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Historienseite nun XHTML-konform</change>
+					<change>Integration des Meilenstein-Gratulierers mit dem Simple Points System von Ganon_master</change>
+					<change>In Mod-Datenbank eingereicht</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-29</date>
+				<rev-version>1.2.3</rev-version>
+				<changelog lang="en">
+					<change>Fixed sorting problem on History page</change>
+					<change>Less changes to core phpBB files</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Sortierfehler auf Historienseite behoben</change>
+					<change>Weniger Änderungen an den phpBB-Stammdateien</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-28</date>
+				<rev-version>1.2.2</rev-version>
+				<changelog lang="en">
+					<change>Fixed small quirk in the ACP module</change>
+					<change>History page not viewable anymore without proper mod installation</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Kleiner Fehler im Admin-Modul behoben</change>
+					<change>Historienseite ohne abgeschlossene Mod-Installation nicht mehr aufrufbar</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-27</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change>Fixed small quirk in the ACP module</change>
+					<change>Got special characters to work in the XML installation files!</change>
+					<change>Changed logged installation message</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Kleiner Fehler im Admin-Modul behoben</change>
+					<change>Sonderzeichen in den .XML-Installations-Dateien!</change>
+					<change>Änderung der protokollierten Installationsnachricht</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-27</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change>Changed name to reflect new functionality: "Milestone Congratulations"</change>
+					<change>Integrated /contrib/*: "History" and "Colorized Usernames"</change>
+					<change>Expanded mod to include topics and users, as well</change>
+					<change>Created module for Admin Control Panel</change>
+					<change>Keep changes to core phpBB files to a minimum</change>
+					<change>Change next milestone without changing currently displayed milestone</change>
+					<change>Included history output page for proSilver and subSilver2 with option to be admin-only</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Neuer Name aufgrund neuer Funktionalität: "Meilenstein-Gratulierer"</change>
+					<change>Integration von /contrib/*: "Historie" and "Farbige Benutzernamen"</change>
+					<change>Erweiterung um Themen und Benutzer</change>
+					<change>Erstellung eines Moduls für den Administrationsbereich</change>
+					<change>Minimierung der Änderungen an phpBB-Stammdateien</change>
+					<change>Fortan Änderung des nächsten Ziels ohne Beeinflussung des momentan angezeigten Meilensteins möglich</change>
+					<change>Historien-Seite für proSilver and subSilver2, wenn gewünscht nur für den Administrator einsehbar</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-23</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Small change in /contrib/congrat_history.xml</change>
+					<change>Small change in /contrib/colorize_username.xml</change>
+					<change>Changes in the language variables</change>
+					<change>Make use of language variables in /root/install_post_congrat.php</change>
+					<change>You asked for it: Now supporting custom goal increments!</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Kleine Änderung in /contrib/congrat_history.xml</change>
+					<change>Kleine Änderung in /contrib/colorize_username.xml</change>
+					<change>Änderungen an den Sprachvariablen</change>
+					<change>Nutze Sprachvariablen in /root/install_post_congrat.php</change>
+					<change>Ihr habt es so gewollt: Fortan mit einstellbarer Schrittweite!</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-21</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Optionally enable a congrats history (thanks updown)</change>
+					<change>Small changes in /contrib/colorize_username.xml</change>
+					<change>proSilver changes are now inline edits</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Ermögliche das Speichern einer Gratulationshistorie (Dank an updown)</change>
+					<change>Kleine Änderungen in /contrib/colorize_username.xml</change>
+					<change>Änderungen an proSilver sind nun "In der Zeile"-Änderungen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-21</date>
+				<rev-version>1.0.0-RC2</rev-version>
+				<changelog lang="en">
+					<change>Small packaging changes</change>
+					<change>Optionally enable use of group colors (thanks Nicole86)</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Kleine Änderungen beim Packaging</change>
+					<change>Ermögliche die Anwendung von Gruppenfarben (Dank an Nicole86)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-20</date>
+				<rev-version>1.0.0-RC1</rev-version>
+				<changelog lang="en">
+					<change>Small display change</change>
+					<change>Automatically set valid next goal at installation</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Kleine Anzeige-Änderung im Englischen</change>
+					<change>Automatisches Setzen des nächsten gültigen Ziels bei Installation</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-20</date>
+				<rev-version>1.0.0-RC0</rev-version>
+				<changelog lang="en">
+					<change>First release: "Post Congratulations"</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Erstveröffentlichung: "Beitragsgratulierer"</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="template" href="./subsilver2.xml" lang="en">subSilver2</link>
+			<link type="template" href="./subsilver2.xml" lang="de">subSilver2</link>
+			<link type="language" href="./de.xml" lang="en">German</link>
+			<link type="language" href="./de.xml" lang="de">Deutsch</link>
+			<link type="contrib" href="./contrib/mod_version_check.xml" lang="en">MOD Version Check</link>
+			<link type="contrib" href="./contrib/mod_version_check.xml" lang="de">MOD Version Check</link>
+			<link type="contrib" href="./contrib/update_1.2.5_to_1.2.6.xml" lang="en">Update 1.2.5 to 1.2.6</link>
+			<link type="contrib" href="./contrib/update_1.2.5_to_1.2.6.xml" lang="de">Update 1.2.5 auf 1.2.6</link>
+			<link type="contrib" href="./contrib/update_1.2.6_to_1.2.7.xml" lang="en">Update 1.2.6 to 1.2.7</link>
+			<link type="contrib" href="./contrib/update_1.2.6_to_1.2.7.xml" lang="de">Update 1.2.6 auf 1.2.7</link>
+			<link type="contrib" href="./contrib/update_1.2.7_to_1.2.8.xml" lang="en">Update 1.2.7 to 1.2.8</link>
+			<link type="contrib" href="./contrib/update_1.2.7_to_1.2.8.xml" lang="de">Update 1.2.7 auf 1.2.8</link>
+			</link-group>
+	</header>
+
+	<action-group>
+		<copy>
+			<file from="root/milestones.php" to="milestones.php" />
+			<file from="root/adm/style/acp_milestone_congratulations.html" to="adm/style/acp_milestone_congratulations.html" />
+			<file from="root/includes/functions_milestones.php" to="includes/functions_milestones.php" />
+			<file from="root/includes/acp/acp_milestone_congratulations.php" to="includes/acp/acp_milestone_congratulations.php" />
+			<file from="root/includes/acp/info/acp_milestone_congratulations.php" to="includes/acp/info/acp_milestone_congratulations.php" />
+			<file from="root/language/en/mods/info_acp_milestone_congratulations.php" to="language/en/mods/info_acp_milestone_congratulations.php" />
+			<file from="root/language/en/mods/milestone_congratulations.php" to="language/en/mods/milestone_congratulations.php" />
+			<file from="root/milestones_schemata/*.*" to="milestones_schemata/*.*" />
+			<file from="root/styles/prosilver/template/milestones.html" to="styles/prosilver/template/milestones.html" />
+		</copy>
+
+		<open src="index.php">
+			<edit>
+				<find>// Assign index specific vars
+$template->assign_vars(array(</find>
+				<action type="before-add">include($phpbb_root_path . 'includes/functions_milestones.' . $phpEx);
+$user->add_lang('mods/milestone_congratulations');
+</action>
+				<action type="after-add">	'MILESTONE_INFO'	=> milestone_info(),
+	'MILESTONE_MESSAGE'	=> milestone_message(),
+	'MILESTONE_HISTORY'	=> milestone_history(),
+</action>
+			</edit>
+		</open>
+
+		<open src="viewonline.php">
+			<edit>
+				<find>		case 'faq':
+			$location = $user->lang['VIEWING_FAQ'];
+			$location_url = append_sid("{$phpbb_root_path}faq.$phpEx");
+		break;</find>
+				<action type="before-add">		case 'milestones':
+			$user->add_lang('mods/milestone_congratulations');
+			$location = $user->lang['VIEWING_MILESTONES'];
+			$location_url = append_sid("{$phpbb_root_path}milestones.$phpEx");
+		break;
+</action>
+			</edit>
+		</open>
+
+		<open src="includes/constants.php">
+			<edit>
+				<find>// Additional tables</find>
+				<action type="after-add">define('MILESTONES_TABLE',			$table_prefix . 'milestones');</action>
+			</edit>
+		</open>
+
+		<open src="includes/functions.php">
+			<edit>
+				<find>	// The following assigns all _common_ variables that may be used at any point in a template.</find>
+				<action type="before-add">	if (!function_exists('milestones'))
+	{
+		include($phpbb_root_path . 'includes/functions_milestones.' . $phpEx);
+	}
+	milestones();
+</action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/index_body.html">
+			<edit>
+				<find><![CDATA[	<p>{TOTAL_POSTS} &bull; {TOTAL_TOPICS} &bull; {TOTAL_USERS} &bull; {NEWEST_USER}</p>]]></find>
+				<inline-edit>
+					<inline-find>{NEWEST_USER}</inline-find>
+					<inline-action type="after-add"><![CDATA[<br />{MILESTONE_MESSAGE} {MILESTONE_HISTORY} {MILESTONE_INFO}]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en">In the Admin Control Panel navigate to System -> Module Management -> Administration Control Panel -> .MODs(*) -> Enter "MC_TITLE" -> click "Create new module" -> click "Yes" -> click "Submit".
+
+(*)...if .MODs does not exist, still in your ACP navigate to System -> Module Management -> Administration Control Panel -> Enter "ACP_CAT_DOT_MODS" -> click "Create new module" -> click "Yes" -> click "Submit".
+
+Now navigate to System -> Module Management -> Administration Control Panel -> .MODs -> Milestone Congratulations -> choose "Milestone Congratulations Setup" from the dropdown menu -> click "Add Module" -> click "Yes".
+
+One more time navigate to System -> Module Management -> Administration Control Panel -> .MODs -> Milestone Congratulations -> click "Enable".
+
+Now click the .MODS tab and choose "Milestone Congratulations Setup".
+
+Make your adjustments and click "Submit" (you may now delete folder "milestones_schemata").</diy-instructions>
+		<diy-instructions lang="de">Im Administrationsbereich gehe zu System -> Modul-Konfiguration -> Administrations-Bereich -> Mods(*) -> "MC_TITLE" eingeben -> "Neues Modul erstellen" klicken -> "Ja" klicken -> "Absenden" klicken.
+
+(*)...falls Mods nicht existiert gehe im Adminbereich zu System -> Modul-Konfiguration -> Administrations-Bereich -> "ACP_CAT_DOT_MODS" eingeben -> "Neues Modul erstellen" klicken -> "Ja" klicken -> "Absenden" klicken.
+
+Nun gehe zu System -> Modul-Konfiguration -> Administrations-Bereich -> Mods -> Meilenstein-Gratulierer -> "Einstellungen des Meilenstein-Gratulierers" im Dropdown-Menü auswählen -> "Modul hinzufügen" klicken -> "Ja" klicken.
+
+Ein letztes Mal schlage dich durch bis System -> Modul-Konfiguration -> Administrations-Bereich -> Mods -> Meilenstein-Gratulierer -> "Aktivieren" anklicken.
+
+Wähle nun den Reiter MODS und klicke auf "Einstellungen des Meilenstein-Gratulierers".
+
+Mache deine Einstellungen und klicke auf "Absenden" (du kannst den Ordner "milestones_schemata" nun löschen).</diy-instructions>
+	</action-group>
+</mod>

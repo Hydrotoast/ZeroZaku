@@ -1,0 +1,26 @@
+<!-- INCLUDE overall_header.html -->
+<div class="forumbg forumbg-table">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<form action="{U_ACTION}" method="post">
+		<table class="table1" cellspacing="1">
+			<thead>
+				<tr>
+					<th class="name" colspan="2">{L_PLATFORM}</th>
+					<th class="views">{L_LADDERS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN block_platforms -->
+				<tr class="{block_platforms.BG_COLOR}">
+					<td class="{block_platforms.ROW_COLOR}" align="center" width="10%"><b>#{block_platforms.COUNT}</b>
+					<td class="{block_platforms.ROW_COLOR}"><a href="{block_platforms.U_ACTION}">{block_platforms.PLATFORM_NAME}</a></td>
+					<td class="{block_platforms.ROW_COLOR}" align="center" valign="middle">{block_platforms.NUM_LADDERS}</td>
+				</tr>
+				<!-- END block_platforms -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html -->

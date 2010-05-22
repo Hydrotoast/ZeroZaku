@@ -1,0 +1,114 @@
+<!-- INCLUDE overall_header.html -->
+<h2>
+	{GROUP_NAME} (ID: {GROUP_ID})
+	<!-- IF not S_IS_BOT and S_USER_LOGGED_IN and U_CHALLENGE --> -- <a href="{U_CHALLENGE}">{L_CHALLENGE}</a><!-- ENDIF -->
+	<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+	<!-- BEGIN block_request -->
+		| <a href="{block_request.U_REQUEST}" class="forumlink">{L_REQUEST_TO_JOIN}</a> 
+	<!-- END block_request -->
+	<!-- ENDIF -->
+</h2>
+
+<div class="panel bg1">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<dl class="left-box">
+		<dt>{GROUP_LOGO}</dt>
+	</dl>
+
+	<dl class="left-box details" style="width: 50%;">
+		<dt>{L_GROUP_LEADER}:</dt>
+		<dd><a href="{U_LEADERPROFILE}">{LEADER_NAME}</a></dd>
+
+		<dt>{L_GROUP_INFORMATION}</dt>
+		<dd>{GROUP_DESC}</dd>
+	</dl>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<div class="panel bg2">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<div class="column1">
+		<h3>{L_GROUP_MEMBERS}</h3>
+
+		<dl class="details">
+			<!-- BEGIN block_members -->
+			<dt><strong>{block_members.MEMBER_NAME}</strong>:</dt>
+			<dd><a href="{block_members.U_MEMBERPROFILE}">{L_VIEW_PROFILE}</a></dd>
+			<!-- BEGINELSE -->
+			<dt>{L_NO_MEMBERS}</dt>
+			<!-- END block_members -->
+		</dl>
+	</div>
+
+	<div class="column2">
+		<h3>{L_STATISTICS}</h3>
+
+		<!-- BEGIN block_ladders -->
+		<h4>P: {block_ladders.PLATFORM}, L: {block_ladders.LADDER}, S: {block_ladders.SUBLADDER}</h4>
+		<dl class="details">
+			<!-- IF .block_ladders.block_seasons -->
+			<dt>{L_SEASON}:</dt>
+			<dd>
+				<form action="{block_ladders.U_ACTION}" method="post">
+				<select name="season_id" class="inputbox autowidth">
+					<!-- BEGIN block_seasons -->
+					<option value="{block_ladders.block_seasons.SEASON_ID}">{block_ladders.block_seasons.SEASON_NAME}</option>
+					<!-- END block_seasons -->
+				</select>
+				<input type="hidden" name="season_ladder" value="{block_ladders.SUBLADDER_ID}" /> <input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+				</form>
+			</dd>
+			<!-- ENDIF -->
+
+			<dt>{L_GROUP_WINS}:</dt>
+			<dd>{block_ladders.GROUP_WINS}</dd>
+			<dt>{L_GROUP_LOSSES}:</dt>
+			<dd>{block_ladders.GROUP_LOSSES}</dd>
+			<dt>{L_GROUP_SCORE}:</dt>
+			<dd>{block_ladders.GROUP_SCORE}</dd>
+			<dt>{L_CURRENT_RANK}:</dt>
+			<dd>{block_ladders.CURRENT_RANK} ({L_LAST_RANK}: {block_ladders.LAST_RANK})</dd>
+			<dt>{L_BEST_RANK}:</dt>
+			<dd>{block_ladders.BEST_RANK} ({L_WORST_RANK}: {block_ladders.WORST_RANK})</dd>
+		</dl>
+		<!-- END block_ladders -->
+	</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div><br />
+<div class="forumbg forumbg-table">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<form action="{U_ACTION}" method="post">
+		<table class="table1" cellspacing="1">
+			<thead>
+				<tr>
+					<th class="name">{L_MATCH_HISTORY}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN block_matchhistory -->
+				<tr class="bg1">
+					<td class="{block_matchhistory.ROW_COLOR}" align="center">{block_matchhistory.DATE}</td>
+					<td class="{block_matchhistory.ROW_COLOR}" align="center">{block_matchhistory.STATUS}</td>
+					<td class="{block_matchhistory.ROW_COLOR}">
+						<strong>{L_PLATFORM}</strong>: {block_matchhistory.PLATFORM}<br />
+						<strong>{L_LADDER}</strong>: {block_matchhistory.LADDER}<br />
+						<strong>{L_SUBLADDER}</strong>: {block_matchhistory.SUBLADDER}
+					</td>
+					<td class="{block_matchhistory.ROW_COLOR}" align="center">
+						{block_matchhistory.CHALLENGER} vs {block_matchhistory.CHALLENGEE} (W: {block_matchhistory.WINNER})
+					</td>
+				</tr>
+				<!-- BEGINELSE -->
+				<tr class="bg1" align="center">
+					<td class="row1">{L_NO_MATCHES}</td>
+				</tr>
+				<!-- END block_matchhistory -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html --> 

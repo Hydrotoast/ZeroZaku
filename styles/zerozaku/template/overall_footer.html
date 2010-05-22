@@ -1,0 +1,87 @@
+	<!-- IF $SIDEBAR eq '1' -->
+	</div>
+	
+	<div id="page-sidebar">
+	<!-- INCLUDE sidebar.html -->
+	</div>
+	<!-- ENDIF -->
+	
+	<!-- IF $CA_PAGE eq 'index' -->
+	<div id="bottom-ad">
+		<div class="adbrite"><!-- Begin: AdBrite, Generated: 2010-02-18 8:59:23  -->
+			<script type="text/javascript">
+			var AdBrite_Title_Color = '2D4054';
+			var AdBrite_Text_Color = '212121';
+			var AdBrite_Background_Color = 'FFFFFF';
+			var AdBrite_Border_Color = 'D0D0D0';
+			var AdBrite_URL_Color = 'FF530D';
+			try{var AdBrite_Iframe=window.top!=window.self?2:1;var AdBrite_Referrer=document.referrer==''?document.location:document.referrer;AdBrite_Referrer=encodeURIComponent(AdBrite_Referrer);}catch(e){var AdBrite_Iframe='';var AdBrite_Referrer='';}
+			</script>
+			<span style="white-space:nowrap;"><script type="text/javascript">document.write(String.fromCharCode(60,83,67,82,73,80,84));document.write(' src="http://ads.adbrite.com/mb/text_group.php?sid=1535215&amp;zs=3732385f3930&amp;ifr='+AdBrite_Iframe+'&amp;ref='+AdBrite_Referrer+'" type="text/javascript">');document.write(String.fromCharCode(60,47,83,67,82,73,80,84,62));</script>
+			<a href="http://www.adbrite.com/mb/commerce/purchase_form.php?opid=1535215&amp;afsid=1"><img src="http://files.adbrite.com/mb/images/adbrite-your-ad-here-leaderboard.gif" style="background-color:#D0D0D0;border:none;padding:0;margin:0;" alt="Your Ad Here" width="14" height="90" /></a></span>
+			<!-- End: AdBrite -->
+		</div>
+	</div>
+	
+	<div id="board-statistics">	
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+			<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
+			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+			<!-- IF not S_IS_BOT --><br /><br />
+			{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
+			<!-- ENDIF --><br />
+			<!-- IF LEGEND --><br /><strong>{L_LEGEND}:</strong> {LEGEND}<!-- ENDIF --></p>
+		<!-- ENDIF -->
+		
+		<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+			<h3>{L_BIRTHDAYS}</h3>
+			<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
+		<!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+
+<div id="page-footer">
+
+	<div id="footer-utilities">
+		<ul class="linklist">
+			<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a></li>
+				<!-- IF not S_IS_BOT -->
+					<!-- IF S_WATCH_FORUM_LINK --><li <!-- IF S_WATCHING_FORUM -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a></li><!-- ENDIF -->
+					<!-- IF U_WATCH_TOPIC --><li <!-- IF S_WATCHING_TOPIC -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a></li><!-- ENDIF -->
+					<!-- IF U_BOOKMARK_TOPIC --><li class="icon-bookmark"><a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a></li><!-- ENDIF -->
+					<!-- IF U_BUMP_TOPIC --><li class="icon-bump"><a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">{L_BUMP_TOPIC}</a></li><!-- ENDIF -->
+				<!-- ENDIF -->
+				
+			<li class="rightside"><!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a> &bull; <!-- ENDIF --><!-- IF S_DISPLAY_MEMBERLIST --><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a> &bull; <!-- ENDIF --><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a> &bull; <!-- IF S_MCHAT_ENABLE and U_MCHAT --><a href="{U_MCHAT}" title="{L_MCHAT}">{L_MCHAT}</a><!-- ENDIF --> &bull; <!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a> &bull; <!-- ENDIF -->{S_TIMEZONE}</li>
+		</ul>
+	</div>
+	
+<!--
+	We request you retain the full copyright notice below including the link to www.phpbb.com.
+	This not only gives respect to the large amount of time given freely by the developers
+	but also helps build interest, traffic and use of phpBB3. If you (honestly) cannot retain
+	the full copyright we ask you at least leave in place the "Powered by phpBB" line, with
+	"phpBB" linked to www.phpbb.com. If you refuse to include even this then support on our
+	forums may be affected.
+
+	The phpBB Group : 2006
+//-->
+
+	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; 2009, 2010 ZeroZaku
+		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+		<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+	</div>
+</div>
+
+</div>
+
+<div><a id="bottom" name="bottom" accesskey="z"></a><!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF --></div>
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">try {var pageTracker = _gat._getTracker("UA-6596797-2");pageTracker._trackPageview();} catch(err) {}</script>
+<!-- Start Quantcast tag -->
+<script type="text/javascript">_qoptions={qacct:"p-11CKqyQY5DO9Q"};</script>
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<noscript><img src="http://pixel.quantserve.com/pixel/p-11CKqyQY5DO9Q.gif" style="display: none;" height="1" width="1" alt="Quantcast"/></noscript>
+<!-- End Quantcast tag -->
+</body>
+</html>

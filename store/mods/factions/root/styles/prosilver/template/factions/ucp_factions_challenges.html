@@ -1,0 +1,58 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_PENDING_MATCHES}</h2>
+<form action="{U_ACTION}" method="post">
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<!-- BEGIN block_ladders -->
+		<ul class="topiclist">
+			<li class="header">
+				<dl>
+					<dt>{L_GROUP_ID}</dt>
+					<dd class="info"><span>{L_ACCEPT} / {L_DECLINE}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist pmlist">
+			<li class="row bg2">
+				<dl>
+					<dt>
+						<strong>P: {block_ladders.PLATFORM}, L: {block_ladders.LADDER}, S: {block_ladders.SUBLADDER}</strong>
+					</dt>
+				</dl>
+			</li>
+			<!-- IF .block_ladders.block_challenges -->
+			<!-- BEGIN block_challenges -->
+			<li class="row {block_ladders.block_challenges.BG_COLOR}">
+				<dl>
+					<dt>
+						<a href="{block_ladders.block_challenges.U_CHALLENGER}" class="topictitle">{block_ladders.block_challenges.CHALLENGER}</a>
+						<br />
+						<strong>{L_FACTIONS_DATETIME}</strong>: {block_ladders.block_challenges.TIME}<br />
+						{block_ladders.block_challenges.DETAILS}
+					</dt>
+					<dd>
+						<input type="checkbox" name="accept[]" value="{block_ladders.block_challenges.CHALLENGE_ID}" /> / <input type="checkbox" name="decline[]" value="{block_ladders.block_challenges.CHALLENGE_ID}" />
+					</dd>
+				</dl>
+			</li>
+			<!-- END block_challenges -->
+			<!-- ELSE -->
+			<li class="row bg2">
+				<dl>
+					<dt>{L_NO_PENDING_MATCHES}</dt>
+				</dl>
+			</li>
+			<!-- ENDIF -->
+		</ul>
+		<!-- END block_ladders -->
+		<br /><br />
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+</form>
+<!-- INCLUDE ucp_footer.html -->

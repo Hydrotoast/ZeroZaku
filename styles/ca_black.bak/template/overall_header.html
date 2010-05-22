@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="{S_USER_LANG}" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+{META}
+<title>{PAGE_TITLE} - {SITENAME}</title>
+<script type="text/javascript">
+// <![CDATA[
+   var jump_page = '{LA_JUMP_PAGE}:';
+   var on_page = '{ON_PAGE}';
+   var per_page = '{PER_PAGE}';
+   var base_url = '{A_BASE_URL}';
+   var style_cookie = 'phpBBstyle';
+   var style_cookie_settings = '{A_COOKIE_SETTINGS}';
+   var onload_functions = new Array();
+   var onunload_functions = new Array();
+   var ca_main_width = '{$CA_WIDTH}';
+
+   <!-- IF S_USER_PM_POPUP -->
+	  if ({S_NEW_PM})
+	  {
+		 var url = '{UA_POPUP_PM}';
+		 window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+	  }
+   <!-- ENDIF -->
+
+   /**
+   * Find a member
+   */
+   function find_username(url)
+   {
+	  popup(url, 760, 570, '_usersearch');
+	  return false;
+   }
+
+   /**
+   * New function for handling multiple calls to window.onload and window.unload by pentapenguin
+   */
+   window.onload = function()
+   {
+	  for (var i = 0; i < onload_functions.length; i++)
+	  {
+		 eval(onload_functions[i]);
+	  }
+   }
+
+   window.onunload = function()
+   {
+	  for (var i = 0; i < onunload_functions.length; i++)
+	  {
+		 eval(onunload_functions[i]);
+	  }
+   }
+
+if(navigator.userAgent && navigator.userAgent.indexOf('Mac OS X') > 0)
+{
+   document.write('<link rel="stylesheet" href="{T_THEME_PATH}/tweaks_mac.css" type="text/css" />');
+}
+
+// ]]>
+</script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/xs_bbcode_fn.js"></script>
+<script type="text/javascript" src="./classes/scripts/select_expand_bbcodes.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/ca_scripts.js"></script>
+
+<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<!--[if IE]><link href="{T_THEME_PATH}/tweaks_ie.css" type="text/css" rel="stylesheet"/><![endif]-->
+
+</head>
+
+<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">
+
+<!-- INCLUDE ca_config.html -->
+
+<div id="header-wrapper">
+   <a id="top" name="top" accesskey="t"></a>
+
+	<p class="skiplink"><a href="#start_here">{L_SKIP}</a></p>
+
+	<div id="header" style="width: {$CA_WIDTH}; margin: 0 auto;">
+		<div id="header-left"><div id="header-right">
+
+   <!-- header start -->
+	<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+	<div id="search-box">
+		<form action="{U_SEARCH}" method="post" id="search">
+		<fieldset>
+			<input name="keywords" id="keywords" type="text" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" />
+			<input class="button2" value="{L_SEARCH}" type="submit" /><br />
+			<a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}
+		</fieldset>
+		</form>
+	</div>
+	<!-- ENDIF -->
+
+   <a href="{U_PORTAL}" id="logolink"><span>{SITENAME}</span>{SITE_LOGO_IMG}</a>
+
+
+		<div class="header-clear"></div>
+		</div></div>
+	</div>
+</div>
+<div id="content-wrapper">
+	<div id="content" style="width: {$CA_WIDTH}; margin: 0 auto;">
+<!-- IF not $S_IN_PORTAL or S_DISPLAY_PHPBB_MENU -->
+		<div class="topnav">
+		<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+			<span<!-- IF $CA_PAGE == 'ucp' --> class="current"<!-- ENDIF -->>
+				<a id="ucp-icon" href="{U_PROFILE}" title="{L_PROFILE}" accesskey="u">{L_PROFILE}</a>
+			</span>
+			<!-- IF S_DISPLAY_PM -->
+			<span<!-- IF $CA_PAGE == 'pm' --> class="current"<!-- ENDIF -->>
+				<a id="pm-icon" href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a>
+			</span>
+			<!-- ENDIF -->
+			<!-- IF U_RESTORE_PERMISSIONS -->
+			<span>
+				<a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a>
+			</span>
+		<!-- ENDIF -->
+		<span<!-- IF $CA_PAGE == 'faq' --> class="current"<!-- ENDIF -->>
+			<a id="faq-icon" href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a>
+		</span>
+		<!-- ENDIF -->
+		<!-- IF not S_IS_BOT -->
+			<!-- IF S_USER_LOGGED_IN and S_DISPLAY_MEMBERLIST -->
+			<span<!-- IF $CA_PAGE == 'users' --> class="current"<!-- ENDIF -->>
+				<a  id="memberlist-icon"href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a>
+			</span>
+			<!-- ENDIF -->
+			<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED -->
+			<span<!-- IF $CA_PAGE == 'register' --> class="current"<!-- ENDIF -->>
+				<a id="register-icon" href="{U_REGISTER}">{L_REGISTER}</a>
+			</span>
+			<!-- ENDIF -->
+			<span<!-- IF $CA_PAGE == 'login' --> class="current"<!-- ENDIF -->>
+				<a id="login-icon" href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">{L_LOGIN_LOGOUT}</a>
+			</span>
+		<!-- ENDIF -->
+		</div>
+<!-- ENDIF -->
+   <div id="page-body">
+<!-- IF not S_DISPLAY_PHPBB_MENU -->
+	  <div class="navbar navbar-top">
+		 <ul class="linklist navlinks">
+			<li class="icon-home"><!-- IF U_PORTAL --><a href="{U_PORTAL}">{L_PORTAL}</a> &#187; <!-- ENDIF --><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+
+			<!-- IF U_EMAIL_TOPIC --><li class="rightside"><a href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}" class="sendemail">{L_EMAIL_TOPIC}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+			<!-- IF U_EMAIL_PM --><li class="rightside"><a href="{U_EMAIL_PM}" title="{L_EMAIL_PM}" class="sendemail">{L_EMAIL_PM}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+			<!-- IF U_PRINT_TOPIC --><li class="rightside"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="print">{L_PRINT_TOPIC}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+			<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+
+			<!-- IF SCRIPT_NAME == 'viewtopic' -->
+				<!-- IF U_VIEW_NEWER_TOPIC --><li class="rightside"><a href="{U_VIEW_NEWER_TOPIC}">{L_VIEW_NEXT_TOPIC}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+				<!-- IF U_VIEW_OLDER_TOPIC --><li class="rightside"><a href="{U_VIEW_OLDER_TOPIC}">{L_VIEW_PREVIOUS_TOPIC}</a><!-- IF $CA_HEADER_LINK -->&nbsp;|&nbsp;<!-- ELSE --><!-- DEFINE $CA_HEADER_LINK = '1' --><!-- ENDIF --></li><!-- ENDIF -->
+			<!-- ENDIF -->
+		 </ul>
+	  </div>
+<!-- ENDIF -->
+	<div id="page-sidebar">
+	<!-- INCLUDE sidebar.html -->
+	</div>
+	<div id="page-main">
+	
+	   <a name="start_here"></a>
+
+		<!-- IF not S_IS_BOT && not $CA_SKIP_PM_NOTIFY && S_USER_LOGGED_IN && S_DISPLAY_PM -->
+			<!-- IF S_USER_NEW_PRIVMSG -->
+				<div class="pm-notify-new">
+					<h3>{L_PRIVATE_MESSAGES}</h3>
+					<p><a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a></p>
+				</div>
+			<!-- ELSEIF S_USER_UNREAD_PRIVMSG -->
+				<div class="pm-notify-unread">
+					<h3>{L_PRIVATE_MESSAGES}</h3>
+					<p><a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a></p>
+				</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+
+	   <!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+	  <div id="message" class="rules">
+		 {$CA_BLOCK_START}
+			<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}
+		 {$CA_BLOCK_END}
+	  </div>
+	  <!-- ENDIF -->

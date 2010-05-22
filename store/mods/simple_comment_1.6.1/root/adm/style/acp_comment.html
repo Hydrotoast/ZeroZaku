@@ -1,0 +1,91 @@
+<!-- INCLUDE overall_header.html -->
+<h1>{L_COMMENT_TITLE}</h1>
+<p>{L_DATABASE_HAS} {TOTAL_STATUS} {L_STORED_COMMENTS}</p>
+<form method="post" action="{U_ACTION}">
+<fieldset>
+		<dl>
+			<dt><label for="enable_comment">{L_ENABLE_COMMENT}</label></dt>
+			<dd><input type="radio" class="radio" name="enable_comment" value="1" <!-- IF ENABLE_COMMENT-->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
+				<input type="radio" class="radio" name="enable_comment" value="0" <!-- IF not ENABLE_COMMENT -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>
+		<dl>
+			<dt><label for="enable_qc">{L_ENABLE_QC}</label></dt>
+			<dd><input type="radio" class="radio" name="enable_qc" value="1" <!-- IF ENABLE_QC -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
+				<input type="radio" class="radio" name="enable_qc" value="0" <!-- IF not ENABLE_QC -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>
+</fieldset>
+
+<fieldset>
+		<dl>
+			<dt><label for="comments_per_page">{L_COMM_PER_PAGE}</label><br />
+			<span>{L_COMM_PER_PAGE_EXPLAIN}</span>
+</dt>
+			<dd><span><input class="post" type="text" maxlength="2" size="2" name="comm_per_page" value="{COMM_PER_PAGE}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="avatar_size">{L_AVATAR_SIZE}</label><br />
+									<span>{L_AVATAR_SIZE_EXPLAIN}</span>
+</dt>
+
+			<dd><span><input class="post" type="text" maxlength="3" size="2" name="sc_av_size" value="{AVATAR_SIZE}" /></dd>
+		</dl>
+</fieldset>
+
+<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />
+
+</form>
+<form  method="post" action="{U_ACTION}&action=deleteall">
+<fieldset>
+<dl>
+			<dt><label for="mass_delete">{L_MASS_DELETE}</label><br />
+									<span>{L_MASS_DELETE_EXPLAIN}</span>
+</dt>
+
+			<dd><span><input class="post" type="text" maxlength="10" size="2" name="mass_delete" /></dd>
+			<dt><dd><input class="button1" type="submit" id="submited" name="submited" value="{L_SUBMIT}" /></dd></dt>
+		</dl>
+
+</fieldset>
+</form>
+
+<ul class="linklist">
+
+<li class="rightside pagination">  <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<table cellspacing="1">
+<thead>
+
+	<tr>
+		<th width="15%">{L_COMMENT_AUTHOR}</th>
+		<th width="60%">{L_COMMENT}</th>
+		<th width="20%">{L_COMMENT_DATE}</th>
+		<th width="5%">{L_COMMENT_DELETE}</th>
+	</tr>
+</thead>
+<tbody>
+
+<!-- BEGIN comment -->
+<form id="status" method="post" action="{comment.U_ACTION}">
+<tr>
+<td bgcolor="#DCEBFE" style="text-align: center;" width="15%">
+<span>{comment.COMMENT_AUTHOR} <b>to</b> {comment.COMMENT_TO}</span>
+</td>
+<td bgcolor="#F9F9F9" width="60%">
+{comment.COMMENT_TEXT}
+</td>
+<td bgcolor="#DCEBFE" style="text-align: center;" width="20%">
+{comment.COMMENT_DATE}
+</td>
+<td bgcolor="#F9F9F9" width="5%">
+<input class="button2" type="submit" value="{L_STATUS_DELETE}" name="delete" />
+</td>
+</tr>
+</form>
+<!-- END comment -->
+
+</tbody>
+</table>
+<ul class="linklist">
+    <li class="rightside pagination">  <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul><!-- INCLUDE overall_footer.html -->

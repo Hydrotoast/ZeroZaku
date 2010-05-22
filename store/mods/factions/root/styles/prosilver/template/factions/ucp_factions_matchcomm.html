@@ -1,0 +1,130 @@
+<!-- IF SHOW_CHAT2 -->
+<!-- INCLUDE simple_header.html -->
+<table class="table1" cellspacing="1">
+	<tbody>
+		<!-- BEGIN block_messages -->
+		<tr class="{block_messages.BG_COLOR}">
+			<td width="40%"><b>{block_messages.GROUP_NAME}</b> ({block_messages.MESSAGE_TIME}):</td>
+			<td>{block_messages.MESSAGE}</td>
+		</tr>
+		<!-- END block_messages -->
+	</tbody>
+</table>
+<!-- INCLUDE simple_footer.html -->
+<!-- ENDIF -->
+<!-- IF SHOW_CHAT -->
+<!-- INCLUDE ucp_header.html -->
+<script type="text/javascript">
+	<!-- Original AJAX code by Handyman - http://startrekguide.com -->
+	var xmlHttp			= http_object ( );
+	window.onload		= handle_send ( 'get_chat', '' );
+	var read_interval	= 5000;
+	var interval		= setInterval ( 'handle_send("get_chat", "");', read_interval );
+
+	function handle_send ( action, form_name )
+	{
+		if ( form_name == '' )
+		{
+			form_name	= document.forms[ 'matchcomm' ];
+		}
+
+		if ( xmlHttp.readyState == 4 || xmlHttp.readyState == 0 )
+		{
+			param = 'action=' + action + '&match_id={MATCH_ID}';		
+			if ( action == 'send_chat' && form_name.elements[ 'chat_text' ].value != '' )
+			{
+				param	+= '&chat_text=' + form_name.elements[ 'chat_text' ].value;
+				form_name.elements[ 'chat_text' ].value	= '';
+			}
+
+			xmlHttp.open ( 'POST', '{U_ACTION}', true );
+			xmlHttp.setRequestHeader ( 'Content-Type', 'application/x-www-form-urlencoded' );
+			xmlHttp.send ( param );
+			xmlHttp.onreadystatechange	= function () {
+				if ( xmlHttp.readyState == 4 )
+				{
+					if ( action == 'get_chat' )
+					{
+						document.getElementById ( 'matchcomm_chat' ).innerHTML	= xmlHttp.responseText;
+					}
+				}
+			};
+		}
+	}
+	
+	function http_object ( )
+	{
+		if ( window.XMLHttpRequest )
+		{
+			return new XMLHttpRequest ( );
+		}
+		else if ( window.ActiveXObject )
+		{
+			return new ActiveXObject ( 'Microsoft.XMLHTTP' );
+		}
+		else
+		{
+			alert ( 'Your browser does not seem to support XMLHTTP. Shame on you, update!' );
+		}
+	}
+</script>
+
+<h2>{L_MATCHCOMM}</h2>
+<form action="" id="matchcomm" name="matchcomm" onSubmit="return false;">
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<p>{L_MATCHCOMM_NOTE}</p>
+		<div id="matchcomm_chat" style="height: 200px; width: 100%; overflow: auto;">&nbsp;</div>
+		<br /><br />
+		<fieldset>
+			<dl>
+				<dt><label for="chat_text">{L_MATCHCOMM_MESSAGE}:</label></dt>
+				<dd><input type="text" name="chat_text" id="chat_text" class="input autowidth" /></dd>
+			</dl>
+		</fieldset>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" onClick="javascript:handle_send('send_chat', this.form);return false;" class="button1" />
+</fieldset>
+</form>
+<!-- INCLUDE ucp_footer.html -->
+<!-- ENDIF -->
+<!-- IF SHOW_MATCHCOMMS -->
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_MATCHCOMM}</h2>
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl>
+					<dt>{L_GROUP_ID}</dt>
+					<dd class="info"><span>{L_MATCHCOMM_UNREAD}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist pmlist">
+			<!-- BEGIN block_matchcomms -->
+			<li class="row {block_matchcomms.BG_COLOR}">
+				<dl>
+					<dt><a href="{block_matchcomms.U_ACTION}">{block_matchcomms.GROUP_NAME}</a></dt>
+					<dd>{block_matchcomms.UNREAD_MESSAGES}</dd>
+				</dl>
+			</li>
+			<!-- BEGINELSE -->
+			<li class="row bg2">
+				<dl>
+					<dt>{L_NO_MATCHCOMMS}</dt>
+				</dl>
+			</li>
+			<!-- END block_matchcomms -->
+		</ul>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<!-- INCLUDE ucp_footer.html -->
+<!-- ENDIF -->

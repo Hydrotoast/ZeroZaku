@@ -1,0 +1,33 @@
+<!-- INCLUDE ucp_header.html -->
+<a href="{U_PENDING_MEMBERS}">{L_UCP_FACTIONS_PENDING_MEMBERS}</a> | <a href="{U_INVITE_MEMBERS}">{L_UCP_FACTIONS_INVITE_MEMBERS}</a><br />
+<table class="tablebg" width="100%" cellspacing="1">
+	<form action="{U_ACTION}" method="post">
+	<tr>
+		<th colspan="2">{L_MANAGE_MEMBERS}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">{L_USERNAME}</td>
+		<td class="row3" align="center">{L_OPTIONS}</td>
+	</tr>
+	<!-- BEGIN block_members -->
+	<tr class="genmed">
+		<td class="{block_members.ROW_COLOR}" valign="top"><span class="topictitle"><a href="{block_members.U_PROFILE}">{block_members.MEMBER_NAME}</a></a></td>
+		<td class="{block_members.ROW_COLOR}">
+			<input type="hidden" name="member_id[]" value="{block_members.MEMBER_ID}" /><input type="radio" name="members[]" value="1" /> <b>{L_DELETE}</b><!-- / <input type="radio" name="members[]" value="2" /> <b>{L_ASSIGN_AS_LEADER}</b> / <input type="radio" name="members[]" value="3" /> <b>{L_ASSIGN_AS_BACKUP}</b>-->
+		</td>
+	</tr>
+	<!-- BEGINELSE -->
+	<tr class="genmed">
+		<td colspan="2" class="row2">{L_NO_MEMBERS}</td>
+	</tr>
+	<!-- END block_members -->
+	<tr>
+		<td class="cat" align="center" colspan="2">
+			<!-- IF .block_members -->
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="btnmain" />
+			<!-- ENDIF -->
+		</td>
+	</tr>
+	</form>
+</table>
+<!-- INCLUDE ucp_footer.html -->

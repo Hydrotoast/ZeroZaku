@@ -1,0 +1,53 @@
+<!-- INCLUDE ucp_header.html -->
+<form action="{U_ACTION}" method="post">
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="5">{L_UNREPORTED_MATCHES}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">{L_GROUP_ID}</td>
+		<td class="row3" align="center">{L_FACTIONS_DATETIME}</td>
+		<td class="row3" align="center">{L_OPTIONS}
+	</tr>
+	<!-- BEGIN block_unreported -->
+	<tr class="genmed">
+		<td class="{block_unreported.ROW_COLOR}"><a href="{block_unreported.U_OPPONENT}">{block_unreported.OPPONENT}</a></td>
+		<td class="{block_unreported.ROW_COLOR}" align="center">{block_unreported.TIME}</td>
+		<td class="{block_unreported.ROW_COLOR}" align="center"><a href="{block_unreported.U_REPORT_WIN}">{L_REPORT_WIN}</a></a>
+	</tr>
+	<!-- BEGINELSE -->
+	<tr class="genmed">
+		<td class="row1" colspan="5">{L_NO_UNREPORTED_MATCHES}</td>
+	</tr>
+	<!-- END block_unreported -->
+	<tr>
+		<td class="cat" align="center" colspan="3">&nbsp;</td>
+	</tr>
+</table>
+<br />
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="5">{L_REPORTED_MATCHES}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">{L_GROUP_ID}</td>
+		<td class="row3" align="center">{L_FACTIONS_DATETIME}</td>
+		<td class="row3" align="center">{L_OPTIONS}
+	</tr>
+	<!-- BEGIN block_reported -->
+	<tr class="genmed">
+		<td class="{block_reported.ROW_COLOR}"><a href="{block_reported.U_OPPONENT}">{block_reported.OPPONENT}</a></td>
+		<td class="{block_reported.ROW_COLOR}" align="center">{block_reported.TIME}</td>
+		<td class="{block_reported.ROW_COLOR}" align="center"><a href="{block_reported.U_CONFIRM_WIN}">{L_CONFIRM_WIN}</a> | <a href="{block_reported.U_CONTEST_RESULT}">{L_CONTEST_RESULT}</a></a>
+	</tr>
+	<!-- BEGINELSE -->
+	<tr class="genmed">
+		<td class="row1" colspan="5">{L_NO_REPORTED_MATCHES}</td>
+	</tr>
+	<!-- END block_reported -->
+	<tr>
+		<td class="cat" align="center" colspan="3">&nbsp;</td>
+	</tr>
+</table>
+</form>
+<!-- INCLUDE ucp_footer.html -->

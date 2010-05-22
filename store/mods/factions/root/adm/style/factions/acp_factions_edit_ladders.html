@@ -1,0 +1,20 @@
+<!-- INCLUDE overall_header.html -->
+<!-- BEGIN block_ladders -->
+<fieldset>
+	<legend>{block_ladders.LADDER_NAME} (P: {block_ladders.PLATFORM_NAME}) | <a href="{block_ladders.U_ACTION}">{L_EDIT}</a> | <a href="{block_ladders.U_MOVEUP}" class="forumlink">{L_MOVE_UP}</a> / <a href="{block_ladders.U_MOVEDOWN}" class="forumlink">{L_MOVE_DOWN}</a></legend>
+	<!-- BEGIN block_subladders -->
+	<dl>
+		<dt>-- {block_ladders.block_subladders.LADDER_NAME}</dt>
+		<dd>
+			<a href="{block_ladders.block_subladders.U_ACTION}">{L_EDIT}</a> | <a href="{block_ladders.block_subladders.U_MOVEUP}" class="forumlink">{L_MOVE_UP}</a> / <a href="{block_ladders.block_subladders.U_MOVEDOWN}" class="forumlink">{L_MOVE_DOWN}</a></a>
+		</dd>
+	</dl>
+	<!-- BEGINELSE -->
+	<dl>
+		<dt>{L_NO_SUBLADDERS}</dt>
+	</dl>
+	<!-- END block_subladders -->
+</fieldset>
+</form>
+<!-- END block_ladders -->
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.0.1.xsd">
+  <header>
+    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+    <title lang="en">Quick reply for phpBB3</title>
+    <description lang="en">This mod adds quick post form at viewforum and quick reply form at viewtopic, fully customizable from ACP/UCP. Allows quick quoting of selected text and quick nick insertion at viewtopic.</description>
+    <author-notes lang="en">You can control quick post / quick reply forms from Administration panel/post settings. Users can control it from User control panel / Forum preferences / Edit display options.</author-notes>
+    <author-group>
+      <author>
+        <email>rxu@sunlan.ru</email>
+        <username>rxu</username>
+        <contributions />
+      </author>
+      <author>
+        <email>xpert@phpbbguru.net</email>
+        <username>Xpert</username>
+        <homepage>http://www.phpbbguru.net</homepage>
+        <contributions />
+      </author>
+    </author-group>
+    <mod-version>
+      <major>1</major>
+      <minor>6</minor>
+      <revision>7</revision>
+    </mod-version>
+    <installation>
+      <level>easy</level>
+      <time>983</time>
+      <target-version>
+        <target-primary>3.0.0</target-primary>
+        <target-major allow="exact">3</target-major>
+        <target-minor allow="exact">0</target-minor>
+        <target-revision allow="exact">0</target-revision>
+      </target-version>
+    </installation>
+    <history>
+      <entry>
+        <date>2007-04-28T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>0</minor>
+          <revision>0</revision>
+          <release>a</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Initial release</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-01T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>0</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>General code optimization and bugs fixing. Quick reply for the prosilver style added.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-01T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>1</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Installation optimized and installation instruction error fixed. ACP control added (look at the ACP/General/Post settings).</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-03T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>2</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Code and installation optimized. Installation instruction error fixed. Attachment box display error at prosilver fixed. Language files added. ACP control optimized. UCP control added (look at the UCP/Forum preferences/Edit display options).</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-10T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>2</minor>
+          <revision>1</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Mod repacked to MODX.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-12T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>3</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Quick quote and put name to quick reply form code rewrited (switched to phpBB3 built-in code). Attach box and options' checkboxes display control added. Quick_reply.js files removed. Prosilver qiuck reply template rewrited.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-13T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>4</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>ACP control rewrited. Quick reply for guests (if applicable) added. Submit error at subsilver2 fixed. Minor bugs fixed.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-17T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>5</minor>
+          <revision>0</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Quick post form at forum view added.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-05-30T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>5</minor>
+          <revision>1</revision>
+          <release>b</release>
+        </rev-version>
+        <changelog lang="en">
+          <change>Fixed "headers already sent" error in quick_reply.php appeared in some cases.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-06-03T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>5</minor>
+          <revision>2</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Quote link placing changed. Newline after quick quoting and nickname insertion added. Topic/post icon switched off by default. Topic/post icon permissions error fixed. Post subject empty by default error fixed. Language variables moved from language/en/acp/board.php to language/en/acp/quick_reply.php</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-07-02T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>5</minor>
+          <revision>3</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Checkboxes settings when they're swicthed off added. Custom BBCodes displaying added. Notify status detection bug fixed. Minor code changes for phpBB3.0RC2 compliance.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-07-16T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>0</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Mod administration code fully rewrited, now administrated with a separate module. Smilies/topic icons/attachbox/checkboxes displaying now can be switched separately. Installation script optimized.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-07-30T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>1</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Quick reply administration module displaying bug fixed. Minor bug fixes. Minor installation instruction fix for phpBB3RC4 compliance.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-08-26T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>2</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Minor changes for phpBB3RC5 compliance.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-10-16T00:00:00+08:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>3</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Code changes for phpBB3RC7 compliance. Quick reply form will be displayed by default for new registered users.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-12-25T00:00:00+07:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>4</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Unneeded displaying quick reply for quests bug fixed.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-01-26T00:00:00+07:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>5</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>ACP module incorrect installation bug fixed.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-02-09T00:00:00+07:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>6</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>MOD's repacked in according to updated phpBB3 MODification database policy. Minor code changes.</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2008-03-10T00:00:00+07:00</date>
+        <rev-version>
+          <major>1</major>
+          <minor>6</minor>
+          <revision>7</revision>
+        </rev-version>
+        <changelog lang="en">
+          <change>Installation instruction xml code bugs are fixed. Minor code changes to conform to coding guidelines. Minor bugs fixes.</change>
+        </changelog>
+      </entry>
+    </history>
+    <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
+  </header>
+  <action-group>
+    <copy>
+      <file from="root/includes/quick_reply.php" to="includes/quick_reply.php" />
+      <file from="root/includes/acp/acp_quick_reply.php" to="includes/acp/acp_quick_reply.php" />
+      <file from="root/includes/acp/info/acp_quick_reply.php" to="includes/acp/info/acp_quick_reply.php" />
+      <file from="root/styles/prosilver/template/quick_reply.html" to="styles/prosilver/template/quick_reply.html" />
+      <file from="root/language/en/mods/quick_reply.php" to="language/en/mods/quick_reply.php" />
+      <file from="root/adm/style/acp_quick_reply.html" to="adm/style/acp_quick_reply.html" />
+    </copy>
+    <open src="viewforum.php">
+      <edit>
+        <find><![CDATA[$s_display_active = ($forum_data['forum_type'] == FORUM_CAT && ($forum_data['forum_flags'] & FORUM_FLAG_ACTIVE_TOPICS)) ? true : false;]]></find>
+        <action type="after-add"><![CDATA[if ($config['allow_quick_post'])
+{
+	include($phpbb_root_path . 'includes/quick_reply.' . $phpEx);
+}]]></action>
+      </edit>
+    </open>
+    <open src="viewtopic.php">
+      <edit>
+        <find><![CDATA[// Send vars to template]]></find>
+        <action type="before-add"><![CDATA[if ($config['allow_quick_reply'])
+{
+	include($phpbb_root_path . 'includes/quick_reply.' . $phpEx);
+}]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[		'POSTER_AGE'		=> $user_cache[$poster_id]['age'],]]></find>
+        <action type="after-add"><![CDATA[// This value will be used as a parameter for JS insert_text() function, so we use addslashes to handle "special" usernames properly ;)
+		'POSTER_QUOTE'		=> addslashes(get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['post_username'])),]]></action>
+      </edit>
+    </open>
+    <open src="ucp.php">
+      <edit>
+        <find><![CDATA[$user->setup('ucp');]]></find>
+        <action type="after-add"><![CDATA[$user->add_lang('mods/quick_reply');
+]]></action>
+      </edit>
+    </open>
+    <open src="includes/functions_user.php">
+      <edit>
+        <find><![CDATA[		'user_options'		=> 895,]]></find>
+        <action type="replace-with"><![CDATA[		'user_options'		=> 2943,]]></action>
+      </edit>
+    </open>
+    <open src="includes/session.php">
+      <edit>
+        <find><![CDATA[	var $keyoptions = array('viewimg' => 0, 'viewflash' => 1, 'viewsmilies' => 2,]]></find>
+        <inline-edit>
+          <inline-find><![CDATA['popuppm' => 10]]></inline-find>
+          <inline-action type="after-add"><![CDATA[, 'viewquickreply' => 11, 'viewquickpost' => 12]]></inline-action>
+        </inline-edit>
+      </edit>
+    </open>
+    <open src="includes/ucp/ucp_prefs.php">
+      <edit>
+        <find><![CDATA[					'wordcensor'	=> request_var('wordcensor', (bool) $user->optionget('viewcensors')),]]></find>
+        <action type="after-add"><![CDATA[					'quickreply'		=> request_var('quickreply', (bool) $user->optionget('viewquickreply')),
+					'quickpost'		=> request_var('quickpost', (bool) $user->optionget('viewquickpost')),]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[						$user->optionset('viewavatars', $data['avatars']);]]></find>
+        <action type="after-add"><![CDATA[						$user->optionset('viewquickreply', $data['quickreply']);
+						$user->optionset('viewquickpost', $data['quickpost']);
+]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[					'S_DISABLE_CENSORS'	=> $data['wordcensor'],]]></find>
+        <action type="after-add"><![CDATA[					'S_QUICKREPLY'		=> $data['quickreply'],
+					'QUICK_REPLY'		=> ($config['allow_quick_reply']) ? true : false,
+					'S_QUICKPOST'		=> $data['quickpost'],
+					'QUICK_POST'		=> ($config['allow_quick_post']) ? true : false,
+]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/viewforum_body.html">
+      <edit>
+        <find><![CDATA[<!-- INCLUDE jumpbox.html -->]]></find>
+        <action type="before-add"><![CDATA[<!-- IF QUICK_REPLY --><!-- INCLUDE quick_reply.html --><!-- ENDIF -->]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/viewtopic_body.html">
+      <edit>
+        <find><![CDATA[				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->]]></find>
+        <action type="replace-with"><![CDATA[<!-- We use "\r\n" newline here because insert_text() JS function doesn't insert newline with "\n" (at least in Windows) -->
+				<!-- IF QUICK_REPLY --><a href="#postform" onclick="insert_text('[b]{postrow.POSTER_QUOTE}[/b]\r\n'); return false;"<!-- IF postrow.POST_AUTHOR_COLOUR --> style="color: {postrow.POST_AUTHOR_COLOUR}" <!-- ENDIF -->>{postrow.POST_AUTHOR}</a><!-- ELSE --><!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF --><!-- ENDIF -->]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->]]></find>
+        <action type="replace-with"><![CDATA[<!-- We use "\r\n" newline here because insert_text() JS function doesn't insert newline with "\n" (at least in Windows) -->
+			<!-- IF not postrow.RANK_TITLE --><br /><!-- IF QUICK_REPLY --><dd><a href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); insert_text('\r\n'); return false;" title="{L_QUOTE_TEXT}">{L_QUOTE}</a></dd><!-- ENDIF --><!-- ENDIF -->
+			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF QUICK_REPLY --><br /><a href="#postform" onclick="addquote({postrow.POST_ID},'{postrow.POSTER_QUOTE}'); insert_text('\r\n'); return false;" title="{L_QUOTE_TEXT}">{L_QUOTE}</a><!-- ENDIF --><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->]]></action>
+      </edit>
+      <edit>
+        <find><![CDATA[<!-- INCLUDE jumpbox.html -->]]></find>
+        <action type="before-add"><![CDATA[<!-- IF QUICK_REPLY --><!-- INCLUDE quick_reply.html --><!-- ENDIF -->]]></action>
+      </edit>
+    </open>
+    <open src="styles/prosilver/template/ucp_prefs_view.html">
+      <edit>
+        <find><![CDATA[				<label for="avatars0"><input type="radio" name="avatars" id="avatars0" value="0"<!-- IF not S_AVATARS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>]]></find>
+        <action type="after-add"><![CDATA[		<!-- IF QUICK_REPLY -->
+		<dl>
+			<dt><label for="quickreply1">{L_QUICK_REPLY_DISPLAY}:</label></dt>
+			<dd>
+				<label for="quickreply1"><input type="radio" name="quickreply" id="quickreply1" value="1"<!-- IF S_QUICKREPLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="quickreply0"><input type="radio" name="quickreply" id="quickreply0" value="0"<!-- IF not S_QUICKREPLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+		<!-- IF QUICK_POST -->
+		<dl>
+			<dt><label for="quickpost1">{L_QUICK_POST_DISPLAY}:</label></dt>
+			<dd>
+				<label for="quickpost1"><input type="radio" name="quickpost" id="quickpost1" value="1"<!-- IF S_QUICKPOST --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="quickpost0"><input type="radio" name="quickpost" id="quickpost0" value="0"<!-- IF not S_QUICKPOST --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<!-- ENDIF -->]]></action>
+      </edit>
+    </open>
+    <open src="language/en/acp/common.php">
+      <edit>
+        <find><![CDATA[	'ACP_QUICK_ACCESS']]></find>
+        <action type="after-add"><![CDATA[// Added with Quick reply for phpBB3 MOD
+	'ACP_QUICK_REPLY'			=> 'Quick reply',
+	'LOG_CONFIG_QUICK_REPLY'	=> '<strong>Edited quick reply settings</strong>',
+]]></action>
+      </edit>
+    </open>
+    <diy-instructions lang="en">Copy contrib/install/install.php to your phpBB root directory and run it. Delete the file after running!.</diy-instructions>
+  </action-group>
+</mod>

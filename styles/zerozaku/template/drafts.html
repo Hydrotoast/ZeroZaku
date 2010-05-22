@@ -1,0 +1,46 @@
+
+
+<!-- IF .draftrow -->
+<div class="panel">
+	<div class="inner">
+
+	<h3>{L_LOAD_DRAFT}</h3>
+	<p>{L_LOAD_DRAFT_EXPLAIN}</p>
+
+	</div>
+</div>
+
+<div class="<!-- IF not S_PRIVMSGS -->forumbg<!-- ELSE -->panel<!-- ENDIF -->">
+	<div class="inner">
+
+	<ul class="topiclist">
+		<li class="row">
+			<dl class="meta">
+				<dt class="no-icon"><div class="inner">{L_LOAD_DRAFT}</div></dt>
+				<dd class="posted"><div class="inner">{L_SAVE_DATE}</div></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist<!-- IF not S_PRIVMSGS --> topics<!-- ELSE --> cplist<!-- ENDIF -->">
+
+	<!-- BEGIN draftrow -->
+	<li class="row<!-- IF draftrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+		<dl>
+			<dt class="no-icon">
+				<div class="inner">
+					<a href="{draftrow.U_INSERT}" title="{L_LOAD_DRAFT}" class="topictitle">{draftrow.DRAFT_SUBJECT}</a><br />
+					<!-- IF not S_PRIVMSGS --><!-- IF draftrow.S_LINK_TOPIC -->{L_TOPIC}: <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a>
+					<!-- ELSEIF draftrow.S_LINK_FORUM -->{L_FORUM}: <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a>
+					<!-- ELSE -->{L_NO_TOPIC_FORUM}<!-- ENDIF --><!-- ENDIF -->
+				</div>
+			</dt>
+			<dd class="posted"><div class="inner">{draftrow.DATE}</div></dd>
+		</dl>
+	</li>
+	<!-- END draftrow -->
+
+	</ul>
+
+	</div>
+</div>
+<!-- ENDIF -->

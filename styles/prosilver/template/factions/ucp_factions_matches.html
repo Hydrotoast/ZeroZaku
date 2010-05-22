@@ -1,0 +1,85 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_ONGOING_MATCHES}</h2>
+<form action="{U_ACTION}" method="post">
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl>
+					<dt>{L_GROUP_ID}</dt>
+					<dd class="info"><span>{L_OPTIONS}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist cplist pmlist">
+			<li class="row bg2">
+				<dl>
+					<dt>
+						<strong>{L_UNREPORTED_MATCHES}</strong>
+					</dt>
+				</dl>
+			</li>
+			<!-- BEGIN block_unreported -->
+			<li class="row {block_unreported.BG_COLOR}">
+				<dl>
+					<dt>
+						<a href="{block_unreported.U_OPPONENT}" class="topictitle">{block_unreported.OPPONENT}</a>
+						<br />
+						<b>{L_FACTIONS_DATETIME}</b>: {block_unreported.TIME}<br />
+						{block_unreported.DETAILS}
+					</dt>
+					<dd>
+						<a href="{block_unreported.U_REPORT_WIN}">{L_REPORT_WIN}</a>
+					</dd>
+				</dl>
+			</li>
+			<!-- BEGINELSE -->
+			<li class="row bg2">
+				<dl>
+					<dt>{L_NO_UNREPORTED_MATCHES}</dt>
+				</dl>
+			</li>
+			<!-- END block_unreported -->
+		</ul>
+		<ul class="topiclist cplist pmlist">
+			<li class="row bg2">
+				<dl>
+					<dt>
+						<strong>{L_REPORTED_MATCHES}</strong>
+					</dt>
+				</dl>
+			</li>
+			<!-- BEGIN block_reported -->
+			<li class="row {block_reported.BG_COLOR}">
+				<dl>
+					<dt>
+						<a href="{block_reported.U_OPPONENT}" class="topictitle">{block_reported.OPPONENT}</a>
+						<br />
+						<b>{L_FACTIONS_DATETIME}</b>: {block_reported.TIME}<br />
+						{block_reported.DETAILS}
+					</dt>
+					<dd>
+						<a href="{block_reported.U_CONFIRM_WIN}">{L_CONFIRM_WIN}</a> | <a href="{block_reported.U_CONTEST_RESULT}">{L_CONTEST_RESULT}</a>
+					</dd>
+				</dl>
+			</li>
+			<!-- BEGINELSE -->
+			<li class="row bg2">
+				<dl>
+					<dt>{L_NO_REPORTED_MATCHES}</dt>
+				</dl>
+			</li>
+			<!-- END block_reported -->
+		</ul>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- IF .block_on -->
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+<!-- ENDIF -->
+</form>
+<!-- INCLUDE ucp_footer.html -->

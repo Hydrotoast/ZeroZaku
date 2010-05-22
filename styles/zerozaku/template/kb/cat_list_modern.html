@@ -1,0 +1,34 @@
+<div class="panel smooth bg2">
+<div class="inner">
+		<table style="width: 100%;">
+			<!-- BEGIN catrow -->
+			<tr>
+				<!-- BEGIN cat -->
+				<td style="vertical-align: top; width: {S_COL_WIDTH}%;">
+					<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+						<tr>
+							<td><h3 class="kb_cat">{catrow.cat.CAT_IMAGE} <a href="{catrow.cat.U_VIEWCAT}">{catrow.cat.CAT_NAME} ({catrow.cat.ARTICLES})</a> <a href="{catrow.cat.U_RSS_CAT}"><img src="{T_THEME_PATH}/images/feed.gif" width="14" height="14" alt="{L_RSS_CAT}" title="{L_RSS_CAT}" /></a></h3></td>
+						</tr>
+						
+						<tr>
+							<td>
+								<div class="kb_cat_desc">
+									<!-- IF catrow.cat.CAT_DESC} --><span class="genmed">{catrow.cat.CAT_DESC}</span><!-- ENDIF -->
+									<!-- IF catrow.cat.SUBCATS --><!-- IF catrow.cat.LATEST_ARTICLE --><br /><!-- ENDIF --><div class="kb_subcats"><strong >{catrow.cat.L_SUBCAT}:</strong> {catrow.cat.SUBCATS}</div><!-- ENDIF -->
+								</div>
+								<div class="kb_latest_articles">
+									<!-- IF catrow.cat.LATEST_ARTICLE --><strong>{L_LATEST_ARTICLES}:</strong> {catrow.cat.LATEST_ARTICLE}<!-- ENDIF -->
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<!-- END cat -->
+				<!-- BEGIN dummy --> 
+				<td style="vertical-align: top; width: {S_COL_WIDTH}%;">&nbsp;</td> 
+				<!-- END dummy -->
+			</tr>	
+			<!-- END catrow -->
+		</table>
+</div>
+</div>

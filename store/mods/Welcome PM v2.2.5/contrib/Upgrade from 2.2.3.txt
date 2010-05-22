@@ -1,0 +1,28 @@
+##############################################################
+## MOD Title: Welcome PM Mod pgrade instructions from version 2.2.3 -> 2.2.4
+## MOD Author: ..::Frans::.. < frans@infopolitie.nl > (Frans) http://www.infopolitie.nl
+## MOD Description: You only need to follow these instructions if you are currently using version
+##                  version 2.2.3.
+## MOD Version: 2.2.4
+##
+## Installation Level: EASY
+## Installation Time: 1 minute
+## Files To Edit: n/a
+## Included Files: n/a
+##############################################################
+## For Security Purposes, Please Check: http://www.phpbb.com/mods/downloads/ for the
+## latest version of this MOD. Downloading this MOD from other sites could cause malicious code
+## to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered
+## in our MOD-Database, located at: http://www.phpbb.com/mods/downloads/
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+#
+#-----[ COPY ]------------------------------------------
+#
+root/*.* to {ROOT}/*.* overwriting old files
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM
+

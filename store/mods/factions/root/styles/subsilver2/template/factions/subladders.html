@@ -1,0 +1,46 @@
+<!-- INCLUDE overall_header.html -->
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p><!-- IF U_MEMBERSHIP --><a href="{U_MEMBERSHIP}">{L_MEMBERSHIP}</a><!-- ENDIF --></p>
+			<p class="breadcrumbs">{PAGE_NUMBER}</p>
+			<p class="datetime">{PAGINATION}</p>
+		</td>
+	</tr>
+</table>
+<br />
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th width="10%">{L_POS}</th>
+		<th width="40%">{L_LADDER_GROUP_NAME}</th>
+		<th width="10%">{L_LADDER_GROUP_SCORE}</th>
+		<th width="10%">{L_LADDER_GROUP_WINS}</th>
+		<th width="10%">{L_LADDER_GROUP_LOSSES}</th>
+		<th width="10%">{L_LADDER_GROUP_STREAK}</th>
+		<th width="10%">{L_LADDER_GROUP_ID}</th>
+	</tr>
+	<!-- BEGIN block_groups -->
+	<tr class="genmed">
+		<td class="{block_groups.ROW_COLOR}" align="center"><b>{block_groups.POS}</b> {block_groups.UP_DOWN}</td>
+		<td class="{block_groups.ROW_COLOR}"><a href="{block_groups.U_ACTION}">{block_groups.GROUP_NAME}</a> <!-- IF block_groups.U_CHALLENGE_LINK -->[<a href="{block_groups.U_CHALLENGE_LINK}">{L_CHALLENGE}</a>]<!-- ENDIF --><span style="text-align: right;">{block_groups.HOT_COLD}</span></td>
+		<td class="{block_groups.ROW_COLOR}" align="center">{block_groups.GROUP_SCORE}</td>
+		<td class="{block_groups.ROW_COLOR}" align="center">{block_groups.GROUP_WINS}</td>
+		<td class="{block_groups.ROW_COLOR}" align="center">{block_groups.GROUP_LOSSES}</td>
+		<td class="{block_groups.ROW_COLOR}" align="center">{block_groups.GROUP_STREAK}</td>
+		<td class="{block_groups.ROW_COLOR}" align="center">{block_groups.GROUP_ID}</td>
+	</tr>
+	<!-- END block_groups -->
+	<tr>
+		<td class="cat" colspan="8">&nbsp;</td>
+	</tr>
+</table>
+<br />
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<p class="breadcrumbs">{PAGE_NUMBER}</p>
+			<p class="datetime">{PAGINATION}</p>
+		</td>
+	</tr>
+</table>
+<!-- INCLUDE overall_footer.html -->

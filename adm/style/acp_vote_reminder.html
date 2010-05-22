@@ -1,0 +1,166 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+<!-- IF S_ADD_TOPIC -->
+
+<a href="{U_BACK}" style="float: {">&laquo; {L_BACK}</a>
+
+<h1>{L_ACP_VOTE_REMINDER}</h1>
+
+<p>{L_ACP_VOTE_REMINDER_EXPLAIN}</p>
+
+<form id="acp_vote_reminder" method="post" action="{U_ACTION}">
+
+<fieldset><legend>{L_ADD_TOPIC}</legend>
+<dl>
+	<dt><label for="topic_id">{L_POLL_TITLE}:</label><br />
+	<span>{L_POLL_TITLE_EXPLAIN}</span></dt>
+	<dd><select name="topic_id" id="topic_id">
+		{S_POLL_OPTIONS}
+	</select></dd>
+</dl>
+
+<p class="submit-buttons"><input class="button1" type="submit"
+	id="submit" name="save" value="{L_SUBMIT}" />&nbsp; <input
+	class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+{S_FORM_TOKEN}</p>
+</fieldset>
+</form>
+
+<!-- ELSE -->
+<h1>{L_ACP_VOTE_REMINDER}</h1>
+
+<p>{L_ACP_VOTE_REMINDER_EXPLAIN}</p>
+
+<form id="acp_vote_reminder" method="post" action="{U_ACTION}">
+
+<table cellspacing="1">
+
+	<tbody>
+		<tr class="row2">
+			<td style="text-align: left;"><label for="vote_reminder_enable"><span
+				style="font-size: 12px; font-weight: bold;">{L_VOTE_REMINDER_ENABLE}:</span></label><br />
+			<span>{L_VOTE_REMINDER_ENABLE_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input
+				type="radio" class="radio" name="vote_reminder_enable" value="1"<!-- IF VOTE_ENABLED -->
+			id="vote_reminder_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio"
+				name="vote_reminder_enable" value="0"<!-- IF not VOTE_ENABLED -->
+			id="vote_reminder_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+		</tr>
+
+
+		<!-- IF VOTE_ENABLED -->
+		<tr class="row1">
+			<td style="text-align: left;"><label
+				for="vote_reminder_topic_id"><span
+				style="font-size: 12px; font-weight: bold;">{L_VOTE_REMINDER_TOPIC_ID}:</span></label><br />
+			<span>{L_VOTE_REMINDER_TOPIC_ID_EXPLAIN}</span></td>
+			<td style="text-align: center;"><input type="text"
+				id="vote_reminder_topic_id" name="vote_reminder_topic_id" size="4"
+				maxlength="10" value="{VOTE_READ_TOPIC}" /></td>
+		</tr>
+		<tr class="row2">
+			<td style="text-align: left;"><label
+				for="vote_reminder_who_voted"><span
+				style="font-size: 12px; font-weight: bold;">{L_SHOW_WHO_VOTED}:</span></label><br />
+			<span>{L_SHOW_WHO_VOTED_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input
+				type="radio" class="radio" name="vote_reminder_who_voted" value="1"<!-- IF WHO_VOTED -->
+			id="vote_reminder_who_voted" checked="checked"<!-- ENDIF --> />
+			{L_YES}</label> <label><input type="radio" class="radio"
+				name="vote_reminder_who_voted" value="0"<!-- IF not WHO_VOTED -->
+			id="vote_reminder_who_voted" checked="checked"<!-- ENDIF --> />
+			{L_NO}</label></td>
+		</tr>
+		<tr class="row1">
+			<td style="text-align: left;"><label
+				for="vote_reminder_interval"><span
+				style="font-size: 12px; font-weight: bold;">{L_VOTE_REMINDER_INTERVAL}:</span></label><br />
+			<span>{L_VOTE_REMINDER_INTERVAL_EXPLAIN}</span></td>
+			<td style="text-align: center;"><input type="text"
+				id="vote_reminder_interval" name="vote_reminder_interval" size="4"
+				maxlength="4" value="{VOTE_INTERVAL}" /><span><br />
+			{L_MINUTES}</span></td>
+		</tr>
+		<!-- ENDIF -->
+	</tbody>
+</table>
+
+<fieldset class="tabulated">
+<p class="quick"><input class="button1" type="submit" name="update"
+	value="{L_SUBMIT}" /> <input type="hidden" name="action" value="" />
+{S_FORM_TOKEN}</p>
+</fieldset>
+
+<!-- IF VOTE_ENABLED -->
+
+<fieldset class="tabulated">
+<table cellspacing="1">
+	<tbody>
+
+		<tr class="row2">
+			<td style="text-align: left;"><span
+				style="font-size: 12px; font-weight: bold;">{L_VOTE_REMINDER_UPDATE}:</span>
+			<br />
+			<span>{L_VOTE_REMINDER_UPDATE_EXPLAIN}</span></td>
+			<td style="text-align: center;">
+			<p class="quick"><input class="button1" type="submit"
+				name="reminder-reset" value="{L_RUN}" /> <input type="hidden"
+				name="action" value="" /> {S_FORM_TOKEN}</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</fieldset>
+<!-- ENDIF -->
+<p>&nbsp;</p>
+<!-- IF VOTE_ENABLED -->
+<table cellspacing="1">
+	<thead>
+		<tr>
+			<th style="width: 5%; text-align: center;">{L_NUMBER}</th>
+			<th style="width: 32%;">{L_POLL_TITLE}</th>
+			<!-- IF WHO_VOTED -->
+			<th style="width: 30%;">{L_WHO_VOTED}</th>
+			<!-- ENDIF -->
+			<th style="width: 6%; text-align: center;">{L_VOTE_COUNT}</th>
+			<th style="width: 15%; text-align: center;">{L_LAST_VOTE}</th>
+			<th style="width: 10%; text-align: center;">{L_VOTE_END}</th>
+			<th style="width: 8%;">{L_REMOVE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN topics -->
+		<!-- IF topics.S_ROW_COUNT is even -->
+		<tr class="row1">
+			<!-- ELSE -->
+			<tr class="row2">
+				<!-- ENDIF -->
+				<td style="text-align: center;">{topics.NUMBER}</td>
+				<td style="text-align: left;"><a href="{topics.U_TOPIC}">{topics.POLL_TITLE}</a></td>
+				<!-- IF WHO_VOTED -->
+				<td style="text-align: left;">{topics.WHO_VOTED}</td>
+				<!-- ENDIF -->
+				<td style="text-align: center;">{topics.VOTE_COUNT}</td>
+				<td style="text-align: center;">{topics.LAST_VOTE}</td>
+				<td style="text-align: center;">{topics.VOTE_END}</td>
+				<td style="text-align: center;">&nbsp;<a
+					href="{topics.U_DELETE}"><img src="{topics.ICON_REMOVED}"
+					title="{L_REMOVE_TOPIC}" alt="{L_REMOVE}" /></a>&nbsp;</td>
+			</tr>
+			<!-- BEGINELSE -->
+			<tr class="row3">
+				<td colspan="<!-- IF WHO_VOTED -->7<!-- ELSE -->6<!-- ENDIF -->">{L_ACP_NO_ITEMS}</td>
+			</tr>
+			<!-- END topics -->
+	</tbody>
+</table>
+
+<fieldset class="tabulated"><legend>{L_ACP_TOPICS}</legend>
+<p class="quick"><input class="button2" name="add" type="submit"
+	value="{L_ADD_TOPIC}" /></p>
+{S_FORM_TOKEN}</fieldset>
+<!-- ENDIF --></form>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->
