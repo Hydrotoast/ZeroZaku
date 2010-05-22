@@ -1,8 +1,8 @@
 <?php exit; ?>
-1274570050
+1274570470
 SELECT s.style_id, c.theme_id, c.theme_data, c.theme_path, c.theme_name, c.theme_mtime, i.*, t.template_path FROM phpbb_styles s, phpbb_styles_template t, phpbb_styles_theme c, phpbb_styles_imageset i WHERE s.style_id = 4 AND t.template_id = s.template_id AND c.theme_id = s.theme_id AND i.imageset_id = s.imageset_id
-101365
-a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:100967:"/*  phpBB 3.0 Style Sheet
+96277
+a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:95880:"/*  phpBB 3.0 Style Sheet
     --------------------------------------------------------------
 	Style name:		proSilver
 	Based on style:	proSilver (this is the default phpBB 3 style)
@@ -3022,235 +3022,6 @@ font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
 font-size: 12px;
 }
 
-/* Image Slider
--------------------------------------------------*/
-.wrapSlider {
-	width: 100%;
-	text-align: center;
-}
-
-.wrapSlider .inner {
-	margin: 0 auto;
-	width: 776px;
-}
-
-/*
-	root element for the scrollable.
-	when scrolling occurs this element stays still.
-*/
-.slider {
-	/* required settings */
-	position: relative;
-	overflow: hidden;
-	width: 650px;
-	height: 125px;
-	float: left;
-}
-
-/*
-	root element for slider items. Must be absolutely positioned
-	and it should have a extremely large width to accomodate slider items.
-	it's enough that you set the width and height for the root element and
-	not for this element.
-*/
-.slider .items {
-	/* this cannot be too large */
-	width: 10000em;
-	position: absolute;
-	clear: both;
-}
-
-/* remove margins from the image */ 
-.slider .items img { 
-    margin:0; 
-}
-
-.slider br {
-	display: none;
-	float: left;
-}
- 
-/* make A tags our floating scrollable items */ 
-.slider .items a { 
-    display:block; 
-    float:left; 
-    margin: 10px; 
-} 
-
-/* single slider item */
-.slider img {
-	float: left;
-	margin: 10px;
-	padding: 4px;
-	background-color: #FFFFFF;
-	border: 1px solid #D0D0D0;
-	cursor: pointer;
-	width: 100px;
-	height: 100px;
-}
-
-.slider img:hover {
-	border-color: #212121;
-}
-
-/* active item */
-.slider .active {
-	border: 2px solid #000;
-	z-index: 9999;
-	position: relative;
-}
-
-a.browse {
-	-moz-background-clip: border;
-	-moz-background-inline-policy: continuous;
-	-moz-background-origin: padding;
-	background: transparent url({T_THEME_PATH}/images/slider/arrow/hori_large.png) no-repeat scroll 0 0;
-	cursor: pointer;
-	display: block;
-	float: left;
-	font-size: 1px;
-	height: 18px;
-	margin: 55px 10px;
-	width: 18px;
-}
-
-
-div.wrapSlider a.left.disabled {background: transparent url({T_THEME_PATH}/images/slider/arrow/left.png) no-repeat scroll 0 0;}
-div.wrapSlider a.right.disabled {background: transparent url({T_THEME_PATH}/images/slider/arrow/right.png) no-repeat scroll 0 0;}
-div.wrapSlider a.left {background: transparent url({T_THEME_PATH}/images/slider/arrow/left.png) no-repeat scroll 0 -18px;}
-div.wrapSlider a.right {background: transparent url({T_THEME_PATH}/images/slider/arrow/right.png) no-repeat scroll 0 -18px;}
-
-/* scrollable should not disable gallery navigation */ 
-#gallerySlider .disabled { 
-    visibility:visible !important; 
-} 
- 
-#gallerySlider .inactive { 
-    visibility:hidden !important; 
-}
-
-/* "next image" and "prev image" links */
-#gallerySlider .next, .prev {
-	
-	/* absolute positioning relative to the overlay */
-	position:absolute;
-	top:40%;	
-	border:1px solid #666;	
-	cursor:pointer;
-	display:block;
-	padding:10px 20px;
-	color:#fff;
-	font-size:11px;
-	
-	/* upcoming CSS3 features */
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-}
-
-#gallerySlider .prev {
-	left:0;
-	border-left:0;
-	-moz-border-radius: 0 0 5px 5px;
-	-webkit-border-radius: 0 0 5px 5px;
-	-khtml-border-radius: 0 0 5px 5px;
-	border-radius: 0 0 5px 5px;
-	font-size: 1em;
-}
-
-#gallerySlider .next {
-	right:0;
-	border-right:0;
-	-moz-border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
-	-khtml-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-	font-size: 1em;
-}
-
-#gallerySlider .next:hover, #gallerySlider .prev:hover {
-	text-decoration:underline;
-	background-color:#000;
-}
-
-/* when there is no next or previous link available this class is added */
-#gallerySlider .disabled {
-	visibility:hidden;		
-}
-
-/* the "information box" */
-#gallerySlider .info {
-	position:absolute;
-	bottom:0;
-	left:0;	
-	padding:10px 15px;
-	color:#fff;
-	font-size:11px;
-	border-top:1px solid #666;
-}
-
-#gallerySlider .info strong {
-	display:block;	
-}
-
-/* progress indicator (animated gif). should be initially hidden */
-#galleryslider.progress {
-	position: absolute;
-	top: 45%;
-	left: 50%;
-	display: none;
-}
-
-/* everybody should know about RGBA colors. */
-#gallerySlider .next, #gallerySlider .prev, #gallerySlider .info {
-	background: #333 !important;
-	background: rgba(0, 0, 0, 0.6) url({T_THEME_PATH}/images/slider/gradient/h80.png) repeat-x;		
-}
-
-/* the overlayed element */
-.simple_overlay {
-	
-	/* must be initially hidden */
-	display: none;
-	
-	/* place overlay on top of other elements */
-	z-index: 10000;
-	
-	/* styling */
-	background-color: #333;
-	
-	width: 675px;	
-	min-height: 160px;
-	border: 1px solid #F0F0F0;
-	
-	/* CSS3 styling for latest browsers */
-	-moz-box-shadow: 0 0 90px 5px #000;
-	-webkit-box-shadow: 0 0 90px #000;	
-}
-
-/* close button positioned on upper right corner */
-.simple_overlay .close {
-	background-image:url({T_THEME_PATH}/images/slider/overlay/close.png);
-	position:absolute;
-	right:-15px;
-	top:-15px;
-	cursor:pointer;
-	height:35px;
-	width:35px;
-}
-
-/* tooltip styling */ 
-#tooltipSlider { 
-    display: none; 
-    background: url({T_THEME_PATH}/images/slider/tooltip/black_arrow.png); 
-    font-size: 12px; 
-    height: 70px; 
-    width: 160px; 
-    padding: 25px; 
-    color: #fff; 
-}
-
 /* mChat
 -------------------------------------------------*/
 .mChatBodyFix {
@@ -4112,6 +3883,8 @@ span.chatboxinfo {
 
 #slider {
 	position:relative;
+	max-height: 360px;
+	max-width: 100%;
 	margin:30px 30px 60px 30px;
 	background:#202834 url({T_THEME_PATH}/images/loading.gif) no-repeat 50% 50%;
 	-moz-box-shadow:0px 0px 10px #333;
@@ -5227,4 +5000,4 @@ fieldset.display-options label {color: #FFFFFF;}
 .dropdown ul li span {background: none;}
 
 /* CSS Tabs */
-.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1274569567";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
+.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1274570094";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
