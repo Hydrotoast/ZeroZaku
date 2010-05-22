@@ -1,0 +1,121 @@
+<!-- INCLUDE overall_header.html -->
+  <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+	<tr> 
+	  <td align="left"><span class="nav"><a href="{U_INDEX}" class="nav">{L_INDEX}</a>{SHOPLOCATION}</span></td>
+	</tr>
+  </table>
+  <table width="99%" cellpadding="4" cellspacing="1" border="0" align="center" class="forumline">
+	<tr> 
+	  <th class="thHead" colspan="5">{L_SHOP_TITLE}</th>
+	</tr>
+	<tr>
+	  <td colspan="2" class="row1" align="center"><span class="gensmall">{L_EXPLAIN}</span></td>
+	</tr>
+<!-- BEGIN switch_is_error -->
+	<tr>
+	  <td class="row1" colspan="2" align="center"><span class="gensmall" style="color: red"><b>{switch_is_error.ERROR}</b></span></td>
+	</tr>
+<!-- END switch_is_error -->
+<!-- BEGIN switch_start_trade -->
+<form name="post" method="post" action="shop_actions.php?action=trade">
+	<tr>
+	  <td class="row2" width="50%"><span class="gensmall">{L_TRADE_WITH}:</span></td>
+	  <td class="row2"><input type="text" class="post" name="username" /> <input type="submit" name="usersubmit" value="{L_SHOP_FIND_USERNAME}" class="liteoption" onClick="window.open('memberlist.php?mode=searchuser', 'searchuser', 'HEIGHT=250,resizable=yes,WIDTH=400');return false;" /></td>
+	</tr>
+	<tr>
+	  <td class="row3" colspan="2" align="center"><input type="submit" value="{L_SHOP_EXECUTE}" class="liteoption"></td>
+	</tr>
+</form> 
+<!-- END switch_start_trade -->
+<!-- BEGIN switch_make_trade -->
+<form method="post" action="{switch_make_trade.U_TRADE}">
+  <input type="hidden" name="action" value="confirmtrade" />
+  <input type="hidden" name="username" value="{switch_make_trade.TRADE_NAME}" />
+	<tr>
+	  <td class="row1" width="30%" valign="top"><span class="gensmall">{L_SHOP_TRADE_ITEMS}: </span></td>
+	  <td class="row2">
+		<select name="tradeitems[]" multiple="multiple" class="textfield" size="5">
+			<option value="0">{L_NOTHING}</option>
+			{switch_make_trade.USER_ITEMS}
+		</select>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="row1"><span class="gensmall">{L_TRADE_GOLD}: </span></td>
+	  <td class="row2"><input type="text" class="post" size="10" maxlength="15" name="usergold" value="0" /></td>
+	</tr>
+	<tr>
+	  <td colspan="2" class="row3"><br /></td>
+	</tr>
+	<tr>
+	  <td class="row1" width="30%" valign="top"><span class="gensmall">{L_SHOP_REQUEST_ITEMS}: </span></td>
+	  <td class="row2">
+		<select name="otheritems[]" multiple="multiple" class="textfield" size="5">
+			<option value="0">{L_NOTHING}</option>
+			{switch_make_trade.OTHER_ITEMS}
+		</select>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="row1"><span class="gensmall">{L_REQUEST_GOLD}: </span></td>
+	  <td class="row2"><input type="text" class="post" size="10" maxlength="15" name="tradegold" value="0" /></td>
+	</tr>
+	<tr>
+	  <td class="row3" align="center" colspan="2">
+		<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tr>
+			  <td width="50%" align="center"><input type="submit" class="liteoption" name="dodeal" value="{L_SHOP_EXECUTE}"></td>
+  </form>
+  <form method="submit" action="shop_actions.php">
+    <input type="hidden" name="action" value="trade">
+			  <td width="50%" align="center"><input type="submit" class="liteoption" name="reset" value="{L_SHOP_RESET}"></td>
+  </form>
+			</tr>
+		</table>
+	  </td>
+	</tr>
+<!-- END switch_make_trade -->
+<!-- BEGIN switch_confirm_trade -->
+	<tr>
+	  <td class="row1" colspan="2" align="center"><br /></td>
+	</tr>
+	<tr>
+	  <td class="row2" colspan="2" align="center"><span class="gensmall">
+{switch_confirm_trade.TRADE_ITEMS} & {switch_confirm_trade.TRADE_GOLD} {POINTS_NAME}<br />
+<b>{L_SHOP_FOR}</b><br />
+{switch_confirm_trade.OTHER_ITEMS} & {switch_confirm_trade.OTHER_GOLD} {POINTS_NAME}</span></td>
+	</tr>
+<form method="post" action="shop_actions.php?action=proposetrade">
+	<tr>
+	  <td class="row1" colspan="2" align ="center"><span class="gensmall"><b>{L_SHOP_MESSAGE}:</b> <textarea name="message" rows="8" cols="25" wrap="virtual" style="width:400px" class="post"></textarea></span></td>
+	  {switch_confirm_trade.HIDDEN}
+	<tr>
+	  <td class="row3" align="center"><input type="submit" class="liteoption" name="dodeal" value="{L_SHOP_EXECUTE}" /></td>
+</form>
+<form method="submit" action="shop_actions.php">
+  <input type="hidden" name="action" value="trade" />
+	  <td class="row3" align="center"><input type="submit" class="liteoption" value="{L_SHOP_CANCEL}" /></td>
+	</tr>
+</form>
+<!-- END switch_confirm_trade -->
+  </table>
+
+<br />
+<div class="panel">
+<tr> 
+	  <th class="thHead" colspan="2">{L_SHOP_PERSONAL_INFO}:</th>
+	</tr>
+	<div class="inner"><span class="corners-top"><span></span></span>
+        <a href="{U_INVENTORY}" class="gensmall">[{L_SHOP_YOUR_INV}]</a> 
+	   <br>{L_YOU_HAVE}: {USER_POINTS} {POINTS_NAME}
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+    <table width="99%" cellpadding="4" cellspacing="1" border="0" align="center" class="forumline">
+	<tr>
+		<td width="100%" align="center" class="row1"><br /><span class="gensmall">{L_SHOP_RIGHT1}<br/>{L_SHOP_RIGHT2}</span><br /><br /></td>
+	</tr>
+  </table>
+<br	clear="all" />
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,112 @@
+/* Margin of outer divs */
+.forabg, .forumbg {
+	margin-bottom: 4px;
+	clear: both;
+}
+
+.panel, .post {
+	margin-bottom: 4px;
+	clear: both;
+}
+
+
+
+/* Outer divs */
+.panel {
+	color: #3f3f3f;
+}
+
+.post:target .content {
+	color: #000000;
+}
+
+.post:target h3 a {
+	color: #000000;
+}
+
+
+/* Blocks */
+.block-header, .block-header span, .block-footer, .block-footer span {
+    clear: both;
+    display: block;
+    height: 6px;
+    line-height: 1px;
+    font-size: 1px;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+.block-header, .block-footer {
+    background-repeat: repeat-x;
+}
+.block-header span span, .block-footer span span {
+    background-position: top right;
+}
+
+.block-content, .block-post, .block-table {
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    background-color: #fff;
+    padding: 0 2px;
+}
+.block-table { 
+    padding: 0;
+}
+
+.block-clear {
+    clear: both;
+}
+* html .block-clear {
+    border-bottom: solid 1px red;
+}
+
+/* Navigation */
+.navbar {
+    white-space: nowrap;
+    border: solid 1px #000;
+    padding: 0 5px;
+}
+
+/* Padding of inner divs */
+.navbar .block-content {
+	padding: 0 5px;
+}
+.navbar-top {
+    margin-bottom: 5px;
+}
+.section-index .navbar-top, .section-viewforum .navbar-top, .section-viewtopic .navbar-top {
+    margin-bottom: 8px;
+}
+
+.panel-table .block-content, #ip .block-content {
+    padding: 0;
+}
+#navigation .block-content, #pm-folder .block-content {
+    padding: 1px;
+}
+.rules .block-content, #cp-main .block-content, .panel .block-content {
+    padding: 0 2px;
+}
+.rules .block-inner, .panel .block-inner, .post .block-inner {
+    padding: 5px;
+    border: solid 1px #000;
+    border-width: 1px 0;
+}
+
+.panel-table h3 { padding-left: 5px; }
+
+/* PM notification */
+.pm-notify-new, .pm-notify-unread {
+    width: 400px;
+    margin: 5px auto;
+    text-align: center;
+    border: solid 1px white;
+    background-position: top left;
+    background-repeat: repeat-x;
+    padding: 5px;
+    text-align: center;
+}
+.pm-notify-new h3, .pm-notify-unread h3 {
+    margin-top: 5px;
+    text-align: left;
+}
+

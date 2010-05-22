@@ -1,0 +1,43 @@
+<?php
+/** 
+*
+* @package Reputation
+* @copyright (c) 2009 Gio Borje
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License 
+*
+*/
+
+if(!defined('IN_PHPBB'))
+{
+	exit;
+}
+
+// Table name
+if (isset($table_prefix))
+{
+	define('REP_TABLE', $table_prefix . 'rep');
+}
+
+class reputation 
+{
+	// Config vars
+	var $config		= array();
+	
+	// Auth vars
+	var $can_rep	= false;
+	var $user_level = false;
+	
+	// Time
+	var $current_time 	= false;
+	
+	function reputation()
+	{
+		global $config, $user, $auth;
+		$user->add_lang('reputation');
+	}
+	
+	
+	
+	
+}
+?>

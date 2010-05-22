@@ -1,0 +1,41 @@
+phpBB Factions
+PHP Version: 5.3.0
+DBMS: MySQL(i) 5.1.36-community-log
+phpBB3 Version: 3.0.6
+
+Adding a new database table: phpbb_factions_challenges
+ERROR: Database table phpbb_factions_challenges already exists.
+
+Adding a new database table: phpbb_factions_treports
+ERROR: Database table phpbb_factions_treports already exists.
+
+Adding a new database table: phpbb_factions_matchfinder
+ERROR: Database table phpbb_factions_matchfinder already exists.
+
+Adding a new database table: phpbb_factions_platforms
+ERROR: Database table phpbb_factions_platforms already exists.
+
+Adding a new database table: phpbb_factions_tgroups
+ERROR: Database table phpbb_factions_tgroups already exists.
+
+Adding a new database table: phpbb_factions_seasons
+ERROR: Database table phpbb_factions_seasons already exists.
+
+Adding a new database table: phpbb_factions_tournaments
+ERROR: Database table phpbb_factions_tournaments already exists.
+
+Adding a new database table: phpbb_factions_matches
+ERROR: Database table phpbb_factions_matches already exists.
+
+Adding a new database table: phpbb_factions_ladders
+ERROR: Database table phpbb_factions_ladders already exists.
+
+Adding a new database table: phpbb_factions_seasondata
+ERROR: Database table phpbb_factions_seasondata already exists.
+
+Adding a new database table: phpbb_factions_matchcomm
+ERROR: Database table phpbb_factions_matchcomm already exists.
+
+Adding a new database table: phpbb_factions_groupdata
+ERROR: Database table phpbb_factions_groupdata already exists.
+

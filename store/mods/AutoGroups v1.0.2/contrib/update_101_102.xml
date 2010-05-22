@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the
+latest version of this MOD. Although MODs are checked before being
+allowed in the MODs Database there is no guarantee that there are no
+security problems within the MOD. No support will be given for MODs not
+found within the MODs Database which can be found at
+http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<header>
+	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+	<title lang="en-gb">Auto Groups MOD - Update 1.0.1 to 1.0.2</title>
+	<description lang="en-gb">Gives administrators options to place users in groups based on post count, membership days, and warning points</description>
+	<author-notes lang="en-gb">Loosely Based on the phpBB2 MOD of the same name by niles
+
+The edits indicated below may not be required, depending on your decisions during phpBB's automatic update process. 
+	</author-notes>
+	<author-group>
+		<author>
+			<realname>Josh W</realname>
+			<email>support@jd1.clawz.com</email>
+			<username>A_Jelly_Doughnut</username>
+			<homepage></homepage>
+		</author>
+	</author-group>
+	<mod-version>1.0.2</mod-version>
+	<installation>
+		<level>intermediate</level>
+		<time>600</time>
+		<target-version>3.0.6</target-version>
+	</installation>
+	<history>
+		<entry>
+			<date>2008-01-13</date>
+			<rev-version>1.0.0</rev-version>
+			<changelog lang="en-gb">
+				<change>Initial Final Release</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2008-04-11</date>
+			<rev-version>1.0.1</rev-version>
+			<changelog lang="en-gb">
+				<change>Small Bugfixes</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2009-11-27</date>
+			<rev-version>1.0.2</rev-version>
+			<changelog lang="en-gb">
+				<change>phpBB 3.0.6 compatibility</change>
+			</changelog>
+		</entry>
+	</history>
+	<link-group>
+		<link type="parent" href="../install_AG_102.xml" lang="en">Parent</link>
+	</link-group>
+</header>
+<action-group>
+	<copy>
+		<file from="root/includes/functions_autogroup.php" to="root/includes/functions_autogroup.php" />
+	</copy>
+	<open src="includes/acp/acp_groups.php">
+		<edit>
+			<comment lang="en">This action assumes that your change to the $test_variables array was lost in the update to phpBB 3.0.5.</comment>
+			<find><![CDATA[$test_variables = array]]></find>
+			<find><![CDATA['founder_manage']]></find>
+			<action type="after-add">
+				<![CDATA[
+	'min_days' => 'int',
+	'max_days' => 'int',
+	'min_warnings' => 'int',
+	'max_warnings' => 'int',
+	'min_posts' => 'int',
+	'max_posts' => 'int',
+	'auto_default' => 'int',]]>
+			</action>
+		</edit>
+	</open>
+	<open src="includes/functions_user.php">
+		<edit>
+			<comment lang="en">This action may have been made by the phpBB updater.</comment>
+			<find>		
+// auto group mod
+		'group_min_days'		=> 'int',
+		'group_max_days'		=> 'int',
+		'group_min_warnings'	=> 'int',
+		'group_max_warnings'	=> 'int',
+		'group_min_posts'		=> 'int',
+		'group_max_posts'		=> 'int',
+		'group_auto_default'	=> 'int',</find>
+			<action type="replace-with">
+</action>
+		</edit>
+		<edit>
+			<comment lang="en">This edit is required regardless of changes which may have been made by the phpBB updater.</comment>
+			<find>$auto_add_users = auto_groups_create</find>
+			<inline-edit>
+				<inline-find>$group_id,</inline-find>
+				<inline-action type="after-add">$gruop_attributes,</inline-action>
+			</inline-edit>
+		</edit>
+	</open>
+</action-group>
+</mod>

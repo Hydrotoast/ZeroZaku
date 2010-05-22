@@ -1,0 +1,50 @@
+<!-- INCLUDE overall_header.html -->
+<form method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_REPORT_MATCH}</legend>
+	<!-- IF .block_groups -->
+	<dl>
+		<dt><label for="group_winner">{L_WINNER}:</label></td>
+		<dd>
+			<select name="group_winner" id="group_winner" class="inputbox autowidth">
+			<!-- BEGIN block_groups -->
+				<option name="group_winner" id="group_winner" value="{block_groups.GROUP_ID}">{block_groups.GROUP_NAME}</option>
+			<!-- END block_groups -->
+			</select>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="group_loser">{L_LOSER}:</label></td>
+		<dd>
+			<select name="group_loser" id="group_loser" class="inputbox autowidth">
+			<!-- BEGIN block_groups -->
+				<option name="group_loser" id="group_loser" value="{block_groups.GROUP_ID}">{block_groups.GROUP_NAME}</option>
+			<!-- END block_groups -->
+			</select>
+		</dd>
+	</dl>
+
+	<p class="quick">
+		<input type="hidden" name="ladder_id" value="{LADDER_ID}" /><input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</p>
+	<!-- ELSE -->
+	<dl>
+		<dt><label for="ladder_id">{L_LADDER_NAME}:</label></dt>
+		<dd>
+			<select name="ladder_id" id="ladder_id" class="inputbox autowidth">
+			<!-- BEGIN block_ladders -->
+				<optgroup label="{block_ladders.LADDER_NAME} ({block_ladders.PLATFORM})"></optgroup>
+				<!-- BEGIN block_subladders -->
+				<option name="ladder_id" id="ladder_id" value="{block_ladders.block_subladders.LADDER_ID}">-- {block_ladders.block_subladders.LADDER_NAME}</option>
+				<!-- END block_subladders -->
+			<!-- END block_ladders -->
+			</select>
+		</dd>
+	</dl>
+
+	<p class="quick">
+		<input type="submit" name="submit_2" value="{L_SUBMIT}" class="button1" />
+	</p>
+	<!-- ENDIF -->
+</fieldset>
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,123 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="tabs">
+	<ul>
+		<li><a href="./points.php?i={USER_ID}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+		<!-- IF POINTS_TRANSFER --><li ><a href="./points.php?mode=transfer&i={USER_ID}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_LOGS --><li ><a href="./points.php?mode=logs&i={USER_ID}"><span>{L_POINTS_LOGS}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE --><li class="activetab"><a href="./points.php?mode=lottery"><span>{L_POINTS_LOTTERY}</span></a></li><!-- ENDIF -->
+    <!-- IF BANK_ENABLE --><li ><a href="./points.php?mode=bank"><span>{L_POINTS_BANK}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_ROBBERY --><li ><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+  </ul>
+</div>
+
+<td width="80%" valign="top"><form name="ucp" id="ucp" method="post" action="">
+<div class="panel bg3">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-main" class="ucp-main">
+                   <h2>{L_POINTS_LOTTERY}</h2>
+				<div class="panel">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+						<p>
+			<!-- IF S_VIEW_HISTORY -->
+				<div align="left"><a href="{U_BACK_TO_LOTTERY}">{L_BACK_TO_LOTTERY}</a></div>
+				<div align="center"><h3><font size="4">{LOTTERY_NAME} {L_HISTORY}</font></h3></div>
+				<div class="forumbg">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+						<table cellpadding="4" cellspacing="1" border="0" class="table1">
+							<thead>
+							<tr> 
+								<th>#</th>
+								<th>{L_USERNAME}</th>
+								<th>{L_WINNINGS}</th>
+								<th>{L_DATE}</th>
+							</tr>
+							</thead>
+							<!-- BEGIN history_row -->
+								<tr class="<!-- IF history_row.ROW_COLOR is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->"> 
+									<td class="row{history_row.ROW_COLOR}" align="center">{history_row.NUMBER}</td>
+									<td class="row{history_row.ROW_COLOR}" align="center"><a href="{history_row.U_WINNER_PROFILE}">{history_row.USERNAME}</a></td>
+									<td class="row{history_row.ROW_COLOR}" align="center"><!-- IF history_row.WINNINGS == 0 --><!-- ELSE -->{history_row.WINNINGS} {CASH_NAME}<!-- ENDIF --></td>
+									<td class="row{history_row.ROW_COLOR}" align="center">{history_row.DATE}</td>
+								</tr>
+							<!-- END history_row -->
+						</table>
+						<span class="corners-bottom"><span></span></span></div>
+						<div class="pagination">
+							{TOTAL_WINNERS} {L_TOTAL_WINNERS}
+							<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+						</div>
+					</div>
+				</div>
+				<br />
+				<br />
+				<div align="left"><a href="{U_BACK_TO_LOTTERY}">{L_BACK_TO_LOTTERY}</a></div>
+			<!-- ELSE -->
+			<div align="center"><h3><font size="4">{LOTTERY_NAME}</font></h3></div>
+			<table width="75%" cellpadding="4" cellspacing="1" border="0" class="table1">
+				<!-- IF S_DRAWING_ENABLED -->
+					<!-- IF S_USER_LOGGED_IN -->
+						<tr>
+							<td width="25%"></td>
+							<td align="left" width="25%"><font size="2">{L_VIEWER_TICKETS}</font></td>
+							<td align="left">
+							<form method="post" action="lottery.php">
+							<font size="2">{VIEWER_TICKETS_TOTAL} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font> 
+							<!-- IF S_PURCHASE_TICKETS -->
+								<!-- IF not S_MULTI_TICKETS -->
+									<input type="hidden" name="total_tickets" value="1" />
+									<input type="submit" name="purchase_ticket" value="{L_PURCHASE_TICKET}" class="button2" />
+								<!-- ELSE -->
+									<input type="text" name="total_tickets" value="1" size="3" /> <input type="submit" name="purchase_ticket" value="{L_PURCHASE_TICKET}" class="button2" />
+								<!-- ENDIF -->
+							<!-- ENDIF -->
+							</form>
+							</td>
+						</tr>
+					<!-- ENDIF -->
+					<!-- IF S_CASH_MOD -->
+						<tr>
+							<td width="25%"></td>
+							<td align="left"><font size="2">{L_TICKET_COST}</font></td>
+							<td align="left"><font size="2">{TICKET_COST} {CASH_NAME}</font></td>
+						</tr>
+						<tr>
+							<td width="25%"></td>
+							<td align="left"><font size="2">{L_JACKPOT}</font></td>
+							<td align="left"><font size="2">{JACKPOT} {CASH_NAME}</font></td>
+						</tr>
+					<!-- ENDIF -->
+					<tr>
+						<td width="25%"></td>
+						<td align="left"><font size="2">{L_NEXT_DRAWING}</font></td>
+						<td align="left"><font size="2">{NEXT_DRAWING}</font></td>
+				</tr>
+			<!-- ENDIF -->
+		<tr>
+			<td width="25%"></td>
+			<td align="left" width="25%"><font size="2">{L_LAST_WINNER}</font></td>
+			<td align="left"><font size="2"><b><a href="{U_PREVIOUS_WINNER}">{PREVIOUS_WINNER}</a></b></font></td>
+		</tr>
+		<tr>
+			<td width="25%"></td>
+			<td align="left" width="25%"><font size="2"><a href="{U_VIEW_HISTORY}">{L_VIEW_HISTORY}</a></font></td>
+			<td align="left"><font size="2"><a href="{U_VIEW_SELF_HISTORY}">{L_VIEW_SELF_HISTORY}</a></font></td>
+		</tr>
+		<!-- ENDIF -->
+	</span></td></tr>
+		</table>
+	</p>
+						<span class="corners-bottom"><span></span></span>
+					</div>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

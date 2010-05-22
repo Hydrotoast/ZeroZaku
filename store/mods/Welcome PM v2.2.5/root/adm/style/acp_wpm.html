@@ -1,0 +1,160 @@
+<!-- INCLUDE overall_header.html -->
+
+<script language="JavaScript" type="text/javascript">
+var onload_functions = new Array();
+</script>
+
+<style type="text/css">
+h2 {
+	margin-top:0;
+}
+
+fieldset dt{
+	width: 35%;
+}
+
+fieldset dd {
+	margin: 0 0 0 35%;
+}
+
+#colour_palette td {
+	padding: 0;
+}
+
+textarea {
+	width: 99%;
+}
+
+td a {
+	font-size: 1.2em;
+}
+
+td input {
+	float: right;
+	text-align: right;
+	font-size: 1em;
+}
+</style>
+
+<!-- IF ERROR -->
+<div class="errorbox">
+	<h3>{L_INFORMATION}</h3>
+	<p>{ERROR_MSG}</p>
+</div>
+<!-- ENDIF -->
+
+<a name="maincontent"></a>
+
+<h1>{L_WPM_TITLE}</h1>
+
+<p>{L_WPM_TITLE_EXPLAIN}</p>
+
+<form id="postform" name="postform" method="post" action="{U_ACTION}">
+
+<!-- IF S_PREVIEW -->
+<table cellspacing="1">
+	<thead>
+		<tr><th colspan="2">{L_PREVIEW}</th></tr>
+	</thead>
+	<tbody>
+		<tr><td width="18%" class="col1"><strong>{L_SUBJECT} :</strong></td><td class="col2">{PREVIEW_SUBJ}</td></tr>
+		<tr><td colspan="2" class="col2">{PREVIEW_MSG}</td></tr>
+		</tbody>
+	</table>
+<br />
+<!-- ENDIF -->
+
+<fieldset>
+	<legend>{L_GENERAL_SETTINGS}</legend>
+<dl>
+	<dt><label for="enable">{L_WPM_ENABLE}:</label><br /><span>{L_WPM_ENABLE_EXPLAIN}</span></dt>
+	<dd><input type="radio" class="radio" id="enable" name="enable"<!-- IF S_ENABLE_CHECKED --> checked="checked"<!-- ENDIF --> value="1"/>&nbsp;{L_YES}&nbsp;&nbsp;<input type="radio" class="radio" name="enable"<!-- IF not S_ENABLE_CHECKED --> checked="checked"<!-- ENDIF --> value="0"/>&nbsp;{L_NO}</dd>
+</dl>
+</fieldset>
+
+<fieldset>
+	<legend>{L_MESSAGE}</legend>
+<dl>
+	<dt><label for="username">{L_USERNAME}:</label><br /><span>{L_WPM_USERNAME_EXPLAIN}</span></dt>
+	<dd><input class="medium" type="text" id="username" name="username" value="{USERNAM}"/></dd>
+</dl>
+
+<dl>
+	<dt><label for="wpm_subject">{L_SUBJECT}:</label><br /><span>{L_WPM_SUBJECT_EXPLAIN}</span></dt>
+	<dd><input class="medium" type="text" id="subject" name="subject" value="{SUBJECT}"/></dd>
+</dl>
+
+<dl><!-- INCLUDE ./posting_buttons.html -->
+	<textarea name="message" id=message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{MESSAGE}</textarea><br />
+	<table style="border: 0;">
+		<tbody>
+			<tr>
+				<td>
+					<a href="{U_SMILIES}" target="_blank" onclick="window.open('{U_SMILIES}', '_phpbbsmilies', 'HEIGHT=350,resizable=yes,scrollbars=yes,WIDTH=300'); return false;">{L_SMILIES}!</a>
+				</td>
+				<td>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</dl>
+</fieldset>
+
+<fieldset class="quick">
+	<legend>Submit</legend>
+	<input type="submit" name="preview" value="{L_PREVIEW}" class="button2" />
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	<input class="button2" type="reset" id="reset" name="reset" value="Reset" />
+</fieldset>
+
+<table cellspacing="1">
+	<caption>{L_WPM_PREDEFINED_VARS}</caption>
+	<col class="col1" /><col class="col2" /><col class="col1" />
+
+	<thead>
+		<tr>
+			<th>{L_WPM_VAR_NAME}</th>
+			<th>{L_WPM_VAR_VAR}</th>
+			<th>{L_WPM_VAR_EXAMPLE}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<!-- BEGIN vars(0,13) -->
+		<tr>
+			<td>{vars.NAME}</td>
+			<td><b>{vars.VARIABLE}</b></td>
+			<td><b>{vars.EXAMPLE}</b></td>
+		</tr>
+	<!-- END vars -->
+	</tbody>
+</table>
+
+<!-- IF .vars > 14 -->
+<table cellspacing="1">
+	<caption>{L_WPM_CPF_VARS}</caption>
+	<col class="col1" /><col class="col2" /><col class="col1" />
+
+	<thead>
+		<tr>
+			<th>{L_WPM_VAR_NAME}</th>
+			<th>{L_WPM_VAR_VAR}</th>
+			<th>{L_WPM_VAR_EXAMPLE}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<!-- BEGIN vars(14) -->
+		<tr>
+			<td>{vars.NAME}</td>
+			<td><b>{vars.VARIABLE}</b></td>
+			<td><b>{vars.EXAMPLE}</b></td>
+		</tr>
+	<!-- END vars -->
+	</tbody>
+</table>
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,125 @@
+<!-- INCLUDE overall_header.html -->
+<div id="wrap-top">
+	
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td width="20%" valign="top">
+			<table class="tablebg" width="100%" cellspacing="1">
+				<tr>
+					<th>{L_OPTIONS}</th>
+				</tr>
+				<tr class="row1">
+					<td><a href="./points.php?i={USER_ID}">{L_POINTS_OVERVIEW}</a></td>
+				</tr>
+				<!-- IF POINTS_TRANSFER -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=transfer&i={USER_ID}">{L_POINTS_TRANSFER}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF POINTS_LOGS -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=logs&i={USER_ID}">{L_POINTS_LOGS}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF LOTTERY_ENABLE -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=lottery">{L_POINTS_LOTTERY}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF POINTS_ROBBERY -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF BANK_ENABLE -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=bank">{L_POINTS_BANK}</a></td>
+				</tr>
+				<!-- ENDIF -->
+			</table>
+		</td>
+
+		<td width="80%" valign="top"><form name="ucp" id="ucp" method="post" action="">
+
+			<table class="tablebg" width="100%" cellspacing="1">
+				<tr> 
+					<th class="thHead" colspan="2">{L_POINTS_BANK}</th>
+				</tr>
+				<!-- BEGIN has_account -->
+				<tr>
+					<td class="row2" colspan="2"><span class="gen"><b>{L_BANK_ACTIONS}</b></span></td>
+				</tr>
+				<form method="post" action="{U_DEPOSIT}">
+				<tr>
+				</tr>
+				</form>
+				<form method="post" action="{U_DEPOSIT}">
+				<tr>
+					<td class="row2"><input type="submit" class="liteoption" name="Deposit" value="{L_BUTTON_DEPOSIT}"></td>
+					<td class="row2"><input type="text" class="post" name="deposit" size="20" value="{USER_GOLD}"></td>
+				</tr>
+				</form>
+				<form method="post" action="{U_WITHDRAW}">
+				<tr>
+					<td class="row2"><input type="submit" class="liteoption" name="Withdraw" value="{L_BUTTON_WITHDRAW}"></td>
+					<td class="row2"><input type="text" class="post" name="withdraw" size="20" value="{USER_WITHDRAW}"></td>	
+				</tr>
+				</form>
+				<!-- END has_account -->
+				<!-- BEGIN no_account -->
+				<tr>
+					<td class="row2" colspan="2"><span class="gensmall">{no_account.L_NO_ACCOUNT}<a href="./points.php?mode=bank&action=createaccount">{L_OPEN_ACCOUNT}</a></span></td>
+				</tr>
+				<tr>
+					<td class="row2" colspan="2"><span class="gen">{no_account.U_OPEN_ACCOUNT}</span></td>
+				</tr>
+				<!-- END no_account -->
+
+				<tr>
+					<td class="row1" colspan="2"><br /></td>
+				</tr>
+				<tr>
+					<td class="row3" colspan="2"><span class="gen"><b>{L_BANK_INFO}</b></span></td>
+				</tr>
+				<!-- BEGIN has_account -->
+				<tr>
+					<td class="row2"><span class="gen">{L_BANK_BALANCE}</span></td><td class="row2"><span class="gen">{USER_BALANCE} {L_POINTS}</span></td>
+				</tr>
+				<tr>
+					<td class="row2" colspan="2"><br /></td>
+				</tr>
+				<!-- END has_account -->
+				<tr>
+					<td class="row2"><span class="gen">{L_INTEREST_RATE}</span></td><td class="row2"><span class="gen">{BANK_INTEREST}%</span></td>
+				</tr>
+				<!-- BEGIN switch_withdraw_fees -->
+				<tr>
+					<td class="row2"><span class="gen">{L_WITHDRAW_RATE}</span></td><td class="row2"><span class="gen">{BANK_FEES}%</span></td>
+				</tr>
+				<!-- END switch_withdraw_fees -->
+				<!-- BEGIN switch_min_depo -->
+				<tr>
+					<td class="row2"><span class="gen">{L_MIN_DEPO}</span></td><td class="row2"><span class="gen">{BANK_MIN_DEPO} {L_POINTS}</span></td>
+				</tr>
+				<!-- END switch_min_depo -->
+				<!-- BEGIN switch_min_with -->
+				<tr>
+					<td class="row2"><span class="gen">{L_MIN_WITH}</span></td><td class="row2"><span class="gen">{BANK_MIN_WITH} {L_POINTS}</span></td>
+				</tr>
+				<!-- END switch_min_with -->
+				<tr>
+					<td class="row2"><span class="gen">{L_TOTAL_ACCOUNTS}</span></td><td class="row2"><span class="gen">{BANK_ACCOUNTS}</span></td>
+				</tr>
+				<tr>
+					<td class="row2"><span class="gen">{L_HOLDING}</span></td><td class="row2"><span class="gen">{BANK_HOLDINGS} {L_POINTS}</span></td>
+				</tr>
+			</table>
+			
+		</td>
+	<tr>
+</table>			
+
+<div id="wrapfooter">
+<br /><br /><span class="copyright"><b><i>{L_IPOINTS}{POINT_VERS}</i></b><br />{L_IPOINTS_THANKS}</span><br /><br />
+</div>
+<!-- INCLUDE overall_footer.html -->

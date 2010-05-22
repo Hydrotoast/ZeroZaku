@@ -1,0 +1,52 @@
+			
+			<div id="footer-clear">&nbsp;</div>
+			
+			</div><!-- #page-main -->
+			
+		</div><!-- #page-body -->
+	</div><!-- #content -->
+	<div id="page-footer">
+			<div class="navbar">
+
+				<ul class="linklist navlinks">
+					<li class="leftside"><!-- IF U_PORTAL --><a href="{U_PORTAL}">{L_PORTAL}</a> &#187; <!-- ENDIF --><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a></li>
+						<!-- IF not S_IS_BOT -->
+							<!-- IF S_WATCH_FORUM_LINK --><li class="leftside">&nbsp;|&nbsp;<a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a></li><!-- ENDIF -->
+							<!-- IF U_WATCH_TOPIC --><li class="leftside">&nbsp;|&nbsp;<a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a></li><!-- ENDIF -->
+							<!-- IF U_BOOKMARK_TOPIC --><li class="leftside">&nbsp;|&nbsp;<a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a></li><!-- ENDIF -->
+							<!-- IF U_BUMP_TOPIC --><li class="leftside">&nbsp;|&nbsp;<a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">{L_BUMP_TOPIC}</a></li><!-- ENDIF -->
+						<!-- ENDIF -->
+					<li class="rightside"><!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a> | <!-- ENDIF --><!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a> | <!-- ENDIF --><span class="timezone">{S_TIMEZONE}</span></li>
+				</ul>
+
+			</div>
+		</div>
+	<div id="footer" style="width: {$CA_WIDTH}; margin: 0 auto;"><span><span><span>&nbsp;</span></span></span></div>
+</div>
+
+
+
+<div>
+   <a id="bottom" name="bottom" accesskey="z"></a>
+   <!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+</div>
+
+
+   <div id="copyrights">
+	  Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; 2000, 2002, 2005, 2007 phpBB Group.
+	  <!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
+	  <!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+	  <!-- IF U_ACP --><br /><strong><a href="{U_ACP}" class="acp-link">{L_ACP}</a></strong><!-- ENDIF -->
+   </div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6596797-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>

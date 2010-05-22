@@ -1,0 +1,54 @@
+<!-- INCLUDE ucp_header.html -->
+<!-- IF .block_groups -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2">{L_MATCH_FINDER}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">&nbsp;</td>
+		<td class="row3" align="center">&nbsp;</td>
+		<td class="row3" align="center">{L_GROUP_WINS}</td>
+		<td class="row3" align="center">{L_GROUP_LOSSES}</td>
+		<td class="row3" align="center">{L_GROUP_STREAK}</td>
+	</tr>
+	<!-- BEGIN block_groups -->
+	<tr class="genmed">
+		<td align="center" class="{block_matchtime.block_groups.ROW_COLOR}"><a href="{block_matchtime.block_groups.U_CHALLENGE}">{L_CHALLENGE}</a></td>
+		<td align="center" class="{block_matchtime.block_groups.ROW_COLOR}"><a href="{block_matchtime.block_groups.U_GROUP}">{block_matchtime.block_groups.GROUP_NAME}</a></td>
+		<td align="center" class="{block_matchtime.block_groups.ROW_COLOR}">{block_matchtime.block_groups.GROUP_WINS}</td>
+		<td align="center" class="{block_matchtime.block_groups.ROW_COLOR}">{block_matchtime.block_groups.GROUP_LOSSES}</td>
+		<td align="center" class="{block_matchtime.block_groups.ROW_COLOR}">{block_matchtime.block_groups.GROUP_STREAK}</td>
+	</tr>
+	<!-- END block_groups -->
+</table>
+<!-- ELSE -->
+<form action="{U_ACTION}" method="post">
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2">{L_MATCH_FINDER}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row1"><b>{L_MATCH_WITHIN}</b>:</td>
+		<td class="row2">
+			<select name="match_time" class="inputbox autowidth">
+				<!-- BEGIN block_minutes -->
+				<option name="match_time" id="match_time" value="{block_minutes.MINUTE}">{block_minutes.MINUTE} mins</option>
+				<!-- END block_minutes -->
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="row1" colspan="2">
+			<input type="radio" name="match_type" value="1" /> {L_SEARCH_AVAILABLE_GROUPS} | <input type="radio" name="match_type" value="2" /> {L_ADD_TO_MATCH_FINDER} 
+			<select name="group_ladder">
+				<!-- BEGIN block_ladders -->
+				<option value="{block_ladders.SUBLADDER_ID}">P: {block_ladders.PLATFORM}, L: {block_ladders.LADDER}, S: {block_ladders.SUBLADDER}</option>
+				<!-- END block_ladders -->
+			</select>
+		</td>
+	</tr>
+	<td class="cat" align="center" colspan="2"><input type="submit" name="submit" value="{L_SUBMIT}" class="btnmain" /></td>
+</table>
+</form>
+<!-- ENDIF -->
+<!-- INCLUDE ucp_footer.html -->

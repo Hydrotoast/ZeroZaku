@@ -1,0 +1,107 @@
+<!-- INCLUDE overall_header.html -->
+<div id="wrap-top">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td width="20%" valign="top">
+			<table class="tablebg" width="100%" cellspacing="1">
+				<tr>
+					<th>{L_OPTIONS}</th>
+				</tr>
+				<tr class="row1">
+					<td><a href="./points.php?i={USER_ID}">{L_POINTS_OVERVIEW}</a></td>
+				</tr>
+				<!-- IF POINTS_TRANSFER -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=transfer&i={USER_ID}">{L_POINTS_TRANSFER}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF POINTS_LOGS -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=logs&i={USER_ID}">{L_POINTS_LOGS}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF LOTTERY_ENABLE -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=lottery">{L_POINTS_LOTTERY}</a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF POINTS_ROBBERY -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></td>
+				</tr>
+				<!-- ENDIF -->
+				<!-- IF BANK_ENABLE -->
+				<tr class="row1">
+					<td><a href="./points.php?mode=bank">{L_POINTS_BANK}</a></td>
+				</tr>
+				<!-- ENDIF -->
+			</table>
+		</td>
+		<td width="80%" valign="top"><form name="ucp" id="ucp" method="post" action="">
+			<table class="tablebg" width="100%" cellspacing="1">
+				<tr>
+					<th>{L_POINTS_LOGS}</th>
+				</tr>
+			</table>
+							<table class="tablebg" cellspacing="1" width="100%" cellpadding="4" border="0">
+								<thead>
+									<tr>
+										<th width="20%"><a href="points.php?mode=logs&i={USER_ID}&sort_key=date&sort_dir={DIR}&start={OFFSET}">{L_POINTS_LOGS_DATE}</a></th>
+										<th width="10%"><a href="points.php?mode=logs&i={USER_ID}&sort_key=type&sort_dir={DIR}&start={OFFSET}">{L_POINTS_LOGS_TYPE}</a></th>
+										<th width="15%"><a href="points.php?mode=logs&i={USER_ID}&sort_key=who&sort_dir={DIR}&start={OFFSET}">{L_POINTS_LOGS_WHO}</a></th>
+										<th width="20%"><a href="points.php?mode=logs&i={USER_ID}&sort_key=to&sort_dir={DIR}&start={OFFSET}">{L_POINTS_LOGS_TO}</a></th>
+										<th width="35%"><a href="points.php?mode=logs&i={USER_ID}&sort_key=comment&sort_dir={DIR}&start={OFFSET}">{L_POINTS_LOGS_COMMENT}</a></th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- BEGIN logs -->
+										<tr class="row{logs.ROW}">
+											<td>{logs.DATE}</td>
+											<td>{logs.TYPE}</td>
+											<td>{logs.WHO}</td>
+											<td>{logs.TO}</td>
+											<td>{logs.COMMENT}</td>
+										</tr>
+									<!-- BEGINELSE -->
+									<tr class="row3">
+										<td colspan="5"><b class="genmed">{L_POINTS_LOGS_REASON_NOLOGS}</b></td>
+									</tr>
+									<!-- END logs -->
+									<tr cellspacing="0" class="row2">
+										<form method="get">
+											<input type="hidden" name="mode" value="logs">
+											<input type="hidden" name="i" value="{USER_ID}">
+											<td colspan="4" width="50%">
+												{L_POINTS_LOGS_SORTITEMS}
+												<select name="sort_key">
+													<option value="date">{L_POINTS_LOGS_DATE}</option>
+													<option value="type">{L_POINTS_LOGS_TYPE}</option>
+													<option value="who">{L_POINTS_LOGS_WHO}</option>
+													<option value="to">{L_POINTS_LOGS_TO}</option>
+													<option value="comment">{L_POINTS_LOGS_COMMENT}</option>
+												</select>
+												{L_POINTS_LOGS_DIRECTION}
+												<select name="sort_dir">
+													<option value=0>{L_POINTS_LOGS_DESC}</option>
+													<option value=1>{L_POINTS_LOGS_ASC}</option>
+												</select>
+												<input type="hidden" name="start" value="{OFFSET}">
+												<input class="button2" type="submit" name="submit" id="submit" value="Sort" /></form>
+											</td>
+											<td align="right" colspan="2">
+												{POINTS_LOGS_PAGINATION}
+											</td>
+										</form>
+									</tr>
+								</tbody>
+							</table>	
+		</td>
+	<tr>
+</table>
+
+<div id="wrapfooter">
+<br /><br /><span class="copyright"><b><i>{L_IPOINTS}{POINT_VERS}</i></b><br />{L_IPOINTS_THANKS}</span><br /><br />
+</div>
+
+<!-- INCLUDE overall_footer.html -->

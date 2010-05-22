@@ -1,0 +1,25 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_WELCOME_CCP}</h2>
+<div class="panel">
+	<div class="inner">
+		<p>{L_WELCOMETXT}</p>
+		<br />
+		<h3>{L_STATISTICS}</h3>
+		<dl class="details" style="clear:both;">
+			<dt><b>{L_PENDING_MATCHES}</b>:</dt> <dd>{CHALLENGES}</dd>
+			<dt><b>{L_ONGOING_MATCHES}</b>:</dt> <dd>{ONGOING_MATCHES}</dd>
+			<dt><b>{L_FINISHED_MATCHES}</b>:</dt> <dd>{FINISHED_MATCHES}</dd>
+			<!--<dt><b>{L_MATCHCOMM_UNREAD}</b>:</dt> <dd>{UNREAD_MESSAGES}</dd>-->
+		</dl>
+		<br />
+		<h3 style="clear:both;">{L_YOUR_OTHER_GROUPS}</h3>
+		<dl class="details">
+			<!-- BEGIN block_switch -->
+			<dd><a href="{block_switch.U_ACTION}" class="forumlink"><b>{block_switch.GROUP_NAME}</b></a></dd>
+			<!-- BEGINELSE -->
+			<dd>{L_NO_OTHER_GROUPS}</dd>
+			<!-- END block_switch -->
+		</dl>
+	</div>
+</div>
+<!-- INCLUDE ucp_footer.html -->

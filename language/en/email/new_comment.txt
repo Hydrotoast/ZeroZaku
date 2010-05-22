@@ -1,0 +1,9 @@
+Subject: "New profile comment on {SITENAME}"
+
+
+{USERNAME},
+
+Your profile on {SITENAME} has received a new comment from {COMMENT_POSTER}.
+
+
+{BOARD_EMAIL_SIG}

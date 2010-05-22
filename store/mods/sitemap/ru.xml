@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+		://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Sitemap FX</title>
+		<title lang="ru">Sitemap FX</title>
+		
+		<description lang="en">Sitemap for search engines (Google, Yahoo, Yandex, etc.)</description>
+		<description lang="ru">Sitemap для поисковых систем (Google, Yahoo, Yandex и др.)</description>
+		
+		<author-notes lang="en">You can add your sitemap in Google here - http://google.com/webmasters/tools. You can use contrib/db_update.php file without a sql-command (just upload, open in browser and delete db_update.php). Also you can use online sitemap generator - http://forummap.ru/.</author-notes>
+		<author-notes lang="ru">Вы можете добавить ваш sitemap в Google здесь - http://google.com/webmasters/tools. Вы можете воспользоваться файлом contrib/db_update.php вместо выполнения sql-команд (просто загрузите, откройте в браузере и затем удалите файл db_update.php). Также вы можете использовать онлайн sitemap генератор - http://forummap.ru/.</author-notes>
+		
+		<author-group>
+			<author>
+				<realname>Max Istlyaev</realname>
+				<username>FladeX</username>
+				<homepage>http://fladex.ru/</homepage>
+				<contributions-group>
+					<contributions status="current" position="Developer"></contributions>
+				</contributions-group>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.5</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+		
+		<history>
+			<entry>
+				<date>2009-01-12</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>First release</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Первый релиз</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-01-19</date>
+				<rev-version>0.0.2</rev-version>
+				<changelog lang="en">
+					<change>Fixed permissions check</change>
+					<change>Fixed last modified date</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Исправлена проверка прав доступа</change>
+					<change>Исправлена дата последнего изменения</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-03-03</date>
+				<rev-version>0.0.3</rev-version>
+				<changelog lang="en">
+					<change>Fixed last modified date (2)</change>
+					<change>Code rewritten to reduce the burden on large forums</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Исправлена дата последнего изменения (2)</change>
+					<change>Код переписан для уменьшения нагрузки на больших форумах</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-04-05</date>
+				<rev-version>0.0.4</rev-version>
+				<changelog lang="en">
+					<change>Added ability to set priorities for each type of topics</change>
+					<change>Added support multipages topics</change>
+					<change>Changed the order of url generation, now correctly and for subdomains</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Добавлена возможность устанавливать приоритеты для каждого типа тем</change>
+					<change>Добавлена поддержка многостраничных тем</change>
+					<change>Изменен порядок составления url, теперь корректно и для поддоменов</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-04-16</date>
+				<rev-version>0.0.5</rev-version>
+				<changelog lang="en">
+					<change>Fixed xml structure</change>
+					<change>Fix the conclusion of global announcements</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Исправлена структура xml</change>
+					<change>Исправлен вывод важных тем</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-04-21</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Added installation instruction in the MODX</change>
+					<change>Added caching</change>
+					<change>Added management from ACP</change>
+					<change>Added ability to set the frequency of indexing for each type of topics</change>
+					<change>Added the ability to disable the mod from the ACP</change>
+					<change>Added support for the system of administrator logs</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Добавлена инструкция по установке в формате MODX</change>
+					<change>Добавлено кэширование</change>
+					<change>Добавлено управление из администраторского раздела</change>
+					<change>Добавлена возможность устанавливать частоту индексации для каждого типа тем</change>
+					<change>Добавлена возможность отключения мода из администраторского раздела</change>
+					<change>Добавлена поддержка системы администраторских логов</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-06-22</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Update MOD to use MODX 1.2.2</change>
+					<change>Fix DIY Instruction language ISO codes</change>
+					<change>Use an actual forum ID for global posts</change>
+					<change>Use the constants from includes/constants.php for topics type</change>
+					<change>Add MODX file for the Russian translation</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Мод обновлен до использования MODX 1.2.2</change>
+					<change>Исправлена ошибка с языковыми переменными в секции DIY инструкции</change>
+					<change>Для глобальных объявлений теперь используется id существующего форума</change>
+					<change>Для типов тем используются константы из includes/constants.php</change>
+					<change>Добавлен MODX файл для русского перевода</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-07-13</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change>Use a separate xml file for each forum</change>
+					<change>Use sitemapindex for list all sitemap files</change>
+					<change>Add-on for phpBB SEO Ultimate URL (Simple mode)</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Для каждого форума используется отдельный xml файл</change>
+					<change>Используется директива sitemapindex для списка всех файлов sitemap</change>
+					<change>Адд-он для phpBB SEO Ultimate URL (Simple mode)</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-07-22</date>
+				<rev-version>1.0.3</rev-version>
+				<changelog lang="en">
+					<change>Fix an error with global $phpEx</change>
+					<change>Fix install instruction</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Исправлена ошибка с глобальной переменной $phpEx</change>
+					<change>Исправлена инструкция по установка</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-06</date>
+				<rev-version>1.0.4</rev-version>
+				<changelog lang="en">
+					<change>Small changes for mod validation</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Небольшие изменения для валидации мода</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-17</date>
+				<rev-version>1.0.5</rev-version>
+				<changelog lang="en">
+					<change>Fix an empty sitemap files</change>
+					<change>Add sitemap for forums</change>
+					<change>Add db_update.php file (alternative way to make sql-commands)</change>
+				</changelog>
+				<changelog lang="ru">
+					<change>Исправлены пустые файлы sitemap</change>
+					<change>Добавлен sitemap для форумов</change>
+					<change>Добавлен файл db_update.php (альтернативный способ выполнения sql-запросов)</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="install.xml" lang="en">Return in MOD</link>
+			<link type="parent" href="install.xml" lang="ru">Вернуться в основной мод</link>
+		</link-group>
+	</header>
+		
+	<action-group>
+		
+		<copy>
+			<file from="root/language/ru/mods/info_acp_sitemap.php" to="language/ru/mods/info_acp_sitemap.php" />
+		</copy>
+		
+	</action-group>
+</mod>

@@ -1,0 +1,91 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<!-- IF S_ERROR -->
+<div class="errorbox">
+<h3>{L_WARNING}</h3>
+<p>{ERROR_MSG}</p>
+</div>
+<!-- ENDIF -->
+<fieldset><legend>{L_POINTS_MOD_FIND}</legend> <!-- IF S_POINTS_SHOP_EXIST -->
+<dl>
+	<dt>{L_POINTS_SHOP_STATUS}</dt>
+	<dd><strong><font color="red">{L_POINTS_SHOP_NO}</font></strong></dd>
+</dl>
+<!-- ELSE -->
+
+<dl>
+	<dt>{L_POINTS_SHOP_NAME}</dt>
+	<dd><strong>{PNAME}</strong></dd>
+</dl>
+<dl>
+	<dt>{L_POINTS_SHOP_AUTHOR}</dt>
+	<dd><strong>{PAUTHOR}</strong></dd>
+</dl>
+<dl>
+	<dt>{L_POINTS_SHOP_VERSION}</dt>
+	<dd><strong>{PVERSION}</strong></dd>
+</dl>
+<dl>
+	<dt>{L_POINTS_SHOP_STATUS}</dt>
+	<dd><strong>{PSTATUS}</strong></dd>
+</dl>
+<!-- ENDIF --></fieldset>
+<fieldset><legend>{L_STATISTIC_RESYNC_SHOP}</legend>
+<form id="delete_logs" method="post" action="{U_ACTION}">
+<dl>
+	<dt>{L_SHOPMOD_BERSION}</dt>
+	<dd><strong>{SHOP_VERSION}</strong></dd>
+</dl>
+<dl>
+	<dt>{L_LOGSTOTAL}</dt>
+	<dd><strong>{LOGSTOTAL}</strong></dd>
+</dl>
+<dl>
+	<dt>{L_SHOP_IMG_SIZE}</dt>
+	<dd><strong>{SHOPIMG_SIZE}</strong></dd>
+</dl>
+<dl>
+	<dt><label for="delete_logs">{L_DELETE_SHOP_LOGS}</label><br />
+	<span>&nbsp;</span></dt>
+	<dd><input type="hidden" name="action" value="delete_logs" /><input
+		class="button2" type="submit" id="delete_logs" name="delete_logs"
+		value="{L_DELETE_ALL}" /></dd>
+</dl>
+</form>
+<form id="delete_useritems" method="post" action="{U_ACTION}">
+<dl>
+	<dt><label for="delete_useritems">{L_DELETE_SHOP_USERITEMS}</label><br />
+	<span>&nbsp;</span></dt>
+	<dd><input type="hidden" name="action" value="delete_useritems" /><input
+		class="button2" type="submit" id="delete_useritems"
+		name="delete_useritems" value="{L_DELETE_ALL}" /></dd>
+</dl>
+</form>
+<form id="reset_settings" method="post" action="{U_ACTION}">
+<dl>
+	<dt><label for="reset_settings">{L_RESET_SHOP_SETTINGS}</label><br />
+	<span>&nbsp;</span></dt>
+	<dd><input type="hidden" name="action" value="reset_settings" /><input
+		class="button2" type="submit" id="reset_settings"
+		name="reset_settings" value="{L_RESET}" /></dd>
+</dl>
+</form>
+
+</fieldset>
+
+
+
+<table width="100%" cellpadding="4" cellspacing="1" border="0"
+	align="center" class="forumline">
+	<tr>
+		<td width="100%" align="center" class="row1"><br />
+		<span class="gensmall">
+		<center>Shop System: Copyright © 2008-2009 <a
+			href="http://www.phpbbgods.org" class="navsmall">Adrian Bulat</a>.</center>
+		</span><br />
+		<br />
+		</td>
+	</tr>
+</table>
+<!-- INCLUDE overall_footer.html -->

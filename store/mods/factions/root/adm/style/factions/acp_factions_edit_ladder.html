@@ -1,0 +1,20 @@
+<!-- INCLUDE overall_header.html -->
+<form method="post" action="{U_ACTION}">
+<fieldset>
+	<legend>{L_ACP_FACTIONS_EDIT_LADDER}</legend>
+	<dl>
+		<dt><label for="ladder_name">{L_LADDER_NAME}:</label></td>
+		<dd><input type="text" size="25" name="ladder_name" id="ladder_name" class="inputbox autowidth" value="{LADDER_NAME}" /> | <strong>{L_DELETE}</strong> <input type="checkbox" name="delete" value="1" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="ladder_rules">{L_LADDER_RULES}:</label></dt>
+		<dd><textarea name="ladder_rules" id="ladder_rules" rows="5" cols="60" class="inputbox narrow">{LADDER_RULES}</textarea></dd>
+	</dl>
+
+	<p class="quick">
+		<input type="hidden" name="ladder_id" value="{LADDER_ID}" />
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</p>
+</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

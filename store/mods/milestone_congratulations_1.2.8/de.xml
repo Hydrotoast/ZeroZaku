@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.1.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+
+		<title lang="en">Milestone Congratulations - German language</title>
+		<title lang="de">Meilenstein-Gratulierer - Deutsche Sprache</title>
+
+		<description lang="en">German language files for Milestone Congratulations.</description>
+		<description lang="de">Deutsche Spachdateien für den Meilenstein-Gratulierer.</description>
+
+		<author-group>
+			<author>
+				<realname>Martin Rauscher</realname>
+				<username>MartectX</username>
+				<homepage>http://mods.martectx.de/</homepage>
+			</author>
+		</author-group>
+
+		<mod-version>1.2.3</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.2</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2008-09-21</date>
+				<rev-version>1.2.3</rev-version>
+				<changelog lang="en">
+					<change>Now displaying members viewing history page in viewonline.php</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Anzeige von Mitgliedern, welche die Historie betrachten, in "Wer ist online?"</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-29</date>
+				<rev-version>1.2.2</rev-version>
+				<changelog lang="en">
+					<change>Less changes to core phpBB files</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Weniger Änderungen an den phpBB-Stammdateien</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-27</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change>Got special characters to work in the XML installation files!</change>
+					<change>Changed logged installation message</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Sonderzeichen in den .XML-Installations-Dateien!</change>
+					<change>Änderung der protokollierten Installationsnachricht</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-27</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change>Changes in the language variables</change>
+					<change>Keep them in an extra file</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Änderungen an den Sprachvariablen</change>
+					<change>Auslagerung in eigene Datei</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-23</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Changes in the language variables</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Änderungen an den Sprachvariablen</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-20</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>First release</change>
+				</changelog>
+				<changelog lang="de">
+					<change>Erstveröffentlichung</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="parent" href="./install.xml" lang="en">Mod installation instructions</link>
+			<link type="parent" href="./install.xml" lang="de">Mod-Installationsanweisungen</link>
+		</link-group>
+	</header>
+
+	<action-group>
+		<copy>
+			<file from="root/language/de/mods/info_acp_milestone_congratulations.php" to="language/de/mods/info_acp_milestone_congratulations.php" />
+			<file from="root/language/de/mods/milestone_congratulations.php" to="language/de/mods/milestone_congratulations.php" />
+		</copy>
+	</action-group>
+</mod>

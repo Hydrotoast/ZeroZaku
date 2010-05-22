@@ -1,0 +1,222 @@
+##############################################################
+## MOD Title: Welcome PM on first Login (WPM)
+## MOD Author: DualFusion < yusuka_madik@yahoo.com > (Kevin Martin) http://dualfusion.freehostia.com/
+## MOD Author: ..::Frans::.. < n/a > (Frans) http://www.startrekguide.com/
+## MOD Description: Allows the admin to configure a welcome private
+## message that will be sent out to newly registered
+## users on their first login.
+## MOD Version: 2.2.5
+## 
+## Installation Level: Easy
+## Installation Time: 7 minutes
+## 
+## Files To Edit: 
+##		includes/constants.php
+##		includes/functions.php
+##		includes/functions_user.php
+## 
+## Included Files: 
+##		root/adm/style/acp_wpm.html
+##		root/adm/style/posting_buttons.html
+##		root/includes/functions_wpm.php
+##		root/includes/acp/acp_wpm.php
+##		root/includes/acp/info/acp_wpm.php
+##		root/language/en/mods/info_acp_wpm.php
+## 
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2
+##############################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+##############################################################
+## Author Notes: 
+## 
+## This mod was adjusted for phpbb3 GOLD by ..::Frans::..
+## Mod was taken over from and with explicit permission
+## from Dualfusion. Credits for the original code go
+## entirely to him.
+## 
+##############################################################
+## MOD History: 
+## 
+##	2007-08-07 - Version 1.0.0
+##		- Version 1.0.0 - Initial release by DualFusion. RC2 - RC4 compatible
+## 
+##	2007-12-31 - Version 2.0.0a
+##		- Version 2.0.0a - Alpha release by DualFusion RC7 compatible.
+##		- Bug Fixes.
+##		- Added Table to make message longer as 255 chars.
+## 
+##	2008-01-19 - Version 2.1.0a
+##		- Version 2.1.0a - First release by ..::Frans::.. GOLD compatible.
+##		- Changed entire code to reflect the correct GOLD functionality
+##		- Expanded WPM table to hold all of the WPM variables.
+##		- Removed all configuration setting sfrom the config Table.
+##		- Created new class for sending PM's.
+## 
+##	2008-01-19 - Version 2.1.1a
+##		- Version 2.1.1a - Release by ..::Frans::.. GOLD compatible.
+##		- Few minor bugfixes
+##		- Fixed bug with languages that use non-standard characters (greek/french etc.).
+##		- Cleaned up code.
+## 
+##	2008-01-19 - Version 2.1.2
+##		- Version 2.1.2 - Release by ..::Frans::.. GOLD compatible.
+##		- Few minor bugfixes
+##		- Cleaned up code.
+## 
+##	2008-01-19 - Version 2.2.0
+##		- Version 2.2.0 - Release by ..::Frans::.. GOLD compatible.
+##		- Few minor bugfixes
+##		- Made some changes to coding so objects are used correct way
+##		- Forgot to give Dualfusion proper credit in the ModX file (shame on me!)
+##		- Added PM Notification support so the new user WILL get a popup message when logging on the first time
+##		- There were 2 spots in the code that didn't have spaces around the dots. Added spaces.
+##		- Changed all apostrofs in the install text to backticks.
+##		- Changed version number to 2.2.0 to reflect the correct version number.
+##		- Cleaned up code.
+## 
+##	2008-02-17 - Version 2.2.1
+##		- Version 2.2.1 - Release by ..::Frans::.. GOLD compatible.
+##		- Few minor bugfixes
+##		- Fixed all coding according to the coding guidelines
+##		- Fixed the nasty bug that was getting back to me when users with multibyte characters got ??? instead of the normal text
+##		- Cleaned up code.
+## 
+##	2008-04-11 - Version 2.2.2
+##		- Version 2.2.2 - Release by ..::Frans::.. phpbb 3.0.1 compatible.
+##		- Few minor bugfixes
+##		- Some minor changes to repair compatibilty with version 3.0.1.
+##		- Fixed more coding according to the coding guidelines
+##		- Fixed modx (this) file to reflect some minor errors (tabs and spaces)
+## 
+##	2008-05-20 - Version 2.2.3
+##		- Version 2.2.3 - Release by ..::Frans::.. phpbb 3.0.1 compatible.
+##		- Fixed a small but rather nasty bug where in rare cases banned people could log on.(Thnx go to WhiteWolfSix!)
+## 
+##	2008-07-29 - Version 2.2.4
+##		- Version 2.2.4 - Release by ..::Frans::.. phpbb 3.0.2 compatible.
+##		- Changed package to be compatible with the new ModX 1.2.0 Format.
+##		- Made mod completely phpbb 3.0.2 compatible
+## 
+##	2009-05-18 - Version 2.2.5
+##		- Version 2.2.5 - Release by ..::Frans::.. phpbb 3.0.5 compatible.
+##		- Changed package to be compatible with the new ModX 1.2.2 Format.
+##		- Made mod completely phpbb 3.0.5 compatible
+##		- Repack for phpbb.com validation
+##		- Installs correctly with automod RC1
+## 
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+#
+#-----[ SQL ]------------------------------------------
+#
+
+	CREATE TABLE phpbb_wpm (
+	wpm_config_id int(3) NOT NULL,
+	wpm_enable tinyint(1) unsigned NOT NULL,
+	wpm_send_id mediumint(8) NOT NULL,
+	wpm_preview tinyint(1) unsigned NOT NULL,
+	wpm_variables varchar(255) NOT NULL,
+	wpm_subject varchar(100) NOT NULL,
+	wpm_message mediumtext NOT NULL,
+	wpm_version varchar(255) NOT NULL,
+	PRIMARY KEY	(wpm_config_id)
+	) ;
+
+	INSERT INTO phpbb_wpm (wpm_config_id, wpm_enable, wpm_send_id, wpm_preview, wpm_variables, wpm_subject, wpm_message, wpm_version) VALUES(1, 1, 2, 0, '', 'Welcome to {SITE_NAME}!', 'Hello, [b]{USERNAME}[/b]!nnWelcome to {SITE_NAME}	({SITE_DESC})nnYou registered on [b]{USER_REGDATE}[/b]. According to your input, your email is [b]{USER_EMAIL}[/b] and you live in timezone [b]{USER_TZ}[/b]. It is nice to know that you speak {USER_LANG_LOCAL}.nnYou can contact us here: {BOARD_CONTACT} or here: {BOARD_EMAIL}, whichever you prefer, at anytime. Thank you for choosing us.nn-Thank you for registering at {SITE_NAME}!nnThanks, {SENDER}', '2.2.5');
+	
+	
+#
+#-----[ COPY ]------------------------------------------
+#
+copy root/adm/style/acp_wpm.html to adm/style/acp_wpm.html
+copy root/adm/style/posting_buttons.html to adm/style/posting_buttons.html
+copy root/includes/functions_wpm.php to includes/functions_wpm.php
+copy root/includes/acp/acp_wpm.php to includes/acp/acp_wpm.php
+copy root/includes/acp/info/acp_wpm.php to includes/acp/info/acp_wpm.php
+copy root/language/en/mods/info_acp_wpm.php to language/en/mods/info_acp_wpm.php
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/constants.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// Additional constants
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+define('WPM_CONFIG_ID', 1);
+#
+#-----[ FIND ]------------------------------------------
+#
+?>
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+define('WPM_TABLE',					$table_prefix . 'wpm');
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions.php
+#
+#-----[ FIND ]------------------------------------------
+#
+			// Special case... the user is effectively banned, but we allow founders to login
+			if (defined('IN_CHECK_BAN') && $result['user_row']['user_type'] != USER_FOUNDER)
+			{
+				return;
+			}
+
+			
+			
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+			/*
+			* Welcome PM on First Login (WPM)
+			* By DualFusion /adjusted by ..::Frans::.. for phpbb3 GOLD
+			*/
+			$sql = 'SELECT wpm_enable FROM '.WPM_TABLE.' WHERE wpm_config_id =1';
+			$result = $db->sql_query($sql);
+			$row = $db->sql_fetchrow($result);
+			$db->sql_freeresult($result);
+
+
+			if($row['wpm_enable'] && $user->data['user_lastvisit'] == 0)
+			{
+				include($phpbb_root_path . 'includes/functions_wpm.' . $phpEx);
+				$wpm = new welcome_pm();
+				$wpm->get_vars();
+				$wpm->send_wpm();
+			}
+			/* End WPM */
+
+			
+			
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions_user.php
+#
+#-----[ FIND ]------------------------------------------
+#
+		'user_options'		=> 895,
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+		'user_options'		=> 1919,
+#
+#-----[ DIY INSTRUCTIONS ]------------------------------------------
+#
+After installation you need to purge the cache and install the module inside ACP.
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM

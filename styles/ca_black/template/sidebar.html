@@ -1,0 +1,35 @@
+<!-- DEFINE $S_IN_PORTAL = 1 -->
+<!-- INCLUDE portal/_block_config.html -->
+	<!-- IF S_DISPLAY_USERMENU -->
+			<!-- IF not S_USER_LOGGED_IN -->
+				<!-- INCLUDE portal/block/login_box.html -->
+			<!-- ENDIF -->
+
+			<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+				<!-- INCLUDE portal/block/user_menu.html -->
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+
+		<!-- INCLUDE portal/block/additional_blocks_right.html -->
+
+		<!-- IF not S_IS_BOT and S_USER_LOGGED_IN and S_ZEBRA_ENABLED and S_DISPLAY_FRIENDS -->
+			<!-- INCLUDE portal/block/online_friends.html -->
+		<!-- ENDIF -->
+
+		<!-- IF S_DISPLAY_ADVANCED_STAT -->
+			<!-- INCLUDE portal/block/statistics.html -->
+		<!-- ENDIF -->
+		
+		<!-- IF S_DISPLAY_TOP_POSTERS -->
+			<!-- INCLUDE portal/block/top_poster.html -->
+		<!-- ENDIF -->
+		
+		<!-- IF S_DISPLAY_LEADERS_EXT -->
+			<!-- INCLUDE portal/block/leaders_ext.html -->
+		<!-- ELSEIF S_DISPLAY_LEADERS -->
+			<!-- INCLUDE portal/block/leaders.html -->
+		<!-- ENDIF -->
+		
+		<!-- IF S_DISPLAY_PAY_S -->
+			<!-- INCLUDE portal/block/donation_small.html -->
+		<!-- ENDIF -->

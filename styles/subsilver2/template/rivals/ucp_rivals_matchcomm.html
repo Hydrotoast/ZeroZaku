@@ -1,0 +1,117 @@
+<!-- IF SHOW_CHAT2 -->
+<!-- INCLUDE simple_header.html -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<!-- BEGIN block_messages -->
+	<tr class="genmed">
+		<td width="40%" class="{block_messages.ROW_COLOR}"><b>{block_messages.GROUP_NAME}</b> ({block_messages.MESSAGE_TIME}):</td>
+		<td class="{block_messages.ROW_COLOR}">{block_messages.MESSAGE}</td>
+	</tr>
+	<!-- END block_messages -->
+</table>
+<!-- INCLUDE simple_footer.html -->
+<!-- ENDIF -->
+<!-- IF SHOW_CHAT -->
+<!-- INCLUDE ucp_header.html -->
+<script type="text/javascript">
+	<!-- Original AJAX code by Handyman - http://startrekguide.com -->
+	var xmlHttp			= http_object ( );
+	window.onload		= handle_send ( 'get_chat', '' );
+	var read_interval	= 5000;
+	var interval		= setInterval ( 'handle_send("get_chat", "");', read_interval );
+
+	function handle_send ( action, form_name )
+	{
+		if ( form_name == '' )
+		{
+			form_name	= document.forms[ 'matchcomm' ];
+		}
+
+		if ( xmlHttp.readyState == 4 || xmlHttp.readyState == 0 )
+		{
+			param = 'action=' + action + '&match_id={MATCH_ID}';		
+			if ( action == 'send_chat' && form_name.elements[ 'chat_text' ].value != '' )
+			{
+				param	+= '&chat_text=' + form_name.elements[ 'chat_text' ].value;
+				form_name.elements[ 'chat_text' ].value	= '';
+			}
+
+			xmlHttp.open ( 'POST', '{U_ACTION}', true );
+			xmlHttp.setRequestHeader ( 'Content-Type', 'application/x-www-form-urlencoded' );
+			xmlHttp.send ( param );
+			xmlHttp.onreadystatechange	= function () {
+				if ( xmlHttp.readyState == 4 )
+				{
+					if ( action == 'get_chat' )
+					{
+						document.getElementById ( 'matchcomm_chat' ).innerHTML	= xmlHttp.responseText;
+					}
+				}
+			};
+		}
+	}
+	
+	function http_object ( )
+	{
+		if ( window.XMLHttpRequest )
+		{
+			return new XMLHttpRequest ( );
+		}
+		else if ( window.ActiveXObject )
+		{
+			return new ActiveXObject ( 'Microsoft.XMLHTTP' );
+		}
+		else
+		{
+			alert ( 'Your browser does not seem to support XMLHTTP. Shame on you, update!' );
+		}
+	}
+</script>
+
+<form action="#" id="matchcomm" name="matchcomm" onSubmit="return false;">
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2">{L_MATCHCOMM}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row1" colspan="2">
+			<p>{L_MATCHCOMM_NOTE}</p><br />
+			<div id="matchcomm_chat" style="height: 200px; width: 100%; overflow: auto;">&nbsp;</div>
+		</td>
+	</tr>
+	<tr class="genmed">
+		<td class="row1"><b>{L_MATCHCOMM_MESSAGE}</b>:</td>
+		<td class="row2"><input type="text" name="chat_text" id="chat_text" class="input autowidth" /></td>
+	</tr>
+	<tr>
+		<td class="cat" align="center" colspan="2"><input type="submit" name="submit" value="{L_SUBMIT}" onClick="javascript:handle_send('send_chat', this.form);return false;" class="btnmain" /></td>
+	</tr>
+</table>
+</form>
+<!-- INCLUDE ucp_footer.html -->
+<!-- ENDIF -->
+<!-- IF SHOW_MATCHCOMMS -->
+<!-- INCLUDE ucp_header.html -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2">{L_MATCHCOMM}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">{L_GROUP_ID}</td>
+		<td class="row3" align="center">{L_MATCHCOMM_UNREAD}</td>
+	</tr>
+	<!-- BEGIN block_matchcomms -->
+	<tr class="genmed">
+		<td class="{block_matchcomms.ROW_COLOR}"><a href="{block_matchcomms.U_ACTION}">{block_matchcomms.GROUP_NAME}</a></td>
+		<td class="{block_matchcomms.ROW_COLOR}" align="center">{block_matchcomms.UNREAD_MESSAGES}</td>
+	</tr>
+	<!-- BEGINELSE -->
+	<tr class="genmed">
+		<td class="row1" colspan="2">{L_NO_MATCHCOMMS}</td>
+	</li>
+	<!-- END block_matchcomms -->
+	<tr>
+		<td class="cat" align="center" colspan="2">&nbsp;</td>
+	</tr>
+</table>
+<!-- INCLUDE ucp_footer.html -->
+<!-- ENDIF -->

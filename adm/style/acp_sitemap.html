@@ -1,0 +1,71 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_SITEMAP_SETTINGS}</h1>
+
+<p>{L_ACP_SITEMAP_SETTINGS_EXPLAIN}</p>
+
+<!-- IF S_WARNING -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{WARNING_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_sitemap" method="post" action="{U_ACTION}">
+
+<fieldset>
+	<legend>{L_ACP_SITEMAP_SETTINGS}</legend>
+<dl>
+	<dt><label for="sitemap_enable">{L_SITEMAP_ENABLE}:</label><br /><span>{L_SITEMAP_ENABLE_EXPLAIN}</span></dt>
+	<dd><label><input type="radio" class="radio" id="sitemap_enable" name="sitemap_enable" value="1"<!-- IF SITEMAP_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+		<label><input type="radio" class="radio" name="sitemap_enable" value="0"<!-- IF not SITEMAP_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_cache_time">{L_SITEMAP_CACHE_TIME}:</label><br /><span>{L_SITEMAP_CACHE_TIME_EXPLAIN}</span></dt>
+	<dd><input type="text" id="sitemap_cache_time" name="sitemap_cache_time" value="{SITEMAP_CACHE_TIME}" maxlength="5" size="5" /></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_priority_0">{L_SITEMAP_PRIORITY_0}:</label><br /><span>{L_SITEMAP_PRIORITY_0_EXPLAIN}</span></dt>
+	<dd><input type="text" id="sitemap_priority_0" name="sitemap_priority_0" value="{SITEMAP_PRIORITY_0}" maxlength="5" size="5" /></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_priority_1">{L_SITEMAP_PRIORITY_1}:</label><br /><span>{L_SITEMAP_PRIORITY_1_EXPLAIN}</span></dt>
+	<dd><input type="text" id="sitemap_priority_1" name="sitemap_priority_1" value="{SITEMAP_PRIORITY_1}" maxlength="5" size="5" /></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_priority_2">{L_SITEMAP_PRIORITY_2}:</label><br /><span>{L_SITEMAP_PRIORITY_2_EXPLAIN}</span></dt>
+	<dd><input type="text" id="sitemap_priority_2" name="sitemap_priority_2" value="{SITEMAP_PRIORITY_2}" maxlength="5" size="5" /></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_priority_3">{L_SITEMAP_PRIORITY_3}:</label><br /><span>{L_SITEMAP_PRIORITY_3_EXPLAIN}</span></dt>
+	<dd><input type="text" id="sitemap_priority_3" name="sitemap_priority_3" value="{SITEMAP_PRIORITY_3}" maxlength="5" size="5" /></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_freq_0">{L_SITEMAP_FREQ_0}:</label><br /><span>{L_SITEMAP_FREQ_0_EXPLAIN}</span></dt>
+	<dd><select name="sitemap_freq_0" id="sitemap_freq_0">{SITEMAP_FREQ_LIST_0}</select></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_freq_1">{L_SITEMAP_FREQ_1}:</label><br /><span>{L_SITEMAP_FREQ_1_EXPLAIN}</span></dt>
+	<dd><select name="sitemap_freq_1" id="sitemap_freq_1">{SITEMAP_FREQ_LIST_1}</select></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_freq_2">{L_SITEMAP_FREQ_2}:</label><br /><span>{L_SITEMAP_FREQ_2_EXPLAIN}</span></dt>
+	<dd><select name="sitemap_freq_2" id="sitemap_freq_2">{SITEMAP_FREQ_LIST_2}</select></dd>
+</dl>
+<dl>
+	<dt><label for="sitemap_freq_3">{L_SITEMAP_FREQ_3}:</label><br /><span>{L_SITEMAP_FREQ_3_EXPLAIN}</span></dt>
+	<dd><select name="sitemap_freq_3" id="sitemap_freq_3">{SITEMAP_FREQ_LIST_3}</select></dd>
+</dl>
+
+</fieldset>
+
+<fieldset class="submit-buttons">
+	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

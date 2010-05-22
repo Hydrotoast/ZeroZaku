@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="tabs">
+	<ul>
+		<li><a href="./points.php?i={USER_ID}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+		<!-- IF POINTS_TRANSFER --><li ><a href="./points.php?mode=transfer&i={USER_ID}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_LOGS --><li ><a href="./points.php?mode=logs&i={USER_ID}"><span>{L_POINTS_LOGS}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE --><li ><a href="./points.php?mode=lottery"><span>{L_POINTS_LOTTERY}</span></a></li><!-- ENDIF -->
+    <!-- IF BANK_ENABLE --><li ><a href="./points.php?mode=bank"><span>{L_POINTS_BANK}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_ROBBERY --><li class="activetab"><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+  </ul>
+</div>
+
+<div class="panel bg3">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_POINTS_ROBBERY}</h2>
+					<div class="panel">
+						<div class="inner"><span class="corners-top"><span></span></span>
+						<br clear="all"/>
+						<form action="{S_ACTION}" method="post">
+							<div class="panel>
+								<div class="column1">
+									<dl class="details">
+										<dt>{L_POINTS}:</dt> <dd>{USER_POINTS}</dd>
+									</dl>
+								</div>
+								<div class="column2">
+									<dl class="details">
+										<br /><td>{L_SET_USERNAMER}:  <input type="text" class="inputbox" name="username" value=""/></td>
+										<br /><td>{L_SET_AMOUNTR}:  <input type="text" class="inputbox" name="atacked_amount" value=""/></td>
+										<fieldset class="submit-buttons">
+										{S_HIDDEN_FIELDS}
+										<input type="submit" accesskey="s" tabindex="6" name="submit" value="{L_START_ROBBERY}" class="button1" />&nbsp;
+										</fieldset>  
+									</dl>
+								</div>
+							</div>
+						<span class="corners-bottom"><span></span></span></div>
+					</div>
+					</form>
+					<br clear="all"/>				
+		<span class="corners-bottom"><span></span></span>
+	</div>	
+</div>
+
+<br /><div align="center"><b><i>{L_IPOINTS}{POINT_VERS}</i></b></div>
+<div align="center">{L_IPOINTS_THANKS}</div><br />
+
+<!-- INCLUDE overall_footer.html -->

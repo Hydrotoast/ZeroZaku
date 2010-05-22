@@ -1,0 +1,39 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="tabs">
+	<ul>
+		<li class="activetab"><a href="./points.php?i={USER_ID}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+		<!-- IF POINTS_TRANSFER --><li ><a href="./points.php?mode=transfer&i={USER_ID}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_LOGS --><li ><a href="./points.php?mode=logs&i={USER_ID}"><span>{L_POINTS_LOGS}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE --><li ><a href="./points.php?mode=lottery"><span>{L_POINTS_LOTTERY}</span></a></li><!-- ENDIF -->
+    <!-- IF BANK_ENABLE --><li ><a href="./points.php?mode=bank"><span>{L_POINTS_BANK}</span></a></li><!-- ENDIF -->
+		<!-- IF POINTS_ROBBERY --><li ><a href="./points.php?mode=robbery"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+   </ul>
+</div>
+
+<div class="panel bg3">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_POINTS_OVERVIEW}</h2>
+				<div class="panel">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+						<p>
+							{LANG_POINTS}
+							<!-- IF not U_USE_POINTS --><br /><span style="color: red;"><b>{L_POINTS_MAIN_LOCKED}</b></span><!-- ENDIF -->
+						</p>
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<br /><div align="center"><b><i>{L_IPOINTS}{POINT_VERS}</i></b></div>
+<div align="center">{L_IPOINTS_THANKS}</div><br />
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,11 @@
+<!-- DEFINE $CA_PAGE = 'memberlist' --><!-- INCLUDE overall_header.html -->
+
+<h2 class="pagetitle">{MESSAGE_TITLE}</h2>
+<div class="panel" id="message">
+	<div class="inner">
+		<p class="message">{MESSAGE_TEXT}</p>
+		<!-- IF SCRIPT_NAME == "search" and not S_BOARD_DISABLED and not S_NO_SEARCH and L_RETURN_TO_SEARCH_ADV --><p class="link"><a href="{U_SEARCH}" class="{S_CONTENT_FLOW_BEGIN}">{L_RETURN_TO_SEARCH_ADV}</a></p><!-- ENDIF -->
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

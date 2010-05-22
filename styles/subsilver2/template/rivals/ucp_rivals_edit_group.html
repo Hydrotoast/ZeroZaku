@@ -1,0 +1,34 @@
+<!-- INCLUDE ucp_header.html -->
+<form action="{U_ACTION}" method="post">
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="3">{L_EDIT_GROUP}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row1"><b>{L_GROUP_NAME}</b>:</td>
+		<td class="row2"><input type="text" name="group_name" value="{GROUP_NAME}" class="inputbox autowidth" /></td>
+		<td class="row3"><b>{L_DELETE}</b> <input type="checkbox" name="group_delete" value="1" /></td>
+	</tr>
+	<tr> 
+		<td class="row1" width="35%">
+			<b class="genmed">{L_CURRENT_IMAGE}: </b><br /><span class="gensmall">{L_AVATAR_EXPLAIN}</span>
+		</td>
+		<td class="row2" align="center">
+			<br />
+			<!-- IF AVATAR -->{AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF -->
+		</td>
+	</tr>
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_GROUP_LOGO}: </b><br /><span class="gensmall">{L_UPLOAD_AVATAR_URL_EXPLAIN}</span></td>
+		<td class="row2"><input class="post" type="text" name="group_logo" size="40" /></td>
+	</tr>
+	<tr class="genmed" valign="top">
+		<td class="row1"><b>{L_GROUP_DESC}</b>:</td>
+		<td class="row2" colspan="2"><textarea cols="40" rows="5" name="group_desc" class="inputbox narrow">{GROUP_DESC}</textarea></td>
+	</tr>
+	<tr>
+		<td class="cat" align="center" colspan="3"><input type="submit" name="submit" value="{L_SUBMIT}" class="btnmain" /></td>
+	</tr>
+</table>
+</form>
+<!-- INCLUDE ucp_footer.html -->

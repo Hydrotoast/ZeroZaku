@@ -1,0 +1,280 @@
+/* proSilver Control Panel Styles
+---------------------------------------- */
+
+
+/* Main CP box
+----------------------------------------*/
+#cp-menu {
+	float:left;
+	width: 18.5%;
+	margin: 0 1% 5px 0;
+	padding-bottom: 1em;
+}
+
+#cp-main {
+	float: left;
+	width: 80%;
+	padding-bottom: 1em;
+}
+
+#cp-main .content {
+	padding: 0;
+}
+
+#cp-main .meta dt {
+	padding: 4px 0;
+}
+
+#cp-main .panel ol {
+	margin-left: 2em;
+}
+
+ul.cplist {
+	margin-bottom: 1em;
+}
+
+#cp-main .panel {
+	padding: 1em 1em;
+	margin-bottom: 1em;
+}
+
+#cp-main table.table1 {
+	margin-bottom: 1em;
+}
+
+#cp-main table.table1 thead th {
+	font-weight: bold;
+	padding: 5px;
+}
+
+#cp-main .pagination {
+	float: right;
+	width: auto;
+	padding-top: 1px;
+}
+
+#cp-main .postbody p {
+	font-size: 1.1em;
+}
+
+#cp-main .pm-message {
+	margin: 10px 0;
+	width: auto;
+	float: none;
+}
+
+.pm-message h2 {
+	padding-bottom: 5px;
+}
+
+#cp-main .postbody h3, #cp-main .box2 h3 {
+	margin-top: 0;
+}
+
+#cp-main hr, #cp-menu hr {
+	border: 1px solid;
+}
+
+#cp-main .buttons {
+	margin-left: 0;
+	padding: 6px 0;
+}
+
+#cp-main ul.linklist {
+}
+
+/* MCP Specific tweaks */
+.mcp-main .postbody {
+	width: 100%;
+}
+
+/* CP tabbed menu
+----------------------------------------*/
+#tabs {
+	margin: 20px 0 -1px 0;
+	min-width: 570px;
+}
+
+#tabs ul {
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+#tabs li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#tabs a {
+	border-style: solid;
+	border-width: 1px 1px 0 1px;
+	float: left;
+	margin: 0 1px 0 0;
+	padding: 0 0 0 5px;
+	text-decoration: none;
+	position: relative;
+	cursor: pointer;
+	/*
+		-moz-border-radius: 5px 5px 0 0;
+		-webkit-border-radius: 5px 5px 0 0;
+		-khtml-border-radius: 5px;
+		border-radius: 5px 5px 0 0;
+	*/
+}
+
+#tabs a span {
+	float: left;
+	display: block;
+	padding: 6px 10px 6px 5px;
+	white-space: nowrap;
+}
+
+#tabs .activetab a span {
+	padding-bottom: 7px;
+}
+
+/* Mini tabbed menu used in MCP
+----------------------------------------*/
+#minitabs {
+	line-height: normal;
+	margin: -20px 7px 0 0;
+}
+
+#minitabs ul {
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+#minitabs li {
+	display: block;
+	float: right;
+	padding: 0 10px 4px 10px;
+	margin-left: 2px;
+}
+
+/* UCP navigation menu
+----------------------------------------*/
+/* Container for sub-navigation list */
+#navigation {
+	border-right: 2px solid;
+	margin-top: 41px;
+	padding: 0 3px 0 0;
+	width: 100%;
+}
+
+#navigation ul {
+	list-style: none;
+}
+
+/* Default list state */
+#navigation li {
+	margin: 1px 0;
+	padding: 0;
+	display: inline;
+}
+
+/* Link styles for the sub-section links */
+#navigation a {
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	display: block;
+	padding: 5px;
+	margin: 4px 0;
+}
+
+
+#navigation #active-subsection a {
+	display: block;
+	margin-right: -3px;
+	padding-right: 3px;
+}
+
+/* Preferences pane layout
+----------------------------------------*/
+#cp-main h2 {
+	text-transform: uppercase;
+	margin-left: 10px;
+	padding: 0;
+}
+
+/* Friends list */
+.cp-mini {
+	padding: 0 5px;
+	margin: 1em 0;
+}
+
+.cp-mini span.corners-top, .cp-mini span.corners-bottom {
+	margin: 0 -5px;
+}
+
+dl.mini dt {
+	font-size: 1.1666em;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+dl.mini dd {
+	border-bottom: 1px solid;
+	padding: 2px 0;
+}
+
+/* PM Styles
+----------------------------------------*/
+#pm-menu {
+	line-height: 2.5em;
+}
+
+/* PM panel adjustments */
+.pm-panel-header {
+	margin: 0; 
+	padding-bottom: 10px; 
+}
+
+.reply-all {
+	display: block; 
+	padding-top: 4px; 
+	clear: both;
+	float: left;
+}
+
+.pm-panel-message {
+	padding-top: 10px;
+}
+
+.pm-return-to {
+	padding-top: 23px;
+}
+
+#cp-main .pm-message-nav {
+	margin: 0; 
+	padding: 2px 10px 5px 10px; 
+}
+
+
+/* Defined rules list for PM options */
+ol.def-rules {
+	padding-left: 0;
+}
+
+ol.def-rules li {
+	padding: 1px;
+}
+
+.pm-legend {
+	margin-bottom: 3px;
+	padding-left: 3px;
+}
+
+/* Avatar gallery */
+#gallery label {
+	position: relative;
+	float: left;
+	margin: 10px;
+	padding: 5px;
+	width: auto;
+	text-align: center;
+}

@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+<table class="table1" width="100%" cellspacing="1">
+	<thead>
+		<tr>
+			<th class="name">{L_WINNER_BRACKET}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="bg1">
+			<!-- BEGIN block_rounds -->
+			<td align="center" valign="middle" width="{block_rounds.S_ROUNDWIDTH}%" colspan="2">[ {block_rounds.S_ROUND} ]<br />
+				<table width="100%" cellspacing="0" cellpadding="0">
+				<!-- BEGIN block_data -->
+				<tr class="bg2">
+					<td align="center" valign="middle" width="100%" class="{block_rounds.block_data.S_COLOR}">{block_rounds.block_data.S_DATA}</td>
+					<td align="left" class="row2">&nbsp;<br /></td>
+				</tr>
+				<!-- END block_data -->
+				</table>
+			</td>
+			<!-- END block_rounds -->
+		</tr>
+	</tbody>
+</table>
+<!-- IF HAS_DOUBLEELIM -->
+<br /><br />
+<table class="table1" cellspacing="1">
+	<thead>
+		<tr>
+			<th class="name">{L_LOSER_BRACKET}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="bg1">
+			<!-- BEGIN block_rounds2 -->
+			<td align="center" valign="middle" width="{block_rounds2.S_ROUNDWIDTH}%" colspan="2">[ {block_rounds2.S_ROUND} ]<br />
+				<table width="100%" cellspacing="0" cellpadding="0">
+				<!-- BEGIN block_data2 -->
+				<tr class="bg2">
+					<td align="center" valign="middle" width="100%" class="{block_rounds2.block_data2.S_COLOR}">{block_rounds2.block_data2.S_DATA}</td>
+					<td align="left" class="row2">&nbsp;<br /></td>
+				</tr>
+				<!-- END block_data2 -->
+				</table>
+			</td>
+			<!-- END block_rounds2 -->
+		</tr>
+	</tbody>
+</table>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

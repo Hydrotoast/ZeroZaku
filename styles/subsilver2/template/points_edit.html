@@ -1,0 +1,55 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- BEGIN administer_points -->
+<form action="{S_ACTION}" method="post">
+		<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" border="0">
+			<thead>
+				<tr>
+					<th align="center" colspan=3>{L_POINTS_MODIFY}</th>
+				</tr>
+				<tr>
+					<td class="row1" align="center" colspan=3>{L_P_POINTS_TITLE}</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="row1" align="{S_CONTENT_FLOW_END}">{L_USERNAME}: <a href="{U_USER_LINK}">{USER_NAME}</a></td>
+					<td class="row1" align="center">{POINTS}: {USER_POINTS}</td>
+					<td class="row1">{L_SET_AMOUNT}:  <input type="text" class="inputbox" name="points" value=""/></td>
+				</tr>
+				<tr>
+					<td class="row1" align="center" colspan=3>{S_HIDDEN_FIELDS}<input type="submit" accesskey="s" tabindex="6" name="submit" value="Submit" class="button1" /></td>
+				</tr>
+			</tbody>
+		</table>
+<br clear="all"/>
+</form>
+<!-- END administer_points -->
+
+<!-- BEGIN administer_bank -->
+<form action="{S_ACTION}" method="post">
+		<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" border="0">
+			<thead>
+				<tr>
+					<th align="center" colspan=3>{L_BANK_MODIFY}</th>
+				</tr>
+				<tr>
+					<td class="row1" align="center" colspan=3>{L_P_BANK_TITLE}</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="row1" align="{S_CONTENT_FLOW_END}">{L_USERNAME}: <a href="{U_USER_LINK}">{USER_NAME}</a></td>
+					<td class="row1" align="center">{POINTS}: {USER_POINTS}</td>
+					<td class="row1">{L_SET_AMOUNT}: <input type="text" class="inputbox" name="points" value=""/></td>
+				</tr>
+				<tr>
+					<td class="row1" align="center" colspan=3>{S_HIDDEN_FIELDS}<input type="submit" accesskey="s" tabindex="6" name="submit" value="Submit" class="button1" /></td>
+				</tr>
+			</tbody>
+		</table>
+<br clear="all"/>
+</form>
+<!-- END administer_bank -->
+
+<!-- INCLUDE overall_footer.html -->

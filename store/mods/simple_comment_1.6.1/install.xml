@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Simple Profile Comments</title>
+
+		
+		<description lang="en">ad's a simple profile comment feature</description>
+		
+		<author-group>
+			<author>
+				<realname> Ian Taylor </realname>
+				<username>platinum_2007 ( IRC Ian_Taylor )</username>
+
+				<homepage>http://www.ian-taylor.ca</homepage>
+      					    				
+			</author>
+			</author-group>
+		
+		<mod-version>1.6.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.5</target-version>
+
+		</installation>
+		<history>
+			<entry>
+				<date>2009-03-04</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>First Beta</change>
+
+				</changelog>
+				</entry>
+			<entry>
+				<date>2009-03-04</date>
+				<rev-version>1.1.0</rev-version>
+				<changelog lang="en">
+					<change>Many big fixes including links and debug errors.</change> 
+					<change>ACP controls added </change> 
+					<change>BBCODE and smilies support added</change>
+			</changelog>
+				</entry>
+				<entry>
+				<date>2009-03-15</date>
+				<rev-version>1.1.1</rev-version>
+				<changelog lang="en">
+					<change> fixed small bug</change>
+
+				</changelog>
+				</entry>
+				<entry>
+				<date>2009-03-21</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change> Performance increase</change>
+					<change> User color support</change>
+					<change> Updated time system</change>
+					<change> ACP default config value fix</change>
+					<change> Language fix</change>
+					 
+
+				</changelog>
+				</entry>
+					<entry>
+				<date>2009-04-10</date>
+				<rev-version>1.4.0</rev-version>
+				<changelog lang="en">
+					
+
+					<change>  Quick comment feature changed </change>
+					<change> Mass delete comment feature</change>					
+					<change> Linked Avatar and username</change>
+					<change> Re-write of the ACP controls (done in 1.3.0)</change>
+					
+
+				</changelog>
+				</entry>
+					<entry>
+				<date>2009-04-10</date>
+				<rev-version>1.5.0</rev-version>
+				<changelog lang="en">
+					
+					<change>  Privacy settings added to the UCP </change>
+					<change> Security fixes</change>					
+					<change> Bug fixes</change>
+					
+				</changelog>
+				</entry>
+
+				</history>
+</header>
+	
+	<action-group>
+					<copy>
+			<file from="root/simple_comment_install.php" to="simple_comment_install.php" />
+			<file from="root/new_comment.php" to="new_comment.php" />
+			<file from="root/umil/*.*" to="umil/*.*" />
+			<file from="root/adm/style/acp_comment.html" to="/adm/style/acp_comment.html" />
+			<file from="root/includes/acp/info/acp_comment.php" to="/includes/acp/info/acp_comment.php" />
+			<file from="root/includes/acp/acp_comment.php" to="/includes/acp/acp_comment.php" />
+			<file from="root/language/en/mods/simple_comment_mod.php" to="/language/en/mods/simple_comment_mod.php" />
+			<file from="root/language/en/email/new_comment.txt" to="/language/en/email/new_comment.txt" />
+			<file from="root/language/en/mods/info_acp_comment.php" to="/language/en/mods/info_acp_comment.php" />			
+			<file from="root/styles/prosilver/imageset/comment_reply.gif" to="styles/prosilver/imageset/comment_reply.gif" />
+			<file from="root/styles/prosilver/imageset/quick_comment.gif" to="styles/prosilver/imageset/quick_comment.gif" />
+			
+		</copy>
+<open src="viewtopic.php">
+<edit> 
+<find>
+				<![CDATA['TOPIC_AUTHOR'			=> get_username_string('username', $topic_data['topic_poster'], $topic_data['topic_first_poster_name'], $topic_data['topic_first_poster_colour']),]]>
+</find>
+<action type="after-add">
+				<![CDATA[
+	'SIMPLE_COMMENT_ENABLED' =>	$config['enable_comment'],
+	'SIMPLE_QC_ENABLED' =>	$config['enable_qc'],
+]]>
+</action>
+</edit>
+<edit> 
+<find>
+<![CDATA['POSTER_ID'			=> $poster_id,]]>
+</find>
+<action type="after-add">
+<![CDATA['QUICK_COMMENT'		=> append_sid("{$phpbb_root_path}comment.$phpEx", "u=$poster_id"),]]>
+</action>
+</edit>
+</open>
+
+<open src="memberlist.php">
+<edit>
+<find>
+<![CDATA[ $group_options .= '<option value="' . $row['group_id'] . '"' . (($row['group_id'] == $member['group_id']) ? ' selected="selected"' : '') . '>' . (($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name']) . '</option>';
+		}
+		$db->sql_freeresult($result); ]]>
+				</find>
+				
+				
+<action type="after-add">
+<![CDATA[	// Is the comment mod enabled ?
+	if (isset($config['enable_qc']))
+	{
+		include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+		generate_smilies('inline', 2);
+		$user->add_lang('posting');
+		$userid = $user->data['user_id'];
+		// Change the comment counter back to 0 when the user visits his/her profile
+		if ($user_id == $userid)
+		{
+				$timestamp = time();
+				$sqlupd = "UPDATE  
+				" . USERS_TABLE . " 
+				SET	user_last_comment = $timestamp
+				WHERE user_id = ".$db->sql_escape($userid);
+				$db->sql_query($sqlupd);
+		}
+		
+		$start	= request_var('start', 0);
+		$limit	= request_var('limit', intval($config['comm_per_page']));
+		$pagination_url = append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$user_id);
+
+		$sql = $db->sql_build_query('SELECT', array(
+			'SELECT'	=> 'u.username, u.user_avatar,u.user_avatar_type, u.user_avatar_width, u.user_avatar_height,u.user_colour, u.allow_all_comment, c.*',
+			'FROM'		=> array(
+				USERS_TABLE		=> 'u',
+			),
+			'LEFT_JOIN'	=> array(
+				array(
+					'FROM'	=> array(COMMENT_TABLE => 'c'),
+					'ON'	=> 'u.user_id = c.comment_poster_id'		
+				)
+			),
+			'WHERE'		=> 'c.comment_to_id = '.$user_id,
+			'ORDER_BY'	=> 'c.comment_id DESC'
+		));
+					
+		$result = $db->sql_query_limit($sql, $limit, $start);
+		
+				
+	while($row = $db->sql_fetchrow($result))
+	{
+
+
+		$row['bbcode_options'] = (($row['enable_bbcode']) ? OPTION_FLAG_BBCODE : 0) +
+    					(($row['enable_smilies']) ? OPTION_FLAG_SMILIES : 0) + 
+    					(($row['enable_magic_url']) ? OPTION_FLAG_LINKS : 0);
+		$comment_text_format = generate_text_for_display($row['comment_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
+		$avatar 			= get_user_avatar($row['user_avatar'], $row['user_avatar_type'], $row['user_avatar_width'], $row['user_avatar_height']);
+		$av_size 			= $config['sc_av_size'];
+		$comment_id 		= $row['comment_id'];
+		$comment_author_id 	= $row['comment_poster_id'];
+			
+		// Assign the needed template vars.
+		$template->assign_block_vars('comment',array(	
+			'COMMENT_DATE'		=> $user->format_date($row['comment_date']),
+			'COMMENT_AUTHOR'	=> get_username_string('full', $row['comment_poster_id'], $row['username'], $row['user_colour']),
+			'COMMENT_TEXT'		=> $comment_text_format,
+			'COMMENT_AVATAR_THUMB'	=>  ($row['user_avatar']) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], ($row['user_avatar_width'] > $row['user_avatar_height']) ? $av_size : ($av_size / $row['user_avatar_height']) * $row['user_avatar_width'], ($row['user_avatar_height'] > $row['user_avatar_width']) ? $av_size : ($av_size / $row['user_avatar_width']) * $row['user_avatar_height']) : '',
+			'U_USER_URL'			=> append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$comment_author_id),
+			'U_DELETE_URL'		=> append_sid($phpbb_root_path . 'new_comment.' . $phpEx ,'mode=delete&amp;comment='.$comment_id.'&amp;u='.$comment_author_id.'&amp;p='.$user_id),	
+			'CAN_DELETE'		=> ($user_id == $user->data['user_id'] || $user->data['user_id'] == $row['comment_poster_id']) ? true:false,
+
+			));
+}
+			$db->sql_freeresult($result);			
+
+	// count some stuff up for the pagination
+	$sql = 'SELECT COUNT(comment_id) AS comment_number 
+				FROM '. COMMENT_TABLE ." 
+				WHERE comment_to_id = $user_id";
+				
+	$result = $db->sql_query($sql);
+	$total_comments = $db->sql_fetchfield('comment_number');
+	
+	$db->sql_freeresult($result);
+	
+		// Are you my foe?
+		$sql = 'SELECT friend, foe
+			FROM ' . ZEBRA_TABLE . "
+			WHERE zebra_id = {$user->data['user_id']}
+				AND user_id = $user_id";
+
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);
+
+
+		// are you my friend?
+	$sql = 'SELECT friend, foe
+			FROM ' . ZEBRA_TABLE . "
+			WHERE zebra_id = $user_id
+				AND user_id = {$user->data['user_id']}";
+
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);
+		
+		$user_ids 		= ($user_id == $user->data['user_id']) ? true : false;
+		
+		$template->assign_vars(array(
+			'ALLOW_ALL_COMMENT'	=>  ($member['allow_all_comment']) ? true:false,
+			'ALLOW_FRIEND_ONLY' => ($member['allow_friend_only'] && !$row['friend']  && !$user_ids) ? true:false,
+			'ALLOW_FRIEND_VIEW' => ($member['allow_friend_view'] && !$row['friend']  && !$user_ids) ? true:false,		
+			'FOE'  				=> ($row['foe']) ? true:false,
+			'S_BBCODE_ALLOWED' 	=> true,
+
+			'COMMENT_TO_ID'		=> $user_id,		
+   		 	'PAGINATION'        => generate_pagination($pagination_url, $total_comments, $limit, $start),
+    	 	'PAGE_NUMBER'       => on_page($total_comments, $limit, $start),
+   		 	'TOTAL_COMMENT'     => ($total_comments == 1) ? $user->lang['LIST_COMMENT'] : sprintf($user->lang['LIST_COMMENTS'], $total_comments),
+    	 	'NO_COMMENT'       	=> $total_comments,
+    	 	'DELETE_IMG' 		=> $user->img('icon_post_delete', 'DELETE_POST'),
+    	 	'SIMPLE_COMMENT_ENABLED' => $config['enable_comment'],
+
+
+		));
+		$db->sql_freeresult($result);
+
+	}
+]]>
+</action>
+</edit>
+
+</open>
+<open src="includes/functions.php">
+<edit>
+<find><![CDATA[// Send a proper content-language to the output
+	$user_lang = $user->lang['USER_LANG'];
+	if (strpos($user_lang, '-x-') !== false)
+	{
+		$user_lang = substr($user_lang, 0, strpos($user_lang, '-x-'));
+	}]]>
+</find>
+<action type="after-add"><![CDATA[if (isset($config['enable_qc']))
+{
+    $new_comments = 0;
+    $userid = $user->data['user_id'];
+    $sql = 'SELECT COUNT(c.comment_id) AS new_comments
+       FROM '. COMMENT_TABLE .' c, ' . USERS_TABLE . " u
+       WHERE c.comment_date >= u.user_last_comment
+          AND c.comment_to_id = $userid
+          AND u.user_id = $userid";
+    $result = $db->sql_query($sql);
+    $new_comments = $db->sql_fetchrow($result);
+       $new_comments = $new_comments['new_comments'];
+       $db->sql_freeresult($result);
+       $template->assign_vars(array(
+          'NEW_COMMENTS' => $new_comments,
+          'NEW_COMMENT'   =>   append_sid("{$phpbb_root_path}new_comment.$phpEx?&amp;mode=new_comment"),
+          'U_COMMENTS'   => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&amp;u='.$user->data['user_id'].'#comment'),
+          'SIMPLE_COMMENT_ENABLED' =>   $config['enable_comment'],
+          'L_TOTAL_COMMENT'       => ($new_comments == 1) ? $user->lang['NEW_COMMENT'] : sprintf($user->lang['NEW_COMMENTS'], $new_comments),
+
+       ));
+}
+]]>
+</action>
+</edit>
+</open>
+		
+				
+<open src="includes/constants.php">
+<edit> 
+<find>
+<![CDATA[define('BOTS_TABLE',				$table_prefix . 'bots');]]>
+</find>
+<action type="after-add">
+<![CDATA[define('COMMENT_TABLE', 			$table_prefix . 'comment');]]>
+</action>
+</edit>
+</open>
+<open src="includes/ucp/ucp_prefs.php">
+<edit> 
+<find>
+<![CDATA[					'allowpm'		=> request_var('allowpm', (bool) $user->data['user_allow_pm']),
+]]>
+</find>
+<action type="after-add">
+<![CDATA[					'allow_all_comment'		=> request_var('allow_all_comment', (bool) $user->data['allow_all_comment']),
+					'allow_friend_only'		=> request_var('allow_friend_only', (bool) $user->data['allow_friend_only']),
+					'allow_friend_view'		=> request_var('allow_friend_view', (bool) $user->data['allow_friend_view']),
+					'allow_comment_email'	=> request_var('allow_comment_email', (bool) $user->data['allow_comment_email']),
+]]>
+</action>
+</edit>
+<edit> 
+<find>
+<![CDATA[							'user_style'			=> $data['style'],
+]]>
+</find>
+<action type="after-add">
+<![CDATA[							'allow_all_comment'		=> $data['allow_all_comment'],
+							'allow_friend_only'		=> $data['allow_friend_only'],
+							'allow_friend_view'		=> $data['allow_friend_view'],
+							'allow_comment_email'	=> $data['allow_comment_email'],
+]]>
+</action>
+</edit>
+<edit> 
+<find>
+<![CDATA[					'S_DST'				=> $data['dst'],
+]]>
+</find>
+<action type="after-add">
+<![CDATA[					'S_ALLOW_ALL_COMMENT'	=> $data['allow_all_comment'],
+					'S_ALLOW_FRIEND_ONLY' => $data['allow_friend_only'],
+					'S_ALLOW_FRIEND_VIEW' => $data['allow_friend_view'],
+					'S_ALLOW_COMMENT_EMAIL' => $data['allow_comment_email'],
+]]>
+</action>
+</edit>
+</open>
+<open src="language/en/common.php">
+<edit> 
+<find>
+<![CDATA[	'NA'						=> 'N/A',]]>
+</find>
+<action type="after-add">
+<![CDATA[	'NEW_COMMENT'				=> '<strong>1</strong> New comment',
+	'NEW_COMMENTS'				=> '<strong>%d</strong> New comments',
+]]>
+</action>
+</edit>
+</open>
+<open src="language/en/viewtopic.php">
+<edit> 
+<find>
+<![CDATA['TOTAL_VOTES'			=> 'Total votes',]]>
+</find>
+<action type="after-add">
+<![CDATA[//SIMPLE COMMENTS START
+'QUICK_COMMENT'			=> 'Quick comment',
+//SIMPLE COMMENTS END
+			 ]]>
+</action>
+</edit>
+					
+</open>
+<open src="language/en/memberlist.php">
+<edit> 
+<find>
+<![CDATA[	'POST_IP'				=> 'Posted from IP/domain',
+]]>
+</find>
+<action type="after-add">
+<![CDATA[	'PROFILE_COMMENTS'		=> 'Profile comments',
+	'PROFILE_COMMENT_SUB'			=> 'Submit a comment',
+	'LIST_COMMENT'     				=> '1 comment',
+	'LIST_COMMENTS'					=> '%d comments',
+	'FRIEND_COMMENT'				=> 'This user only allows friends to leave comments!',
+	'ONLY_FRIEND'					=> 'This user only allows friends to view comments!',
+	'NO_COMMENT'					=> 'This user has no comments! leave one below.',
+
+]]>
+</action>
+</edit>
+					
+</open>
+
+<open src="language/en/ucp.php">
+<edit> 
+<find>
+<![CDATA[	'ADMIN_EMAIL'					=> 'Administrators can e-mail me information',
+]]>
+</find>
+<action type="after-add">
+<![CDATA[	'ALLOW_ALL_COMMENT'		=> 'Allow commenting on your profile',
+	'ALLOW_ALL_COMMENT_EXPLAIN'		=> 'If set to no the comment system will be disabled on your profile.',
+	'ALLOW_FRIEND_ONLY'				=> 'Allow only friends to comment on your profile',
+	'ALLOW_FRIEND_ONLY_EXPLAIN'		=> 'If set to yes only users that have you on their friends list will be able to post comments on your profile.',
+	'ALLOW_FRIEND_VIEW'				=> 'Allow only friends to view your comments',
+	'ALLOW_FRIEND_VIEW_EXPLAIN'		=> 'If set to yes only users that have you on their friends list can view your comments.',
+	'COMMENT_NOTE'					=> '<strong>Note:</strong> Foes will never be able to view comments or leave comment on your profile!',
+	'ALLOW_COMMENT_EMAIL'			=> 'Notify on comment',
+	'ALLOW_COMMENT_EMAIL_EXPLAIN'	=> 'If set to yes you will be notified by email when a new comment is made on your profile.',
+	'COMMENT_PRIV'					=> 'Profile comments privacy settings',
+]]>
+</action>
+</edit>
+</open>
+					
+			
+<open src="styles/prosilver/template/overall_header.html">
+
+<edit> 
+				
+<find>
+<![CDATA[<a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="u">{L_PROFILE}</a>
+						<!-- IF S_DISPLAY_PM --> (<a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a>)<!-- ENDIF --> &bull;]]>
+</find>
+<action type="after-add">
+<![CDATA[        						<!-- IF SIMPLE_COMMENT_ENABLED --><a href="{U_COMMENTS}">({L_TOTAL_COMMENT})</a><!-- ENDIF -->
+]]>
+</action>
+</edit>
+</open>
+					
+			
+<open src="styles/prosilver/template/memberlist_view.html">
+				<edit> 
+<find>
+<![CDATA[<!-- INCLUDE jumpbox.html -->]]>
+</find>
+<action type="before-add">
+<![CDATA[<!-- IF SIMPLE_COMMENT_ENABLED && ALLOW_ALL_COMMENT && not FOE -->
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_COMMENT} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel" id="comment">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<h3>{L_PROFILE_COMMENTS}</h3>
+	<!-- IF ALLOW_FRIEND_VIEW -->
+		{L_ONLY_FRIEND} - <a href="{U_ADD_FRIEND}"><strong>{L_ADD_FRIEND}</strong></a><br />
+	<!-- ELSE -->
+		<!-- IF TOTAL_COMMENT == 0 --> {L_NO_COMMENT} <!-- ENDIF -->
+
+	<!-- BEGIN comment -->
+		<div class="postbody">
+			<div class="content">
+				{comment.COMMENT_TEXT}
+			</div>
+		</div>
+		<dl class="postprofile" style="min-height: 50px">
+			<dt class="author"> {comment.COMMENT_AUTHOR}</dt>
+				<dd>{comment.COMMENT_AVATAR_THUMB}</dd>
+				<dd>{comment.COMMENT_DATE}</dd>
+				<dd>
+					<ul class="profile-icons">
+					<!-- IF comment.CAN_DELETE or (U_MCP or U_ACP) -->
+						<li class="delete-icon"><a href="{comment.U_DELETE_URL}"><span>{DELETE_IMG}</span></a></li>
+					<!-- ENDIF -->
+					<li><a href="{comment.U_USER_URL}#postform"><img src="{T_IMAGESET_PATH}/comment_reply.gif" /></a> </li>
+					</ul>
+				</dd>
+		</dl>
+		<hr class="dashed" />
+	<!-- END comment -->
+	<!-- ENDIF -->
+	<!-- IF ALLOW_FRIEND_ONLY -->
+			{L_FRIEND_COMMENT} - <a href="{U_ADD_FRIEND}"><strong>{L_ADD_FRIEND}</strong></a><br />
+	<!-- ELSE  -->
+	<form action="{NEW_COMMENT}" method="post" id="postform" name="comment">
+		<div style="width:100%; text-align:center">
+			<div style="margin:auto; width:60%">
+			<fieldset>
+				<!-- INCLUDE posting_buttons.html -->
+				<!-- IF .smiley -->
+				<!-- BEGIN smiley -->
+					<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+				<!-- END smiley -->
+				<!-- ENDIF -->
+				<textarea name="comment_text" id="message" cols="100" rows="5"></textarea>
+				<input name="comment_to_id" type="hidden" value="{COMMENT_TO_ID}" /><br />
+				<input name="Submit " type="submit" id="Submit " value="{L_SUBMIT}" />
+			</fieldset>
+			</div>
+		</div>
+	</form>
+<!-- ENDIF -->
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_COMMENT} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+<!-- ENDIF -->
+]]>
+</action>
+</edit>
+</open>
+
+<open src="styles/prosilver/template/viewtopic_body.html">
+<edit> 
+<find>
+<![CDATA[<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+]]>
+</find>
+<action type="after-add">
+<![CDATA[<!-- IF SIMPLE_QC_ENABLED && S_USER_LOGGED_IN -->
+<li><a id="link{postrow.POST_ID}" href="javascript:display('show', {postrow.POST_ID})"><img src="{T_IMAGESET_PATH}/quick_comment.gif" /></a></li>
+<!-- ENDIF -->]]>
+</action>
+</edit>
+
+<edit> 
+<find>
+<![CDATA[			<div class="content">{postrow.MESSAGE}</div>
+]]>
+</find>
+<action type="before-add">
+<![CDATA[			<div id="explanation{postrow.POST_ID}" style="display:none" >
+					<form action="{NEW_COMMENT}" method="post">
+						<fieldset>
+							<textarea name="comment_text" cols="60" rows="5"></textarea><br />
+							<input name="comment_to_id" type="hidden" value="{postrow.POSTER_ID}" />
+							<input name="Submit" type="submit" class="button1" value="{L_SUBMIT}" />
+						</fieldset>
+					</form>
+			</div>
+]]>
+</action>
+</edit>
+
+</open>
+<open src="styles/prosilver/template/ucp_prefs_personal.html">
+<edit> 
+<find>
+<![CDATA[	<dl>
+		<dt><label for="dateformat">{L_BOARD_DATE_FORMAT}:</label><br /><span>{L_BOARD_DATE_FORMAT_EXPLAIN}</span></dt>
+		<dd>
+			<select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){dE('custom_date',1);}else{dE('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">
+				{S_DATEFORMAT_OPTIONS}
+			</select>
+		</dd>
+		<dd id="custom_date" style="display:none;"><input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="30" class="inputbox narrow" style="margin-top: 3px;" /></dd>
+	</dl>]]>
+</find>
+<action type="after-add">
+<![CDATA[		
+		<h3>{L_COMMENT_PRIV}</h3>
+		<dl>
+		<dt><label for="allow_all_comment0">{L_ALLOW_ALL_COMMENT}:</label><br /><span>{L_ALLOW_ALL_COMMENT_EXPLAIN}</span></dt>
+		<dd>
+			<label for="allow_all_comment1"><input type="radio" name="allow_all_comment" id="allow_all_comment1" value="1"<!-- IF S_ALLOW_ALL_COMMENT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="allow_all_comment0"><input type="radio" name="allow_all_comment" id="allow_all_comment0" value="0"<!-- IF not S_ALLOW_ALL_COMMENT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+<dl>
+		<dt><label for="allow_friend_only0">{L_ALLOW_FRIEND_ONLY}:</label><br /><span>{L_ALLOW_FRIEND_ONLY_EXPLAIN}</span></dt>
+		<dd>
+			<label for="allow_friend_only1"><input type="radio" name="allow_friend_only" id="allow_friend_only1" value="1"<!-- IF S_ALLOW_FRIEND_ONLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="allow_friend_only0"><input type="radio" name="allow_friend_only" id="allow_friend_only0" value="0"<!-- IF not S_ALLOW_FRIEND_ONLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="allow_friend_view0">{L_ALLOW_FRIEND_VIEW}:</label<br /><span>{L_ALLOW_FRIEND_VIEW_EXPLAIN}</span></dt>
+		<dd>
+			<label for="allow_friend_view1"><input type="radio" name="allow_friend_view" id="allow_friend_view1" value="1"<!-- IF S_ALLOW_FRIEND_VIEW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="allow_friend_view0"><input type="radio" name="allow_friend_view" id="allow_friend_view0" value="0"<!-- IF not S_ALLOW_FRIEND_VIEW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="allow_comment_email0">{L_ALLOW_COMMENT_EMAIL}:</label><br /><span>{L_ALLOW_COMMENT_EMAIL_EXPLAIN}</span></dt>
+		<dd>
+			<label for="allow_comment_email1"><input type="radio" name="allow_comment_email" id="allow_comment_email1" value="1"<!-- IF S_ALLOW_COMMENT_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="allow_comment_email0"><input type="radio" name="allow_comment_email" id="allow_comment_email0" value="0"<!-- IF not S_ALLOW_COMMENT_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+]]>
+</action>
+</edit>
+</open>
+<open src="styles/prosilver/template/forum_fn.js">
+<edit> 
+<find><![CDATA[	obj.width = width;
+	obj.height = height + 16;
+
+	obj.SetControllerVisible(true);
+	obj.Play();
+}]]></find>
+<action type="after-add"><![CDATA[function display(action, id)
+{
+	if (action == 'show')
+	{
+		document.getElementById("explanation"+id).style.display = "block";
+		document.getElementById("link"+id).href= "javascript:display('hide', "+id+")";
+	}
+
+	if (action == 'hide')
+	{
+		document.getElementById("explanation"+id).style.display = "none";
+		document.getElementById("link"+id).href= "javascript:display('show', "+id+")";
+	}
+}
+]]></action>
+
+</edit>
+</open>
+						
+		<diy-instructions lang="en">
+		Browse to www.yoursite.com/simple_comment_install.php and follow the steps!
+		Refresh your template AND theme.
+				</diy-instructions>
+		
+		
+	</action-group>
+</mod>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Groups on Registration and Custom Profile Fields</title>
+		<title lang="tr">Kayıtta Grup Üyeliği ve Özel Profil Alanları</title>
+
+		<description lang="en">This file provides instructions for installing the template portions of this MOD. See the main install file for any additional information about the MOD.</description>
+		<description lang="tr">Bu dosya mod tema dosyası talimatlarını içerir. MOD kurulum talimatları hakkında ek bilgi almak için ana kurulum dosyası incelenmelidir.</description>		
+		
+		<author-group>
+			<author>
+				<realname></realname>
+				<username>mtrs</username>
+				<email>trst2007@gmail.com</email>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.1</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.6</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2009-06-09</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change>Initial release</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Başlangıç sürümü</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-07-27</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Version change</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Sürüm değişimi</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-10</date>
+				<rev-version>1.0.0-RC4</rev-version>
+				<changelog lang="en">
+					<change>Multiple group adding support</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Kayıtta birden fazla grup ekleme desteği</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-08-30</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Version change</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Sürüm değişimi</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2009-11-21</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Version change</change>
+				</changelog>
+				<changelog lang="tr">
+					<change>Sürüm değişimi</change>
+				</changelog>
+			</entry>			
+		</history>
+		<link-group>
+			<link type="parent" href="install.xml" lang="en">Main Install File</link>
+			<link type="parent" href="install.xml" lang="tr">Ana Kurulum Dosyası</link>
+		</link-group>		
+	</header>	
+	<action-group>
+		<open src="styles/subsilver2/template/ucp_register.html">
+			<edit>
+				<find><![CDATA[<!-- END profile_fields -->
+<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<!-- IF S_GROUPS_ON_REGISTRATION -->
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_GROUPS_ON_REGISTRATION}: <!-- IF S_GROUPS_REQUIRED -->*<!-- ENDIF --></b><br /><span class="gensmall">{GROUPS_REGISTRATION_EXP}</span></td>
+		<td class="row2"><!-- IF S_GROUPS_ON_REG_MULTIPLE --><div style="height: 6em; width: 12em; overflow: auto;">{S_GROUP_MULTIPLE_OPTIONS}</div><!-- ELSE --><select name="reg_group_id" id="reg_group_id" class="autowidth">{S_GROUP_OPTIONS}</select><!-- ENDIF --></td>
+	</tr>
+<!-- ENDIF -->]]></action>
+			</edit>		
+		</open>				
+		<diy-instructions lang="en">Purge cache after installation.</diy-instructions>
+		<diy-instructions lang="tr">Kurulum sonrası önbelleği temizleyin.</diy-instructions>
+		
+	</action-group>
+</mod>

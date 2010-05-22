@@ -1,0 +1,69 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- BEGIN administer_points -->
+<br clear="all"/>
+<form action="{S_ACTION}" method="post">
+	<div class="panel bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_POINTS_MODIFY}</h3>
+			<p>{L_P_POINTS_TITLE}</p>
+			<div class="column1">
+				<dl class="details">
+					<dt>{L_USERNAME}:</dt> <dd><a href="{U_USER_LINK}">{USER_NAME}</a></dd>
+					<dt>{POINTS}:</dt> <dd>{USER_POINTS}</dd>
+				</dl>
+			</div>
+			<div class="column2">
+				<dl class="details">
+					<dt>{L_SET_AMOUNT}:</dt> <dd><input type="text" class="inputbox" name="points" value=""/></dd>
+				</dl>
+			</div>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+			<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<fieldset class="submit-buttons">
+			{S_HIDDEN_FIELDS}
+			<input type="submit" accesskey="s" tabindex="6" name="submit" value="Submit" class="button1" />&nbsp;
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</form>
+<br clear="all"/>
+<!-- END administer_points -->
+
+<!-- BEGIN administer_bank -->
+<br clear="all"/>
+<form action="{S_ACTION}" method="post">
+	<div class="panel bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_BANK_MODIFY}</h3>
+			<p>{L_P_BANK_TITLE}</p>
+			<div class="column1">
+				<dl class="details">
+					<dt>{L_USERNAME}:</dt> <dd><a href="{U_USER_LINK}">{USER_NAME}</a></dd>
+					<dt>{POINTS}:</dt> <dd>{USER_POINTS}</dd>
+				</dl>
+			</div>
+			<div class="column2">
+				<dl class="details">
+					<dt>{L_SET_AMOUNT}:</dt> <dd><input type="text" class="inputbox" name="points" value=""/></dd>
+				</dl>
+			</div>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+			<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<fieldset class="submit-buttons">
+			{S_HIDDEN_FIELDS}
+			<input type="submit" accesskey="s" tabindex="6" name="submit" value="Submit" class="button1" />&nbsp;
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</form>
+<br clear="all"/>
+<!-- END administer_bank -->
+
+<!-- INCLUDE overall_footer.html -->

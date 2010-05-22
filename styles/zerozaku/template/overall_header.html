@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="{S_USER_LANG}" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />
+<meta name="copyright" content="2009, 2010 ZeroZaku" />
+<meta name="keywords" content="<!-- IF SCRIPT_NAME == "viewforum" -->{FORUM_SEO_KEY}<!-- ELSE -->gaiaonline, rally client, world of warcraft, anime, code geass, online games, abstract signatures<!-- ENDIF -->" />
+<meta name="description" content="<!-- IF SCRIPT_NAME == "viewforum" -->{FORUM_SEO_DESC}<!-- ELSE -->Community for hacking life and online games. We have programs, scripts, anime, and online games. Man, we're cool.<!-- ENDIF -->" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+{META}
+<title><!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE} - {SITENAME}</title>
+
+<link rel="shortcut icon" href="favicon.ico" /> 
+<link rel="icon" type="image/ico" href="favicon.ico" />
+
+<!-- IF S_ENABLE_FEEDS -->
+	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS_ACTIVE --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{U_FEED}?mode=topics_active" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+
+<!--
+	phpBB style name: Zerozaku v2.0
+	Original author:  Gio Borje (http://www.zerozaku.com/)
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = '{LA_JUMP_PAGE}:';
+	var on_page = '{ON_PAGE}';
+	var per_page = '{PER_PAGE}';
+	var base_url = '{A_BASE_URL}';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = '{A_COOKIE_SETTINGS}';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	<!-- IF S_USER_PM_POPUP -->
+		if ({S_NEW_PM})
+		{
+			var url = '{UA_POPUP_PM}';
+			window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+		}
+	<!-- ENDIF -->
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+	
+	onload_functions.push( "load_startIM('{ROOT_PATH}', '{T_THEME_PATH}')");
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	}
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	}
+
+// ]]>
+</script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/jquery.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/jquery.tools.min.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/xs_bbcode_fn.js"></script>
+<script type="text/javascript" src="./classes/scripts/select_expand_bbcodes.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/nivo.js"></script>
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/default.js"></script>
+
+<!-- IF S_USER_LOGGED_IN and not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger.js"></script><!-- ENDIF -->
+<!-- IF not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger_buttons.js"></script><!-- ENDIF -->
+
+<!--[if lt IE 7]>
+  <link href="{T_THEME_PATH}/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
+<![endif]-->
+
+<!-- INCLUDE reimg_content.html -->
+<link href="{T_THEME_PATH}/normal.css" rel="stylesheet" type="text/css" title="A" />
+<link href="{T_THEME_PATH}/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
+<link href="{T_THEME_PATH}/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
+
+<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
+<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<!-- ENDIF -->
+</head>
+
+<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">
+	
+<!-- IF not S_IS_BOT -->
+	<!-- INCLUDE instant_messenger_bar.html -->
+<!-- ENDIF --> 
+	
+<div id="page-header">
+	<div class="inner">	
+		<div id="site-description">
+			<a href="{U_INDEX}" title="{L_INDEX}" id="logo">{SITE_LOGO_IMG}</a>
+		</div>
+		
+		<ul class="navbar">
+			<li<!-- IF $CA_PAGE eq 'index' --> class="current"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h" title="Forums">{L_FORUMS} <span>debate &amp; discuss</span></a></li>
+			<li<!-- IF $CA_PAGE eq 'kb' --> class="current"<!-- ENDIF -->><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB} <span>{L_KB_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE eq 'support' --> class="current"<!-- ENDIF -->><a href="{U_SUPPORT}" title="{L_SUPPORT_EXPLAIN}">{L_SUPPORT} <span>{L_SUPPORT_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE eq 'search' --> class="current"<!-- ENDIF -->><a href="{U_SEARCH}" title="{L_SEARCH_KEYWORDS}">{L_SEARCH} <span>{L_SEARCH_KEYWORDS}</span></a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+<div id="quickpanel">
+	<div class="inner">
+		<div id="quicklogin" class="hide">
+			<form method="post" action="{S_QUICK_LOGIN_ACTION}">
+				<fieldset class="quick-login">
+					<label for="username">{L_USERNAME}</label>&nbsp;<input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" />
+					<label for="password">{L_PASSWORD}</label>&nbsp;<input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" />
+					
+					<!-- IF S_AUTOLOGIN_ENABLED -->
+					<label for="autologin">{L_REMEMBER_ME} <input type="checkbox" name="autologin" id="autologin" /></label>
+					<!-- ENDIF --><input type="submit" name="login" value="{L_LOGIN}" class="button2" />
+					{S_LOGIN_REDIRECT}
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<div class="breadcrumbs">
+	<div class="inner">
+		<ul class="navlinks">
+			<!-- IF not S_IS_BOT -->
+			<li id="usernav-box">
+				<!-- IF S_USER_LOGGED_IN -->
+				<div class="dropdown">
+					<span>{S_USERNAME_FULL} <img src="{T_THEME_PATH}/images/dropdown_arrow.png" alt="Arrow" /></span>
+					<ul>
+						<li><a href="{U_UM_MAIN_SUBSCRIBED}">{L_UM_MAIN_SUBSCRIBED}</a></li>
+						<!-- IF U_MCP -->
+							<li><a href="{U_MCP}">{L_MCP}</a></li>
+						<!-- ENDIF -->
+						<!-- IF U_ACP -->
+							<li><a href="{U_ACP}">{L_M_ACP}</a></li>
+						<!-- ENDIF -->
+						<li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
+					</ul>
+				</div>
+				<!-- ELSEIF not S_USER_LOGGED_IN -->
+				<ul id="account-actions">
+					<li><a href="{U_LOGIN_LOGOUT}" class="quick" title="{L_LOGIN}" accesskey="l" rel="#quicklogin">{L_LOGIN}</a><!-- IF S_REGISTER_ENABLED --> or <a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></li>
+				</ul>
+				<!-- ENDIF -->
+			</li>
+			<!-- ENDIF -->
+			
+			<li class="icon-home"><a href="{U_INDEX}" accesskey="h" class="index">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&laquo;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+		</ul>
+	</div>
+</div>
+
+
+<div id="wrap">
+	<a id="top" name="top" accesskey="t"></a>
+
+	<a name="start_here"></a>
+	
+	<!-- IF $SIDEBAR eq '1' -->
+	<div id="page-body">
+	<!-- ELSE -->
+	<!-- ENDIF -->
+		
+		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+		<div id="information" class="rules">
+			<div class="inner">
+				<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}
+			</div>
+		</div>
+		<!-- ENDIF -->
+
+		<!-- IF not S_IS_BOT && S_USER_LOGGED_IN && S_DISPLAY_PM -->
+			<!-- IF S_USER_NEW_PRIVMSG -->
+				<div class="panel info">
+					<img src="{T_THEME_PATH}/images/mail_receive.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_PRIVATEMSGS}">{L_YOU_NEW_PM}</a></p>
+				</div>
+			<!-- ENDIF -->
+			
+			<!-- IF SIMPLE_COMMENT_ENABLED && not S_NO_NEW_COMMENTS -->
+				<div class="panel info">
+					<img src="{T_THEME_PATH}/images/comments.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_COMMENTS}">{L_TOTAL_COMMENT}</a></p>
+				</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->

@@ -1,0 +1,238 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+<!-- IF S_ADD_GROUP -->
+
+	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+	<h1>{L_ACP_GROUPS_REGS}</h1>
+
+	<p>{L_ACP_GROUPS_REGS_EXPLAIN}</p>
+
+	<form id="acp_groups_regs" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_ADD_GROUP}</legend>
+
+		<dl>
+			<dt><label for="group_name_id">{L_GROUP_NAME_ID}:</label><br /><span>{L_GROUP_NAME_ID_EXPLAIN}</span></dt>
+			<dd>
+				<select name="group_name_id" id="group_name_id" >{S_GROUP_NAME_OPTIONS}</select>
+			</dd>
+		</dl>
+		{S_HIDDEN_FIELDS}
+		
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="save" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			{S_FORM_TOKEN}
+		</p>
+
+	</fieldset>
+	</form>
+
+<!-- ELSEIF S_CPF_ADD_GROUP -->
+
+	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+	<h1>{L_ACP_GROUPS_REGS}</h1>
+
+	<p>{L_ACP_GROUPS_REGS_EXPLAIN}</p>
+
+	<form id="acp_groups_regs" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_ADD_GROUP}</legend>
+		<dl>
+			<dt><label for="group_name_id">{L_GROUP_NAME}</label><br /><span>{L_GROUP_NAME_EXPLAIN}</span></dt>
+			<dd>
+				<select name="group_name_id" id="group_name_id" >{S_GROUP_NAME_OPTIONS}</select>
+			</dd>
+		</dl>
+		<dl>
+		<dt><label for="field_option_name">{L_GROUPS_CPF_NAME}:</label><br /><span>{L_GROUPS_CPF_NAME_EXPLAIN}</span></dt>
+			<dd>
+				<select name="field_option_name" id="field_option_name" >{S_FIELD_NAME_OPTIONS}</select>
+			</dd>
+		</dl>
+		{S_HIDDEN_FIELDS}		
+
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="cpf_update" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+			{S_FORM_TOKEN}
+		</p>
+
+	</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+	<h1>{L_ACP_GROUPS_REGS}</h1>
+
+	<p>{L_ACP_GROUPS_REGS_EXPLAIN}</p>
+
+	<form id="acp_groups_regs" method="post" action="{U_ACTION}">
+	
+	<table cellspacing="1">
+
+	<tbody>
+	<tr class="row2">
+		<td style="text-align: left;"><label for="groups_on_reg_enable"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_ENABLED}:</span></label><br /><span>{L_GROUPS_ENABLED_EXPLAIN}</span></td>
+		<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_on_reg_enable" value="1"<!-- IF GROUPS_REG_ENABLED --> id="groups_on_reg_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="groups_on_reg_enable" value="0"<!-- IF not GROUPS_REG_ENABLED --> id="groups_on_reg_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+	</tr>
+	<!-- IF GROUPS_REG_ENABLED -->	
+		<tr class="row1">
+			<td style="text-align: left;"><label for="groups_default"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_DEFAULT}:</span></label><br /><span>{L_GROUPS_DEFAULT_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_default" value="1"<!-- IF GROUPS_DEFAULT --> id="groups_default" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="groups_default" value="0"<!-- IF not GROUPS_DEFAULT --> id="groups_default" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+		</tr>
+		<tr class="row2">
+			<td style="text-align: left;"><label for="groups_require"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_REQUIRE}:</span></label><br /><span>{L_GROUPS_REQUIRE_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_require" value="1"<!-- IF GROUPS_REQUIRE --> id="groups_require" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="groups_require" value="0"<!-- IF not GROUPS_REQUIRE --> id="groups_require" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+		</tr>	
+		<tr class="row1">
+			<td style="text-align: left;"><label for="groups_on_reg_multiple"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_MULTIPLE_REGISTRATION}:</span></label><br /><span>{L_GROUPS_MULTIPLE_REGISTRATION_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_on_reg_multiple" value="1"<!-- IF GROUPS_MULTIPLE --> id="groups_on_reg_multiple" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="groups_on_reg_multiple" value="0"<!-- IF not GROUPS_MULTIPLE --> id="groups_on_reg_multiple" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+		</tr>		
+	<!-- ENDIF -->	
+	</tbody>
+	</table>
+	<fieldset class="tabulated">
+	<p class="quick">
+	{S_HIDDEN_FIELDS}
+	<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	<input type="hidden" name="action" value="" />
+	{S_FORM_TOKEN}
+	</p>
+	</fieldset>
+	
+	<!-- IF GROUPS_REG_ENABLED -->	
+		<fieldset class="tabulated">
+		<legend>{L_ACP_GROUPS_REGS}</legend>
+		<p class="quick">
+			<input class="button2" name="add" type="submit" value="{L_ADD_GROUP}" />
+		</p>
+
+		<table cellspacing="1">
+		<thead>
+		<tr>
+			<th style="width: 10%;">{L_GROUP_ID}</th>
+			<th style="width: 73%;">{L_GROUP_NAME}</th>
+			<th style="width: 10%;">{L_GROUP_MEMBERS}</th>
+			<th style="width: 7%;">{L_REMOVE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN groups -->
+			<!-- IF groups.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+				<td style="text-align: center;">{groups.GROUP_ID}</td>
+				<td style="text-align: left;"><a href="{groups.U_GROUP}">{groups.GROUP_NAME}</a></td>
+				<td style="text-align: center;"><a href="{groups.U_GROUP}">{groups.GROUP_MEMBERS}</a></td>
+				<td style="text-align: center;">&nbsp;<a href="{groups.U_DELETE}" ><img src="{groups.ICON_REMOVED}" title="{L_REMOVE_GROUP}" alt="{L_REMOVE}"/></a>&nbsp;</td>
+			</tr>
+		<!-- BEGINELSE -->
+		<tr class="row3">
+			<td colspan="4">{L_ACP_NO_ITEMS}</td>
+		</tr>
+		<!-- END groups -->
+		</tbody>
+		</table>
+		{S_FORM_TOKEN}
+		</fieldset>
+	<!-- ENDIF -->
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	
+	<h1>{L_CPF_TO_GROUPS}</h1>
+
+	<p>{L_CPF_TO_GROUPS_EXPLAIN}</p>
+	
+	<table cellspacing="1">
+
+	<tbody>
+	<tr class="row2">
+		<td style="text-align: left;"><label for="groups_to_cpf_enable"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_TO_CPF_ENABLE}:</span></label><br /><span>{L_GROUPS_TO_CPF_ENABLE_EXPLAIN}</span></td>
+		<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_to_cpf_enable" value="1"<!-- IF GROUPS_TO_CPF_ENABLED --> id="groups_to_cpf_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="groups_to_cpf_enable" value="0"<!-- IF not GROUPS_TO_CPF_ENABLED --> id="groups_to_cpf_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+	</tr>
+	<!-- IF GROUPS_TO_CPF_ENABLED -->
+		<tr class="row1">
+			<td style="text-align: left;"><label for="groups_to_cpf_no_pending"><span style="font-size: 12px; font-weight: bold;">{L_GROUPS_TO_CPF_NO_PENDING}:</span></label><br /><span>{L_GROUPS_TO_CPF_NO_PENDING_EXPLAIN}</span></td>
+			<td style="text-align: right;"><label><input type="radio" class="radio" name="groups_to_cpf_no_pending" value="1"<!-- IF GROUPS_TO_CPF_NO_PENDING --> id="groups_to_cpf_no_pending" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="groups_to_cpf_no_pending" value="0"<!-- IF not GROUPS_TO_CPF_NO_PENDING --> id="groups_to_cpf_no_pending" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+		</tr>
+	<!-- ENDIF -->
+	</tbody>
+	</table>
+	<fieldset class="tabulated">
+	<p class="quick">
+	{S_HIDDEN_FIELDS}	
+	<input class="button1" type="submit" name="update_custom_config" value="{L_SUBMIT}" />
+	<input type="hidden" name="action" value="" />
+	{S_FORM_TOKEN}
+	</p>
+	</fieldset>
+	
+	<!-- IF GROUPS_TO_CPF_ENABLED -->	
+		<fieldset class="tabulated">
+		<table cellspacing="1">
+			<tbody>
+				<tr class="row2">
+					<td style="text-align: left;"><span style="font-size: 12px; font-weight: bold;">{L_CPF_AUTO_GROUP}:</span> <br /><span>{L_CPF_AUTO_GROUP_EXPLAIN}</span></td>
+					<td style="text-align: center;">
+				<p class="quick">
+				{S_HIDDEN_FIELDS}
+			<input class="button1" type="submit" name="update_custom" value="{L_RUN}" />
+			<input type="hidden" name="action" value="" />
+			{S_FORM_TOKEN}
+			</p>
+			</td>
+			</tr>
+			</tbody>
+		</table>
+		</fieldset>
+	
+		<fieldset class="tabulated">
+		<legend>{L_ACP_GROUPS_REGS}</legend>
+		<p class="quick">
+			<input class="button2" name="add_cpf" type="submit" value="{L_ADD_CPF_GROUP}" />
+		</p>
+
+		<table cellspacing="1">
+		<thead>
+		<tr>
+			<th style="width: 10%;">{L_GROUP_ID}</th>
+			<th style="width: 23%;">{L_GROUP_NAME}</th>
+			<th style="width: 10%;">{L_GROUP_MEMBERS}</th>
+			<th style="width: 29%;">{L_CPF_FIELD_NAME}</th>
+			<th style="width: 23%;">{L_CPF_LANG_VALUE}</th>
+			<th style="width: 5%;">{L_REMOVE}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN cpf_groups -->
+			<!-- IF cpf_groups.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+			<td style="text-align: center;">{cpf_groups.GROUP_ID}</td>
+			<td style="text-align: left;"><a href="{cpf_groups.U_GROUP}">{cpf_groups.GROUP_NAME}</a></td>
+			<td style="text-align: center;"><a href="{cpf_groups.U_GROUP}">{cpf_groups.GROUP_MEMBERS}</a></td>
+			<td style="text-align: left;">{cpf_groups.FIELD_NAME}</td>
+			<td style="text-align: left;">{cpf_groups.LANG_VALUE}</td>
+			<td style="text-align: center;">&nbsp;<a href="{cpf_groups.U_DELETE}" ><img src="{cpf_groups.ICON_REMOVED}" title="{L_REMOVE_GROUP}" alt="{L_REMOVE}"/></a>&nbsp;</td>
+		</tr>
+		<!-- BEGINELSE -->
+		<tr class="row3">
+			<td colspan="6">{L_ACP_NO_ITEMS}</td>
+		</tr>
+		<!-- END cpf_groups -->
+		</tbody>
+		</table>
+		{S_FORM_TOKEN}
+		</fieldset>
+	<!-- ENDIF -->	
+	</form>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

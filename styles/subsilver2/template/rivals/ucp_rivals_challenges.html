@@ -1,0 +1,43 @@
+<!-- INCLUDE ucp_header.html -->
+<form action="{U_ACTION}" method="post">
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="4">{L_PENDING_MATCHES}</th>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" align="center">{L_GROUP_ID}</td>
+		<td class="row3" align="center">{L_RIVALS_DATETIME}</td>
+		<td class="row3" align="center">{L_ACCEPT}</td>
+		<td class="row3" align="center">{L_DECLINE}</td>
+	</tr>
+	<!-- BEGIN block_ladders -->
+	<tr class="genmed">
+		<td class="cat" align="center" colspan="4"><strong>P: {block_ladders.PLATFORM}, L: {block_ladders.LADDER}, S: {block_ladders.SUBLADDER}</strong></td>
+	</tr>
+	<!-- IF .block_ladders.block_challenges -->
+	<!-- BEGIN block_challenges -->
+	<tr class="genmed">
+		<td class="{block_ladders.block_challenges.ROW_COLOR}"><a href="{block_ladders.block_challenges.U_CHALLENGER}">{block_ladders.block_challenges.CHALLENGER}</a></td>
+		<td class="{block_ladders.block_challenges.ROW_COLOR}" align="center">{block_ladders.block_challenges.TIME}</td>
+		<td class="{block_ladders.block_challenges.ROW_COLOR}" align="center"><input type="checkbox" name="accept[]" value="{block_ladders.block_challenges.CHALLENGE_ID}" /></td>
+		<td class="{block_ladders.block_challenges.ROW_COLOR}" align="center"><input type="checkbox" name="decline[]" value="{block_ladders.block_challenges.CHALLENGE_ID}" /></td>
+	</tr>
+	<tr class="genmed">
+		<td class="{block_ladders.block_challenges.ROW_COLOR}" colspan="4">{block_ladders.block_challenges.DETAILS}</td>
+	</tr>
+	<tr class="genmed">
+		<td class="row3" colspan="4">&nbsp;</td>
+	</tr>
+	<!-- END block_challenges -->
+	<!-- ELSE -->
+	<tr class="bg1">
+		<td class="row1" colspan="4">{L_NO_PENDING_MATCHES}</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- END block_ladders -->
+	<tr>
+		<td class="cat" align="center" colspan="4"><input type="submit" name="submit" value="{L_SUBMIT}" class="btnmain" /></td>
+	</tr>
+</table>
+</form>
+<!-- INCLUDE ucp_footer.html -->

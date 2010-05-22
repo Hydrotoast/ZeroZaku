@@ -1,0 +1,23 @@
+<!-- INCLUDE overall_header.html -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th>{L_LADDER_NAME}</th>
+		<th>{L_NUM_GROUPS}</th>
+	</tr>
+	<!-- BEGIN block_ladders -->
+	<tr class="genmed">
+		<td class="cat" colspan="2"><h4><a href="{block_ladders.U_LADDERRULES}">{block_ladders.LADDER_NAME}</a></h4></td>
+	</tr>
+	<!-- BEGIN block_subladders -->
+	<tr class="genmed">
+		<td class="row1"><a href="{block_ladders.block_subladders.U_ACTION}" class="forumlink">{block_ladders.block_subladders.LADDER_NAME}</a>
+		<p class="forumdesc">{block_ladders.block_subladders.LADDER_DESC}</p></td>
+		<td class="row2" align="center">{block_ladders.block_subladders.NUM_GROUPS}</td>
+	</tr>
+	<!-- END block_subladders -->
+	<!-- END block_ladders -->
+	<tr>
+		<td class="cat" colspan="2">&nbsp;</td>
+	</tr>
+</table>
+<!-- INCLUDE overall_footer.html -->
