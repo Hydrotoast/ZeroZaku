@@ -18,7 +18,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 select {
-	vertical-align: middle;
+	vertical-align: top;
 	padding: 1px;
 }
 
@@ -241,7 +241,7 @@ fieldset.submit-buttons input {
 }
 
 #format-buttons input, #format-buttons select {
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 /* Main message box */
@@ -290,14 +290,23 @@ textarea.inputbox {
 /* Form button styles
 ---------------------------------------- */
 
-a.button1, input.button1, input.button3, a.button2, input.button2 {
+a.button1, a.button2, input.button1, input.button2, input.button3 {
+	font-size: 0.9166em;
+	font-weight: bold;
+	vertical-align: middle;
+	text-decoration: none !important;
+	text-shadow: 1px 1px 0 #FFFFFF;
 	border: 1px solid;
-	max-height: 24px;
+	max-height: 25px;
 	width: auto !important;
 }
 
-input.button1, input.button2 {
-	max-height: 30px;
+input.button1 {
+	text-shadow: 1px 1px 0 #000000;
+}
+
+input.button2 {
+	padding: 4px !important;
 }
 
 input.button3 {
@@ -310,9 +319,7 @@ input.button3 {
 a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active {
 	display: inline-block;
 	margin: 2px;
-	padding: 3px 0.4em !important;
-	vertical-align: middle;
-	text-decoration: none !important;
+	padding: 3px 0.75em !important;
 }
 
 a.button1:hover, a.button2:hover, input.button1:hover, input.button2:hover {
@@ -320,6 +327,7 @@ a.button1:hover, a.button2:hover, input.button1:hover, input.button2:hover {
 	-webkit-box-shadow: 0 0 3px #606060;
 	-khtml-box-shadow: 0 0 3px #606060;
 	box-shadow: 0 0 3px #606060;
+	z-index: 100;
 }
 
 /* Topic and forum Search */
@@ -329,7 +337,22 @@ a.button1:hover, a.button2:hover, input.button1:hover, input.button2:hover {
 }
 
 input.search {
-	padding-left: 20px !important;
+	border: 0;
+	height: 15px;
+	width: 132px;
+	padding: 6px 8px 4px 26px;
+}
+
+input#add_keywords {
+	background: transparent url("{T_THEME_PATH}/images/search_bg.png") no-repeat;
+	border: 0;
+	height: 15px;
+	width: 132px;
+	padding: 6px 8px 4px 26px;
+}
+
+input.active#add_keywords {
+	background-position-y: 25px;
 }
 
 .full { width: 95%; }

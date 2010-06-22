@@ -2,7 +2,7 @@
 /**
 *
 * @package automod
-* @version $Id: editor.php 182 2009-06-23 20:46:59Z jelly_doughnut $
+* @version $Id: editor.php 242 2010-04-29 00:56:35Z jelly_doughnut $
 * @copyright (c) 2008 phpBB Group
 * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
 *
@@ -52,6 +52,16 @@ class editor
 	* Keeps finds sequential, plus loop optimization
 	*/
 	var $start_index = 0;
+
+	/*
+	* Keeps inline find sequential
+	*/
+	var $last_string_offset = 0;
+
+	/*
+	* Only apply string offset to the line to which it belongs
+	*/
+	var $last_inline_ary_offset = 0;
 
 	/**
 	* Time when MOD was installed
@@ -175,68 +185,76 @@ class editor
 		$total_lines = sizeof($this->file_contents);
 		$find_lines = sizeof($find_ary);
 
-		// we process the file sequentially ... so we keep track of indices
-		for ($i = $this->start_index; $i < $total_lines; $i++)
+		$mode = array('', 'trim');
+
+		foreach ($mode as $function)
 		{
-			for ($j = 0; $j < $find_lines; $j++)
+			// we process the file sequentially ... so we keep track of indices
+			for ($i = $this->start_index; $i < $total_lines; $i++)
 			{
-				$find_ary[$j] = trim($find_ary[$j]);
-
-				// if we've reached the EOF, the find failed.
-				if (!isset($this->file_contents[$i + $j]))
+				for ($j = 0; $j < $find_lines; $j++)
 				{
-					return false;
-				}
-
-				if (!trim($find_ary[$j]))
-				{
-					// line is blank.  Assume we can find a blank line, and continue on
-					$find_success += 1;
-				}
-				// using $this->file_contents[$i + $j] to keep the array pointer where I want it
-				// if the first line of the find (index 0) is being looked at, $i + $j = $i.
-				// if $j is > 0, we look at the next line of the file being inspected
-				// hopefully, this is a decent performer.
-				else if (strpos($this->file_contents[$i + $j], $find_ary[$j]) !== false)
-				{
-					// we found this part of the find
-					$find_success += 1;
-				}
-				// we might have an increment operator, which requires a regular expression match
-				else if (strpos($find_ary[$j], '{%:') !== false)
-				{
-					$regex = preg_replace('#{%:(\d+)}#', '(\d+)', $find_ary[$j]);
-
-					if (preg_match('#' . $regex . '#is', $this->file_contents[$i + $j]))
+					if ($function)
 					{
+						$find_ary[$j] = $function($find_ary[$j]);
+					}
+	
+					// if we've reached the EOF, the find failed.
+					if (!isset($this->file_contents[$i + $j]))
+					{
+						return false;
+					}
+	
+					if (!trim($find_ary[$j]))
+					{
+						// line is blank.  Assume we can find a blank line, and continue on
 						$find_success += 1;
+					}
+					// using $this->file_contents[$i + $j] to keep the array pointer where I want it
+					// if the first line of the find (index 0) is being looked at, $i + $j = $i.
+					// if $j is > 0, we look at the next line of the file being inspected
+					// hopefully, this is a decent performer.
+					else if (strpos($this->file_contents[$i + $j], $find_ary[$j]) !== false)
+					{
+						// we found this part of the find
+						$find_success += 1;
+					}
+					// we might have an increment operator, which requires a regular expression match
+					else if (strpos($find_ary[$j], '{%:') !== false)
+					{
+						$regex = preg_replace('#{%:(\d+)}#', '(\d+)', $find_ary[$j]);
+	
+						if (preg_match('#' . $regex . '#is', $this->file_contents[$i + $j]))
+						{
+							$find_success += 1;
+						}
+						else
+						{
+							$find_success = 0;
+						}
 					}
 					else
 					{
+						// the find failed.  Reset $find_success
 						$find_success = 0;
+	
+						// skip to next iteration of outer loop, that is, skip to the next line
+						break;
 					}
+	
+					if ($find_success == $find_lines)
+					{
+						// we found the proper number of lines
+						$this->start_index = $i;
+	
+						// return our array offsets
+						return array(
+							'start' => $i,
+							'end' => $i + $j,
+						);
+					}
+	
 				}
-				else
-				{
-					// the find failed.  Reset $find_success
-					$find_success = 0;
-
-					// skip to next iteration of outer loop, that is, skip to the next line
-					break;
-				}
-
-				if ($find_success == $find_lines)
-				{
-					// we found the proper number of lines
-					$this->start_index = $i;
-
-					// return our array offsets
-					return array(
-						'start' => $i,
-						'end' => $i + $j,
-					);
-				}
-
 			}
 		}
 
@@ -252,6 +270,16 @@ class editor
 	{
 		$this->start_index++;
 		$this->last_action = array();
+		$this->last_string_offset = 0;
+	}
+
+	/*
+	* In-line analog to close_edit(), above.
+	* Advance the pointer one character
+	*/
+	function close_inline_edit()
+	{
+		$this->last_string_offset++;
 	}
 
 	/**
@@ -291,9 +319,56 @@ class editor
 		// similar method to find().  Just much more limited scope
 		for ($i = $start_offset; $i <= $end_offset; $i++)
 		{
-			$string_offset = strpos($this->file_contents[$i], $inline_find);
+			if ($this->last_string_offset > 0 && ($this->last_inline_ary_offset == 0 || $this->last_inline_ary_offset == $i))
+			{
+				$string_offset = strpos(substr($this->file_contents[$i], $this->last_string_offset), $inline_find);
+
+				if ($string_offset !== false)
+				{
+					$string_offset += $this->last_string_offset;
+				}
+			}
+			else
+			{
+				$string_offset = strpos($this->file_contents[$i], $inline_find);
+			}
+
 			if ($string_offset !== false)
 			{
+				$this->last_string_offset = $string_offset;
+				$this->last_inline_ary_offset = $i;
+
+				// if we find something, return the line number, string offset, and find length
+				return array(
+					'array_offset'	=> $i,
+					'string_offset'	=> $string_offset,
+					'find_length'	=> strlen($inline_find),
+				);
+			}
+		}
+
+		// if the previous failed, trim() the find and try again
+		for ($i = $start_offset; $i <= $end_offset; $i++)
+		{
+			$inline_find = trim($inline_find);
+			if ($this->last_string_offset > 0 && ($this->last_inline_ary_offset == 0 || $this->last_inline_ary_offset == $i))
+			{
+				$string_offset = strpos(substr($this->file_contents[$i], $this->last_string_offset), $inline_find);
+
+				if ($string_offset !== false)
+				{
+					$string_offset += $this->last_string_offset;
+				}
+			}
+			else
+			{
+				$string_offset = strpos($this->file_contents[$i], $inline_find);
+			}
+
+			if ($string_offset !== false)
+			{
+				$this->last_string_offset = $string_offset;
+
 				// if we find something, return the line number, string offset, and find length
 				return array(
 					'array_offset'	=> $i,
@@ -513,6 +588,8 @@ class editor
 
 		$this->file_contents[$array_offset] = substr_replace($this->file_contents[$array_offset], $inline_replace, $string_offset, $length);
 
+		$this->last_string_offset += strlen($inline_replace) - 1;
+
 		$this->curr_action = func_get_args();
 
 		// This isn't a full find, but it is the closest we can get
@@ -561,10 +638,12 @@ class editor
 		if ($pos == 'AFTER')
 		{
 			$this->file_contents[$array_offset] = substr_replace($this->file_contents[$array_offset], $inline_add, $string_offset + $length, 0);
+			$this->last_string_offset += strlen($inline_add) + $length - 1;
 		}
 		else if ($pos == 'BEFORE')
 		{
 			$this->file_contents[$array_offset] = substr_replace($this->file_contents[$array_offset], $inline_add, $string_offset, 0);
+			$this->last_string_offset += (strlen($inline_add) - 1);
 		}
 
 		$this->curr_action = func_get_args();
@@ -586,9 +665,9 @@ class editor
 	*/
 	function build_uninstall($find, $inline_find, $action_type, $action)
 	{
-		$find = trim($find);
-		$inline_find = trim($inline_find);
-		$action = trim($action);
+		$find = trim($find, "\n");
+		$inline_find = trim($inline_find, "\n");
+		$action = trim($action, "\n");
 
 		/*
 		* This if statement finds out if we are in the special case where 
@@ -602,6 +681,9 @@ class editor
 		{
 			$last_action_index = sizeof($this->mod_actions[$this->open_filename]) - 1;
 			unset($this->mod_actions[$this->open_filename][$last_action_index]);
+
+			// Re-index the array to start at zero and go sequentially
+			$this->mod_actions[$this->open_filename] = array_merge($this->mod_actions[$this->open_filename]);
 
 			$action_type = 'REPLACE';
 
@@ -890,19 +972,7 @@ class editor_ftp extends editor
 			include($phpbb_root_path . 'includes/functions_transfer.' . $phpEx);
 		}
 
-		$ftp_method	= request_var('ftp_method', '');
-		if (!$ftp_method || !class_exists($ftp_method))
-		{
-			$ftp_method = 'ftp';
-			$ftp_methods = transfer::methods();
-
-			if (!in_array('ftp', $ftp_methods))
-			{
-				$ftp_method = $ftp_methods[0];
-			}
-		}
-
-		$this->transfer = new $ftp_method($config['ftp_host'], $config['ftp_username'], request_var('password', ''), $config['ftp_root_path'], $config['ftp_port'], $config['ftp_timeout']);
+		$this->transfer = new $config['ftp_method']($config['ftp_host'], $config['ftp_username'], request_var('password', ''), $config['ftp_root_path'], $config['ftp_port'], $config['ftp_timeout']);
 		$error = $this->transfer->open_session();
 
 		// Use the permissions settings specified in the AutoMOD configuration
@@ -967,14 +1037,7 @@ class editor_ftp extends editor
 		// ftp
 		foreach ($files as $file)
 		{
-			if (is_dir($to))
-			{
-				$to_file = str_replace(array($phpbb_root_path, $strip), '', $file);
-			}
-			else
-			{
-				$to_file = str_replace($phpbb_root_path, '', $to);
-			}
+			$to_file = str_replace($strip, '', $file);
 
 			$this->recursive_mkdir(dirname($to_file));
 
@@ -1078,7 +1141,61 @@ class editor_manual extends editor
 
 	function copy_content($from, $to = '', $strip = '')
 	{
-		return NULL;
+		global $phpbb_root_path, $user;
+
+		if (strpos($from, $phpbb_root_path) !== 0)
+		{
+			$from = $phpbb_root_path . $from;
+		}
+
+		if (strpos($to, $phpbb_root_path) !== 0)
+		{
+			$to = $phpbb_root_path . $to;
+		}
+
+		// Note: phpBB's compression class does support adding a whole directory at a time.
+		// However, I chose not to use that function because it would not allow AutoMOD's
+		// error handling to work the same as for FTP & Direct methods.
+		$files = array();
+		if (is_dir($from))
+		{
+			// get all of the files within the directory
+			$files = find_files($from, '.*');
+		}
+		else if (is_file($from))
+		{
+			$files = array($from);
+		}
+
+		if (empty($files))
+		{
+			return false;
+		}
+
+		foreach ($files as $file)
+		{
+			if (is_dir($to))
+			{
+				// this would find the directory part specified in MODX
+				$to_file = str_replace(array($phpbb_root_path, $strip), '', $to);
+				// and this fetches any subdirectories and the filename of the destination file
+				$to_file .= substr($file, strpos($file, $to_file) + strlen($to_file));
+			}
+			else
+			{
+				$to_file = str_replace($phpbb_root_path, '', $to);
+			}
+
+			// filename calculation is involved here:
+			// and prepend the "files" directory
+			if (!$this->compress->add_custom_file($file, 'files/' . $to_file))
+			{
+				return sprintf($user->lang['WRITE_MANUAL_FAIL'], $to_file);
+			}
+		}
+
+		// return true since we are now taking an action - NULL implies no action
+		return true;
 	}
 
 	/**
@@ -1098,7 +1215,12 @@ class editor_manual extends editor
 
 		// don't include extra dirs in zip file
 		$strip_position = strpos($new_filename, '_edited') + 8; // want the end of the string
-		$new_filename = substr($new_filename, $strip_position);
+		if ($strip_position == 8)
+		{
+			$strip_position = strpos($new_filename, '_uninst') + 7;
+		}
+
+		$new_filename = 'files/' . substr($new_filename, $strip_position);
 
 		if (!$this->compress->add_data($file_contents, $new_filename))
 		{
@@ -1123,14 +1245,24 @@ class editor_manual extends editor
 
 	function commit_changes($source, $destination)
 	{
+		global $template, $user, $phpbb_admin_path;
+
+		$download_url = append_sid("{$phpbb_admin_path}index.php", 'i=mods&amp;mode=frontend&amp;action=download&amp;time=' . $this->install_time);
+
+		$template->assign_vars(array(
+			'S_MANUAL_INSTRUCTIONS'		=> true,
+			'L_AM_MANUAL_INSTRUCTIONS'	=> sprintf($user->lang['AM_MANUAL_INSTRUCTIONS'], '<a href="' . $download_url . '">', '</a>'),
+		));
+
+		meta_refresh(3, $download_url);
+
 		$this->compress->close();
 		return true;
 	}
 
 	function commit_changes_final($source, $destination)
 	{
-		$this->compress->download($source, $destination);
-		exit;
+		return NULL;
 	}
 
 	function create_edited_root($dir)

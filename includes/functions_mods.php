@@ -2,7 +2,7 @@
 /**
 *
 * @package automod
-* @version $Id: functions_admin.php,v 1.254 2007/11/17 12:14:27 acydburn Exp $
+* @version $Id: functions_mods.php 242 2010-04-29 00:56:35Z jelly_doughnut $
 * @copyright (c) 2008 phpBB Group
 * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
 *
@@ -287,6 +287,69 @@ function handle_ftp_details($method, $test_ftp_connection, $test_connection)
 		'UPLOAD_METHOD'			=> $method,
 		'S_HIDDEN_FIELDS_FTP'	=> $s_hidden_fields,
 	));
+}
+
+/**
+ * Recursively delete a directory
+ *
+ * @param string $file File name
+ * @author A_Jelly_Doughnut
+ */
+function recursive_unlink($file)
+{
+	if (!($dh = opendir($file)))
+	{
+		return false;
+	}
+
+	while (($subfile = readdir($dh)) !== false)
+	{
+		if ($subfile == '.' || $subfile == '..')
+		{
+		    continue;
+		}
+
+		if (!unlink($file. '/' . $subfile))
+		{
+			recursive_unlink($file . '/' . $subfile);
+		}
+	}
+
+	closedir($dh);
+
+	rmdir($file);
+
+	return true;
+}
+
+
+/**
+* PHP 5 Wrapper - simulate scandir, but only those features that we actually need
+* NB: The third parameter of PHP5 native scandir is _not_ present in this wrapper
+*/
+if (!function_exists('scandir'))
+{
+	function scandir($directory, $sorting_order = false)
+	{
+		$files = array();
+
+		$dp = opendir($directory);
+		while (($filename = readdir($dp)) !== false)
+		{
+			$files[] = $filename;
+		}
+
+		if ($sorting_order)
+		{
+			rsort($files);
+		}
+		else
+		{
+			sort($files);
+		}
+
+		return $files;
+	}
 }
 
 ?>

@@ -42,6 +42,7 @@
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+	behavior: url(ie-css3.htc);  
 }
 .buttons div a:hover span	{ background-position: 0 100%; }
 
@@ -52,6 +53,13 @@
 .pmreply-icon span	{ background: none 0 0 no-repeat; }
 .newpm-icon span 	{ background: none 0 0 no-repeat; }
 .forwardpm-icon span 	{ background: none 0 0 no-repeat; }
+
+.mark-read img {
+	float: left;
+	height: 12px;
+	width: 18px;
+	margin: 2px 0.5em 0 0;
+}
 
 /* Set big button dimensions */
 .buttons div.reply-icon		{ width: {IMG_BUTTON_TOPIC_REPLY_WIDTH}px; height: {IMG_BUTTON_TOPIC_REPLY_HEIGHT}px; }
@@ -72,13 +80,31 @@ a.print, a.sendemail, a.fontsize {
 /* BBCode Buttons
 --------------------------------------------- */
 #format-buttons input, #mChatBBCodes input {
-	background-position-y: -1px;
-	padding: 1px 4px;
-	font-size: 1.0833em;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	-khtml-border-radius: 0px;
-	border-radius: 0px;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
+	margin: 0 -3px 1em 0;
+	behavior: url(ie-css3.htc);  
+}
+
+#format-buttons select, #mChatBBCodes select {
+	margin-right: -4px;
+	height: 25px;
+}
+
+#format-buttons input:first-child, #mChatBBCodes input:first-child {
+	-moz-border-radius: 5px 0 0 5px;
+	-webkit-border-radius: 5px 0 0 5px;
+	-khtml-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+#format-buttons input:last-child, #mChatBBCodes input:last-child {
+	-moz-border-radius: 0 5px 5px 0;
+	-webkit-border-radius: 0 5px 5px 0;
+	-khtml-border-radius: 0 5px 5px 0;
+	border-radius: 0 5px 5px 0;
 }
 
 /* Poster profile icons
