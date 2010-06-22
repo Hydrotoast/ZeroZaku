@@ -2,16 +2,18 @@
 
 <!-- IF FORUM_DESC or FORUM_SEO_DESC -->
 	<div class="panel smooth info <!-- IF FORUM_SEO_DESC -->seo<!-- ENDIF -->">
-			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tag_blue.png" alt="{FORUM_SEO_KEY}" /><p><strong>{FORUM_SEO_KEY}</strong><br /><span>{FORUM_SEO_DESC}<br /></span></p><!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
+			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tag_blue.png" alt="{FORUM_SEO_KEY}" /><h3 class="infotitle">{FORUM_SEO_KEY}</h3><p><span>{FORUM_SEO_DESC}</span></p>
+			<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
 	</div>
 <!-- ENDIF -->
 
-<!-- IF MODERATORS --><p><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</p><!-- ENDIF -->
+
 
 <!-- IF S_HAS_SUBFORUM -->
 <!-- IF not S_IS_BOT and U_MARK_FORUMS -->
 <ul class="linklist">
-	<li class="rightside"><a class="button2" href="{U_MARK_FORUMS}">{L_MARK_FORUMS_READ}</a></li>
+	<!-- IF MODERATORS --><li class="moderators"><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</li><!-- ENDIF -->
+	<li class="rightside"><a class="button2 mark-read" href="{U_MARK_FORUMS}"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_FORUMS_READ}</a></li>
 </ul>
 <!-- ENDIF -->
 	<!-- INCLUDE forumlist_body.html -->
@@ -55,7 +57,7 @@
 
 	<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
 		<div class="pagination">
-			<!-- IF not S_IS_BOT and U_MARK_TOPICS --><a class="button2" href="{U_MARK_TOPICS}" accesskey="m">{L_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF not S_IS_BOT and U_MARK_TOPICS --><a class="button2 mark-read" href="{U_MARK_TOPICS}" accesskey="m"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
 			<!-- IF PAGE_NUMBER -->
 				<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
 			<!-- ENDIF -->
@@ -150,7 +152,7 @@
 		<dl class="icon">
 			<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ELSE --> style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat; background-position: 10px center"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
 				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
-				<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><span class="meta"><!-- IF topicrow.S_TOPIC_REPORTED -->[reported] <!-- ENDIF --></span>{topicrow.TOPIC_TITLE}</a>
+				<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><!-- IF topicrow.S_TOPIC_REPORTED --><span class="meta">[reported]</span><!-- ENDIF --><h3>{topicrow.TOPIC_TITLE}</h3></a>
 				<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 				<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
 				<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->

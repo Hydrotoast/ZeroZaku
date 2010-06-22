@@ -86,11 +86,11 @@
 <script type="text/javascript" src="./classes/scripts/select_expand_bbcodes.js"></script>
 <script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>mchat/jquery_cookie_mini.js"></script>
 <script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/jquery.nivo.slider.packed.js"></script>
+<script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/highlight.pack.js"></script>
 
 <script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/default.js"></script>
 
 <?php if ($this->_rootref['S_USER_LOGGED_IN'] && ! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger.js"></script><?php } if (! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger_buttons.js"></script><?php } ?>
-
 
 <!--[if lt IE 7]>
   <link href="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />

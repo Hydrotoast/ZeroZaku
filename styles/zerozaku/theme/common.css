@@ -204,7 +204,10 @@ a img {
 }
 
 #search-box #keywords {
-	width: auto;
+	border: 0;
+	height: 15px;
+	width: 132px;
+	padding: 6px 8px 4px 26px;
 }
 
 #search-box .button1 {
@@ -237,12 +240,12 @@ a img {
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	height: 26px;
+	border-bottom: 1px solid;
 	line-height: 26px;
+	height: 26px;
+	min-width: 980px;
 	margin-bottom: 10px;
 	padding: 2px 0;
-	min-width: 980px;
-	clear: both;
 }
 
 .breadcrumbs .inner {
@@ -274,13 +277,14 @@ a img {
 
 .navbar li a {
 	border-left: 1px solid;
+	border-right: 1px solid;
 	font-size: 1.1666em;
 	font-weight: bold;
 	line-height: 1.4em;
 	text-decoration: none;
 	display: block;
-	padding: 20px 20px 0 20px;
 	height: 84px;
+	padding: 20px 20px 0 20px;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -503,6 +507,10 @@ ul.linklist li.rightside, p.rightside {
 	text-align: right;
 }
 
+ul.linklist li.moderators {
+	line-height: 30px;
+}
+
 ul.linklist li.button {
 	height: 24px;
 }
@@ -516,6 +524,10 @@ ul.navlinks {
 ul.navlinks li {
 	float: left;
 	list-style-type: none;
+}
+
+.leftside {
+	float: left;
 }
 
 ul.leftside {

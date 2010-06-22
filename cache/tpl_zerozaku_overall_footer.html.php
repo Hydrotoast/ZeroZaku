@@ -65,7 +65,8 @@
 	The phpBB Group : 2006
 //-->
 
-	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; 2009, 2010 ZeroZaku
+	<div class="copyright">Copyright &copy; 2009, 2010 ZeroZaku<br /> Powered by <a href="http://www.phpbb.com/">phpBB</a>
+	
 		<?php if ($this->_rootref['DEBUG_OUTPUT']) {  ?><br /><?php echo (isset($this->_rootref['DEBUG_OUTPUT'])) ? $this->_rootref['DEBUG_OUTPUT'] : ''; } if ($this->_rootref['U_ACP']) {  ?><br /><strong><a href="<?php echo (isset($this->_rootref['U_ACP'])) ? $this->_rootref['U_ACP'] : ''; ?>"><?php echo ((isset($this->_rootref['L_ACP'])) ? $this->_rootref['L_ACP'] : ((isset($user->lang['ACP'])) ? $user->lang['ACP'] : '{ ACP }')); ?></a></strong><?php } ?>
 
 	</div>

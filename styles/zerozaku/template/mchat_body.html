@@ -98,13 +98,13 @@ var mChatFocusFix = true;
 				<input type="button" class="button2" accesskey="l" value="List" style="width: 40px" onclick="bbstyle(10);" />
 				<input type="button" class="button2" accesskey="t" value="[*]" style="width: 40px" onclick="bbstyle(-1);" />
 				<input type="button" class="button2" accesskey="w" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16);" />
-				<span class="genmed nowrap">{L_MCHAT_FONTSIZE}<select class="gensmall" onchange="bbfontstyle('[size=' + this.options[this.selectedIndex].value + ']', '[/size]'); this.selectedIndex = 2;">
-				<option value="50">{L_MCHAT_FONTTINY}</option>
-				<option value="85">{L_MCHAT_FONTSMALL}</option>
-				<option value="100" selected="selected">{L_MCHAT_FONTNORMAL}</option>
-				<option value="150">{L_MCHAT_FONTLARGE}</option>
-				<option value="200">{L_MCHAT_FONTHUGE}</option>
-				</select></span>
+				<select class="gensmall" onchange="bbfontstyle('[size=' + this.options[this.selectedIndex].value + ']', '[/size]'); this.selectedIndex = 2;">
+					<option value="50">{L_MCHAT_FONTTINY}</option>
+					<option value="85">{L_MCHAT_FONTSMALL}</option>
+					<option value="100" selected="selected">{L_MCHAT_FONTNORMAL}</option>
+					<option value="150">{L_MCHAT_FONTLARGE}</option>
+					<option value="200">{L_MCHAT_FONTHUGE}</option>
+				</select>
 				</div>
 				<!-- ENDIF -->
 				

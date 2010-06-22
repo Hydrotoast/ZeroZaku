@@ -2,7 +2,7 @@
 /** 
 *
 * @package automod
-* @version $Id: acp_mods.php 148 2009-01-15 02:20:32Z jelly_doughnut $
+* @version $Id: acp_mods.php 242 2010-04-29 00:56:35Z jelly_doughnut $
 * @copyright (c) 2008 phpBB Group 
 * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License 
 *

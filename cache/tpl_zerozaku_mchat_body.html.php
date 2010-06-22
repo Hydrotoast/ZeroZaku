@@ -86,13 +86,13 @@ var mChatFocusFix = true;
 				<input type="button" class="button2" accesskey="l" value="List" style="width: 40px" onclick="bbstyle(10);" />
 				<input type="button" class="button2" accesskey="t" value="[*]" style="width: 40px" onclick="bbstyle(-1);" />
 				<input type="button" class="button2" accesskey="w" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16);" />
-				<span class="genmed nowrap"><?php echo ((isset($this->_rootref['L_MCHAT_FONTSIZE'])) ? $this->_rootref['L_MCHAT_FONTSIZE'] : ((isset($user->lang['MCHAT_FONTSIZE'])) ? $user->lang['MCHAT_FONTSIZE'] : '{ MCHAT_FONTSIZE }')); ?><select class="gensmall" onchange="bbfontstyle('[size=' + this.options[this.selectedIndex].value + ']', '[/size]'); this.selectedIndex = 2;">
-				<option value="50"><?php echo ((isset($this->_rootref['L_MCHAT_FONTTINY'])) ? $this->_rootref['L_MCHAT_FONTTINY'] : ((isset($user->lang['MCHAT_FONTTINY'])) ? $user->lang['MCHAT_FONTTINY'] : '{ MCHAT_FONTTINY }')); ?></option>
-				<option value="85"><?php echo ((isset($this->_rootref['L_MCHAT_FONTSMALL'])) ? $this->_rootref['L_MCHAT_FONTSMALL'] : ((isset($user->lang['MCHAT_FONTSMALL'])) ? $user->lang['MCHAT_FONTSMALL'] : '{ MCHAT_FONTSMALL }')); ?></option>
-				<option value="100" selected="selected"><?php echo ((isset($this->_rootref['L_MCHAT_FONTNORMAL'])) ? $this->_rootref['L_MCHAT_FONTNORMAL'] : ((isset($user->lang['MCHAT_FONTNORMAL'])) ? $user->lang['MCHAT_FONTNORMAL'] : '{ MCHAT_FONTNORMAL }')); ?></option>
-				<option value="150"><?php echo ((isset($this->_rootref['L_MCHAT_FONTLARGE'])) ? $this->_rootref['L_MCHAT_FONTLARGE'] : ((isset($user->lang['MCHAT_FONTLARGE'])) ? $user->lang['MCHAT_FONTLARGE'] : '{ MCHAT_FONTLARGE }')); ?></option>
-				<option value="200"><?php echo ((isset($this->_rootref['L_MCHAT_FONTHUGE'])) ? $this->_rootref['L_MCHAT_FONTHUGE'] : ((isset($user->lang['MCHAT_FONTHUGE'])) ? $user->lang['MCHAT_FONTHUGE'] : '{ MCHAT_FONTHUGE }')); ?></option>
-				</select></span>
+				<select class="gensmall" onchange="bbfontstyle('[size=' + this.options[this.selectedIndex].value + ']', '[/size]'); this.selectedIndex = 2;">
+					<option value="50"><?php echo ((isset($this->_rootref['L_MCHAT_FONTTINY'])) ? $this->_rootref['L_MCHAT_FONTTINY'] : ((isset($user->lang['MCHAT_FONTTINY'])) ? $user->lang['MCHAT_FONTTINY'] : '{ MCHAT_FONTTINY }')); ?></option>
+					<option value="85"><?php echo ((isset($this->_rootref['L_MCHAT_FONTSMALL'])) ? $this->_rootref['L_MCHAT_FONTSMALL'] : ((isset($user->lang['MCHAT_FONTSMALL'])) ? $user->lang['MCHAT_FONTSMALL'] : '{ MCHAT_FONTSMALL }')); ?></option>
+					<option value="100" selected="selected"><?php echo ((isset($this->_rootref['L_MCHAT_FONTNORMAL'])) ? $this->_rootref['L_MCHAT_FONTNORMAL'] : ((isset($user->lang['MCHAT_FONTNORMAL'])) ? $user->lang['MCHAT_FONTNORMAL'] : '{ MCHAT_FONTNORMAL }')); ?></option>
+					<option value="150"><?php echo ((isset($this->_rootref['L_MCHAT_FONTLARGE'])) ? $this->_rootref['L_MCHAT_FONTLARGE'] : ((isset($user->lang['MCHAT_FONTLARGE'])) ? $user->lang['MCHAT_FONTLARGE'] : '{ MCHAT_FONTLARGE }')); ?></option>
+					<option value="200"><?php echo ((isset($this->_rootref['L_MCHAT_FONTHUGE'])) ? $this->_rootref['L_MCHAT_FONTHUGE'] : ((isset($user->lang['MCHAT_FONTHUGE'])) ? $user->lang['MCHAT_FONTHUGE'] : '{ MCHAT_FONTHUGE }')); ?></option>
+				</select>
 				</div>
 				<?php } if ($this->_rootref['MCHAT_ADD_MESSAGE']) {  ?>
 				<input type="hidden" name="mode" value="add" />
