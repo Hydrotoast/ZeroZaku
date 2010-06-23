@@ -231,19 +231,7 @@ class ucp_zebra
 			}
 		}
 
-		switch($mode)
-		{
-		    case 'friends':
-		        $sql_and = 'z.friend';
-		        break;
-		    case 'foes':
-		        $sql_and = 'z.foe';
-		        break;
-		    case 'pending':
-		        $sql_and = 'z.pending';
-		        break;
-		}
-		
+		$sql_and = ($mode == 'friends') ? 'z.pending = 1' : 'z.foe = 1';
 		$sql = 'SELECT z.*, u.username, u.username_clean
 			FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
 			WHERE z.user_id = ' . $user->data['user_id'] . "
@@ -264,7 +252,7 @@ class ucp_zebra
 
 			'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=add'),
 
-			'S_USERNAME_OPTIONS'	=> $s_username_options,
+			'S_USERNAME_OPTIONS'	=> ($mode == 'pending') ? '' : $s_username_options,
 			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
 			'S_UCP_ACTION'			=> $this->u_action)
 		);
