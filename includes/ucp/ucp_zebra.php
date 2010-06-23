@@ -78,20 +78,24 @@ class ucp_zebra
 								AND u.user_id = z.zebra_id';
 						$result = $db->sql_query($sql);
 
-						$friends = $foes = array();
+						$friends = $foes = $pending = array();
 						while ($row = $db->sql_fetchrow($result))
 						{
 							if ($row['friend'])
 							{
 								$friends[] = utf8_clean_string($row['username']);
 							}
-							else
+							elseif ($row['foe'])
 							{
 								$foes[] = utf8_clean_string($row['username']);
 							}
+							elseif ($row['pending'])
+							{
+							    $pending[] = utf8_clean_string($row['username']);
+							}
 						}
 						$db->sql_freeresult($result);
-
+						
 						// remove friends from the username array
 						$n = sizeof($data['add']);
 						$data['add'] = array_diff($data['add'], $friends);
@@ -109,6 +113,10 @@ class ucp_zebra
 						{
 							$error[] = $user->lang['NOT_ADDED_FRIENDS_FOES'];
 						}
+						
+					    // remove pending from the username array
+						$n = sizeof($data['add']);
+						$data['add'] = array_diff($data['add'], $pending);
 
 						// remove the user himself from the username array
 						$n = sizeof($data['add']);
@@ -223,7 +231,19 @@ class ucp_zebra
 			}
 		}
 
-		$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
+		switch($mode)
+		{
+		    case 'friends':
+		        $sql_and = 'z.friend';
+		        break;
+		    case 'foes':
+		        $sql_and = 'z.foe';
+		        break;
+		    case 'pending':
+		        $sql_and = 'z.pending';
+		        break;
+		}
+		
 		$sql = 'SELECT z.*, u.username, u.username_clean
 			FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
 			WHERE z.user_id = ' . $user->data['user_id'] . "

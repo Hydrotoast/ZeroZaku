@@ -20,6 +20,7 @@ class ucp_zebra_info
 			'title'		=> 'UCP_ZEBRA',
 			'version'	=> '1.0.0',
 			'modes'		=> array(
+				'pending'		=> array('title' => 'UCP_ZEBRA_PENDING', 'auth' => '', 'cat' => array('UCP_ZEBRA')),
 				'friends'		=> array('title' => 'UCP_ZEBRA_FRIENDS', 'auth' => '', 'cat' => array('UCP_ZEBRA')),
 				'foes'			=> array('title' => 'UCP_ZEBRA_FOES', 'auth' => '', 'cat' => array('UCP_ZEBRA')),
 			),
