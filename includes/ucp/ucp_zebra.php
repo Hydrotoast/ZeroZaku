@@ -47,8 +47,8 @@ class ucp_zebra
 			{
 				$data[$var] = request_var($var, $default, true);
 			}
-
-			if (!empty($data['add']) || sizeof($data['usernames']))
+			
+            if (!empty($data['add']) || sizeof($data['usernames']))
 			{
 				if (confirm_box(true))
 				{
@@ -67,56 +67,84 @@ class ucp_zebra
 					if ($data['add'])
 					{
 						$data['add'] = array_map('trim', array_map('utf8_clean_string', explode("\n", $data['add'])));
-
-						// Do these name/s exist on a list already? If so, ignore ... we could be
-						// 'nice' and automatically handle names added to one list present on
-						// the other (by removing the existing one) ... but I have a feeling this
-						// may lead to complaints
-						$sql = 'SELECT z.*, u.username, u.username_clean
-							FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
-							WHERE z.user_id = ' . $user->data['user_id'] . '
-								AND u.user_id = z.zebra_id';
-						$result = $db->sql_query($sql);
-
-						$friends = $foes = $pending = array();
-						while ($row = $db->sql_fetchrow($result))
-						{
-							if ($row['friend'])
-							{
-								$friends[] = utf8_clean_string($row['username']);
-							}
-							elseif ($row['foe'])
-							{
-								$foes[] = utf8_clean_string($row['username']);
-							}
-							elseif ($row['pending'])
-							{
-							    $pending[] = utf8_clean_string($row['username']);
-							}
-						}
-						$db->sql_freeresult($result);
 						
-						// remove friends from the username array
-						$n = sizeof($data['add']);
-						$data['add'] = array_diff($data['add'], $friends);
-
-						if (sizeof($data['add']) < $n && $mode == 'foes')
+						if($mode == 'pending')
 						{
-							$error[] = $user->lang['NOT_ADDED_FOES_FRIENDS'];
-						}
-
-						// remove foes from the username array
-						$n = sizeof($data['add']);
-						$data['add'] = array_diff($data['add'], $foes);
-
-						if (sizeof($data['add']) < $n && $mode == 'friends')
-						{
-							$error[] = $user->lang['NOT_ADDED_FRIENDS_FOES'];
-						}
+							 $sql = 'SELECT z.*, u.username, u.username_clean
+								FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
+								WHERE z.zebra_id = ' . $user->data['user_id'] . '
+									AND z.pending = 1
+									AND u.user_id = z.user_id';
+						    $result = $db->sql_query($sql);
 						
-					    // remove pending from the username array
-						$n = sizeof($data['add']);
-						$data['add'] = array_diff($data['add'], $pending);
+						    $requests = array();
+					        while($row = $db->sql_fetchrow($result))
+					        {
+					            $requests[] = utf8_clean_string($row['username']);
+					        }
+					        $db->sql_freeresult($result);
+					        
+					        // only add users who requested to be your friend
+					        $n = sizeof($data['add']);
+					        $data['add'] = array_intersect($data['add'], $requests);
+					        
+						    if (sizeof($data['add']) < $n)
+							{
+								$error[] = var_dump($requests);
+							}
+						}
+						else
+						{
+						    // Do these name/s exist on a list already? If so, ignore ... we could be
+							// 'nice' and automatically handle names added to one list present on
+							// the other (by removing the existing one) ... but I have a feeling this
+							// may lead to complaints
+							$sql = 'SELECT z.*, u.username, u.username_clean
+								FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
+								WHERE z.user_id = ' . $user->data['user_id'] . '
+									AND u.user_id = z.zebra_id';
+							$result = $db->sql_query($sql);
+	
+							$friends = $foes = $pending = array();
+							while ($row = $db->sql_fetchrow($result))
+							{
+								if ($row['friend'])
+								{
+									$friends[] = utf8_clean_string($row['username']);
+								}
+								elseif ($row['foe'])
+								{
+									$foes[] = utf8_clean_string($row['username']);
+								}
+								elseif ($row['pending'])
+								{
+								    $pending[] = utf8_clean_string($row['username']);
+								}
+							}
+							$db->sql_freeresult($result);
+						    
+							// remove friends from the username array
+							$n = sizeof($data['add']);
+							$data['add'] = array_diff($data['add'], $friends);
+	
+							if (sizeof($data['add']) < $n && $mode == 'foes')
+							{
+								$error[] = $user->lang['NOT_ADDED_FOES_FRIENDS'];
+							}
+	
+							// remove foes from the username array
+							$n = sizeof($data['add']);
+							$data['add'] = array_diff($data['add'], $foes);
+	
+							if (sizeof($data['add']) < $n && $mode == 'friends')
+							{
+								$error[] = $user->lang['NOT_ADDED_FRIENDS_FOES'];
+							}
+						    
+						    // remove pending from the username array
+						    $n = sizeof($data['add']);
+						    $data['add'] = array_diff($data['add'], $pending);
+						}
 
 						// remove the user himself from the username array
 						$n = sizeof($data['add']);
@@ -180,22 +208,37 @@ class ucp_zebra
 									$user_id_ary = array_diff($user_id_ary, $perms);
 									unset($perms);
 								}
-
+								
 								if (sizeof($user_id_ary))
 								{
-									$sql_mode = ($mode == 'friends') ? 'friend' : 'foe';
-
-									$sql_ary = array();
-									foreach ($user_id_ary as $zebra_id)
-									{
-										$sql_ary[] = array(
-											'user_id'		=> (int) $user->data['user_id'],
-											'zebra_id'		=> (int) $zebra_id,
-											$sql_mode		=> 1
-										);
-									}
-
-									$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+								    if($mode == 'pending')
+								    {
+								        foreach ($user_id_ary as $zebra_id)
+										{
+											$sql_ary = 'UPDATE ' . ZEBRA_TABLE . '
+												SET friend = 1, pending = 0
+												WHERE user_id = ' . (int) $zebra_id . '
+													AND zebra_id = ' . (int) $user->data['user_id'];
+											
+											$db->sql_query($sql_ary);
+										}
+								    }
+								    else
+								    {
+										$sql_mode = ($mode == 'friends') ? 'pending' : 'foe';
+										
+										$sql_ary = array();
+										foreach ($user_id_ary as $zebra_id)
+										{
+											$sql_ary[] = array(
+												'user_id'		=> (int) $user->data['user_id'],
+												'zebra_id'		=> (int) $zebra_id,
+												$sql_mode		=> 1
+											);
+										}
+										
+										$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+								    }
 
 									$updated = true;
 								}
@@ -211,7 +254,7 @@ class ucp_zebra
 					if ($updated)
 					{
 						meta_refresh(3, $this->u_action);
-						$message = $user->lang[$l_mode . '_UPDATED'] . '<br />' . implode('<br />', $error) . ((sizeof($error)) ? '<br />' : '') . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
+						$message = $user->lang[$l_mode . '_UPDATED'] . '<br />' . implode('<br />', $error) . ((sizeof($error)) ? '<br />' : '') . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
 						trigger_error($message);
 					}
 					else
@@ -231,14 +274,30 @@ class ucp_zebra
 			}
 		}
 
-		$sql_and = ($mode == 'friends') ? 'z.pending = 1' : 'z.foe = 1';
-		$sql = 'SELECT z.*, u.username, u.username_clean
-			FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
-			WHERE z.user_id = ' . $user->data['user_id'] . "
-				AND $sql_and
-				AND u.user_id = z.zebra_id
-			ORDER BY u.username_clean ASC";
-		$result = $db->sql_query($sql);
+		if($mode == 'pending')
+		{
+            $sql = 'SELECT z.*, u.username, u.username_clean
+				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
+				WHERE z.zebra_id = ' . $user->data['user_id'] . '
+					AND z.pending = 1
+					AND u.user_id = z.user_id
+				ORDER BY u.username_clean ASC';
+		    $result = $db->sql_query($sql);
+		}
+		else
+		{
+			$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
+			$sql = 'SELECT z.*, u.username, u.username_clean
+				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
+				WHERE ( z.user_id = ' . $user->data['user_id'] . '
+					AND ' . $sql_and . '
+					AND u.user_id = z.zebra_id )
+						OR ( z.zebra_id = ' . $user->data['user_id'] . '
+							AND ' . $sql_and . '
+							AND u.user_id = z.user_id )
+				ORDER BY u.username_clean ASC';
+			$result = $db->sql_query($sql);
+		}
 
 		$s_username_options = '';
 		while ($row = $db->sql_fetchrow($result))
@@ -252,7 +311,7 @@ class ucp_zebra
 
 			'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=add'),
 
-			'S_USERNAME_OPTIONS'	=> ($mode == 'pending') ? '' : $s_username_options,
+			'S_USERNAME_OPTIONS'	=> $s_username_options,
 			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
 			'S_UCP_ACTION'			=> $this->u_action)
 		);
