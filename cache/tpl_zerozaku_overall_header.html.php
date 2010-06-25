@@ -211,14 +211,19 @@
 
 			</div>
 		</div>
-		<?php } if (! $this->_rootref['S_IS_BOT'] && $this->_rootref['S_USER_LOGGED_IN'] && $this->_rootref['S_DISPLAY_PM']) {  if ($this->_rootref['S_USER_NEW_PRIVMSG']) {  ?>
+		<?php } if (! $this->_rootref['S_IS_BOT'] && $this->_rootref['S_USER_LOGGED_IN']) {  if ($this->_rootref['NEW_REQUESTS']) {  ?>
 
 				<div class="panel info">
-					<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/mail_receive.png" alt="<?php echo ((isset($this->_rootref['L_UNREAD_MESSAGES'])) ? $this->_rootref['L_UNREAD_MESSAGES'] : ((isset($user->lang['UNREAD_MESSAGES'])) ? $user->lang['UNREAD_MESSAGES'] : '{ UNREAD_MESSAGES }')); ?>" /><p><a href="<?php echo (isset($this->_rootref['U_PRIVATEMSGS'])) ? $this->_rootref['U_PRIVATEMSGS'] : ''; ?>"><?php echo ((isset($this->_rootref['L_YOU_NEW_PM'])) ? $this->_rootref['L_YOU_NEW_PM'] : ((isset($user->lang['YOU_NEW_PM'])) ? $user->lang['YOU_NEW_PM'] : '{ YOU_NEW_PM }')); ?></a></p>
+					<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/info.png" /><p><a href="<?php echo (isset($this->_rootref['U_REQUESTS_LIST'])) ? $this->_rootref['U_REQUESTS_LIST'] : ''; ?>"><?php echo (isset($this->_rootref['NEW_REQUESTS'])) ? $this->_rootref['NEW_REQUESTS'] : ''; ?></a></p>
 				</div>
 			<?php } if ($this->_rootref['SIMPLE_COMMENT_ENABLED'] && ! $this->_rootref['S_NO_NEW_COMMENTS']) {  ?>
 
 				<div class="panel info">
 					<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/comments.png" alt="<?php echo ((isset($this->_rootref['L_UNREAD_MESSAGES'])) ? $this->_rootref['L_UNREAD_MESSAGES'] : ((isset($user->lang['UNREAD_MESSAGES'])) ? $user->lang['UNREAD_MESSAGES'] : '{ UNREAD_MESSAGES }')); ?>" /><p><a href="<?php echo (isset($this->_rootref['U_COMMENTS'])) ? $this->_rootref['U_COMMENTS'] : ''; ?>"><?php echo ((isset($this->_rootref['L_TOTAL_COMMENT'])) ? $this->_rootref['L_TOTAL_COMMENT'] : ((isset($user->lang['TOTAL_COMMENT'])) ? $user->lang['TOTAL_COMMENT'] : '{ TOTAL_COMMENT }')); ?></a></p>
+				</div>
+			<?php } if ($this->_rootref['S_USER_NEW_PRIVMSG'] && $this->_rootref['S_DISPLAY_PM']) {  ?>
+
+				<div class="panel info">
+					<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/mail_receive.png" alt="<?php echo ((isset($this->_rootref['L_UNREAD_MESSAGES'])) ? $this->_rootref['L_UNREAD_MESSAGES'] : ((isset($user->lang['UNREAD_MESSAGES'])) ? $user->lang['UNREAD_MESSAGES'] : '{ UNREAD_MESSAGES }')); ?>" /><p><a href="<?php echo (isset($this->_rootref['U_PRIVATEMSGS'])) ? $this->_rootref['U_PRIVATEMSGS'] : ''; ?>"><?php echo ((isset($this->_rootref['L_YOU_NEW_PM'])) ? $this->_rootref['L_YOU_NEW_PM'] : ((isset($user->lang['YOU_NEW_PM'])) ? $user->lang['YOU_NEW_PM'] : '{ YOU_NEW_PM }')); ?></a></p>
 				</div>
 			<?php } } ?>
