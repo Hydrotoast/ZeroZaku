@@ -928,6 +928,12 @@ $lang = array_merge($lang, array(
 
 ));
 
+// FRIEND REQUESTS
+$lang = array_merge($lang, array(
+    'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
+	'NEW_FRIEND_REQUESTS'			=> 'You have %s new friend requests.',
+	'NO_FRIEND_REQUESTS'			=> 'You have no new friend requests.',
+));
 
 // XS Syntax Highlighter
 $lang = array_merge($lang, array(
@@ -946,10 +952,6 @@ $lang = array_merge($lang, array(
 	'XS_SH_TAG_VERSION'	=> 'Displays BBCode (Hooker) Version information: [version][/version] or [version /]',
 	'XS_SH_TAG_SYNTAX'	=> '<b>Syntax Highlighting</b>: [syntax="php"] code in here [/syntax] or [syntax lang="php" filename="file.php" start="10"] code in here [/syntax]',
 ));
-
-
-
-
 
 // BEGIN mChat Mod
 $lang = array_merge($lang, array(

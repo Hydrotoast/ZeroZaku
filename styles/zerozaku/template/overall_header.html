@@ -205,16 +205,22 @@
 		</div>
 		<!-- ENDIF -->
 
-		<!-- IF not S_IS_BOT && S_USER_LOGGED_IN && S_DISPLAY_PM -->
-			<!-- IF S_USER_NEW_PRIVMSG -->
+		<!-- IF not S_IS_BOT && S_USER_LOGGED_IN -->			
+			<!-- IF NEW_REQUESTS -->
 				<div class="panel info">
-					<img src="{T_THEME_PATH}/images/mail_receive.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_PRIVATEMSGS}">{L_YOU_NEW_PM}</a></p>
+					<img src="{T_THEME_PATH}/images/info.png" /><p><a href="{U_REQUESTS_LIST}">{NEW_REQUESTS}</a></p>
 				</div>
 			<!-- ENDIF -->
 			
 			<!-- IF SIMPLE_COMMENT_ENABLED && not S_NO_NEW_COMMENTS -->
 				<div class="panel info">
 					<img src="{T_THEME_PATH}/images/comments.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_COMMENTS}">{L_TOTAL_COMMENT}</a></p>
+				</div>
+			<!-- ENDIF -->
+			
+			<!-- IF S_USER_NEW_PRIVMSG && S_DISPLAY_PM -->
+				<div class="panel info">
+					<img src="{T_THEME_PATH}/images/mail_receive.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_PRIVATEMSGS}">{L_YOU_NEW_PM}</a></p>
 				</div>
 			<!-- ENDIF -->
 		<!-- ENDIF -->

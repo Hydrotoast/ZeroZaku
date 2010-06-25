@@ -27,6 +27,8 @@ class ucp_zebra
 	function main($id, $mode)
 	{
 		global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
+		
+		include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 		$submit	= (isset($_POST['submit']) || isset($_GET['add']) || isset($_GET['remove'])) ? true : false;
 		$s_hidden_fields = '';
@@ -55,11 +57,26 @@ class ucp_zebra
 					// Remove users
 					if (!empty($data['usernames']))
 					{
-						$sql = 'DELETE FROM ' . ZEBRA_TABLE . '
-							WHERE user_id = ' . $user->data['user_id'] . '
-								AND ' . $db->sql_in_set('zebra_id', $data['usernames']);
-						$db->sql_query($sql);
+					    if($mode == 'pending')
+					    {
+					    	$sql = 'DELETE FROM ' . ZEBRA_TABLE . '
+								WHERE zebra_id = ' . $user->data['user_id'] . '
+									AND ' . $db->sql_in_set('user_id', $data['usernames']) . '
+									AND pending = 1';
+					    }
+					    else
+					    {
+							$sql = 'DELETE FROM ' . ZEBRA_TABLE . '
+								WHERE ( user_id = ' . $user->data['user_id'] . '
+									AND ' . $db->sql_in_set('zebra_id', $data['usernames']) . '
+									AND pending = 0 )
+										OR ( zebra_id = ' . $user->data['user_id'] . '
+											AND ' . $db->sql_in_set('user_id', $data['usernames']) . '
+											AND pending = 0 )';
+					    }
 
+					    $db->sql_query($sql);
+					    
 						$updated = true;
 					}
 
@@ -144,6 +161,11 @@ class ucp_zebra
 						    // remove pending from the username array
 						    $n = sizeof($data['add']);
 						    $data['add'] = array_diff($data['add'], $pending);
+						    
+						    if (sizeof($data['add']) < $n && $mode == 'friends')
+							{
+								$error[] = $user->lang['NOT_ADDED_FRIENDS_PENDING'];
+							}
 						}
 
 						// remove the user himself from the username array
@@ -211,33 +233,68 @@ class ucp_zebra
 								
 								if (sizeof($user_id_ary))
 								{
-								    if($mode == 'pending')
+								    switch($mode)
 								    {
-								        foreach ($user_id_ary as $zebra_id)
-										{
-											$sql_ary = 'UPDATE ' . ZEBRA_TABLE . '
-												SET friend = 1, pending = 0
-												WHERE user_id = ' . (int) $zebra_id . '
-													AND zebra_id = ' . (int) $user->data['user_id'];
+									    case 'pending':
+									        $db->sql_transaction('begin');
+									        foreach ($user_id_ary as $zebra_id)
+											{
+												$sql = 'UPDATE ' . ZEBRA_TABLE . '
+													SET friend = 1, pending = 0
+													WHERE user_id = ' . (int) $zebra_id . '
+														AND zebra_id = ' . (int) $user->data['user_id'];
+												
+												$db->sql_query($sql);
+											}
+											$db->sql_transaction('commit');
+									        break;
+									    case 'friends':
+									        $sql = 'UPDATE ' . USERS_TABLE . '
+										    	SET friend_requests = friend_requests+1
+										    	WHERE user_id = ' . $user->data['user_id'];
+										    $db->sql_query($sql);
+									        
+											$sql_ary = array();
+											foreach ($user_id_ary as $zebra_id)
+											{
+												$sql_ary[] = array(
+													'user_id'		=> (int) $user->data['user_id'],
+													'zebra_id'		=> (int) $zebra_id,
+													'pending'		=> 1
+												);
+											}
 											
-											$db->sql_query($sql_ary);
-										}
-								    }
-								    else
-								    {
-										$sql_mode = ($mode == 'friends') ? 'pending' : 'foe';
+											$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+									        break;
+									    case 'foes':
+									        $sql_mode = ($mode == 'friends') ? 'pending' : 'foe';
 										
-										$sql_ary = array();
-										foreach ($user_id_ary as $zebra_id)
-										{
-											$sql_ary[] = array(
-												'user_id'		=> (int) $user->data['user_id'],
-												'zebra_id'		=> (int) $zebra_id,
-												$sql_mode		=> 1
-											);
-										}
-										
-										$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+											$db->sql_transaction('begin');
+											foreach ($user_id_ary as $zebra_id)
+											{
+											    $sql = 'DELETE FROM ' . ZEBRA_TABLE . '
+											    	WHERE ( user_id = ' . (int) $zebra_id . '
+											    		AND zebra_id = ' . (int) $user->data['user_id'] . '
+											    		AND pending = 1 )
+											    			OR ( user_id = ' . (int) $user->data['user_id'] . '
+													    		AND zebra_id = ' . (int) $zebra_id . '
+													    		AND pending = 1 )';
+											    $db->sql_query($sql);
+											}
+											$db->sql_transaction('commit');
+											
+											$sql_ary = array();
+											foreach ($user_id_ary as $zebra_id)
+											{
+												$sql_ary[] = array(
+													'user_id'		=> (int) $user->data['user_id'],
+													'zebra_id'		=> (int) $zebra_id,
+													'foe'		    => 1
+												);
+											}
+											
+											$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+										    break;
 								    }
 
 									$updated = true;
@@ -276,6 +333,11 @@ class ucp_zebra
 
 		if($mode == 'pending')
 		{
+		    $sql = 'UPDATE ' . USERS_TABLE . '
+		    	SET friend_requests = 0
+		    	WHERE user_id = ' . $user->data['user_id'];
+		    $db->sql_query($sql);
+		    
             $sql = 'SELECT z.*, u.username, u.username_clean
 				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
 				WHERE z.zebra_id = ' . $user->data['user_id'] . '
@@ -287,7 +349,7 @@ class ucp_zebra
 		else
 		{
 			$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
-			$sql = 'SELECT z.*, u.username, u.username_clean
+			$sql = 'SELECT z.*, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type
 				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
 				WHERE ( z.user_id = ' . $user->data['user_id'] . '
 					AND ' . $sql_and . '
@@ -302,7 +364,16 @@ class ucp_zebra
 		$s_username_options = '';
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$s_username_options .= '<option value="' . $row['zebra_id'] . '">' . $row['username'] . '</option>';
+		    $zebra_id = ($row['zebra_id'] == $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
+		    
+		    $template->assign_block_vars('zebra', array(
+		        'USER_ID'	        => $zebra_id,
+		        'USERNAME'	   	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
+		        'USERNAME_CLEAN'	=> get_username_string('username', $zebra_id, $row['username'], $row['user_colour']),
+		        'AVATAR'	    	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',
+		    
+		        'U_PROFILE'		=> get_username_string('profile', $zebra_id, $row['username'], $row['user_colour']),
+		    ));
 		}
 		$db->sql_freeresult($result);
 
@@ -311,7 +382,6 @@ class ucp_zebra
 
 			'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=add'),
 
-			'S_USERNAME_OPTIONS'	=> $s_username_options,
 			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
 			'S_UCP_ACTION'			=> $this->u_action)
 		);
