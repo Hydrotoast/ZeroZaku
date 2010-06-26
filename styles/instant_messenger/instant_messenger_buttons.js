@@ -213,7 +213,7 @@ function load_startIM( im_config) {
 		//
 		// First load of ONLINE LIST
 		//
-		//load_onlinelist();
+		load_onlinelist();
 		
 		
 		// Online List Chat Start

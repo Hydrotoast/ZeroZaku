@@ -57,18 +57,6 @@
 		return false;
 	}
 	
-	/*<?php if ($this->_rootref['S_USER_ALLOW_IM']) {  ?>
-
-	jQuery(document).ready( function() {
-		load_startIM({
-			rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>',
-			themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>',
-			enableSound: '<?php echo (isset($this->_rootref['S_USER_IM_SOUND'])) ? $this->_rootref['S_USER_IM_SOUND'] : ''; ?>' == '1' ? true : false,
-			rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'
-		});
-	});
-	<?php } ?>*/
-	
 	onload_functions.push("load_startIM({rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>', themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>', enableSound: '<?php echo (isset($this->_rootref['S_USER_IM_SOUND'])) ? $this->_rootref['S_USER_IM_SOUND'] : ''; ?>' == '1' ? true : false, rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'})");
 
 	/**
