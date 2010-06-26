@@ -57,7 +57,19 @@
 		return false;
 	}
 	
-	onload_functions.push( "load_startIM('<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>', '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>')");
+	/*<?php if ($this->_rootref['S_USER_ALLOW_IM']) {  ?>
+
+	jQuery(document).ready( function() {
+		load_startIM({
+			rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>',
+			themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>',
+			enableSound: '<?php echo (isset($this->_rootref['S_USER_IM_SOUND'])) ? $this->_rootref['S_USER_IM_SOUND'] : ''; ?>' == '1' ? true : false,
+			rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'
+		});
+	});
+	<?php } ?>*/
+	
+	onload_functions.push("load_startIM({rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>', themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>', enableSound: '<?php echo (isset($this->_rootref['S_USER_IM_SOUND'])) ? $this->_rootref['S_USER_IM_SOUND'] : ''; ?>' == '1' ? true : false, rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'})");
 
 	/**
 	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
@@ -90,7 +102,8 @@
 
 <script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/default.js"></script>
 
-<?php if ($this->_rootref['S_USER_LOGGED_IN'] && ! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger.js"></script><?php } if (! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger_buttons.js"></script><?php } ?>
+<?php if ($this->_rootref['S_USER_ALLOW_IM']) {  if ($this->_rootref['S_USER_LOGGED_IN'] && ! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger.js"></script><?php } if (! $this->_rootref['S_IS_BOT']) {  ?><script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/instant_messenger_buttons.js"></script><?php } } ?>
+
 
 <!--[if lt IE 7]>
   <link href="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
@@ -108,13 +121,13 @@
 <?php if ($this->_rootref['S_CONTENT_DIRECTION'] == ('rtl')) {  ?>
 
 <link href="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
-<?php } ?>
+<?php if ($this->_rootref['S_USER_ALLOW_IM']) {  ?><link href="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/instant_messenger_bidi.css" rel="stylesheet" type="text/css" media="screen, projection" /><?php } } ?>
 
 </head>
 
 <body id="phpbb" class="section-<?php echo (isset($this->_rootref['SCRIPT_NAME'])) ? $this->_rootref['SCRIPT_NAME'] : ''; ?> <?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>">
 	
-<?php if (! $this->_rootref['S_IS_BOT']) {  $this->_tpl_include('instant_messenger_bar.html'); } ?> 
+<?php if ($this->_rootref['S_USER_ALLOW_IM'] && ! $this->_rootref['S_IS_BOT']) {  $this->_tpl_include('instant_messenger_bar.html'); } ?> 
 	
 <div id="page-header">
 	<div class="inner">	

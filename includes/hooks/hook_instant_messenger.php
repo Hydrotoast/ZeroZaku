@@ -22,22 +22,35 @@ function im_extend_user_data()
 	
 	if ( $user->data['user_id'] == ANONYMOUS)
 	{
-		$user->data['user_deny_im'] = 1;
-		$user->data['user_status'] = '';
+		$row = array(
+			'user_deny_im' => 1,
+			'user_status' => '',
+			'user_sound_im' => '0',
+		);
 	}
 	else
 	{
-		$sql = "SELECT user_deny_im, user_status FROM " . USERS_IM_TABLE . " WHERE user_id = " . $user->data['user_id'];
+		$sql = "SELECT user_deny_im, user_status, user_sound_im FROM " . USERS_IM_TABLE . " WHERE user_id = " . $user->data['user_id'];
 		$result = $db->sql_query( $sql);
 		$row = $db->sql_fetchrow( $result);
-		$user->data['user_deny_im'] = isset( $row['user_deny_im']) ? $row['user_deny_im'] : 0;
-		$user->data['user_status'] = isset( $row['user_status']) && $row['user_status'] != '' ? $row['user_status'] : '&nbsp;';
+		if ( !isset( $row['user_deny_im']))
+		{
+			$sql = "INSERT INTO " . USERS_IM_TABLE . "
+				( user_id, user_deny_im, user_status, user_sound_im) VALUES
+				( '{$user->data['user_id']}', 0, null, 1)";
+			$db->sql_query( $sql);
+			
+			$row = array( 
+				'user_deny_im' => 0,
+				'user_status' => '',
+				'user_sound_im' => '1',
+			);
+		}
 		$db->sql_freeresult( $result);
-		unset( $sql);
-		unset( $row);
-		unset( $result);
 	}
 
+	$user->data = array_merge( $user->data, $row);
+	
 	return true;
 }
 

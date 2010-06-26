@@ -1,16 +1,32 @@
-var s_root_path = '';
-var s_theme_path = '';
-var enableSound = false;
 document.write( '<' + 'script type="text\/javascript" src="styles/instant_messenger/jquery.dbj_sound.js"><'+'\/'+'script>');
 document.write( '<' + 'script type="text\/javascript" src="styles/instant_messenger/jquery.hoverIntent.min.js"><'+'\/'+'script>');
 
+var im_cfg = {
+	rootPath: '',
+	themePath: '',
+	enableSound: false,
+	rtl: 'ltr'
+}
+
 /** Online list - function - start **/
-var load_onlinelist = function(){
+function showOnlineStatus(){jQuery(function($){
+	$('#im-online-list strong:last-child').html( $('#im-online-list ul').children('li').length);
+	
+	if ( $('#im-online-list ul').children('li').length == 0 ) {
+		s_src = '/images/im_list_offline.gif';
+	} else {
+		s_src = '/images/im_list_online.gif';
+	}
+	$('#im-online-list .button img').attr('src', im_cfg.themePath + s_src);
+	
+});}
+
+function load_onlinelist(){jQuery(function($){
 	$.ajax({
 		type	: 'post',
 		cache	: false,
 		async	: false,
-		url		: s_root_path + 'instant_messenger.php',
+		url		: im_cfg.rootPath + 'instant_messenger.php',
 		data	: { action: 'onlinelist' },
 		dataType: 'html',
 		error	: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -18,31 +34,25 @@ var load_onlinelist = function(){
 		},
 		success : function (data) {
 			$('#im-online-list ul').html(data);
+			$('#im-online-list ul li a').removeAttr('href').css('cursor', 'pointer');
 			
 		}
 	});
-	$('#im-online-list strong:last-child').html( $('#im-online-list ul').children('li').length);
 	
-	if ( $('#im-online-list ul').children('li').length == 0 ) {
-		s_src = s_theme_path + '/images/im_list_offline.gif';
-	} else {
-		s_src = s_theme_path + '/images/im_list_online.gif';
-	}
-	$('#im-online-list .button img').attr('src', s_src);
-	
+	showOnlineStatus();
 	
 	if ( $('div#im-online-list .block:visible')) {
-		setTimeout( 'load_onlinelist()', 30 * 1000);
+		setTimeout( 'load_onlinelist()', 3 * 1000);
 	}
-}
+});}
 
 /** News - load news **/
-var load_news = function() {
+function load_news() {jQuery(function($){
 	$('#im-news ul' ).html($.ajax({
 		type	: 'post',
 		cache	: false,
 		async	: false,
-		url		: s_root_path + 'instant_messenger.php',
+		url		: im_cfg.rootPath + 'instant_messenger.php',
 		error	: function(){
 			alert( 'AJAX Error:\nLoading News');
 		},
@@ -50,11 +60,10 @@ var load_news = function() {
 		dataType: 'html'
 		
 	}).responseText);
-	
-}
+});}
 
 /** Effects - hoverIntent **/
-var effect_hoverIntent = function(){
+function effect_hoverIntent(){jQuery(function($){
 	$('#site-bottom-bar-frame .block-box').hoverIntent( {
 		sensitivity: 3,
 		interval: 0,
@@ -86,11 +95,10 @@ var effect_hoverIntent = function(){
 		$(this).toggleClass( 'hovering');
 		load_onlinelist();
 	});
-	
-}
+});}
 
 /** Effects - click **/
-var effect_clicks = function() {
+function effect_clicks() {jQuery(function($){
 	$('#site-bottom-bar-frame .button').click( function(){
 		s_id = $(this).parents('.block-box').attr('id');
 
@@ -101,6 +109,9 @@ var effect_clicks = function() {
 		
 		if ( s_id == 'im-news') {
 			load_news();
+		}
+		if ( s_id == 'im-online-list') {
+			load_onlinelist();
 		}
 		
 		$('+ .block', this).slideToggle();
@@ -116,135 +127,174 @@ var effect_clicks = function() {
 			$('#site-bottom-bar-frame .block-box .button.hovering').removeClass('hovering');
 		}
 	});
-	
-}
+});}
 
-/** START - assign all event **/
-var load_startIM = function( root_path, theme_path) {
-//$(document).ready( function() {
-	s_root_path = root_path;
-	s_theme_path = theme_path;
-	
-	$.ajaxSetup({
-		type: 'post',
-		cache: false,
-		dataType: 'json',
-		url: s_root_path + 'instant_messenger.php'
-	});
-		
-	if ( enableSound)
-		$.dbj_sound.url('#im_msg_arrived');
-
-	// Rightside position of right side block
-	$(window).resize( function(){
-		$('#site-bottom-bar-frame .rightside').each( function(){
+function window_resize() {jQuery(function($){
+	if (im_cfg.rtl == 'ltr') {
+		$('.ltr #site-bottom-bar-frame .block-box.rightside').each(function(){
+			pos = $(this).position();
+			offset = $(this).outerWidth();
+			o_block = $('> .block', this);
+			o_block.css('left', pos.left + offset - o_block.outerWidth() - 1);
+		});
+	}
+	else {
+		$('.rtl #site-bottom-bar-frame .block-box.rightside').each(function(){
 			pos = $(this).position();
 			offset = $(this).outerWidth();
 			o_block = $('> .block', this);
 			
-			o_block.css('left', pos.left + offset - o_block.outerWidth()-1);
+			o_block.css('left', pos.left + 'px');
+		});
+		$('.rtl #site-bottom-bar-frame .block-box:not(.rightside)').each(function(){
+			pos = $(this).position();
+			offset = $(this).outerWidth();
+			o_block = $('> .block', this);
+			
+			o_block.css('left', (pos.left + offset - $(o_block).outerWidth() - 1) + 'px');
 			
 		});
-	});
-
-	
-	originalTitle = document.title;
-	$([window, document]).blur(function(){
-		windowFocus = false;
-	}).focus(function(){
-		windowFocus = true;
-		document.title = originalTitle;
-	});
-
-	// To allow hoverIntent effect uncomment next line
-	//effect_hoverIntent();
-	// To allow click effect uncomment next line
-	effect_clicks();
-		
-	if ( typeof startChatSession != 'function' ){
-		return true;
 	}
-	
-	if ( $('meta[http-equiv=refresh]').length > 0) {
-		$.ajax({
-			async: false,
-			data: {action: 'nothingtoreturn'},
-			/*error: function(){
-				alert( 'AJAX Error:\nInitialization');
-			},*/
-			success: function(data) {
-				username = data.username;
-			}
-		});
+});}
+
+
+/** START - assign all event **/
+function load_startIM( im_config) {
+
+	// Taking ownership over $ function, map $ as jQuery;
+	jQuery(function($){
 		
-		return true;
-	}
-	
-	startChatSession();
+		$.extend( im_cfg, im_config);
 
-	
-	//
-	// First load of ONLINE LIST
-	//
-	load_onlinelist();
-
-
-	// Online List Chat Start
-	$('#im-online-list ul li a').live( 'click', function(){
-		i_uid = $(this).attr('userid');
-		s_username = $(this).attr('title');
-		chatWith(i_uid, s_username);
-		$('#im-online-list.block-box .block:visible').slideToggle();
-		$('#im-nline-list.block-box .button.hovering').removeClass('hovering');
-		
-	});
-	
-	//
-	// STATUS BUTTONS
-	//
-	$('#im-status input[type=text]').keyup( function(){
-		if ( $(this).val().length == 0 ) {
-			$('#im-status input[name=add]:not(:disabled)').attr( 'disabled', 'disabled').css('opacity', '0.5');
-		} else {
-			$('#im-status input[name=add]:disabled').removeAttr('disabled').css('opacity', '1.0');
-		}
-	});
-	
-	$('#im-status input:disabled').css('opacity', '0.5');
-	$('#im-status .overlay-text').css({	lineHeight: parseInt($('#im-status .block').height())+'px'});
-
-	
-	$('#im-status input[type=submit]').click( function() {
-		/*$('#im-status .block').css('overflow', 'hidden');*/
-		$('#im-status .overlay').show().fadeOut(2500);
-		s_this = $(this).attr('name');
-		$.ajax({
-			url: s_root_path + 'instant_messenger.php',
+		//$('#site-bottom-bar-frame a').removeAttr('href');
+		$('body').css('padding-bottom', (parseInt($('body').css('padding-bottom')) + 26 )+ 'px' );
+		$.ajaxSetup({
+			type: 'post',
 			cache: false,
-			dataType: 'html',
-			data: { action: 'userstatus', mode: s_this, status_text: $('#status_text').val()},
-			error: function(){
-				alert( 'AJAX Error\nUpdate status');
-			},
-			success: function( data){
-				if( data === false ){
-					alert( 'Status update error');
-				} else {
-					if ( s_this == 'add') {
-						s_new_status = $('#status_text').val();
-						$('#im-status input[type=text]').val('');
-						$('#im-status input[name=delete]').fadeIn();
-					} else {
-						s_new_status = '&nbsp;';
-						$('#im-status input[name=delete]').fadeOut();
+			dataType: 'json',
+			url: im_cfg.rootPath + 'instant_messenger.php'
+		});
+		
+		if (im_cfg.enableSound) 
+			$.dbj_sound.url('#im_msg_arrived');
+		
+		// Stupid loading of CSS
+		$('#site-bottom-bar').removeAttr('style');
+		$('#site-bottom-bar-frame').removeAttr('style');
+		// Rightside position of right side block
+		// To allow hoverIntent effect uncomment next line
+		//effect_hoverIntent();
+		// To allow click effect uncomment next line
+		effect_clicks();
+		
+		if (typeof startChatSession != 'function') {
+			return true;
+		}
+		
+		if ($('meta[http-equiv=refresh]').length > 0) {
+			var r_content = $('meta[http-equiv=refresh]').attr('content');
+		
+			if (r_content.match(/^[0-9]{1,};url=.+$/i) !== null) {
+				$.ajax({
+					async: false,
+					data: {
+						action: 'nothingtoreturn'
+					},
+					success: function(data){
+						username = data.username;
 					}
-					$('.bubble_status').html( s_new_status);
-					$('#im-status .block .overlay').show().fadeOut(2300);
-					$('#im-status .block .overlay-text.'+s_this).show().fadeOut(2300);
-				}
+				});
+				
+				return true;
+			}
+		}
+		
+		startChatSession();
+		//
+		// First load of ONLINE LIST
+		//
+		//load_onlinelist();
+		
+		
+		// Online List Chat Start
+		$('#im-online-list ul li a').live('click', function(){
+			i_uid = $(this).attr('userid');
+			s_username = $(this).attr('title');
+			chatWith(i_uid, s_username);
+			$('#im-online-list.block-box .block:visible').slideToggle();
+			$('#im-nline-list.block-box .button.hovering').removeClass('hovering');
+			
+		});
+			
+		//
+		// STATUS BUTTONS
+		//
+		$('#im-status input[type=text]').keyup(function(){
+			if ($(this).val().length == 0) {
+				$('#im-status input[name=add]:not(:disabled)').attr('disabled', 'disabled').css('opacity', '0.5');
+			}
+			else {
+				$('#im-status input[name=add]:disabled').removeAttr('disabled').css('opacity', '1.0');
 			}
 		});
-		return false;
-	});
+		
+		$('#im-status input:disabled').css('opacity', '0.5');
+		$('#im-status .overlay-text').css({
+			lineHeight: parseInt($('#im-status .block').height()) + 'px'
+		});
+		
+		
+		$('#im-status input[type=submit]').click(function(){
+			/*$('#im-status .block').css('overflow', 'hidden');*/
+			$('#im-status .overlay').show().fadeOut(2500);
+			s_this = $(this).attr('name');
+			$.ajax({
+				url: im_cfg.rootPath + 'instant_messenger.php',
+				cache: false,
+				dataType: 'html',
+				data: {
+					action: 'userstatus',
+					mode: s_this,
+					status_text: $('#status_text').val()
+				},
+				error: function(){
+					alert('AJAX Error\nUpdate status');
+				},
+				success: function(data){
+					if (data === false) {
+						alert('Status update error');
+					}
+					else {
+						if (s_this == 'add') {
+							s_new_status = $('#status_text').val();
+							$('#im-status input[type=text]').val('');
+							$('#im-status input[name=delete]').fadeIn();
+						}
+						else {
+							s_new_status = '&nbsp;';
+							$('#im-status input[name=delete]').fadeOut();
+						}
+						$('.bubble_status').html(s_new_status);
+						$('#im-status .block .overlay').show().fadeOut(2300);
+						$('#im-status .block .overlay-text.' + s_this).show().fadeOut(2300);
+					}
+				}
+			});
+			return false;
+		});
 
+		originalTitle = document.title;
+		$([window, document]).blur(function(){
+			windowFocus = false;
+		}).focus(function(){
+			windowFocus = true;
+			document.title = originalTitle;
+		});
+		
+		setTimeout( 'window_resize()', 200);
+		$(window).resize(function(){
+			window_resize();
+		});
+		showOnlineStatus();
+	});
 }

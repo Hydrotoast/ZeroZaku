@@ -2,22 +2,30 @@
 /**
 *
 * @package phpBB3 instant messenger
-* @version $Id: instant messenger.php 0.4.0
-* @copyright (c) 2010 Kamahl & Culprit www.phpbb3hacks.com
+* @version $Id: instant messenger.php 0.4.2
+* @copyright (c) 2010 Gio Borje www.zerozaku.com
 *
 */
 
 /**
 * @ignore
 */
-define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
-$phpEx = substr(strrchr(__FILE__, '.'), 1);
-include_once($phpbb_root_path . 'common.' . $phpEx);
-include_once($phpbb_root_path . 'includes/functions_content.' . $phpEx);
-include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx); 
-include_once($phpbb_root_path . 'includes/message_parser.' . $phpEx);        
+if ( defined( 'IN_PHPBB'))
+{
+	define( 'IM_LOAD_ON_START', true);
+}
+else
+{
+	define('IN_PHPBB', true);
 
+	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
+	$phpEx = substr(strrchr(__FILE__, '.'), 1);
+
+	include_once($phpbb_root_path . 'common.' . $phpEx);
+	include_once($phpbb_root_path . 'includes/functions_content.' . $phpEx);
+	include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx); 
+	include_once($phpbb_root_path . 'includes/message_parser.' . $phpEx);        
+}
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
@@ -48,6 +56,10 @@ if (!isset( $_SESSION['openChatBoxes']) )
   $_SESSION['openChatBoxes'] = array();	
 }
 
+if ( defined( 'IM_LOAD_ON_START'))
+{
+	showOnlineList();
+}
 $action = request_var('action', '', true);
 
 switch( $action)
@@ -243,7 +255,7 @@ function closeChat()
 	$chatbox = request_var('chatbox', '', true);
 	unset($_SESSION['openChatBoxes'][$chatbox]);
 	
-	die("1");
+	die( "1");
 }    
 
 function showOnlineList()
@@ -255,14 +267,15 @@ function showOnlineList()
 	*/ 
   
 	// If ANONYMOUS return empty string
-	if ($user->data['user_id'] == ANONYMOUS || $user->data['user_deny_im'] == 1) 
+	if ($user->data['user_id'] == ANONYMOUS) 
  	{ 
- 		die('');
+ 		return;
  	}
 
  	include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
     
     $online_time = 300;
+    
     $where_in_only_friends = '';
     if ( $config['im_only_friends'] == 1)
     {
@@ -291,17 +304,19 @@ function showOnlineList()
     		AND s.session_time >= ' . (time() - $online_time) . '
     		AND s.session_user_id <> ' . ANONYMOUS . '
     		AND u.user_id <> ' .$user->data['user_id'] . ' 
-        AND u.user_type <> 2 ' . $where_in_only_friends . '         
+			AND u.user_type <> 2 ' . $where_in_only_friends . '         
     	ORDER BY u.username ASC';
-    $result = $db->sql_query($sql);
-    
+	$result = $db->sql_query($sql);
+
+	$show_uids_arr = array();
     while ($row = $db->sql_fetchrow($result))
     {            
-    	if ( $row['user_deny_im'] == 1 )
+    	if ( $row['user_deny_im'] == 1 || in_array( $row['user_id'], $show_uids_arr) )
     	{
     		continue;
     	}
-    	
+
+    	$show_uids_arr[] = $row['user_id'];
 		if ($row['session_time'] >= time() - 180) 
 		{
 			$img_status = $phpbb_root_path .'styles/'.$user->theme['theme_path'].'/theme/images/im_online.gif';
@@ -316,18 +331,20 @@ function showOnlineList()
     		'STATUS'		=> '<img src="' . $img_status . '" width="7" height="7" class="im_status" />',
     		'IMG_STATUS'	=> $img_status,
     		'USERNAME'		=> $row['username'],
-      	'USER_ID'		=> $row['user_id'],      
+			'USER_ID'		=> $row['user_id'],      
     	));  
     	
     }
 
     $db->sql_freeresult($result);      
       
-      
-	$template->set_filenames( array( 'body' => 'instant_messenger_online_body.html'));
-  
-	page_header();
-	page_footer();
+    if ( ! defined( 'IM_LOAD_ON_START'))
+    {
+		$template->set_filenames( array( 'body' => 'instant_messenger_online_body.html'));
+	  
+		page_header();
+		page_footer();
+    }
 }
 
 function displayNewestPosts()
@@ -394,7 +411,7 @@ function user_status()
 	switch ( $mode)
 	{
 		case 'add':
-			$status_text = $db->sql_escape(request_var('status_text','',true));
+			$status_text = filter_var($db->sql_escape(request_var('status_text','',true)), FILTER_SANITIZE_STRING);
 			
 			if ($status_text != '')
 			{
