@@ -279,13 +279,9 @@ function showOnlineList()
     $where_in_only_friends = '';
     if ( $config['im_only_friends'] == 1)
     {
-    	$sql = "SELECT zebra_id, user_id
-    			FROM " . ZEBRA_TABLE . "
-    			WHERE friend = 1 " .
-    			//" AND user_id = " . $user->data['user_id'];  // ONLY MY FRIENDS
-    			//" AND zebra_id = " . $user->data['user_id']; // I HAVE BEEN FRIEND BY
-    			//" AND ( user_id = {$user->data['user_id']} AND zebra_id = {$user->data['user_id']} )"; // FRIENDS BY BOTH
-    			" AND ( user_id = {$user->data['user_id']} OR zebra_id = {$user->data['user_id']} )"; // MY FRIENDS OR I HAVE BEEN FRIEND BY
+    	$sql = 'SELECT zebra_id, user_id FROM ' . ZEBRA_TABLE . '
+    		WHERE friend = 1 ' .
+    			"AND ( user_id = {$user->data['user_id']} OR zebra_id = {$user->data['user_id']} )"; // MY FRIENDS OR I HAVE BEEN FRIEND BY
     	$result = $db->sql_query( $sql);
 
     	$friends_ary = array();
@@ -295,6 +291,7 @@ function showOnlineList()
     		$friends_ary[] = $row['user_id'];
     	}
     	$db->sql_freeresult( $result);
+    	
     	$where_in_only_friends = ' AND ' . $db->sql_in_set( 'u.user_id', $friends_ary, false, true);
     }
     
