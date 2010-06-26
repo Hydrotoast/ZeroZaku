@@ -4380,17 +4380,20 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'T_UPLOAD'				=> $config['upload_path'],
 
 		'SITE_LOGO_IMG'			=> $user->img('site_logo', $config['sitename'] . ' - ' . $config['site_desc']),
-		// MOD :: INSTANT MESSENGER -- START
-        'S_SERVER_NAME'			=> $config['server_name'], 
-        'S_USER_STATUS'			=> $user->data['user_status'],
-		'S_USER_ALLOW_IM'		=> $user->data['user_deny_im'] == 0 ? true : false,
-        'U_COMPOSE_NEW'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;mode=compose'), 
-        'U_OUTBOX'				=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=outbox'),     
-        'U_SENT_MESSAGES'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=sentbox'),
-        'U_MANAGE_FRIENDS'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=friends'),
-        'U_MANAGE_BOOKMARKS'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=main&amp;mode=bookmarks'),
-        'U_ACCOUNT_SETTINGS'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=profile'),
-		// MOD :: INSTANT MESSENGER -- END
+		// BEGIN INSTANT MESSENGER
+		'S_SERVER_NAME'			=> $config['server_name'], 
+		'S_USER_STATUS'			=> $user->data['user_status'],
+		'S_ALLOW_IM'			=> $config['im_disable'] == 0 ? true : false,
+		'S_USER_ALLOW_IM'		=> $config['im_disable'] == 1 ? false : ( $config['im_override_cfg'] == 1 ? true : ( $user->data['user_deny_im'] == 0 ? true : false)), 
+		'S_USER_IM_SOUND'		=> $config['im_override_cfg'] == 1 ? ( $config['im_allow_sound'] == 1 ? '1' : '0') : ( $user->data['user_sound_im'] == 1 ? '1' : '0') ,
+		'U_COMPOSE_NEW'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;mode=compose'), 
+		'U_OUTBOX'				=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=outbox'),     
+		'U_SENT_MESSAGES'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;folder=sentbox'),
+		'U_MANAGE_FRIENDS'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=friends'),
+		'U_MANAGE_BOOKMARKS'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=main&amp;mode=bookmarks'),
+		'U_ACCOUNT_SETTINGS'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=profile'),
+		// END INSTANT MESSENGER
+
 
 		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),
 	));

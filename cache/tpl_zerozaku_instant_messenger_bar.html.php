@@ -150,13 +150,13 @@
 		<div class="block">
 			<h3><?php echo ((isset($this->_rootref['L_ONLINE'])) ? $this->_rootref['L_ONLINE'] : ((isset($user->lang['ONLINE'])) ? $user->lang['ONLINE'] : '{ ONLINE }')); ?></h3>
 			<div class="bcontent links">
-				<ul></ul>
+				<ul><?php $this->_tpl_include('instant_messenger_online_body.html'); ?></ul>
 			</div>
 		</div>
 	</div>
 <?php } ?>
 
-  <!--[if lt IE 7 ]>
+  	<!--[if lt IE 7 ]>
   	<div class="block-box rightside" id="im-browser-update">
   		<div class="button"><?php echo ((isset($this->_rootref['L_IM_UPDATE_BROSWER'])) ? $this->_rootref['L_IM_UPDATE_BROSWER'] : ((isset($user->lang['IM_UPDATE_BROSWER'])) ? $user->lang['IM_UPDATE_BROSWER'] : '{ IM_UPDATE_BROSWER }')); ?></div>
   		<div class="block" style="width:500px !important;">
@@ -166,6 +166,7 @@
   			</div>
   		</div>
   	</div>
+	
   <script type="text/javascript">
   	function move_bottom_bar()
   	{
