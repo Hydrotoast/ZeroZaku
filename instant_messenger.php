@@ -280,8 +280,8 @@ function showOnlineList()
     if ( $config['im_only_friends'] == 1)
     {
     	$sql = 'SELECT zebra_id, user_id FROM ' . ZEBRA_TABLE . '
-    		WHERE friend = 1 ' .
-    			"AND ( user_id = {$user->data['user_id']} OR zebra_id = {$user->data['user_id']} )"; // MY FRIENDS OR I HAVE BEEN FRIEND BY
+    			WHERE friend = 1 ' .
+    				"AND ( user_id = {$user->data['user_id']} OR zebra_id = {$user->data['user_id']} )"; // MY FRIENDS OR I HAVE BEEN FRIEND BY
     	$result = $db->sql_query( $sql);
 
     	$friends_ary = array();
@@ -291,11 +291,10 @@ function showOnlineList()
     		$friends_ary[] = $row['user_id'];
     	}
     	$db->sql_freeresult( $result);
-    	
     	$where_in_only_friends = ' AND ' . $db->sql_in_set( 'u.user_id', $friends_ary, false, true);
     }
     
-    $sql = 'SELECT u.user_id, u.user_type, u.username, u.user_avatar, u.user_avatar_type, s.session_user_id, s.session_time, ims.user_deny_im
+    $sql = 'SELECT u.user_id, u.user_type, u.username, u.user_avatar, u.user_avatar_type, s.session_user_id, s.session_time, ims.user_deny_im, ims.user_status
     	FROM ' . SESSIONS_TABLE . ' AS s, ' . USERS_TABLE . ' AS u LEFT OUTER JOIN ' . USERS_IM_TABLE . ' AS ims ON ims.user_id = u.user_id
     	WHERE u.user_id = s.session_user_id
     		AND s.session_time >= ' . (time() - $online_time) . '
@@ -325,8 +324,10 @@ function showOnlineList()
 		
 		$template->assign_block_vars('online_row', array(
     		'AVATAR'		=> (!empty($row['user_avatar'])) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 22, 22) : '<img src="' . $phpbb_root_path .'/styles/'.$user->theme['theme_path'].'/theme/images/im_no_avatar.gif" width="22" height="22" />',
-    		'STATUS'		=> '<img src="' . $img_status . '" width="7" height="7" class="im_status" />',
     		'IMG_STATUS'	=> $img_status,
+    		'STATUS'		=> '<img src="' . $img_status . '" width="7" height="7" class="im_status" />',
+		    'USER_STATUS'	=> $row['user_status'],
+		
     		'USERNAME'		=> $row['username'],
 			'USER_ID'		=> $row['user_id'],      
     	));  
@@ -410,7 +411,7 @@ function user_status()
 		case 'add':
 			$status_text = filter_var($db->sql_escape(request_var('status_text','',true)), FILTER_SANITIZE_STRING);
 			
-			if ($status_text != '')
+			if ($status_text != '' && strlen($status_text) <= 24)
 			{
 			$sql_update = "UPDATE " . USERS_IM_TABLE . "
 					SET user_status = '" . $status_text . "'
