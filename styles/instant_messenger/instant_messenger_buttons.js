@@ -1,12 +1,10 @@
-document.write( '<' + 'script type="text\/javascript" src="styles/instant_messenger/jquery.dbj_sound.js"><'+'\/'+'script>');
 document.write( '<' + 'script type="text\/javascript" src="styles/instant_messenger/jquery.hoverIntent.min.js"><'+'\/'+'script>');
 
 var im_cfg = {
 	rootPath: '',
 	themePath: '',
-	enableSound: false,
 	rtl: 'ltr'
-}
+};
 
 /** Online list - function - start **/
 function showOnlineStatus(){jQuery(function($){
@@ -42,7 +40,7 @@ function load_onlinelist(){jQuery(function($){
 	showOnlineStatus();
 	
 	if ( $('div#im-online-list .block:visible')) {
-		setTimeout( 'load_onlinelist()', 3 * 1000);
+		setTimeout( 'load_onlinelist()', 60 * 1000);
 	}
 });}
 
@@ -174,9 +172,6 @@ function load_startIM( im_config) {
 			dataType: 'json',
 			url: im_cfg.rootPath + 'instant_messenger.php'
 		});
-		
-		if (im_cfg.enableSound) 
-			$.dbj_sound.url('#im_msg_arrived');
 		
 		// Stupid loading of CSS
 		$('#site-bottom-bar').removeAttr('style');

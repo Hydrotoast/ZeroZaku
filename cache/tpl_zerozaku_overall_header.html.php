@@ -57,7 +57,7 @@
 		return false;
 	}
 	
-	onload_functions.push("load_startIM({rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>', themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>', enableSound: '<?php echo (isset($this->_rootref['S_USER_IM_SOUND'])) ? $this->_rootref['S_USER_IM_SOUND'] : ''; ?>' == '1' ? true : false, rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'})");
+	onload_functions.push("load_startIM({rootPath: '<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>', themePath: '<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>', rtl: '<?php echo (isset($this->_rootref['S_CONTENT_DIRECTION'])) ? $this->_rootref['S_CONTENT_DIRECTION'] : ''; ?>'})");
 
 	/**
 	* New function for handling multiple calls to window.onload and window.unload by pentapenguin

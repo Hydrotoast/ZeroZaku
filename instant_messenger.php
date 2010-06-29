@@ -326,7 +326,6 @@ function showOnlineList()
     		'AVATAR'		=> (!empty($row['user_avatar'])) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 22, 22) : '<img src="' . $phpbb_root_path .'/styles/'.$user->theme['theme_path'].'/theme/images/im_no_avatar.gif" width="22" height="22" />',
     		'IMG_STATUS'	=> $img_status,
     		'STATUS'		=> '<img src="' . $img_status . '" width="7" height="7" class="im_status" />',
-		    'USER_STATUS'	=> $row['user_status'],
 		
     		'USERNAME'		=> $row['username'],
 			'USER_ID'		=> $row['user_id'],      

@@ -12,12 +12,14 @@
        minHeight: 40,
        buffer: 0
     }, options);
+    
     return this.each(function(){
       var textarea = $(this); //cache the textarea
       var minh = textarea.height()>settings.minHeight?textarea.height():settings.minHeight;
       var w = parseInt(textarea.width()||textarea.css("width")); //get the width of the textarea
       var div = $("<div class='faketextarea' style='position:absolute;left:-10000px;width:" + w + "px;'></div>");
       textarea.after(div);
+      
       var resizeBox = function(){
         var html = textarea.val().replace(/(<|>)/g, '').replace(/\n/g,"<br>|");
         if(html!=div.html()) {
@@ -34,6 +36,7 @@
           textarea.css({"height":newh+"px"});
         }
       };
+      
       textarea.keydown(resizeBox);
       textarea.keyup(resizeBox);
       resizeBox();
@@ -521,7 +524,7 @@ function insert_text(text, spaces, popup)
 		var sel_start = textarea.selectionStart;
 		var sel_end = textarea.selectionEnd;
 
-		mozWrap(textarea, text, '')
+		mozWrap(textarea, text, '');
 		textarea.selectionStart = sel_start + text.length;
 		textarea.selectionEnd = sel_end + text.length;
 	}
@@ -636,7 +639,7 @@ function mozWrap(txtarea, open, close)
 	}
 
 	var s1 = (txtarea.value).substring(0,selStart);
-	var s2 = (txtarea.value).substring(selStart, selEnd)
+	var s2 = (txtarea.value).substring(selStart, selEnd);
 	var s3 = (txtarea.value).substring(selEnd, selLength);
 
 	txtarea.value = s1 + open + s2 + close + s3;
