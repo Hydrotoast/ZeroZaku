@@ -260,7 +260,7 @@ $lang = array_merge($lang, array(
 	'G_GUESTS'					=> 'Guests',
 	'G_REGISTERED'				=> 'Registered users',
 	'G_REGISTERED_COPPA'		=> 'Registered COPPA users',
-	'G_GLOBAL_MODERATORS'		=> 'Global moderators',
+	'G_GLOBAL_MODERATORS'		=> 'Moderators',
 	'G_NEWLY_REGISTERED'		=> 'Newly registered users',
 
 	'HIDDEN_USERS_ONLINE'			=> '%d hidden users online',
