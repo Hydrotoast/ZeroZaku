@@ -1,6 +1,6 @@
 <?php if (!defined('IN_PHPBB')) exit; ?><!--version $Id: top_poster.html 481 2009-03-15 23:16:32Z Christian_N $ //-->
 <?php if (sizeof($this->_tpldata['top_poster'])) {  ?>
-<?php echo (isset($this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_L'])) ? $this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_L'] : ''; ?><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/portal/sidebar_users.png" width="16px" height="16px" alt=""/>&nbsp;<?php echo ((isset($this->_rootref['L_TOP_POSTER'])) ? $this->_rootref['L_TOP_POSTER'] : ((isset($user->lang['TOP_POSTER'])) ? $user->lang['TOP_POSTER'] : '{ TOP_POSTER }')); echo (isset($this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_R'])) ? $this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_R'] : ''; ?>
+<?php echo (isset($this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_L'])) ? $this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_L'] : ''; ?><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/portal/sidebar_users.png" alt=""/>&nbsp;<?php echo ((isset($this->_rootref['L_TOP_POSTER'])) ? $this->_rootref['L_TOP_POSTER'] : ((isset($user->lang['TOP_POSTER'])) ? $user->lang['TOP_POSTER'] : '{ TOP_POSTER }')); echo (isset($this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_R'])) ? $this->_tpldata['DEFINE']['.']['TBL_BLOCK_H_R'] : ''; ?>
 	<table class="table1" cellspacing="1">
 		<thead>
 			<tr>
