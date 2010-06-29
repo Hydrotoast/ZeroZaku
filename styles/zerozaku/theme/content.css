@@ -103,6 +103,10 @@ li.header dl.icon dt {
 	width: auto;
 }
 
+.forabg-sidebar h2 img {
+	margin-right: 4px;
+}
+
 .forabg-sidebar ul.topiclist dd {
 	margin-bottom: 0;
 	padding: 6px 10px;
