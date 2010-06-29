@@ -1094,6 +1094,7 @@ h3.kb_cat img {
 }
 
 #site-bottom-bar-frame .rightside .block {
+	border-left: 1px solid #999999;
 	right: +1px;
 	margin-right: -1px;
 }
