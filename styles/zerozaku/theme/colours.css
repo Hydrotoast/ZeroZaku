@@ -151,8 +151,12 @@ h2.pro-header, h3.pro-header {
 }
 
 .forabg-sidebar {
-	background-color: #D0D0D0;
-	background-image: url("{T_THEME_PATH}/images/bg_list.gif");
+	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0;
+	border-color: #F0F0F0;
+}
+
+.forabg-sidebar.smooth {
+	background-image: none;
 }
 
 .forumbg {
@@ -214,7 +218,7 @@ ul.navlinks {border-bottom-color: #FFFFFF;}
 /* Table styles
 ----------------------------------------*/
 table.table1 thead th {
-	background-color: #BBBBBB;
+	background-color: #E0E0E0;
 	color: #212121;
 }
 
@@ -351,12 +355,12 @@ a:active	{ color: #0D4473; }
 }
 
 /* Links for forum/topic lists */
-a.forumtitle {color: #2D587E;}
+a.forumtitle {color: #212121;}
 /* a.forumtitle:visited { color: #2D587E; } */
 a.forumtitle:hover {color: #FF0000;}
 a.forumtitle:active {color: #2D587E;}
 
-a.topictitle, a.topictitle h3 { color: #2D587E; }
+a.topictitle, a.topictitle h3 { color: #212121; }
 a.topictitle:hover, a.topictitle:active, a.topictitle:hover h3, a.topictitle:active h3 { color: #FF0000 }
 
 /* a.topictitle:visited { color: #368AD2; } */

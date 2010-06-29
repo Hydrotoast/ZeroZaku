@@ -44,7 +44,7 @@
 					<li><a href="<?php echo (isset($this->_rootref['U_MANAGE_FRIENDS'])) ? $this->_rootref['U_MANAGE_FRIENDS'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_MANAGE_FRIENDS'])) ? $this->_rootref['L_MANAGE_FRIENDS'] : ((isset($user->lang['MANAGE_FRIENDS'])) ? $user->lang['MANAGE_FRIENDS'] : '{ MANAGE_FRIENDS }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_MANAGE_FRIENDS'])) ? $this->_rootref['L_MANAGE_FRIENDS'] : ((isset($user->lang['MANAGE_FRIENDS'])) ? $user->lang['MANAGE_FRIENDS'] : '{ MANAGE_FRIENDS }')); ?></a></li>
 					<li><a href="<?php echo (isset($this->_rootref['U_ACCOUNT_SETTINGS'])) ? $this->_rootref['U_ACCOUNT_SETTINGS'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_ACCOUNT_SETTINGS'])) ? $this->_rootref['L_ACCOUNT_SETTINGS'] : ((isset($user->lang['ACCOUNT_SETTINGS'])) ? $user->lang['ACCOUNT_SETTINGS'] : '{ ACCOUNT_SETTINGS }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_ACCOUNT_SETTINGS'])) ? $this->_rootref['L_ACCOUNT_SETTINGS'] : ((isset($user->lang['ACCOUNT_SETTINGS'])) ? $user->lang['ACCOUNT_SETTINGS'] : '{ ACCOUNT_SETTINGS }')); ?></a></li>                    
 					<li><a href="<?php echo (isset($this->_rootref['U_MANAGE_BOOKMARKS'])) ? $this->_rootref['U_MANAGE_BOOKMARKS'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_MANAGE_BOOKMARKS'])) ? $this->_rootref['L_MANAGE_BOOKMARKS'] : ((isset($user->lang['MANAGE_BOOKMARKS'])) ? $user->lang['MANAGE_BOOKMARKS'] : '{ MANAGE_BOOKMARKS }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_MANAGE_BOOKMARKS'])) ? $this->_rootref['L_MANAGE_BOOKMARKS'] : ((isset($user->lang['MANAGE_BOOKMARKS'])) ? $user->lang['MANAGE_BOOKMARKS'] : '{ MANAGE_BOOKMARKS }')); ?></a></li>
-					<li><a href="<?php echo (isset($this->_rootref['U_SEARCH_SELF'])) ? $this->_rootref['U_SEARCH_SELF'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_SEARCH_SELF'])) ? $this->_rootref['L_SEARCH_SELF'] : ((isset($user->lang['SEARCH_SELF'])) ? $user->lang['SEARCH_SELF'] : '{ SEARCH_SELF }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_SEARCH_SELF'])) ? $this->_rootref['L_SEARCH_SELF'] : ((isset($user->lang['SEARCH_SELF'])) ? $user->lang['SEARCH_SELF'] : '{ SEARCH_SELF }')); ?></a></li>
+					<?php if ($this->_rootref['S_DISPLAY_SEARCH'] && ! $this->_rootref['S_IN_SEARCH']) {  ?><li><a href="<?php echo (isset($this->_rootref['U_SEARCH_SELF'])) ? $this->_rootref['U_SEARCH_SELF'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_SEARCH_SELF'])) ? $this->_rootref['L_SEARCH_SELF'] : ((isset($user->lang['SEARCH_SELF'])) ? $user->lang['SEARCH_SELF'] : '{ SEARCH_SELF }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_SEARCH_SELF'])) ? $this->_rootref['L_SEARCH_SELF'] : ((isset($user->lang['SEARCH_SELF'])) ? $user->lang['SEARCH_SELF'] : '{ SEARCH_SELF }')); ?></a></li><?php } ?>
 					<li><a href="<?php echo (isset($this->_rootref['U_LOGIN_LOGOUT'])) ? $this->_rootref['U_LOGIN_LOGOUT'] : ''; ?>" title="<?php echo ((isset($this->_rootref['L_LOGIN_LOGOUT'])) ? $this->_rootref['L_LOGIN_LOGOUT'] : ((isset($user->lang['LOGIN_LOGOUT'])) ? $user->lang['LOGIN_LOGOUT'] : '{ LOGIN_LOGOUT }')); ?>">&raquo; <?php echo ((isset($this->_rootref['L_LOGIN_LOGOUT'])) ? $this->_rootref['L_LOGIN_LOGOUT'] : ((isset($user->lang['LOGIN_LOGOUT'])) ? $user->lang['LOGIN_LOGOUT'] : '{ LOGIN_LOGOUT }')); ?></a></li>
 		    </ul>
 			</div>
@@ -108,25 +108,12 @@
 		</div>
 	</div>
 	
+	<?php if ($this->_rootref['S_DISPLAY_SEARCH'] && ! $this->_rootref['S_IN_SEARCH']) {  ?>
 	<div class="block-box" id="im-search">
 		<div class="button"><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/06-magnifying-glass.png" width="16" alt="<?php echo ((isset($this->_rootref['L_SEARCH'])) ? $this->_rootref['L_SEARCH'] : ((isset($user->lang['SEARCH'])) ? $user->lang['SEARCH'] : '{ SEARCH }')); ?>" style="margin-top: 4px;" /></div>
 		<div class="block">
 			<h3><?php echo ((isset($this->_rootref['L_SEARCH'])) ? $this->_rootref['L_SEARCH'] : ((isset($user->lang['SEARCH'])) ? $user->lang['SEARCH'] : '{ SEARCH }')); ?></h3>
 			<div class="bcontent">
-				<form method="get" action="http://www.google.com/search">
-					<fieldset>
-						<dl>
-							<dt>
-								<input type="text" name="q" maxlength="128" class="inputbox search" value="<?php echo ((isset($this->_rootref['L_GOOGLE_SEARCH'])) ? $this->_rootref['L_GOOGLE_SEARCH'] : ((isset($user->lang['GOOGLE_SEARCH'])) ? $user->lang['GOOGLE_SEARCH'] : '{ GOOGLE_SEARCH }')); ?>" onclick="if(this.value=='<?php echo ((isset($this->_rootref['L_GOOGLE_SEARCH'])) ? $this->_rootref['L_GOOGLE_SEARCH'] : ((isset($user->lang['GOOGLE_SEARCH'])) ? $user->lang['GOOGLE_SEARCH'] : '{ GOOGLE_SEARCH }')); ?>')this.value='';" onblur="if(this.value=='')this.value='<?php echo ((isset($this->_rootref['L_GOOGLE_SEARCH'])) ? $this->_rootref['L_GOOGLE_SEARCH'] : ((isset($user->lang['GOOGLE_SEARCH'])) ? $user->lang['GOOGLE_SEARCH'] : '{ GOOGLE_SEARCH }')); ?>';" />
-							</dt>
-						</dl>
-						<p>
-							<input type="submit" value="<?php echo ((isset($this->_rootref['L_GOOGLE_SEARCH'])) ? $this->_rootref['L_GOOGLE_SEARCH'] : ((isset($user->lang['GOOGLE_SEARCH'])) ? $user->lang['GOOGLE_SEARCH'] : '{ GOOGLE_SEARCH }')); ?>" class="button2" style="margin-bottom:3px;" />
-							<input type="radio" name="sitesearch" value="<?php echo (isset($this->_rootref['S_SERVER_NAME'])) ? $this->_rootref['S_SERVER_NAME'] : ''; ?>" style="display:none" checked="checked" />
-						</p>
-					</fieldset>
-				</form>
-			<?php if ($this->_rootref['S_DISPLAY_SEARCH'] && ! $this->_rootref['S_IN_SEARCH']) {  ?>
 				<form action="<?php echo (isset($this->_rootref['U_SEARCH'])) ? $this->_rootref['U_SEARCH'] : ''; ?>" method="post" id="search">
 					<fieldset>
 						<dl>
@@ -140,10 +127,10 @@
 						</p>
 					</fieldset>
 				</form>
-			<?php } ?>
 			</div>
 		</div>
 	</div>
+	<?php } ?>
 	
 	<div class="block-box rightside" id="im-online-list">
 		<div class="button"><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/im_list_<?php if ($this->_rootref['S_REG_USERS_ONLINE'] != ('0')) {  ?>online<?php } else { ?>offline<?php } ?>.gif" alt="<?php echo ((isset($this->_rootref['L_IM'])) ? $this->_rootref['L_IM'] : ((isset($user->lang['IM'])) ? $user->lang['IM'] : '{ IM }')); ?>" /> <?php echo ((isset($this->_rootref['L_IM'])) ? $this->_rootref['L_IM'] : ((isset($user->lang['IM'])) ? $user->lang['IM'] : '{ IM }')); ?> (<strong><?php echo (isset($this->_rootref['S_REG_USERS_ONLINE'])) ? $this->_rootref['S_REG_USERS_ONLINE'] : ''; ?></strong>)</div>

@@ -20,6 +20,10 @@ ul.topiclist li.row {
 	border-bottom: 1px solid;
 }
 
+ul.topiclist li.row:first-child {
+	border-bottom: 0;
+}
+
 ul.topiclist .col1, ul.topiclist .col2 {
 	overflow: hidden;
 }
@@ -75,11 +79,19 @@ li.header dl.icon dt {
 
 /* Sidebar blocks */
 .forabg-sidebar {
+	border: 1px solid;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
 	margin-bottom: 10px;
+}
+
+.forabg-sidebar.smooth {
 	padding: 1px;
 }
 
-.forabg-sidebar.panel.smooth ul.topiclist {
+.forabg-sidebar.smooth ul.topiclist {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-khtml-border-radius: 4px;

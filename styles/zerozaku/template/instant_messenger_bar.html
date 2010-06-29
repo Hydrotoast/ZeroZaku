@@ -44,7 +44,7 @@
 					<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">&raquo; {L_MANAGE_FRIENDS}</a></li>
 					<li><a href="{U_ACCOUNT_SETTINGS}" title="{L_ACCOUNT_SETTINGS}">&raquo; {L_ACCOUNT_SETTINGS}</a></li>                    
 					<li><a href="{U_MANAGE_BOOKMARKS}" title="{L_MANAGE_BOOKMARKS}">&raquo; {L_MANAGE_BOOKMARKS}</a></li>
-					<li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">&raquo; {L_SEARCH_SELF}</a></li>
+					<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">&raquo; {L_SEARCH_SELF}</a></li><!-- ENDIF -->
 					<li><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}">&raquo; {L_LOGIN_LOGOUT}</a></li>
 		    </ul>
 			</div>
@@ -108,25 +108,12 @@
 		</div>
 	</div>
 	
+	<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
 	<div class="block-box" id="im-search">
 		<div class="button"><img src="{T_THEME_PATH}/images/06-magnifying-glass.png" width="16" alt="{L_SEARCH}" style="margin-top: 4px;" /></div>
 		<div class="block">
 			<h3>{L_SEARCH}</h3>
 			<div class="bcontent">
-				<form method="get" action="http://www.google.com/search">
-					<fieldset>
-						<dl>
-							<dt>
-								<input type="text" name="q" maxlength="128" class="inputbox search" value="{L_GOOGLE_SEARCH}" onclick="if(this.value=='{L_GOOGLE_SEARCH}')this.value='';" onblur="if(this.value=='')this.value='{L_GOOGLE_SEARCH}';" />
-							</dt>
-						</dl>
-						<p>
-							<input type="submit" value="{L_GOOGLE_SEARCH}" class="button2" style="margin-bottom:3px;" />
-							<input type="radio" name="sitesearch" value="{S_SERVER_NAME}" style="display:none" checked="checked" />
-						</p>
-					</fieldset>
-				</form>
-			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
 				<form action="{U_SEARCH}" method="post" id="search">
 					<fieldset>
 						<dl>
@@ -140,10 +127,10 @@
 						</p>
 					</fieldset>
 				</form>
-			<!-- ENDIF -->
 			</div>
 		</div>
 	</div>
+	<!-- ENDIF -->
 	
 	<div class="block-box rightside" id="im-online-list">
 		<div class="button"><img src="{T_THEME_PATH}/images/im_list_<!-- IF S_REG_USERS_ONLINE != '0' -->online<!-- ELSE -->offline<!-- ENDIF -->.gif" alt="{L_IM}" /> {L_IM} (<strong>{S_REG_USERS_ONLINE}</strong>)</div>
