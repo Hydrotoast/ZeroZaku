@@ -1,17 +1,6 @@
 <!-- DEFINE $S_IN_PORTAL = 1 -->
 <!-- INCLUDE portal/_block_config.html -->
 
-	<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH and S_USER_LOGGED_IN -->
-	<div id="search-box">
-		<form action="{U_SEARCH}" method="post" id="search">
-		<fieldset>
-			<input name="keywords" id="keywords" type="text" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" /> 
-			<input class="button1" value="{L_GO}" type="submit" />{S_SEARCH_HIDDEN_FIELDS}
-		</fieldset>
-		</form>
-	</div>
-	<!-- ENDIF -->
-
 	<!-- INCLUDE portal/block/additional_blocks_right.html -->
 
 	<!-- IF not S_IS_BOT and S_USER_LOGGED_IN and S_ZEBRA_ENABLED and S_DISPLAY_FRIENDS -->
