@@ -1,3 +1,0 @@
-<?php if (!defined('IN_PHPBB')) exit; $_new_posts_count = (isset($this->_tpldata['new_posts'])) ? sizeof($this->_tpldata['new_posts']) : 0;if ($_new_posts_count) {for ($_new_posts_i = 0; $_new_posts_i < $_new_posts_count; ++$_new_posts_i){$_new_posts_val = &$this->_tpldata['new_posts'][$_new_posts_i]; ?>
-   <li><a href="<?php echo $_new_posts_val['POST_LINK']; ?>">&raquo; <?php echo $_new_posts_val['TOPIC_TITLE']; ?></a><span><?php echo ((isset($this->_rootref['L_BY'])) ? $this->_rootref['L_BY'] : ((isset($user->lang['BY'])) ? $user->lang['BY'] : '{ BY }')); ?> <?php echo $_new_posts_val['POST_AUTHOR']; ?></span></li>
-<?php }} ?>
