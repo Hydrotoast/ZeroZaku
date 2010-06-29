@@ -158,13 +158,13 @@ class mcp_logs
 						$db->sql_query('SELECT count(msg_id) AS total FROM ' . PRIVMSGS_TABLE . '
 							WHERE author_ip = \'' . $sql_ip . '\'');
 						$total = $db->sql_fetchfield('total');
-						$sql = 'SELECT p.msg_id, p.author_id, u.username, u.user_colour, p.message_time, message_subject, to_address FROM ' . PRIVMSGS_TABLE . ' p, ' . USERS_TABLE . ' u
+						$sql = 'SELECT p.msg_id, p.author_id, u.username, u.user_colour, p.message_time, message_subject FROM ' . PRIVMSGS_TABLE . ' p, ' . USERS_TABLE . ' u
 							WHERE author_ip = \'' . $sql_ip . '\'
 							AND u.user_id = p.author_id
 							ORDER BY message_time DESC';
 						$result = $db->sql_query_limit($sql, $limit, $start);
 						
-						$output = '<thead><tr><th>' . $user->lang['ID'] . '</th><th>' . $user->lang['AUTHOR'] . '</th><th>' . $user->lang['TIME'] . '</th><th>' . $user->lang['MESSAGE'] . '</th><th>' . $user->lang['TO'] . '</th></thead>';
+						$output = '<thead><tr><th>' . $user->lang['ID'] . '</th><th>' . $user->lang['AUTHOR'] . '</th><th>' . $user->lang['TIME'] . '</th><th>' . $user->lang['MESSAGE'] . '</th></thead>';
 						while ($row = $db->sql_fetchrow($result))
 						{
 						    ++$cnt;
