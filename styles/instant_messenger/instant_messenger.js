@@ -1,9 +1,9 @@
 var windowFocus = true;
 var username;      
 var chatHeartbeatCount = 0;
-var minChatHeartbeat = 3000;
-var maxChatHeartbeat = 33000;
-var chatHeartbeatTime = minChatHeartbeat;
+var minChatHeartbeat = 6000;
+var maxChatHeartbeat = 36000;
+var chatHeartbeatTime = maxChatHeartbeat;
 var originalTitle;
 var blinkOrder = 0;
 
@@ -185,8 +185,6 @@ function chatHeartbeat() {jQuery(function($){
 					newMessages[chatboxtitle] = true;
 					newMessagesWin[chatboxtitle] = true;
 					$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+item.f+' : &nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
-					if ( im_cfg.enableSound)
-						$.dbj_sound.play('#im_msg_arrived');
 				}
 
 				$("#chatbox_"+chatboxtitle+" .chatboxcontent").scrollTop($("#chatbox_"+chatboxtitle+" .chatboxcontent")[0].scrollHeight);
@@ -199,8 +197,9 @@ function chatHeartbeat() {jQuery(function($){
 		if (itemsfound > 0) {
 			chatHeartbeatTime = minChatHeartbeat;
 			chatHeartbeatCount = 1;
-		} else if (chatHeartbeatCount >= 10) {
-			chatHeartbeatTime *= 2;
+		} 
+		else if (chatHeartbeatCount >= 10) {
+			chatHeartbeatTime *= 3;
 			chatHeartbeatCount = 1;
 			if (chatHeartbeatTime > maxChatHeartbeat) {
 				chatHeartbeatTime = maxChatHeartbeat;
@@ -243,12 +242,10 @@ function toggleChatBoxGrowth(chatboxtitle) {jQuery(function($){
 			}
 		}
 	
-		newCookie = newCookie.slice(0, -1)
+		newCookie = newCookie.slice(0, -1);
 	
 	
 		$.cookie('chatbox_minimized', newCookie);
-		//$('#chatbox_'+chatboxtitle+' .chatboxcontent').css('display','block');
-		//$('#chatbox_'+chatboxtitle+' .chatboxinput').css('display','block');
 		$('#chatbox_'+chatboxtitle+' .chatboxcontent').slideDown();
 		$('#chatbox_'+chatboxtitle+' .chatboxinput').slideDown();
 		
@@ -261,10 +258,7 @@ function toggleChatBoxGrowth(chatboxtitle) {jQuery(function($){
 			newCookie += '|'+$.cookie('chatbox_minimized');
 		}
 	
-	
 		$.cookie('chatbox_minimized',newCookie);
-		//$('#chatbox_'+chatboxtitle+' .chatboxcontent').css('display','none');
-		//$('#chatbox_'+chatboxtitle+' .chatboxinput').css('display','none');
 		$('#chatbox_'+chatboxtitle+' .chatboxcontent').slideUp();
 		$('#chatbox_'+chatboxtitle+' .chatboxinput').slideUp();
 	}
@@ -362,56 +356,4 @@ function startChatSession(){jQuery(function($){
 		setTimeout('chatHeartbeat();',chatHeartbeatTime);
 		}
 	});
-});}
-
-/**
- * Cookie plugin
- *
- * Copyright (c) 2006 Klaus Hartl (stilbuero.de)
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- */
-
-jQuery.cookie = function(name, value, options) {
-    if (typeof value != 'undefined') { // name and value given, set cookie
-        options = options || {};
-        if (value === null) {
-            value = '';
-            options.expires = -1;
-        }
-        var expires = '';
-        if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
-            var date;
-            if (typeof options.expires == 'number') {
-                date = new Date();
-                date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
-            } else {
-                date = options.expires;
-            }
-            expires = '; expires=' + date.toUTCString(); // use expires attribute, max-age is not supported by IE
-        }
-        // CAUTION: Needed to parenthesize options.path and options.domain
-        // in the following expressions, otherwise they evaluate to undefined
-        // in the packed version for some reason...
-        var path = options.path ? '; path=' + (options.path) : '';
-        var domain = options.domain ? '; domain=' + (options.domain) : '';
-        var secure = options.secure ? '; secure' : '';
-        document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
-    } else { // only name given, get cookie
-        var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-};                             
+});}                           
