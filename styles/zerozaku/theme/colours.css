@@ -1,4 +1,4 @@
-/*  	2D587E
+ul.topiclist li.row.bg1, ul.topiclist li.row.bg2/*  	2D587E
 --------------------------------------------------------------
 Colours and backgrounds for common.css
 -------------------------------------------------------------- */
@@ -476,7 +476,7 @@ ul.topiclist li.row dt a.subforum.unread {background: url("{IMG_SUBFORUM_UNREAD_
 
 .bg2 dd.stats, .bg2 dd.posts, .bg2 dd.lastpost, tr.bg2 td.posts, tr.bg2 td.joined {background-color: #F6F6F6;}
 
-ul.topiclist li.row { border-bottom-color: #F0F0F0; }
+ul.topiclist li.row.bg1, ul.topiclist li.row.bg2 { border-bottom-color: #F0F0F0; }
 li.row strong { color: #000000; }
 
 li.row.reported, li.row.reported dd.stats, li.row.reported dd.posts, li.row.reported dd.views, li.row.reported dd.lastpost {
