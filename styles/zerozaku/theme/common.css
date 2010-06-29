@@ -9,7 +9,7 @@
 body {
 	font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 	margin: 0;
-	padding: 0 0 12px 0;
+	padding: 0 0 180px 0;
 	background-color: #FFFFFF;
 }
 
@@ -723,8 +723,15 @@ li.pagination {
 }
 
 .copyright {
-	padding: 5px;
-	text-align: center;
+	float: left;
+	padding: 10px 10px 0 40px;
+	text-align: left;
+}
+
+.util_links {
+	float: right;
+	padding: 10px 20px 0 0;
+	text-align: right;
 }
 
 .titlespace {margin-bottom: 15px;}
