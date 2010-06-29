@@ -16,12 +16,8 @@ ul.topiclist dl.icon dt {
 	min-height: 30px;
 }
 
-ul.topiclist li.row {
+ul.topiclist li.row.bg1, ul.topiclist li.row.bg2 {
 	border-bottom: 1px solid;
-}
-
-ul.topiclist li.row:first-child {
-	border-bottom: 0;
 }
 
 ul.topiclist .col1, ul.topiclist .col2 {

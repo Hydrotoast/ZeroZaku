@@ -44,10 +44,12 @@ ul.cplist {
 
 #cp-main table.table1 thead th {
 	font-weight: bold;
+	text-align: left;
 	padding: 5px;
 }
 
 #cp-main .pagination {
+	list-style-type: none;
 	float: right;
 	width: auto;
 	padding-top: 1px;

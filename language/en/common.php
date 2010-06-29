@@ -279,6 +279,7 @@ $lang = array_merge($lang, array(
 
 	'ICQ'						=> 'ICQ',
 	'ICQ_STATUS'				=> 'ICQ status',
+    'ID'						=> 'ID',
 	'IF'						=> 'If',
 	'IMAGE'						=> 'Image',
 	'IMAGE_FILETYPE_INVALID'	=> 'Image file type %d for mimetype %s not supported.',
@@ -327,6 +328,7 @@ $lang = array_merge($lang, array(
 	'LOGIN_VIEWFORUM'					=> 'The board requires you to be registered and logged in to view this forum.',
 	'LOGIN_EXPLAIN_EDIT'				=> 'In order to edit posts in this forum you have to be registered and logged in.',
 	'LOGIN_EXPLAIN_VIEWONLINE'			=> 'In order to view the online list you have to be registered and logged in.',
+	'LOGS'								=> 'Logs',
 	'LOGOUT'							=> 'Logout',
 	'LOGOUT_USER'						=> 'Logout [ %s ]',
 	'LOG_ME_IN'							=> 'Log me on automatically each visit',
@@ -438,6 +440,7 @@ $lang = array_merge($lang, array(
 	'PIXEL'					=> 'px',
 	'PLAY_QUICKTIME_FILE'	=> 'Play Quicktime file',
 	'PM'					=> 'PM',
+	'POLL_VOTES'			=> 'Poll Votes',
 	'POSTING_MESSAGE'		=> 'Posting message in %s',
 	'POSTING_PRIVATE_MESSAGE'	=> 'Composing private message',
 	'POST'					=> 'Post',
@@ -482,6 +485,7 @@ $lang = array_merge($lang, array(
 	'REDIRECT'					=> 'Redirect',
 	'REDIRECTS'					=> 'Total redirects',
 	'REGISTER'					=> 'Sign Up',
+	'REGISTERED'				=> 'Registered',
 	'REGISTERED_USERS'			=> '<strong>Registered users:</strong>',
 	'REG_USERS_ONLINE'			=> 'There are %d registered users and ',
 	'REG_USERS_TOTAL'			=> '%d registered, ',
@@ -589,7 +593,8 @@ $lang = array_merge($lang, array(
 	'TEST_CONNECTION'	=> 'Test connection',
 	'THE_TEAM'			=> 'The team',
 	'TIME'				=> 'Time',
-
+	
+    'TO'							=> 'To',
 	'TOO_LONG'						=> 'The value you entered is too long.',
 
 	'TOO_LONG_AIM'					=> 'The screenname you entered is too long.',
@@ -679,6 +684,7 @@ $lang = array_merge($lang, array(
 	'USERGROUPS'			=> 'Groups',
 	'USERNAME'				=> 'Username',
 	'USERNAMES'				=> 'Usernames',
+	'USER_AGENT'			=> 'User Agent',
 	'USER_AVATAR'			=> 'User avatar',
 	'USER_CANNOT_READ'		=> 'You cannot read posts in this forum.',
 	'USER_POST'				=> '%d Post',
@@ -716,6 +722,8 @@ $lang = array_merge($lang, array(
 	'VIEW_TOPIC_STICKY'			=> 'Sticky: ',
 	'VISIT_WEBSITE'				=> 'Visit website',
 
+	'VOTE'				=> 'Vote',
+	
 	'WARNINGS'			=> 'Warnings',
 	'WARN_USER'			=> 'Warn user',
 	'WELCOME_SUBJECT'	=> 'Welcome to %s forums',
@@ -894,10 +902,8 @@ $lang = array_merge($lang, array(
 	// The default dateformat which will be used on new installs in this language
 	// Translators should change this if a the usual date format is different
 	'default_dateformat'	=> 'D M d, Y g:i a', // Mon Jan 01, 2007 1:37 pm
-	/*
-	 * INSTANT MESSANGER -- START
-	 */
 	
+	// BEGIN INSTANT MESSENGER
 	'IM'						=> 'Chat',
 	'IM_NOT_LOGGED_IN'			=> 'Guests can not chat',
 	'IM_SENT'					=> 'Sent at ',
@@ -922,18 +928,17 @@ $lang = array_merge($lang, array(
 	'IM_UPDATE_BROSWER' =>  'Update browser',
 	'INSTALL' =>  'Install',
 	'TELL_ME_MORE' =>  'Tell me more',
-	/*
-	 * INSTANT MESSANGER -- END
-	 */
+	// END INSTANT MESSENGER
 
 ));
 
-// FRIEND REQUESTS
+// BEGIN FRIEND REQUESTS
 $lang = array_merge($lang, array(
     'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
 	'NEW_FRIEND_REQUESTS'			=> 'You have %s new friend requests.',
 	'NO_FRIEND_REQUESTS'			=> 'You have no new friend requests.',
 ));
+// END FRIEND REQUESTS
 
 // XS Syntax Highlighter
 $lang = array_merge($lang, array(
@@ -960,4 +965,20 @@ $lang = array_merge($lang, array(
 	'VIEW_MCHAT'		=> 'Display Mini-Chat on the index page',
 ));
 // END mChat Mod
+
+// BEGIN IP SEARCH
+$lang = array_merge($lang, array(
+    'MCP_LOGS_IP_SEARCH'			=> 'IP Search',
+    'MCP_IP_SEARCH'				    => 'IP Search',
+    'MCP_IP_SEARCH_TYPE'			=> 'Search in',
+	'MCP_IP_SEARCH_EXPLAIN'			=> 'Search through the entire forum for actions made from a certain IP Address.',
+	'MCP_IP_SEARCH_BOT_CHECK'		=> 'Bot Check',
+	'MCP_IP_SEARCH_LOGS'			=> 'Log Actions',
+	'MCP_IP_SEARCH_POLL_VOTES'		=> 'Poll Votes',
+	'MCP_IP_SEARCH_POSTS'			=> 'Posts',
+	'MCP_IP_SEARCH_PRIVMSGS'		=> 'Private Messages',
+	'MCP_IP_SEARCH_USERS'			=> 'Users',
+	'MCP_IP_SEARCH_EXPLAIN'		    => 'Search through the entire forum for actions made from a certain IP Address.',
+));
+//END IP SEARCH
 ?>
