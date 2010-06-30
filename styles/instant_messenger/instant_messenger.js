@@ -1,19 +1,16 @@
-var windowFocus = true;
-var username;      
-var chatHeartbeatCount = 0;
-var minChatHeartbeat = 6000;
-var maxChatHeartbeat = 36000;
-var chatHeartbeatTime = maxChatHeartbeat;
-var originalTitle;
-var blinkOrder = 0;
-
-var siteBottomBar_height = 0;
-
-var chatboxFocus = new Array();
-var newMessages = new Array();
-var newMessagesWin = new Array();
-var chatBoxes = new Array();
-
+var username; 
+var windowFocus = true,
+	chatHeartbeatCount = 0,
+	minChatHeartbeat = 6000,
+	maxChatHeartbeat = 36000,
+	chatHeartbeatTime = maxChatHeartbeat,
+	originalTitle,
+	blinkOrder = 0,
+	siteBottomBar_height = 0;
+var chatboxFocus = new Array(),
+	newMessages = new Array(),
+	newMessagesWin = new Array(),
+	chatBoxes = new Array();
 
 function restructureChatBoxes() {jQuery(function($){
 	align = 0;

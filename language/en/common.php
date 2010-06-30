@@ -970,7 +970,7 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
     'MCP_LOGS_IP_SEARCH'			=> 'IP Search',
     'MCP_IP_SEARCH'				    => 'IP Search',
-	'MCP_IP_SEARCH_EXPLAIN'			=> 'Search for user activities by IP Address. By using IP Search, you agree to non-disclosure of information obtained from the IP Search to third parties in any manner whatsoever except to ZeroZaku staff.',
+	'MCP_IP_SEARCH_EXPLAIN'			=> 'Search for user activities by IP Address. By using IP Search, you agree to non-disclosure of information obtained from the IP Search to third parties in any manner whatsoever except to ZeroZaku staff or in accordance with a judicial or other governmental order, provided that the receiving party shall give the disclosing party reasonable notice prior to such disclosure and reasonable opportunity to obtain a protective order or the equivalent..',
     'MCP_IP_SEARCH_TYPE'			=> 'Search in',
 	'MCP_IP_SEARCH_BOT_CHECK'		=> 'Bot Check',
 	'MCP_IP_SEARCH_LOGS'			=> 'Log Actions',
@@ -978,7 +978,6 @@ $lang = array_merge($lang, array(
 	'MCP_IP_SEARCH_POSTS'			=> 'Posts',
 	'MCP_IP_SEARCH_PRIVMSGS'		=> 'Private Messages',
 	'MCP_IP_SEARCH_USERS'			=> 'Users',
-	'MCP_IP_SEARCH_EXPLAIN'		    => 'Search through the entire forum for actions made from a certain IP Address.',
 ));
 //END IP SEARCH
 ?>
