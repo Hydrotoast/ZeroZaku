@@ -45,7 +45,7 @@
 })(jQuery);
 
 $(function() {
-	 hljs.initHighlightingOnLoad();
+	hljs.initHighlightingOnLoad();
 	
 	$.tools.overlay.conf.effect = "apple";
 	var quickpanel = $("#quickpanel");
