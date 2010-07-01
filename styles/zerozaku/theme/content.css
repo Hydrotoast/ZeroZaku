@@ -156,10 +156,10 @@ a.topictitle span {
 }
 
 h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
-	font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
-	font-size: 1.45em;
+	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
+	font-size: 1.6667em;
 	font-weight: normal;
-	padding: 7px 10px;
+	padding: 9px 10px;
 	overflow: hidden;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
@@ -175,19 +175,6 @@ h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	margin: 10px 0 0 0;
 }
 
-h3.solo {
-	font-size: 1.45em;
-	font-weight: normal;
-	text-transform: capitalize;
-	padding: 8px 10px;
-	overflow: hidden;
-	-moz-border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0;
-	-khtml-border-radius: 5px 5px 0 0;
-	border-radius: 5px 5px 0 0;
-	behavior: url("ie-css3.htc"); 
-}
-
 .panel h2.polltitle {
 	font-size: 1.1666em;
 	text-transform: uppercase;
@@ -197,13 +184,32 @@ h3.solo {
 
 h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
 	border: 1px solid;
-	padding: 0 0.4em;
+	padding: 1px 0.4em;
 	text-decoration: none;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 	behavior: url("ie-css3.htc"); 
+}
+
+h2.pagetitle.login {
+	margin: 0 auto;
+	width: 722px;
+}
+
+h2 {
+	font: 2em Anivers-Regular;
+}
+
+h3 {
+	font-size: 1.1667em;
+	font-weight: bold;
+}
+
+h4 {
+	font-weight: bold;
+	display: inline;
 }
 
 .pagetitle span a {
@@ -293,7 +299,7 @@ dd.posts, dd.views {
 }
 
 dd.lastpost {
-	width: 29%;
+	width: 26%;
 	padding-left: 0.5% !important;
 }
 
@@ -449,14 +455,31 @@ a.forumtitle:hover {
 /* Content container styles
 ----------------------------------------*/
 .panel.login {
-	float: left;
-	margin: 10px 0;
-	width: 63%;
+	margin: 0 auto 10px auto;
+	width: 700px;
 }
 
-.panel h3 {
-	text-transform: uppercase;
-	margin: 0.5em 0;
+.panel h3.head, .panel h3.sub {
+	font-family: Anivers-Regular;
+	text-shadow: 1px 1px 0 #E0E0E0;
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+.panel h3.head {
+	font-size: 1.6667em;
+	text-transform: none;
+	margin: 0 -20px 1em -20px;
+	padding: 0.25em;
+}
+
+.panel h3.sub {
+	font-size: 1.1667em;
+	padding: 0.25em 6px;
+}
+
+.panel h4 {
+	font-weight: bold;
 }
 
 .panel p {

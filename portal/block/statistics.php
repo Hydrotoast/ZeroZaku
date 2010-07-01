@@ -72,10 +72,6 @@ $total_posts		= $config['num_posts'];
 $total_topics		= $config['num_topics'];
 $total_users		= $config['num_users'];
 
-$l_total_user_s 	= ($total_users == 0) ? 'TOTAL_USERS_ZERO' : 'TOTAL_USERS_OTHER';
-$l_total_post_s 	= ($total_posts == 0) ? 'TOTAL_POSTS_ZERO' : 'TOTAL_POSTS_OTHER';
-$l_total_topic_s	= ($total_topics == 0) ? 'TOTAL_TOPICS_ZERO' : 'TOTAL_TOPICS_OTHER';
-
 // avarage stat
 $board_days = ( time() - $config['board_startdate'] ) / 86400;
 
@@ -116,19 +112,12 @@ if ($posts_per_topic > $total_posts)
 	$posts_per_topic = $total_posts;
 }
 
-$l_topics_per_day_s = ($total_topics == 0) ? 'TOPICS_PER_DAY_ZERO' : 'TOPICS_PER_DAY_OTHER';
-$l_posts_per_day_s = ($total_posts == 0) ? 'POSTS_PER_DAY_ZERO' : 'POSTS_PER_DAY_OTHER';
-$l_users_per_day_s = ($total_users == 0) ? 'USERS_PER_DAY_ZERO' : 'USERS_PER_DAY_OTHER';
-$l_topics_per_user_s = ($total_topics == 0) ? 'TOPICS_PER_USER_ZERO' : 'TOPICS_PER_USER_OTHER';
-$l_posts_per_user_s = ($total_posts == 0) ? 'POSTS_PER_USER_ZERO' : 'POSTS_PER_USER_OTHER';
-$l_posts_per_topic_s = ($total_posts == 0) ? 'POSTS_PER_TOPIC_ZERO' : 'POSTS_PER_TOPIC_OTHER';
-
 // Assign specific vars
 $template->assign_vars(array(
 	'S_DISPLAY_ADVANCED_STAT' => true,
-	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], $total_posts),
-	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], $total_topics),
-	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], $total_users),
+	'TOTAL_POSTS'	=> $total_posts,
+	'TOTAL_TOPICS'	=> $total_topics,
+	'TOTAL_USERS'	=> $total_users,
 	'NEWEST_USER'	=> sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 	'S_ANN'			=> get_db_stat('announcementtotal'),
 	'S_SCT'			=> get_db_stat('stickytotal'),

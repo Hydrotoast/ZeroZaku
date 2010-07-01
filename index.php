@@ -39,30 +39,10 @@ if ($portal_config['portal_welcome'])
 {
 	include($phpbb_root_path . 'portal/block/welcome.'.$phpEx);
 }
-	
-if ($portal_config['portal_advanced_stat'])
-{
-	include($phpbb_root_path . 'portal/block/statistics.'.$phpEx);
-}
-
-if ($portal_config['portal_friends'])
-{
-	include($phpbb_root_path . 'portal/block/friends.'.$phpEx);
-}
 
 if ($portal_config['portal_top_posters'])
 {
 	include($phpbb_root_path . 'portal/block/top_posters.'.$phpEx);
-}
-
-if ($portal_config['portal_links'])
-{
-	include($phpbb_root_path . 'portal/block/links.'.$phpEx);
-}
-
-if ($portal_config['portal_pay_s_block'] or ($portal_config['portal_pay_c_block']))
-{
-	include($phpbb_root_path . 'portal/block/donate.'.$phpEx);
 }
 
 // BEGIN Milestones
@@ -143,14 +123,51 @@ while ($row = $db->sql_fetchrow($result))
 $db->sql_freeresult($result);
 // END Milestones
 
-// Set some stats, get posts count from forums data if we... hum... retrieve all forums data
-$total_posts	= $config['num_posts'];
-$total_topics	= $config['num_topics'];
-$total_users	= $config['num_users'];
+function get_db_stat($mode)
+{
+	global $db, $user;
 
-$l_total_user_s = ($total_users == 0) ? 'TOTAL_USERS_ZERO' : 'TOTAL_USERS_OTHER';
-$l_total_post_s = ($total_posts == 0) ? 'TOTAL_POSTS_ZERO' : 'TOTAL_POSTS_OTHER';
-$l_total_topic_s = ($total_topics == 0) ? 'TOTAL_TOPICS_ZERO' : 'TOTAL_TOPICS_OTHER';
+	switch( $mode )
+	{
+		case 'announcementtotal':
+			$sql = 'SELECT COUNT(distinct t.topic_id) AS announcement_total
+				FROM ' . TOPICS_TABLE . ' t, ' . POSTS_TABLE . ' p
+				WHERE t.topic_type = ' . POST_ANNOUNCE . '
+					AND p.post_id = t.topic_first_post_id';
+		break;
+		case 'stickytotal':
+			$sql = 'SELECT COUNT(distinct t.topic_id) AS sticky_total
+				FROM ' . TOPICS_TABLE . ' t, ' . POSTS_TABLE . ' p
+				WHERE t.topic_type = ' . POST_STICKY . '
+					AND p.post_id = t.topic_first_post_id';
+		break;
+		case 'attachmentstotal':
+			$sql = 'SELECT COUNT(attach_id) AS attachments_total
+					FROM ' . ATTACHMENTS_TABLE;
+		break;
+	}
+	
+	if ( !($result = $db->sql_query($sql)) )
+	{
+		return false;
+	}
+
+	$row = $db->sql_fetchrow($result);
+ 
+	switch ( $mode )
+	{
+		case 'announcementtotal':
+			return $row['announcement_total'];
+		break;
+		case 'stickytotal':
+			return $row['sticky_total'];
+		break;
+		case 'attachmentstotal':
+			return $row['attachments_total'];
+		break;
+	}
+	return false;
+}
 
 // Grab group details for legend display
 if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
@@ -229,9 +246,12 @@ $template->assign_vars(array(
 	'MILESTONE_INFO'	=> milestone_info(),
 	'MILESTONE_MESSAGE'	=> milestone_message(),
 	'MILESTONE_HISTORY'	=> milestone_history(),
-	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], $total_posts),
-	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], $total_topics),
-	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], $total_users),
+	'TOTAL_POSTS'	=> $config['num_posts'],
+	'TOTAL_TOPICS'	=> $config['num_topics'],
+	'TOTAL_USERS'	=> $config['num_users'],
+    'S_ANN'			=> get_db_stat('announcementtotal'),
+	'S_SCT'			=> get_db_stat('stickytotal'),
+	'S_TOT_ATTACH'	=> ($config['allow_attachments']) ? get_db_stat('attachmentstotal') : 0,
 	'NEWEST_USER'	=> sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 
 	'LEGEND'		=> $legend,

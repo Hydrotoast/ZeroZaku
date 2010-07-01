@@ -8,13 +8,13 @@
 	float:left;
 	width: 18.5%;
 	margin: 0 1% 5px 0;
-	padding-bottom: 1em;
+	padding-bottom: 10px;
 }
 
 #cp-main {
 	float: left;
 	width: 80%;
-	padding-bottom: 1em;
+	padding-bottom: 10px;
 }
 
 #cp-main .content {
@@ -30,16 +30,17 @@
 }
 
 ul.cplist {
-	margin-bottom: 1em;
+	margin-bottom: 10px;
 }
 
 #cp-main .panel {
-	padding: 1em 1em;
-	margin-bottom: 1em;
+	padding: 10px;
+	margin-bottom: 10px;
+	width: 100%;
 }
 
 #cp-main table.table1 {
-	margin-bottom: 1em;
+	margin-bottom: 10px;
 }
 
 #cp-main table.table1 thead th {
@@ -198,8 +199,8 @@ ul.cplist {
 /* Preferences pane layout
 ----------------------------------------*/
 #cp-main h2 {
+	font-size: 1.5em;
 	text-transform: uppercase;
-	margin-left: 10px;
 	padding: 0;
 }
 

@@ -144,18 +144,12 @@ $lang = array_merge($lang, array(
 	'NO_MODERATORS_P'		=> 'No moderators',
 
 	// average Statistics
-	'TOPICS_PER_DAY_OTHER'	=> 'Topics per day: <strong>%d</strong>',
-	'TOPICS_PER_DAY_ZERO'	=> 'Topics per day: <strong>0</strong>',
-	'POSTS_PER_DAY_OTHER'	=> 'Posts per day: <strong>%d</strong>',
-	'POSTS_PER_DAY_ZERO'	=> 'Posts per day: <strong>0</strong>',
-	'USERS_PER_DAY_OTHER'	=> 'Users per day: <strong>%d</strong>',
-	'USERS_PER_DAY_ZERO'	=> 'Users per day: <strong>0</strong>',
-	'TOPICS_PER_USER_OTHER'	=> 'Topics per user: <strong>%d</strong>',
-	'TOPICS_PER_USER_ZERO'	=> 'Topics per user: <strong>0</strong>',
-	'POSTS_PER_USER_OTHER'	=> 'Posts per user: <strong>%d</strong>',
-	'POSTS_PER_USER_ZERO'	=> 'Posts per user: <strong>0</strong>',
-	'POSTS_PER_TOPIC_OTHER'	=> 'Posts per topic: <strong>%d</strong>',
-	'POSTS_PER_TOPIC_ZERO'	=> 'Posts per topic: <strong>0</strong>',
+	'TOPICS_PER_DAY'	=> 'Topics per day',
+	'POSTS_PER_DAY'	    => 'Posts per day',
+	'USERS_PER_DAY'	    => 'Users per day',
+	'TOPICS_PER_USER'	=> 'Topics per user',
+	'POSTS_PER_USER'	=> 'Posts per user',
+	'POSTS_PER_TOPIC'	=> 'Posts per topic',
 
 	// poll
 	'LATEST_POLLS'			=> 'Latest Polls',
