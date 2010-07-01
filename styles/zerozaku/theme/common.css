@@ -60,18 +60,18 @@ a img {
 }
 
 #page-body {
-	min-width: 787.2px;
-	width: 82%;
-	float: left;
 	text-align: left;
+	float: left;
+	min-width: 772.8px;
+	width: 79.5%;
 }
 
 #page-sidebar {
-	margin-left: 1%;
-	min-width: 163.2px;
-	width: 17%;
-	float: right;
 	text-align: left;
+	float: right;
+	margin-left: 1.5%;
+	min-width: 180px;
+	width: 18.75%;
 }
 
 #profile {
@@ -82,23 +82,14 @@ a img {
 }
 
 #profile-body {
-	margin-left: 10px;
-	min-width: 623.6px;
-	width: 623.6px;
+	margin-left: 20px;
+	width: 600px;
 	float: left;
 }
 
 #profile-sidebar {
-	min-width: 316.8px;
-	width: 316.8px;
+	width: 340px;
 	float: left;
-}
-
-#board-statistics {
-	border: 1px solid;
-	margin: 0 0 10px 0;
-	padding: 10px;
-	clear: both;
 }
 
 #sidebar-ads {
@@ -108,10 +99,6 @@ a img {
 #page-footer {
 	min-width: 960px;
 	clear: both;
-}
-
-#page-footer h3 {
-	margin-top: 20px;
 }
 
 /* Quickpanel block
@@ -298,6 +285,73 @@ a img {
 	width: 100px;
 }
 
+/* Footer
+---------------------------------------- */
+#page-footer h3 {
+	margin-top: 20px;
+}
+
+#board-statistics {
+	border: 1px solid;
+	margin: 0 0 10px 0;
+	padding: 10px;
+	clear: both;
+	overflow: hidden;
+}
+	#board-statistics .stats {
+		border-left: 1px solid;
+		float: right;
+		margin-left: 1.5%;
+		padding-left: 1.5%;
+		width: 18.75%;
+	}
+	
+	#board-statistics .stats dl {
+		margin: 4px 0 10px;
+	}
+	
+	#board-statistics .stats dt {
+		text-align: left;
+		float: right;
+		padding: 0.25em;
+		width: 33.3333%;
+	}
+	
+	#board-statistics .stats dd {
+		font-weight: bold;
+		border-top: 1px solid;
+		padding: 0.25em;
+	}
+
+#footer-utilities {
+	padding: 10px 20px;
+	clear: both;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#footer-utilities ul.linklist {margin: 0;}
+
+/* Authentication
+---------------------------------------- */
+.login-box {
+	text-align: left;
+	border-left: 1px solid;
+	float: right;
+	padding-left: 40px;
+	width: 389px;
+}
+
+.signup {
+	text-align: left;
+}
+
+.signup ul {
+	margin: 1em 0 0 20px;
+}
+
 /* Profile blocks
 ---------------------------------------- */
 h2.pro-header, h3.pro-header {
@@ -345,8 +399,10 @@ h2.pro-header, h3.pro-header {
 }
 
 #pro-friends .friend {
-	margin: 0 10px 10px 0;
 	float: left;
+	margin: 0 10px 10px 0;
+	height: 120px;
+	width: 120px;
 }
 
 #pro-friends ul.linklist {
@@ -354,8 +410,8 @@ h2.pro-header, h3.pro-header {
 }
 
 .pro-box {
-	margin-bottom: 10px;
-	padding: 0 10px;
+	margin-bottom: 20px;
+	padding: 0 20px;
 	overflow: hidden;
 	clear: both;
 }
@@ -413,17 +469,6 @@ textarea#message {
 /* Round cornered boxes and backgrounds
 ---------------------------------------- */
 
-#footer-utilities {
-	padding: 10px 20px;
-	clear: both;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-}
-
-#footer-utilities ul.linklist {margin: 0;}
-
 .forabg li.header, .forumbg li.header {
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
@@ -454,7 +499,7 @@ textarea#message {
 .panel {
 	border: 1px solid;
 	margin-bottom: 10px;
-	padding: 0 10px;
+	padding: 0 20px;
 	overflow: hidden;
 }
 
@@ -626,14 +671,12 @@ table.info tbody th {
 }
 
 dl.details {
-	/*font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;*/
-	font-size: 1.1em;
+	margin-top: 10px;
 }
 
 dl.details dt {
 	font-weight: bold;
 	float: left;
-	clear: left;
 	width: 30%;
 	text-align: left;
 	display: block;

@@ -1,10 +1,4 @@
-	<!-- IF $SIDEBAR eq '1' -->
 	</div>
-	
-	<div id="page-sidebar">
-	<!-- INCLUDE sidebar.html -->
-	</div>
-	<!-- ENDIF -->
 	
 	<!-- IF $CA_PAGE eq 'index' -->
 	<div id="bottom-ad">
@@ -24,18 +18,38 @@
 	</div>
 	
 	<div id="board-statistics">	
+		<div class="stats">
+			<h3>{L_ST_TOT}</h3>
+			<dl>
+				<dt>{TOTAL_POSTS}</dt> <dd>{L_TOTAL_POSTS}</dd>
+				<dt>{TOTAL_TOPICS}</dt> <dd>{L_TOTAL_TOPICS}</dd>
+				<dt>{S_ANN}</dt> <dd>{L_ST_TOT_ANNS}</dd>
+				<dt>{S_SCT}</dt> <dd>{L_ST_TOT_STICKYS}</dd>
+				<dt>{S_TOT_ATTACH}</dt> <dd>{L_ST_TOT_ATTACH}</dd>
+				<dt>{TOTAL_USERS}</dt> <dd>{L_TOTAL_USERS}</dd>
+			</dl>
+			
+			<h3>{L_24HOUR_STATS}</h3>
+			<dl>
+			<dt>{24HOUR_POSTS}</dt> <dd>{L_24HOUR_POSTS}</dd>
+			<dt>{24HOUR_TOPICS}</dt> <dd>{L_24HOUR_TOPICS}</dd>
+			<dt>{24HOUR_USERS}</dt> <dd>{L_24HOUR_TOPICS}</dd>
+			</dl>
+		</div>
+		
 		<!-- IF S_DISPLAY_ONLINE_LIST -->
 			<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
-			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
-			<!-- IF not S_IS_BOT --><br /><br />
-			{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
+			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}</p>
+			<!-- IF not S_IS_BOT -->
+			<p>{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
 			<!-- ENDIF --><br />
-			<!-- IF LEGEND --><br /><strong>{L_LEGEND}:</strong> {LEGEND}<!-- ENDIF --></p>
+			<p>{NEWEST_USER}</p>
+			<!-- IF LEGEND --><h4>{L_LEGEND}:</h4> {LEGEND}<!-- ENDIF --></p>
 		<!-- ENDIF -->
 		
 		<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
 			<h3>{L_BIRTHDAYS}</h3>
-			<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
+			<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <h4>{BIRTHDAY_LIST}</h4><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
 		<!-- ENDIF -->
 	</div>
 	<!-- ENDIF -->

@@ -39,9 +39,9 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'USERS_24HOUR_TOTAL'	=> '<strong>Currently Active Users:</strong> %d (%d members and %d guests)',
 
-	'24HOUR_TOPICS'			=> 'New Topics: <strong>%d</strong>',
-	'24HOUR_POSTS'			=> 'New Posts: <strong>%d</strong>',
-	'24HOUR_USERS'			=> 'New users: <strong>%d</strong>',
+	'24HOUR_TOPICS'			=> 'New Topics',
+	'24HOUR_POSTS'			=> 'New Posts',
+	'24HOUR_USERS'			=> 'New users',
 
 	'24HOUR_STATS'			=> '24 Hour Activity',
 ));

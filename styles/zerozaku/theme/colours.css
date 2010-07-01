@@ -39,6 +39,9 @@ hr.dashed {
 	color: #606060;
 }
 
+#board-statistics .stats { border-color: #D0D0D0; }
+#board-statistics .stats dd {border-color: #D0D0D0; }
+
 /* Quickpanel block
 --------------------------------------------- */
 #quickpanel {
@@ -115,6 +118,11 @@ hr.dashed {
 .navbar a:hover span, .navbar a:active span { color: #606060; }
 .navbar span { color: #C0C0C0; }
 
+
+/* Authentication
+--------------------------------------------- */
+
+
 /* Profile blocks
 ---------------------------------------- */
 h2.pro-header, h3.pro-header {
@@ -171,6 +179,14 @@ h2.pro-header, h3.pro-header {
 	color: #666666;
 }
 
+.panel h3.head, .panel h3.sub {	
+	background-color: #D0D0D0;
+	border-color: #C0C0C0;
+}
+
+.panel h3.head { color: #999999; }
+.panel h3.sub { color: #606060; }
+
 .panel.smooth {
 	border-color: transparent transparent #D0D0D0;
 }
@@ -184,15 +200,17 @@ h2.pro-header, h3.pro-header {
 	border: none;
 }
 
-.panel.info p {color: #666666}
+.panel.info h3 { color: #999999; }
+.panel.info p { color: #666666; }
 
-.panel .login {border-right-color: #D0D0D0;}
+.panel .login { border-right-color: #D0D0D0; }
+.login-box {border-color: #C0C0C0;}
 
-.post:target .content {color: #000000;}
+.post:target .content { color: #000000; }
 
-.post:target h3 a {color: #000000;}
+.post:target h3 a { color: #000000; }
 
-.bg1 {background-color: #FFFFFF;}
+.bg1 { background-color: #FFFFFF; }
 
 .post.bg1 {
 	background-color: #FFFFFF;
@@ -526,15 +544,20 @@ li.header dt, li.header dd, h2.cattitle {
 	color: #212121;
 }
 
-h2.pagetitle, h1.topictitle, h3.solo {
+h1.topictitle, h3.solo {
 	background: #000000 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll;
 	color: #FFFFFF;
 }
 
-h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
+h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
 	background-color: #000000;
 	border-color: #212121;
 	color: #FFFFFF;
+}
+
+h2.pagetitle {
+	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll;
+	border-color: #E0E0E0;
 }
 
 /* Forum list column styles */
@@ -799,7 +822,7 @@ Colours and backgrounds for cp.css
 ----------------------------------------*/
 
 #cp-main h3, #cp-main hr, #cp-menu hr {
-	border-color: #D0D0D0;
+	border-color: #C0C0C0;
 }
 
 #cp-main .panel li.row {
@@ -979,12 +1002,12 @@ fieldset.quick-login input.inputbox {background-color: #F2F3F3;}
 ---------------------------------------- */
 
 a.button1 {
-	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll;
+	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll  0 -1px;
 	color: #FFFFFF;
 }
 
 input.button1 {
-	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll !important;
+	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll 0 -1px !important;
 	color: #FFFFFF;
 }
 

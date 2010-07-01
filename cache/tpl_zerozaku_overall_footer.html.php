@@ -1,12 +1,6 @@
-<?php if (!defined('IN_PHPBB')) exit; if ($this->_tpldata['DEFINE']['.']['SIDEBAR'] == ('1')) {  ?>
-
-	</div>
+<?php if (!defined('IN_PHPBB')) exit; ?></div>
 	
-	<div id="page-sidebar">
-	<?php $this->_tpl_include('sidebar.html'); ?>
-
-	</div>
-	<?php } if ($this->_tpldata['DEFINE']['.']['CA_PAGE'] == ('index')) {  ?>
+	<?php if ($this->_tpldata['DEFINE']['.']['CA_PAGE'] == ('index')) {  ?>
 
 	<div id="bottom-ad">
 		<div class="adbrite"><!-- Begin: AdBrite, Generated: 2010-02-18 8:59:23  -->
@@ -25,17 +19,37 @@
 	</div>
 	
 	<div id="board-statistics">	
+		<div class="stats">
+			<h3><?php echo ((isset($this->_rootref['L_ST_TOT'])) ? $this->_rootref['L_ST_TOT'] : ((isset($user->lang['ST_TOT'])) ? $user->lang['ST_TOT'] : '{ ST_TOT }')); ?></h3>
+			<dl>
+				<dt><?php echo (isset($this->_rootref['TOTAL_POSTS'])) ? $this->_rootref['TOTAL_POSTS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_TOTAL_POSTS'])) ? $this->_rootref['L_TOTAL_POSTS'] : ((isset($user->lang['TOTAL_POSTS'])) ? $user->lang['TOTAL_POSTS'] : '{ TOTAL_POSTS }')); ?></dd>
+				<dt><?php echo (isset($this->_rootref['TOTAL_TOPICS'])) ? $this->_rootref['TOTAL_TOPICS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_TOTAL_TOPICS'])) ? $this->_rootref['L_TOTAL_TOPICS'] : ((isset($user->lang['TOTAL_TOPICS'])) ? $user->lang['TOTAL_TOPICS'] : '{ TOTAL_TOPICS }')); ?></dd>
+				<dt><?php echo (isset($this->_rootref['S_ANN'])) ? $this->_rootref['S_ANN'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_ST_TOT_ANNS'])) ? $this->_rootref['L_ST_TOT_ANNS'] : ((isset($user->lang['ST_TOT_ANNS'])) ? $user->lang['ST_TOT_ANNS'] : '{ ST_TOT_ANNS }')); ?></dd>
+				<dt><?php echo (isset($this->_rootref['S_SCT'])) ? $this->_rootref['S_SCT'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_ST_TOT_STICKYS'])) ? $this->_rootref['L_ST_TOT_STICKYS'] : ((isset($user->lang['ST_TOT_STICKYS'])) ? $user->lang['ST_TOT_STICKYS'] : '{ ST_TOT_STICKYS }')); ?></dd>
+				<dt><?php echo (isset($this->_rootref['S_TOT_ATTACH'])) ? $this->_rootref['S_TOT_ATTACH'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_ST_TOT_ATTACH'])) ? $this->_rootref['L_ST_TOT_ATTACH'] : ((isset($user->lang['ST_TOT_ATTACH'])) ? $user->lang['ST_TOT_ATTACH'] : '{ ST_TOT_ATTACH }')); ?></dd>
+				<dt><?php echo (isset($this->_rootref['TOTAL_USERS'])) ? $this->_rootref['TOTAL_USERS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_TOTAL_USERS'])) ? $this->_rootref['L_TOTAL_USERS'] : ((isset($user->lang['TOTAL_USERS'])) ? $user->lang['TOTAL_USERS'] : '{ TOTAL_USERS }')); ?></dd>
+			</dl>
+			
+			<h3><?php echo ((isset($this->_rootref['L_24HOUR_STATS'])) ? $this->_rootref['L_24HOUR_STATS'] : ((isset($user->lang['24HOUR_STATS'])) ? $user->lang['24HOUR_STATS'] : '{ 24HOUR_STATS }')); ?></h3>
+			<dl>
+			<dt><?php echo (isset($this->_rootref['24HOUR_POSTS'])) ? $this->_rootref['24HOUR_POSTS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_POSTS'])) ? $this->_rootref['L_24HOUR_POSTS'] : ((isset($user->lang['24HOUR_POSTS'])) ? $user->lang['24HOUR_POSTS'] : '{ 24HOUR_POSTS }')); ?></dd>
+			<dt><?php echo (isset($this->_rootref['24HOUR_TOPICS'])) ? $this->_rootref['24HOUR_TOPICS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_TOPICS'])) ? $this->_rootref['L_24HOUR_TOPICS'] : ((isset($user->lang['24HOUR_TOPICS'])) ? $user->lang['24HOUR_TOPICS'] : '{ 24HOUR_TOPICS }')); ?></dd>
+			<dt><?php echo (isset($this->_rootref['24HOUR_USERS'])) ? $this->_rootref['24HOUR_USERS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_TOPICS'])) ? $this->_rootref['L_24HOUR_TOPICS'] : ((isset($user->lang['24HOUR_TOPICS'])) ? $user->lang['24HOUR_TOPICS'] : '{ 24HOUR_TOPICS }')); ?></dd>
+			</dl>
+		</div>
+		
 		<?php if ($this->_rootref['S_DISPLAY_ONLINE_LIST']) {  if ($this->_rootref['U_VIEWONLINE']) {  ?><h3><a href="<?php echo (isset($this->_rootref['U_VIEWONLINE'])) ? $this->_rootref['U_VIEWONLINE'] : ''; ?>"><?php echo ((isset($this->_rootref['L_WHO_IS_ONLINE'])) ? $this->_rootref['L_WHO_IS_ONLINE'] : ((isset($user->lang['WHO_IS_ONLINE'])) ? $user->lang['WHO_IS_ONLINE'] : '{ WHO_IS_ONLINE }')); ?></a></h3><?php } else { ?><h3><?php echo ((isset($this->_rootref['L_WHO_IS_ONLINE'])) ? $this->_rootref['L_WHO_IS_ONLINE'] : ((isset($user->lang['WHO_IS_ONLINE'])) ? $user->lang['WHO_IS_ONLINE'] : '{ WHO_IS_ONLINE }')); ?></h3><?php } ?>
 
-			<p><?php echo (isset($this->_rootref['TOTAL_USERS_ONLINE'])) ? $this->_rootref['TOTAL_USERS_ONLINE'] : ''; ?> (<?php echo ((isset($this->_rootref['L_ONLINE_EXPLAIN'])) ? $this->_rootref['L_ONLINE_EXPLAIN'] : ((isset($user->lang['ONLINE_EXPLAIN'])) ? $user->lang['ONLINE_EXPLAIN'] : '{ ONLINE_EXPLAIN }')); ?>)<br /><?php echo (isset($this->_rootref['RECORD_USERS'])) ? $this->_rootref['RECORD_USERS'] : ''; ?><br /> <br /><?php echo (isset($this->_rootref['LOGGED_IN_USER_LIST'])) ? $this->_rootref['LOGGED_IN_USER_LIST'] : ''; ?>
+			<p><?php echo (isset($this->_rootref['TOTAL_USERS_ONLINE'])) ? $this->_rootref['TOTAL_USERS_ONLINE'] : ''; ?> (<?php echo ((isset($this->_rootref['L_ONLINE_EXPLAIN'])) ? $this->_rootref['L_ONLINE_EXPLAIN'] : ((isset($user->lang['ONLINE_EXPLAIN'])) ? $user->lang['ONLINE_EXPLAIN'] : '{ ONLINE_EXPLAIN }')); ?>)<br /><?php echo (isset($this->_rootref['RECORD_USERS'])) ? $this->_rootref['RECORD_USERS'] : ''; ?><br /> <br /><?php echo (isset($this->_rootref['LOGGED_IN_USER_LIST'])) ? $this->_rootref['LOGGED_IN_USER_LIST'] : ''; ?></p>
+			<?php if (! $this->_rootref['S_IS_BOT']) {  ?>
 
-			<?php if (! $this->_rootref['S_IS_BOT']) {  ?><br /><br />
-			<?php echo (isset($this->_rootref['USERS_24HOUR_TOTAL'])) ? $this->_rootref['USERS_24HOUR_TOTAL'] : ''; ?>: <?php $_lastvisit_count = (isset($this->_tpldata['lastvisit'])) ? sizeof($this->_tpldata['lastvisit']) : 0;if ($_lastvisit_count) {for ($_lastvisit_i = 0; $_lastvisit_i < $_lastvisit_count; ++$_lastvisit_i){$_lastvisit_val = &$this->_tpldata['lastvisit'][$_lastvisit_i]; echo $_lastvisit_val['USERNAME_FULL']; if (! $_lastvisit_val['S_LAST_ROW']) {  ?>, <?php } }} } ?><br />
-			<?php if ($this->_rootref['LEGEND']) {  ?><br /><strong><?php echo ((isset($this->_rootref['L_LEGEND'])) ? $this->_rootref['L_LEGEND'] : ((isset($user->lang['LEGEND'])) ? $user->lang['LEGEND'] : '{ LEGEND }')); ?>:</strong> <?php echo (isset($this->_rootref['LEGEND'])) ? $this->_rootref['LEGEND'] : ''; } ?></p>
+			<p><?php echo (isset($this->_rootref['USERS_24HOUR_TOTAL'])) ? $this->_rootref['USERS_24HOUR_TOTAL'] : ''; ?>: <?php $_lastvisit_count = (isset($this->_tpldata['lastvisit'])) ? sizeof($this->_tpldata['lastvisit']) : 0;if ($_lastvisit_count) {for ($_lastvisit_i = 0; $_lastvisit_i < $_lastvisit_count; ++$_lastvisit_i){$_lastvisit_val = &$this->_tpldata['lastvisit'][$_lastvisit_i]; echo $_lastvisit_val['USERNAME_FULL']; if (! $_lastvisit_val['S_LAST_ROW']) {  ?>, <?php } }} } ?><br />
+			<p><?php echo (isset($this->_rootref['NEWEST_USER'])) ? $this->_rootref['NEWEST_USER'] : ''; ?></p>
+			<?php if ($this->_rootref['LEGEND']) {  ?><h4><?php echo ((isset($this->_rootref['L_LEGEND'])) ? $this->_rootref['L_LEGEND'] : ((isset($user->lang['LEGEND'])) ? $user->lang['LEGEND'] : '{ LEGEND }')); ?>:</h4> <?php echo (isset($this->_rootref['LEGEND'])) ? $this->_rootref['LEGEND'] : ''; } ?></p>
 		<?php } if ($this->_rootref['S_DISPLAY_BIRTHDAY_LIST'] && $this->_rootref['BIRTHDAY_LIST']) {  ?>
 
 			<h3><?php echo ((isset($this->_rootref['L_BIRTHDAYS'])) ? $this->_rootref['L_BIRTHDAYS'] : ((isset($user->lang['BIRTHDAYS'])) ? $user->lang['BIRTHDAYS'] : '{ BIRTHDAYS }')); ?></h3>
-			<p><?php if ($this->_rootref['BIRTHDAY_LIST']) {  echo ((isset($this->_rootref['L_CONGRATULATIONS'])) ? $this->_rootref['L_CONGRATULATIONS'] : ((isset($user->lang['CONGRATULATIONS'])) ? $user->lang['CONGRATULATIONS'] : '{ CONGRATULATIONS }')); ?>: <strong><?php echo (isset($this->_rootref['BIRTHDAY_LIST'])) ? $this->_rootref['BIRTHDAY_LIST'] : ''; ?></strong><?php } else { echo ((isset($this->_rootref['L_NO_BIRTHDAYS'])) ? $this->_rootref['L_NO_BIRTHDAYS'] : ((isset($user->lang['NO_BIRTHDAYS'])) ? $user->lang['NO_BIRTHDAYS'] : '{ NO_BIRTHDAYS }')); } ?></p>
+			<p><?php if ($this->_rootref['BIRTHDAY_LIST']) {  echo ((isset($this->_rootref['L_CONGRATULATIONS'])) ? $this->_rootref['L_CONGRATULATIONS'] : ((isset($user->lang['CONGRATULATIONS'])) ? $user->lang['CONGRATULATIONS'] : '{ CONGRATULATIONS }')); ?>: <h4><?php echo (isset($this->_rootref['BIRTHDAY_LIST'])) ? $this->_rootref['BIRTHDAY_LIST'] : ''; ?></h4><?php } else { echo ((isset($this->_rootref['L_NO_BIRTHDAYS'])) ? $this->_rootref['L_NO_BIRTHDAYS'] : ((isset($user->lang['NO_BIRTHDAYS'])) ? $user->lang['NO_BIRTHDAYS'] : '{ NO_BIRTHDAYS }')); } ?></p>
 		<?php } ?>
 
 	</div>

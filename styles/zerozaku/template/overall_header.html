@@ -29,70 +29,72 @@
 <!-- ENDIF -->
 
 <!--
-	phpBB style name: Zerozaku v2.0
+	phpBB style name: Zerozaku v0.2.0
 	Original author:  Gio Borje (http://www.zerozaku.com/)
 -->
 
 <script type="text/javascript">
 // <![CDATA[
-	var jump_page = '{LA_JUMP_PAGE}:';
-	var on_page = '{ON_PAGE}';
-	var per_page = '{PER_PAGE}';
-	var base_url = '{A_BASE_URL}';
-	var style_cookie = 'phpBBstyle';
-	var style_cookie_settings = '{A_COOKIE_SETTINGS}';
-	var onload_functions = new Array();
-	var onunload_functions = new Array();
+var collapse_view = '{LA_COLLAPSE_VIEW}',
+	expand_view = '{LA_EXPAND_VIEW}',
+	jump_page = '{LA_JUMP_PAGE}:',
+	on_page = '{ON_PAGE}',
+	per_page = '{PER_PAGE}',
+	base_url = '{A_BASE_URL}',
+	style_cookie = 'phpBBstyle',
+	style_cookie_settings = '{A_COOKIE_SETTINGS}',
+	onload_functions = new Array(),
+	onunload_functions = new Array();
 
-	<!-- IF S_USER_PM_POPUP -->
-		if ({S_NEW_PM})
-		{
-			var url = '{UA_POPUP_PM}';
-			window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
-		}
-	<!-- ENDIF -->
-
-	/**
-	* Find a member
-	*/
-	function find_username(url)
+<!-- IF S_USER_PM_POPUP -->
+	if ({S_NEW_PM})
 	{
-		popup(url, 760, 570, '_usersearch');
-		return false;
+		var url = '{UA_POPUP_PM}';
+		window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
 	}
-	
-	onload_functions.push("load_startIM({rootPath: '{ROOT_PATH}', themePath: '{T_THEME_PATH}', rtl: '{S_CONTENT_DIRECTION}'})");
+<!-- ENDIF -->
 
-	/**
-	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
-	*/
-	window.onload = function()
+/**
+* Find a member
+*/
+function find_username(url)
+{
+	popup(url, 760, 570, '_usersearch');
+	return false;
+}
+
+onload_functions.push("load_startIM({rootPath: '{ROOT_PATH}', themePath: '{T_THEME_PATH}', rtl: '{S_CONTENT_DIRECTION}'})");
+
+/**
+* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+*/
+window.onload = function()
+{
+	for (var i = 0; i < onload_functions.length; i++)
 	{
-		for (var i = 0; i < onload_functions.length; i++)
-		{
-			eval(onload_functions[i]);
-		}
+		eval(onload_functions[i]);
 	}
+}
 
-	window.onunload = function()
+window.onunload = function()
+{
+	for (var i = 0; i < onunload_functions.length; i++)
 	{
-		for (var i = 0; i < onunload_functions.length; i++)
-		{
-			eval(onunload_functions[i]);
-		}
+		eval(onunload_functions[i]);
 	}
-
+}
 // ]]>
 </script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/jquery.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/jquery.tools.min.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jquery.tools.min.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/xs_bbcode_fn.js"></script>
 <script type="text/javascript" src="./classes/scripts/select_expand_bbcodes.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/jquery.nivo.slider.packed.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/highlight.pack.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/highlight.pack.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/languages/javascript.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/default.js"></script>
 
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/default.js"></script>
+<link href="{T_THEME_PATH}/styles/github.css" type="text/css" />
 
 <!-- IF S_USER_ALLOW_IM -->
 	<!-- IF S_USER_LOGGED_IN and not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger.js"></script><!-- ENDIF -->
@@ -191,16 +193,17 @@
 </div>
 
 
-<div id="wrap">
+<div id="wrap"<!-- IF ucp_login eq 'true' --> class="center"<!-- ENDIF -->>
 	<a id="top" name="top" accesskey="t"></a>
-
 	<a name="start_here"></a>
 	
 	<!-- IF $SIDEBAR eq '1' -->
-	<div id="page-body">
-	<!-- ELSE -->
+	<div id="page-sidebar">
+	<!-- INCLUDE sidebar.html -->
+	</div>
 	<!-- ENDIF -->
-		
+	
+	<div<!-- IF $SIDEBAR eq '1' --> id="page-body"<!-- ENDIF -->>
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">
 			<div class="inner">

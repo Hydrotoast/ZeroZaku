@@ -52,9 +52,9 @@ function activity_mod()
 	// assign the stats to the template.
 	$template->assign_vars(array(
 		'USERS_24HOUR_TOTAL'	=> sprintf($user->lang['USERS_24HOUR_TOTAL'], sizeof($active_users) + sizeof($active_guests), sizeof($active_users), sizeof($active_guests)),
-		'24HOUR_TOPICS'			=> sprintf($user->lang['24HOUR_TOPICS'], $activity['topics']),
-		'24HOUR_POSTS'			=> sprintf($user->lang['24HOUR_POSTS'], $activity['posts']),
-		'24HOUR_USERS'			=> sprintf($user->lang['24HOUR_USERS'], $activity['users']),
+		'24HOUR_TOPICS'			=> $activity['topics'],
+		'24HOUR_POSTS'			=> $activity['posts'],
+		'24HOUR_USERS'			=> $activity['users'],
 	));
 
 	return true;
