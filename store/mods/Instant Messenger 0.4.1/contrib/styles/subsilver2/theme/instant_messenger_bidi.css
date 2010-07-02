@@ -1,0 +1,120 @@
+/*** INSTANT MESSENGER / STYLE FILE / BIDI RTL ***/
+
+.rtl #site-bottom-bar-frame .block-box {
+	float: right;
+	margin-right: -1px;
+	margin-left: -1px;
+}
+
+.rtl #site-bottom-bar-frame .block-box:last-child{
+	margin-left: 0px;
+}
+
+.rtl #site-bottom-bar-frame .rightside {
+	float: left;
+}
+
+.rtl #site-bottom-bar-frame .button {
+	direction: rtl;
+	float: right;
+}
+
+
+.rtl #site-bottom-bar-frame #im-online-list .button span {
+	background-position: 0% 50%;
+	padding-right: 20px;
+}
+
+.rtl #site-bottom-bar-frame #im-online-list .button img {
+	float: right;
+	margin-right: 0px;
+	margin-left: 5px;
+	padding: 7px 0;
+}
+
+.rtl #site-bottom-bar-frame #im-online-list span{
+  background-position: 0% 50%;
+}
+
+
+.rtl #site-bottom-bar-frame #im-online-list .block ul li img {
+	float: right;
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+.rtl #site-bottom-bar-frame .rightside .block {
+	left: +1px;
+	margin-right: +1px;
+	margin-left: -1px;
+}
+
+
+.rtl #site-bottom-bar-frame fieldset dd {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.rtl #site-bottom-bar-frame input.button1, .rtl #site-bottom-bar-frame input.button2 {
+	float: right;
+	width: 48% !important;
+	margin-right: 0px;
+	margin-left: 3px;
+}
+
+.rtl .postprofile .bubble, .rtl .left-box .bubble {
+	margin: 5px 10px 0 0px;
+}
+
+.rtl .left-box .bubble {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.rtl .postprofile .bubble cite, .rtl .left-box .bubble cite {
+   margin: 0px;
+   padding: 0 15px 0 0;
+   background-position: 95% 0;
+}
+
+.rtl .postprofile .bubble blockquote, .rtl .left-box .bubble blockquote {
+	margin: -1px 0 0;
+}
+
+
+/** Chat boxes **/
+
+
+.rtl .chatboxtitle {
+	float: right;
+}
+
+.rtl .chatboxoptions {
+	float: left;
+}
+
+.rtl .chatboxinput {
+	background-position: 99% 7px;
+	padding:4px 20px 4px 0px;
+}
+
+
+.rtl .chatboxmessage {
+	margin-left:0em;
+	margin-right: 1em;
+}
+
+.rtl span.chatboxinfo {
+	padding-left:0px;
+	padding-right: 7px;
+}
+
+
+.chatboxmessagecontent {
+}
+
+.rtl .table1 .rightside {
+	float: left;
+	padding-right: 0px;
+	padding-left: 3px;
+}
