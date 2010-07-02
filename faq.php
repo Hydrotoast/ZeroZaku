@@ -33,7 +33,7 @@ switch ($mode)
 	break;
 
 	default:
-		$l_title = $user->lang['FAQ_EXPLAIN'];
+		$l_title = $user->lang['FAQ_TITLE'];
 		$user->add_lang('faq', false, true);
 	break;
 }
