@@ -457,7 +457,7 @@ a.forumtitle:hover {
 	font-size: 1.6667em;
 	text-transform: none;
 	margin: 0 -20px 1em -20px;
-	padding: 0.25em;
+	padding: 0.25em 20px;
 }
 
 .panel h3.sub {

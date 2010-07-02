@@ -23,11 +23,12 @@
 		
 		<!-- IF S_DISPLAY_ONLINE_LIST -->
 			<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
-			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}</p>
+			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br />
+			<br />{LOGGED_IN_USER_LIST}</p>
+			<p>{NEWEST_USER}</p>
 			<!-- IF not S_IS_BOT -->
 			<p>{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
 			<!-- ENDIF --><br />
-			<p>{NEWEST_USER}</p>
 			<!-- IF LEGEND --><h4>{L_LEGEND}:</h4> {LEGEND}<!-- ENDIF --></p>
 		<!-- ENDIF -->
 		

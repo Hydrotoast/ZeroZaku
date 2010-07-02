@@ -294,10 +294,17 @@ a img {
 #board-statistics {
 	border: 1px solid;
 	margin: 0 0 10px 0;
-	padding: 10px;
+	padding: 20px;
 	clear: both;
 	overflow: hidden;
 }
+
+	#board-statistics p {
+		border-bottom: 1px solid;
+		padding-bottom: 10px;
+		width: 77%
+	}
+
 	#board-statistics .stats {
 		border-left: 1px solid;
 		float: right;
