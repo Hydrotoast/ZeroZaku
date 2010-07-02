@@ -1,0 +1,52 @@
+<!-- INCLUDE mcp_header.html -->
+
+<h2>{L_TITLE}</h2>
+
+<div class="panel">
+	<div class="inner">
+		<p>{L_MCP_IP_SEARCH_EXPLAIN}</p>
+		
+		<ul class="linklist">
+			<li class="leftside">
+				<form action="{U_ACTION}"  method="post">
+					<label for="ip">{L_MCP_IP_SEARCH}:</label>
+					<input id="ip" class="inputbox autowidth" name="ip" type="text" size="25" name="ip" value="{IP}" />
+					&nbsp;<label for="type">{L_MCP_IP_SEARCH_TYPE}:</label>
+					<select name="type">
+						<option value="users"<!-- IF TYPE eq 'users' --> selected="selected"<!-- ENDIF -->>{L_MCP_IP_SEARCH_USERS}</option>
+						<option value="posts"<!-- IF TYPE eq 'posts' --> selected="selected"<!-- ENDIF -->>{L_MCP_IP_SEARCH_POSTS}</option>
+						<option value="privmsgs"<!-- IF TYPE eq 'privmsgs' --> selected="selected"<!-- ENDIF -->>{L_MCP_IP_SEARCH_PRIVMSGS}</option>
+						<option value="poll_votes"<!-- IF TYPE eq 'poll_votes' --> selected="selected"<!-- ENDIF -->>{L_MCP_IP_SEARCH_POLL_VOTES}</option>
+						<option value="bot_check"<!-- IF TYPE eq 'bot_check' --> selected="selected"<!-- ENDIF -->>{L_MCP_IP_SEARCH_BOT_CHECK}</option>
+					</select>
+					<input class="button2" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}
+				</form>
+			</li>
+			
+			<!-- IF PAGINATION -->
+			<li class="rightside pagination">
+				<!-- IF TOTAL --><span>{TOTAL} </span><!-- ENDIF -->
+				&bull; <span>{PAGINATION}</span>
+			</li>
+			<!-- ENDIF -->
+		</ul>
+		
+		<!-- IF S_DATA_OUTPUT -->
+			<!-- BEGIN data_output -->
+				<table cellspacing="1" class="table1">
+					{data_output.DATA}
+				</table>
+			<!-- END data_output -->
+			<!-- IF PAGINATION -->
+			<ul>
+				<li class="rightside pagination">
+					<!-- IF TOTAL --><span>{TOTAL}</span><!-- ENDIF -->
+					&bull; <span>{PAGINATION}</span>
+				</li>
+			</ul>
+		<!-- ENDIF -->
+		<!-- ENDIF -->	
+	</div>
+</div>
+
+<!-- INCLUDE mcp_footer.html -->
