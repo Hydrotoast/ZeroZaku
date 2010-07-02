@@ -383,11 +383,6 @@ a.topictitle, a.topictitle h3 { color: #212121; }
 a.topictitle:hover, a.topictitle:active, a.topictitle:hover h3, a.topictitle:active h3 { color: #FF0000 }
 
 /* a.topictitle:visited { color: #368AD2; } */
-.panel h2.polltitle {
-	background-color: #BBBBBB;
-	color: #212121;
-}
-
 h2.pagetitle a:hover, h1.topictitle a:hover, h3.solo a:hover { color: #FF0000; }
 h2.pagetitle a:active, h1.topictitle a:active, h3.solo a:active { color: #2D587E; }
 

@@ -1,8 +1,8 @@
 <?php exit; ?>
-1278032080
+1278048815
 SELECT s.style_id, c.theme_id, c.theme_data, c.theme_path, c.theme_name, c.theme_mtime, i.*, t.template_path FROM phpbb_styles s, phpbb_styles_template t, phpbb_styles_theme c, phpbb_styles_imageset i WHERE s.style_id = 4 AND t.template_id = s.template_id AND c.theme_id = s.theme_id AND i.imageset_id = s.imageset_id
-101076
-a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:100678:"/*  phpBB 3.0 Style Sheet
+101124
+a:1:{i:0;a:11:{s:8:"style_id";s:1:"4";s:8:"theme_id";s:1:"5";s:10:"theme_data";s:100726:"/*  phpBB 3.0 Style Sheet
     --------------------------------------------------------------
 	Style name:		ZeroZaku v2.0
 	Original author: Gio Borje ( http://www.zerozaku.com/ )	
@@ -1015,8 +1015,8 @@ h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 .panel h2.polltitle {
 	font-size: 1.1666em;
 	text-transform: uppercase;
-	margin: 0 -10px 0.5em -10px; /* Negative margins */
-	padding: 0.5em 10px;
+	margin: 0 -20px 0.5em; /* Negative margins */
+	padding: 0.5em 20px;
 }
 
 h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
@@ -1930,6 +1930,10 @@ a.print, a.sendemail, a.fontsize {
 	-webkit-border-radius: 0 5px 5px 0;
 	-khtml-border-radius: 0 5px 5px 0;
 	border-radius: 0 5px 5px 0;
+}
+
+#format-buttons input[type=image] {
+	height: 15px;
 }
 
 /* Poster profile icons
@@ -5216,4 +5220,4 @@ fieldset.display-options label {color: #FFFFFF;}
 .dropdown ul li span {background: none;}
 
 /* CSS Tabs */
-.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1278028102";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
+.tabs ul li a {background: #EEEEEE;}";s:10:"theme_path";s:8:"zerozaku";s:10:"theme_name";s:13:"Zerozaku v2.0";s:11:"theme_mtime";s:10:"1278048454";s:11:"imageset_id";s:1:"5";s:13:"imageset_name";s:13:"Zerozaku v2.0";s:18:"imageset_copyright";s:21:"&copy; 2009 Gio Borje";s:13:"imageset_path";s:8:"zerozaku";s:13:"template_path";s:8:"zerozaku";}}
