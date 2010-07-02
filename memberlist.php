@@ -485,14 +485,14 @@ switch ($mode)
 	{
 		$avatar_friend = get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], $row_av['user_avatar_width'], $row_av['user_avatar_height']);
 		$friend_id = $row_av['zebra_id'];
-		$avatar_size_size = $config['friend_avatar_size'];
+		$avatar_size_size = 70;
 
 		$template->assign_block_vars('fri',array(
 
       		'FRI_ID'   			=> $row_av['zebra_id'],
       		'FRI_AV'   			=> $avatar_friend,
       		'USERNAME'   		=> $row_av['username'],
-      		'WIDTH'				=> $config['friend_avatar_size'],
+      		'WIDTH'				=> $avatar_size_size,
          	'USER_COLOR' 		=> $row_av['user_colour'],
       		'AV_LINK'   		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=viewprofile&amp;u=$friend_id"),  
       		'FRI_AV_THUMB'   	=>   ($row_av['user_avatar']) ? get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], ($row_av['user_avatar_width'] > $row_av['user_avatar_height']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_height']) * $row_av['user_avatar_width'], ($row_av['user_avatar_height'] > $row_av['user_avatar_width']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_width']) * $row_av['user_avatar_height']) : '',
@@ -610,7 +610,7 @@ switch ($mode)
 
 
 		// are you my friend?
-	$sql = 'SELECT friend, foe
+	    $sql = 'SELECT friend, foe
 			FROM ' . ZEBRA_TABLE . "
 			WHERE zebra_id = $user_id
 				AND user_id = {$user->data['user_id']}";

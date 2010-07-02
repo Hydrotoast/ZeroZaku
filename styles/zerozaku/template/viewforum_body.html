@@ -1,8 +1,8 @@
 <!-- DEFINE $CA_PAGE = 'viewforum' --><!-- INCLUDE overall_header.html -->
 
 <!-- IF FORUM_DESC or FORUM_SEO_DESC -->
-	<div class="panel smooth info <!-- IF FORUM_SEO_DESC -->seo<!-- ENDIF -->">
-			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tag_blue.png" alt="{FORUM_SEO_KEY}" /><h3 class="infotitle">{FORUM_SEO_KEY}</h3><p><span>{FORUM_SEO_DESC}</span></p>
+	<div class="panel smooth <!-- IF FORUM_SEO_DESC -->tag<!-- ENDIF -->">
+			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h2 class="infotitle">{FORUM_SEO_KEY}</h2><p><span>{FORUM_SEO_DESC}</span></p>
 			<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
 	</div>
 <!-- ENDIF -->
