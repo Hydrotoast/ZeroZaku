@@ -90,11 +90,11 @@ $lang = array_merge($lang, array(
 	'AVATAR_NOT_UPLOADED'			=> 'Avatar could not be uploaded.',
 	'AVATAR_NO_SIZE'				=> 'The width or height of the linked avatar could not be determined. Please enter them manually.',
 	'AVATAR_PARTIAL_UPLOAD'			=> 'The specified file was only partially uploaded.',
-	'AVATAR_PHP_SIZE_NA'			=> 'The avatar’s filesize is too large.<br />The maximum allowed filesize set in php.ini could not be determined.',
-	'AVATAR_PHP_SIZE_OVERRUN'		=> 'The avatar’s filesize is too large. The maximum allowed upload size is %1$d %2$s.<br />Please note this is set in php.ini and cannot be overridden.',
+	'AVATAR_PHP_SIZE_NA'			=> 'The avatar\'s filesize is too large.<br />The maximum allowed filesize set in php.ini could not be determined.',
+	'AVATAR_PHP_SIZE_OVERRUN'		=> 'The avatar\'s filesize is too large. The maximum allowed upload size is %1$d %2$s.<br />Please note this is set in php.ini and cannot be overridden.',
 	'AVATAR_URL_INVALID'			=> 'The URL you specified is invalid.',
 	'AVATAR_URL_NOT_FOUND'			=> 'The file specified could not be found.',
-	'AVATAR_WRONG_FILESIZE'			=> 'The avatar’s filesize must be between 0 and %1d %2s.',
+	'AVATAR_WRONG_FILESIZE'			=> 'The avatar\'s filesize must be between 0 and %1d %2s.',
 	'AVATAR_WRONG_SIZE'				=> 'The submitted avatar is %5$d pixels wide and %6$d pixels high. Avatars must be at least %1$d pixels wide and %2$d pixels high, but no larger than %3$d pixels wide and %4$d pixels high.',
 
 	'BACK_TO_TOP'			=> 'Top',
@@ -322,7 +322,7 @@ $lang = array_merge($lang, array(
 	'LOGIN_ERROR_ATTEMPTS'				=> 'You exceeded the maximum allowed number of login attempts. In addition to your username and password you now also have to enter the confirm code from the image you see below.',
 	'LOGIN_ERROR_EXTERNAL_AUTH_APACHE'	=> 'You have not been authenticated by Apache.',
 	'LOGIN_ERROR_PASSWORD'				=> 'You have specified an incorrect password. Please check your password and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
-	'LOGIN_ERROR_PASSWORD_CONVERT'		=> 'It was not possible to convert your password when updating this bulletin board’s software. Please %srequest a new password%s. If you continue to have problems please contact the %sBoard Administrator%s.',
+	'LOGIN_ERROR_PASSWORD_CONVERT'		=> 'It was not possible to convert your password when updating this bulletin board\'s software. Please %srequest a new password%s. If you continue to have problems please contact the %sBoard Administrator%s.',
 	'LOGIN_ERROR_USERNAME'				=> 'You have specified an incorrect username. Please check your username and try again. If you continue to have problems please contact the %sBoard Administrator%s.',
 	'LOGIN_FORUM'						=> 'To view or post in this forum you must enter its password.',
 	'LOGIN_INFO'						=> 'Sign up, it\'s free and only takes a moment.',
@@ -459,7 +459,7 @@ $lang = array_merge($lang, array(
 	'POST_DETAILS'			=> 'Post details',
 	'POST_NEW_TOPIC'		=> 'Post new topic',
 	'POST_PCT'				=> '%.2f%% of all posts',
-	'POST_PCT_ACTIVE'		=> '%.2f%% of user’s posts',
+	'POST_PCT_ACTIVE'		=> '%.2f%% of user\'s posts',
 	'POST_PCT_ACTIVE_OWN'	=> '%.2f%% of your posts',
 	'POST_REPLY'			=> 'Post a reply',
 	'POST_REPORTED'			=> 'Click to view report',
@@ -686,7 +686,7 @@ $lang = array_merge($lang, array(
 	'USER_POST'				=> '%d Post',
 	'USER_POSTS'			=> '%d Posts',
 	'USERS'					=> 'Users',
-	'USE_PERMISSIONS'		=> 'Test out user’s permissions',
+	'USE_PERMISSIONS'		=> 'Test out user\'s permissions',
 
 	'USER_NEW_PERMISSION_DISALLOWED'	=> 'We are sorry, but you are not authorised to use this feature. You may have just registered here and may need to participate more to be able to use this feature.',
 
@@ -940,14 +940,14 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'XS_SH_INFO_VERSION'	=> 'Syntax Highlighter based on the XS BBCode parser.',
 	
-	'XS_SH_NOTE'				=> 'Note',
+	'XS_SH_NOTE'			=> 'Note',
 	'XS_SH_TAG_ONCE'		=> 'You may only use this BBCode Tag once in a signature.',
 	'XS_SH_TAG_SIG'			=> 'This tag can only be used in signatures.',
 	'XS_SH_TAG_NOSIG'		=> 'This tag cannot be used in signatures.',
 	
-	'XS_SH_NO_TOPIC_ID'	=> 'No topic id supplied.',
+	'XS_SH_NO_TOPIC_ID'	    => 'No topic id supplied.',
 	'XS_SH_NO_TOPIC'		=> 'The requested topic id does not exist.',
-	'XS_SH_NO_CONTENT'	=> 'The requested topic id does not contain anything to download.',
+	'XS_SH_NO_CONTENT'	    => 'The requested topic id does not contain anything to download.',
 
 	// Help lines - used if using the boardbbcodes mod
 	'XS_SH_TAG_VERSION'	=> 'Displays BBCode (Hooker) Version information: [version][/version] or [version /]',
