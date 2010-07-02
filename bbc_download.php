@@ -1,15 +1,12 @@
 <?php
 /*
-		 filename: bbc_download.php
-			 Author: CyberAlien : http://www.stsoftware.biz
-
-		 		Notes: CyberAlien (aka CA ;) ) released the enhanced bbcode parser to the public
-							 on the 31 May 2005 @ 7:38 am (for more information see the following post
-							 http://www.phpbbstyles.com/viewtopic.php?t=6107 )
-
-	 		Version: 1.0.6
-       
-	Description: Used with the XS Syntax Highlighter to download the contents of a syntax block
+filename: bbc_download.php
+Author: CyberAlien : http://www.stsoftware.biz
+Notes: CyberAlien (aka CA ;) ) released the enhanced bbcode parser to the public
+	on the 31 May 2005 @ 7:38 am (for more information see the following post
+	http://www.phpbbstyles.com/viewtopic.php?t=6107 )
+Version: 1.0.6
+Description: Used with the XS Syntax Highlighter to download the contents of a syntax block
 */
 
 define('IN_PHPBB', true);

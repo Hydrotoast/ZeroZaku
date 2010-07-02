@@ -1,4 +1,4 @@
-<?php if (!defined('IN_PHPBB')) exit; ?><h2 class="pagetitle"><span><?php echo ((isset($this->_rootref['L_QUICK_REPLY'])) ? $this->_rootref['L_QUICK_REPLY'] : ((isset($user->lang['QUICK_REPLY'])) ? $user->lang['QUICK_REPLY'] : '{ QUICK_REPLY }')); ?></span></h2>
+<?php if (!defined('IN_PHPBB')) exit; ?><h2 class="cattitle"><span><?php echo ((isset($this->_rootref['L_QUICK_REPLY'])) ? $this->_rootref['L_QUICK_REPLY'] : ((isset($user->lang['QUICK_REPLY'])) ? $user->lang['QUICK_REPLY'] : '{ QUICK_REPLY }')); ?></span></h2>
 <form id="postform" method="post" action="<?php echo (isset($this->_rootref['S_POST_ACTION'])) ? $this->_rootref['S_POST_ACTION'] : ''; ?>" onsubmit="return checkForm(this);" name="postform"<?php echo (isset($this->_rootref['S_FORM_ENCTYPE'])) ? $this->_rootref['S_FORM_ENCTYPE'] : ''; ?>>
 
 	<div class="panel" id="postingbox">

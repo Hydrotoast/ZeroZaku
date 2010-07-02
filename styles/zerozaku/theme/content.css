@@ -169,13 +169,6 @@ h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	clear: both;
 }
 
-.panel h2.polltitle {
-	font-size: 1.1666em;
-	text-transform: uppercase;
-	margin: 0 -10px 0.5em -10px; /* Negative margins */
-	padding: 0.5em 10px;
-}
-
 h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
 	border: 1px solid;
 	padding: 1px 0.4em;

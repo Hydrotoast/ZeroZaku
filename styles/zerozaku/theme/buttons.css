@@ -107,6 +107,10 @@ a.print, a.sendemail, a.fontsize {
 	border-radius: 0 5px 5px 0;
 }
 
+#format-buttons input[type=image] {
+	height: 15px;
+}
+
 /* Poster profile icons
 ----------------------------------------*/
 ul.profile-icons {
