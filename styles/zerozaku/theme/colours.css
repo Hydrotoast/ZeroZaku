@@ -39,6 +39,8 @@ hr.dashed {
 	color: #606060;
 }
 
+#board-statistics p { border-color: #D0D0D0; }
+
 #board-statistics .stats { border-color: #D0D0D0; }
 #board-statistics .stats dd {border-color: #D0D0D0; }
 
