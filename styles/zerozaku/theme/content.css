@@ -527,6 +527,9 @@ a.forumtitle:hover {
 	padding: 4px 10px;
 }
 
+.panel.faq_box { margin-bottom: 0; }
+.faq_box .content { overflow: visible; }
+
 .content {
 	min-height: 3em;
 	overflow: hidden;
@@ -541,31 +544,23 @@ a.forumtitle:hover {
 	padding-bottom: 0.5em;
 }
 
-.content p {
-	margin-bottom: 1em;
-}
+.content p { margin-bottom: 1em; }
 
 dl.faq {
 	margin-top: 1em;
 	margin-bottom: 2em;
 }
 
-.content dl.faq {
-	margin-bottom: 0.5em;
-}
+.content dl.faq { margin-bottom: 0.5em; }
 
-.content li {
-	list-style-type: inherit;
-}
+.content li { list-style-type: inherit; }
 
 .content ul, .content ol {
 	margin-bottom: 0;
 	margin-left: 3em;
 }
 
-.posthilit {
-	padding: 0 2px 1px 2px;
-}
+.posthilit { padding: 0 2px 1px 2px; }
 
 /* Post author */
 p.author {
@@ -591,9 +586,7 @@ dd .signature {
 	border: none;
 }
 
-.signature li {
-	list-style-type: inherit;
-}
+.signature li { list-style-type: inherit; }
 
 .signature ul, .signature ol {
 	margin-bottom: 1em;
@@ -642,14 +635,10 @@ blockquote cite {
 	display: block;
 }
 
-blockquote.uncited {
-	padding-top: 25px;
-}
+blockquote.uncited { padding-top: 25px; }
 
 /* Code block */
-dl.codebox {
-	border: 1px solid;
-}
+dl.codebox { border: 1px solid; }
 
 dl.codebox dt {
 	border-bottom: 1px solid;
@@ -658,13 +647,8 @@ dl.codebox dt {
 	padding: 4px;
 }
 
-dl.codebox dd {
-	padding: 4px;
-}
-
-blockquote dl.codebox {
-	margin-left: 0;
-}
+dl.codebox dd { padding: 4px; }
+blockquote dl.codebox { margin-left: 0; }
 
 dl.codebox code {
 	/* Also see tweaks.css */
@@ -710,19 +694,14 @@ div.adapthide {
 	clear: left;
 }
 
-.attachbox dd dd {
-	border: none;
-}
+.attachbox dd dd { border: none; }
 
 .attachbox p {
 	font-weight: normal;
 	clear: left;
 }
 
-.attachbox p.stats
-{
-	clear: left;
-}
+.attachbox p.stats { clear: left; }
 
 .attach-image {
 	margin: 3px 0;
@@ -742,9 +721,7 @@ div.inline-attachment dl.thumbnail, div.inline-attachment dl.file {
 	margin-bottom: 6px;
 }
 
-dl.file {
-	display: block;
-}
+dl.file { display: block; }
 
 dl.file dt {
 	margin: 0;
@@ -816,17 +793,9 @@ fieldset.polls dd div {
 	display: inline;
 }
 
-.postprofile dt {
-	text-align: center;
-}
-
-.postprofile dd, .postprofile dt {
-	line-height: 1.7em;
-}
-
-.postprofile dd {
-	margin-bottom: 0.5em;
-}
+.postprofile dt { text-align: center; }
+.postprofile dd, .postprofile dt { line-height: 1.7em; }
+.postprofile dd { margin-bottom: 0.5em; }
 
 .postprofile dd strong {
 	display: inline-block;
@@ -864,9 +833,7 @@ fieldset.polls dd div {
 	behaviour: url("ie-css3.htc");
 }
 
-.avatar {
-	margin-bottom: 3px;
-}
+.avatar { margin-bottom: 3px; }
 
 /* Poster profile used by search*/
 .search .postprofile {
@@ -879,13 +846,8 @@ fieldset.polls dd div {
 .pm {border: 1px solid;}
 
 /* pm list in compose message if mass pm is enabled */
-dl.pmlist dt {
-	width: 60% !important;
-}
-
-dl.pmlist dt textarea {
-	width: 95%;
-}
+dl.pmlist dt { width: 60% !important; }
+dl.pmlist dt textarea { width: 95%; }
 
 dl.pmlist dd {
 	margin-left: 61% !important;
@@ -903,17 +865,9 @@ dl.pmlist dd {
 	height: 24px;
 }
 
-.postmeta a {
-	text-decoration: none;	
-}
-
-.postmeta .dropdown {
-	float: left;
-}
-
-.posmeta .username {
-	float: left;
-}
+.postmeta a { text-decoration: none; }
+.postmeta .dropdown { float: left; }
+.posmeta .username { float: left; }
 
 .postmeta .date {
 	font-size: 0.9166em;

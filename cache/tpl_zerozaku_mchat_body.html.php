@@ -1,4 +1,10 @@
-<?php if (!defined('IN_PHPBB')) exit; if ($this->_rootref['MCHAT_ARCHIVE_MODE'] || $this->_rootref['MCHAT_CUSTOM_PAGE']) {  $this->_tpl_include('overall_header.html'); } if ($this->_rootref['MCHAT_ARCHIVE_MODE']) {  ?>
+<?php if (!defined('IN_PHPBB')) exit; if ($this->_rootref['MCHAT_ARCHIVE_MODE'] || $this->_rootref['MCHAT_CUSTOM_PAGE']) {  $this->_tpl_include('overall_header.html'); ?>
+<div class="panel smooth info tag">
+	<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/tags/spechbubble_sq_line.png" alt="<?php echo ((isset($this->_rootref['L_UCP'])) ? $this->_rootref['L_UCP'] : ((isset($user->lang['UCP'])) ? $user->lang['UCP'] : '{ UCP }')); ?>" />
+	<h2 class="infotitle"><?php echo ((isset($this->_rootref['L_MCHAT'])) ? $this->_rootref['L_MCHAT'] : ((isset($user->lang['MCHAT'])) ? $user->lang['MCHAT'] : '{ MCHAT }')); ?></h2>
+	<p><?php echo ((isset($this->_rootref['L_MCHAT_EXPLAIN'])) ? $this->_rootref['L_MCHAT_EXPLAIN'] : ((isset($user->lang['MCHAT_EXPLAIN'])) ? $user->lang['MCHAT_EXPLAIN'] : '{ MCHAT_EXPLAIN }')); ?></p>
+</div>
+<?php } if ($this->_rootref['MCHAT_ARCHIVE_MODE']) {  ?>
 <ul class="linklist">
 	<li class="rightside pagination"><?php echo (isset($this->_rootref['MCHAT_TOTAL_MESSAGES'])) ? $this->_rootref['MCHAT_TOTAL_MESSAGES'] : ''; ?> &bull; <?php if ($this->_rootref['MCHAT_PAGINATION']) {  ?><a href="#" onclick="jumpto(); return false;" title="<?php echo ((isset($this->_rootref['L_JUMP_TO_PAGE'])) ? $this->_rootref['L_JUMP_TO_PAGE'] : ((isset($user->lang['JUMP_TO_PAGE'])) ? $user->lang['JUMP_TO_PAGE'] : '{ JUMP_TO_PAGE }')); ?>"><?php echo (isset($this->_rootref['MCHAT_PAGE_NUMBER'])) ? $this->_rootref['MCHAT_PAGE_NUMBER'] : ''; ?></a> &bull; <span><?php echo (isset($this->_rootref['MCHAT_PAGINATION'])) ? $this->_rootref['MCHAT_PAGINATION'] : ''; ?></span><?php } else { echo (isset($this->_rootref['MCHAT_PAGE_NUMBER'])) ? $this->_rootref['MCHAT_PAGE_NUMBER'] : ''; } ?></li>
 </ul>
