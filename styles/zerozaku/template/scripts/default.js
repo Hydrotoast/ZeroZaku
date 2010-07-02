@@ -38,7 +38,7 @@ $(function() {
 		
 		if (window_width > 950) {
 			$("#page-body").stop().animate({
-				width: '79.5%'
+				width: '80%'
 			}, 600, 'swing', function()
 			{
 				$("#page-sidebar").show();

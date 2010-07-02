@@ -62,14 +62,14 @@ a img {
 #page-body {
 	text-align: left;
 	float: left;
-	min-width: 772.8px;
-	width: 79.5%;
+	min-width: 768px;
+	width: 80%;
 }
 
 #page-sidebar {
 	text-align: left;
 	float: right;
-	margin-left: 1.5%;
+	margin-left: 1%;
 	min-width: 180px;
 	width: 18.75%;
 }
