@@ -1,6 +1,6 @@
 <?php if (!defined('IN_PHPBB')) exit; if ($this->_rootref['MCHAT_ARCHIVE_MODE'] || $this->_rootref['MCHAT_CUSTOM_PAGE']) {  $this->_tpl_include('overall_header.html'); ?>
 <div class="panel smooth info tag">
-	<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/tags/spechbubble_sq_line.png" alt="<?php echo ((isset($this->_rootref['L_UCP'])) ? $this->_rootref['L_UCP'] : ((isset($user->lang['UCP'])) ? $user->lang['UCP'] : '{ UCP }')); ?>" />
+	<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/tags/spechbubble_sq_line.png" alt="<?php echo ((isset($this->_rootref['L_MCHAT'])) ? $this->_rootref['L_MCHAT'] : ((isset($user->lang['MCHAT'])) ? $user->lang['MCHAT'] : '{ MCHAT }')); ?>" />
 	<h2 class="infotitle"><?php echo ((isset($this->_rootref['L_MCHAT'])) ? $this->_rootref['L_MCHAT'] : ((isset($user->lang['MCHAT'])) ? $user->lang['MCHAT'] : '{ MCHAT }')); ?></h2>
 	<p><?php echo ((isset($this->_rootref['L_MCHAT_EXPLAIN'])) ? $this->_rootref['L_MCHAT_EXPLAIN'] : ((isset($user->lang['MCHAT_EXPLAIN'])) ? $user->lang['MCHAT_EXPLAIN'] : '{ MCHAT_EXPLAIN }')); ?></p>
 </div>
