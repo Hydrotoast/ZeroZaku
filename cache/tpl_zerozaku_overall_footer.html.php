@@ -18,7 +18,7 @@
 			<dl>
 			<dt><?php echo (isset($this->_rootref['24HOUR_POSTS'])) ? $this->_rootref['24HOUR_POSTS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_POSTS'])) ? $this->_rootref['L_24HOUR_POSTS'] : ((isset($user->lang['24HOUR_POSTS'])) ? $user->lang['24HOUR_POSTS'] : '{ 24HOUR_POSTS }')); ?></dd>
 			<dt><?php echo (isset($this->_rootref['24HOUR_TOPICS'])) ? $this->_rootref['24HOUR_TOPICS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_TOPICS'])) ? $this->_rootref['L_24HOUR_TOPICS'] : ((isset($user->lang['24HOUR_TOPICS'])) ? $user->lang['24HOUR_TOPICS'] : '{ 24HOUR_TOPICS }')); ?></dd>
-			<dt><?php echo (isset($this->_rootref['24HOUR_USERS'])) ? $this->_rootref['24HOUR_USERS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_TOPICS'])) ? $this->_rootref['L_24HOUR_TOPICS'] : ((isset($user->lang['24HOUR_TOPICS'])) ? $user->lang['24HOUR_TOPICS'] : '{ 24HOUR_TOPICS }')); ?></dd>
+			<dt><?php echo (isset($this->_rootref['24HOUR_USERS'])) ? $this->_rootref['24HOUR_USERS'] : ''; ?></dt> <dd><?php echo ((isset($this->_rootref['L_24HOUR_USERS'])) ? $this->_rootref['L_24HOUR_USERS'] : ((isset($user->lang['24HOUR_USERS'])) ? $user->lang['24HOUR_USERS'] : '{ 24HOUR_USERS }')); ?></dd>
 			</dl>
 		</div>
 		
