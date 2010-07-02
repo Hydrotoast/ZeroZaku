@@ -33,7 +33,7 @@
 </script>
 
 <?php if ($this->_rootref['S_REIMG']) {  ?>
-	<script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>reimg/reimg.js"></script>
+	<script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/scripts/reimg.js"></script>
 
 	<?php if ($this->_rootref['S_REIMG_ZOOM']) {  ?>
 		<style type="text/css" media="screen, projection">
@@ -42,8 +42,8 @@
 		-->
 		</style>
 	<?php } } if ($this->_rootref['S_REIMG_LITEBOX']) {  if ($this->_rootref['S_REIMG_LITEBOX'] == ('_highslide')) {  ?>
-		<script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>reimg/highslide/highslide-full.packed.js"></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>reimg/highslide/highslide.css" />
+		<script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/scripts/highslide/highslide-full.packed.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/scripts/highslide/highslide.css" />
 	<?php } ?>
 
 	<script type="text/javascript">
@@ -107,5 +107,5 @@
 	</script>
 
 	<?php if ($this->_rootref['S_REIMG_LITEBOX'] != ('_highslide')) {  ?>
-		<script type="text/javascript" src="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>reimg/litebox.js"></script>
+		<script type="text/javascript" src="<?php echo (isset($this->_rootref['T_TEMPLATE_PATH'])) ? $this->_rootref['T_TEMPLATE_PATH'] : ''; ?>/scripts/litebox.js"></script>
 	<?php } } ?>
