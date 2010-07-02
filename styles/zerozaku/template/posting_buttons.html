@@ -101,8 +101,10 @@
 		<!-- ENDIF -->
 	</select>
 	<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+	<!-- BEGIN custom_tags --><!-- IF custom_tags.BBCODE_TAG eq 'Left' --><input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" /><!-- ENDIF --><!-- END custom_tags -->
+	<!-- BEGIN custom_tags --><!-- IF custom_tags.BBCODE_TAG eq 'Center' || custom_tags.BBCODE_TAG eq 'Right' --><input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" /><!-- ENDIF --><!-- END custom_tags -->
 	<!-- BEGIN custom_tags -->
-		<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+		<!-- IF custom_tags.BBCODE_TAG neq 'Left' && custom_tags.BBCODE_TAG neq 'Center' && custom_tags.BBCODE_TAG neq 'Right'  --><input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" /><!-- ENDIF -->
 	<!-- END custom_tags -->
 </div>
 <!-- ENDIF -->

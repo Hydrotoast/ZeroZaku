@@ -890,7 +890,7 @@ function display_custom_bbcodes()
 	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
 		FROM ' . BBCODES_TABLE . '
 		WHERE display_on_posting = 1
-		ORDER BY bbcode_tag';
+		ORDER BY bbcode_id';
 	$result = $db->sql_query($sql);
 
 	$i = 0;
