@@ -1,7 +1,12 @@
 <?php if (!defined('IN_PHPBB')) exit; $this->_tpl_include('overall_header.html'); ?>
 
 
-<h2><?php echo ((isset($this->_rootref['L_MCP'])) ? $this->_rootref['L_MCP'] : ((isset($user->lang['MCP'])) ? $user->lang['MCP'] : '{ MCP }')); ?></h2>
+<div class="panel smooth info tag">
+	<img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/tags/box.png" alt="<?php echo ((isset($this->_rootref['L_MCP'])) ? $this->_rootref['L_MCP'] : ((isset($user->lang['MCP'])) ? $user->lang['MCP'] : '{ MCP }')); ?>" />
+	<h2 class="infotitle"><?php echo ((isset($this->_rootref['L_MCP'])) ? $this->_rootref['L_MCP'] : ((isset($user->lang['MCP'])) ? $user->lang['MCP'] : '{ MCP }')); ?></h2>
+	<p><?php echo ((isset($this->_rootref['L_MCP_EXPLAIN'])) ? $this->_rootref['L_MCP_EXPLAIN'] : ((isset($user->lang['MCP_EXPLAIN'])) ? $user->lang['MCP_EXPLAIN'] : '{ MCP_EXPLAIN }')); ?></p>
+</div>
+
 
 <?php if ($this->_rootref['U_MCP']) {  ?>
 

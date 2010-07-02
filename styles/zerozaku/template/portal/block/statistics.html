@@ -1,18 +1,19 @@
-<!-- DEFINE $S_IN_PORTAL = 1 -->
-<!-- INCLUDE portal/_block_config.html -->
-<div class="stats">
-	<p><h4>{L_ST_TOP}</h4>
-	<dl>
-	{L_TOTAL_POSTS} {TOTAL_POSTS}<br />
-	{L_TOTAL_TOPICS} {TOTAL_TOPICS}<br />
+<!--version $Id: statistics.html 481 2009-03-15 23:16:32Z Christian_N $ //-->
+{$LR_BLOCK_H_L}<img src="{T_THEME_PATH}/images/portal/sidebar_chart.png" width="16px" height="16px" alt=""/>&nbsp;{L_STATISTICS}{$LR_BLOCK_H_R}
+	<strong>{L_ST_TOP}</strong><br />
+	{TOTAL_POSTS}<br />
+	{TOTAL_TOPICS}<br />
 	{L_ST_TOP_ANNS} <strong>{S_ANN}</strong><br />
 	{L_ST_TOP_STICKYS} <strong>{S_SCT}</strong><br />
 	{L_ST_TOT_ATTACH} <strong>{S_TOT_ATTACH}</strong><br />
-	{L_TOTAL_USERS} {TOTAL_USERS}<br />
-	{NEWEST_USER}</p>
+		
+	<hr class="dashed" />
+	{TOTAL_USERS}<br />
+	{NEWEST_USER}
 	
-	<p><h4>{L_24HOUR_STATS}</h4>
+	<hr class="dashed" />
+	<strong>{L_24HOUR_STATS}</strong><br />
 	{24HOUR_POSTS}<br />
 	{24HOUR_TOPICS}<br />
-	{24HOUR_USERS}<br /></p>
-</div>
+	{24HOUR_USERS}<br />
+{$LR_BLOCK_F_L}{$LR_BLOCK_F_R}

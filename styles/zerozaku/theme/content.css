@@ -169,12 +169,6 @@ h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	clear: both;
 }
 
-.panel.info h3.infotitle {
-	font: normal 1.5em Anivers-Regular, Arial, Helvetica, sans-serif;
-	text-transform: none;
-	margin: 10px 0 0 0;
-}
-
 .panel h2.polltitle {
 	font-size: 1.1666em;
 	text-transform: uppercase;
@@ -486,16 +480,25 @@ a.forumtitle:hover {
 	margin-bottom: 1em;
 }
 
-.panel.info img {
+.panel.tag .infotitle {
+	font: normal 2em Anivers-Regular, Arial, Helvetica, sans-serif;
+	text-transform: none;
+	margin: 12px 0 0 67px;
+	padding: 0;
+}
+
+.panel.info img, .panel.tag img {
 	float: left;
 	margin: 6px 0;
 }
 
-.panel.info.seo img {
-	margin: 0;
+.panel.tag img {
+	margin: 12px 0;
+	height: 48px;
+	width: 48px;
 }
 
-.panel.info p {
+.panel.info p, .panel.tag p {
 	margin: 10px 0;
 	padding-left: 34px;
 }
@@ -505,12 +508,12 @@ a.forumtitle:hover {
 	border-style: solid;
 }
 
-.panel.info.seo h3, .panel.info.seo p {
-	padding-left: 74px;
+.panel.tag h3, .panel.tag p {
+	padding-left: 68px;
 }
 
-.panel.info.seo p {
-	margin: 0;
+.panel.tag p {
+	margin: 0 0 6px;
 }
 
 /* panel sidebar */

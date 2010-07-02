@@ -147,6 +147,8 @@ $lang = array_merge($lang, array(
 	'MCP_BAN_IPS'				=> 'Ban IPs',
 	'MCP_BAN_USERNAMES'			=> 'Ban Usernames',
 
+    'MCP_EXPLAIN'				=> 'Welcome to the MCP (Moderator Control Panel) where you can manage individual forums, add notes to users, or handle forum reports',
+
 	'MCP_LOGS'						=> 'Moderator logs',
 	'MCP_LOGS_FRONT'				=> 'Front page',
 	'MCP_LOGS_FORUM_VIEW'			=> 'Forum logs',

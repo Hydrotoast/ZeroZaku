@@ -355,11 +355,13 @@ a img {
 /* Profile blocks
 ---------------------------------------- */
 h2.pro-header, h3.pro-header {
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.1666em;
 	font-weight: bold;
 	text-transform: uppercase;
-	margin: 0 -10px 0.3333em -10px; /* Negative margins */
-	padding: 0.3333em 10px;
+	border-bottom: 1px solid;
+	margin: 0 -20px 4px -20px; /* Negative margins */
+	padding: 4px 20px;
 }
 
 #comment {padding: 0;}
@@ -400,9 +402,10 @@ h2.pro-header, h3.pro-header {
 
 #pro-friends .friend {
 	float: left;
-	margin: 0 10px 10px 0;
-	height: 120px;
-	width: 120px;
+	margin: 10px;
+	height: 90px;
+	width: 90px;
+	overflow: hidden;
 }
 
 #pro-friends ul.linklist {

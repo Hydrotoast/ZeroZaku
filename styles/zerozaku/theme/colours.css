@@ -126,7 +126,8 @@ hr.dashed {
 /* Profile blocks
 ---------------------------------------- */
 h2.pro-header, h3.pro-header {
-	background-color: #D0D0D0;
+	background: url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0 #E0E0E0;
+	border-color: #C0C0C0;
 	color: #666666;
 }
 
@@ -200,8 +201,8 @@ h2.pro-header, h3.pro-header {
 	border: none;
 }
 
-.panel.info h3 { color: #999999; }
-.panel.info p { color: #666666; }
+.panel.info .infotitle, .panel.tag .infotitle { color: #999999; }
+.panel.info p, .panel.tag p { color: #666666; }
 
 .panel .login { border-right-color: #D0D0D0; }
 .login-box {border-color: #C0C0C0;}
