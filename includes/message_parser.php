@@ -398,8 +398,10 @@ class bbcode_firstpass extends bbcode
 		switch (strtolower($stx))
 		{
 			case 'off':
-			case 'as3':
-			case 'actionscript3':
+			case 'as':
+			case 'actionscript':
+			case 'au':
+			case 'autoit':
 			case 'cf':
 			case 'coldfusion':
 			case 'c-sharp':

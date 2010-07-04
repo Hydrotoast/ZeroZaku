@@ -51,6 +51,7 @@ function shConfig(templatePath) {
 	SyntaxHighlighter.autoloader(
 		[ 'applescript',					templatePath + '/scripts/languages/shBrushAppleScript.js' ],
 		[ 'actionscript3', 'as3',			templatePath + '/scripts/languages/shBrushAS3.js' ],
+		[ 'au3', 'autoit',					templatePath + '/scripts/languages/shBrushAutoit.js' ],
 		[ 'bash', 'shell',					templatePath + '/scripts/languages/shBrushBash.js' ],
 		[ 'coldfusion', 'cf',				templatePath + '/scripts/languages/shBrushColdFusion.js' ],
 		[ 'cpp', 'c',						templatePath + '/scripts/languages/shBrushCpp.js' ],
