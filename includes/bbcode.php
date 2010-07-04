@@ -601,6 +601,7 @@ class bbcode
 		global $user;
 
 		static $replacements = array(
+		    'code_open'				=> array('{LANGUAGE}'	=> '$1'),
 			'quote_username_open'	=> array('{USERNAME}'	=> '$1'),
 			'color'					=> array('{COLOR}'		=> '$1', '{TEXT}'			=> '$2'),
 			'size'					=> array('{SIZE}'		=> '$1', '{TEXT}'			=> '$2'),
@@ -698,33 +699,24 @@ class bbcode
 		// when using the /e modifier, preg_replace slashes double-quotes but does not
 		// seem to slash anything else
 		$code = str_replace('\"', '"', $code);
+		$code = str_replace("\t", '&nbsp; &nbsp;', $code);
+		$code = str_replace('  ', '&nbsp; ', $code);
+		$code = str_replace('  ', ' &nbsp;', $code);
 
-		switch ($type)
+		// remove newline at the beginning
+		if (!empty($code) && $code[0] == "\n")
 		{
-			case 'php':
-				// Not the english way, but valid because of hardcoded syntax highlighting
-				if (strpos($code, '<span class="syntaxdefault"><br /></span>') === 0)
-				{
-					$code = substr($code, 41);
-				}
-
-			// no break;
-
-			default:
-				$code = str_replace("\t", '&nbsp; &nbsp;', $code);
-				$code = str_replace('  ', '&nbsp; ', $code);
-				$code = str_replace('  ', ' &nbsp;', $code);
-
-				// remove newline at the beginning
-				if (!empty($code) && $code[0] == "\n")
-				{
-					$code = substr($code, 1);
-				}
-			break;
+			$code = substr($code, 1);
 		}
 
-		$code = $this->bbcode_tpl('code_open') . $code . $this->bbcode_tpl('code_close');
+		if ($type == 'off')
+		{
+			$type = 'no-highlight';
+		}
 
+		$code_open = str_replace('$1', $type, $this->bbcode_tpl('code_open'));
+		$code = $code_open . $code . $this->bbcode_tpl('code_close');
+		
 		return $code;
 	}
 }

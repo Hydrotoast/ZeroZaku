@@ -2235,7 +2235,7 @@ function append_sid($url, $params = false, $is_amp = true, $session_id = false)
 * Generate board url (example: http://www.example.com/phpBB)
 * @param bool $without_script_path if set to true the script path gets not appended (example: http://www.example.com)
 */
-function generate_board_url($without_script_path = false)
+function generate_board_url($without_script_path = false, $cdn = false)
 {
 	global $config, $user;
 
@@ -2257,7 +2257,7 @@ function generate_board_url($without_script_path = false)
 	{
 		// Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
 		$cookie_secure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 1 : 0;
-		$url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
+		$url = (($cookie_secure) ? 'https://' : 'http://') . (($cdn) ? ($cdn . str_replace('www', '', $server_name)) : $server_name);
 
 		$script_path = $user->page['root_script_path'];
 	}
@@ -4171,6 +4171,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// Determine board url - we may need it later
 	$board_url = generate_board_url() . '/';
 	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : $phpbb_root_path;
+	$cdn_path = generate_board_url(false, 'cdn') . '/';
 
 	// Which timezone?
 	$tz = ($user->data['user_id'] != ANONYMOUS) ? strval(doubleval($user->data['user_timezone'])) : strval(doubleval($config['board_timezone']));
@@ -4272,11 +4273,11 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_MODCP'				=> append_sid("{$phpbb_root_path}mcp.$phpEx", false, true, $user->session_id),
 		'U_FACTION'				=> append_sid("{$phpbb_root_path}faction.$phpEx"),
 		'U_FAQ'					=> append_sid("{$phpbb_root_path}faq.$phpEx"),
-// BEGIN mChat Mod
+        // BEGIN mChat Mod
 		'U_MCHAT'			=> $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
 		'S_MCHAT_ON_INDEX'		=> $config['mchat_on_index'] ? true : false,
 		'S_MCHAT_ENABLE'		=> ($config['mchat_enable'] && $auth->acl_get('u_mchat_view')) ? true : false,
-// END mChat Mod
+        // END mChat Mod
 		'U_SEARCH_SELF'			=> append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=egosearch'),
 		'U_SEARCH_NEW'			=> append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=newposts'),
 		'U_SEARCH_UNANSWERED'	=> append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=unanswered'),
@@ -4288,8 +4289,8 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_TERMS_USE'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=terms'),
 		'U_PRIVACY'				=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=privacy'),
 		'U_RESTORE_PERMISSIONS'	=> ($user->data['user_perm_from'] && $auth->acl_get('a_switchperm')) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=restore_perm') : '',
-'U_KB'					=> append_sid("{$phpbb_root_path}kb.$phpEx"),
-'L_KB'					=> (isset($config['kb_link_name'])) ? $config['kb_link_name'] : $user->lang['KB'],
+		'U_KB'					=> append_sid("{$phpbb_root_path}kb.$phpEx"),
+		'L_KB'					=> (isset($config['kb_link_name'])) ? $config['kb_link_name'] : $user->lang['KB'],
 		'U_VIEW_PROFILE'	=> get_username_string('profile', $user_id, $username, $colour),
 
 		'U_NEW_POSTS'			=> append_sid($phpbb_root_path . 'search.' . $phpEx . '?search_id=newposts'),

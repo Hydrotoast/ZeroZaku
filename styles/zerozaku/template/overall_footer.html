@@ -26,10 +26,8 @@
 			<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br />
 			<br />{LOGGED_IN_USER_LIST}</p>
 			<p>{NEWEST_USER}</p>
-			<!-- IF not S_IS_BOT -->
-			<p>{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
-			<!-- ENDIF --><br />
-			<!-- IF LEGEND --><h4>{L_LEGEND}:</h4> {LEGEND}<!-- ENDIF --></p>
+			<!-- IF not S_IS_BOT --><p>{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit --></p><!-- ENDIF -->
+			<!-- IF LEGEND --><h4>{L_LEGEND}:</h4> {LEGEND}<!-- ENDIF -->
 		<!-- ENDIF -->
 		
 		<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->

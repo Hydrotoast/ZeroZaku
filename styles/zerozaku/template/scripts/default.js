@@ -55,6 +55,37 @@ $(function() {
 	});
 });
 
+function shConfig(templatePath) {
+	SyntaxHighlighter.config.bloggerMode = true;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.autoloader(
+		[ 'applescript',					templatePath + '/scripts/languages/shBrushAppleScript.js' ],
+		[ 'actionscript3', 'as3',			templatePath + '/scripts/languages/shBrushAS3.js' ],
+		[ 'bash', 'shell',					templatePath + '/scripts/languages/shBrushBash.js' ],
+		[ 'coldfusion', 'cf',				templatePath + '/scripts/languages/shBrushColdFusion.js' ],
+		[ 'cpp', 'c',						templatePath + '/scripts/languages/shBrushCpp.js' ],
+		[ 'c#', 'c-sharp', 'csharp',		templatePath + '/scripts/languages/shBrushCSharp.js' ],
+		[ 'css',							templatePath + '/scripts/languages/shBrushCss.js' ],
+		[ 'delphi', 'pascal',				templatePath + '/scripts/languages/shBrushDelphi.js' ],
+		[ 'diff', 'patch', 'pas',			templatePath + '/scripts/languages/shBrushDiff.js' ],
+		[ 'erl', 'erlang',					templatePath + '/scripts/languages/shBrushErlang.js' ],
+		[ 'groovy',							templatePath + '/scripts/languages/shBrushGroovy.js' ],
+		[ 'java',							templatePath + '/scripts/languages/shBrushJava.js' ],
+		[ 'jfx', 'javafx',					templatePath + '/scripts/languages/shBrushJavaFX.js' ],
+		[ 'js', 'jscript', 'javascript',	templatePath + '/scripts/languages/shBrushJScript.js' ],
+		[ 'perl', 'pl',						templatePath + '/scripts/languages/shBrushPerl.js' ],
+		[ 'php',							templatePath + '/scripts/languages/shBrushPhp.js' ],
+		[ 'text', 'plain',					templatePath + '/scripts/languages/shBrushPlain.js' ],
+		[ 'py', 'python',					templatePath + '/scripts/languages/shBrushPython.js' ],
+		[ 'ruby', 'rails', 'ror', 'rb',		templatePath + '/scripts/languages/shBrushRuby.js' ],
+		[ 'scala',							templatePath + '/scripts/languages/shBrushScala.js' ],
+		[ 'sql',							templatePath + '/scripts/languages/shBrushSql.js' ],
+		[ 'vb', 'vbnet',					templatePath + '/scripts/languages/shBrushVb.js' ],
+		[ 'xml', 'xhtml', 'xslt', 'html',	templatePath + '/scripts/languages/shBrushXml.js' ]
+	);
+	SyntaxHighlighter.all();
+}
+
 /**
 * phpBB3 forum functions
 */
