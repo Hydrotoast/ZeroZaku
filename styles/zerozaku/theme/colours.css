@@ -176,6 +176,10 @@ h2.pro-header, h3.pro-header {
 	border-bottom: 4px solid #777777;
 }
 
+.forumbg-table {
+	border-color: #D0D0D0;
+}
+
 .panel {
 	background-color: #f6f6f6;
 	border-color: #D0D0D0;
