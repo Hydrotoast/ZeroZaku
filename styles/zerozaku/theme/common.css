@@ -7,7 +7,7 @@
 	padding: 0;
 }
 body {
-	font: 12px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 12px/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 	margin: 0;
 	padding: 0 0 180px 0;
 	background-color: #FFFFFF;
@@ -42,36 +42,33 @@ a img {
 	border-top: 6px solid;
 	height: 84px;
 	width: 100%;
-	min-width: 980px;
+	min-width: 960px;
 }
 
 #page-header .inner {
 	margin: 0 auto;
-	padding: 0 20px;
 	min-width: 960px;
-	max-width: 1275px;
+	max-width: 1200px;
 }
 
 #wrap {
 	margin: 0 auto;
-	padding: 0 20px;
 	min-width: 960px;
-	max-width: 1275px;
+	max-width: 1200px;
 }
 
 #page-body {
 	text-align: left;
 	float: left;
-	min-width: 768px;
-	width: 80%;
+	min-width: 720px;
+	width: 75%
 }
 
 #page-sidebar {
 	text-align: left;
 	float: right;
-	margin-left: 1%;
-	min-width: 180px;
-	width: 18.75%;
+	min-width: 230px;
+	width: 23.9583%;
 }
 
 #profile {
@@ -90,10 +87,6 @@ a img {
 #profile-sidebar {
 	width: 340px;
 	float: left;
-}
-
-#sidebar-ads {
-	text-align: center;
 }
 
 #page-footer {
@@ -115,7 +108,7 @@ a img {
 #quickpanel .inner {
 	margin: 0 auto;
 	min-width: 960px;
-	max-width: 1275px;
+	max-width: 1200px;
 	text-align: right;
 }
 
@@ -230,7 +223,7 @@ a img {
 	border-bottom: 1px solid;
 	line-height: 26px;
 	height: 26px;
-	min-width: 980px;
+	min-width: 960px;
 	margin-bottom: 10px;
 	padding: 2px 0;
 }
@@ -239,7 +232,7 @@ a img {
 	margin: 0 auto;
 	padding: 0 20px;
 	min-width: 960px;
-	max-width: 1275px;
+	max-width: 1200px;
 }
 
 
@@ -293,8 +286,8 @@ a img {
 
 #board-statistics {
 	border: 1px solid;
-	margin: 0 0 10px 0;
-	padding: 20px;
+	margin: 0 0 1.0417% 0;
+	padding: 1.9812%;
 	clear: both;
 	overflow: hidden;
 }
@@ -302,15 +295,14 @@ a img {
 	#board-statistics p {
 		border-bottom: 1px solid;
 		padding-bottom: 10px;
-		width: 77%
+		width: 75%;
 	}
 
 	#board-statistics .stats {
 		border-left: 1px solid;
 		float: right;
-		margin-left: 1.5%;
-		padding-left: 1.5%;
-		width: 18.75%;
+		padding-left: 0.9783%;
+		width: 22.8261%;
 	}
 	
 	#board-statistics .stats dl {

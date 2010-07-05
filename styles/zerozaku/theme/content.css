@@ -117,6 +117,10 @@ li.header dl.icon dt {
 
 .forabg-sidebar h2.sidebar img {vertical-align: text-bottom;}
 
+.forumbg-table {
+	border: 1px solid;
+}
+
 .back2top {
 	margin: 0 0 2px -10px;
 	clear: both;
@@ -180,9 +184,14 @@ h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg
 	behavior: url("ie-css3.htc"); 
 }
 
+h2.pagetitle {
+	border-width: 1px 1px 0;
+	border-style: solid;
+}
+
 h2.pagetitle.login {
 	margin: 0 auto;
-	width: 722px;
+	width: 720px;
 }
 
 h2 {
