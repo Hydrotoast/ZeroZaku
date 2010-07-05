@@ -3,7 +3,7 @@
 <!-- IF TOPIC_TITLE -->
 	<h1 class="topictitle"><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></h1>
 <!-- ELSE -->
-	<h2 class="pagetitle"><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
+	<h2 class="cattitle"><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
  <!-- ENDIF -->
 
 <!-- IF S_FORUM_RULES -->
@@ -64,7 +64,7 @@
 <div class="panel" id="postingbox">
 	<div class="inner">
 	
-	<h3>{L_POST_A}</h3>
+	<h3 class="head">{L_POST_A}</h3>
 
 	<!-- DEFINE $EXTRA_POSTING_OPTIONS = 1 -->
 	<!-- INCLUDE posting_editor.html -->

@@ -23,7 +23,7 @@
 
 	<!-- IF S_SHOW_GROUP -->
 
-		<h2<!-- IF GROUP_COLOR --> style="color:#{GROUP_COLOR};"<!-- ENDIF -->>{GROUP_NAME}</h2>
+		<h2 class="comtitle"><!-- IF GROUP_COLOR --> style="color:#{GROUP_COLOR};"<!-- ENDIF -->>{GROUP_NAME}</h2>
 		<p>{GROUP_DESC} {GROUP_TYPE}</p>
 		<p>
 			<!-- IF AVATAR_IMG -->{AVATAR_IMG}<!-- ENDIF -->
@@ -70,7 +70,7 @@
 				<!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF -->
 			</li>
 		</ul>
-		<h2 class="pagetitle">{PAGE_TITLE}<!-- IF SEARCH_WORDS -->: <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
+		<h2 class="comtitle">{PAGE_TITLE}<!-- IF SEARCH_WORDS -->: <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
 	<!-- ENDIF -->
 	<!-- IF S_LEADERS_SET or not S_SHOW_GROUP or not .memberrow -->
 	<div class="forumbg forumbg-table">

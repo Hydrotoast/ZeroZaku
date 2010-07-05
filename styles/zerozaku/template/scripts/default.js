@@ -21,6 +21,28 @@ $(function() {
 		
 		return false;
 	});
+	
+	// Window resize event handler
+	$(window).resize(function(){
+		var window_width = $(window).width();
+		
+		if (window_width > 950) {
+			$("#page-body").stop().animate({
+				width: '75%'
+			}, 600, 'swing', function()
+			{
+				$("#page-sidebar").show();
+			});
+		}
+		else
+		{
+			$("#page-sidebar").fadeOut(function(){
+				$("#page-body").animate({
+					width: '100%'
+				}, 600, 'swing');
+			});
+		}
+	});
 });
 
 function shConfig(templatePath) {

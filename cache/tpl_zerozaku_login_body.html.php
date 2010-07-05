@@ -1,7 +1,7 @@
 <?php if (!defined('IN_PHPBB')) exit;  $this->_tpl_include('overall_header.html'); ?>
 
 
-<h2 class="pagetitle login content_center"><?php echo ((isset($this->_rootref['L_LOGIN'])) ? $this->_rootref['L_LOGIN'] : ((isset($user->lang['LOGIN'])) ? $user->lang['LOGIN'] : '{ LOGIN }')); ?></h2>
+<h2 class="comtitle login content_center"><?php echo ((isset($this->_rootref['L_LOGIN'])) ? $this->_rootref['L_LOGIN'] : ((isset($user->lang['LOGIN'])) ? $user->lang['LOGIN'] : '{ LOGIN }')); ?></h2>
 <div class="panel login content_center">
 	<div class="inner">
 		<?php if (! $this->_rootref['S_ADMIN_AUTH']) {  ?>
