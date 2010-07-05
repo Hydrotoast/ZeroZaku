@@ -159,7 +159,7 @@ a.topictitle span {
 	text-transform: capitalize;
 }
 
-h2.pagetitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
+h2.comtitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
 	font-size: 1.6667em;
 	font-weight: normal;
@@ -184,12 +184,26 @@ h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg
 	behavior: url("ie-css3.htc"); 
 }
 
-h2.pagetitle {
+h2.pagetitle, h2.comtitle {
+	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
+	font-size: 1.6667em;
+	font-weight: normal;
 	border-width: 1px 1px 0;
 	border-style: solid;
+	padding: 9px 20px;
+	overflow: hidden;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+	clear: both;
 }
 
-h2.pagetitle.login {
+h2.comtitle {
+	padding: 9px 10px;
+}
+
+h2.comtitle.login {
 	margin: 0 auto;
 	width: 720px;
 }
