@@ -33,7 +33,7 @@ function im_extend_user_data()
 		$sql = "SELECT user_deny_im, user_status, user_sound_im FROM " . USERS_IM_TABLE . " WHERE user_id = " . $user->data['user_id'];
 		$result = $db->sql_query( $sql);
 		$row = $db->sql_fetchrow( $result);
-		if ( !isset( $row['user_deny_im']))
+		if (!isset( $row['user_deny_im']))
 		{
 			$sql = "INSERT INTO " . USERS_IM_TABLE . "
 				( user_id, user_deny_im, user_status, user_sound_im) VALUES

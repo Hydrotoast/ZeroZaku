@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: info_ucp_kb.php 430 2010-01-20 15:33:03Z softphp $
+* @version $Id: info_ucp_kb.php 425 2010-01-20 15:28:07Z softphp $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

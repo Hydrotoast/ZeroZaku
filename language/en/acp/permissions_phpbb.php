@@ -134,6 +134,7 @@ $lang = array_merge($lang, array(
 	'acl_u_viewonline'	=> array('lang' => 'Can view hidden online users', 'cat' => 'misc'),
 	'acl_u_search'		=> array('lang' => 'Can search board', 'cat' => 'misc'),
 	
+	'acl_u_beta_client'    	=> array('lang' => 'Can use Beta clients', 'cat' => 'clients'),
 	'acl_u_standard_client'    	=> array('lang' => 'Can use standard clients', 'cat' => 'clients'),
     'acl_u_premium_client'    	=> array('lang' => 'Can use premium clients', 'cat' => 'clients'),
 ));

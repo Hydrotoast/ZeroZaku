@@ -247,7 +247,7 @@ class ucp_main
 					{
 						$msg = $user->lang['FORM_INVALID'];
 					}
-					$message = $msg . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . append_sid("{$phpbb_root_path}ucp.$phpEx", "i=$id&amp;mode=subscribed") . '">', '</a>');
+					$message = $msg . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . append_sid("{$phpbb_root_path}ucp.$phpEx", "i=$id&amp;mode=subscribed") . '">', '</a>');
 					meta_refresh(3, append_sid("{$phpbb_root_path}ucp.$phpEx", "i=$id&amp;mode=subscribed"));
 					trigger_error($message);
 				}
@@ -462,7 +462,7 @@ class ucp_main
 					{
 						$msg = $user->lang['FORM_INVALID'];
 					}
-					$message = $msg . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
+					$message = $msg . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
 					meta_refresh(3, $this->u_action);
 					trigger_error($message);
 				}

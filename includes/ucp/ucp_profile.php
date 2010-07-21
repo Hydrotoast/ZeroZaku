@@ -41,6 +41,58 @@ class ucp_profile
 
 		switch ($mode)
 		{
+		    case 'css_override':
+		        if($submit)
+		        {
+			        $css = (isset($_POST['css'])) ? $_POST['css'] : '';
+	
+					// Check for valid images if the user put in any urls.
+					$urls = array();
+					preg_match_all('/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i', $css, $urls);
+					foreach ($urls[0] as $img)
+					{
+						if (@getimagesize($img) === false)
+						{
+							$css = str_replace($img, ' ', $css);
+						}
+					}
+							
+					// Replace quotes so they can be used.
+					$css = str_replace('&quot;', '"', $css);
+					
+					// Now we shall run our main filters.
+					$script_matches = array('#javascript#', '#vbscript#', '#manuscript#', "#[^a-zA-Z]java#", "#java[^a-zA-Z]#", "#[^a-zA-Z]script#", "#script[^a-zA-Z]#", "#[^a-zA-Z]expression#", "#expression[^a-zA-Z]#", "#[^a-zA-Z]eval#", "#eval[^a-zA-Z]#");
+					if (preg_replace($script_matches, ' ', strtolower($css)) != strtolower($css))
+					{
+						// If they are going to try something so obvious, instead of trying to filter it I'll just delete everything.
+						$css = '';
+					}
+					else
+					{
+						// Remove CSS/HTML comments, HTML ASCII/HEX, and any other characters I do not think are needed.
+						$matches = array('#/\*.+\*/#', '#<!--.+-->#', '$&#?([a-zA-Z0-9]+);?$', '$([^a-zA-Z0-9",\*+%!_\.#{}()/:;-\s])$');
+						$css = preg_replace($matches, '', $css);
+					}
+					
+					$sql = 'UPDATE ' . USERS_TABLE . '
+						SET user_css = \'' . addslashes($css) . '\'
+							WHERE user_id = ' . (int) $user->data['user_id'];
+					$db->sql_query($sql);
+		        }
+		        else
+		        {
+		            $sql = 'SELECT user_css FROM ' . USERS_TABLE . '
+						WHERE user_id = ' . $user->data['user_id'];
+					$result = $db->sql_query($sql);
+					$user_css = stripslashes($db->sql_fetchfield('user_css'));
+					$db->sql_freeresult($result);
+					
+			        $template->assign_vars(array(
+					    'USER_CSS'	    => $user_css,
+					));
+		        }
+		        
+		        break;
 			case 'reg_details':
 
 				$data = array(

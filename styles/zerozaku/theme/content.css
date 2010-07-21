@@ -32,7 +32,7 @@ ul.topiclist dt, ul.topiclist dd {
 
 ul.topiclist dt {
 	float: left;
-	width: 49%;
+	width: 42.5%;
 }
 
 ul.topiclist dt h3 {
@@ -76,11 +76,12 @@ li.header dl.icon dt {
 /* Sidebar blocks */
 .forabg-sidebar {
 	border: 1px solid;
+	margin-bottom: 10px;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
-	margin-bottom: 10px;
+	behavior: url(PIE.htc);
 }
 
 .forabg-sidebar.smooth {
@@ -92,7 +93,7 @@ li.header dl.icon dt {
 	-webkit-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc);
 }
 
 .forabg-sidebar h2.sidebar {
@@ -133,7 +134,7 @@ li.header dl.icon dt {
 	-webkit-border-radius: 5px 5px 0 0
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 }
 
 .jump2post {
@@ -148,28 +149,24 @@ li.header dl.icon dt {
 	-webkit-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
 	border-radius: 0 0 5px 5px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 }
 
-a.topictitle h3 {
-	font-weight: bold;
-}
-
-a.topictitle span {
-	text-transform: capitalize;
-}
+a.topictitle h3 { font-weight: bold; }
+a.topictitle span { text-transform: capitalize; }
 
 h2.comtitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
 	font-size: 1.6667em;
 	font-weight: normal;
+	text-align: left;
 	padding: 9px 10px;
 	overflow: hidden;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 	clear: both;
 }
 
@@ -181,7 +178,29 @@ h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
+}
+
+h2.cattitle:first-child { margin-top: 0; }
+h2.cattitle { margin-top: 10px; }
+h2.cattitle.collapsed {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	behavior: url(PIE.htc);
+}
+
+h2.cattitle a.collapse {
+	border: 0;
+	float: right;
+	height: 20px;
+	padding-top: 2px;
+}
+
+h2.cattitle a.collapse img {
+	height: 20px;
+	width: 20px;
 }
 
 h2.pagetitle, h2.comtitle {
@@ -196,21 +215,18 @@ h2.pagetitle, h2.comtitle {
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
+	behavior: url(PIE.htc);
 	clear: both;
 }
 
-h2.comtitle {
-	padding: 9px 10px;
-}
+h2.comtitle { padding: 9px 10px; }
 
 h2.comtitle.login {
 	margin: 0 auto;
 	width: 720px;
 }
 
-h2 {
-	font: 2em Anivers-Regular;
-}
+h2 { font: 2em Anivers-Regular; }
 
 h3 {
 	font-size: 1.1667em;
@@ -229,7 +245,7 @@ h4 {
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 }
 
 h1.topictitle a.topicactions {
@@ -241,21 +257,10 @@ h1.topictitle a.topicactions {
 }
 
 /* Forum list column styles */
-ul.topiclist li.header dl.icon dt {
-	margin-left: 10px;
-}
-
-dl.icon {
-	min-height: 40px;
-}
-
-dl.icon dt, .meta dt {
-	padding-left: 45px;	/* Space for folder icon */
-}
-
-.meta dt.no-icon {
-	padding: 4px 0;	/* Space for folder icon */
-}
+ul.topiclist li.header dl.icon dt { margin-left: 10px; }
+dl.icon { min-height: 40px; }
+dl.icon dt, .meta dt { padding-left: 45px; } /* Space for folder icon */
+.meta dt.no-icon { padding: 4px 0; } /* Space for folder icon */
 
 /* List in forum description */
 dl.icon dt ol,
@@ -280,13 +285,8 @@ dl.meta dt , dl.meta dd {
 	line-height: 24px;
 }
 
-dl.meta dt {
-	padding-left: 45px;
-}
-
-dt.forum {
-	padding: 0;
-}
+dl.meta dt { padding-left: 45px; }
+dt.forum { padding: 0; }
 
 dd.stats {
 	width: 15%;
@@ -294,13 +294,8 @@ dd.stats {
 	text-align: right;
 }
 
-ul.topiclist dd.stats span.topics, ul.topiclist dd.stats span.posts {
-	display: block;	
-}
-
-ul.topiclist dd.stats dfn {
-	font-style: normal;
-}
+ul.topiclist dd.stats span.topics, ul.topiclist dd.stats span.posts { display: block; }
+ul.topiclist dd.stats dfn { font-style: normal; }
 
 dd.posts, dd.views {
 	line-height: 2.7em;
@@ -309,7 +304,7 @@ dd.posts, dd.views {
 }
 
 dd.lastpost {
-	width: 26%;
+	width: 29.5%;
 	padding-left: 0.5% !important;
 }
 
@@ -358,7 +353,6 @@ dd.info {
 
 dd.option {
 	width: 15%;
-	text-align: center;
 }
 
 dd.searchby {
@@ -390,10 +384,7 @@ a.forumtitle {
 	text-decoration: none;
 }
 
-a.forumtitle:hover {
-	color: #FF0000;
-	text-decoration: underline;
-}
+a.forumtitle:hover { text-decoration: underline; }
 
 /* Post body styles
 ----------------------------------------*/
@@ -644,7 +635,7 @@ blockquote {
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 }
 
 blockquote blockquote {
@@ -692,7 +683,7 @@ div.adapthide {
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 }
 
 /* Attachments
@@ -765,32 +756,58 @@ dl.thumbnail img {
 ----------------------------------------*/
 fieldset.polls {margin-bottom: 1em;}
 
+fieldset.polls h3 {
+	font-size: 1.6667em;
+	border-top: 1px solid;
+	margin-top: 6px;
+	padding-top: 10px;
+}
+
 fieldset.polls dl {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	margin-top: 5px;
-	padding: 5px 0 0 0;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	border: 1px solid;
+	margin: 10px 0;
+	padding: 10px 20px 6px 20px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 }
 
 fieldset.polls dt {
 	font-weight: bold;
-	text-align: left;
+	text-align: right;
 	float: left;
 	display: block;
-	width: 30%;
-	padding: 0;
+	width: 20%;
+	padding: 0 10px 0 0;
 	margin: 0;
 	clear: both;
 }
 
 fieldset.polls dd {
 	float: left;
-	width: 15%;
-	padding: 0 5px;
-	margin-left: 0;
+	width: 10%;
+	padding: 0;
+	margin: 0;
 }
 
 fieldset.polls dd.resultbar {
-	width: 30%;
+	font-weight: bold;
+	width: 65%;
+}
+
+fieldset.polls dd.resultbar .pollbar {
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+}
+
+fieldset.polls input[type=radio] {
+	margin-right: 1em;
+}
+
+fieldset.polls dd.results {
+	width: 10%;
 }
 
 fieldset.polls dd input {
@@ -817,6 +834,32 @@ fieldset.polls dd div {
 }
 
 .postprofile dt { text-align: center; }
+
+.user_status {
+	font-size: 0.9167em;
+	position: relative;
+	padding: 6px 10px;
+	margin: 0 1em 0 0;
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	word-wrap: break-word;
+}
+
+/* creates triangle */
+.user_status:after {
+	content: "\00a0";
+	display: block; /* reduce the damage in FF3.0 */
+	position: absolute;
+	top: -45px;
+	left: 10px;
+	border-style: solid;
+	border-width: 15px 0 15px 15px; /* vary these values to change the angle of the vertex */
+}
+
 .postprofile dd, .postprofile dt { line-height: 1.7em; }
 .postprofile dd { margin-bottom: 0.5em; }
 
@@ -829,7 +872,7 @@ fieldset.polls dd div {
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 	text-align: center;
 }
 
@@ -840,7 +883,7 @@ fieldset.polls dd div {
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	behavior: url("ie-css3.htc"); 
+	behavior: url(PIE.htc); 
 	text-align: center;
 }
 
@@ -853,7 +896,7 @@ fieldset.polls dd div {
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
-	behaviour: url("ie-css3.htc");
+	behaviour: url(PIE.htc);
 }
 
 .avatar { margin-bottom: 3px; }

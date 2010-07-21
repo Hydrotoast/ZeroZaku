@@ -70,6 +70,8 @@ if ($id)
 
 	$db = new $sql_db();
 	$cache = new cache();
+	
+	$root_path = generate_board_url(false, 'cdn') . '/';
 
 	// Connect to DB
 	if (!@$db->sql_connect($dbhost, $dbuser, $dbpasswd, $dbname, $dbport, false, false))
@@ -121,7 +123,7 @@ if ($id)
 		$user['user_lang'] = $config['default_lang'];
 	}
 
-	$user_image_lang = (file_exists($phpbb_root_path . 'styles/' . $theme['imageset_path'] . '/imageset/' . $user['user_lang'])) ? $user['user_lang'] : $config['default_lang'];
+	$user_image_lang = (file_exists($root_path . 'styles/' . $theme['imageset_path'] . '/imageset/' . $user['user_lang'])) ? $user['user_lang'] : $config['default_lang'];
 
 	// Same query in session.php
 	$sql = 'SELECT *
@@ -217,13 +219,15 @@ if ($id)
 	}
 
 	header('Content-type: text/css; charset=UTF-8');
-
+	
+	$root_path = generate_board_url(false, 'cdn') . '/';
+	
 	// Parse Theme Data
 	$replace = array(
-		'{T_THEME_PATH}'			=> "{$phpbb_root_path}styles/" . $theme['theme_path'] . '/theme',
+		'{T_THEME_PATH}'			=> "{$root_path}styles/" . $theme['theme_path'] . '/theme',
 		'{T_TEMPLATE_PATH}'			=> "{$phpbb_root_path}styles/" . $theme['template_path'] . '/template',
-		'{T_IMAGESET_PATH}'			=> "{$phpbb_root_path}styles/" . $theme['imageset_path'] . '/imageset',
-		'{T_IMAGESET_LANG_PATH}'	=> "{$phpbb_root_path}styles/" . $theme['imageset_path'] . '/imageset/' . $user_image_lang,
+		'{T_IMAGESET_PATH}'			=> "{$root_path}styles/" . $theme['imageset_path'] . '/imageset',
+		'{T_IMAGESET_LANG_PATH}'	=> "{$root_path}styles/" . $theme['imageset_path'] . '/imageset/' . $user_image_lang,
 		'{T_STYLESHEET_NAME}'		=> $theme['theme_name'],
 		'{S_USER_LANG}'				=> $user['user_lang']
 	);
@@ -252,7 +256,7 @@ if ($id)
 				$img_data = &$img_array[$img];
 				$imgsrc = ($img_data['image_lang'] ? $img_data['image_lang'] . '/' : '') . $img_data['image_filename'];
 				$imgs[$img] = array(
-					'src'		=> $phpbb_root_path . 'styles/' . $theme['imageset_path'] . '/imageset/' . $imgsrc,
+					'src'		=> $root_path . 'styles/' . $theme['imageset_path'] . '/imageset/' . $imgsrc,
 					'width'		=> $img_data['image_width'],
 					'height'	=> $img_data['image_height'],
 				);

@@ -3,22 +3,25 @@
 	Original author:	subBlue ( http://www.subblue.com/ )
 	Copyright 2007 phpBB Group ( http://www.phpbb.com/ )
 	------------------------------------------------------------------------
-*/ /* General markup styles
+*/
+
+/* General markup styles
 ---------------------------------------- */
-* { /* Reset browsers default margin, padding and font sizes */
+* {
+	/* Reset browsers default margin, padding and font sizes */
 	margin: 0;
 	padding: 0;
 	font-size: 100%;
 }
 
-body,div,p,th,td,li,dd {
+body, div, p, th, td, li, dd {
 	font-size: x-small;
 	voice-family: "\"}\"";
 	voice-family: inherit;
 	font-size: small
 }
 
-html>body,html>div,html>p,html>th,html>td,html>li,html>dd {
+html>body, html>div, html>p, html>th, html>td, html>li, html>dd {
 	font-size: small
 }
 
@@ -30,12 +33,12 @@ html {
 	margin-bottom: 1px;
 }
 
-body { /* Text-Sizing with ems: http://www.clagnut.com/blog/348/ */
+body {
+	/* Text-Sizing with ems: http://www.clagnut.com/blog/348/ */
 	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
 	color: #536482;
 	background: #DBD7D1;
-	font-size: 62.5%;
-	/* This sets the default font size to be equivalent to 10px */
+	font-size: 62.5%;	/* This sets the default font size to be equivalent to 10px */
 	margin: 10px 15px;
 }
 
@@ -50,7 +53,7 @@ h1 {
 	color: #333333;
 }
 
-h2,caption {
+h2, caption {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 1.40em;
 	font-weight: normal;
@@ -59,11 +62,11 @@ h2,caption {
 	margin-top: 25px;
 }
 
-.rtl h2,.rtl caption {
+.rtl h2, .rtl caption {
 	text-align: right;
 }
 
-h3,h4 {
+h3, h4 {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 1.20em;
 	text-decoration: none;
@@ -99,7 +102,7 @@ hr {
 }
 
 /* General links  */
-a:link,a:visited {
+a:link, a:visited {
 	color: #105289;
 	text-decoration: none;
 }
@@ -119,7 +122,7 @@ a:active {
 }
 
 /* List items */
-ul,ol {
+ul, ol {
 	list-style-position: inside;
 	margin-left: 1em;
 }
@@ -152,7 +155,7 @@ li {
 
 #page-header h1 {
 	color: #767676;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: "Trebuchet MS",Helvetica,sans-serif;
 	font-size: 1.70em;
 	padding-top: 10px;
 }
@@ -223,7 +226,7 @@ li {
 }
 
 #tabs ul {
-	margin: 0;
+	margin:0;
 	padding: 0;
 	list-style: none;
 }
@@ -238,7 +241,7 @@ li {
 
 #tabs a {
 	float: left;
-	background: url("../images/bg_tabs1.gif") no-repeat 0% -34px;
+	background:url("../images/bg_tabs1.gif") no-repeat 0% -34px;
 	margin: 0 1px 0 0;
 	padding: 0 0 0 7px;
 	text-decoration: none;
@@ -266,11 +269,9 @@ li {
 }
 
 /* Commented Backslash Hack hides rule from IE5-Mac \*/
-#tabs a span,.rtl #tabs a span {
-	float: none;
-}
-
+#tabs a span, .rtl #tabs a span { float:none;}
 /* End hack */
+
 #tabs a:hover span {
 	color: #BC2A4D;
 }
@@ -298,6 +299,7 @@ li {
 	color: #115098;
 }
 
+
 /* Main Panel
 ---------------------------------------- */
 #acp {
@@ -313,8 +315,8 @@ li {
 	padding: 0;
 }
 
-span.corners-top,span.corners-bottom,span.corners-top span,span.corners-bottom span
-	{
+span.corners-top, span.corners-bottom,
+span.corners-top span, span.corners-bottom span {
 	font-size: 1px;
 	line-height: 1px;
 	display: block;
@@ -346,16 +348,14 @@ span.corners-bottom span {
 }
 
 /* WinIE tweaks \*/
-* html span.corners-top,* html span.corners-bottom {
-	background-image: url("../images/corners_left.gif");
-}
+* html span.corners-top, * html span.corners-bottom { background-image: url("../images/corners_left.gif"); }
+* html span.corners-top span, * html span.corners-bottom span { background-image: url("../images/corners_right.gif"); }
+/* End tweaks */
 
-* html span.corners-top span,* html span.corners-bottom span {
-	background-image: url("../images/corners_right.gif");
-}
+/* Sub-navigation Menu
+---------------------------------------- */
 
-/* End tweaks */ /* Sub-navigation Menu
----------------------------------------- */ /* Toggle */
+/* Toggle */
 #toggle {
 	padding: 5px;
 	width: 5%;
@@ -433,13 +433,13 @@ span.corners-bottom span {
 	padding: 3px 8px 3px 3px;
 }
 
-#menu li a:hover,#menu li a:hover span {
+#menu li a:hover, #menu li a:hover span {
 	text-decoration: none;
 	background-color: #FFFFFF;
 	color: #BC2A4D;
 }
 
-#menu li a:active,#menu li a:active span {
+#menu li a:active, #menu li a:active span {
 	color: #F632A0;
 }
 
@@ -447,28 +447,25 @@ span.corners-bottom span {
 	text-decoration: none;
 	font-weight: bold;
 	color: #1180B7;
-	background: transparent url("../images/arrow_right.gif") 0% 50%
-		no-repeat;
+	background: transparent url("../images/arrow_right.gif") 0% 50% no-repeat;
 }
 
 .rtl #menu li#activemenu a span {
-	background: transparent url("../images/arrow_left.gif") 100% 50%
-		no-repeat;
+	background: transparent url("../images/arrow_left.gif") 100% 50% no-repeat;
 }
 
-#menu li#activemenu a:hover span,#menu li#activemenu span {
+#menu li#activemenu a:hover span, #menu li#activemenu span {
 	text-decoration: none;
 	font-weight: bold;
 	color: #BC2A4D;
 	background: #FFFFFF url("../images/arrow_right.gif") 1% 50% no-repeat;
 }
 
-.rtl #menu li#activemenu a:hover span,.rtl #menu li#activemenu span {
+.rtl #menu li#activemenu a:hover span, .rtl #menu li#activemenu span {
 	background: #FFFFFF url("../images/arrow_left.gif") 99% 50% no-repeat;
 }
 
-#menu li a:active,#menu li a:active span,#menu li#activemenu a:active span
-	{
+#menu li a:active, #menu li a:active span, #menu li#activemenu a:active span {
 	color: #F632A0;
 }
 
@@ -498,6 +495,7 @@ span.corners-bottom span {
 
 /* Table styles
 ---------------------------------------- */
+
 table {
 	width: 100%;
 	border: 1px solid #CCCFD3;
@@ -508,8 +506,7 @@ table {
 th {
 	padding: 3px 4px;
 	color: #FFFFFF;
-	background: #70AED3 url("../images/gradient2b.gif") bottom left repeat-x
-		;
+	background: #70AED3 url("../images/gradient2b.gif") bottom left repeat-x;
 	border-top: 1px solid #6DACD2;
 	border-bottom: 1px solid #327AA5;
 	text-align: left;
@@ -524,7 +521,7 @@ td {
 	line-height: 1.20em;
 }
 
-.rtl th,.rtl td {
+.rtl th, .rtl td {
 	text-align: right;
 }
 
@@ -552,7 +549,7 @@ table.type2 td.name {
 	vertical-align: middle;
 }
 
-table.type3 {
+table.type3  {
 	float: right;
 	width: 300px;
 	border: none;
@@ -622,29 +619,12 @@ td.name {
 	text-align: right;
 }
 
-.row1 {
-	background-color: #F9F9F9;
-}
-
-.row2 {
-	background-color: #DCEBFE;
-}
-
-.row3 {
-	background-color: #DBDFE2;
-}
-
-.row4 {
-	background-color: #E4E8EB;
-}
-
-.col1 {
-	background-color: #DCEBFE;
-}
-
-.col2 {
-	background-color: #F9F9F9;
-}
+.row1 { background-color: #F9F9F9; }
+.row2 { background-color: #DCEBFE; }
+.row3 { background-color: #DBDFE2; }
+.row4 { background-color: #E4E8EB; }
+.col1 { background-color: #DCEBFE; }
+.col2 { background-color: #F9F9F9; }
 
 .spacer {
 	background-color: #DBDFE2;
@@ -682,7 +662,7 @@ fieldset p {
 
 legend {
 	padding: 1px 0;
-	font-family: Tahoma, arial, Verdana, Sans-serif;
+	font-family: Tahoma,arial,Verdana,Sans-serif;
 	font-size: .9em;
 	font-weight: bold;
 	color: #115098;
@@ -695,11 +675,9 @@ legend {
 }
 
 /* Hide from macIE \*/
-legend {
-	top: -1.2em;
-}
-
+legend { top: -1.2em; }
 /* end */
+
 * html legend {
 	margin: 0 0 -10px -7px;
 	line-height: 1em;
@@ -712,7 +690,7 @@ legend {
 	margin-right: -7px;
 }
 
-input,textarea {
+input, textarea {
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	font-size: 0.90em;
 	font-weight: normal;
@@ -727,14 +705,14 @@ input,textarea {
 	background-color: #E3DFD8;
 }
 
-.rtl input,.rtl textarea {
+.rtl input, .rtl textarea {
 	border-left: 1px solid #D5D5C8;
 	border-top: 1px solid #AFAEAA;
 	border-right: 1px solid #AFAEAA;
 	border-bottom: 1px solid #D5D5C8;
 }
 
-input:hover,textarea:hover {
+input:hover, textarea:hover {
 	border-left: 1px solid #AFAEAA;
 	border-top: 1px solid #AFAEAA;
 	border-right: 1px solid #AFAEAA;
@@ -742,11 +720,11 @@ input:hover,textarea:hover {
 	background-color: #E9E9E2;
 }
 
-input.langvalue,textarea.langvalue {
+input.langvalue, textarea.langvalue {
 	width: 90%;
 }
 
-optgroup,select {
+optgroup, select {
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	font-size: 0.85em;
 	font-weight: normal;
@@ -814,7 +792,7 @@ label img {
 	vertical-align: middle;
 }
 
-fieldset.quick,p.quick {
+fieldset.quick, p.quick {
 	margin: 0 0 5px;
 	padding: 5px 0 0;
 	border: none;
@@ -822,7 +800,7 @@ fieldset.quick,p.quick {
 	text-align: right;
 }
 
-.rtl fieldset.quick,.rtl p.quick {
+.rtl fieldset.quick, .rtl p.quick {
 	text-align: left;
 }
 
@@ -858,8 +836,7 @@ fieldset.display-options {
 	font-size: 0.75em;
 }
 
-fieldset.display-options select,fieldset.display-options input,fieldset.display-options label
-	{
+fieldset.display-options select, fieldset.display-options input, fieldset.display-options label {
 	font-size: 1.00em;
 	vertical-align: middle;
 }
@@ -870,7 +847,8 @@ select option.disabled {
 }
 
 /* Special case inputs */
-select#board_timezone,select#full_folder_action {
+select#board_timezone,
+select#full_folder_action {
 	width: 95%;
 }
 
@@ -891,25 +869,12 @@ dt {
 	float: right;
 }
 
-dd {
-	color: #666666;
-}
+dd { color: #666666;}
+dd + dd { padding-top: 5px;}
+dt span { padding: 0 5px 0 0;}
+.rtl dt span { padding: 0 0 0 5px;}
 
-dd+dd {
-	padding-top: 5px;
-}
-
-dt span {
-	padding: 0 5px 0 0;
-}
-
-.rtl dt span {
-	padding: 0 0 0 5px;
-}
-
-dt .explain {
-	font-style: italic;
-}
+dt .explain { font-style: italic;}
 
 dt label {
 	font-size: 1.00em;
@@ -933,9 +898,8 @@ dd label {
 	margin: 0 0 0 10px;
 }
 
-html>body dd label input {
-	vertical-align: text-bottom;
-}  /* Tweak for Moz to align checkboxes/radio buttons nicely */
+html>body dd label input { vertical-align: text-bottom;}	/* Tweak for Moz to align checkboxes/radio buttons nicely */
+
 dd input {
 	font-size: 1.00em;
 	max-width: 100%;
@@ -992,7 +956,7 @@ fieldset dd {
 	border-right: 1px solid #CCCCCC;
 }
 
-dd.full,.rtl dd.full {
+dd.full, .rtl dd.full {
 	margin: 0;
 	border: 0;
 	padding: 0;
@@ -1002,7 +966,7 @@ dd.full,.rtl dd.full {
 }
 
 /* Hover highlights for form rows */
-fieldset dl:hover dt,fieldset dl:hover dd {
+fieldset dl:hover dt, fieldset dl:hover dd {
 	border-color: #666666;
 }
 
@@ -1014,7 +978,7 @@ fieldset dl dd label:hover {
 	color: #BC2A4D;
 }
 
-input:focus,textarea:focus {
+input:focus, textarea:focus {
 	border: 1px solid #BC2A4D;
 	background-color: #E9E9E2;
 	color: #BC2A4D;
@@ -1038,7 +1002,7 @@ p.submit-buttons {
 	margin-top: 10px;
 }
 
-fieldset.submit-buttons input,p.submit-buttons input {
+fieldset.submit-buttons input, p.submit-buttons input {
 	padding: 3px 2px;
 }
 
@@ -1048,44 +1012,30 @@ fieldset.submit-buttons legend {
 
 /* Input field styles
 ---------------------------------------- */
-input.radio,input.permissions-checkbox {
+
+input.radio, input.permissions-checkbox {
 	width: auto !important;
 	background-color: transparent;
 	border: none;
 	cursor: default;
 }
 
-input.full,textarea.full {
+input.full,
+textarea.full {
 	width: 99%;
 }
 
-* html input.full,* html textarea.full {
-	width: 95%;
-}
-
-input.medium {
-	width: 50%;
-}
-
-input.narrow {
-	width: 25%;
-}
-
-input.tiny {
-	width: 10%;
-}
-
-input.autowidth {
-	width: auto !important;
-}
-
-.box2 .inputbox {
-	background-color: #E9E9E9;
-}
+* html input.full, * html textarea.full { width: 95%;}
+input.medium { width: 50%;}
+input.narrow { width: 25%;}
+input.tiny { width: 10%;}
+input.autowidth { width: auto !important;}
+.box2 .inputbox { background-color: #E9E9E9;}
 
 /* Form button styles
 ---------------------------------------- */
-a.button1,input.button1,input.button3,a.button2,input.button2 {
+a.button1, input.button1, input.button3,
+a.button2, input.button2 {
 	width: auto !important;
 	padding: 1px 3px 0 3px;
 	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
@@ -1095,27 +1045,27 @@ a.button1,input.button1,input.button3,a.button2,input.button2 {
 	cursor: pointer;
 }
 
-a.button1,input.button1 {
+a.button1, input.button1 {
 	font-weight: bold;
 	border: 1px solid #666666;
 }
 
 /* Alternative button */
-a.button2,input.button2 {
+a.button2, input.button2 {
 	border: 1px solid #666666;
 }
 
 /* <a> button in the style of the form buttons */
-a.button1,a.button1:link,a.button1:visited,a.button1:active,a.button2,a.button2:link,a.button2:visited,a.button2:active
-	{
+a.button1, a.button1:link, a.button1:visited, a.button1:active,
+a.button2, a.button2:link, a.button2:visited, a.button2:active {
 	text-decoration: none;
 	color: #000000;
 	padding: 4px 8px;
 }
 
 /* Hover states */
-a.button1:hover,input.button1:hover,a.button2:hover,input.button2:hover
-	{
+a.button1:hover, input.button1:hover,
+a.button2:hover, input.button2:hover {
 	border: 1px solid #BC2A4D;
 	background: #EFEFEF url("../images/bg_button.gif") repeat bottom;
 	color: #BC2A4D;
@@ -1141,12 +1091,13 @@ input.disabled {
 	text-align: left;
 }
 
-.pagination strong,.pagination b {
+.pagination strong,
+.pagination b {
 	font-weight: normal;
 }
 
 .pagination span.page-sep {
-	display: none;
+	display:none;
 }
 
 .pagination span strong {
@@ -1159,8 +1110,7 @@ input.disabled {
 	border: 1px solid #4692BF;
 }
 
-.pagination span a,.pagination span a:link,.pagination span a:visited,.pagination span a:active
-	{
+.pagination span a, .pagination span a:link, .pagination span a:visited, .pagination span a:active {
 	font-weight: normal;
 	font-size: 0.85em;
 	text-decoration: none;
@@ -1182,9 +1132,10 @@ input.disabled {
 	vertical-align: middle;
 }
 
+
 /* Action Highlighting
 ---------------------------------------- */
-.successbox,.errorbox {
+.successbox, .errorbox {
 	padding: 8px;
 	margin: 10px 0;
 	color: #FFFFFF;
@@ -1207,30 +1158,29 @@ input.disabled {
 	background-color: #BC2A4D;
 }
 
-* html .errorbox,* html .successbox {
-	height: 1%;
-}  /* Pixel shift fix for IE */
-.successbox h3,.errorbox h3 {
+* html .errorbox, * html .successbox { height: 1%; } /* Pixel shift fix for IE */
+
+.successbox h3, .errorbox h3 {
 	color: #FFFFFF;
 	margin: 0 0 0.5em;
 	font-size: 1.10em;
-	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	font-family: "Lucida Grande",Verdana,Helvetica,Arial,sans-serif;
 }
 
-.successbox p,.errorbox p {
+.successbox p, .errorbox p {
 	color: #FFFFFF;
 	font-size: 0.85em;
 	margin-bottom: 0;
 }
 
-.errorbox a:link,.errorbox a:active,.errorbox a:visited,.successbox a:link,.successbox a:active,.successbox a:visited
-	{
+.errorbox a:link, .errorbox a:active, .errorbox a:visited,
+.successbox a:link, .successbox a:active, .successbox a:visited {
 	color: #DBD7D1;
 	text-decoration: underline;
 	font-weight: bold;
 }
 
-.errorbox a:hover,.successbox a:hover {
+.errorbox a:hover, .successbox a:hover {
 	color: #FFFFFF;
 	text-decoration: none;
 	font-weight: bold;
@@ -1289,7 +1239,7 @@ input.disabled {
 	margin: 15px 0 2px 0;
 }
 
-#format-buttons input,#format-buttons select {
+#format-buttons input, #format-buttons select {
 	vertical-align: middle;
 }
 
@@ -1302,7 +1252,8 @@ input.disabled {
 	clear: both;
 	visibility: hidden;
 }*/
-.clearfix,#tabs,.row,#content,fieldset dl,#page-body {
+
+.clearfix, #tabs, .row, #content, fieldset dl, #page-body {
 	height: 1%;
 	overflow: hidden;
 }
@@ -1356,11 +1307,12 @@ input.disabled {
 
 /* Permission interface
 ---------------------------------------- */
+
 fieldset.permissions legend {
 	text-transform: none;
 }
 
-fieldset.permissions legend input {
+fieldset.permissions legend input{
 	height: 1.1em;
 }
 
@@ -1394,7 +1346,6 @@ fieldset.permissions .permissions-switch {
 }
 
 fieldset.permissions .padding {
-	
 }
 
 .permissions-switch {
@@ -1467,12 +1418,9 @@ fieldset.permissions .padding {
 }
 
 /* Commented Backslash Hack hides rule from IE5-Mac \*/
-.permissions-category a span.tabbg,.rtl .permissions-category a span.tabbg
-	{
-	float: none;
-}
-
+.permissions-category a span.tabbg, .rtl .permissions-category a span.tabbg { float: none;}
 /* End hack */
+
 .permissions-category a:hover span.tabbg {
 	color: #DD6900;
 }
@@ -1519,6 +1467,7 @@ fieldset.permissions .padding {
 	margin: 0 0 0 5px;
 }
 */
+
 .permissions-category .activetab span.colour {
 	border-color: #333333;
 }
@@ -1532,7 +1481,8 @@ fieldset.permissions .padding {
 }
 
 /* Permission preset colours */
-.permissions-preset-yes span.colour,.yes {
+.permissions-preset-yes span.colour,
+.yes {
 	background-color: #86F786;
 }
 
@@ -1544,7 +1494,8 @@ fieldset.permissions .padding {
 	background-color: #DD0000;
 }
 
-.permissions-preset-no span.colour,.never {
+.permissions-preset-no span.colour,
+.never {
 	background-color: #EFB0B2;
 }
 
@@ -1576,8 +1527,8 @@ fieldset.permissions .padding {
 	background-image: url("../images/corners_right2.gif");
 }
 
-.permissions-panel span.corners-top,.permissions-panel span.corners-bottom,.permissions-panel span.corners-top span,.permissions-panel span.corners-bottom span
-	{
+.permissions-panel span.corners-top, .permissions-panel span.corners-bottom,
+.permissions-panel span.corners-top span, .permissions-panel span.corners-bottom span {
 	font-size: 1px;
 	line-height: 1px;
 	display: block;
@@ -1660,8 +1611,7 @@ fieldset.permissions .padding {
 	border: none;
 }
 
-.permissions-panel th a:link,.permissions-panel th a:hover,.permissions-panel th a:visited
-	{
+.permissions-panel th a:link, .permissions-panel th a:hover, .permissions-panel th a:visited {
 	display: block;
 	color: #FFFFFF;
 	text-decoration: underline;
@@ -1693,12 +1643,13 @@ fieldset.permissions .padding {
 
 /* Classes for additional tasks
 ---------------------------------------- */
+
 .phpinfo {
 	overflow: auto;
 	width: 99%;
 	direction: ltr;
 }
 
-.phpinfo td,.phpinfo th,.phpinfo h2,.phpinfo h1 {
+.phpinfo td, .phpinfo th, .phpinfo h2, .phpinfo h1 {
 	text-align: left;
 }

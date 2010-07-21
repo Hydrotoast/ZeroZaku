@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: functions_install_kb.php 459 2010-04-14 13:41:37Z softphp $
+* @version $Id: functions_install_kb.php 444 2010-02-11 13:14:24Z softphp $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -93,15 +93,6 @@ function kb_update_versions()
 			'config_add'	=> array(
 				array('kb_copyright', ''),
 			),
-		),
-		
-		'1.0.2RC2' => array(
-			// Nothing here
-		),
-		
-		'1.0.2RC3' => array(
-			// Resync count, clear plugin cache
-			'custom'	=> 'kb_update_1_0_2RC2_to_1_0_2RC3',
 		),
 	);
 	
@@ -607,149 +598,7 @@ function kb_install()
 			// Insert default data
 			set_config('kb_install_step', -1);
 			
-			// Setup basic plugins
 			kb_install_perm_plugins('install', 'install');
-			
-			// Data to insert:
-			// First category
-			$sql_ary = array(
-				'parent_id'		=> 0,
-				'left_id'		=> 1,
-				'right_id'		=> 2,
-				'cat_name'		=> $user->lang['KB_FIRST_CAT'],
-				'cat_desc'		=> $user->lang['KB_FIRST_CAT_DESC'],
-				'cat_desc_bitfield'		=> '',
-				'cat_desc_options'		=> 7,
-				'cat_desc_uid'			=> '',
-				'cat_image'				=> '',
-				'cat_articles'			=> 0,
-				'latest_ids'			=> serialize(array()),
-			);
-			$sql = 'INSERT INTO ' . KB_CATS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
-			$db->sql_query($sql);
-			$cat_id = $db->sql_nextid();
-			set_config('kb_total_cats', 1);
-			
-			// First article
-			$bitfield = $desc_bitfield = $uid = $desc_uid = '';
-			$options = $desc_options = 0;
-			$desc_text = $user->lang['KB_FIRST_ARTICLE_DESC'];
-			$text = $user->lang['KB_FIRST_ARTICLE_TEXT'];
-			generate_text_for_storage($desc_text, $desc_uid, $desc_bitfield, $desc_options, true, true, true);
-			generate_text_for_storage($text, $uid, $bitfield, $options, true, true, true);
-			
-			$sql_ary = array(
-				'cat_id'						=> 	$cat_id,
-				'article_title'					=>	$user->lang['KB_FIRST_ARTICLE_TITLE'],
-				'article_title_clean'			=>  utf8_clean_string($user->lang['KB_FIRST_ARTICLE_TITLE']),
-				'article_desc'					=>	$desc_text,
-				'article_desc_bitfield'			=>	$desc_bitfield,
-				'article_desc_options'			=>	$desc_options,
-				'article_desc_uid'				=>	$desc_uid,
-				'article_checksum'				=>	md5($text),
-				'article_status'				=>	STATUS_APPROVED,
-				'article_attachment'			=>	0,
-				'article_views'					=>	0,
-				'article_user_id'				=>	$user->data['user_id'],
-				'article_user_name'				=>	$user->data['username'],
-				'article_user_color'			=>	$user->data['user_colour'],
-				'article_time'					=>	time(),
-				'article_tags'					=>	'',
-				'article_type'					=>	0,
-				'article_text'					=>  $text,
-				'enable_bbcode'					=>	1,
-				'enable_smilies'				=>	1,
-				'enable_magic_url'				=>	1,
-				'enable_sig'					=>	0,
-				'bbcode_bitfield'				=>	$bitfield,
-				'bbcode_uid'					=>	$uid,
-				'article_last_edit_time'		=>	time(),
-				'article_last_edit_id'			=>	0,
-				'article_edit_reason'			=>	'',
-				'article_edit_reason_global'	=>	0,
-				'article_open'					=>  0,
-				'article_edit_contribution'		=>  0,
-				'article_edit_type'				=>  serialize(array()),
-			);
-			$sql = 'INSERT INTO ' . KB_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
-			$db->sql_query($sql);
-			$article_id = $db->sql_nextid();
-			
-			$late_articles = array(
-				'article_id'		=> $article_id,
-				'article_title'		=> $user->lang['KB_FIRST_ARTICLE_TITLE'],
-			);
-			handle_latest_articles('add', $cat_id, $late_articles, $config['kb_latest_articles_c']);
-		
-			set_config('kb_last_updated', time(), true);
-			
-			$sql = 'UPDATE ' . KB_CATS_TABLE . '
-					SET cat_articles = cat_articles + 1
-					WHERE cat_id = ' . $cat_id;
-			$db->sql_query($sql);
-			
-			$sql = 'UPDATE ' . USERS_TABLE . '
-					SET user_articles = user_articles + 1
-					WHERE user_id = ' . $user->data['user_id'];
-			$db->sql_query($sql);
-			
-			set_config('kb_last_article', $article_id, true);
-			set_config('kb_total_articles', $config['kb_total_articles'] + 1, true);
-			
-			// Add basic KB roles
-			$roles = get_install_info('roles');
-			$db->sql_multi_insert(ACL_ROLES_TABLE, $roles['roles']);
-			
-			$auth_settings = array();
-			foreach($roles['auth'] as $role_name => $auth_ary)
-			{
-				$auth_settings[] = array('ROLE_KB_' . $role_name, $auth_ary);
-			}
-			$umil->permission_set($auth_settings);
-			
-			$sql = 'SELECT role_id, role_name
-					FROM ' . ACL_ROLES_TABLE . '
-					WHERE ' . $db->sql_in_set('role_name', array('ROLE_KB_MOD', 'ROLE_KB_USER', 'ROLE_KB_GUEST'));
-			$result = $db->sql_query($sql);
-			
-			$sql_ary = array();
-			while($row = $db->sql_fetchrow($result))
-			{
-				switch($row['role_name'])
-				{
-					case 'ROLE_KB_MOD':
-						$groups = array(5);
-					break;
-					
-					case 'ROLE_KB_USER':
-						$groups = array(2, 3);
-					break;
-					
-					case 'ROLE_KB_GUEST':
-						$groups = array(1, 6);
-					break;
-				}
-				
-				foreach($groups as $group_id)
-				{
-					$sql_ary[] = array(
-						'group_id'			=> $group_id,
-						'forum_id'			=> 1,
-						'auth_option_id'	=> 0,
-						'auth_role_id'		=> $row['role_id'],
-						'auth_setting'		=> 0,
-					);
-				}
-			}
-			$db->sql_freeresult($result);
-			$db->sql_multi_insert(KB_ACL_GROUPS_TABLE, $sql_ary);
-			
-			// Give permissions to admins to moderate the KB and add requests
-			$umil->permission_set(array(
-				array('ADMINISTRATORS', array('m_kb_author', 'm_kb_comment', 'm_kb_edit', 'm_kb_delete', 'm_kb_req_edit', 'm_kb_status', 'm_kb_time', 'm_kb_view'), 'group'),
-				array('ADMINISTRATORS', 'u_kb_request', 'group'),
-				array('REGISTERED', 'u_kb_request', 'group'),
-			));
 			
 			set_config('kb_install_step', 8);
 		break;
@@ -766,7 +615,41 @@ function kb_install()
 		break;
 	}
 	
-	$steps = get_install_info('steps');
+	$steps = array(
+		1	=> array(
+			'title'		=> 'INSTALL_WELCOME',
+			'message'	=> 'INSTALL_KB_CONFIRM',
+		),
+		2	=> array(
+			'title'		=> 'INSTALL_DB',
+			'message'	=> 'INSTALL_DB_TEXT',
+		),
+		3	=> array(
+			'title'		=> 'INSTALL_PERMS',
+			'message'	=> 'INSTALL_PERMS_TEXT',
+		),
+		4	=> array(
+			'title'		=> 'INSTALL_MODULES',
+			'message'	=> 'INSTALL_MODULES_TEXT',
+		),
+		5	=> array(
+			'title'		=> 'INSTALL_CONFIG',
+			'message'	=> 'INSTALL_CONFIG_TEXT',
+		),
+		6	=> array(
+			'title'		=> 'INSTALL_UPDATE',
+			'message'	=> 'INSTALL_UPDATE_TEXT',
+		),
+		7	=> array(
+			'title'		=> 'INSTALL_DATA',
+			'message'	=> 'INSTALL_DATA_TEXT',
+		),
+		8	=> array(
+			'title'		=> 'KB_INSTALLED',
+			'message'	=> 'KB_INSTALLED_TEXT',
+		),
+	);
+	
 	$completion = '';
 	foreach($steps as $step_number => $step_ary)
 	{
@@ -938,7 +821,6 @@ function kb_install_perm_plugins($action , $version)
 		define('IN_KB_PLUGIN', true);
 	}
 	
-	$plugin_pages = array();
 	switch ($version)
 	{
 		case '0.2.4':
@@ -958,23 +840,7 @@ function kb_install_perm_plugins($action , $version)
 		break;
 		
 		case 'install':
-			$plugins = array('author', 'contributors', 'rating', 'categories', 'stats', 'search', 'latest_article', 'request_list', 'bookmark', 'email_article', 'export_article', 'related_articles', 'rated_articles', 'random_article');
-			$plugin_pages = array(
-				'author'			=> array('view_article'),
-				'contributors'		=> array('view_article'),
-				'rating'			=> array('view_article'),
-				'categories'		=> array('index', 'view_cat', 'view_tag', 'request', 'search', 'history'),
-				'stats'				=> array('index', 'view_cat', 'view_tag', 'request', 'search', 'history'),
-				'search'			=> array('index', 'view_cat', 'view_tag', 'request', 'view_article', 'history'),
-				'latest_article'	=> array('index', 'view_cat', 'view_tag', 'request', 'search'),
-				'request_list'		=> array('index', 'view_cat', 'view_tag', 'view_article', 'search'),
-				'bookmark'			=> array('view_article'),
-				'email_article'		=> array('view_article'),
-				'export_article'	=> array('view_article'),
-				'related_articles'	=> array('view_article'),
-				'rated_articles'	=> array('index', 'view_cat', 'view_tag', 'request'),
-				'random_article'	=> array('index', 'view_cat', 'view_tag'),
-			);
+			$plugins = array('author', 'bookmark', 'contributors', 'email_article', 'export_article', 'rating', 'related_articles', 'stats', 'search', 'request_list');
 		break;
 	}
 	
@@ -985,14 +851,7 @@ function kb_install_perm_plugins($action , $version)
 	
 	foreach ($plugins as $plugin)
 	{
-		if(isset($plugin_pages[$plugin]))
-		{
-			install_plugin($plugin, $phpbb_root_path . 'includes/kb_plugins/', false, $plugin_pages[$plugin]);
-		}
-		else
-		{
-			install_plugin($plugin, $phpbb_root_path . 'includes/kb_plugins/');
-		}
+		install_plugin($plugin, $phpbb_root_path . 'includes/kb_plugins/');
 	}
 }
 
@@ -1029,151 +888,10 @@ function kb_update_plugins($action , $version)
 	}
 }
 
-function get_install_info($type)
-{
-	global $db;
-	
-	switch($type)
-	{
-		case 'roles':
-			$permission_type = 'u_kb_';
-			$roles = array(
-				array(
-					'role_name'			=> 'ROLE_KB_GUEST',
-					'role_description'	=> 'ROLE_KB_GUEST_DESC',
-					'role_type'			=> $permission_type,
-				),
-				
-				array(
-					'role_name'			=> 'ROLE_KB_USER',
-					'role_description'	=> 'ROLE_KB_USER_DESC',
-					'role_type'			=> $permission_type,
-				),
-				
-				array(
-					'role_name'			=> 'ROLE_KB_MOD',
-					'role_description'	=> 'ROLE_KB_MOD_DESC',
-					'role_type'			=> $permission_type,
-				),
-			);
-			
-			$roles_auth = array(
-				'GUEST'		=> array('u_kb_bbcode', 'u_kb_comment', 'u_kb_download', 'u_kb_img', 'u_kb_read', 'u_kb_search', 'u_kb_smilies', 'u_kb_view'),
-				'USER'		=> array('u_kb_add', 'u_kb_attach', 'u_kb_bbcode', 'u_kb_comment', 'u_kb_delete', 'u_kb_download', 'u_kb_edit', 'u_kb_icons', 'u_kb_img', 'u_kb_rate', 'u_kb_read', 'u_kb_search', 'u_kb_sigs', 'u_kb_smilies', 'u_kb_types', 'u_kb_view'),
-				'MOD'		=> array('u_kb_add', 'u_kb_add_wa', 'u_kb_attach', 'u_kb_bbcode', 'u_kb_comment', 'u_kb_delete', 'u_kb_download', 'u_kb_edit', 'u_kb_icons', 'u_kb_img', 'u_kb_rate', 'u_kb_read', 'u_kb_search', 'u_kb_sigs', 'u_kb_smilies', 'u_kb_types', 'u_kb_view', 'u_kb_viewhistory'),
-			);
-			
-		return array('roles' => $roles, 'auth'	=> $roles_auth);
-		
-		case 'steps':
-			$steps = array(
-				1	=> array(
-					'title'		=> 'INSTALL_WELCOME',
-					'message'	=> 'INSTALL_KB_CONFIRM',
-				),
-				2	=> array(
-					'title'		=> 'INSTALL_DB',
-					'message'	=> 'INSTALL_DB_TEXT',
-				),
-				3	=> array(
-					'title'		=> 'INSTALL_PERMS',
-					'message'	=> 'INSTALL_PERMS_TEXT',
-				),
-				4	=> array(
-					'title'		=> 'INSTALL_MODULES',
-					'message'	=> 'INSTALL_MODULES_TEXT',
-				),
-				5	=> array(
-					'title'		=> 'INSTALL_CONFIG',
-					'message'	=> 'INSTALL_CONFIG_TEXT',
-				),
-				6	=> array(
-					'title'		=> 'INSTALL_UPDATE',
-					'message'	=> 'INSTALL_UPDATE_TEXT',
-				),
-				7	=> array(
-					'title'		=> 'INSTALL_DATA',
-					'message'	=> 'INSTALL_DATA_TEXT',
-				),
-				8	=> array(
-					'title'		=> 'KB_INSTALLED',
-					'message'	=> 'KB_INSTALLED_TEXT',
-				),
-			);
-		return $steps;
-	}
-}
-
 //
 // ALL FUNCTIONS BELOW THIS LINE ARE CUSTOM UPDATE FUNCTIONS
 // (expect long and annoying function names)
 //
-function kb_update_1_0_2RC2_to_1_0_2RC3($action, $version)
-{
-	global $db, $cache, $table_prefix;
-	
-	if($action != 'update')
-	{
-		return;
-	}
-	
-	$cache->destroy('_kb_plugin_left_menu');
-	$cache->destroy('_kb_plugin_right_menu');
-	$cache->destroy('_kb_plugin_no_menu');
-	
-	// Fix article count
-	$articles_by_cats = $articles_by_users = array();
-	$total_articles = 0;
-	$sql = 'SELECT cat_id, article_user_id
-			FROM ' . $table_prefix . 'articles
-			WHERE article_status = ' . STATUS_APPROVED . '
-			ORDER BY article_user_id';
-	$result = $db->sql_query($sql);
-	
-	while($row = $db->sql_fetchrow($result))
-	{
-		if(isset($articles_by_cats[$row['cat_id']]))
-		{
-			$articles_by_cats[$row['cat_id']]++;
-		}
-		else
-		{
-			$articles_by_cats[$row['cat_id']] = 1;
-		}
-		
-		if(isset($articles_by_users[$row['article_user_id']]))
-		{
-			$articles_by_users[$row['article_user_id']]++;
-		}
-		else
-		{
-			$articles_by_users[$row['article_user_id']] = 1;
-		}
-		
-		$total_articles++;
-	}
-	$db->sql_freeresult($result);
-	$articles_by_users = array_unique($articles_by_users);
-	
-	foreach($articles_by_users as $user_id => $article_count)
-	{
-		$sql = 'UPDATE ' . $table_prefix . 'users
-				SET user_articles = ' . $article_count . '
-				WHERE user_id = ' . $user_id;
-		$db->sql_query($sql);
-	}
-	
-	foreach($articles_by_cats as $cat_id => $article_count)
-	{
-		$sql = 'UPDATE ' . $table_prefix . 'article_cats
-				SET cat_articles = ' . $article_count . '
-				WHERE cat_id = ' . $cat_id;
-		$db->sql_query($sql);
-	}
-	
-	set_config('kb_total_articles', $total_articles, true);
-}
-
 function kb_update_1_0_0_to_1_0_1($action, $version)
 {
 	global $auth, $phpbb_root_path, $phpEx, $cache, $db;

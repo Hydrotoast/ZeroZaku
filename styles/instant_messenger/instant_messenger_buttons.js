@@ -162,7 +162,7 @@ function load_startIM( im_config) {
 	// Taking ownership over $ function, map $ as jQuery;
 	jQuery(function($){
 		
-		$.extend( im_cfg, im_config);
+		$.extend(im_cfg, im_config);
 
 		//$('#site-bottom-bar-frame a').removeAttr('href');
 		$('body').css('padding-bottom', (parseInt($('body').css('padding-bottom')) + 26 )+ 'px' );

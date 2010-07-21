@@ -6,8 +6,8 @@
 // Startup variables
 var imageTag = false;
 var theSelection = false;
-
 var bbcodeEnabled = true;
+
 // Check for Browser & Platform for PC & IE specific bits
 // More details from: http://www.mozilla.org/docs/web-developer/sniffer/browser_type.html
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
@@ -15,6 +15,7 @@ var clientVer = parseInt(navigator.appVersion); // Get browser version
 
 var is_ie = ((clientPC.indexOf('msie') != -1) && (clientPC.indexOf('opera') == -1));
 var is_win = ((clientPC.indexOf('win') != -1) || (clientPC.indexOf('16bit') != -1));
+
 var baseHeight;
 
 /**
@@ -46,14 +47,14 @@ function initInsertions()
 
 	if (is_ie && typeof(baseHeight) != 'number')
 	{
-				/* === mChat focus fix Start === */
-				var mChatFocus = window.mChatFocusFix || false;
-				if(!mChatFocus)
-	{
-		textarea.focus();
-				}
+		/* === mChat focus fix Start === */
+		var mChatFocus = window.mChatFocusFix || false;
+		if(!mChatFocus)
+		{
+			textarea.focus();
+		}
 		baseHeight = doc.selection.createRange().duplicate().boundingHeight;
-				/* ==== mChat focus fix End ==== */
+		/* ==== mChat focus fix End ==== */
 
 		if (!document.forms[form_name])
 		{
@@ -309,6 +310,7 @@ function split_lines(text)
 	}
 	return splitLines;
 }
+
 /**
 * From http://www.massless.org/mozedit/
 */
@@ -329,8 +331,8 @@ function mozWrap(txtarea, open, close)
 	var s3 = (txtarea.value).substring(selEnd, selLength);
 
 	txtarea.value = s1 + open + s2 + close + s3;
-	txtarea.selectionStart = selStart + open.length;
-	txtarea.selectionEnd = selEnd + open.length;
+	txtarea.selectionStart = selEnd + open.length + close.length;
+	txtarea.selectionEnd = txtarea.selectionStart;
 	txtarea.focus();
 	txtarea.scrollTop = scrollTop;
 
@@ -439,27 +441,23 @@ function getCaretPosition(txtarea)
 		
 		// calculate selection start point by moving beginning of range_all to beginning of range
 		var sel_start;
-
-
-
-
-
-try
+		
+		try
 		{
-		for (sel_start = 0; range_all.compareEndPoints('StartToStart', range) < 0; sel_start++)
-		{		
-			range_all.moveStart('character', 1);
+			for (sel_start = 0; range_all.compareEndPoints('StartToStart', range) < 0; sel_start++)
+			{		
+				range_all.moveStart('character', 1);
+			}
+		
+			txtarea.sel_start = sel_start;
+		
+			// we ignore the end value for IE, this is already dirty enough and we don't need it
+			caretPos.start = txtarea.sel_start;
+			caretPos.end = txtarea.sel_start;		
 		}
-	
-		txtarea.sel_start = sel_start;
-	
-		// we ignore the end value for IE, this is already dirty enough and we don't need it
-		caretPos.start = txtarea.sel_start;
-		caretPos.end = txtarea.sel_start;			
-}
 		catch(e)
 		{
-		}
+		}	
 	}
 
 	return caretPos;

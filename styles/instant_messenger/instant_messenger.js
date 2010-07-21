@@ -315,9 +315,6 @@ function startChatSession(){jQuery(function($){
 	$.ajax({
 		async: false,
 		data: {action: 'startchatsession'},
-		error: function (xhr, ajaxOptions, thrownError){
-			alert( 'AJAX Error: startChatSession();\n'+xhr.status+'\n'+thrownError);
-		},
 		success: function(data) {
 			username = data.username;
 

@@ -2,10 +2,6 @@
 
 <a name="maincontent"></a>
 
-<!-- IF S_WRITABLE_WARN -->
-	<p class="errorbox">{L_STORE_NOT_WRITABLE}</p>
-<!-- ENDIF -->
-
 <!-- IF S_FRONTEND -->
 
 	<h1>{L_ACP_MODS}</h1>
@@ -49,35 +45,11 @@
 	<tr>
 		<td><strong>{uninstalled.MOD_NAME}</strong></a></td>
 		<td style="text-align: center;"><a href="{uninstalled.U_DETAILS}">{L_DETAILS}</a></td>
-		<td style="text-align: center;"><a href="{uninstalled.U_INSTALL}">{L_INSTALL}</a>&nbsp;|&nbsp;<a href="{uninstalled.U_DELETE}">{L_DELETE}</a></td>
+		<td style="text-align: center;"><a href="{uninstalled.U_INSTALL}">{L_INSTALL}</a></td>
 	</tr>
 	<!-- END uninstalled -->
 	</tbody>
 	</table>
-	
-	<!-- IF S_MOD_UPLOAD -->
-	<br />
-	
-	<form action="{U_UPLOAD}" method="post" id="mod_upload"{S_FORM_ENCTYPE}>
-	<fieldset>
-		<legend>{L_MOD_UPLOAD}</legend>
-		<dl>
-			<p>{L_MOD_UPLOAD_EXPLAIN}</p>
-			<input type="file" name="modupload" id="modupload" value="" style="width:50%" />
-			{S_FORM_TOKEN}
-			<br /><br /><input type="submit" name="submit" value="{L_UPLOAD}" id="submit" class="button1" />
-		</dl>
-	</fieldset>
-	</form>
-	<!-- ENDIF -->
-	
-<!-- ELSEIF S_MOD_SUCCESSBOX -->
-
-	<div class="successbox">
-		<p>{MESSAGE}</p>
-		<br />
-		<p><a href="{U_RETURN}">{L_RETURN_MODS}</a></p>
-	</div>
 
 <!-- ELSEIF S_DETAILS -->
 
@@ -266,7 +238,7 @@
 		<legend>{L_INSTALL}</legend>
 		<input type="hidden" name="mod_path" value="{MOD_PATH}" />
 		<input class="button1" type="submit" name="install" value="{L_INSTALL}" />
-	</fieldset>
+	</fieldset>	
 	<!-- ENDIF -->
 	</form>
 
@@ -287,7 +259,6 @@
 	<p>{L_INSTALLED_EXPLAIN}</p>
 	<!-- ENDIF -->
 	<!-- ENDIF -->
-	<!-- IF S_MANUAL_INSTRUCTIONS --><p>{L_AM_MANUAL_INSTRUCTIONS}</p><!-- ENDIF -->
 
 	<!-- IF S_ERROR or .error -->
 	<div class="errorbox">
@@ -303,7 +274,6 @@
 			<legend>{L_RETRY}</legend>
 			<input class="button1" type="submit" name="retry" value="{L_RETRY}" />
 			<input class="button2" type="submit" name="force" value="{L_FORCE_INSTALL}" onclick="javascript:return confirm('{LA_FORCE_CONFIRM}'); " />
-			{S_FORM_TOKEN}
 			{S_HIDDEN_FIELDS}
 		</fieldset>
 		</form>
@@ -314,10 +284,6 @@
 
 		<!-- IF S_FORCE -->
 		<p><strong>{L_INSTALL_FORCED}</strong></p>
-		<!-- ENDIF -->
-
-		<!-- IF U_PHP_INSTALLER -->
-		<p class="errorbox notice"><a href="{U_PHP_INSTALLER}">{L_GO_PHP_INSTALLER}</a></p>
 		<!-- ENDIF -->
 
 		<p><a href="{U_RETURN}">{L_RETURN_MODS}</a></p>
@@ -403,14 +369,6 @@
 
 	<p>{L_MODS_CONFIG_EXPLAIN}</p>
 	<form action="{U_CONFIG}" method="post" id="automod_config">
-	<fieldset>
-		<legend>{L_VERSION}</legend>
-		<dl>
-			<dt>{L_AUTOMOD_VERSION}</dt>
-			<dd>{AUTOMOD_VERSION}</dd>
-		</dl>
-	</fieldset>
-
 	<fieldset>
 		<legend>{L_MOD_CONFIG}</legend>
 		<dl>

@@ -1,4 +1,8 @@
 <!-- INCLUDE overall_header.html -->
+<style type="text/css">
+{USER_CSS}
+</style>
+
 <div id="center">
 	<div id="profile">
 		<form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
@@ -19,7 +23,7 @@
 				
 				<dl>
 					<dt class="center"><!-- IF AVATAR_IMG -->{AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="100px" width="100px" alt="Default Avatar" /><!-- ENDIF --></dt>
-					<!-- BEGIN custom_fields --><!-- IF custom_fields.PROFILE_FIELD_NAME eq "Custom Title" --><dd class="center">{custom_fields.PROFILE_FIELD_VALUE}</dd><!-- ENDIF --><!-- END custom_fields -->
+					<!-- IF USER_STATUS neq '' --><dd class="user_status">{USER_STATUS}</dd><!-- ENDIF -->
 				</dl>
 			
 				<dl class="details">
@@ -54,13 +58,13 @@
 							<!-- IF POSTS_PCT --><br />({POSTS_PCT} / {POSTS_DAY})<!-- ENDIF -->
 							<!-- IF POSTS_IN_QUEUE and U_MCP_QUEUE --><br />(<a href="{U_MCP_QUEUE}">{L_POSTS_IN_QUEUE}</a>)<!-- ELSEIF POSTS_IN_QUEUE --><br />({L_POSTS_IN_QUEUE})<!-- ENDIF -->
 						</dd>
-						<!-- IF S_REPUTATION -->
-						<dt>{L_RP_TOTAL_POINTS}:</dt> <dd>{REPUTATION}</dd>
-						<dt>{L_RP_POWER}:</dt> <dd>{REP_POWER}</dd>
-						<!-- ENDIF -->
 					<!-- IF S_SHOW_ACTIVITY and POSTS -->
 						<dt>{L_ACTIVE_IN_FORUM}:</dt> <dd><!-- IF ACTIVE_FORUM --><strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong><br />({ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
 						<dt>{L_ACTIVE_IN_TOPIC}:</dt> <dd><!-- IF ACTIVE_TOPIC --><strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong><br />({ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
+					<!-- ENDIF -->
+					<!-- IF S_REPUTATION -->
+						<dt>{L_RP_TOTAL_POINTS}:</dt> <dd>{REPUTATION}</dd>
+						<dt>{L_RP_POWER}:</dt> <dd>{REP_POWER}</dd>
 					<!-- ENDIF -->
 				</dl>
 				

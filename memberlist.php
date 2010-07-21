@@ -634,8 +634,6 @@ switch ($mode)
     	 	'NO_COMMENT'       	=> $total_comments,
     	 	'DELETE_IMG' 		=> $user->img('icon_post_delete', 'DELETE_POST'),
     	 	'SIMPLE_COMMENT_ENABLED' => $config['enable_comment'],
-
-
 		));
 		$db->sql_freeresult($result);
 
@@ -808,10 +806,20 @@ switch ($mode)
 			'S_CAN_WITH_IM'		=> $friend, 
 		));
 		// MOD :: INSTANT MESSENGER -- END
+		
+		// BEGIN USER CSS
+		$sql = 'SELECT user_css FROM ' . USERS_TABLE . '
+			WHERE user_id = ' . $user_id;
+		$result = $db->sql_query($sql);
+		$user_css = stripslashes($db->sql_fetchfield('user_css'));
+		$db->sql_freeresult($result);
+		// END USER CSS
 
 		$template->assign_vars(array(
 			'L_POSTS_IN_QUEUE'	=> $user->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
 
+		    'USER_CSS'			=> $user_css,
+		
 			'POSTS_DAY'			=> sprintf($user->lang['POST_DAY'], $posts_per_day),
 			'POSTS_PCT'			=> sprintf($user->lang['POST_PCT'], $percentage),
 

@@ -735,7 +735,7 @@ function compose_pm($id, $mode, $action)
 				$error[] = $user->lang['NO_RECIPIENT'];
 			}
 		}
-		
+
 		// Store message, sync counters
 		if (!sizeof($error) && $submit)
 		{

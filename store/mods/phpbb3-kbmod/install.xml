@@ -37,46 +37,13 @@
       			</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>1.0.2RC3</mod-version>
+		<mod-version>1.0.1</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>2100</time>
-			<target-version>3.0.7</target-version>
+			<target-version>3.0.6</target-version>
 		</installation>
 		<history>
-			<entry>
-				<date>2010-04-14</date>
-				<rev-version>1.0.2RC3</rev-version>
-				<changelog lang="en">
-					<change>Issues fixed:</change>
-					<change>Fixed article counting problems</change>
-					<change>Fixed latest article plugin always appearing on post article</change>
-					<change>Fixed plugin cache cleaning problems</change>
-					<change>Added additional language support</change>
-					<change>Added 'Welcome to KB' article on fresh install</change>
-				</changelog>
-			</entry>
-			<entry>
-				<date>2010-04-05</date>
-				<rev-version>1.0.2RC2</rev-version>
-				<changelog lang="en">
-					<change>Issues fixed:</change>
-					<change>Request article bug</change>
-					<change>Several small typos</change>
-				</changelog>
-			</entry>
-			<entry>
-				<date>2010-02-11</date>
-				<rev-version>1.0.2RC1</rev-version>
-				<changelog lang="en">
-					<change>Issues fixed:</change>
-					<change>Fixed cosmetic bugs</change>
-					<change>Permission system fixed</change>
-					<change>Post bot fixed</change>
-					<change>New features:</change>
-					<change>Copyright line added</change>
-				</changelog>
-			</entry>
 			<entry>
 				<date>2010-01-20</date>
 				<rev-version>1.0.1</rev-version>
@@ -257,8 +224,6 @@
 			<link type="contrib" realname="Update 1.0.0RC3 to 1.0.0" href="./contrib/update_1.0.0RC3_to_1.0.0.xml" lang="en">Update from 1.0.0RC3 to 1.0.0</link>
 			<link type="contrib" realname="Update 1.0.0 to 1.0.1" href="./contrib/update_1.0.0_to_1.0.1.xml" lang="en">Update from 1.0.0 to 1.0.1</link>
 			<link type="contrib" realname="Update 1.0.1 to 1.0.2RC1" href="./contrib/update_1.0.1_to_1.0.2RC1.xml" lang="en">Update from 1.0.1 to 1.0.2RC1</link>
-			<link type="contrib" realname="Update 1.0.2RC1 to 1.0.2RC2" href="./contrib/update_1.0.2RC1_to_1.0.2RC2.xml" lang="en">Update from 1.0.2RC1 to 1.0.2RC2</link>
-			<link type="contrib" realname="Update 1.0.2RC2 to 1.0.2RC3" href="./contrib/update_1.0.2RC2_to_1.0.2RC3.xml" lang="en">Update from 1.0.2RC2 to 1.0.2RC3</link>
 		</link-group>
 
 	</header>
@@ -520,13 +485,6 @@ else
 				// Mod KB End]]></action>
 							</edit>
 							<edit>
-								<find><![CDATA[AND (g.allow_group = 1 OR g.allow_in_pm = 1)';]]></find>
-								<inline-edit>
-									<inline-find><![CDATA[)]]></inline-find>
-									<inline-action type="before-add"><![CDATA[ OR g.allow_in_kb = 1]]></inline-action>
-								</inline-edit>
-							</edit>
-							<edit>
 								<find><![CDATA[					'max_filesize'	=> (int) $row['max_filesize'],
 					'allow_group'	=> $row['allow_group'],
 					'allow_in_pm'	=> $row['allow_in_pm'],]]></find>
@@ -627,7 +585,7 @@ else
 						</open>
 						<open src="includes/acp/acp_styles.php">
 							<edit>
-								<find><![CDATA['icon_back_top', 'icon_contact_aim', 'icon_contact_email', 'icon_contact_icq', 'icon_contact_jabber', 'icon_contact_msnm', 'icon_contact_pm', 'icon_contact_yahoo', 'icon_contact_www', 'icon_post_delete', 'icon_post_edit', 'icon_post_info', 'icon_post_quote', 'icon_post_report', 'icon_user_online', 'icon_user_offline', 'icon_user_profile', 'icon_user_search', 'icon_user_warn', 'button_pm_forward', 'button_pm_new', 'button_pm_reply', 'button_topic_locked', 'button_topic_new', 'button_topic_reply',]]></find>
+								<find><![CDATA['icon_back_top', 'icon_contact_aim', 'icon_contact_email', 'icon_contact_icq', 'icon_contact_jabber', 'icon_contact_msnm', 'icon_contact_pm', 'icon_contact_yahoo', 'icon_contact_www', 'icon_post_delete', 'icon_post_edit', 'icon_post_quickedit', 'icon_post_info', 'icon_post_quote', 'icon_post_report', 'icon_user_online', 'icon_user_offline', 'icon_user_profile', 'icon_user_search', 'icon_user_warn', 'button_pm_forward', 'button_pm_new', 'button_pm_reply', 'button_topic_locked', 'button_topic_new', 'button_topic_reply',]]></find>
 								<inline-edit>
 									<inline-find><![CDATA['button_topic_reply',]]></inline-find>
 									<inline-action type="after-add"><![CDATA[ 'button_article_new', 'button_comment_new',]]></inline-action>

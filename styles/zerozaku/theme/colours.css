@@ -30,7 +30,6 @@ hr.dashed {
 --------------------------------------------- */
 #page-header {
 	background: #EEEEEE url("{T_THEME_PATH}/images/header_bg.png") scroll repeat-x;
-	border-top-color: #212121;
 }
 
 #board-statistics {
@@ -46,6 +45,11 @@ hr.dashed {
 
 /* Quickpanel block
 --------------------------------------------- */
+#news {
+	background-color: #C9D2D8;
+	border-color: #0D4473
+}
+
 #quickpanel {
 	background-color: #111111;
 	border-bottom-color: #000000;
@@ -53,6 +57,14 @@ hr.dashed {
 	color: #FFFFFF;
 }
 
+#quickpanel #quicklogin { border-color: #444444; }
+
+#blurb h1 { color: #C9D2D8; }
+#blurb p {	color: #AAAAAA; }
+
+#quickregister .button2 { color: #212121; }
+	
+#quickpanel h2 { color: #FFFFFF; }
 #quickpanel a, #quickpanel label {color: #FFFFFF;}
 
 /* Search box
@@ -77,12 +89,11 @@ hr.dashed {
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg.gif") repeat-x scroll;
-	border-bottom-color: #C0C0C0;
-	color: #212121;
+	background: #212121;
+	color: #999999;
 }
 
-.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #666666; }
+.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #C9D2D8; }
 .breadcrumbs .navlinks .icon-home a.index:hover, .breadcrumbs .navlinks .icon-home a.index:active { color: #FF0000; }
 
 .breadcrumbs .navlinks .icon-home a:link, .breadcrumbs .navlinks .icon-home a:visited {
@@ -93,7 +104,7 @@ hr.dashed {
 
 	/* Account actions box
 	--------------------------------------------- */
-	#account-actions li a:link, #account-actions li a:visited { color: #666666; }
+	#account-actions li a:link, #account-actions li a:visited { color: #C9D2D8; }
 	#account-actions li a:hover, #account-actions li a:active { color: #FF0000; }
 
 /* Navbar
@@ -124,6 +135,17 @@ hr.dashed {
 /* Authentication
 --------------------------------------------- */
 
+
+/* Sidebar
+---------------------------------------- */
+.leaderboard li, #user_statuses li .inner { 
+	background-color: #F6F6F6;
+	border-color: #E0E0E0;
+}
+
+#user_statuses li { color: #606060; }
+
+.leaderboard li a.posts { color: #000000; }
 
 /* Profile blocks
 ---------------------------------------- */
@@ -381,16 +403,13 @@ a:active	{ color: #0D4473; }
 
 /* Links for forum/topic lists */
 a.forumtitle {color: #212121;}
-/* a.forumtitle:visited { color: #2D587E; } */
 a.forumtitle:hover {color: #FF0000;}
-a.forumtitle:active {color: #2D587E;}
+a.forumtitle:active {color: #FF0000;}
 
 a.topictitle, a.topictitle h3 { color: #212121; }
-a.topictitle:hover, a.topictitle:active, a.topictitle:hover h3, a.topictitle:active h3 { color: #FF0000 }
-
-/* a.topictitle:visited { color: #368AD2; } */
+a.topictitle:hover, a.topictitle:active, a.topictitle:hover h3, a.topictitle:active h3 { color: #FF0000; }
 h1.topictitle a:hover, h3.solo a:hover { color: #FF0000; }
-h1.topictitle a:active, h3.solo a:active { color: #2D587E; }
+h1.topictitle a:active, h3.solo a:active { color: #FF0000; }
 
 /* Post body links */
 .postlink {
@@ -530,21 +549,11 @@ li.row:hover, li.row:hover dd.stats, li.row:hover dd.posts, li.row:hover dd.view
 
 .jump2post a:hover {color: #D31141}
 
-.forabg li.header, .forumbg li.header, h2.cattitle {
-	background: #000000 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll;
-}
+.forabg li.header, .forumbg li.header, h2.cattitle { background: #000000 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll; }
+.forabg-sidebar li.header { background: transparent; }
 
-.forabg-sidebar li.header {
-	background: transparent;
-}
-
-li.header dt, li.header dd, h2.cattitle {
-	color: #FFFFFF;
-}
-
-.forabg-sidebar li.header dt {
-	color: #212121;
-}
+li.header dt, li.header dd, h2.cattitle { color: #FFFFFF; }
+.forabg-sidebar li.header dt { color: #212121; }
 
 h1.topictitle, h3.solo {
 	background: #000000 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll;
@@ -557,15 +566,18 @@ h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span,
 	color: #FFFFFF;
 }
 
+h2.cattitle a.collapse {
+	background-color: transparent;
+	border-color: transparent;
+}
+
 h2.pagetitle, h2.comtitle {
 	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll;
 	border-color: #E0E0E0;
 }
 
 /* Forum list column styles */
-ul.topiclist dd.searchextra {
-	color: #212121;
-}
+ul.topiclist dd.searchextra { color: #212121; }
 
 /* Post body styles
 ----------------------------------------*/
@@ -664,10 +676,17 @@ dl.thumbnail dt a:hover img {border-color: #368AD2;}
 
 /* Post poll styles
 ----------------------------------------*/
+fieldset.polls h3 {
+	border-color: #C0C0C0;
+}
 
 fieldset.polls dl {
-	border-top-color: #DCDEE2;
+	border-color: #E0E0E0;
 	color: #666666;
+}
+
+fieldset.polls dl.bg1 {
+	background-color: #EEEEEE;
 }
 
 fieldset.polls dl.voted {
@@ -737,6 +756,16 @@ fieldset.polls dd div {
 .postprofile {
 	color: #666666;
 	border-right-color: #E0E0E0;
+}
+
+.user_status {
+	background-color: #F0F0F0;
+	color: #444444;
+	border-color: #E0E0E0;
+}
+
+.user_status:after {
+	border-color: transparent transparent #F0F0F0; 
 }
 
 .rtl .postprofile {
@@ -852,25 +881,20 @@ ul.cplist {
 
 /* CP tabbed menu
 ----------------------------------------*/
-#tabs a {
-	background: #FFFFFF;
-	border-color: #D0D0D0;
+#tabs a { 
+	background: url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x #E0E0E0; 
+	color: #212121;
 }
 
-#tabs a span {
+#tabs a:hover { background: #E0E0E0; }
+
+#tabs .activetab a { 
+	background: #F6F6F6; 
+	border-color: #F0F0F0;
+	color: #212121; 
 }
 
-#tabs a:hover span {
-	color: #FF530D;
-}
-
-#tabs .activetab a {
-	background: #f6f6f6;
-	border-bottom-color: #555555;
-}
-
-#tabs .activetab a span {color: #212121;}
-#tabs .activetab a:hover span {color: #000000;}
+#tabs .activetab a:hover { color: #000000; }
 
 /* Mini tabbed menu used in MCP
 ----------------------------------------*/
@@ -1004,12 +1028,12 @@ fieldset.quick-login input.inputbox {background-color: #F2F3F3;}
 ---------------------------------------- */
 
 a.button1 {
-	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll  0 -1px;
+	background: #212121 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll  0 -10px;
 	color: #FFFFFF;
 }
 
 input.button1 {
-	background: #212121 url("{T_THEME_PATH}/images/button3_bg.gif") repeat-x scroll 0 -1px !important;
+	background: #212121 url("{T_THEME_PATH}/images/gradient_bg3.gif") repeat-x scroll 0 -10px !important;
 	color: #FFFFFF;
 }
 

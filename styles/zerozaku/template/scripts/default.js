@@ -1,23 +1,65 @@
 /* ZeroZaku Initialization
  * Copyright (c) 2009, 2010 Gio Borje (http://www.zerozaku.com)
  */
+var config = {
+	template_path: '',
+	theme_path: ''
+};
+
+function init(t_template_path, t_theme_path) {
+	config.template_path = t_template_path;
+	config.theme_path = t_theme_path;
+	
+	collapse();
+	shConfig();
+};
+
 $(function() {
-	var quickpanel = $("#quickpanel");
-	$("textarea#message").growing({maxHeight: 540, buffer: 1});
+	$("textarea#message").growing({maxHeight: 540, buffer: 0});
+	$("textarea").tabby();
 	
 	// Toggles the quick login panel
+	var quickpanel = $("#quickpanel");
 	$("a.quick").toggle(function() {
-		var module = $(this).attr("rel");
-		
-		$(module).stop().show();
-		quickpanel.stop().slideDown();
-		
+		quickpanel.slideDown();
 		return false;
 	}, function() {
-		var module = $(this).attr("rel");
+		quickpanel.slideUp();
+		return false;
+	});
+	
+	$("a.collapse").click(function() {
+		var forum_id = $(this).attr("rel");
+		var collapsed = localStorage.getItem(forum_id);
 		
-		$(module).stop().hide();
-		quickpanel.stop().slideUp();
+		if(!collapsed)
+		{
+			localStorage.setItem(forum_id, "true");
+			var parent = $(this).parent("h2.cattitle");
+			$(parent).next(".forabg").slideUp();
+			$(parent).addClass("collapsed");
+			$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+		}
+		else
+		{
+			if(collapsed == "true")
+			{
+				localStorage.setItem(forum_id, "false");
+				var parent = $(this).parent("h2.cattitle");
+				$(parent).next(".forabg").slideDown();
+				$(parent).removeClass("collapsed");;
+				$(this).children("img").attr("src", config.theme_path + "/images/minus_alt_24x24.png");
+			}
+			else
+			{
+				localStorage.setItem(forum_id, "true");
+				var parent = $(this).parent("h2.cattitle");
+				$(parent).next(".forabg").slideUp();
+				$(parent).addClass("collapsed");
+				$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+			}
+		}
+			
 		
 		return false;
 	});
@@ -45,34 +87,49 @@ $(function() {
 	});
 });
 
-function shConfig(templatePath) {
+function collapse() {
+	// Collapses forums
+	$("a.collapse").each(function(index) {
+		var forum_id = $(this).attr("rel");
+		
+		if(localStorage.getItem(forum_id) == "true")
+		{
+			var parent = $(this).parent("h2.cattitle");
+			$(parent).next(".forabg").hide();
+			$(parent).addClass("collapsed");
+			$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+		}
+	});
+}
+
+function shConfig() {
 	SyntaxHighlighter.config.bloggerMode = true;
 	SyntaxHighlighter.defaults['toolbar'] = false;
 	SyntaxHighlighter.autoloader(
-		[ 'applescript',					templatePath + '/scripts/languages/shBrushAppleScript.js' ],
-		[ 'actionscript3', 'as3',			templatePath + '/scripts/languages/shBrushAS3.js' ],
-		[ 'au3', 'autoit',					templatePath + '/scripts/languages/shBrushAutoit.js' ],
-		[ 'bash', 'shell',					templatePath + '/scripts/languages/shBrushBash.js' ],
-		[ 'coldfusion', 'cf',				templatePath + '/scripts/languages/shBrushColdFusion.js' ],
-		[ 'cpp', 'c',						templatePath + '/scripts/languages/shBrushCpp.js' ],
-		[ 'c#', 'c-sharp', 'csharp',		templatePath + '/scripts/languages/shBrushCSharp.js' ],
-		[ 'css',							templatePath + '/scripts/languages/shBrushCss.js' ],
-		[ 'delphi', 'pascal',				templatePath + '/scripts/languages/shBrushDelphi.js' ],
-		[ 'diff', 'patch', 'pas',			templatePath + '/scripts/languages/shBrushDiff.js' ],
-		[ 'erl', 'erlang',					templatePath + '/scripts/languages/shBrushErlang.js' ],
-		[ 'groovy',							templatePath + '/scripts/languages/shBrushGroovy.js' ],
-		[ 'java',							templatePath + '/scripts/languages/shBrushJava.js' ],
-		[ 'jfx', 'javafx',					templatePath + '/scripts/languages/shBrushJavaFX.js' ],
-		[ 'js', 'jscript', 'javascript',	templatePath + '/scripts/languages/shBrushJScript.js' ],
-		[ 'perl', 'pl',						templatePath + '/scripts/languages/shBrushPerl.js' ],
-		[ 'php',							templatePath + '/scripts/languages/shBrushPhp.js' ],
-		[ 'text', 'plain',					templatePath + '/scripts/languages/shBrushPlain.js' ],
-		[ 'py', 'python',					templatePath + '/scripts/languages/shBrushPython.js' ],
-		[ 'ruby', 'rails', 'ror', 'rb',		templatePath + '/scripts/languages/shBrushRuby.js' ],
-		[ 'scala',							templatePath + '/scripts/languages/shBrushScala.js' ],
-		[ 'sql',							templatePath + '/scripts/languages/shBrushSql.js' ],
-		[ 'vb', 'vbnet',					templatePath + '/scripts/languages/shBrushVb.js' ],
-		[ 'xml', 'xhtml', 'xslt', 'html',	templatePath + '/scripts/languages/shBrushXml.js' ]
+		[ 'applescript',					config.template_path + '/scripts/languages/shBrushAppleScript.js' ],
+		[ 'actionscript', 'as',				config.template_path + '/scripts/languages/shBrushAS3.js' ],
+		[ 'au', 'autoit',					config.template_path + '/scripts/languages/shBrushAutoit.js' ],
+		[ 'bash', 'shell',					config.template_path + '/scripts/languages/shBrushBash.js' ],
+		[ 'coldfusion', 'cf',				config.template_path + '/scripts/languages/shBrushColdFusion.js' ],
+		[ 'cpp', 'c',						config.template_path + '/scripts/languages/shBrushCpp.js' ],
+		[ 'c#', 'c-sharp', 'csharp',		config.template_path + '/scripts/languages/shBrushCSharp.js' ],
+		[ 'css',							config.template_path + '/scripts/languages/shBrushCss.js' ],
+		[ 'delphi', 'pascal',				config.template_path + '/scripts/languages/shBrushDelphi.js' ],
+		[ 'diff', 'patch', 'pas',			config.template_path + '/scripts/languages/shBrushDiff.js' ],
+		[ 'erl', 'erlang',					config.template_path + '/scripts/languages/shBrushErlang.js' ],
+		[ 'groovy',							config.template_path + '/scripts/languages/shBrushGroovy.js' ],
+		[ 'java',							config.template_path + '/scripts/languages/shBrushJava.js' ],
+		[ 'jfx', 'javafx',					config.template_path + '/scripts/languages/shBrushJavaFX.js' ],
+		[ 'js', 'jscript', 'javascript',	config.template_path + '/scripts/languages/shBrushJScript.js' ],
+		[ 'perl', 'pl',						config.template_path + '/scripts/languages/shBrushPerl.js' ],
+		[ 'php',							config.template_path + '/scripts/languages/shBrushPhp.js' ],
+		[ 'text', 'plain',					config.template_path + '/scripts/languages/shBrushPlain.js' ],
+		[ 'py', 'python',					config.template_path + '/scripts/languages/shBrushPython.js' ],
+		[ 'ruby', 'rails', 'ror', 'rb',		config.template_path + '/scripts/languages/shBrushRuby.js' ],
+		[ 'scala',							config.template_path + '/scripts/languages/shBrushScala.js' ],
+		[ 'sql',							config.template_path + '/scripts/languages/shBrushSql.js' ],
+		[ 'vb', 'vbnet',					config.template_path + '/scripts/languages/shBrushVb.js' ],
+		[ 'xml', 'xhtml', 'xslt', 'html',	config.template_path + '/scripts/languages/shBrushXml.js' ]
 	);
 	SyntaxHighlighter.all();
 }

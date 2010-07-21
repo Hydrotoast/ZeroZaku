@@ -8,20 +8,20 @@
 	<!-- IF S_REIMG_SWAP_PORTRAIT -->
 		var reimg_swapPortrait = true;
 	<!-- ENDIF -->
-	var reimg_loadingImg = "{T_IMAGES_PATH}spacer.gif",
-		reimg_loadingStyle = "<!-- IF REIMG_LOADING_IMG_SRC --><!-- IF REIMG_LOADING_IMG_WIDTH -->width: {REIMG_LOADING_IMG_WIDTH}px; <!-- ENDIF --><!-- IF REIMG_LOADING_IMG_HEIGHT -->height: {REIMG_LOADING_IMG_HEIGHT}px; <!-- ENDIF -->background: url({REIMG_LOADING_IMG_SRC}) top left no-repeat; <!-- ELSE -->width: 20px; height: 20px; background: orange; <!-- ENDIF -->filter: Alpha(Opacity=50); opacity: .50;",
-		reimg_loadingAlt = "{LA_LOADING_TEXT}";
+	var reimg_loadingImg = "{T_IMAGES_PATH}spacer.gif";
+	var reimg_loadingStyle = "<!-- IF REIMG_LOADING_IMG_SRC --><!-- IF REIMG_LOADING_IMG_WIDTH -->width: {REIMG_LOADING_IMG_WIDTH}px; <!-- ENDIF --><!-- IF REIMG_LOADING_IMG_HEIGHT -->height: {REIMG_LOADING_IMG_HEIGHT}px; <!-- ENDIF -->background: url({REIMG_LOADING_IMG_SRC}) top left no-repeat; <!-- ELSE -->width: 20px; height: 20px; background: orange; <!-- ENDIF -->filter: Alpha(Opacity=50); opacity: .50;";
+	var reimg_loadingAlt = "{LA_LOADING_TEXT}";
 	<!-- IF S_REIMG_ZOOM -->
 		<!-- IF S_REIMG_LINK -->
 			var reimg_autoLink = true;
 		<!-- ENDIF -->
 		<!-- IF S_REIMG_BUTTON -->
-			var reimg_zoomImg = reimg_loadingImg,
-				reimg_zoomStyle = "<!-- IF REIMG_ZOOM_IN_IMG_SRC --><!-- IF REIMG_ZOOM_IN_IMG_WIDTH -->width: {REIMG_ZOOM_IN_IMG_WIDTH}px; <!-- ENDIF --><!-- IF REIMG_ZOOM_IN_IMG_HEIGHT -->height: {REIMG_ZOOM_IN_IMG_HEIGHT}px; <!-- ENDIF -->background: url({REIMG_ZOOM_IN_IMG_SRC}) top left no-repeat; <!-- ELSE -->width: 20px; height: 20px; background: green; <!-- ENDIF -->filter: Alpha(Opacity=50); opacity: .50;",
-				reimg_zoomHover = "background-position: 0 100%; cursor: pointer; filter: Alpha(Opacity=100); opacity: 1.00;";
+			var reimg_zoomImg = reimg_loadingImg;
+			var reimg_zoomStyle = "<!-- IF REIMG_ZOOM_IN_IMG_SRC --><!-- IF REIMG_ZOOM_IN_IMG_WIDTH -->width: {REIMG_ZOOM_IN_IMG_WIDTH}px; <!-- ENDIF --><!-- IF REIMG_ZOOM_IN_IMG_HEIGHT -->height: {REIMG_ZOOM_IN_IMG_HEIGHT}px; <!-- ENDIF -->background: url({REIMG_ZOOM_IN_IMG_SRC}) top left no-repeat; <!-- ELSE -->width: 20px; height: 20px; background: green; <!-- ENDIF -->filter: Alpha(Opacity=50); opacity: .50;";
+			var reimg_zoomHover = "background-position: 0 100%; cursor: pointer; filter: Alpha(Opacity=100); opacity: 1.00;";
 		<!-- ENDIF -->
-		var reimg_zoomAlt = "{LA_REIMG_ZOOM_IN}",
-			g_zoomTarget = "{S_REIMG_ZOOM}";
+		var reimg_zoomAlt = "{LA_REIMG_ZOOM_IN}";
+		var reimg_zoomTarget = "{S_REIMG_ZOOM}";
 	<!-- ENDIF -->
 <!-- ENDIF -->
 		

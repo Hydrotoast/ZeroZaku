@@ -102,10 +102,10 @@ $lang = array_merge($lang, array(
 	'USER_INFO'				=> 'Friend information',
 	'VIEW_ALL'				=> 'View all',
 	'NO_FRIEND'				=> 'no user selected!',
-	'LOGIN_EXPLAIN_LEADERS'		=> 'The board requires you to be registered and logged in to view the team listing.',
-	'LOGIN_EXPLAIN_MEMBERLIST'	=> 'The board requires you to be registered and logged in to access the memberlist.',
-	'LOGIN_EXPLAIN_SEARCHUSER'	=> 'The board requires you to be registered and logged in to search users.',
-	'LOGIN_EXPLAIN_VIEWPROFILE'	=> 'The board requires you to be registered and logged in to view profiles.',
+	'LOGIN_EXPLAIN_LEADERS'		=> 'Please login to view the team listing.',
+	'LOGIN_EXPLAIN_MEMBERLIST'	=> 'Please login to access the memberlist.',
+	'LOGIN_EXPLAIN_SEARCHUSER'	=> 'Please login to search users.',
+	'LOGIN_EXPLAIN_VIEWPROFILE'	=> 'Please login to view profiles.',
 
 	'MORE_THAN'				=> 'More than',
 

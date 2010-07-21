@@ -24,19 +24,21 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label for="allowpm1">{L_ALLOW_PM}:</label><br /><span>{L_ALLOW_PM_EXPLAIN}</span></dt>
+		<dt><label for="allowpm1">{L_ALLOW_PM}:</label></dt>
 		<dd>
 			<label for="allowpm1"><input type="radio" name="allowpm" id="allowpm1" value="1"<!-- IF S_ALLOW_PM --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="allowpm0"><input type="radio" name="allowpm" id="allowpm0" value="0"<!-- IF not S_ALLOW_PM --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
+		<dd>{L_ALLOW_PM_EXPLAIN}</dd>
 	</dl>
 	<!-- IF S_CAN_HIDE_ONLINE -->
 		<dl>
-			<dt><label for="hideonline0">{L_HIDE_ONLINE}:</label><br /><span>{L_HIDE_ONLINE_EXPLAIN}</span></dt>
+			<dt><label for="hideonline0">{L_HIDE_ONLINE}:</label></dt>
 			<dd>
 				<label for="hideonline1"><input type="radio" name="hideonline" id="hideonline1" value="1"<!-- IF S_HIDE_ONLINE --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 				<label for="hideonline0"><input type="radio" name="hideonline" id="hideonline0" value="0"<!-- IF not S_HIDE_ONLINE --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 			</dd>
+			<dd>{L_HIDE_ONLINE_EXPLAIN}</dd>
 		</dl>
 	<!-- ENDIF -->
 	<!-- IF S_CAN_HIDE_REPUTATION -->
@@ -94,44 +96,49 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label for="dateformat">{L_BOARD_DATE_FORMAT}:</label><br /><span>{L_BOARD_DATE_FORMAT_EXPLAIN}</span></dt>
+		<dt><label for="dateformat">{L_BOARD_DATE_FORMAT}:</label></dt>
 		<dd>
 			<select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){dE('custom_date',1);}else{dE('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">
 				{S_DATEFORMAT_OPTIONS}
 			</select>
 		</dd>
 		<dd id="custom_date" style="display:none;"><input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="30" class="inputbox narrow" style="margin-top: 3px;" /></dd>
+		<dd>{L_BOARD_DATE_FORMAT_EXPLAIN}</dd>
 	</dl>
 			
 	<h3 class="sub">{L_COMMENT_PRIV}</h3>
 	<dl>
-		<dt><label for="allow_all_comment0">{L_ALLOW_ALL_COMMENT}:</label><br /><span>{L_ALLOW_ALL_COMMENT_EXPLAIN}</span></dt>
+		<dt><label for="allow_all_comment0">{L_ALLOW_ALL_COMMENT}:</label></dt>
 		<dd>
 			<label for="allow_all_comment1"><input type="radio" name="allow_all_comment" id="allow_all_comment1" value="1"<!-- IF S_ALLOW_ALL_COMMENT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="allow_all_comment0"><input type="radio" name="allow_all_comment" id="allow_all_comment0" value="0"<!-- IF not S_ALLOW_ALL_COMMENT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
+		<dd>{L_ALLOW_ALL_COMMENT_EXPLAIN}</dd>
 	</dl>
 	<dl>
-		<dt><label for="allow_friend_only0">{L_ALLOW_FRIEND_ONLY}:</label><br /><span>{L_ALLOW_FRIEND_ONLY_EXPLAIN}</span></dt>
+		<dt><label for="allow_friend_only0">{L_ALLOW_FRIEND_ONLY}:</label></dt>
 		<dd>
 			<label for="allow_friend_only1"><input type="radio" name="allow_friend_only" id="allow_friend_only1" value="1"<!-- IF S_ALLOW_FRIEND_ONLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="allow_friend_only0"><input type="radio" name="allow_friend_only" id="allow_friend_only0" value="0"<!-- IF not S_ALLOW_FRIEND_ONLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
+		<dd>{L_ALLOW_FRIEND_ONLY_EXPLAIN}</dd>
 	</dl>
 
 	<dl>
-		<dt><label for="allow_friend_view0">{L_ALLOW_FRIEND_VIEW}:</label<br /><span>{L_ALLOW_FRIEND_VIEW_EXPLAIN}</span></dt>
+		<dt><label for="allow_friend_view0">{L_ALLOW_FRIEND_VIEW}:</label</dt>
 		<dd>
 			<label for="allow_friend_view1"><input type="radio" name="allow_friend_view" id="allow_friend_view1" value="1"<!-- IF S_ALLOW_FRIEND_VIEW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="allow_friend_view0"><input type="radio" name="allow_friend_view" id="allow_friend_view0" value="0"<!-- IF not S_ALLOW_FRIEND_VIEW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
+		<dd>{L_ALLOW_FRIEND_VIEW_EXPLAIN}</dd>
 	</dl>
 	<dl>
-		<dt><label for="allow_comment_email0">{L_ALLOW_COMMENT_EMAIL}:</label><br /><span>{L_ALLOW_COMMENT_EMAIL_EXPLAIN}</span></dt>
+		<dt><label for="allow_comment_email0">{L_ALLOW_COMMENT_EMAIL}:</label></dt>
 		<dd>
 			<label for="allow_comment_email1"><input type="radio" name="allow_comment_email" id="allow_comment_email1" value="1"<!-- IF S_ALLOW_COMMENT_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
 			<label for="allow_comment_email0"><input type="radio" name="allow_comment_email" id="allow_comment_email0" value="0"<!-- IF not S_ALLOW_COMMENT_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
+		<dd>{L_ALLOW_COMMENT_EMAIL_EXPLAIN}</dd>
 	</dl>
 	</fieldset>
 
@@ -139,8 +146,8 @@
 </div>
 	
 <fieldset class="submit-buttons">
-	{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
-	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />&nbsp; 
+	<input type="reset" value="{L_RESET}" name="reset" class="button2" />
 	{S_FORM_TOKEN}
 </fieldset>
 </form>

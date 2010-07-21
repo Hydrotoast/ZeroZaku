@@ -37,18 +37,14 @@
   <link href="{T_THEME_PATH}/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
 <![endif]-->
 
-<!-- INCLUDE reimg_content.html -->
-<link href="{T_THEME_PATH}/normal.css" rel="stylesheet" type="text/css" title="A" />
-<link href="{T_THEME_PATH}/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
-<link href="{T_THEME_PATH}/large.css" rel="alternate stylesheet" type="text/css" title="A++" />
-
-<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
 
 <!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
 <link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
 <!-- IF S_USER_ALLOW_IM --><link href="{T_THEME_PATH}/instant_messenger_bidi.css" rel="stylesheet" type="text/css" media="screen, projection" /><!-- ENDIF -->
 <!-- ENDIF -->
+
+<!-- INCLUDE reimg_content.html -->
 
 <script type="text/javascript">
 // <![CDATA[
@@ -81,7 +77,7 @@ function find_username(url)
 }
 
 onload_functions.push("load_startIM({rootPath: '{ROOT_PATH}', themePath: '{T_THEME_PATH}', rtl: '{S_CONTENT_DIRECTION}'})");
-onload_functions.push("shConfig('{T_TEMPLATE_PATH}')");
+onload_functions.push("init('{T_TEMPLATE_PATH}', '{T_THEME_PATH}')");
 
 var common = function() {
 	templatePath = '{T_TEMPLATE_PATH}';
@@ -126,41 +122,6 @@ window.onunload = function()
 	<!-- INCLUDE instant_messenger_bar.html -->
 <!-- ENDIF --> 
 	
-<div id="page-header">
-	<div class="inner">	
-		<div id="site-description">
-			<a href="{U_INDEX}" title="{L_INDEX}" id="logo"><!-- {SITE_LOGO_IMG} --><img src="http://i49.tinypic.com/2z99tfc.jpg" /></a>
-		</div>
-		
-		<ul class="navbar">
-			<li<!-- IF $CA_PAGE eq 'index' --> class="current"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h" title="Forums">{L_FORUMS} <span>debate &amp; discuss</span></a></li>
-			<li<!-- IF $CA_PAGE eq 'kb' --> class="current"<!-- ENDIF -->><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB} <span>{L_KB_EXPLAIN}</span></a></li>
-			<li<!-- IF $CA_PAGE eq 'support' --> class="current"<!-- ENDIF -->><a href="{U_SUPPORT}" title="{L_SUPPORT_EXPLAIN}">{L_SUPPORT} <span>{L_SUPPORT_EXPLAIN}</span></a></li>
-			<li<!-- IF $CA_PAGE eq 'search' --> class="current"<!-- ENDIF -->><a href="{U_SEARCH}" title="{L_SEARCH_KEYWORDS}">{L_SEARCH} <span>{L_SEARCH_KEYWORDS}</span></a></li>
-		</ul>
-	</div>
-</div>
-
-<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
-<div id="quickpanel">
-	<div class="inner">
-		<div id="quicklogin" class="hide">
-			<form method="post" action="{S_QUICK_LOGIN_ACTION}">
-				<fieldset class="quick-login">
-					<label for="username">{L_USERNAME}</label>&nbsp;<input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" />
-					<label for="password">{L_PASSWORD}</label>&nbsp;<input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" />
-					
-					<!-- IF S_AUTOLOGIN_ENABLED -->
-					<label for="autologin">{L_REMEMBER_ME} <input type="checkbox" name="autologin" id="autologin" /></label>
-					<!-- ENDIF --><input type="submit" name="login" value="{L_LOGIN}" class="button2" />
-					{S_LOGIN_REDIRECT}
-				</fieldset>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- ENDIF -->
-
 <div class="breadcrumbs">
 	<div class="inner">
 		<ul class="navlinks">
@@ -193,8 +154,57 @@ window.onunload = function()
 	</div>
 </div>
 
+<div id="page-header">
+	<div class="inner">	
+		<div id="site-description">
+			<a href="{U_INDEX}" title="{L_INDEX}" id="logo">{SITE_LOGO_IMG}</a>
+		</div>
+		
+		<ul class="navbar">
+			<li<!-- IF $CA_PAGE == 'index' --> class="current"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h" title="Forums">{L_FORUMS} <span>debate &amp; discuss</span></a></li>
+			<li<!-- IF $CA_PAGE == 'kb' --> class="current"<!-- ENDIF -->><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB} <span>{L_KB_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE == 'support' --> class="current"<!-- ENDIF -->><a href="{U_SUPPORT}" title="{L_SUPPORT_EXPLAIN}">{L_SUPPORT} <span>{L_SUPPORT_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE == 'search' --> class="current"<!-- ENDIF -->><a href="{U_SEARCH}" title="{L_SEARCH_KEYWORDS}">{L_SEARCH} <span>{L_SEARCH_KEYWORDS}</span></a></li>
+		</ul>
+	</div>
+</div>
 
-<div id="wrap"<!-- IF ucp_login eq 'true' --> class="center"<!-- ENDIF -->>
+<!-- IF not S_USER_LOGGED_IN  and not S_IS_BOT -->
+<div id="quickpanel" <!-- IF $UCP_LOGIN == true or $CA_PAGE != 'index' -->class="hide"<!-- ENDIF -->>
+	<div class="inner">
+		<div id="blurb">
+			<img src="{T_THEME_PATH}/images/blurb_copy.png" alt="{L_BLURB_BODY}" />
+		</div>
+		
+		<div id="quicklogin">
+			<h2>{L_LOGIN_PAGE_TITLE}</h2>
+			<form method="post" action="{S_QUICK_LOGIN_ACTION}">
+				<fieldset class="quick-login">
+					<dl><dt><label for="username">{L_USERNAME}</label></dt><dd><input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></dd></dl>
+					<dl><dt><label for="password">{L_PASSWORD}</label></dt><dd><input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /></dd></dl>
+					
+					<!-- IF S_AUTOLOGIN_ENABLED -->
+					<dl><dd><input type="checkbox" name="autologin" id="autologin" /> <label for="autologin">{L_REMEMBER_ME}</label></dd></dl>
+					<!-- ENDIF -->
+					
+					<dl><dd><input type="submit" name="login" value="{L_LOGIN}" class="button2" /></dd></dl>
+					{S_LOGIN_REDIRECT}
+				</fieldset>
+			</form>
+		</div>
+		
+		<div id="quickregister">
+			<h2>{L_REGISTER_PAGE_TITLE}</h2>
+			<p><a href="{U_REGISTER}" class="button2">{L_CREATE_ACCOUNT}</a></p>
+			<p>{L_LOGIN_INFO_EXTRA}</p>
+		</div>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_WELCOME and $CA_PAGE == 'index' --><!-- INCLUDE portal/block/welcome.html --><!-- ENDIF -->
+
+<div id="wrap"<!-- IF $UCP_LOGIN == true --> class="center"<!-- ENDIF -->>
 	<a id="top" name="top" accesskey="t"></a>
 	<a name="start_here"></a>
 	
