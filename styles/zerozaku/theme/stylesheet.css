@@ -47,6 +47,7 @@
 	font-style: normal;
 }
 
+@import url("normal.css");
 @import url("common.css");
 @import url("content.css");
 @import url("buttons.css");
@@ -55,3 +56,4 @@
 @import url("tweaks.css");
 @import url("colours.css");
 @import url("shCoreZeroZaku.css");
+@import url("print.css") print;

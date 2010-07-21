@@ -2,7 +2,7 @@
 /** 
 *
 * @package automod
-* @version $Id: mod_parser.php 242 2010-04-29 00:56:35Z jelly_doughnut $
+* @version $Id: mod_parser.php 181 2009-06-18 02:28:29Z jelly_doughnut $
 * @copyright (c) 2008 phpBB Group
 * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License 
 *
@@ -188,7 +188,6 @@ class parser
 							break;
 
 							case 'IN-LINE-EDIT':
-								$action_id = 0;
 								// build the reverse just like the normal action
 								foreach ($command as $inline_find => $inline_action_ary)
 								{
@@ -201,22 +200,24 @@ class parser
 											case 'IN-LINE-AFTER-ADD':
 											case 'IN-LINE-BEFORE-ADD':
 												// Replace with a blank string
-												$reverse_edits['EDITS'][$file][$edit_id][$find]['in-line-edit'][$action_id][$inline_command]['in-line-replace'][] = '';
+												$reverse_edits['EDITS'][$file][$edit_id][$find]['in-line-edit'][$inline_command]['in-line-replace'][] = '';
 											break;
 	
 											case 'IN-LINE-REPLACE':
 												// replace with the inline find
-												$reverse_edits['EDITS'][$file][$edit_id][$find]['in-line-edit'][$action_id][$inline_command][$inline_action][] = $inline_find;
+												$reverse_edits['EDITS'][$file][$edit_id][$find]['in-line-edit'][$inline_command][$inline_action][] = $inline_find;
 											break;
 	
 											default:
 												// For the moment, we do nothing.  What about increment?
 											break;
 										}
-
-										$action_id++;
 									}
 								}
+							break;
+
+							case 'SQL':
+								$reverse_edits['SQL'][] = $this->reverse_query($command);
 							break;
 
 							default:
@@ -226,21 +227,6 @@ class parser
 					}
 				}
 			}
-		}
-
-		if (empty($actions['SQL']))
-		{
-			return $reverse_edits;
-		}
-
-		if (sizeof($actions['SQL']) == 1)
-		{
-			$actions['SQL'] = explode("\n", $actions['SQL'][0]);
-		}
-
-		foreach ($actions['SQL'] as $query)
-		{
-			$reverse_edits['SQL'][] = parser::reverse_query($query);
 		}
 
 		return $reverse_edits;
@@ -431,15 +417,9 @@ class parser_xml
 						continue;
 					}
 
-                    if ($link_group['LINK'][$i]['attrs']['TYPE'] == 'text')
-					{
-						continue;
-					}
-
 					$children[$link_group['LINK'][$i]['attrs']['TYPE']][] = array(
-						'href'		=> $link_group['LINK'][$i]['attrs']['HREF'],
-						'realname'	=> isset($link_group['LINK'][$i]['attrs']['REALNAME']) ? $link_group['LINK'][$i]['attrs']['REALNAME'] : core_basename($link_group['LINK'][$i]['attrs']['HREF']),
-						'title'		=> localise_tags($link_group, 'LINK', $i),
+						'href'	=> $link_group['LINK'][$i]['attrs']['HREF'],
+						'title'	=> localise_tags($link_group, 'LINK', $i),
 					);
 				}
 			}
@@ -558,17 +538,6 @@ class parser_xml
 			}
 		}
 
-		$delete_files_info = (!empty($xml_actions['DELETE'])) ? $xml_actions['DELETE'] : array();
-		for ($i = 0; $i < sizeof($delete_files_info); $i++)
-		{
-			$delete_files = $delete_files_info[$i]['children']['FILE'];
-			for ($j = 0; $j < sizeof($delete_files); $j++)
-			{
-				$name = str_replace('\\', '/', $delete_files[$j]['attrs']['NAME']);
-				$actions['DELETE_FILES'][] = $name;
-			}
-		}
-
 		// open
 		$open_info = (!empty($xml_actions['OPEN'])) ? $xml_actions['OPEN'] : array();
 		for ($i = 0; $i < sizeof($open_info); $i++)
@@ -583,7 +552,7 @@ class parser_xml
 				$action_info = (!empty($edit_info[$j]['children'])) ? $edit_info[$j]['children'] : array();
 
 				// store some array information to help decide what kind of operation we're doing
-				$action_count = $total_action_count = $remove_count = $find_count = 0;
+				$action_count = $total_action_count = 0;
 				if (isset($action_info['ACTION']))
 				{
 					$action_count += sizeof($action_info['ACTION']);
@@ -594,45 +563,7 @@ class parser_xml
 					$total_action_count += sizeof($action_info['INLINE-EDIT']);
 				}
 
-				if (isset($action_info['REMOVE']))
-				{
-					$remove_count = sizeof($action_info['REMOVE']); // should be an integer bounded between zero and one
-				}
-
-				if (isset($action_info['FIND']))
-				{
-					$find_count = sizeof($action_info['FIND']);
-				}
-
-				// the basic idea is to transform a "remove" tag into a replace-with action
-				if ($remove_count && !$find_count)
-				{
-					// but we still support it if $remove_count is > 1
-					for ($k = 0; $k < $remove_count; $k++)
-					{
-						// if there is no find tag associated, handle it directly
-						$actions['EDITS'][$current_file][$j][trim($action_info['REMOVE'][$k]['data'], "\n\r")]['replace with'] = '';
-					}
-				}
-				else if ($remove_count && $find_count)
-				{
-					// if there is a find and a remove, transform into a replace-with
-					// action, and let the logic below sort out the relationships.
-                    for ($k = 0; $k < $remove_count; $k++)
-					{
-						$insert_index = (isset($action_info['ACTION'])) ? sizeof($action_info['ACTION']) : 0;
-
-						$action_info['ACTION'][$insert_index] = array(
-							'data' => '',
-							'attrs' => array('TYPE'	=> 'replace with'),
-						);
-					}
-				}
-				else if (!$find_count)
-				{
-					trigger_error(sprintf($user->lang['INVALID_MOD_NO_FIND'], htmlspecialchars($action_info['ACTION'][0]['data'])), E_USER_WARNING);
-				}
-
+				$find_count = sizeof($action_info['FIND']);
 				// first we try all the possibilities for a FIND/ACTION combo, then look at inline possibilities.
 
 				if (isset($action_info['ACTION']))
@@ -643,7 +574,7 @@ class parser_xml
 						if ($k < ($find_count - 1))
 						{
 							// NULL has special meaning for an action ... no action to be taken; advance pointer 
-							$actions['EDITS'][$current_file][$j][$action_info['FIND'][$k]['data']] = NULL;
+							$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$k]['data'])] = NULL;
 						}
 						else
 						{
@@ -652,16 +583,9 @@ class parser_xml
 							for ($l = 0; $l < $action_count; $l++)
 							{
 								$type = str_replace('-', ' ', $action_info['ACTION'][$l]['attrs']['TYPE']);
-								$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$k]['data'], "\n\r")][$type] = (isset($action_info['ACTION'][$l]['data'])) ? preg_replace("#^(\s)+\n#", '', rtrim(trim($action_info['ACTION'][$l]['data'], "\n"))) : '';
+								$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$k]['data'])][$type] = (isset($action_info['ACTION'][$l]['data'])) ? preg_replace("#^(\s)+\n#", '', rtrim(trim($action_info['ACTION'][$l]['data'], "\n"))) : '';
 							}
 						}
-					}
-				}
-				else
-				{
-					if (!$remove_count && !$total_action_count)
-					{
-						trigger_error(sprintf($user->lang['INVALID_MOD_NO_ACTION'], htmlspecialchars($action_info['FIND'][0]['data'])), E_USER_WARNING);
 					}
 				}
 
@@ -673,19 +597,6 @@ class parser_xml
 				{
 					$inline_info = (!empty($action_info['INLINE-EDIT'])) ? $action_info['INLINE-EDIT'] : array();
 
-					if (isset($inline_info[0]['children']['INLINE-REMOVE']) && sizeof($inline_info[0]['children']['INLINE-REMOVE']))
-					{
-						// overwrite the existing array with the new one
-						$inline_info[0]['children'] = array(
-							'INLINE-FIND'   => $inline_info[0]['children']['INLINE-REMOVE'],
-							'INLINE-ACTION' => array(
-								0 => array(
-									'attrs'	=> array('TYPE'	=> 'replace-with'),
-									'data'	=> '',
-								),
-							),
-						);
-					}
 					if ($find_count > $total_action_count)
 					{
 						// Yeah, $k is used more than once for different information
@@ -695,7 +606,7 @@ class parser_xml
 							if ($k < ($find_count - 1))
 							{
 								// NULL has special meaning for an action ... no action to be taken; advance pointer 
-								$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$k]['data'], "\r\n")] = NULL;
+								$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$k]['data'])] = NULL;
 							}
 						}
 					}
@@ -707,61 +618,28 @@ class parser_xml
 					*/
 					for ($k = 0; $k < sizeof($inline_info); $k++)
 					{
-						$inline_data = (!empty($inline_info[$k]['children'])) ? $inline_info[$k]['children'] : array();
+						$inline_actions = (!empty($inline_info[$k]['children'])) ? $inline_info[$k]['children'] : array();
 
-						$inline_find_count = (isset($inline_data['INLINE-FIND'])) ? sizeof($inline_data['INLINE-FIND']) : 0;
+						$inline_find = $inline_actions['INLINE-FIND'][0]['data'];
 
-						$inline_comment = localise_tags($inline_data, 'INLINE-COMMENT');
-						$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'], "\r\n")]['in-line-edit']['inline-comment'] = $inline_comment;
+						$inline_comment = localise_tags($inline_actions, 'INLINE-COMMENT');
+						$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'])]['in-line-edit']['inline-comment'] = $inline_comment;
 
-						$inline_actions = (!empty($inline_data['INLINE-ACTION'])) ? $inline_data['INLINE-ACTION'] : array();
-
-						if (empty($inline_actions))
+						$inline_actions = (!empty($inline_actions['INLINE-ACTION'])) ? $inline_actions['INLINE-ACTION'] : array();
+						for ($l = 0; $l < sizeof($inline_actions); $l++)
 						{
-							trigger_error(sprintf($user->lang['INVALID_MOD_NO_ACTION'], htmlspecialchars($inline_data['INLINE-FIND'][0]['data'])), E_USER_WARNING);
-						}
-						if (empty($inline_find_count))
-						{
-							trigger_error(sprintf($user->lang['INVALID_MOD_NO_FIND'], htmlspecialchars($inline_actions[0]['data'])), E_USER_WARNING);
-						}
-
-						for ($l = 0; $l < $inline_find_count; $l++)
-						{
-							$inline_find = $inline_data['INLINE-FIND'][$l]['data'];
+							$type = str_replace(',', '-', str_replace(' ', '', $inline_actions[$l]['attrs']['TYPE']));
 
 							// trying to reduce the levels of arrays without impairing features.
 							// need to keep the "full" edit intact.
 							//
 							// inline actions must be trimmed in case the MOD author
 							// inserts a new line by mistake
-							if ($l < ($inline_find_count - 1))
-							{
-								$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'], "\r\n")]['in-line-edit'][$k][$inline_find]['in-line-'][] = null;
-							}
-							else
-							{
-								for ($m = 0; $m < sizeof($inline_actions); $m++)
-								{
-									$type = str_replace(',', '-', str_replace(' ', '', $inline_actions[$m]['attrs']['TYPE']));
-									if (!empty($inline_actions[$m]['data']))
-									{
-										$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'], "\r\n")]['in-line-edit'][$k][$inline_find]['in-line-' . $type][] = trim($inline_actions[$m]['data'], "\n");
-									}
-									else
-									{
-										$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'], "\r\n")]['in-line-edit'][$k][$inline_find]['in-line-' . $type][] = '';
-									}
-								}
-							}
+							$actions['EDITS'][$current_file][$j][trim($action_info['FIND'][$find_count - 1]['data'])]['in-line-edit'][trim($inline_find)]['in-line-' . $type][] = trim($inline_actions[$l]['data'], "\n");
 						}
 					}
 				}
 			}
-		}
-
-		if (!empty($xml_actions['PHP-INSTALLER']))
-		{
-			$actions['PHP_INSTALLER'] = $xml_actions['PHP-INSTALLER'][0]['data'];
 		}
 
 		if (!empty($xml_actions['DIY-INSTRUCTIONS']))

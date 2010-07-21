@@ -28,7 +28,7 @@ $portal_config = obtain_portal_config();
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
-$user->setup(array('viewforum','mods/lang_portal', 'mods/milestone_congratulations'));
+$user->setup(array('viewforum','mods/lang_portal'));
 
 $template->assign_vars('IN_PORTAL', true);
 
@@ -45,89 +45,11 @@ if ($portal_config['portal_top_posters'])
 	include($phpbb_root_path . 'portal/block/top_posters.'.$phpEx);
 }
 
-// BEGIN Milestones
-switch ($config['milestone_setting'])
-{
-	case 'POSTS_TOPICS_USERS':
-		$typeshow = '';
-	break;
-	case 'POSTS':
-		$typeshow = ' AND m.type = 1';
-	break;
-	case 'TOPICS':
-		$typeshow = ' AND m.type = 2';
-	break;
-	case 'USERS':
-		$typeshow = ' AND m.type = 3';
-	break;
-	case 'POSTS_TOPICS':
-		$typeshow = ' AND ( m.type = 1 OR m.type = 2 )';
-	break;
-	case 'POSTS_USERS':
-		$typeshow = ' AND ( m.type = 1 OR m.type = 3 )';
-	break;
-	case 'TOPICS_USERS':
-		$typeshow = ' AND ( m.type = 2 OR m.type = 3 )';
-	break;
-	default:
-		$typeshow = '';
-}
-
-$view = request_var('view', '');
-
-if ($auth->acl_get('a_') && $view == 'all')
-{
-	$typeshow = '';
-}
-
-$sql_ary = array(
-	'SELECT'	=> 'u.user_id, u.username, u.user_colour, m.user_id, m.milestone, m.type',
-	'FROM'		=> array(
-		USERS_TABLE			=> 'u',
-		MILESTONES_TABLE	=> 'm',
-	),
-	'WHERE'		=> 'u.user_id = m.user_id' . $typeshow,
-	'ORDER_BY'	=> 'm.type ASC, m.milestone DESC',
-);
-$result = $db->sql_query_limit($db->sql_build_query('SELECT', $sql_ary), 10);
-
-// set variable for 'newtype' comparison
-$type = '';
-
-while ($row = $db->sql_fetchrow($result))
-{
-	$newtype = ($type != $row['type']) ? $row['type'] : '';
-
-	$type = $row['type'];
-
-	switch ($type)
-	{
-		case 1:
-			$typetitle = $user->lang['POST'];
-		break;
-		case 2:
-			$typetitle = $user->lang['TOPICS'];
-		break;
-		case 3:
-			$typetitle = $user->lang['USERS'] . '#';
-		break;
-	}
-
-	$template->assign_block_vars('milestone', array(
-		'NUMBER'	=> $row['milestone'],
-		'USER'		=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-		'NEWTYPE'	=> $newtype,
-		'TYPE'		=> $typetitle
-	));
-}
-$db->sql_freeresult($result);
-// END Milestones
-
 function get_db_stat($mode)
 {
 	global $db, $user;
 
-	switch( $mode )
+	switch($mode)
 	{
 		case 'announcementtotal':
 			$sql = 'SELECT COUNT(distinct t.topic_id) AS announcement_total
@@ -147,14 +69,12 @@ function get_db_stat($mode)
 		break;
 	}
 	
-	if ( !($result = $db->sql_query($sql)) )
-	{
+	if (!($result = $db->sql_query($sql)))
 		return false;
-	}
 
 	$row = $db->sql_fetchrow($result);
  
-	switch ( $mode )
+	switch ($mode)
 	{
 		case 'announcementtotal':
 			return $row['announcement_total'];
@@ -167,6 +87,23 @@ function get_db_stat($mode)
 		break;
 	}
 	return false;
+}
+
+
+// Get user statuses
+$sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
+	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
+		ON uim.user_id = u.user_id
+	ORDER BY uim.user_lastchange DESC
+	LIMIT 0, 15';
+$result = $db->sql_query($sql);
+
+while($row = $db->sql_fetchrow($result))
+{
+	$template->assign_block_vars('user_statuses', array(
+		'USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+	    'STATUS'	=> $row['user_status'],
+	));
 }
 
 // Grab group details for legend display
@@ -238,14 +175,8 @@ if ($config['load_birthdays'] && $config['allow_birthdays'])
 	$db->sql_freeresult($result);
 }
 
-
-include($phpbb_root_path . 'includes/functions_milestones.' . $phpEx);
-$user->add_lang('mods/milestone_congratulations');
 // Assign index specific vars
 $template->assign_vars(array(
-	'MILESTONE_INFO'	=> milestone_info(),
-	'MILESTONE_MESSAGE'	=> milestone_message(),
-	'MILESTONE_HISTORY'	=> milestone_history(),
 	'TOTAL_POSTS'	=> $config['num_posts'],
 	'TOTAL_TOPICS'	=> $config['num_topics'],
 	'TOTAL_USERS'	=> $config['num_users'],

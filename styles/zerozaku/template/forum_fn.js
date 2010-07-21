@@ -268,20 +268,6 @@ function play_qt_file(obj)
 	obj.SetControllerVisible(true);
 	obj.Play();
 }
-function display(action, id)
-{
-	if (action == 'show')
-	{
-		document.getElementById("explanation"+id).style.display = "block";
-		document.getElementById("link"+id).href= "javascript:display('hide', "+id+")";
-	}
-
-	if (action == 'hide')
-	{
-		document.getElementById("explanation"+id).style.display = "none";
-		document.getElementById("link"+id).href= "javascript:display('show', "+id+")";
-	}
-}
 
 /**
 * Check if the nodeName of elem is name
@@ -412,9 +398,9 @@ function apply_onkeypress_event()
 	// jQuery code in case jQuery is used
 	if (jquery_present)
 	{
-		jQuery('form input[type=text], form input[type=password]').live('keypress', function (e)
+		$('form input').live('keypress', function (e)
 		{
-			var default_button = jQuery(this).parents('form').find('input[type=submit].default-submit-action');
+			var default_button = $(this).parents('form').find('input[type=submit].default-submit-action');
 			
 			if (!default_button || default_button.length <= 0)
 				return true;
@@ -438,11 +424,11 @@ function apply_onkeypress_event()
 
 	for (var i = 0, element = input_tags[0]; i < input_tags.length ; element = input_tags[++i])
 	{
-		if (element.type == 'text' || element.type == 'password')
-		{
+		if (element.type == 'hidden')
+			continue;
+
 		// onkeydown is possible too
 		element.onkeypress = function (evt) { submit_default_button((evt || window.event), this, 'default-submit-action'); }; 
-		}
 	}
 }
 

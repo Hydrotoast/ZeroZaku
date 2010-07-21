@@ -1,28 +1,8 @@
-{$TBL_BLOCK_H_L}<img src="{T_THEME_PATH}/images/globe.png" alt=""/>&nbsp;{L_MILESTONE_HISTORY}{$TBL_BLOCK_H_R}
-
-<!-- BEGIN milestone -->
-<!-- IF milestone.NEWTYPE -->
-<!-- IF not milestone.S_FIRST_ROW -->
-	</tbody>
-	</table>
-
-<p></p>
-<!-- ENDIF -->
-
-	<table class="table1" cellspacing="1">
-	<thead>
-		<tr>
-			<th class="name" style="text-align: left;">{L_USERNAME}</th>
-			<th class="active" style="width: 10%; text-align: center;">{milestone.TYPE}</th>
-		</tr>
-	</thead>
-	<tbody>
-<!-- ENDIF -->
-		<tr class="<!-- IF milestone.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
-			<td>{milestone.USER}</td>
-			<td class="active" style="width: 10%; text-align: center;">{milestone.NUMBER}</td>
-		</tr>
-<!-- END milestone -->
-	</tbody>
-	</table>
-{$TBL_BLOCK_F_L}{$TBL_BLOCK_F_R}
+<div class="leaderboard">
+	<h2><img src="{T_THEME_PATH}/images/globe.png" alt="{L_MILESTONE_HISTORY}"/>&nbsp;{L_MILESTONE_HISTORY}</h2>
+	<ul>
+	<!-- BEGIN milestone -->
+		<li>{milestone.USER} <span>{milestone.NUMBER}</span></li></li>
+	<!-- END milestone -->
+	</ul>
+</div>

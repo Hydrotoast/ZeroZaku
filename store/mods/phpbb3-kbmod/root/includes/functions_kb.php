@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: functions_kb.php 458 2010-04-14 11:19:05Z softphp $
+* @version $Id: functions_kb.php 438 2010-02-01 15:36:06Z softphp $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -2746,20 +2746,20 @@ function gen_kb_auth_level($cat_id = false)
 	global $template, $auth, $user, $config;
 
 	$rules = array(
-		($auth->acl_get('u_kb_add', $cat_id)) ? $user->lang['KB_PERM_CAN_ADD'] : $user->lang['KB_PERM_CANNOT_ADD'],
-		($auth->acl_get('u_kb_comment', $cat_id)) ? $user->lang['KB_PERM_CAN_COM'] : $user->lang['KB_PERM_CANNOT_COM'],
-		($user->data['is_registered'] && $auth->acl_gets(array('u_kb_edit', 'm_kb_edit'), $cat_id)) ? $user->lang['KB_PERM_CAN_EDIT'] : $user->lang['KB_PERM_CANNOT_EDIT'],
-		($user->data['is_registered'] && $auth->acl_gets(array('u_kb_delete', 'm_kb_delete'), $cat_id)) ? $user->lang['KB_PERM_CAN_DEL'] : $user->lang['KB_PERM_CANNOT_DEL'],
-		($auth->acl_get('u_kb_rate', $cat_id)) ? $user->lang['KB_PERM_CAN_RATE'] : $user->lang['KB_PERM_CANNOT_RATE'],
-		($auth->acl_get('u_kb_viewhistory', $cat_id)) ? $user->lang['KB_PERM_CAN_HIST'] : $user->lang['KB_PERM_CANNOT_HIST'],
+		($auth->acl_get('u_kb_add', $cat_id)) ? sprintf($user->lang['KB_PERM_ADD'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_ADD'], $user->lang['KB_NOT']),
+		($auth->acl_get('u_kb_comment', $cat_id)) ? sprintf($user->lang['KB_PERM_COM'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_COM'], $user->lang['KB_NOT']),
+		($user->data['is_registered'] && $auth->acl_gets(array('u_kb_edit', 'm_kb_edit'), $cat_id)) ? sprintf($user->lang['KB_PERM_EDIT'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_EDIT'], $user->lang['KB_NOT']),
+		($user->data['is_registered'] && $auth->acl_gets(array('u_kb_delete', 'm_kb_delete'), $cat_id)) ? sprintf($user->lang['KB_PERM_DEL'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_DEL'], $user->lang['KB_NOT']),
+		($auth->acl_get('u_kb_rate', $cat_id)) ? sprintf($user->lang['KB_PERM_RATE'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_RATE'], $user->lang['KB_NOT']),
+		($auth->acl_get('u_kb_viewhistory', $cat_id)) ? sprintf($user->lang['KB_PERM_HIST'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_HIST'], $user->lang['KB_NOT']),
 	);
 
 	if ($config['kb_allow_attachments'])
 	{
-		$rules[] = ($auth->acl_get('u_kb_attach', $cat_id)) ? $user->lang['KB_PERM_CAN_ATTACH'] : $user->lang['KB_PERM_CANNOT_ATTACH'];
+		$rules[] = ($auth->acl_get('u_kb_attach', $cat_id)) ? sprintf($user->lang['KB_PERM_ATTACH'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_ATTACH'], $user->lang['KB_NOT']);
 	}
 	
-	$rules[] = ($auth->acl_get('u_kb_download', $cat_id)) ? $user->lang['KB_PERM_CAN_DOWN'] : $user->lang['KB_PERM_CANNOT_DOWN'];
+	$rules[] = ($auth->acl_get('u_kb_download', $cat_id)) ? sprintf($user->lang['KB_PERM_DOWN'], $user->lang['KB_CAN']) : sprintf($user->lang['KB_PERM_DOWN'], $user->lang['KB_NOT']);
 
 	foreach ($rules as $rule)
 	{

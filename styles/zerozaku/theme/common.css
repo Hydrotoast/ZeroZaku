@@ -1,11 +1,11 @@
 /* General proSilver Markup Styles
 ---------------------------------------- */
-
 * {
 	/* Reset browsers default margin, padding and font sizes */
 	margin: 0;
 	padding: 0;
 }
+
 body {
 	font: 12px/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 	margin: 0;
@@ -20,41 +20,28 @@ hr {
 	clear: both;
 }
 
-a {
-	text-decoration: none;
-}
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a img { border: none; }
 
-a:hover {
-	text-decoration: underline;
-}
-
-a img {
-	border: none;
-}
-
-.inner {
-	clear: both;
-}
+.inner { clear: both; }
 
 /* Main blocks
 ---------------------------------------- */
 #page-header {
-	border-top: 6px solid;
+	margin-bottom: 10px;
 	height: 84px;
 	width: 100%;
-	min-width: 960px;
 }
 
 #page-header .inner {
 	margin: 0 auto;
-	min-width: 960px;
-	max-width: 1200px;
+	width: 960px;
 }
 
 #wrap {
 	margin: 0 auto;
-	min-width: 960px;
-	max-width: 1200px;
+	width: 960px;
 }
 
 #page-body {
@@ -90,30 +77,72 @@ a img {
 }
 
 #page-footer {
-	min-width: 960px;
+	width: 960px;
 	clear: both;
 }
 
 /* Quickpanel block
 --------------------------------------------- */
+#news {
+	border-style: solid;
+	border-width: 1px 0;
+	width: 100%;
+	position: relative;
+	top: -10px;
+}
+
+#news .inner {
+	margin: 10px auto;
+	width: 960px;
+	overflow: hidden;
+}
+
 #quickpanel {
 	border-top: 1px solid;
 	border-bottom: 1px solid;
-	display: none;
 	width: 100%;
-	padding: 6px 0;
+	padding: 20px 0;
+	position: relative;
+	top: -10px;
 	overflow: hidden;
 }
 
 #quickpanel .inner {
+	text-align: left;
 	margin: 0 auto;
-	min-width: 960px;
-	max-width: 1200px;
-	text-align: right;
+	width: 960px;
 }
 
-#quickpanel h3 {
-	text-transform: uppercase;
+#quickpanel #blurb {
+	float: right;
+	width: 360px;
+	padding-left: 30px;
+	margin: 20px 0;
+}
+
+	#blurb h1 {
+		font: 2.5em Anivers-Regular;		
+		line-height: 1em;
+	}
+	
+	#blurb p {
+		font-size: 2.5em;
+		line-height: 1em;
+	}
+
+#quickpanel #quicklogin {
+	border-left: 1px solid;
+	border-right: 1px solid;
+	width: 240px;
+	padding: 0 30px;
+	float: right;
+}
+
+#quickregister { width: 240px; }
+
+#quickpanel h2 { 
+	font: bold 1.3333em Arial, Helvetica, sans-serif; 
+	margin-bottom: 1em;
 }
 
 /* User Menu box
@@ -121,7 +150,6 @@ a img {
 #usernav-box {
 	line-height: 1.5em;
 	float: right;
-	margin: 2px 0;
 	height: inherit;
 	max-width: 175px;
 	width: auto;
@@ -220,19 +248,16 @@ a img {
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	border-bottom: 1px solid;
 	line-height: 26px;
 	height: 26px;
-	min-width: 960px;
-	margin-bottom: 10px;
+	width: 100%;
 	padding: 2px 0;
 }
 
 .breadcrumbs .inner {
 	margin: 0 auto;
 	padding: 0 20px;
-	min-width: 960px;
-	max-width: 1200px;
+	width: 960px;
 }
 
 
@@ -351,6 +376,51 @@ a img {
 	margin: 1em 0 0 20px;
 }
 
+/* Sidebar
+ * ---------------------------------------- */
+#page-sidebar ul {
+	margin-bottom: 10px;
+}
+
+.leaderboard h2, #user_statuses h2 {
+	font-size: 1.6667em;	
+	margin-bottom: 6px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #E0E0E0;
+}
+
+.leaderboard li {
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	list-style: none;
+	margin-bottom: 6px;
+	padding: 6px 10px;
+	overflow: hidden;
+}
+
+.leaderboard li img {
+	float: left;
+	margin-right: 10px;
+}
+
+#user_statuses li { list-style: none; }
+
+#user_statuses li .inner {
+	font-size: 0.9167em;
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	margin-bottom: 6px;
+	padding: 6px 10px;
+	display: inline-block;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	word-wrap: break-word;
+}
+
+#user_statuses li span { font-size: 1.0909em; }
+
 /* Profile blocks
 ---------------------------------------- */
 h2.pro-header, h3.pro-header {
@@ -359,21 +429,17 @@ h2.pro-header, h3.pro-header {
 	font-weight: bold;
 	text-transform: uppercase;
 	border-bottom: 1px solid;
-	margin: 0 -20px 4px -20px; /* Negative margins */
 	padding: 4px 20px;
 }
 
-#comment {padding: 0;}
+#comment { padding: 0; }
+#comment .commentbody { padding: 0; }
 
-#comment .commentbody {
-	padding: 0;
-}
-
-#comment .commentrow:first-child {border-top: 1px dotted;}
+#comment .commentrow:first-child { border-top: 1px dotted; }
 #comment .commentrow {
 	border-bottom: 1px dotted;
 	width: auto;
-	padding: 5px 5px 5px 50px;
+	padding: 6px 20px 6px 50px;
 	overflow: hidden;
 }
 
@@ -382,9 +448,9 @@ h2.pro-header, h3.pro-header {
 	line-height: normal;
 }
 
-#comment .message {margin: 4px 0;}
+#comment .message { margin: 4px 0; }
 #comment .date {
-	font-size: 0.9166em;
+	font-size: 0.9167em;
 	margin-left: 0.5em;
 }
 
@@ -413,13 +479,12 @@ h2.pro-header, h3.pro-header {
 
 .pro-box {
 	margin-bottom: 20px;
-	padding: 0 20px;
 	overflow: hidden;
 	clear: both;
 }
 
 .pro-box .inner {
-	padding-bottom: 10px;
+	padding: 10px 20px;
 	overflow: hidden;
 }
 
@@ -758,6 +823,8 @@ li.pagination {
 
 /* Miscellaneous styles
 ---------------------------------------- */
+.username, .username-coloured { font-weight: bold; }
+
 #forum-permissions {
 	float: right;
 	width: auto;

@@ -138,9 +138,7 @@
 		<open src="includes/functions.php">
 			<edit>
 				<find><![CDATA[	header('Pragma: no-cache');]]></find>
-				<action type="after-add"><![CDATA[
-	
-	//Begin: Poll Vote Reminder
+				<action type="after-add"><![CDATA[	//Begin: Poll Vote Reminder
 	if ($config['vote_reminder_enable'] && !$user->data['user_vote_reminder'] && !$auth->acl_get('u_vote_reminder'))
 	{
 		include($phpbb_root_path . 'includes/functions_vote_reminder.' . $phpEx);

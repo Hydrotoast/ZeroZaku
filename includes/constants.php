@@ -267,6 +267,7 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
+define('MILESTONES_TABLE',			$table_prefix . 'milestones');
 // MOD :: INSTANT MESSENGER -- START
 define('IM_TABLE',					$table_prefix . 'im');
 define('USERS_IM_TABLE',			$table_prefix . 'users_im');
@@ -288,7 +289,6 @@ define ( 'SEASONDATA_TABLE', $table_prefix . 'factions_seasondata' );
 define('MCHAT_TABLE',				$table_prefix . 'mchat');
 define('MCHAT_CONFIG_TABLE',		$table_prefix . 'mchat_config');
 // END mChat Mod
-define('MILESTONES_TABLE',			$table_prefix . 'milestones');
 define('FACTIONS_TABLE',			$table_prefix . 'factions');
 define('USER_FACTIONS_TABLE',		$table_prefix . 'user_faction');
 

@@ -29,9 +29,9 @@
 
 		<open src="index.php">
 			<edit>
-				<find><![CDATA[if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enable'] && $auth->acl_get('u_mchat_view'))]]></find>
+				<find><![CDATA[if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enable'] && $auth->acl_get('u_mchat_view') && $user->optionget('mchat'))]]></find>
 				<inline-edit>
-					<inline-find><![CDATA[$auth->acl_get('u_mchat_view')]]></inline-find>
+					<inline-find><![CDATA[$$auth->acl_get('u_mchat_view')]]></inline-find>
 					<inline-action type="after-add"><![CDATA[ && $user->optionget('mchat')]]></inline-action>
 				</inline-edit>
 			</edit>

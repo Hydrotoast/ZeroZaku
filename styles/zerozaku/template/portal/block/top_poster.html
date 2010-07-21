@@ -1,19 +1,14 @@
-<!--version $Id: top_poster.html 481 2009-03-15 23:16:32Z Christian_N $ //-->
 <!-- IF .top_poster -->
-{$TBL_BLOCK_H_L}<img src="{T_THEME_PATH}/images/portal/sidebar_users.png" alt=""/>&nbsp;{L_TOP_POSTER}{$TBL_BLOCK_H_R}
-	<table class="table1" cellspacing="1">
-		<thead>
-			<tr>
-				<th style="width: 80%">{L_USERNAME}</th>
-				<th style="width: 10%">{L_POSTS}</th>
-			</tr>
-		</thead>
+<div class="leaderboard">
+	<h2><img src="{T_THEME_PATH}/images/portal/sidebar_users.png" alt="{L_TOP_POSTER}" />&nbsp;{L_TOP_POSTER}</h2>
+	<ul>
 	<!-- BEGIN top_poster -->
-		<tr class="<!-- IF top_poster.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
-			<td style="width: 85%">{top_poster.USERNAME_FULL}</td>
-			<td style="width: 15%"><a href="{top_poster.S_SEARCH_ACTION}">{top_poster.POSTER_POSTS}</a></td>
-		</tr>
+		<li><!-- IF top_poster.AVATAR -->{top_poster.AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" /><!-- ENDIF --> 
+			<div>{top_poster.USERNAME_FULL}
+				<br /><a href="{top_poster.S_SEARCH_ACTION}" class="posts">{top_poster.POSTER_POSTS}</a> {L_POSTS}
+			</div>
+		</li>
 	<!-- END top_poster -->
-	</table>
-{$TBL_BLOCK_F_L}{$TBL_BLOCK_F_R}
+	</ul>
+</div>
 <!-- ENDIF -->

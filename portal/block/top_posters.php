@@ -22,7 +22,7 @@ if (!defined('IN_PORTAL'))
 /**
 */
 
-$sql = 'SELECT user_id, username, user_posts, user_colour
+$sql = 'SELECT user_id, username, user_posts, user_colour, user_avatar, user_avatar_type, user_avatar_width, user_avatar_height
 	FROM ' . USERS_TABLE . '
 	WHERE user_type <> ' . USER_IGNORE . '
 		AND user_posts <> 0
@@ -32,9 +32,10 @@ $result = $db->sql_query_limit($sql, $portal_config['portal_max_most_poster']);
 while( ($row = $db->sql_fetchrow($result)) && ($row['username']) )
 {
 	$template->assign_block_vars('top_poster', array(
-		'S_SEARCH_ACTION'=> append_sid("{$phpbb_root_path}search.$phpEx", 'author_id=' . $row['user_id'] . '&amp;sr=posts'),
-		'USERNAME_FULL'=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-		'POSTER_POSTS'	=> $row['user_posts'],
+		'S_SEARCH_ACTION'   => append_sid("{$phpbb_root_path}search.$phpEx", 'author_id=' . $row['user_id'] . '&amp;sr=posts'),
+		'USERNAME_FULL'     => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+	    'AVATAR'            => get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40),
+		'POSTER_POSTS'      => $row['user_posts'],
 		)
 	);
 }

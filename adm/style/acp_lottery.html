@@ -2,80 +2,50 @@
 <a name="maincontent"></a>
 
 <!-- IF S_ERROR -->
-<div class="errorbox">
-<h3>{L_WARNING}</h3>
-<p>{ERROR_MSG}</p>
-</div>
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
 <!-- ENDIF -->
 <form id="acp_lottery" method="post" action="{U_ACTION}">
-<fieldset><legend>{L_LOTTERY_OPTIONS}</legend>
-<dl>
-	<dt><label for="lottery_enabled">{L_LOTTERY_ENABLE}:</label><br />
-	<span>{L_LOTTERY_ENABLE_EXPLAIN}</span></dt>
-	<dd><input type="radio" class="radio" id="lottery_enabled"
-		name="lottery_enabled" value="1"<!-- IF S_LOTTERY_ENABLED -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input
-		type="radio" class="radio" name="lottery_enabled" value="0"<!-- IF not S_LOTTERY_ENABLED -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
-</dl>
-<dl>
-	<dt><label for="points_multiple_tickets">{L_MULTIPLE_TICKETS}:</label><br />
-	<span>{L_MULTIPLE_TICKETS_EXPLAIN}</span></dt>
-	<dd><input type="radio" class="radio" id="points_multiple_tickets"
-		name="points_multiple_tickets" value="1"<!-- IF S_MULTIPLE_TICKETS -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input
-		type="radio" class="radio" name="points_multiple_tickets" value="0"<!-- IF not S_MULTIPLE_TICKETS -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
-</dl>
-<dl>
-	<dt><label for="display_lottery_stats">{L_DISPLAY_LOTTERY_STATS}:</label><br />
-	<span>{L_DISPLAY_LOTTERY_STATS_EXPLAIN}</span></dt>
-	<dd><input type="radio" class="radio" id="display_lottery_stats"
-		name="display_lottery_stats" value="1"<!-- IF S_DISPLAY_LOTTERY_STATS -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input
-		type="radio" class="radio" name="display_lottery_stats" value="0"<!-- IF not S_DISPLAY_LOTTERY_STATS -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
-</dl>
-<dl>
-	<dt><label for="lottery_sendpmadmin">{L_LOTTERY_SENDPMADMIN}:</label><br />
-	<span>{L_LOTTERY_SENDPMADMIN_EXPLAIN}</span></dt>
-	<dd><input type="radio" class="radio" id="lottery_sendpmadmin"
-		name="lottery_sendpmadmin" value="1"<!-- IF S_LOTTERY_SENDPMADMIN -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input
-		type="radio" class="radio" name="lottery_sendpmadmin" value="0"<!-- IF not S_LOTTERY_SENDPMADMIN -->
-	checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
-</dl>
-<dl>
-	<dt><label for="username_admin_lottery">{L_USERNAME_ADMIN_LOTTERY}:</label><br />
-	<span>{L_USERNAME_ADMIN_LOTTERY_EXPLAIN}</span></dt>
-	<dd><input type="text" id="username_admin_lottery"
-		name="username_admin_lottery" value="{USERNAME_ADMIN_LOTTERY}"
-		size="10" /></dd>
-</dl>
-<dl>
-	<dt><label for="lottery_ticket_cost">{L_TICKET_COST}:</label></dt>
-	<dd><input type="text" id="lottery_ticket_cost"
-		name="lottery_ticket_cost" value="{LOTTERY_TICKET_COST}" size="5" />
-	{LOTTERY_CASH_NAME}</dd>
-</dl>
-<dl>
-	<dt><label for="lottery_base_amount">{L_BASE_AMOUNT}:</label><br />
-	<span>{L_BASE_AMOUNT_EXPLAIN}</span></dt>
-	<dd><input type="text" id="lottery_base_amount"
-		name="lottery_base_amount" value="{LOTTERY_BASE_AMOUNT}" size="5" />
-	{LOTTERY_CASH_NAME}</dd>
-</dl>
-<dl>
-	<dt><label for="lottery_draw_period">{L_DRAW_PERIOD}:</label><br />
-	<span>{L_DRAW_PERIOD_EXPLAIN}</span></dt>
-	<dd><input type="text" id="lottery_draw_period"
-		name="lottery_draw_period" value="{LOTTERY_DRAW_PERIOD}" size="5" />
-	{L_HOURS}</dd>
-</dl>
-<p class="submit-buttons"><input class="button1" type="submit"
-	id="submit" name="submit" value="{L_SUBMIT}" />&nbsp; <input
-	class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
-</p>
-</fieldset>
+	<fieldset>
+		<legend>{L_LOTTERY_OPTIONS}</legend>
+		<dl>
+			<dt><label for="lottery_enabled">{L_LOTTERY_ENABLE}:</label><br /><span>{L_LOTTERY_ENABLE_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="lottery_enabled" name="lottery_enabled" value="1"<!-- IF S_LOTTERY_ENABLED --> checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input type="radio" class="radio" name="lottery_enabled" value="0"<!-- IF not S_LOTTERY_ENABLED --> checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
+		</dl>
+		<dl>
+			<dt><label for="points_multiple_tickets">{L_MULTIPLE_TICKETS}:</label><br /><span>{L_MULTIPLE_TICKETS_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="points_multiple_tickets" name="points_multiple_tickets" value="1"<!-- IF S_MULTIPLE_TICKETS --> checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input type="radio" class="radio" name="points_multiple_tickets" value="0"<!-- IF not S_MULTIPLE_TICKETS --> checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
+		</dl>
+		<dl>
+			<dt><label for="display_lottery_stats">{L_DISPLAY_LOTTERY_STATS}:</label><br /><span>{L_DISPLAY_LOTTERY_STATS_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="display_lottery_stats" name="display_lottery_stats" value="1"<!-- IF S_DISPLAY_LOTTERY_STATS --> checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input type="radio" class="radio" name="display_lottery_stats" value="0"<!-- IF not S_DISPLAY_LOTTERY_STATS --> checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
+		</dl>
+		<dl>
+			<dt><label for="lottery_sendpmadmin">{L_LOTTERY_SENDPMADMIN}:</label><br /><span>{L_LOTTERY_SENDPMADMIN_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="lottery_sendpmadmin" name="lottery_sendpmadmin" value="1"<!-- IF S_LOTTERY_SENDPMADMIN --> checked="checked"<!-- ENDIF --> />&nbsp;{L_ENABLED}&nbsp; &nbsp;<input type="radio" class="radio" name="lottery_sendpmadmin" value="0"<!-- IF not S_LOTTERY_SENDPMADMIN --> checked="checked"<!-- ENDIF --> />&nbsp;{L_DISABLED}</dd>
+		</dl>
+		<dl>
+			<dt><label for="username_admin_lottery">{L_USERNAME_ADMIN_LOTTERY}:</label><br /><span>{L_USERNAME_ADMIN_LOTTERY_EXPLAIN}</span></dt>
+			<dd><input type="text" id="username_admin_lottery" name="username_admin_lottery" value="{USERNAME_ADMIN_LOTTERY}" size="10" /> </dd>
+		</dl>
+		<dl>
+			<dt><label for="lottery_ticket_cost">{L_TICKET_COST}:</label></dt>
+			<dd><input type="text" id="lottery_ticket_cost" name="lottery_ticket_cost" value="{LOTTERY_TICKET_COST}" size="5" /> {LOTTERY_CASH_NAME}</dd>
+		</dl>
+		<dl>
+			<dt><label for="lottery_base_amount">{L_BASE_AMOUNT}:</label><br /><span>{L_BASE_AMOUNT_EXPLAIN}</span></dt>
+			<dd><input type="text" id="lottery_base_amount" name="lottery_base_amount" value="{LOTTERY_BASE_AMOUNT}" size="5" /> {LOTTERY_CASH_NAME}</dd>
+		</dl>
+		<dl>
+			<dt><label for="lottery_draw_period">{L_DRAW_PERIOD}:</label><br /><span>{L_DRAW_PERIOD_EXPLAIN}</span></dt>
+			<dd><input type="text" id="lottery_draw_period" name="lottery_draw_period" value="{LOTTERY_DRAW_PERIOD}" size="5" /> {L_HOURS}</dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+	</fieldset>
 </form>
 <!-- INCLUDE overall_footer.html -->

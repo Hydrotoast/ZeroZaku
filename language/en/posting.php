@@ -222,6 +222,7 @@ $lang = array_merge($lang, array(
 	'WRONG_SIZE'				=> 'The image must be at least %1$d pixels wide, %2$d pixels high and at most %3$d pixels wide and %4$d pixels high. The submitted image is %5$d pixels wide and %6$d pixels high.',
 ));
 
+
 $lang = array_merge($lang, array(
 	'POLL_SHOW_VOTERS'		=> 'Show poll voters',
 	'POLL_SHOW_VOTERS_EXPLAIN'	=> 'If enabled users are able to see the poll voters.',

@@ -366,7 +366,7 @@ class ucp_prefs
 						$msg = $user->lang['FORM_INVALID'];
 					}
 					meta_refresh(3, $this->u_action);
-					$message = $msg . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
+					$message = $msg . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');
 					trigger_error($message);
 				}
 

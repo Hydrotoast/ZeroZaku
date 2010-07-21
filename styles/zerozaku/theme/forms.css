@@ -125,17 +125,13 @@ dd textarea {
 
 /* Quick-login on index page */
 fieldset.quick-login {
-	text-align: right;
+	text-align: left;
 	float: right;
 	width: auto;
 }
 
-fieldset.quick-login input {
-	width: auto;
-}
-
 fieldset.quick-login input.inputbox {
-	width: 120px;
+	width: 140px;
 	vertical-align: middle;
 	margin-right: 5px;
 }
@@ -150,6 +146,10 @@ fieldset.quick-login .autologin {
 	padding-top: 10px;
 	clear: both;
 }
+
+fieldset.quick-login dl { margin: 6px 0; padding: 0; }
+fieldset.quick-login dt { width: 6em; }
+fieldset.quick-login dd { margin-left: 7em; }
 
 /* Display options on viewtopic/viewforum pages  */
 fieldset.display-options {

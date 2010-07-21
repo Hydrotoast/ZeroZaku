@@ -220,7 +220,6 @@ $lang = array_merge($lang, array(
 	'ADM_LOGGED_OUT'		=> 'Successfully logged out from Administration Control Panel',
 
 	'BACK'					=> 'Back',
-	
 	// BEGIN HERO CLIENTS
 	'CLIENTS'				=> 'Clients',
 	// END HERO CLIENTS
@@ -748,12 +747,8 @@ $lang = array_merge($lang, array(
 	'LOG_WORD_ADD'			=> '<strong>Added word censor</strong><br />» %s',
 	'LOG_WORD_DELETE'		=> '<strong>Deleted word censor</strong><br />» %s',
 	'LOG_WORD_EDIT'			=> '<strong>Edited word censor</strong><br />» %s',
+	'LOG_USING_ZZ_CLIENT'	=> '<strong>Using a Zerozaku Client</strong><br />» %s',
 ));
-
-
-
-
-
 
 // BEGIN mChat Mod
 $lang = array_merge($lang, array(

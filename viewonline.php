@@ -205,7 +205,9 @@ $location_url = append_sid("{$phpbb_root_path}index.$phpEx");
 			$location_url = append_sid("{$phpbb_root_path}mchat.$phpEx");
 		break;		
 // END mChat Mod
-
+		case 'client_check':
+			$location = $user->lang['USING_ZZ_CLIENT'];
+		break;
 		case 'adm/index':
 			$location = $user->lang['ACP'];
 			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
@@ -361,9 +363,7 @@ $location_url = append_sid("{$phpbb_root_path}index.$phpEx");
 			$location = $user->lang['VIEWING_PORTAL'];
 			$location_url = append_sid("{$phpbb_root_path}portal.$phpEx");
 		break;
-		case 'client_check':
-			$location = $user->lang['DOWNLOADING_FILE'];
-		break;
+
 		default:
 			$location = $user->lang['INDEX'];
 			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");

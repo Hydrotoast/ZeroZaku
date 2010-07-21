@@ -4,7 +4,7 @@
 * AutoMOD [English]
 *
 * @package language
-* @version $Id: info_acp_modman.php 242 2010-04-29 00:56:35Z jelly_doughnut $
+* @version $Id: info_acp_modman.php 138 2008-12-31 13:31:22Z paul $
 * @copyright (c) 2008 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

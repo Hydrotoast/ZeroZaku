@@ -35,7 +35,7 @@ $lang = array_merge($lang, array(
 	'SIMPLE_COMMENT_MOD'		=> 'Simple Comment Mod',
 	'PROFILE_COMMENT_SUB'		=> 'Submit comment',
 	'PROFILE_COMMENTS'			=> 'Profile comments',
-	'BLANK_COMMENT'				=> 'You did not enter a comment!.',
+	'BLANK_COMMENT'					=> 'You did not enter a comment!.',
 
 ));
 

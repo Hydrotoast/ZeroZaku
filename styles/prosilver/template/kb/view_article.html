@@ -68,7 +68,7 @@
 							<!-- ENDIF -->
 
 							<!-- IF S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
-
+							<strong>{ARTICLE_COPYRIGHT}</strong>
 							<!-- IF EDITED_MESSAGE -->
 								<div class="notice">{EDITED_MESSAGE}</div>
 							<!-- ENDIF -->
@@ -134,8 +134,8 @@
 
 							<dl class="postprofile">
 								<dt>
-									<!-- IF postrow.AVATAR -->
-										{postrow.AVATAR}<br />
+									<!-- IF postrow.POSTER_AVATAR -->
+										{postrow.POSTER_AVATAR}<br />
 									<!-- ENDIF -->
 									<strong>{postrow.POST_AUTHOR_FULL}</strong>
 								</dt>
@@ -144,7 +144,7 @@
 
 								<dd>&nbsp;</dd>
 
-								<!-- IF postrow.POSTER_POSTS != '' --><dd><strong>{L_ARTICLES}:</strong> {postrow.POSTER_ARTICLES}</dd><!-- ENDIF -->
+								<!-- IF postrow.POSTER_ARTICLES != '' --><dd><strong>{L_ARTICLES}:</strong> {postrow.POSTER_ARTICLES}</dd><!-- ENDIF -->
 								<!-- IF postrow.POSTER_JOINED --><dd><strong>{L_JOINED}:</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
 								<!-- IF postrow.POSTER_FROM --><dd><strong>{L_LOCATION}:</strong> {postrow.POSTER_FROM}</dd><!-- ENDIF -->
 

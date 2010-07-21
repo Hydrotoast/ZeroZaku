@@ -1,4 +1,4 @@
-<?php if (!defined('IN_PHPBB')) exit;  $this->_tpl_include('overall_header.html'); ?>
+<?php if (!defined('IN_PHPBB')) exit; $this->_tpldata['DEFINE']['.']['UCP_LOGIN'] = TRUE; $this->_tpl_include('overall_header.html'); ?>
 
 
 <h2 class="comtitle login content_center"><?php echo ((isset($this->_rootref['L_LOGIN'])) ? $this->_rootref['L_LOGIN'] : ((isset($user->lang['LOGIN'])) ? $user->lang['LOGIN'] : '{ LOGIN }')); ?></h2>

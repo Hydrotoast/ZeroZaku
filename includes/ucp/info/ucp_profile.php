@@ -24,6 +24,7 @@ class ucp_profile_info
 				'signature'		=> array('title' => 'UCP_PROFILE_SIGNATURE', 'auth' => '', 'cat' => array('UCP_PROFILE')),
 				'avatar'		=> array('title' => 'UCP_PROFILE_AVATAR', 'auth' => '', 'cat' => array('UCP_PROFILE')),
 				'reg_details'	=> array('title' => 'UCP_PROFILE_REG_DETAILS', 'auth' => '', 'cat' => array('UCP_PROFILE')),
+		        'css_override'	=> array('title' => 'UCP_PROFILE_CSS_OVERRIDE', 'auth' => '', 'cat' => array('UCP_PROFILE')),
 			),
 		);
 	}
