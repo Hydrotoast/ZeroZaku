@@ -95,7 +95,7 @@ $sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
 	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
 		ON uim.user_id = u.user_id
 	ORDER BY uim.user_lastchange DESC
-	LIMIT 0, 15';
+	LIMIT 0, 10';
 $result = $db->sql_query($sql);
 
 while($row = $db->sql_fetchrow($result))
