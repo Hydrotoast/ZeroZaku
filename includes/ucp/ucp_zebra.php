@@ -67,12 +67,9 @@ class ucp_zebra
 					    else
 					    {
 							$sql = 'DELETE FROM ' . ZEBRA_TABLE . '
-								WHERE ( user_id = ' . $user->data['user_id'] . '
-									AND ' . $db->sql_in_set('zebra_id', $data['usernames']) . '
-									AND pending = 0 )
-										OR ( zebra_id = ' . $user->data['user_id'] . '
-											AND ' . $db->sql_in_set('user_id', $data['usernames']) . '
-											AND pending = 0 )';
+								WHERE pending = 0
+									AND ( user_id = ' . $user->data['user_id'] . ' AND ' . $db->sql_in_set('zebra_id', $data['usernames']) . ')
+									OR ( zebra_id = ' . $user->data['user_id'] . ' AND ' . $db->sql_in_set('user_id', $data['usernames']) . ')';
 					    }
 
 					    $db->sql_query($sql);
@@ -273,12 +270,9 @@ class ucp_zebra
 											foreach ($user_id_ary as $zebra_id)
 											{
 											    $sql = 'DELETE FROM ' . ZEBRA_TABLE . '
-											    	WHERE ( user_id = ' . (int) $zebra_id . '
-											    		AND zebra_id = ' . (int) $user->data['user_id'] . '
-											    		AND pending = 1 )
-											    			OR ( user_id = ' . (int) $user->data['user_id'] . '
-													    		AND zebra_id = ' . (int) $zebra_id . '
-													    		AND pending = 1 )';
+											    	WHERE pending = 1
+											    		AND ( user_id = ' . (int) $zebra_id . ' AND zebra_id = ' . (int) $user->data['user_id'] . '
+											    		OR ( user_id = ' . (int) $user->data['user_id'] . ' AND zebra_id = ' . (int) $zebra_id . ')';
 											    $db->sql_query($sql);
 											}
 											$db->sql_transaction('commit');
@@ -351,7 +345,7 @@ class ucp_zebra
 			$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
 			$sql = 'SELECT z.*, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type
 				FROM ' . USERS_TABLE . ' u
-				JOIN ' . ZEBRA_TABLE . ' z ON z.friend = 1 
+				JOIN ' . ZEBRA_TABLE . ' z ON ' . $sql_and . '
 					AND ((u.user_id = z.user_id AND z.zebra_id = ' . $user->data['user_id'] . ')
 						OR (u.user_id = z.zebra_id AND z.user_id = ' . $user->data['user_id'] . '))
 				ORDER BY u.username_clean ASC';

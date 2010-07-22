@@ -248,21 +248,29 @@ a img { border: none; }
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	line-height: 26px;
-	height: 26px;
-	width: 100%;
-	padding: 2px 0;
+	line-height: 26px !important;
+	height: 26px !important;
+	width: 100% !important;
+	padding: 2px 0 !important;
 }
 
 .breadcrumbs .inner {
-	margin: 0 auto;
-	padding: 0 20px;
-	width: 960px;
+	margin: 0 auto !important;
+	padding: 0 20px !important;
+	width: 960px !important;
 }
 
-
 .breadcrumbs strong {
-	font-size: 1.1666em;
+	font-size: 1.1666em !important;
+}
+
+.breadcrumbs.simple {
+	text-align: left !important;
+	margin-bottom: 10px !important;
+}
+
+.breadcrumbs.simple .navlinks {
+	padding: 0 20px;
 }
 
 /* Navbar
