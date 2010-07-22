@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: functions_sitemap_fx.php,v 1.0.6 9467 2010-01-14 14:54:39Z FladeX Exp $
+* @version $Id: functions_sitemap_fx.php,v 1.0.7 9467 2010-04-25 20:15:39Z FladeX Exp $
 * @copyright (c) 2009 FladeX
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -27,14 +27,21 @@ function sitemap_fx_forum($forum_id)
 	$sitemap_file = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 	$sitemap_file .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 
-	$sql = 'SELECT topic_id, forum_id, topic_last_post_time, topic_type, topic_replies
+	$sql = 'SELECT topic_id, forum_id, topic_last_post_time, topic_time, topic_type, topic_replies
 		FROM ' . TOPICS_TABLE . '
 			WHERE forum_id = ' . $forum_id;
 	$result = $db->sql_query($sql);
 		
 	while ($row = $db->sql_fetchrow($result))
 	{
-		$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_last_post_time']);
+		if ($row['topic_last_post_time'] > 0)
+		{
+			$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_last_post_time']);
+		}
+		else
+		{
+			$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_time']);
+		}
 		$pages = $row['topic_replies'] / $config['posts_per_page'];
 		$pages = (int) $pages;
 		for ($i=0; $i<=$pages; $i++)
@@ -88,7 +95,7 @@ function sitemap_fx_global($forum_id)
 	$sitemap_file = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 	$sitemap_file .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
 
-	$sql = 'SELECT topic_id, forum_id, topic_title, topic_last_post_time, topic_type, topic_replies
+	$sql = 'SELECT topic_id, forum_id, topic_title, topic_last_post_time, topic_time, topic_type, topic_replies
 			FROM ' . TOPICS_TABLE . '
 			WHERE topic_type = ' . POST_GLOBAL;
 	$result = $db->sql_query($sql);
@@ -98,7 +105,14 @@ function sitemap_fx_global($forum_id)
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_last_post_time']);
+			if ($row['topic_last_post_time'] > 0)
+			{
+				$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_last_post_time']);
+			}
+			else
+			{
+				$last_mod = date('Y-m-d\TH:i:s+00:00', $row['topic_time']);
+			}
 			$pages = $row['topic_replies'] / $config['posts_per_page'];
 			$pages = (int) $pages;
 			for ($i=0; $i<=$pages; $i++)

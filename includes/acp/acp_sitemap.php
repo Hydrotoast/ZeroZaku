@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_sitemap.php,v 1.0.6 2010-01-14 14:55:02 FladeX Exp $
+* @version $Id: acp_sitemap.php,v 1.0.7 2010-04-25 20:16:02 FladeX Exp $
 * @copyright (c) 2009 FladeX
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

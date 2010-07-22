@@ -4,7 +4,7 @@
 * info_acp_sitemap.php [Italian]
 * translator: Riccardo Vianello aka etms51
 * @package language
-* @version $Id: sitemap.php,v 1.0.5 2009-08-17 20:49:58 FladeX Exp $
+* @version $Id: sitemap.php,v 1.0.7 2010-04-25 20:19:58 FladeX Exp $
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

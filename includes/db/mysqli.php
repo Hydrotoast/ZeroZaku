@@ -212,6 +212,14 @@ class dbal_mysqli extends dbal
 	{
 		return ($this->db_connect_id) ? @mysqli_affected_rows($this->db_connect_id) : false;
 	}
+	
+	/**
+	* Returns the number of rows in the result
+	*/
+	function sql_num_rows($result)
+	{
+	    return ($result) ? @mysqli_num_rows($result) : false;
+	}
 
 	/**
 	* Fetch current row

@@ -4,7 +4,7 @@
 * info_acp_sitemap.php [English]
 *
 * @package language
-* @version $Id: sitemap.php,v 1.0.6 2010-01-14 15:00:58 FladeX Exp $
+* @version $Id: sitemap.php,v 1.0.7 2010-04-25 20:18:58 FladeX Exp $
 * @copyright (c) 2009 FladeX
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

@@ -461,49 +461,40 @@ switch ($mode)
 		}
 		$db->sql_freeresult($result);
 		
-	// friend list mod by ian-taylor.ca
+	// BEGIN FRIENDS LIST
 	$user_id = request_var('u', 0);
 	$start   = request_var('start', 0);
 	$limit = request_var('limit', intval($config['number_friends']));
-	$sql = $db->sql_build_query('SELECT', array(
-	'SELECT'	=> 'u.user_avatar, u.username, u.user_colour, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height, z.user_id, u.user_regdate, u.user_lastvisit, user_posts, z.zebra_id, z.friend',
-	'FROM'		=> array(
-		USERS_TABLE		=> 'u',
-	),
-	'LEFT_JOIN'	=> array(
-		array(
-			'FROM'	=> array(ZEBRA_TABLE => 'z'),
-			'ON'	=> 'u.user_id=z.zebra_id'		
-		)
-	),
-		'WHERE'		=> " u.user_id=z.zebra_id AND z.friend = 1 AND z.user_id = $user_id",
-		'ORDER_BY'	=> 'z.zebra_id'
-	));
-	$result = $db->sql_query_limit($sql, $limit, $start);
+	$sql = 'SELECT z.*, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type, u.user_avatar_width, u.user_avatar_height, u.user_regdate, u.user_lastvisit, user_posts
+		FROM ' . USERS_TABLE . ' u
+		JOIN ' . ZEBRA_TABLE . ' z ON z.friend = 1
+			AND ( z.user_id = ' . $user_id . ' AND u.user_id = z.zebra_id )
+				OR ( z.zebra_id = ' . $user_id . ' AND u.user_id = z.user_id )
+		ORDER BY u.username_clean ASC
+		LIMIT ' . $start . ', ' . $limit;
+	$result = $db->sql_query($sql);
          
 	while($row_av = $db->sql_fetchrow( $result )) 
 	{
+	    $zebra_id = ($row_av['zebra_id'] === $user_id) ? $row_av['user_id'] : $row_av['zebra_id'];
+	    
 		$avatar_friend = get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], $row_av['user_avatar_width'], $row_av['user_avatar_height']);
-		$friend_id = $row_av['zebra_id'];
 		$avatar_size_size = 70;
 
 		$template->assign_block_vars('fri',array(
-
-      		'FRI_ID'   			=> $row_av['zebra_id'],
+      		'FRI_ID'   			=> $zebra_id,
       		'FRI_AV'   			=> $avatar_friend,
       		'USERNAME'   		=> $row_av['username'],
       		'WIDTH'				=> $avatar_size_size,
          	'USER_COLOR' 		=> $row_av['user_colour'],
-      		'AV_LINK'   		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=viewprofile&amp;u=$friend_id"),  
+      		'AV_LINK'   		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=viewprofile&amp;u=$zebra_id"),  
       		'FRI_AV_THUMB'   	=>   ($row_av['user_avatar']) ? get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], ($row_av['user_avatar_width'] > $row_av['user_avatar_height']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_height']) * $row_av['user_avatar_width'], ($row_av['user_avatar_height'] > $row_av['user_avatar_width']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_width']) * $row_av['user_avatar_height']) : '',
-      		'ONLINE_USER'		=> is_user_online($row_av['zebra_id'])
+      		'ONLINE_USER'		=> is_user_online($zebra_id)
 		));
 	}
 
-    
 	// count some stuff up for the pagination
-	$profile = request_var('u', 0);
-	$sql = 'SELECT COUNT(zebra_id) AS number_friends FROM '. ZEBRA_TABLE ." WHERE user_id=$profile AND friend = 1";
+	$sql = 'SELECT COUNT(zebra_id) AS number_friends FROM '. ZEBRA_TABLE ." WHERE user_id=$user_id AND friend = 1";
 	$result = $db->sql_query($sql);
 	$pagination_friend = append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$user_id);
 	
@@ -516,11 +507,9 @@ switch ($mode)
 	    	'TOTAL_FRIENDS'       => ($total_friends == 1) ? $user->lang['LIST_FRIEND'] : sprintf($user->lang['LIST_FRIENDS'], $total_friends),
 			'S_NO_FRIENDS'		=> ($total_friends == 0) ? true : false,
 	    	'U_VIEW_ALL' 		=> append_sid("{$phpbb_root_path}friend_list.$phpEx", "u=$user_id"),
-	
-	
 		));
 	
-	// end friend list mod by ian-taylor.ca
+	// END FRIENDS LIST
 	
 	// Is the comment mod enabled ?
 	if (isset($config['enable_qc']))
@@ -544,28 +533,17 @@ switch ($mode)
 		$limit	= request_var('limit', intval($config['comm_per_page']));
 		$pagination_url = append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$user_id);
 
-		$sql = $db->sql_build_query('SELECT', array(
-			'SELECT'	=> 'u.username, u.user_avatar,u.user_avatar_type, u.user_avatar_width, u.user_avatar_height,u.user_colour, u.allow_all_comment, c.*',
-			'FROM'		=> array(
-				USERS_TABLE		=> 'u',
-			),
-			'LEFT_JOIN'	=> array(
-				array(
-					'FROM'	=> array(COMMENT_TABLE => 'c'),
-					'ON'	=> 'u.user_id = c.comment_poster_id'		
-				)
-			),
-			'WHERE'		=> 'c.comment_to_id = '.$user_id,
-			'ORDER_BY'	=> 'c.comment_id DESC'
-		));
-					
-		$result = $db->sql_query_limit($sql, $limit, $start);
+		$sql = 'SELECT u.username, u.user_avatar,u.user_avatar_type, u.user_avatar_width, u.user_avatar_height,u.user_colour, u.allow_all_comment, c.*
+			FROM ' . USERS_TABLE . ' u
+			JOIN ' . COMMENT_TABLE . ' c ON u.user_id = c.comment_poster_id	
+				WHERE c.comment_to_id = ' . $user_id . '
+			ORDER BY c.comment_id DESC
+			LIMIT ' . $start . ', ' . $limit;
+		$result = $db->sql_query($sql);
 		
 				
 	while($row = $db->sql_fetchrow($result))
 	{
-
-
 		$row['bbcode_options'] = (($row['enable_bbcode']) ? OPTION_FLAG_BBCODE : 0) +
     					(($row['enable_smilies']) ? OPTION_FLAG_SMILIES : 0) + 
     					(($row['enable_magic_url']) ? OPTION_FLAG_LINKS : 0);
@@ -586,7 +564,7 @@ switch ($mode)
 			'CAN_DELETE'		=> ($user_id == $user->data['user_id'] || $user->data['user_id'] == $row['comment_poster_id']) ? true:false,
 
 			));
-}
+    }
 			$db->sql_freeresult($result);			
 
 	// count some stuff up for the pagination
@@ -859,19 +837,19 @@ switch ($mode)
 		));
 
 
-// Begin : Inactive and Banned Users` Custom Titles & Avatars            
-if ($config['inactive_users_enable'] && $auth->acl_get('u_view_customavatars'))
-{
-	include($phpbb_root_path . 'includes/functions_inactive_users.' . $phpEx);
-	$inactive_data = obtain_user_ban_info($user_id, $member['user_lastvisit'], $member['user_posts'], $member['user_type'], $poster_avatar);
-	if ($inactive_data)
-	{
-		$template->assign_vars($inactive_data);
-	}
-}
-// End : Inactive and Banned Users` Custom Titles & Avatars
+		// Begin : Inactive and Banned Users` Custom Titles & Avatars            
+		if ($config['inactive_users_enable'] && $auth->acl_get('u_view_customavatars'))
+		{
+			include($phpbb_root_path . 'includes/functions_inactive_users.' . $phpEx);
+			$inactive_data = obtain_user_ban_info($user_id, $member['user_lastvisit'], $member['user_posts'], $member['user_type'], $poster_avatar);
+			if ($inactive_data)
+			{
+				$template->assign_vars($inactive_data);
+			}
+		}
+		// End : Inactive and Banned Users` Custom Titles & Avatars
 
-// idiotnesia wuz here - user rep point
+        // BEGIN REPUTATION
 		$user->add_lang('mods/reputation_mod');
 		$template->assign_vars(array(
 			'S_REPUTATION'		=> $member['user_hide_reputation'] ? false : true,
@@ -879,7 +857,37 @@ if ($config['inactive_users_enable'] && $auth->acl_get('u_view_customavatars'))
 			'REP_POWER'			=> $reputation->get_rep_power($member['user_posts'], $member['user_regdate'], $member['user_reputation'], $member['group_id']),
 			)
 		);
-// end
+		// END REPUTATION
+		
+		// BEGIN MUTUAL FRIENDS	
+		$sql = 'SELECT z1.*, z2.*, u.username, u.user_colour, u.user_avatar, u.user_avatar_type 
+			FROM ' . USERS_TABLE . ' u
+			JOIN ' . ZEBRA_TABLE . ' z1 ON z1.friend = 1 
+				AND ((u.user_id = z1.user_id AND z1.zebra_id = ' . $user->data['user_id'] . ')
+					OR (u.user_id = z1.zebra_id AND z1.user_id = ' . $user->data['user_id'] . '))
+			JOIN ' . ZEBRA_TABLE . ' z2 ON z2.friend = 1 
+				AND ((u.user_id = z2.user_id AND z2.zebra_id = ' . $user_id . ')
+					OR (u.user_id = z2.zebra_id AND z2.user_id = ' . $user_id . '))
+			ORDER BY u.username_clean ASC';
+		$result = $db->sql_query($sql);
+		
+		while($row = $db->sql_fetchrow($result))
+		{
+		    $zebra_id = ($row['zebra_id'] === $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
+		    
+		     $template->assign_block_vars('mutual_friend', array(
+		     	'USER_ID'	        => $zebra_id,
+		        'USERNAME'	=> get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
+		    ));
+		}
+		$mfr_total = $db->sql_num_rows($result);
+		$db->sql_freeresult($result);
+		
+		$template->assign_vars(array(
+		    'MFR_TOTAL' => $mfr_total,
+		));
+		// END MUTUAL FRIENDS
+		
 		if (!empty($profile_fields['row']))
 		{
 			$template->assign_vars($profile_fields['row']);
