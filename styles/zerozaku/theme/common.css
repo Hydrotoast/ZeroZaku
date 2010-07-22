@@ -443,6 +443,10 @@ h2.pro-header, h3.pro-header {
 	padding: 4px 20px;
 }
 
+.similar-friends li {
+	list-style: none;
+}
+
 #comment { padding: 0; }
 #comment .commentbody { padding: 0; }
 
