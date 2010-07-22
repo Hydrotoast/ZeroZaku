@@ -1,8 +1,8 @@
 <?php
 /**
 *
-* @package sitemap_fx 1.0.6
-* @version $Id: sitemap.php 9048 2010-01-14 14:53:42Z FladeX $
+* @package sitemap_fx 1.0.7
+* @version $Id: sitemap.php 9048 2010-04-25 20:20:42Z FladeX $
 * @copyright (c) 2009 FladeX
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

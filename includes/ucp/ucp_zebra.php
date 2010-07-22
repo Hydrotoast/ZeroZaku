@@ -350,13 +350,10 @@ class ucp_zebra
 		{
 			$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
 			$sql = 'SELECT z.*, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type
-				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
-				WHERE ( z.user_id = ' . $user->data['user_id'] . '
-					AND ' . $sql_and . '
-					AND u.user_id = z.zebra_id )
-						OR ( z.zebra_id = ' . $user->data['user_id'] . '
-							AND ' . $sql_and . '
-							AND u.user_id = z.user_id )
+				FROM ' . USERS_TABLE . ' u
+				JOIN ' . ZEBRA_TABLE . ' z ON z.friend = 1 
+					AND ((u.user_id = z.user_id AND z.zebra_id = ' . $user->data['user_id'] . ')
+						OR (u.user_id = z.zebra_id AND z.user_id = ' . $user->data['user_id'] . '))
 				ORDER BY u.username_clean ASC';
 			$result = $db->sql_query($sql);
 		}
@@ -364,7 +361,7 @@ class ucp_zebra
 		$s_username_options = '';
 		while ($row = $db->sql_fetchrow($result))
 		{
-		    $zebra_id = ($row['zebra_id'] == $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
+		    $zebra_id = ($row['zebra_id'] === $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
 		    
 		    $template->assign_block_vars('zebra', array(
 		        'USER_ID'	        => $zebra_id,
