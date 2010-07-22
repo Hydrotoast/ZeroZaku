@@ -14,43 +14,6 @@
 {META}
 <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
 
-<script type="text/javascript">
-// <![CDATA[
-
-	var jump_page = '{LA_JUMP_PAGE}:';
-	var on_page = '{ON_PAGE}';
-	var per_page = '{PER_PAGE}';
-	var base_url = '{A_BASE_URL}';
-	var style_cookie = 'phpBBstyle';
-	var onload_functions = new Array();
-	var onunload_functions = new Array();
-	var style_cookie_settings = '{A_COOKIE_SETTINGS}';
-
-	/**
-	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
-	*/
-	window.onload = function()
-	{
-		for (var i = 0; i < onload_functions.length; i++)
-		{
-			eval(onload_functions[i]);
-		}
-	}
-
-	window.onunload = function()
-	{
-		for (var i = 0; i < onunload_functions.length; i++)
-		{
-			eval(onunload_functions[i]);
-		}
-	}
-
-// ]]>
-</script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/styleswitcher.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
-
-<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
 
 <link href="{T_THEME_PATH}/normal.css" rel="alternate stylesheet" type="text/css" title="A" />
@@ -61,12 +24,59 @@
 	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
 <!-- ENDIF -->
 
+<script type="text/javascript">
+// <![CDATA[
+
+var jump_page = '{LA_JUMP_PAGE}:',
+	on_page = '{ON_PAGE}',
+	per_page = '{PER_PAGE}',
+	base_url = '{A_BASE_URL}',
+	style_cookie = 'phpBBstyle',
+	onload_functions = new Array(),
+	onunload_functions = new Array(),
+	style_cookie_settings = '{A_COOKIE_SETTINGS}';
+
+onload_functions.push("init('{T_TEMPLATE_PATH}', '{T_THEME_PATH}')");
+
+/**
+* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+*/
+window.onload = function()
+{
+	for (var i = 0; i < onload_functions.length; i++)
+	{
+		eval(onload_functions[i]);
+	}
+}
+
+window.onunload = function()
+{
+	for (var i = 0; i < onunload_functions.length; i++)
+	{
+		eval(onunload_functions[i]);
+	}
+}
+
+// ]]>
+</script>
+<script src="http://www.google.com/jsapi?key=ABQIAAAAMem4Zbtac4l9FLVjAPnI9xTSIlkFnGqiAL8wHdOT9beyv7upuxTo-NQWgOVyFx-XoUpv9i3nhGibNQ" type="text/javascript"></script>
+<script type="text/javascript">google.load('jquery', '1.4.2');</script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jquery.plugins.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/xs_bbcode_fn.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/languages/shCore.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/default.js"></script>
+
 <!-- DEFINE $POPUP = 1 -->
 
 </head>
 
 <body id="phpbb" class="{S_CONTENT_DIRECTION}">
 
+<div class="breadcrumbs simple">
+	<ul class="navlinks">
+		<li class="icon-home"><a href="{U_INDEX}" accesskey="h" class="index">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&laquo;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+	</ul>
+</div>
+
 <div id="simple-wrap">
 	<a id="top" name="top" accesskey="t"></a>
-	<div id="page-body">
