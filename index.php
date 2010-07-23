@@ -14,6 +14,7 @@
 /**
 * @ignore
 */
+
 define('IN_PHPBB', true);
 define('IN_PORTAL', true);
 
@@ -174,6 +175,75 @@ if ($config['load_birthdays'] && $config['allow_birthdays'])
 	}
 	$db->sql_freeresult($result);
 }
+
+// BEGIN RECOMMENDED FRIENDS
+
+// Get my friends
+$sql = 'SELECT u.user_id
+	FROM ' . USERS_TABLE . ' u
+	JOIN ' . ZEBRA_TABLE . ' z
+		ON z.friend = 1
+		AND ( z.user_id = ' . $user->data['user_id'] . ' AND u.user_id = z.zebra_id )
+			OR ( z.zebra_id = ' . $user->data['user_id'] . ' AND u.user_id = z.user_id )
+	ORDER BY RAND()';
+$result = $db->sql_query($sql);
+
+$friends = $friend_tuple = array();
+while($row = $db->sql_fetchrow($result))
+{
+    $friends[] = $row['user_id'];
+}
+$db->sql_freeresult($result);
+
+$num_tuples = 2;
+if(sizeof($friends) > $num_tuples)
+{
+	// Determine the strength of the relationship
+	$friend_tuple = array_rand($friends, $num_tuples);
+}
+
+// Make sure we have friends to compare
+if(sizeof($friend_tuple))
+{
+    // Get friends of friends
+	$sql = 'SELECT ';
+	foreach($friend_tuple as $key => $friend)
+	{
+	    $sql .= 'z' . $key . '.zebra_id, z' . $key . '.user_id, ';
+	}
+	$sql .=	'u.username, u.user_colour FROM ' . USERS_TABLE . ' u ';
+	foreach($friend_tuple as $key => $friend)
+	{
+		$sql .= 'JOIN ' . ZEBRA_TABLE . ' z' . $key . ' ON z' . $key . '.friend = 1 
+			AND ((u.user_id = z' . $key . '.user_id AND z' . $key . '.zebra_id = ' . $friends[$friend] . ')
+				OR (u.user_id = z' . $key . '.zebra_id AND z' . $key . '.user_id = ' . $friends[$friend] . ')) ';
+	}
+	$sql .=  ' ORDER BY RAND() LIMIT 0, 10';
+    $result = $db->sql_query($sql);
+    
+    $rows = 0;
+	while($row = $db->sql_fetchrow($result))
+	{
+	    $zebra_id = (in_array($row['zebra_id'], $friend_tuple)) ? $row['user_id'] : $row['zebra_id'];
+	    
+	    if(!in_array($zebra_id, $friends) && $zebra_id !== $user->data['user_id'])
+	    {
+		    $template->assign_block_vars('rec_friend', array(
+		        'USER_ID'		=> $zebra_id,
+		        'USERNAME'	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
+		        'ADD_URL'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=friends', true, $user->session_id),
+		    ));  
+		    $rows++;
+	    }
+	}
+	
+	$template->assign_vars(array(
+	    'REC_FRIEND_TOTAL' => $rows,
+	));
+	
+	$db->sql_freeresult($result);
+}
+// END RECOMMENDED FRIENDS
 
 // Assign index specific vars
 $template->assign_vars(array(

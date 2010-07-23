@@ -2,11 +2,13 @@
  * Copyright (c) 2009, 2010 Gio Borje (http://www.zerozaku.com)
  */
 var config = {
+	root_path: '',
 	template_path: '',
 	theme_path: ''
 };
 
-function init(t_template_path, t_theme_path) {
+function init(t_root_path, t_template_path, t_theme_path) {
+	config.root_path = t_root_path;
 	config.template_path = t_template_path;
 	config.theme_path = t_theme_path;
 	
@@ -15,16 +17,63 @@ function init(t_template_path, t_theme_path) {
 };
 
 $(function() {
-	$("textarea#message").growing({maxHeight: 540, buffer: 0});
-	$("textarea").tabby();
+	$.jGrowl.defaults.pool = 5; 
+	
+	$('textarea#message').growing({maxHeight: 540, buffer: 0});
+	$('textarea').tabby();
+	
+	// Starts IM
+	if(localStorage.getItem('im_open') == 'true')
+	{
+		$('#site-bottom-bar').hide();
+		$('#site-bottom-bar-frame').hide();
+		$('#im_open').show();
+	}
+	else load_startIM({rootPath: config.root_path, themePath: config.theme_path, started: true});
+	
+	// Closes IM
+	$('.button[rel=im_close]').click(function() {
+		localStorage.setItem('im_open', 'true');
+		$('#site-bottom-bar').hide();
+		$('#site-bottom-bar-frame').hide();
+		$('#im_open').show();
+	});
+	
+	// Opens IM
+	$('#im_open').click(function() {
+		if (im_cfg.started == false)
+		{
+			load_startIM({rootPath: config.root_path, themePath: config.theme_path});
+		}
+		
+		localStorage.setItem('im_open', 'false');
+		$(this).hide();
+		$('#site-bottom-bar').show();
+		$('#site-bottom-bar-frame').show();
+	});
 	
 	// Toggles the quick login panel
-	var quickpanel = $("#quickpanel");
-	$("a.quick").toggle(function() {
+	var quickpanel = $('#quickpanel');
+	$('a.quick').toggle(function() {
 		quickpanel.slideDown();
 		return false;
 	}, function() {
 		quickpanel.slideUp();
+		return false;
+	});
+	
+	$('a[rel*=add_rec]').click(function() {
+		var user_id = $(this).attr('alt');
+		$.ajax({
+			url: config.root_path + 'ucp.php?i=ajax&mode=add_rec&rec_id=' + user_id,
+			type: 'GET',
+			success: function(data) {
+				if(data == 'true') 
+					$.jGrowl('Friend request sent to user');
+				else if(data == 'false')
+					$.jGrowl('Request already sent or user is already friend');
+			}
+		});
 		return false;
 	});
 	
@@ -69,17 +118,17 @@ $(function() {
 		var window_width = $(window).width();
 		
 		if (window_width > 950) {
-			$("#page-body").stop().animate({
+			$('#page-body').stop().animate({
 				width: '75%'
 			}, 600, 'swing', function()
 			{
-				$("#page-sidebar").show();
+				$('#page-sidebar').show();
 			});
 		}
 		else
 		{
-			$("#page-sidebar").fadeOut(function(){
-				$("#page-body").animate({
+			$('#page-sidebar').fadeOut(function(){
+				$('#page-body').animate({
 					width: '100%'
 				}, 600, 'swing');
 			});
@@ -89,15 +138,15 @@ $(function() {
 
 function collapse() {
 	// Collapses forums
-	$("a.collapse").each(function(index) {
-		var forum_id = $(this).attr("rel");
+	$('a.collapse').each(function(index) {
+		var forum_id = $(this).attr('rel');
 		
-		if(localStorage.getItem(forum_id) == "true")
+		if(localStorage.getItem(forum_id) == 'true')
 		{
-			var parent = $(this).parent("h2.cattitle");
-			$(parent).next(".forabg").hide();
-			$(parent).addClass("collapsed");
-			$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+			var parent = $(this).parent('h2.cattitle');
+			$(parent).next('.forabg').hide();
+			$(parent).addClass('collapsed');
+			$(this).children('img').attr('src', config.theme_path + '/images/plus_alt_24x24.png');
 		}
 	});
 }

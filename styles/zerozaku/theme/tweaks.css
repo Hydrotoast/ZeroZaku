@@ -997,6 +997,31 @@ h3.kb_cat img {
 	text-decoration: none;
 }
 
+#im_open {
+	text-align: right;
+	height: 26px;
+	padding-left: 1px;
+	padding-right: 1px;
+	position: fixed;
+	bottom: 0;
+	left: 20px;
+	right: 20px;
+	z-index: 100;
+	display: none;
+}
+
+#im_open .button {
+	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0;
+	border: solid #999999;
+	border-width: 1px 1px 0 1px;
+	width: 34px;
+	margin-right: 1px;
+	float: right;
+}
+
+#im_open .button img {
+	margin: 6px 9px 0;
+}
 
 
 #site-bottom-bar-frame .block-box {
