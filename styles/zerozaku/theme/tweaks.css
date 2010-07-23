@@ -931,7 +931,6 @@ h3.kb_cat img {
 
 
 #site-bottom-bar, #site-bottom-bar-frame {
-	
 	bottom: 0;
 	left: 20px;
 	right: 20px;
@@ -1002,7 +1001,6 @@ h3.kb_cat img {
 	height: 26px;
 	padding-left: 1px;
 	padding-right: 1px;
-	position: fixed;
 	bottom: 0;
 	left: 20px;
 	right: 20px;
@@ -1017,6 +1015,7 @@ h3.kb_cat img {
 	width: 34px;
 	margin-right: 1px;
 	float: right;
+	right: 20px;
 }
 
 #im_open .button img {
