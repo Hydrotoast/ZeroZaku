@@ -181,6 +181,4 @@
   <a id="im_msg_arrived" href="<?php echo (isset($this->_rootref['ROOT_PATH'])) ? $this->_rootref['ROOT_PATH'] : ''; ?>styles/instant_messenger/im-new-message.mp3" style="display:none"></a> 
 </div>
 
-<div id="im_open">
-	<div class="button" rel="im_open"><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/br_up.png" alt="<?php echo ((isset($this->_rootref['L_OPEN'])) ? $this->_rootref['L_OPEN'] : ((isset($user->lang['OPEN'])) ? $user->lang['OPEN'] : '{ OPEN }')); ?>" /></div>
-</div>
+<div id="im_open"><div class="button" rel="im_open"><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/br_up.png" alt="<?php echo ((isset($this->_rootref['L_OPEN'])) ? $this->_rootref['L_OPEN'] : ((isset($user->lang['OPEN'])) ? $user->lang['OPEN'] : '{ OPEN }')); ?>" /></div></div>

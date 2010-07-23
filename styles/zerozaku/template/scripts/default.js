@@ -37,6 +37,7 @@ $(function() {
 		$('#site-bottom-bar').hide();
 		$('#site-bottom-bar-frame').hide();
 		$('#im_open').show();
+		$.jGrowl('Instant Messenger closed');
 	});
 	
 	// Opens IM
@@ -50,6 +51,7 @@ $(function() {
 		$(this).hide();
 		$('#site-bottom-bar').show();
 		$('#site-bottom-bar-frame').show();
+		$.jGrowl('Instant Messenger opened');
 	});
 	
 	// Toggles the quick login panel
@@ -88,6 +90,7 @@ $(function() {
 			$(parent).next(".forabg").slideUp();
 			$(parent).addClass("collapsed");
 			$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+			$.jGrowl('Forum collapsed');
 		}
 		else
 		{
@@ -98,6 +101,7 @@ $(function() {
 				$(parent).next(".forabg").slideDown();
 				$(parent).removeClass("collapsed");;
 				$(this).children("img").attr("src", config.theme_path + "/images/minus_alt_24x24.png");
+				$.jGrowl('Forum opened');
 			}
 			else
 			{
@@ -106,6 +110,7 @@ $(function() {
 				$(parent).next(".forabg").slideUp();
 				$(parent).addClass("collapsed");
 				$(this).children("img").attr("src", config.theme_path + "/images/plus_alt_24x24.png");
+				$.jGrowl('Forum collapsed');
 			}
 		}
 			
