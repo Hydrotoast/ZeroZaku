@@ -3,7 +3,8 @@ document.write( '<' + 'script type="text\/javascript" src="styles/instant_messen
 var im_cfg = {
 	rootPath: '',
 	themePath: '',
-	rtl: 'ltr'
+	rtl: 'ltr',
+	started: false
 };
 
 /** Online list - function - start **/

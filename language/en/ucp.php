@@ -572,13 +572,6 @@ $lang = array_merge($lang, array(
 	'NO_PENDING'	=> 'No pending memberships',
 	'NO_NONMEMBER'	=> 'No non-member groups',
 		
-	'UCP_ZEBRA_PENDING'				=> 'Manage requests',
-		
-	'NOT_ADDED_FRIENDS_PENDING'	    => 'You already have a friend request from one of these users. Check your requests to add them to your friends list.',
-	'PENDING_UPDATED'				=> 'User has been added to your friends list.',
-		
-	'REQUESTS_EXPLAIN'				=> 'Requests are made by other users that want to be your friend. Accepted requests will be added to your friends list.',
-		
 	'CSS_OVERRIDE_EXPLAIN'			=> 'Customize your profile by using your own CSS override. If you need help with CSS, check out <a href="http://css.zerozaku.com">CSS Nova</a>.',
 		));
 

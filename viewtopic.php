@@ -880,8 +880,8 @@ if (!empty($topic_data['poll_start']))
 
 		$poll_info[$i]['poll_option_text'] = bbcode_nl2br($poll_info[$i]['poll_option_text']);
 		$poll_info[$i]['poll_option_text'] = smiley_text($poll_info[$i]['poll_option_text']);
-// idiotnesia wuz here
-// some codes here taken from evaarties' show poll voters for phpbb3
+
+        // some codes here taken from evaarties' show poll voters for phpbb3
 		$sql_voters = '
 			SELECT u.username, u.user_colour, pv.vote_user_id
 			FROM ' . POLL_VOTES_TABLE . ' pv, ' . USERS_TABLE . ' u
@@ -894,7 +894,7 @@ if (!empty($topic_data['poll_start']))
 		$voters_total = 0;
 		$voters_string = "";
 
-// Add all voters to a string.
+        // Add all voters to a string.
 		while ($row_voters = $db->sql_fetchrow($results_voters))
 		{
 			$voters_total = $voters_total + 1;
@@ -903,11 +903,10 @@ if (!empty($topic_data['poll_start']))
 
 		$voters_string = ltrim($voters_string, ", ");
 
-// Add the string to the list.
+        // Add the string to the list.
 		$poll_info[$i]['poll_option_voters'] = $voters_string;
 		$db->sql_freeresult($results_voters);
 
-// finish
 	}
 
 	$topic_data['poll_title'] = censor_text($topic_data['poll_title']);
@@ -934,9 +933,7 @@ if (!empty($topic_data['poll_start']))
 			'POLL_OPTION_PERCENT' 	=> $option_pct_txt,
 			'POLL_OPTION_PCT'		=> round($option_pct * 100),
 			'POLL_OPTION_IMG' 		=> $user->img('poll_center', $option_pct_txt, round($option_pct * 250)),
-// idiotnesia wuz here
 			'POLL_OPTION_VOTERS' 	=> $poll_option['poll_option_voters'],
-// finish
 			'POLL_OPTION_VOTED'		=> (in_array($poll_option['poll_option_id'], $cur_voted_id)) ? true : false)
 		);
 	}

@@ -4220,16 +4220,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
 		'SITENAME'						=> $config['sitename'],
-		'L_GROUPCP' => $user->lang[ 'FACTIONS_GROUPCP' ],
-		'U_GROUPCP' => append_sid ( "{$phpbb_root_path}ucp.$phpEx", 'i=factions' ),
-		'L_PLATFORMS' => $user->lang[ 'FACTIONS_PLATFORMS' ],
-		'U_PLATFORMS' => append_sid ( "{$phpbb_root_path}factions.$phpEx", 'action=platforms' ),
-		'L_TOURNAMENTS' => $user->lang[ 'FACTIONS_TOURNAMENTS' ],
-		'U_TOURNAMENTS' => append_sid ( "{$phpbb_root_path}factions.$phpEx", 'action=tournaments' ),
-		'L_ADDGROUP' => $user->lang[ 'FACTIONS_ADDGROUP' ],
-		'U_ADDGROUP' => append_sid ( "{$phpbb_root_path}factions.$phpEx", 'action=add_group' ),
-		'L_GROUPLIST' => $user->lang[ 'FACTIONS_GROUPLIST' ],
-		'U_GROUPLIST' => append_sid ( "{$phpbb_root_path}factions.$phpEx", 'action=group_list' ),
 		'SITE_DESCRIPTION'				=> $config['site_desc'],
 		'PAGE_TITLE'					=> $page_title,
 		'SCRIPT_NAME'					=> str_replace('.' . $phpEx, '', $user->page['page_name']),
@@ -4271,7 +4261,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_REGISTER'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=register'),
 		'U_PROFILE'				=> append_sid("{$phpbb_root_path}ucp.$phpEx"),
 		'U_MODCP'				=> append_sid("{$phpbb_root_path}mcp.$phpEx", false, true, $user->session_id),
-		'U_FACTION'				=> append_sid("{$phpbb_root_path}faction.$phpEx"),
 		'U_FAQ'					=> append_sid("{$phpbb_root_path}faq.$phpEx"),
         // BEGIN mChat Mod
 		'U_MCHAT'			=> $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
@@ -4291,8 +4280,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_RESTORE_PERMISSIONS'	=> ($user->data['user_perm_from'] && $auth->acl_get('a_switchperm')) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=restore_perm') : '',
 		'U_KB'					=> append_sid("{$phpbb_root_path}kb.$phpEx"),
 		'L_KB'					=> (isset($config['kb_link_name'])) ? $config['kb_link_name'] : $user->lang['KB'],
-		'U_VIEW_PROFILE'	=> get_username_string('profile', $user_id, $username, $colour),
-
+	
 		'U_NEW_POSTS'			=> append_sid($phpbb_root_path . 'search.' . $phpEx . '?search_id=newposts'),
 		'U_SELF_POSTS'			=> append_sid($phpbb_root_path . 'search.' . $phpEx . '?search_id=egosearch'),
 		'U_UM_BOOKMARKS'		=> ($config['allow_bookmarks']) ? append_sid("{$phpbb_root_path}ucp.$phpEx", "i=main&amp;mode=bookmarks") : '',
@@ -4352,7 +4340,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'REIMG_ZOOM_OUT_IMG_WIDTH'	=> $user->img('icon_reimg_zoom_out', '', false, '', 'width'),
 		'REIMG_ZOOM_OUT_IMG_HEIGHT'	=> $user->img('icon_reimg_zoom_out', '', false, '', 'height'),
 		'REIMG_PROPERTIES'			=> reimg_properties(),
-		'T_THEME_PATH'			=> "{$cdn_path}styles/" . $user->theme['theme_path'] . '/theme',
+		'T_THEME_PATH'			=> "{$web_path}styles/" . $user->theme['theme_path'] . '/theme',
 		'T_TEMPLATE_PATH'		=> "{$web_path}styles/" . $user->theme['template_path'] . '/template',
 		'T_SUPER_TEMPLATE_PATH'	=> (isset($user->theme['template_inherit_path']) && $user->theme['template_inherit_path']) ? "{$web_path}styles/" . $user->theme['template_inherit_path'] . '/template' : "{$web_path}styles/" . $user->theme['template_path'] . '/template',
 		'T_IMAGESET_PATH'		=> "{$cdn_path}styles/" . $user->theme['imageset_path'] . '/imageset',
@@ -4418,20 +4406,18 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// Begin FRIEND REQUESTS
 	$sql = 'SELECT friend_requests FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user->data['user_id'];
 	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
+    $friend_requests = $db->sql_fetchfield('friend_requests');
+    $db->sql_freeresult($result);
+    
+	if ($friend_requests > 0)
 	{
-		if ($row['friend_requests'] > 0)
-		{
-			$l_new_requests = ($row['friend_requests'] == 1) ? $user->lang['NEW_FRIEND_REQUEST'] : $user->lang['NEW_FRIEND_REQUESTS'];
-		}
-
+		$l_new_requests = ($friend_requests == 1) ? $user->lang['NEW_FRIEND_REQUEST'] : $user->lang['NEW_FRIEND_REQUESTS'];
+		
 		$template->assign_vars(array(
 			'NEW_REQUESTS'		=> (($l_new_requests) ? sprintf($l_new_requests, $row['friend_requests']) : false),
 			'U_REQUESTS_LIST'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=pending'),
 		));
 	}
-	$db->sql_freeresult($result);
 	// End FRIEND REQUESTS
 
 	// application/xhtml+xml not used because of IE

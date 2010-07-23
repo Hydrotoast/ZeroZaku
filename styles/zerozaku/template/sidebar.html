@@ -20,6 +20,17 @@
 		</ul>
 	</div>
 	
+	<!-- IF REC_FRIEND_TOTAL > 0 -->
+	<div class="leaderboard rec_friend">
+		<h2>{L_MFR_PEOPLE_LIKE}</h2>
+		<ul>
+		<!-- BEGIN rec_friend -->
+			<li><div class="inner">{rec_friend.USERNAME} <a href="{rec_friend.ADD_URL}" rel="add_rec" alt="{rec_friend.USER_ID}"><img src="{T_THEME_PATH}/images/round_plus.png" alt="Add Friend" /></a></div></li>
+		<!-- END rec_friend -->
+		</ul>
+	</div>
+	<!-- ENDIF -->
+	
 	<!-- IF S_DISPLAY_LINKS -->
 		<!-- INCLUDE portal/block/links.html -->
 	<!-- ENDIF -->

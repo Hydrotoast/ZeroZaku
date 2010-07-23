@@ -138,9 +138,14 @@ hr.dashed {
 
 /* Sidebar
 ---------------------------------------- */
-.leaderboard li, #user_statuses li .inner { 
+.leaderboard li, #user_statuses li .inner, .rec_friend li .inner { 
 	background-color: #F6F6F6;
 	border-color: #E0E0E0;
+}
+
+.rec_friend li {
+	background-color: transparent;
+	border-color: transparent;
 }
 
 #user_statuses li { color: #606060; }

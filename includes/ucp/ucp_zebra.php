@@ -34,7 +34,7 @@ class ucp_zebra
 		$s_hidden_fields = '';
 
 		$l_mode = strtoupper($mode);
-
+		
 		if ($submit)
 		{
 			$data = $error = array();
@@ -332,7 +332,7 @@ class ucp_zebra
 		    	WHERE user_id = ' . $user->data['user_id'];
 		    $db->sql_query($sql);
 		    
-            $sql = 'SELECT z.*, u.username, u.username_clean
+            $sql = 'SELECT z.user_id, z.zebra_id, u.username, u.username_clean
 				FROM ' . ZEBRA_TABLE . ' z, ' . USERS_TABLE . ' u
 				WHERE z.zebra_id = ' . $user->data['user_id'] . '
 					AND z.pending = 1
@@ -343,7 +343,7 @@ class ucp_zebra
 		else
 		{
 			$sql_and = ($mode == 'friends') ? 'z.friend = 1' : 'z.foe = 1';
-			$sql = 'SELECT z.*, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type
+			$sql = 'SELECT z.user_id, z.zebra_id, u.username, u.user_colour, u.username_clean, u.user_avatar, u.user_avatar_type
 				FROM ' . USERS_TABLE . ' u
 				JOIN ' . ZEBRA_TABLE . ' z ON ' . $sql_and . '
 					AND ((u.user_id = z.user_id AND z.zebra_id = ' . $user->data['user_id'] . ')

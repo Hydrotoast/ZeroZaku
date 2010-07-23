@@ -878,11 +878,11 @@ switch ($mode)
 			    $zebra_id = ($row['zebra_id'] === $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
 			    
 			     $template->assign_block_vars('mutual_friend', array(
-			     	'USER_ID'	        => $zebra_id,
-			        'USERNAME'	=> get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
+			     	'USER_ID'	    => $zebra_id,
+			        'USERNAME'	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
 			    ));
 			}
-			$mfr_total = $db->sql_num_rows($result);
+			$mfr_total = $result->num_rows;
 			$db->sql_freeresult($result);
 			
 			$template->assign_vars(array(

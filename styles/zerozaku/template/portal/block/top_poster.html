@@ -3,10 +3,8 @@
 	<h2><img src="{T_THEME_PATH}/images/portal/sidebar_users.png" alt="{L_TOP_POSTER}" />&nbsp;{L_TOP_POSTER}</h2>
 	<ul>
 	<!-- BEGIN top_poster -->
-		<li><!-- IF top_poster.AVATAR -->{top_poster.AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" /><!-- ENDIF --> 
-			<div>{top_poster.USERNAME_FULL}
-				<br /><a href="{top_poster.S_SEARCH_ACTION}" class="posts">{top_poster.POSTER_POSTS}</a> {L_POSTS}
-			</div>
+		<li>
+			<div><span><a href="{top_poster.S_SEARCH_ACTION}" class="posts">{top_poster.POSTER_POSTS}</a> {L_POSTS}</span> {top_poster.USERNAME_FULL}</div>
 		</li>
 	<!-- END top_poster -->
 	</ul>

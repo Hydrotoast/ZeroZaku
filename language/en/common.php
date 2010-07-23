@@ -983,4 +983,16 @@ $lang = array_merge($lang, array(
 	'MCP_IP_SEARCH_USERS'			=> 'Users',
 ));
 //END IP SEARCH
+
+// BEGIN MUTUAL FRIENDS
+$lang = array_merge($lang, array(
+	'MFR_FRIENDS_SHARED'			=> 'Friends shared',
+	'MFR_PEOPLE_LIKE'				=> 'People you might like',
+
+	'UCP_ZEBRA_PENDING'				=> 'Manage requests',
+	'NOT_ADDED_FRIENDS_PENDING'	    => 'You already have a friend request from one of these users. Check your requests to add them to your friends list.',
+	'PENDING_UPDATED'				=> 'User has been added to your friends list.',
+	'REQUESTS_EXPLAIN'				=> 'Requests are made by other users that want to be your friend. Accepted requests will be added to your friends list.',
+));
+// END MUTUAL FRIENDS
 ?>

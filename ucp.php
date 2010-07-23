@@ -33,6 +33,48 @@ $auth->acl($user->data);
 $user->setup('ucp');
 $user->add_lang('mods/quick_reply');
 
+if($id == 'ajax')
+{
+    switch($mode)
+    {
+        case 'add_rec':
+            $rec_id = request_var('rec_id', 0);
+            
+            $sql = 'SELECT z.user_id, z.zebra_id
+				FROM ' . ZEBRA_TABLE . ' z
+				JOIN ' . USERS_TABLE . ' u ON (z.friend = 1 OR z.pending = 1)
+					AND ((u.user_id = z.user_id AND z.zebra_id = ' . $user->data['user_id'] . ')
+						OR (u.user_id = z.zebra_id AND z.user_id = ' . $user->data['user_id'] . '))
+				ORDER BY u.username_clean ASC';
+			$result = $db->sql_query($sql);
+			
+			$friends = array();
+			while($row = $db->sql_fetchrow($result))
+			{
+			    $friends[] = ($row['zebra_id'] === $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
+			}
+            
+			if(!in_array($rec_id, $friends))
+			{
+			    $db->sql_transaction('begin');
+			    $sql = 'UPDATE ' . USERS_TABLE . '
+			    	SET friend_requests = friend_requests+1
+			    	WHERE user_id = ' . (int) $rec_id;
+			    $db->sql_query($sql);
+				$sql = 'INSERT INTO ' . ZEBRA_TABLE . ' (user_id, zebra_id, pending) ' . "
+						VALUES ('{$user->data['user_id']}', '$rec_id', '1')";
+				$db->sql_query($sql);
+				$db->sql_transaction('commit');
+				
+				echo 'true';
+			}
+			else echo 'false';
+        break;
+    }
+    
+    exit();
+}
+
 // Setting a variable to let the style designer know where he is...
 $template->assign_var('S_IN_UCP', true);
 

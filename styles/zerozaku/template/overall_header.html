@@ -76,8 +76,7 @@ function find_username(url)
 	return false;
 }
 
-onload_functions.push("load_startIM({rootPath: '{ROOT_PATH}', themePath: '{T_THEME_PATH}', rtl: '{S_CONTENT_DIRECTION}'})");
-onload_functions.push("init('{T_TEMPLATE_PATH}', '{T_THEME_PATH}')");
+onload_functions.push("init('{ROOT_PATH}', '{T_TEMPLATE_PATH}', '{T_THEME_PATH}')");
 
 var common = function() {
 	templatePath = '{T_TEMPLATE_PATH}';
