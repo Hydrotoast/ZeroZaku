@@ -122,6 +122,7 @@ $lang = array_merge($lang, array(
 	'CHANGING_PREFERENCES'	=> 'Changing board preferences',
 	'CHANGING_PROFILE'		=> 'Changing profile settings',
 	'CLICK_VIEW_PRIVMSG'	=> '%sGo to your inbox%s',
+    'CLOSE'					=> 'Close',
 	'COLLAPSE_VIEW'			=> 'Collapse view',
 	'CLOSE_WINDOW'			=> 'Close window',
 	'COLOUR_SWATCH'			=> 'Colour swatch',
@@ -436,6 +437,7 @@ $lang = array_merge($lang, array(
 	'ONLINE_USERS_TOTAL'		=> 'In total there are <strong>%d</strong> users online :: ',
 	'ONLINE_USERS_ZERO_TOTAL'	=> 'In total there are <strong>0</strong> users online :: ',
 	'ONLINE_USER_TOTAL'			=> 'In total there is <strong>%d</strong> user online :: ',
+	'OPEN'						=> 'Open',
 	'OPTIONS'					=> 'Options',
 
 	'PAGE_OF'				=> 'Page <strong>%1$d</strong> of <strong>%2$d</strong>',
