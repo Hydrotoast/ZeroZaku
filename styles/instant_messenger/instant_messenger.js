@@ -21,7 +21,7 @@ function restructureChatBoxes() {jQuery(function($){
 			if (align == 0) {
 				$("#chatbox_"+chatboxtitle).css('right', '20px');     
 			} else {
-				width = (align)*(216+7)+20;
+				width = (align)*(236+7)+20;
 				$("#chatbox_"+chatboxtitle).css('right', width+'px');          
 			}
 			align++;
@@ -65,7 +65,7 @@ function createChatBox( chatboxtitle, s_username, minimizeChatBox) {jQuery(funct
 	if (chatBoxeslength == 0) {
 		$("#chatbox_"+chatboxtitle).css('right', '20px');
 	} else {
-		width = (chatBoxeslength)*(225+7)+20;
+		width = (chatBoxeslength)*(236+7)+20;
 		$("#chatbox_"+chatboxtitle).css('right', width+'px');
 	}
 	

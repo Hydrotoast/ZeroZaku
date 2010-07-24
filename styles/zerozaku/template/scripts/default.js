@@ -4,7 +4,8 @@
 var config = {
 	root_path: '',
 	template_path: '',
-	theme_path: ''
+	theme_path: '',
+	im_started: false
 };
 
 function init(t_root_path, t_template_path, t_theme_path) {
@@ -37,21 +38,22 @@ $(function() {
 		$('#site-bottom-bar').hide();
 		$('#site-bottom-bar-frame').hide();
 		$('#im_open').show();
-		$.jGrowl('Instant Messenger closed');
+		$.jGrowl('Instant Messenger has been closed. You will not receive IMs during this time, but your site performance will increase');
 	});
 	
 	// Opens IM
 	$('#im_open').click(function() {
-		if (im_cfg.started == false)
+		if (config.im_started == false)
 		{
 			load_startIM({rootPath: config.root_path, themePath: config.theme_path});
+			config.im_started = true;
 		}
 		
 		localStorage.setItem('im_open', 'false');
 		$(this).hide();
 		$('#site-bottom-bar').show();
 		$('#site-bottom-bar-frame').show();
-		$.jGrowl('Instant Messenger opened');
+		$.jGrowl('Instant Messenger has been opened. You will receive IMs again, but your site performance will decrease');
 	});
 	
 	// Toggles the quick login panel
