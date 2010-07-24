@@ -8,17 +8,13 @@
 	<div id="profile-sidebar">
 		
 		<div id="me" class="profile-box <!-- IF S_ONLINE --> online<!-- ENDIF -->">
-			<h2 class="profile-header"><a class="username-coloured <!-- IF S_IS_BANNED -->banned<!-- ENDIF -->" <!-- IF USER_COLOR -->style="color: {USER_COLOR};"<!-- ENDIF -->>{USERNAME}</a></h2>
+			<h2 class="header"><a class="username-coloured <!-- IF S_IS_BANNED -->banned<!-- ENDIF -->" <!-- IF USER_COLOR -->style="color: {USER_COLOR};"<!-- ENDIF -->>{USERNAME}</a></h2>
 			<div class="inner">
 			
 			<dl>
 				<dt class="center"><!-- IF AVATAR_IMG -->{AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="100px" width="100px" alt="Default Avatar" /><!-- ENDIF --></dt>
 				<!-- IF USER_STATUS neq '' --><dd class="user_status">{USER_STATUS}</dd><!-- ENDIF -->
 			</dl>
-			
-			<!-- IF U_USER_ADMIN --><li><a href="{U_USER_ADMIN}">{L_USER_ADMIN}</a></li><!-- ENDIF -->
-			<!-- IF U_USER_BAN --><li><a href="{U_USER_BAN}">{L_USER_BAN}</a></li><!-- ENDIF -->
-			<!-- IF U_SWITCH_PERMISSIONS --><li><a href="{U_SWITCH_PERMISSIONS}">{L_USE_PERMISSIONS}</a></li><!-- ENDIF -->
 						
 			<dl class="details">
 				<!-- IF RANK_TITLE --><dt>{L_RANK}:</dt> <dd>{RANK_TITLE}</dd><!-- ENDIF -->
@@ -29,15 +25,13 @@
 				<!-- IF OCCUPATION --><dt>{L_OCCUPATION}:</dt> <dd>{OCCUPATION}</dd><!-- ENDIF -->
 				<!-- IF INTERESTS --><dt>{L_INTERESTS}:</dt> <dd>{INTERESTS}</dd><!-- ENDIF -->
 				<!-- IF S_GROUP_OPTIONS --><dt>{L_USERGROUPS}:</dt> <dd><select name="g">{S_GROUP_OPTIONS}</select> <input type="submit" name="submit" value="{L_GO}" class="button2" /></dd><!-- ENDIF -->
-				<!-- BEGIN custom_fields --><dt>{custom_fields.profileFILE_FIELD_NAME}:</dt> <dd>{custom_fields.profileFILE_FIELD_VALUE}</dd><!-- END custom_fields -->
-				
 			</dl>
 		
 			</div>
 		</div>
 			
 		<div id="statistics" class="profile-box">
-			<h3 class="profile-header">{L_STATISTICS}</h3>
+			<h2 class="header">{L_STATISTICS}</h2>
 			<div class="inner">
 	
 			<dl class="details">
@@ -66,7 +60,7 @@
 		</div>
 		
 		<div id="contact" class="profile-box">
-			<h3 class="profile-header">{L_CONTACT_USER}</h3>	
+			<h2 class="header">{L_CONTACT_USER}</h2>	
 			<div class="inner">
 		
 				<dl class="details">
@@ -79,9 +73,9 @@
 				<!-- IF U_AIM or USER_AIM --><dt>{L_AIM}:</dt> <dd><!-- IF U_AIM --><a href="{U_AIM}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_AIM_MESSAGE}</a><!-- ELSE -->{USER_AIM}<!-- ENDIF --></dd><!-- ENDIF -->
 				<!-- IF U_ICQ or USER_ICQ --><dt>{L_ICQ}:</dt> <dd><!-- IF U_ICQ --><a href="{U_ICQ}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_ICQ_MESSAGE}</a><!-- ELSE -->{USER_ICQ}<!-- ENDIF --></dd><!-- ENDIF -->
 				<!-- IF U_JABBER and S_JABBER_ENABLED --><dt>{L_JABBER}:</dt> <dd><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_JABBER_MESSAGE}</a></dd><!-- ELSEIF USER_JABBER --><dt>{L_JABBER}:</dt> <dd>{USER_JABBER}</dd><!-- ENDIF -->
-				<!-- IF S_profileFILE_FIELD_1 -->
-					<!-- NOTE: Use a construct like this to include admin defined profilefile fields. Replace FIELD1 with the name of your field. -->
-					<dt>{postrow.profileFILE_FIELD1_NAME}:</dt> <dd>{postrow.profileFILE_FIELD1_VALUE}</dd>
+				<!-- IF S_profile_FIELD_1 -->
+					<!-- NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
+					<dt>{postrow.profile_FIELD1_NAME}:</dt> <dd>{postrow.profile_FIELD1_VALUE}</dd>
 				<!-- ENDIF -->
 				</dl>
 			
@@ -90,7 +84,7 @@
 		
 		<!-- IF MFR and MFR_TOTAL > 0 -->
 		<div id="shared-friends" class="profile-box">
-			<h3 class="profile-header">{L_MFR_FRIENDS_SHARED} ({MFR_TOTAL})</h3>
+			<h2 class="header">{L_MFR_FRIENDS_SHARED} ({MFR_TOTAL})</h2>
 			<div class="inner">
 				<ul class="similar-friends">
 					<!-- BEGIN mutual_friend -->
@@ -107,27 +101,24 @@
 		
 	<!-- IF not S_NO_FRIENDS -->
 	<div id="friends" class="profile-box">
-		<h3 class="profile-header">{L_FRIEND_LIST}&nbsp;(<a href="{U_VIEW_ALL}">{L_VIEW_ALL}</a>)</h3>
+		<h2 class="header">{L_FRIENDS}</h2>
 		<div class="inner">
 			<!-- BEGIN fri -->
 			<div class="friend">
-				<a class="thumbnail" href="{fri.AV_LINK}" style="text-decoration:none">
+				<a class="thumbnail" href="{fri.AV_LINK}">
 					<span><!-- IF fri.USER_COLOR --><b style="color:#{fri.USER_COLOR}"> <!-- ELSE --><b style="color:#000;"><!-- ENDIF -->{fri.USERNAME}</b><!-- IF fri.ONLINE_USER -->(<strong>{L_ONLINE}</strong>)<!-- ENDIF -->
 					<br /><!-- IF fri.FRI_AV --></span>{fri.FRI_AV_THUMB} <!-- ELSE --></span><img src="{T_THEME_PATH}/images/no-avatar.png" height="{fri.WIDTH}" width="{fri.WIDTH}" alt="Default Avatar" /><!-- ENDIF -->
 				</a>
 			</div>
 			<!-- END fri -->
 			
-		<ul class="linklist">
-		    <li class="rightside pagination">{TOTAL_FRIENDS} &bull; <!-- IF FRINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER_F}</a> &bull; <span>{FRINATION}</span><!-- ELSE -->{PAGE_NUMBER_F}<!-- ENDIF --></li>
-		</ul>
-	
+			<div class="friends-pagination">{TOTAL_FRIENDS} &bull; <a href="{U_VIEW_ALL}">{L_VIEW_ALL}</a> &bull; <!-- IF FRINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER_F}</a> &bull; <span>{FRINATION}</span><!-- ELSE -->{PAGE_NUMBER_F}<!-- ENDIF --></div>
 		</div>
 	</div>
 	<!-- ENDIF -->
 
 	
-	<div class="topic-actions">
+	<div id="comment-buttons">
 		<div class="buttons"><a href="#postingbox" id="add_comment" class="button2" title="Add Comment">{L_ADD_COMMENT}</a></div>
 		<div class="pagination">{TOTAL_COMMENT} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></div>
 	</div>
@@ -138,7 +129,7 @@
 	<!-- ELSE  -->
 	<form action="{NEW_COMMENT}" method="post" id="postform" name="comment">
 		<div class="profile-box" id="postingbox">
-			<h3 class="profile-header">{L_profileFILE_COMMENTS}</h3>
+			<h2 class="header">{L_profile_COMMENTS}</h2>
 			<div class="inner">
 				<fieldset class="fields1">
 					<!-- INCLUDE posting_buttons.html -->
@@ -154,7 +145,7 @@
 	</form>
 	<!-- ENDIF -->
 	
-	<div id="comment" class="profile-box">
+	<div id="comments" class="profile-box">
 		
 		<!-- IF ALLOW_FRIEND_VIEW -->
 			{L_ONLY_FRIEND} - <a href="{U_ADD_FRIEND}"><strong>{L_ADD_FRIEND}</strong></a><br />
@@ -162,21 +153,17 @@
 			<!-- IF TOTAL_COMMENT == 0 --> {L_NO_COMMENT} <!-- ENDIF -->
 	
 		<!-- BEGIN comment -->
-			<div class="commentrow<!-- IF comment.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --> hb_container">
-				<dl class="commentprofilefile">
-					<dt class="author"><!-- IF comment.COMMENT_AVATAR_THUMB -->{comment.COMMENT_AVATAR_THUMB}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" /><!-- ENDIF --></dt>
-				</dl>
-				<div class="commentbody">
-					<div class="content">
-						<div class="username">{comment.COMMENT_AUTHOR}
-							<ul class="hb">
-								<li><a href="{comment.U_USER_URL}#postform">{L_REPLY}</a></li><!-- IF comment.CAN_DELETE or (U_MCP or U_ACP) --><li class="delete-icon"><a href="{comment.U_DELETE_URL}"><span>{L_DELETE}</span></a></li><!-- ENDIF -->
-							</ul>
-						</div>
-						<div class="message">
-							{comment.COMMENT_TEXT}
-							<span class="date">{comment.COMMENT_DATE}</span>
-						</div>
+			<div class="comment<!-- IF comment.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --> hb_container">
+				<div class="avatar"><!-- IF comment.COMMENT_AVATAR_THUMB -->{comment.COMMENT_AVATAR_THUMB}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" /><!-- ENDIF --></div>
+				<div class="body">
+					<div class="username">{comment.COMMENT_AUTHOR}
+						<ul class="hb">
+							<li><a href="{comment.U_USER_URL}#postform">{L_REPLY}</a></li><!-- IF comment.CAN_DELETE or (U_MCP or U_ACP) --><li class="delete-icon"><a href="{comment.U_DELETE_URL}"><span>{L_DELETE}</span></a></li><!-- ENDIF -->
+						</ul>
+					</div>
+					<div class="message">
+						{comment.COMMENT_TEXT}
+						<span class="date">{comment.COMMENT_DATE}</span>
 					</div>
 				</div>	
 			</div>
@@ -187,7 +174,7 @@
 	
 	<!-- IF SIGNATURE -->
 	<div id="signature" class="profile-box">
-		<h3 class="profile-header">{L_SIGNATURE}</h3>
+		<h2 class="header">{L_SIGNATURE}</h2>
 		<div class="inner">
 			{SIGNATURE}
 		</div>

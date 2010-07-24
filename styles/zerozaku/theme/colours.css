@@ -152,25 +152,6 @@ hr.dashed {
 
 .leaderboard li a.posts { color: #000000; }
 
-/* Profile blocks
----------------------------------------- */
-h2.profile-header, h3.profile-header {
-	background: url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0 #E0E0E0;
-	border-color: #C0C0C0;
-	color: #666666;
-}
-
-#comment .commentrow:first-child {border-top-color: #D0D0D0;}
-#comment .commentrow {border-bottom-color: #D0D0D0;}
-
-#comment .date {color: #606060;}
-
-.profile-box {
-	background-color: #f6f6f6;
-	border: 1px solid #D0D0D0;
-	color: #212121;
-}
-
 /* Message box 
 ---------------------------------------- */
 #message p {color: #212121;}
