@@ -61,7 +61,7 @@ a img { border: none; }
 #profile {
 	text-align: left;
 	width: 960px;
-	margin-left: 20px;
+	margin: 51px 0 0 20px;
 	overflow: hidden;
 }
 
@@ -267,13 +267,13 @@ a img { border: none; }
 .breadcrumbs.simple {
 	text-align: left !important;
 	margin-bottom: 10px !important;
-	position: absolute:
-	top: 0;
-	left: 0;
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
 }
 
 .breadcrumbs.simple .navlinks {
-	padding: 0 20px;
+	padding: 0 20px !important;
 }
 
 /* Navbar
@@ -453,7 +453,7 @@ a img { border: none; }
 
 /* Profile blocks
 ---------------------------------------- */
-h2.pro-header, h3.pro-header {
+h2.profile-header, h3.profile-header {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.1666em;
 	font-weight: bold;
@@ -488,7 +488,7 @@ h2.pro-header, h3.pro-header {
 	margin-left: 0.5em;
 }
 
-#comment .commentprofile {
+#comment .commentprofilefile {
 	/* Also see tweaks.css */
 	min-height: 40px;
 	min-width: 40px;
@@ -499,7 +499,7 @@ h2.pro-header, h3.pro-header {
 	left: -40px;
 }
 
-#pro-friends .friend {
+#profile #friends .friend {
 	float: left;
 	margin: 10px;
 	height: 90px;
@@ -507,27 +507,27 @@ h2.pro-header, h3.pro-header {
 	overflow: hidden;
 }
 
-#pro-friends ul.linklist {
+#profile #friends ul.linklist {
 	float: right;
 }
 
-.pro-box {
+.profile-box {
 	margin-bottom: 20px;
 	overflow: hidden;
 	clear: both;
 }
 
-.pro-box .inner {
+.profile-box .inner {
 	padding: 10px 20px;
 	overflow: hidden;
 }
 
-.pro-box dl.details {
+.profile-box dl.details {
 	/*font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;*/
 	font-size: 1em;
 }
 
-.pro-box dl.details dt {
+.profile-box dl.details dt {
 	font-weight: bold;
 	float: left;
 	clear: left;
@@ -536,7 +536,7 @@ h2.pro-header, h3.pro-header {
 	display: block;
 }
 
-.pro-box dl.details dd {
+.profile-box dl.details dd {
 	margin-left: 0;
 	margin-bottom: 4px;
 	padding-left: 5%;

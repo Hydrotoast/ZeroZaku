@@ -4,7 +4,6 @@ var im_cfg = {
 	rootPath: '',
 	themePath: '',
 	rtl: 'ltr',
-	started: false
 };
 
 /** Online list - function - start **/

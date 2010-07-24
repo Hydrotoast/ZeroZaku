@@ -4607,7 +4607,7 @@ function phpbb_user_session_handler()
 // function to check if the friend is online or not.
 function is_user_online($id)
 {
-		global $db, $config;
+		global $auth, $db, $config;
 
         $session_sql = 'SELECT MAX(session_time) AS session_time, MIN(session_viewonline) AS session_viewonline
             FROM ' . SESSIONS_TABLE . '
@@ -4623,7 +4623,6 @@ function is_user_online($id)
         $db->sql_freeresult($session_sql);
 
         return $online;
-
 }
 
 

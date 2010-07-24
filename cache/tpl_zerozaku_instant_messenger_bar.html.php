@@ -137,7 +137,7 @@
 	</div>
 	
 	<div class="block-box rightside" id="im-online-list">
-		<div class="button"><img src="<?php echo (isset($this->_rootref['T_THEME_PATH'])) ? $this->_rootref['T_THEME_PATH'] : ''; ?>/images/im_list_<?php if ($this->_rootref['S_REG_USERS_ONLINE'] != ('0')) {  ?>online<?php } else { ?>offline<?php } ?>.gif" alt="<?php echo ((isset($this->_rootref['L_IM'])) ? $this->_rootref['L_IM'] : ((isset($user->lang['IM'])) ? $user->lang['IM'] : '{ IM }')); ?>" /> <?php echo ((isset($this->_rootref['L_IM'])) ? $this->_rootref['L_IM'] : ((isset($user->lang['IM'])) ? $user->lang['IM'] : '{ IM }')); ?> (<strong><?php echo (isset($this->_rootref['S_REG_USERS_ONLINE'])) ? $this->_rootref['S_REG_USERS_ONLINE'] : ''; ?></strong>)</div>
+		<div class="button"><?php echo ((isset($this->_rootref['L_IM'])) ? $this->_rootref['L_IM'] : ((isset($user->lang['IM'])) ? $user->lang['IM'] : '{ IM }')); ?> (<strong><?php echo (isset($this->_rootref['S_REG_USERS_ONLINE'])) ? $this->_rootref['S_REG_USERS_ONLINE'] : ''; ?></strong>)</div>
 		<div class="block">
 			<h3><?php echo ((isset($this->_rootref['L_ONLINE'])) ? $this->_rootref['L_ONLINE'] : ((isset($user->lang['ONLINE'])) ? $user->lang['ONLINE'] : '{ ONLINE }')); ?></h3>
 			<div class="bcontent links">

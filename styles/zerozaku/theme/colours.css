@@ -89,18 +89,18 @@ hr.dashed {
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	background: #212121;
-	color: #999999;
+	background: #212121 !important;
+	color: #999999 !important;
 }
 
-.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #C9D2D8; }
-.breadcrumbs .navlinks .icon-home a.index:hover, .breadcrumbs .navlinks .icon-home a.index:active { color: #FF0000; }
+.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #C9D2D8 !important; }
+.breadcrumbs .navlinks .icon-home a.index:hover, .breadcrumbs .navlinks .icon-home a.index:active { color: #FF0000 !important; }
 
 .breadcrumbs .navlinks .icon-home a:link, .breadcrumbs .navlinks .icon-home a:visited {
-	color: #999999;
-	text-decoration: none;
+	color: #999999 !important;
+	text-decoration: none !important;
 }
-.breadcrumbs .navlinks .icon-home a:hover, .breadcrumbs .navlinks .icon-home a:active { color: #FF0000; }
+.breadcrumbs .navlinks .icon-home a:hover, .breadcrumbs .navlinks .icon-home a:active { color: #FF0000 !important; }
 
 	/* Account actions box
 	--------------------------------------------- */
@@ -154,7 +154,7 @@ hr.dashed {
 
 /* Profile blocks
 ---------------------------------------- */
-h2.pro-header, h3.pro-header {
+h2.profile-header, h3.profile-header {
 	background: url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0 #E0E0E0;
 	border-color: #C0C0C0;
 	color: #666666;
@@ -165,7 +165,7 @@ h2.pro-header, h3.pro-header {
 
 #comment .date {color: #606060;}
 
-.pro-box {
+.profile-box {
 	background-color: #f6f6f6;
 	border: 1px solid #D0D0D0;
 	color: #212121;

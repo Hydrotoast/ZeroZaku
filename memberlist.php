@@ -494,21 +494,18 @@ switch ($mode)
 	}
 
 	// count some stuff up for the pagination
-	$sql = 'SELECT COUNT(zebra_id) AS number_friends FROM '. ZEBRA_TABLE ." WHERE user_id=$user_id AND friend = 1";
-	$result = $db->sql_query($sql);
 	$pagination_friend = append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$user_id);
-	
-		$total_friends = $db->sql_fetchfield('number_friends');
-		$db->sql_freeresult($result);
-	
-		$template->assign_vars(array(
-	    	'FRINATION'        => generate_pagination($pagination_friend, $total_friends, $limit, $start),
-	    	'PAGE_NUMBER_F'       => on_page($total_friends, $limit, $start),
-	    	'TOTAL_FRIENDS'       => ($total_friends == 1) ? $user->lang['LIST_FRIEND'] : sprintf($user->lang['LIST_FRIENDS'], $total_friends),
-			'S_NO_FRIENDS'		=> ($total_friends == 0) ? true : false,
-	    	'U_VIEW_ALL' 		=> append_sid("{$phpbb_root_path}friend_list.$phpEx", "u=$user_id"),
-		));
-	
+    
+	$total_friends = $result->num_rows;
+	$db->sql_freeresult($result);
+
+	$template->assign_vars(array(
+    	'FRINATION'        => generate_pagination($pagination_friend, $total_friends, $limit, $start),
+    	'PAGE_NUMBER_F'       => on_page($total_friends, $limit, $start),
+    	'TOTAL_FRIENDS'       => ($total_friends == 1) ? $user->lang['LIST_FRIEND'] : sprintf($user->lang['LIST_FRIENDS'], $total_friends),
+		'S_NO_FRIENDS'		=> ($total_friends == 0) ? true : false,
+    	'U_VIEW_ALL' 		=> append_sid("{$phpbb_root_path}friend_list.$phpEx", "u=$user_id"),
+	));
 	// END FRIENDS LIST
 	
 	// Is the comment mod enabled ?
