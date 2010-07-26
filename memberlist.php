@@ -488,7 +488,7 @@ switch ($mode)
       		'WIDTH'				=> $avatar_size_size,
          	'USER_COLOR' 		=> $row_av['user_colour'],
       		'AV_LINK'   		=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=viewprofile&amp;u=$zebra_id"),  
-      		'FRI_AV_THUMB'   	=>   ($row_av['user_avatar']) ? get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], ($row_av['user_avatar_width'] > $row_av['user_avatar_height']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_height']) * $row_av['user_avatar_width'], ($row_av['user_avatar_height'] > $row_av['user_avatar_width']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_width']) * $row_av['user_avatar_height']) : '',
+      		'FRI_AV_THUMB'   	=> ($row_av['user_avatar']) ? get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], ($row_av['user_avatar_width'] > $row_av['user_avatar_height']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_height']) * $row_av['user_avatar_width'], ($row_av['user_avatar_height'] > $row_av['user_avatar_width']) ? $avatar_size_size : ($avatar_size_size / $row_av['user_avatar_width']) * $row_av['user_avatar_height']) : '',
       		'ONLINE_USER'		=> is_user_online($zebra_id)
 		));
 	}
