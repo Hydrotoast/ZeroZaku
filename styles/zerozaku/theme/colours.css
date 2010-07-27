@@ -1075,21 +1075,31 @@ fieldset.display-options label {color: #FFFFFF;}
 
 /* CSS Dropdown */
 .dropdown > span {
-	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") scroll repeat-x;
-	border: 1px solid #999999;
+	background-color: #444444;
+	border-color: #606060;
+}
+
+.dropdown > span a { color: #C9D2D8; }
+.dropdown:hover > span a { color: #2D587E; }
+
+.dropdown:hover > span {
+	background-color: #F6F6F6;
+	border-color: #F6F6F6;
+	color: #212121;
 }
 
 .dropdown ul {
-	background: #EEEEEE;
-	border-color: #999999;
+	background-color: #444444;
+	border-color: #606060;
 }
 
 .dropdown ul a:link, .dropdown ul a:visited {
-	border-bottom-color: #D0D0D0;
-	color: #2D587E;
-}
+	color: #FFFFFF !important;
+} /* 2D587E */
 
-.dropdown ul li a:hover {background: #C9D2D8;}
+.dropdown ul li a:hover {
+	color: #C9D2D8 !important;
+} /* #C9D2D8 */
 .dropdown ul li span {background: none;}
 
 /* CSS Tabs */

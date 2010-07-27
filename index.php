@@ -91,7 +91,7 @@ function get_db_stat($mode)
 }
 
 
-// Get user statuses
+// BEGIN USER STATUSES
 $sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
 	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
 		ON uim.user_id = u.user_id
@@ -106,6 +106,7 @@ while($row = $db->sql_fetchrow($result))
 	    'STATUS'	=> $row['user_status'],
 	));
 }
+// END USER STATUSES
 
 // Grab group details for legend display
 if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))

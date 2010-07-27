@@ -137,7 +137,7 @@ a img { border: none; }
 	line-height: 1.5em;
 	float: right;
 	height: inherit;
-	max-width: 175px;
+	max-width: 360px;
 	width: auto;
 	white-space: nowrap; /* For Opera */
 	z-index: 9999;
@@ -145,15 +145,6 @@ a img { border: none; }
 
 #usernav-box a {
 	text-decoration: none;
-}
-
-#usernav-box .dropdown {
-	float: right;
-}
-
-#usernav-box .dropdown li {
-	line-height: 2em;
-	width: 100%;
 }
 
 /* Account actions box
@@ -164,7 +155,11 @@ a img { border: none; }
 }
 
 #account-actions li {
-	line-height: 22px;
+	margin-left: 10px;
+}
+
+#account-actions li {
+	line-height: 25px;
 	word-spacing: 10px;
 	list-style-type: none;
 	display: inline;

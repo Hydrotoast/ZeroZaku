@@ -126,25 +126,29 @@ window.onunload = function()
 		<ul class="navlinks">
 			<!-- IF not S_IS_BOT -->
 			<li id="usernav-box">
-				<!-- IF S_USER_LOGGED_IN -->
-				<div class="dropdown">
-					<span>{S_USERNAME_FULL} <img src="{T_THEME_PATH}/images/dropdown_arrow.png" alt="Arrow" /></span>
-					<ul>
-						<li><a href="{U_UM_MAIN_SUBSCRIBED}">{L_UM_MAIN_SUBSCRIBED}</a></li>
-						<!-- IF U_MCP -->
-							<li><a href="{U_MCP}">{L_MCP}</a></li>
-						<!-- ENDIF -->
-						<!-- IF U_ACP -->
-							<li><a href="{U_ACP}">{L_M_ACP}</a></li>
-						<!-- ENDIF -->
-						<li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
-					</ul>
-				</div>
-				<!-- ELSEIF not S_USER_LOGGED_IN -->
 				<ul id="account-actions">
+				<!-- IF S_USER_LOGGED_IN -->
+					<li>{S_USERNAME_FULL} | </li>
+					
+					<!-- IF U_PROFILE -->
+					<div class="dropdown">
+						<span><a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="e">{L_M_UCP}</a></span>
+						<ul>
+							<li><a href="{U_ACCOUNT_SETTINGS}" title="{L_ACCOUNT_SETTINGS}">{L_ACCOUNT_SETTINGS}</a></li> 
+							<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">{L_MANAGE_FRIENDS}</a></li>                   
+							<li><a href="{U_MANAGE_BOOKMARKS}" title="{L_MANAGE_BOOKMARKS}">{L_MANAGE_BOOKMARKS}</a></li>
+							<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">{L_SEARCH_SELF}</a></li><!-- ENDIF -->
+					    </ul>
+					</div>
+					<!-- ENDIF -->
+					
+					<!-- IF U_MCP --><li> | <a href="{U_MCP}" title="{L_MCP}">{L_M_MCP}</a></li><!-- ENDIF -->
+					<!-- IF U_ACP --><li> | <a href="{U_ACP}" title="{L_ACP}">{L_M_ACP}</a></li><!-- ENDIF -->
+						<li> | <a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
+				<!-- ELSEIF not S_USER_LOGGED_IN -->
 					<li><a href="{U_LOGIN_LOGOUT}" class="quick" title="{L_LOGIN}" accesskey="l" rel="#quicklogin">{L_LOGIN}</a><!-- IF S_REGISTER_ENABLED --> or <a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></li>
-				</ul>
 				<!-- ENDIF -->
+				</ul>
 			</li>
 			<!-- ENDIF -->
 			
