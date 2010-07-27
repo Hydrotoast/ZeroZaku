@@ -1,1 +1,0 @@
-<?php if (!defined('IN_PHPBB')) exit; ?><!-- version $Id: additional_blocks_right.html 426 2008-12-06 19:09:19Z Christian_N $ //--><!-- additional_blocks //-->

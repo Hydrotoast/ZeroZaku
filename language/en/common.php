@@ -934,6 +934,10 @@ $lang = array_merge($lang, array(
 
 	'BLURB_WELCOME'		=> '',
 	'BLURB_BODY'		=> 'Hello, please stay a while. We have programs, signatures and coffee. Man, we\'re cool.',
+	
+	'M_UCP'		=> 'User CP',
+	'M_MCP'		=> 'MCP',
+	'M_ACP'		=> 'ACP',
 ));
 
 // BEGIN FRIEND REQUESTS

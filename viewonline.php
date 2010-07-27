@@ -197,7 +197,7 @@ while ($row = $db->sql_fetchrow($result))
 	{
 		case 'index':
 			$location = $user->lang['INDEX'];
-$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
+            $location_url = append_sid("{$phpbb_root_path}index.$phpEx");
 		break;
 		case 'client_check':
 			$location = $user->lang['USING_ZZ_CLIENT'];

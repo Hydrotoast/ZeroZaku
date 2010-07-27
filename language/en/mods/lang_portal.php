@@ -139,7 +139,6 @@ $lang = array_merge($lang, array(
 	// main menu
 	'M_MENU' 	=> 'Menu',
 	'M_CONTENT'	=> 'Content',
-	'M_ACP'		=> 'ACP',
 	'M_HELP'	=> 'Help',
 	'M_BBCODE'	=> 'BBCode FAQ',
 	'M_TERMS'	=> 'Terms of use',

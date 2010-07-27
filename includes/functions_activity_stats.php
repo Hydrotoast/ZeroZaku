@@ -44,9 +44,9 @@ function activity_mod()
 	// 24 hour users online list, assign to the template block: lastvisit
 	foreach ($active_users as $row)
 	{
-			$template->assign_block_vars('lastvisit', array(
-				'USERNAME_FULL'	=> get_username_string((($row['user_type'] == USER_IGNORE) ? 'no_profile' : 'full'), $row['user_id'], $row['username'], $row['user_colour']),
-			));
+		$template->assign_block_vars('lastvisit', array(
+			'USERNAME_FULL'	=> get_username_string((($row['user_type'] == USER_IGNORE) ? 'no_profile' : 'full'), $row['user_id'], $row['username'], $row['user_colour']),
+		));
 	}
 
 	// assign the stats to the template.
