@@ -122,7 +122,7 @@ table#recent {
 	height: 21px;
 }
 
-.dropdown span.banned {
+span.banned {
 	text-decoration: line-through;
 }
 
