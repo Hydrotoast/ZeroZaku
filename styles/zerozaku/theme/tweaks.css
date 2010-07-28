@@ -122,7 +122,11 @@ table#recent {
 	height: 21px;
 }
 
+<<<<<<< HEAD
 span.banned {
+=======
+.dropdown span.banned {
+>>>>>>> 180d656... excluded cache folder from git
 	text-decoration: line-through;
 }
 

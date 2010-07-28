@@ -739,8 +739,7 @@ function smiley_text($text, $force_option = false)
 	}
 	else
 	{
-		$root_path = generate_board_url(false, 'cdn') . '/';
-		return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img src="' . $root_path . $config['smilies_path'] . '/\2 />', $text);
+		return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img src="' . $phpbb_root_path . $config['smilies_path'] . '/\2 />', $text);
 	}
 }
 
