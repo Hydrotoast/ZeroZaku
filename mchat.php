@@ -899,14 +899,12 @@ switch ($mchat_mode)
 		 
 				if(sizeof($smilies))
 				{
-				    $root_path = generate_board_url(false, 'cdn') . '/';
-				    
 					foreach($smilies as $row)
 					{
 						$template->assign_block_vars('mchatsmilerow', array(
 							'MCHAT_SMILE_CODE'		=> $row['code'],
 							'MCHAT_SMILE_EMOTION'	=> $row['emotion'],
-							'MCHAT_SMILE_IMG'		=> $root_path.$config['smilies_path'].'/'.$row['smiley_url'],
+							'MCHAT_SMILE_IMG'		=> $phpbb_root_path.$config['smilies_path'].'/'.$row['smiley_url'],
 							'MCHAT_SMILE_WIDTH'		=> $row['smiley_width'],
 							'MCHAT_SMILE_HEIGHT'	=> $row['smiley_height']
 						));

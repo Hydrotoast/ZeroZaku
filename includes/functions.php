@@ -4171,7 +4171,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// Determine board url - we may need it later
 	$board_url = generate_board_url() . '/';
 	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : $phpbb_root_path;
-	$cdn_path = generate_board_url(false, 'cdn') . '/';
 
 	// Which timezone?
 	$tz = ($user->data['user_id'] != ANONYMOUS) ? strval(doubleval($user->data['user_timezone'])) : strval(doubleval($config['board_timezone']));
@@ -4343,7 +4342,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'T_THEME_PATH'			=> "{$web_path}styles/" . $user->theme['theme_path'] . '/theme',
 		'T_TEMPLATE_PATH'		=> "{$web_path}styles/" . $user->theme['template_path'] . '/template',
 		'T_SUPER_TEMPLATE_PATH'	=> (isset($user->theme['template_inherit_path']) && $user->theme['template_inherit_path']) ? "{$web_path}styles/" . $user->theme['template_inherit_path'] . '/template' : "{$web_path}styles/" . $user->theme['template_path'] . '/template',
-		'T_IMAGESET_PATH'		=> "{$cdn_path}styles/" . $user->theme['imageset_path'] . '/imageset',
+		'T_IMAGESET_PATH'		=> "{$web_path}styles/" . $user->theme['imageset_path'] . '/imageset',
 		'T_IMAGESET_LANG_PATH'	=> "{$web_path}styles/" . $user->theme['imageset_path'] . '/imageset/' . $user->data['user_lang'],
 		'T_IMAGES_PATH'			=> "{$web_path}images/",
 		'T_SMILIES_PATH'		=> "{$web_path}{$config['smilies_path']}/",
