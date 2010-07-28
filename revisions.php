@@ -3,7 +3,7 @@
 if(exec_enabled())
 {
 	$logs = array();
-	$log = exec('GIT_DIR=/var/www/vhosts/zerozaku.com/production.git git log --pretty=format:"%cd:::%s"', $logs);
+	$log = exec('GIT_DIR=/var/www/vhosts/zerozaku.com/production.git git log --pretty=format:"%h:::%cd:::%s:::%an"', $logs);
 	
 	// Prevent caching
 	header('Content-Type: application/json; charset=UTF8');
