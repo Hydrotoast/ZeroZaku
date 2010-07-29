@@ -390,7 +390,7 @@ a img { border: none; }
 	overflow: hidden;
 }
 
-.leaderboard li span {
+.leaderboard li span, .rec_friend li .username, .rec_friend li .username-coloured {
 	float: right;
 }
 
