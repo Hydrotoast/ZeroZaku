@@ -79,18 +79,16 @@ class ucp_profile
 							WHERE user_id = ' . (int) $user->data['user_id'];
 					$db->sql_query($sql);
 		        }
-		        else
-		        {
-		            $sql = 'SELECT user_css FROM ' . USERS_TABLE . '
-						WHERE user_id = ' . $user->data['user_id'];
-					$result = $db->sql_query($sql);
-					$user_css = stripslashes($db->sql_fetchfield('user_css'));
-					$db->sql_freeresult($result);
-					
-			        $template->assign_vars(array(
-					    'USER_CSS'	    => $user_css,
-					));
-		        }
+		        
+	            $sql = 'SELECT user_css FROM ' . USERS_TABLE . '
+					WHERE user_id = ' . $user->data['user_id'];
+				$result = $db->sql_query($sql);
+				$user_css = stripslashes($db->sql_fetchfield('user_css'));
+				$db->sql_freeresult($result);
+				
+		        $template->assign_vars(array(
+				    'USER_CSS'	    => $user_css,
+				));
 		        
 		        break;
 			case 'reg_details':
