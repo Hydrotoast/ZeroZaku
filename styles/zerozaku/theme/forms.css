@@ -176,6 +176,10 @@ fieldset.display-options a {
 	border-radius: 5px;
 }
 
+fieldset.display-options a.left, fieldset.display-options a.right { border: none; }
+fieldset.display-options a.left { padding-left: 30px; }
+fieldset.display-options a.right { padding-right: 30px; }
+
 /* Display actions for ucp and mcp pages */
 fieldset.display-actions {
 	line-height: 2em;
