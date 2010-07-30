@@ -74,7 +74,7 @@ $language_data = array (
             'EnableSendfile','ErrorDocument','ErrorLog','FileETag','ForceType',
             'HostnameLookups','Include','LimitInternalRecursion',
             'LimitRequestBody','LimitRequestFields','LimitRequestFieldsize',
-            'LimitRequestLine','LimitXMLRequestBody','LogLevel','MaxMemFree',
+            'LimitRequestLine','LimitXMLRequestBody','LogLevel','MaxMeMFee',
             'MaxRequestsPerChild','NameVirtualHost','Options','PidFile','Port',
             'Protocol','Require','RLimitCPU','RLimitMEM','RLimitNPROC',
             'Satisfy','ScoreBoardFile','ServerAdmin','ServerAlias','ServerName',

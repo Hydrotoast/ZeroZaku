@@ -857,36 +857,8 @@ switch ($mode)
 		// END REPUTATION
 		
 		// BEGIN MUTUAL FRIENDS	
-		if($user_id != $user->data['user_id'])
-		{
-			$sql = 'SELECT z1.*, z2.*, u.username, u.user_colour, u.user_avatar, u.user_avatar_type 
-				FROM ' . USERS_TABLE . ' u
-				JOIN ' . ZEBRA_TABLE . ' z1 ON z1.friend = 1 
-					AND ((u.user_id = z1.user_id AND z1.zebra_id = ' . $user->data['user_id'] . ')
-						OR (u.user_id = z1.zebra_id AND z1.user_id = ' . $user->data['user_id'] . '))
-				JOIN ' . ZEBRA_TABLE . ' z2 ON z2.friend = 1 
-					AND ((u.user_id = z2.user_id AND z2.zebra_id = ' . $user_id . ')
-						OR (u.user_id = z2.zebra_id AND z2.user_id = ' . $user_id . '))
-				ORDER BY u.username_clean ASC';
-			$result = $db->sql_query($sql);
-			
-			while($row = $db->sql_fetchrow($result))
-			{
-			    $zebra_id = ($row['zebra_id'] === $user->data['user_id']) ? $row['user_id'] : $row['zebra_id'];
-			    
-			     $template->assign_block_vars('mutual_friend', array(
-			     	'USER_ID'	    => $zebra_id,
-			        'USERNAME'	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
-			    ));
-			}
-			$mfr_total = $result->num_rows;
-			$db->sql_freeresult($result);
-			
-			$template->assign_vars(array(
-			    'MFR'		=> true,
-			    'MFR_TOTAL' => $mfr_total,
-			));
-		}
+		include($phpbb_root_path . 'includes/functions_mutual_friends.' . $phpEx);
+		get_mutual_friends($user_id);
 		// END MUTUAL FRIENDS
 		
 		if (!empty($profile_fields['row']))

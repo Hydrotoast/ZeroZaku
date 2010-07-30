@@ -16,13 +16,13 @@
 	<ul class="topiclist">
 		<li class="header">
 			<dl class="meta">
-				<dt class="no-icon"><div class="inner">{L_FRIENDS}</div></dt>
+				<dt class="no-icon"><div class="inner">{L_FRIEND_REQUESTS}</div></dt>
 				<dd class="mark">{L_ADD}</dd>
 			</dl>
 		</li>
 	</ul>
 	<ul class="topiclist cplist">
-		<!-- IF zebra -->
+		<!-- IF TOTAL > 0 -->
 		<!-- BEGIN zebra -->
 		<li class="row<!-- IF zebra.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 			<dl>
@@ -34,7 +34,7 @@
 		</li>
 		<!-- END zebra -->
 		<!-- ELSE -->
-			<strong>{L_NO_FRIENDS}</strong>
+			<dl><dt class="no-icon"><div class="inner"><span>{L_NO_FRIEND_REQUESTS}<span></div></dt></dl>
 		<!-- ENDIF -->
 	</ul>
 

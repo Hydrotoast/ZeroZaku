@@ -186,10 +186,10 @@ $lang = array_merge($lang, array(
 	'POSTS_PER_TOPIC_ZERO'		=> 'Beiträge pro Thema: <strong>0</strong>',
 
 	// Poll
-	'POLL'		=> 'Umfrage',
-	'LATEST_POLLS'					=> 'Neueste Umfragen',
-	'NO_OPTIONS'						=> 'Diese Umfrage verfügt über keine Optionen.',
-	'NO_POLL'							=> 'Derzeit gibt es keine aktuellen Umfragen',
+	'POLL'		=> 'UMFage',
+	'LATEST_POLLS'					=> 'Neueste UMFagen',
+	'NO_OPTIONS'						=> 'Diese UMFage verfügt über keine Optionen.',
+	'NO_POLL'							=> 'Derzeit gibt es keine aktuellen UMFagen',
 	'RETURN_PORTAL'					=> '%sZurück zum Portal%s',
 
 	// other

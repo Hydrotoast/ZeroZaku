@@ -256,7 +256,7 @@ $language_data = array (
             'ehllapiFindFieldPos', 'ehllapiFindFieldLen', 'ehllapiDisconnectPS', 'ehllapiCvtRCToPos', 'ehllapiCvtPosToRC',
             'ehllapiCopyTextToPS', 'ehllapiCopyTextToField', 'ehllapiCopyTextFromPS', 'ehllapiCopyTextFromField', 'ehllapiCopyOIA',
             'ehllapiConnectPS', 'dunItemize', 'dunDisconnect', 'dunConnectEx', 'dunConnect', 'dsTestParam', 'dsSIDtoHexStr', 'dsSetSecProp',
-            'dsSetProperty', 'dsSetPassword', 'dsSetObj', 'dsSetCredentX', 'dsSetCredent', 'dsRemFromGrp', 'dsRelSecObj', 'dsMoveObj',
+            'dsSetProperty', 'dsSetPassword', 'dsSetObj', 'dsSetCredentX', 'dsSetCredent', 'dsReMFomGrp', 'dsRelSecObj', 'dsMoveObj',
             'dsIsObject', 'dsIsMemberGrp', 'dsIsContainer', 'dsGetUsersGrps', 'dsGetSecProp', 'dsGetPropName', 'dsGetProperty',
             'dsGetPrntPath', 'dsGetPrimGrp', 'dsGetMemGrp', 'dsGetInfo', 'dsGetClass', 'dsGetChldPath', 'dsFindPath', 'dsDeleteObj',
             'dsCreatSecObj', 'dsCreateObj', 'dsCopySecObj', 'dsAddToGrp', 'dsAclRemAce', 'dsAclOrderAce', 'dsAclGetAces', 'dsAclAddAce',

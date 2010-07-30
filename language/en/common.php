@@ -940,14 +940,6 @@ $lang = array_merge($lang, array(
 	'M_ACP'		=> 'ACP',
 ));
 
-// BEGIN FRIEND REQUESTS
-$lang = array_merge($lang, array(
-    'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
-	'NEW_FRIEND_REQUESTS'			=> 'You have %s new friend requests.',
-	'NO_FRIEND_REQUESTS'			=> 'You have no new friend requests.',
-));
-// END FRIEND REQUESTS
-
 // XS Syntax Highlighter
 $lang = array_merge($lang, array(
 	'XS_SH_INFO_VERSION'	=> 'Syntax Highlighter based on the XS BBCode parser.',
@@ -992,8 +984,15 @@ $lang = array_merge($lang, array(
 
 // BEGIN MUTUAL FRIENDS
 $lang = array_merge($lang, array(
-	'MFR_FRIENDS_SHARED'			=> 'Friends shared',
-	'MFR_PEOPLE_LIKE'				=> 'People you might like',
+    'FRIEND_REQUEST'				=> 'Friend request',
+    'FRIEND_REQUESTS'				=> 'Friend requests',
+    'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
+	'NEW_FRIEND_REQUESTS'			=> 'You have %s new friend requests.',
+	'NO_FRIEND_REQUESTS'			=> 'You have no new friend requests.',
+
+    'MUTUAL_FRIENDS'				=> 'Mutual friends',
+	'MF_FRIENDS_SHARED'			    => 'Friends shared',
+	'MF_PEOPLE_LIKE'				=> 'People you might like',
 
 	'UCP_ZEBRA_PENDING'				=> 'Manage requests',
 	'NOT_ADDED_FRIENDS_PENDING'	    => 'You already have a friend request from one of these users. Check your requests to add them to your friends list.',

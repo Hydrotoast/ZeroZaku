@@ -180,7 +180,7 @@ $language_data = array (
             'overState', 'outsideCutoff', 'os', 'orientation', 'open',
             'opaqueBackground', 'onPlayStatus', 'onMetaData', 'onCuePoint',
             'offsetPoint', 'offset', 'objectID', 'objectEncoding', 'numLock',
-            'numLines', 'numFrames', 'numChildren', 'normalize', 'noise',
+            'numLines', 'nuMFames', 'numChildren', 'normalize', 'noise',
             'nodeValue', 'nodeType', 'nodeName', 'nodeKind', 'noAutoLabeling',
             'nextValue', 'nextSibling', 'nextScene', 'nextNameIndex',
             'nextName', 'nextFrame', 'netStatus', 'navigateToURL',
