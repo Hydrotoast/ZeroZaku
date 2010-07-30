@@ -1,0 +1,16 @@
+<!-- IF ANNOUNCEMENT_ENABLE -->
+		<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW or ANNOUNCEMENT_SHOW-->
+		<!-- IF ANNOUNCEMENT_ENABLE_GUESTS and not S_USER_LOGGED_IN and not ANNOUNCEMENT_SHOW_EVERYONE and not ANNOUNCEMENT_SHOW-->
+			<!-- ELSEIF ANNOUNCEMENT_SHOW-->
+			
+			<div class="panel info">
+				<img src="{T_THEME_PATH}/images/info.png" alt="{L_INFORMATION}" /><p>
+				<strong><!-- IF ANNOUNCEMENT_TITLE -->{ANNOUNCEMENT_TITLE}<!-- ELSE -->{L_ANNOUNCEMENT_TITLE}<!-- ENDIF -->:</strong> {ANNOUNCEMENT_TEXT}
+				<!-- IF U_ANNOUNCEMENT_GOTOPOST -->
+					 (<a href="{U_ANNOUNCEMENT_GOTOPOST}" >{L_ANNOUNCEMENT_GOTOPOST}</a>)							
+				<!-- ENDIF --></p>
+			</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+<!-- ENDIF -->
+
