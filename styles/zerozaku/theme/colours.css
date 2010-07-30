@@ -180,7 +180,6 @@ hr.dashed {
 
 .forumbg {
 	background-color: #FFFFFF;
-	background-image: url("{T_THEME_PATH}/images/bg_header.gif");
 	border-bottom: 4px solid #777777;
 }
 
@@ -321,7 +320,6 @@ dl.details dd {color: #212121}
 }
 
 /* Pagination in viewforum for multipage topics */
-.row .pagination {background: url("{T_THEME_PATH}/images/icon_pages.gif");}
 .row .pagination span a, li.pagination span a {background: #FFFFFF;}
 .row .pagination span a:hover, li.pagination span a:hover {background: #C9D2D8;}
 
@@ -462,10 +460,15 @@ a.top {background-image: url("{IMG_ICON_BACK_TOP_SRC}");}
 a.top2 {background-image: url("{IMG_ICON_BACK_TOP_SRC}");}
 
 /* Arrow links  */
+a.up, a.down, a.left, a.right { 	
+	background-color: transparent;
+	background-repeat: none;
+}
+
 a.up		{ background-image: url("{T_THEME_PATH}/images/arrow_up.gif"); }
 a.down		{ background-image: url("{T_THEME_PATH}/images/arrow_down.gif"); }
-a.left		{ background-image: url("{T_THEME_PATH}/images/arrow_left.gif"); color: #FF530D;}
-a.right		{ background-image: url("{T_THEME_PATH}/images/arrow_right.gif"); color: #FF530D;}
+a.left		{ background: url("{T_THEME_PATH}/images/arrow_left.png") no-repeat scroll center left transparent; color: #FF530D;}
+a.right		{ background: url("{T_THEME_PATH}/images/arrow_right.png") no-repeat scroll center right transparent; color: #FF530D;}
 
 a.up:hover {background-color: transparent;}
 a.left:hover, a.right:hover {color: #FF0000;}
@@ -1062,13 +1065,20 @@ input.search { background: transparent url("{T_THEME_PATH}/images/search_bg.png"
 input.disabled { color: #666666; }
 
 /* Display topics in viewforum/viewtopic pages */
-fieldset.display-options {background: #000000 url("{T_THEME_PATH}/images/gradient_bg3.gif") scroll repeat-x 0 -1px;}
+fieldset.display-options { background: #000000; }
 fieldset.display-options a {
 	background-color: #000000;
 	border-color: #212121;
 	color: #ffffff;
 }
-fieldset.display-options label {color: #FFFFFF;}
+
+fieldset.display-options a.left, fieldset.display-options a.right {
+	background-color: transparent;
+	border-color: transparent;
+	color: #ffffff;
+}
+
+fieldset.display-options label { color: #FFFFFF; }
 
 /* Widgets
 --------------------------------------------- */
