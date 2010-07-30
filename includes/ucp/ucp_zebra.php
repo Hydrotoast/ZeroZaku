@@ -246,22 +246,23 @@ class ucp_zebra
 											$db->sql_transaction('commit');
 									        break;
 									    case 'friends':
-									        $sql = 'UPDATE ' . USERS_TABLE . '
-										    	SET friend_requests = friend_requests+1
-										    	WHERE user_id = ' . $user->data['user_id'];
-										    $db->sql_query($sql);
-									        
+									        $db->sql_transaction('begin');
 											$sql_ary = array();
 											foreach ($user_id_ary as $zebra_id)
 											{
+											    $sql = 'UPDATE ' . USERS_TABLE . '
+											    	SET friend_requests = friend_requests+1
+											    	WHERE user_id = ' . $zebra_id;
+											    $db->sql_query($sql);
+											    
 												$sql_ary[] = array(
 													'user_id'		=> (int) $user->data['user_id'],
 													'zebra_id'		=> (int) $zebra_id,
 													'pending'		=> 1
 												);
-											}
-											
+											}	
 											$db->sql_multi_insert(ZEBRA_TABLE, $sql_ary);
+											$db->sql_transaction('commit');
 									        break;
 									    case 'foes':
 									        $sql_mode = ($mode == 'friends') ? 'pending' : 'foe';
