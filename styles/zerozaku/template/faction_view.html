@@ -1,0 +1,29 @@
+<!-- DEFINE $CA_PAGE = 'faction' --><!-- INCLUDE overall_header.html -->
+<div id="center">
+	<div id="faction">
+		
+		<div class="details">
+			<div class="inner">
+				<!-- IF FACTION_NAME --><h2 class="name"<!-- IF FACTION_COLOUR --> style="color:#{FACTION_COLOUR};"<!-- ENDIF -->><img src="{FACTION_BANNER}" alt="{FACTION_NAME}" /></h2><!-- ENDIF -->
+				<dl>
+					<dt>{L_FACTION_FOUNDER}:</dt><dd>{FACTION_FOUNDER}</dd>
+				  	<dt>{L_FACTION_TOTAL_USERS}:</dt><dd>consectetuer adipiscing elit.</dd>
+				</dl>
+				
+				<ul class="buttons">
+					<li><a class="button2" href="{U_FACTION_MEMBERS}" title="{L_FACTION_MEMBERS}">{L_FACTION_MEMBERS}</a></li>
+					<!-- BEGIN block_request -->
+					<li><a class="button1" href="{block_request.U_FACTION_REQUEST}" title="{L_FACTION_JOIN}">{L_FACTION_JOIN}</a></li>
+					<!-- END block_request -->
+				</ul>
+			</div>
+		</div>
+		
+		<div class="desc_disp">
+			<div class="inner">
+				{FACTION_DESC_DISP}
+			</div>		
+		</div>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,32 @@
+<!-- DEFINE $CA_PAGE = 'faction' --><!-- INCLUDE overall_header.html -->
+<div id="center">
+	<div id="faction">
+		
+		<h2 class="pagetitle">{L_CREATE_FACTION}</h2>
+		<div class="forumbg forumbg-table">
+			<div class="inner">
+				<form action="{U_ACTION}" method="post">
+				<table class="table1" cellspacing="1">
+					<tbody>
+						<tr class="bg1">
+							<td class="row1"><b>{L_FACTION_NAME}</b>:</td><td class="row2"><input type="text" class="inputbox autowidth" name="faction_name" /></td>
+						</tr>
+						<tr class="bg1">
+							<td class="row1"><b>{L_FACTION_LOGO}</b>:</td><td class="row2"><input type="text" class="inputbox autowidth" name="faction_logo" /></td>
+						</tr>
+						<tr class="bg1">
+							<td class="row1" valign="top"><b>{L_FACTION_DESC}</b>:</td><td class="row2"><textarea name="faction_desc" cols="40" rows="5" class="inputbox narrow"></textarea></td>
+						</tr>
+						<tr class="bg2">
+							<td class="row3" colspan="2" align="center"><input type="submit" name="submit" value="{L_SUBMIT}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button2" /></td>
+						</tr>
+					</tbody>
+				</table>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
