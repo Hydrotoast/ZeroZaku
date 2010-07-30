@@ -38,7 +38,7 @@ function get_mutual_friends($user_id)
 		{
 		    $zebra_id = ($row['zebra_id'] === $user_id) ? $row['user_id'] : $row['zebra_id'];
 		    
-		     $template->assign_block_vars('mutual_friend', array(
+		    $template->assign_block_vars('mutual_friend', array(
 		     	'USER_ID'	    => $zebra_id,
 		        'USERNAME'	    => get_username_string(($row['user_type'] <> USER_IGNORE) ? 'full' : 'no_profile', $zebra_id, $row['username'], $row['user_colour']),
 		        'S_FIRST'		=> (($rows === 0) ? true : false)
