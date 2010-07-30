@@ -163,17 +163,17 @@ $lang = array_merge($lang, array(
 	'PORTAL_LAST_VISITED_BOTS_NUMBER_EXPLAIN'	=> '0 bedeutet unbegrenzt',
 
 	// polls   
-	'ACP_PORTAL_POLLS_SETTINGS'					=> 'Einstellungen für Umfragen',
-	'ACP_PORTAL_POLLS_SETTINGS_EXPLAIN'			=> 'Hier kannst du die Einstellungen für Umfragen ändern.',
-	'PORTAL_POLL_TOPIC'							=> 'Umfragen-Block anzeigen',
+	'ACP_PORTAL_POLLS_SETTINGS'					=> 'Einstellungen für UMFagen',
+	'ACP_PORTAL_POLLS_SETTINGS_EXPLAIN'			=> 'Hier kannst du die Einstellungen für UMFagen ändern.',
+	'PORTAL_POLL_TOPIC'							=> 'UMFagen-Block anzeigen',
 	'PORTAL_POLL_TOPIC_EXPLAIN'					=> 'Diesen Block auf dem Portal anzeigen.',
-	'PORTAL_POLL_TOPIC_ID'						=> 'Umfragen Foren ID(s)',
-	'PORTAL_POLL_TOPIC_ID_EXPLAIN'				=> 'Die ID(s) der Foren, aus welchen die Umfragen angezeigt werden sollen. Frei lassen, um aus allen Foren anzeigen zu lassen. Mit Komma trennen, wenn aus mehreren ausgewählten Foren angezeigt werden soll, z.B. 1,2,5',
-	'PORTAL_POLL_LIMIT'							=> 'Maximale Anzahl der Umfragen',
-	'PORTAL_POLL_LIMIT_EXPLAIN'					=> 'Die Anzahl der Umfragen, die auf dem Portal angezeigt werden sollen.',
+	'PORTAL_POLL_TOPIC_ID'						=> 'UMFagen Foren ID(s)',
+	'PORTAL_POLL_TOPIC_ID_EXPLAIN'				=> 'Die ID(s) der Foren, aus welchen die UMFagen angezeigt werden sollen. Frei lassen, um aus allen Foren anzeigen zu lassen. Mit Komma trennen, wenn aus mehreren ausgewählten Foren angezeigt werden soll, z.B. 1,2,5',
+	'PORTAL_POLL_LIMIT'							=> 'Maximale Anzahl der UMFagen',
+	'PORTAL_POLL_LIMIT_EXPLAIN'					=> 'Die Anzahl der UMFagen, die auf dem Portal angezeigt werden sollen.',
 	'PORTAL_POLL_ALLOW_VOTE'					=> 'Abstimmen erlauben',
 	'PORTAL_POLL_ALLOW_VOTE_EXPLAIN'			=> 'Verfügt der Benutzer über entsprechende Berechtigungen, kann er direkt auf der Portal-Seite abstimmen.',
-	'PORTAL_POLL_HIDE'							=> 'Abgelaufene Umfragen verbergen?',
+	'PORTAL_POLL_HIDE'							=> 'Abgelaufene UMFagen verbergen?',
 	
 	// most poster
 	'ACP_PORTAL_MOST_POSTER_SETTINGS'			=> 'Einstellungen für die Vielschreiber',

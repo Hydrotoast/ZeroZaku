@@ -272,8 +272,8 @@ class ucp_zebra
 											{
 											    $sql = 'DELETE FROM ' . ZEBRA_TABLE . '
 											    	WHERE pending = 1
-											    		AND ( user_id = ' . (int) $zebra_id . ' AND zebra_id = ' . (int) $user->data['user_id'] . '
-											    		OR ( user_id = ' . (int) $user->data['user_id'] . ' AND zebra_id = ' . (int) $zebra_id . ')';
+											    		AND (( user_id = ' . (int) $zebra_id . ' AND zebra_id = ' . (int) $user->data['user_id'] . ' )
+											    		OR ( user_id = ' . (int) $user->data['user_id'] . ' AND zebra_id = ' . (int) $zebra_id . '))';
 											    $db->sql_query($sql);
 											}
 											$db->sql_transaction('commit');
@@ -367,16 +367,17 @@ class ucp_zebra
 		        'U_PROFILE'		=> get_username_string('profile', $zebra_id, $row['username'], $row['user_colour']),
 		    ));
 		}
-		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
 			'L_TITLE'			=> $user->lang['UCP_ZEBRA_' . $l_mode],
-
+            'TOTAL'				=> $result->num_rows,
+		
 			'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=add'),
 
 			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
 			'S_UCP_ACTION'			=> $this->u_action)
 		);
+		$db->sql_freeresult($result);
 
 		$this->tpl_name = 'ucp_zebra_' . $mode;
 		$this->page_title = 'UCP_ZEBRA_' . $l_mode;

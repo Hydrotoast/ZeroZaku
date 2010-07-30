@@ -54,6 +54,9 @@
 					<dt>{L_RP_TOTAL_POINTS}:</dt> <dd>{REPUTATION}</dd>
 					<dt>{L_RP_POWER}:</dt> <dd>{REP_POWER}</dd>
 				<!-- ENDIF -->
+				<!-- IF MF -->
+					<dt>{L_MUTUAL_FRIENDS}:</dt> <dd>{MF_TOTAL} (<!-- IF MF_TOTAL > 0 --><!-- BEGIN mutual_friend --><!-- IF not mutual_friend.S_FIRST -->, <!-- ENDIF -->{mutual_friend.USERNAME}<!-- END mutual_friend --><!-- ENDIF -->)</dd>
+				<!-- ENDIF -->
 			</dl>
 			
 			</div>
@@ -81,19 +84,6 @@
 			
 			</div>
 		</div>
-		
-		<!-- IF MFR and MFR_TOTAL > 0 -->
-		<div id="shared-friends" class="profile-box">
-			<h2 class="header">{L_MFR_FRIENDS_SHARED} ({MFR_TOTAL})</h2>
-			<div class="inner">
-				<ul class="similar-friends">
-					<!-- BEGIN mutual_friend -->
-					<li>{mutual_friend.USERNAME}</li>
-					<!-- END mutual_friend -->
-				</ul>
-			</div>
-		</div>
-		<!-- ENDIF -->
 	</div>
 	</form>
 	

@@ -44,6 +44,10 @@
 	<!-- IF U_VIEWONLINE --><h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3><!-- ELSE --><h3>{L_WHO_IS_ONLINE}</h3><!-- ENDIF -->
 	<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
 
+	<!-- IF REC_FRIEND_TOTAL > 0 -->
+	<br /><br /><strong>{L_MF_PEOPLE_LIKE}:</strong> <!-- BEGIN rec_friend --><!-- IF not rec_friend.S_FIRST -->, <!-- ENDIF -->{rec_friend.USERNAME}<!-- END rec_friend -->
+	<!-- ENDIF -->
+
 	<!-- IF not S_IS_BOT --><br /><br />
 	{USERS_24HOUR_TOTAL}: <!-- BEGIN lastvisit -->{lastvisit.USERNAME_FULL}<!-- IF not lastvisit.S_LAST_ROW -->, <!-- ENDIF --><!-- END lastvisit -->
 	<!-- ENDIF -->
