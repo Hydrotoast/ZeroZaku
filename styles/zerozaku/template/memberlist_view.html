@@ -55,7 +55,7 @@
 					<dt>{L_RP_POWER}:</dt> <dd>{REP_POWER}</dd>
 				<!-- ENDIF -->
 				<!-- IF MF -->
-					<dt>{L_MUTUAL_FRIENDS}:</dt> <dd>{MF_TOTAL} (<!-- IF MF_TOTAL > 0 --><!-- BEGIN mutual_friend --><!-- IF not mutual_friend.S_FIRST -->, <!-- ENDIF -->{mutual_friend.USERNAME}<!-- END mutual_friend --><!-- ENDIF -->)</dd>
+					<dt>{MF_TOTAL} {L_MUTUAL_FRIENDS}<!-- IF MF_TOTAL > 0 -->:<!-- ENDIF --></dt> <dd><!-- IF MF_TOTAL > 0 --><!-- BEGIN mutual_friend --><!-- IF not mutual_friend.S_FIRST -->, <!-- ENDIF -->{mutual_friend.USERNAME}<!-- END mutual_friend --><!-- ENDIF --></dd>
 				<!-- ENDIF -->
 			</dl>
 			
