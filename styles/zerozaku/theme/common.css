@@ -137,7 +137,7 @@ a img { border: none; }
 	line-height: 1.5em;
 	float: right;
 	height: inherit;
-	max-width: 360px;
+	max-width: 420px;
 	width: auto;
 	white-space: nowrap; /* For Opera */
 	z-index: 9999;
