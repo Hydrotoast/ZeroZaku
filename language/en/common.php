@@ -306,6 +306,7 @@ $lang = array_merge($lang, array(
 	'KIB'					=> 'KiB',
 	'KNOWLEDGE_BASE'		=> 'Knowledge Base',
 	'KB_EXPLAIN'			=> 'Read exclusive articles &amp; ideas',
+	'ARTICLES'			    => 'Articles',
 
 	'LAST_POST'							=> 'Last post',
 	'LAST_UPDATED'						=> 'Last updated',

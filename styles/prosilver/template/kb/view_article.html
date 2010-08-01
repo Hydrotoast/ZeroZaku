@@ -31,13 +31,12 @@
 									</p>
 								<!-- ENDIF -->
 																
-							<span class="error" style="font-size: 150%">{ARTICLE_TITLE}</span> <br />
-							
-							<!-- IF S_EXTENDED_HEADER and not DISABLE_LEFT_MENU -->
+							<h3 class="first"><a href="{U_VIEW_ARTICLE}	">{ARTICLE_TITLE}</a></h3>
+							<!-- IF S_EXTENDED_HEADER -->
 							<strong>{L_ARTICLE_ID}:</strong> {ARTICLE_ID}<br />
 							<strong>{L_WRITTEN_BY}:</strong> {POST_AUTHOR_FULL}<br />
 							<strong>{L_WRITTEN_ON}:</strong> {ARTICLE_TIME}<br />
-							<strong>{L_DESCRIPTION}:</strong> {ARTICLE_DESC}<br />
+							<!-- IF ARTICLE_DESC --><strong>{L_DESCRIPTION}:</strong> {ARTICLE_DESC}<br /><!-- ENDIF -->
 							
 							<div class="content">
 								<dl class="codebox">
@@ -52,10 +51,13 @@
 									<img src="{T_IMAGESET_PATH}/icon_post_target.gif" alt="{L_PERMANENT_LINK}" />{L_WRITTEN_BY} <strong>{POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {ARTICLE_TIME} 
 								</p>
 							<!-- ENDIF -->
+							<!-- IF not S_EXTENDED_HEADER and ARTICLE_DESC -->
+							<span class="genmed"><strong>{L_DESCRIPTION}:</strong> {ARTICLE_DESC}</span>
+							<!-- ENDIF -->
+							<hr />
 							<div class="pagination">
 								{ARTICLE_VIEWS}
 							</div>
-							<hr />
 							<div class="content">{ARTICLE_MESSAGE}</div>
 
 							<!-- IF S_HAS_ATTACHMENTS -->

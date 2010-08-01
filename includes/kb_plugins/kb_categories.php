@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: kb_categories.php 420 2010-01-13 14:36:10Z softphp $
+* @version $Id: kb_categories.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -54,6 +54,7 @@ function categories($cat_id = 0)
 		$template->assign_block_vars('cat_list', array(
 			'CAT_SEL'				=> $cat['selected'],
 			'CAT_NAME'				=> $cat['padding'] . $cat['cat_name'],
+			'CAT_DESC'				=> generate_text_for_display($cat['cat_desc'], '', '', 0), // Generate without bbcodes for link title
 			'U_VIEW_CAT'			=> kb_append_sid('cat', array('id' => $cat['cat_id'], 'title' => $cat['cat_name'])),
 		));
 	}

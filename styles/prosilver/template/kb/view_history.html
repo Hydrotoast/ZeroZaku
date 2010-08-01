@@ -235,10 +235,10 @@
 				<!-- BEGIN editrow -->
 					<li class="row <!-- IF editrow.S_IS_CONTRIB -->bg3<!-- ELSE --><!-- IF editrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- ENDIF -->">
 						<dl>
-							<dt style="width: 30%"><a href="{editrow.U_EDIT}">{editrow.ARTICLE_TITLE}</a> {editrow.EDIT_BY} <!-- IF editrow.S_NEWEST -->&nbsp;<strong>({L_NEWEST})</strong><!-- ELSEIF editrow.S_ORG -->&nbsp;<strong>({L_ORIGINAL})</strong><!-- ENDIF --><br />
-								[ <a href="{editrow.U_EDIT}">{L_VIEW_REV_INFO}</a> ]</dt>
-							<dd class="extra"><!-- IF editrow.S_CAN_DIFF_F --><input type="radio" id="df-{editrow.NUM}" onclick="" name="df" value="{editrow.EDIT_ID}" /><!-- ELSE -->{L_N_A}<!-- ENDIF --></dd>
-							<dd class="extra"><!-- IF editrow.S_CAN_DIFF_T --><input type="radio" id="dt-{editrow.NUM}" onclick="" name="dt" value="{editrow.EDIT_ID}" /><!-- ELSE -->{L_N_A}<!-- ENDIF --></dd>
+							<dt style="width: 30%"><!-- IF editrow.U_EDIT != '' --><a href="{editrow.U_EDIT}">{editrow.ARTICLE_TITLE}</a><!-- ELSE -->{editrow.ARTICLE_TITLE}<!-- ENDIF --> {editrow.EDIT_BY} <!-- IF editrow.S_NEWEST -->&nbsp;<strong>({L_NEWEST})</strong><!-- ELSEIF editrow.S_ORG -->&nbsp;<strong>({L_ORIGINAL})</strong><!-- ENDIF --><br />
+								<!-- IF editrow.U_VIEW_REV != '' -->[ <a href="{editrow.U_VIEW_REV}">{L_VIEW_REV_INFO}</a> ]<!-- ENDIF --></dt>
+							<dd class="extra"><!-- IF editrow.S_CAN_DIFF_F --><input type="radio" id="df-{editrow.NUM}" name="df" value="{editrow.EDIT_ID}" /><!-- ELSE -->{L_N_A}<!-- ENDIF --></dd>
+							<dd class="extra"><!-- IF editrow.S_CAN_DIFF_T --><input type="radio" id="dt-{editrow.NUM}" name="dt" value="{editrow.EDIT_ID}" /><!-- ELSE -->{L_N_A}<!-- ENDIF --></dd>
 							
 							<dd class="time" style="width: 30%"><span>{editrow.EDIT_TIME}</span></dd>
 							<dd class="extra">{editrow.EDIT_STATUS}</dd>

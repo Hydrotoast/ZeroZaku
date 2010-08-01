@@ -169,7 +169,7 @@ class ucp_kb
 							
 							$url = $this->u_action;
 							meta_refresh(3, $url);
-							$message = $user->lang['KB_SUCCESS_SUBSCRIBE_' . strtoupper($action)] . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
+							$message = $user->lang['KB_SUCCESS_SUBSCRIBE_' . strtoupper($action)] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
 							trigger_error($message);
 						}
 						
@@ -336,7 +336,7 @@ class ucp_kb
 							
 							$url = $this->u_action;
 							meta_refresh(3, $url);
-							$message = $user->lang['KB_SUCCESS_SUBSCRIBE_' . strtoupper($action)] . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
+							$message = $user->lang['KB_SUCCESS_SUBSCRIBE_' . strtoupper($action)] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
 							trigger_error($message);
 						}
 						else
@@ -463,7 +463,7 @@ class ucp_kb
 						
 						$url = $this->u_action;
 						meta_refresh(3, $url);
-						$message = $user->lang['KB_SUCCESS_BOOKMARK_' . strtoupper($action)] . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
+						$message = $user->lang['KB_SUCCESS_BOOKMARK_' . strtoupper($action)] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
 						trigger_error($message);
 					break;
 						
@@ -527,7 +527,7 @@ class ucp_kb
 							
 							$url = $this->u_action;
 							meta_refresh(3, $url);
-							$message = $user->lang['KB_SUCCESS_BOOKMARK_' . strtoupper($action)] . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
+							$message = $user->lang['KB_SUCCESS_BOOKMARK_' . strtoupper($action)] . '<br /><br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $url . '">', '</a>');
 							trigger_error($message);
 						}
 						else

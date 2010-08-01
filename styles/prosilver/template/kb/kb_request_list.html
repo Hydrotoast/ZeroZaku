@@ -1,5 +1,11 @@
 <!-- INCLUDE kb/kb_header.html -->
 <div class="topic-actions">
+	<!-- IF U_ADD_REQ -->
+	<div class="buttons">
+		<div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div>
+	</div>
+	<!-- ENDIF -->
+
 	<div class="pagination">
 		{TOTAL_REQUESTS} {L_REQUESTS}
 		<!-- IF PAGE_NUMBER -->
@@ -44,12 +50,14 @@
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
 <!-- END req_list -->
-
-<!-- IF U_ADD_REQ -->
-<hr /><!-- IF U_ADD_REQ --><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}">{L_KB_ADD_REQUEST}</a><!-- ENDIF -->
-<!-- ENDIF -->
 	
 <div class="topic-actions">
+	<!-- IF U_ADD_REQ -->
+	<div class="buttons">
+		<div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div>
+	</div>
+	<!-- ENDIF -->
+
 	<div class="pagination">
 	{TOTAL_REQUESTS} {L_REQUESTS}
 	<!-- IF PAGE_NUMBER -->
@@ -57,9 +65,5 @@
 	<!-- ENDIF -->
 	</div>
 </div>
-
-
-
-
 
 <!-- INCLUDE kb/kb_footer.html -->		
