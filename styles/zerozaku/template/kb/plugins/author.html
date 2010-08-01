@@ -1,28 +1,26 @@
 <div class="panel smooth<!-- IF S_ONLINE --> online<!-- ENDIF -->">
-	<div class="inner">
-		<div class="left_menu_title">
-			<!-- IF not U_POST_AUTHOR --><strong>{POST_AUTHOR_FULL}</strong><!-- ELSE -->{POST_AUTHOR_FULL}<!-- ENDIF -->
-			<!-- IF POSTER_AVATAR -->
-				<!-- IF U_POST_AUTHOR --><a href="{U_POST_AUTHOR}">{POSTER_AVATAR}</a><!-- ELSE -->{POSTER_AVATAR}<!-- ENDIF --><br />
-			<!-- ENDIF -->
-		</div>
-		<dl class="user_menu">
-			<dt>
-				<a href="{U_RSS_AUTHOR}"><img src="{T_THEME_PATH}/images/feed.gif" width="14" height="14" alt="{L_RSS_AUTHOR}" title="{L_RSS_AUTHOR}" /></a>
-			</dt>
-	
-			<!-- IF RANK_TITLE or RANK_IMG --><dd>{RANK_TITLE}<!-- IF RANK_TITLE and RANK_IMG --><br /><!-- ENDIF -->{RANK_IMG}</dd><!-- ENDIF -->
-	
-			<dd>&nbsp;</dd>
-	
-			<!-- IF POSTER_ARTICLES > 0 --><dd><strong>{L_ARTICLES}:</strong> <a href="{U_POSTER_ARTICLES}" title="{L_SAME_AUTHOR_ARTICLES}">{POSTER_ARTICLES}</a></dd><!-- ENDIF -->
-			<!-- IF POSTER_POSTS != '' --><dd><strong>{L_POSTS}:</strong> {POSTER_POSTS}</dd><!-- ENDIF -->
-			<!-- IF POSTER_JOINED --><dd><strong>{L_JOINED}:</strong> {POSTER_JOINED}</dd><!-- ENDIF -->
-			<!-- IF POSTER_FROM --><dd><strong>{L_LOCATION}:</strong> {POSTER_FROM}</dd><!-- ENDIF -->
-	
-			<!-- BEGIN custom_fields -->
-				<dd><strong>{custom_fields.PROFILE_FIELD_NAME}:</strong> {custom_fields.PROFILE_FIELD_VALUE}</dd>
-			<!-- END custom_fields -->
-		</dl>
+	<div class="right_menu_title">
+		<!-- IF not U_POST_AUTHOR --><strong>{POST_AUTHOR_FULL}</strong><!-- ELSE -->{POST_AUTHOR_FULL}<!-- ENDIF -->
+		<!-- IF POSTER_AVATAR -->
+			<!-- IF U_POST_AUTHOR --><a href="{U_POST_AUTHOR}">{POSTER_AVATAR}</a><!-- ELSE -->{POSTER_AVATAR}<!-- ENDIF --><br />
+		<!-- ENDIF -->
 	</div>
+	<dl class="user_menu">
+		<dt>
+			<a href="{U_RSS_AUTHOR}"><img src="{T_THEME_PATH}/images/feed.gif" width="14" height="14" alt="{L_RSS_AUTHOR}" title="{L_RSS_AUTHOR}" /></a>
+		</dt>
+
+		<!-- IF RANK_TITLE or RANK_IMG --><dd>{RANK_TITLE}<!-- IF RANK_TITLE and RANK_IMG --><br /><!-- ENDIF -->{RANK_IMG}</dd><!-- ENDIF -->
+
+		<dd>&nbsp;</dd>
+
+		<!-- IF POSTER_ARTICLES > 0 --><dd><strong>{L_ARTICLES}:</strong> <a href="{U_POSTER_ARTICLES}" title="{L_SAME_AUTHOR_ARTICLES}">{POSTER_ARTICLES}</a></dd><!-- ENDIF -->
+		<!-- IF POSTER_POSTS != '' --><dd><strong>{L_POSTS}:</strong> {POSTER_POSTS}</dd><!-- ENDIF -->
+		<!-- IF POSTER_JOINED --><dd><strong>{L_JOINED}:</strong> {POSTER_JOINED}</dd><!-- ENDIF -->
+		<!-- IF POSTER_FROM --><dd><strong>{L_LOCATION}:</strong> {POSTER_FROM}</dd><!-- ENDIF -->
+
+		<!-- BEGIN custom_fields -->
+			<dd><strong>{custom_fields.PROFILE_FIELD_NAME}:</strong> {custom_fields.PROFILE_FIELD_VALUE}</dd>
+		<!-- END custom_fields -->
+	</dl>
 </div>
