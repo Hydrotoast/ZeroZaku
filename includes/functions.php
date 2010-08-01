@@ -4402,7 +4402,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 
 	$user->add_lang('mods/reimg');
 	
-	// Begin FRIEND REQUESTS
+	// Begin MUTUAL FRIEND REQUESTS
 	$sql = 'SELECT friend_requests FROM ' . USERS_TABLE . ' WHERE user_id = ' . $user->data['user_id'];
 	$result = $db->sql_query($sql);
     $friend_requests = $db->sql_fetchfield('friend_requests');
@@ -4417,7 +4417,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 			'U_REQUESTS_LIST'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=pending'),
 		));
 	}
-	// End FRIEND REQUESTS
+	// End MUTUAL FRIEND REQUESTS
 
 	// application/xhtml+xml not used because of IE
 	header('Content-type: text/html; charset=UTF-8');

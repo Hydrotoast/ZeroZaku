@@ -984,13 +984,13 @@ $lang = array_merge($lang, array(
 
 // BEGIN MUTUAL FRIENDS
 $lang = array_merge($lang, array(
-    'FRIEND_REQUEST'				=> 'Friend request',
-    'FRIEND_REQUESTS'				=> 'Friend requests',
-    'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
+	'FRIEND_REQUEST'				=> 'Friend request',
+	'FRIEND_REQUESTS'				=> 'Friend requests',
+	'NEW_FRIEND_REQUEST'			=> 'You have a new friend request.',
 	'NEW_FRIEND_REQUESTS'			=> 'You have %s new friend requests.',
 	'NO_FRIEND_REQUESTS'			=> 'You have no new friend requests.',
 
-    'MUTUAL_FRIENDS'				=> 'Mutual friends',
+	'MUTUAL_FRIENDS'				=> 'Mutual friends',
 	'MF_FRIENDS_SHARED'			    => 'Friends shared',
 	'MF_PEOPLE_LIKE'				=> 'People you might like',
 
