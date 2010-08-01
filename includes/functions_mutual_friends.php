@@ -1,11 +1,8 @@
 <?php
 /**
-*
-* @package phpBB3
-* @version $Id: functions.php 10519 2010-02-22 00:59:27Z toonarmy $
-* @copyright (c) 2005 phpBB Group
+* @package Mutual Friend Requests
+* @copyright (c) 2010 Gio Borje
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
 */
 
 /**
@@ -78,7 +75,7 @@ function get_recommended_friends()
 	
 	// Determine the strength of the relationship
 	$num_tuples = 2;
-	if(sizeof($friends) > $num_tuples)
+	if(sizeof($friends) >= $num_tuples)
 	{
 		$friend_tuple = array_rand($friends, $num_tuples);
 	}
@@ -106,9 +103,9 @@ function get_recommended_friends()
 	    $rows = 0;
 		while($row = $db->sql_fetchrow($result))
 		{
-		    $zebra_id = (in_array($row['zebra_id'], $friend_tuple)) ? $row['user_id'] : $row['zebra_id'];
+		    $zebra_id = (in_array($row['zebra_id'], $friends)) ? $row['user_id'] : $row['zebra_id'];
 		    
-		    if(!in_array($zebra_id, $friends) && $zebra_id !== $user->data['user_id'])
+		    if($zebra_id !== $user->data['user_id'])
 		    {
 			    $template->assign_block_vars('rec_friend', array(
 			        'USER_ID'		=> $zebra_id,
@@ -116,7 +113,7 @@ function get_recommended_friends()
 			        'ADD_URL'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=friends', true, $user->session_id),
 			        'S_FIRST'		=> (($rows === 0) ? true : false)
 			    ));  
-			    $rows++;
+			    ++$rows;
 		    }
 		}
 		
