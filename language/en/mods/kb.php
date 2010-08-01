@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: kb.php 458 2010-04-14 11:19:05Z softphp $
+* @version $Id: kb.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -49,12 +49,11 @@ $lang = array_merge($lang, array(
 	'ALL_PAGES'							=> 'All pages',
 	'APPROVED_ARTICLES'					=> 'Approved articles',
 	'ARTICLE'							=> 'Article',
-	'ARTICLES'							=> 'Articles',
 	'ARTICLES_VIEW'						=> 'This article has been viewed %1$s time',
 	'ARTICLES_VIEWS'					=> 'This article has been viewed %1$s times',
 	'ARTICLE_ADD_REQ'					=> 'This article is an answer to this request',
 	'ARTICLE_AUTHOR'					=> 'Article author',
-	'ARTICLE_AUTHOR_EXPLAIN'			=> 'Change the article author from the original to a new one here.',
+	'ARTICLE_AUTHOR_EXPLAIN'			=> 'Change the article author from the original to a new one here. Please note that ownership of any attached files will be transferred to this user as well.',
 	'ARTICLE_CAT'						=> 'Article category',
 	'ARTICLE_CONTENT'					=> 'Article content',
 	'ARTICLE_CONTRIBUTE'				=> 'Mark this as a contribution to the open article',
@@ -149,7 +148,7 @@ Here is a link to the article - {LINK}',
 	'EDIT_TYPE_CAT'						=> 'The category has been changed.',
 	'EDIT_TYPE_CONTENT'					=> 'The main article content has been subject to change.',
 	'EDIT_TYPE_DESC'					=> 'The article description has been subject to change.',
-	'EDIT_TYPE_STATUS'					=> 'The article type has been changed',
+	'EDIT_TYPE_STATUS'					=> 'The article status has been changed',
 	'EDIT_TYPE_TAGS'					=> 'The tags have been subject to change.',
 	'EDIT_TYPE_TITLE'					=> 'The article title has been subject to change.',
 	'EDIT_TYPE_TYPE'					=> 'The article type has been changed.',
@@ -479,6 +478,7 @@ Here is a link to the article - {LINK}',
 	'RATINGS'							=> 'Rate this article',
 	'REDDIT'							=> 'Reddit',
 	'RELATED_ARTICLES'					=> 'Related Articles',
+	'REMOVE_RATING'						=> 'Remove rating',
 	'REQUEST'							=> 'Requests',
 	'REQUESTS'							=> 'article requests',
 	'REQUEST_ACCEPTED'					=> 'You have accepted the request and can now select it from a dropdown menu when writing the article.',

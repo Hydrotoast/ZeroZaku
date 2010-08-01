@@ -237,7 +237,7 @@ class cache extends acm
 			$sql = 'SELECT e.extension, g.*
 				FROM ' . EXTENSIONS_TABLE . ' e, ' . EXTENSION_GROUPS_TABLE . ' g
 				WHERE e.group_id = g.group_id
-					AND (g.allow_group = 1 OR g.allow_in_pm = 1)';
+					AND (g.allow_group = 1 OR g.allow_in_pm = 1 OR g.allow_in_kb = 1)';
 			$result = $db->sql_query($sql);
 
 			while ($row = $db->sql_fetchrow($result))

@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: kb_latest_article.php 455 2010-04-13 19:40:31Z softphp $
+* @version $Id: kb_latest_article.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -70,7 +70,7 @@ function latest_article($cat_id = 0)
 			'NO_LAST_ARTICLE'		=> true,
 		));
 		
-		return;
+		//return;
 	}	
 	$db->sql_freeresult($result);
 

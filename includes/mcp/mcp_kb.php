@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: mcp_kb.php 453 2010-04-07 13:10:04Z softphp $
+* @version $Id: mcp_kb.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -73,7 +73,7 @@ class mcp_kb
 					trigger_error('KB_NO_ARTICLE');
 				}
 				
-				$sql = "SELECT article_id, cat_id, article_title, article_user_id, article_status, article_last_edit_id
+				$sql = "SELECT *
 						FROM " . KB_TABLE . "
 						WHERE article_id = $article_id";
 				$result = $db->sql_query($sql);
@@ -145,36 +145,22 @@ class mcp_kb
 					
 					// Generate an entry into the edit table, only for the status change
 					// Build edits table to take care of old data
-					$sql_data = array(
-						'article_id'						=> 		$article_id,
-						'parent_id'							=>		$article_data['article_last_edit_id'],
-						'edit_user_id'						=>		$user->data['user_id'],
-						'edit_user_name'					=>		$user->data['username'],
-						'edit_user_color'					=>		$user->data['user_colour'],
-						'edit_time'							=>		time(),
-						'edit_article_title'				=>		'',
-						'edit_article_desc'					=>		'',
-						'edit_article_desc_bitfield'		=>		'',
-						'edit_article_desc_options'			=>		0,
-						'edit_article_desc_uid'				=>		'',
-						'edit_article_text'					=> 		'',
-						'edit_bbcode_bitfield'				=>		'',
-						'edit_bbcode_uid'					=>		'',
-						'edit_article_status'				=>		$article_data['article_status'],
-						'edit_reason'						=>		$reason,
-						'edit_reason_global'				=>		($global) ? 1 : 0,
-						'edit_moderated'					=>		1,
-						'edit_type'							=>		serialize(array(EDIT_TYPE_STATUS)),
+					$article_data += array(
+						'edit_time'					=> time(),
+						'edit_reason'				=> $reason,
+						'edit_reason_global'		=> ($global) ? 1 : 0,
+						'edit_type'					=> array(EDIT_TYPE_STATUS),
+						'message'					=> $article_data['article_text'],
+						'enable_urls'				=> $article_data['enable_magic_url'],
+						'article_contribution'		=> 0,
 					);
-					
-					$sql = 'INSERT INTO ' . KB_EDITS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_data);
-					$db->sql_query($sql);
-					$edit_id = $db->sql_nextid();
+					$edit_id = edit_submit($article_data, true, $article_id);
 					
 					$data = array(
 						'article_status'				=> $status,
 						'article_last_edit_time'		=> time(),
 						'article_last_edit_id'			=> $edit_id,
+						'article_edit_type'				=> serialize(array(EDIT_TYPE_STATUS)),
 					);
 					
 					$sql = 'UPDATE ' . KB_TABLE . ' 
@@ -341,7 +327,6 @@ class mcp_kb
 						'L_KB_ARTICLES_EXPLAIN'		=> $user->lang['MCP_KB_ARTICLES_EXPLAIN'],
 						'L_NO_APPROVED_ARTICLES'	=> $user->lang['KB_NO_APPROVED_ARTICLES'],
 						'L_APPROVED_ARTICLES'		=> $user->lang['KB_APPROVED_ARTICLES'],
-						'L_OPTIONS'					=> $user->lang['ARTICLE_STATUS'],
 						'L_ALTER_STATUS'			=> $user->lang['CHANGE_STATUS'],
 					));
 				break;
