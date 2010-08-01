@@ -2615,60 +2615,48 @@ function kb_display_cats($root_data = '')
 	// Begin math to calculate amount of cats per row and then create dummies to fill it out
 	$cats_per_row = ($config['kb_layout_style']) ? $config['kb_cats_per_row'] : 1; // If normal style we only want 1 cat per row
 	
-	for ($i = 0; $i < count($cats); $i += $cats_per_row)
+	foreach($cats as $cat)
 	{
-		$template->assign_block_vars('catrow', array());
+		$cat_id = $cat['cat_id'];
+		$subcats_list = $s_subcats_list = array();
+		$visible_subcats[$cat_id] = 0;
 		
-		for ($j = $i; $j < ($i + $cats_per_row); $j++)
+		if(isset($subcats[$cat_id]) && $config['kb_list_subcats'])
 		{
-			if ($j >= count($cats))
+			foreach($subcats[$cat_id] as $subcat_id => $subcat)
 			{
-				// Assign dummies
-				$template->assign_block_vars('catrow.dummy', array());
-				continue;
+				$visible_subcats[$cat_id]++;
+				$subcats_list[] = array(
+					'name' => $subcat['name'],
+					'link' => kb_append_sid('cat', array('id' => $subcat_id, 'title' => $subcat['name'])),
+				);
+				$s_subcats_list[] = '<a href="' . kb_append_sid('cat', array('id' => $subcat_id, 'title' => $subcat['name'])) . '">' . $subcat['name'] . '</a>';
 			}
-			
-			$cat_id = $cat[$j]['cat_id'];
-			$subcats_list = $s_subcats_list = array();
-			$visible_subcats[$cat_id] = 0;
-			
-			if(isset($subcats[$cat_id]) && $config['kb_list_subcats'])
-			{
-				foreach($subcats[$cat_id] as $subcat_id => $subcat)
-				{
-					$visible_subcats[$cat_id]++;
-					$subcats_list[] = array(
-						'name' => $subcat['name'],
-						'link' => kb_append_sid('cat', array('id' => $subcat_id, 'title' => $subcat['name'])),
-					);
-					$s_subcats_list[] = '<a href="' . kb_append_sid('cat', array('id' => $subcat_id, 'title' => $subcat['name'])) . '">' . $subcat['name'] . '</a>';
-				}
-				$s_subcats_list = implode(', ', $s_subcats_list);
-			}
-			
-			$folder_img = (sizeof($subcats_list)) ? 'forum_read_subforum' : 'forum_read';
-			
-			$latest_articles = handle_latest_articles('get', $cat_id, $cats[$cat_id]['latest_ids'], $config['kb_latest_articles_c']);
-			
-			$template->assign_block_vars('catrow.cat', array(
-				'CAT_ID'				=> $cats[$cat_id]['cat_id'],
-				'CAT_NAME'				=> $cats[$cat_id]['cat_name'],
-				'CAT_DESC'				=> generate_text_for_display($cats[$cat_id]['cat_desc'], $cats[$cat_id]['cat_desc_uid'], $cats[$cat_id]['cat_desc_bitfield'], $cats[$cat_id]['cat_desc_options']),
-				'ARTICLES'				=> $cats[$cat_id]['cat_articles'],
-				'CAT_FOLDER_IMG'		=> $user->img($folder_img, $cats[$cat_id]['cat_name']),
-				'CAT_FOLDER_IMG_SRC'	=> $user->img($folder_img, $cats[$cat_id]['cat_name'], false, '', 'src'),
-				'CAT_FOLDER_IMG_ALT'	=> $cats[$cat_id]['cat_name'],
-				'CAT_IMAGE'				=> ($cats[$cat_id]['cat_image']) ? '<img src="' . $phpbb_root_path . $cats[$cat_id]['cat_image'] . '" alt="' . $user->lang['KB_CATS'] . '" />' : '',
-				'CAT_IMAGE_SRC'			=> ($cats[$cat_id]['cat_image']) ? $phpbb_root_path . $cats[$cat_id]['cat_image'] : '',
-				'SUBCATS'				=> $s_subcats_list,
-				'LATEST_ARTICLE'		=> $latest_articles,
-
-				'L_SUBCAT'				=> ($visible_subcats[$cat_id] == 1) ? $user->lang['SUBCAT'] : $user->lang['SUBCATS'],
-				'U_VIEWCAT'				=> kb_append_sid('cat', array('id' => $cats[$cat_id]['cat_id'], 'title' => $cats[$cat_id]['cat_name'])),
-				'U_RSS_CAT'				=> append_sid("{$phpbb_root_path}kb.$phpEx", 'i=feed&amp;feed_type=cat&amp;feed_cat_id=' . $cats[$cat_id]['cat_id'] . '&amp;feed_cat_name=' . $cats[$cat_id]['cat_name']),
-			));		
+			$s_subcats_list = implode(', ', $s_subcats_list);
 		}
-	}	
+		
+		$folder_img = (sizeof($subcats_list)) ? 'forum_read_subforum' : 'forum_read';
+		
+		$latest_articles = handle_latest_articles('get', $cat_id, $cats[$cat_id]['latest_ids'], $config['kb_latest_articles_c']);
+		
+		$template->assign_block_vars('cat', array(
+			'CAT_ID'				=> $cats[$cat_id]['cat_id'],
+			'CAT_NAME'				=> $cats[$cat_id]['cat_name'],
+			'CAT_DESC'				=> generate_text_for_display($cats[$cat_id]['cat_desc'], $cats[$cat_id]['cat_desc_uid'], $cats[$cat_id]['cat_desc_bitfield'], $cats[$cat_id]['cat_desc_options']),
+			'ARTICLES'				=> $cats[$cat_id]['cat_articles'],
+			'CAT_FOLDER_IMG'		=> $user->img($folder_img, $cats[$cat_id]['cat_name']),
+			'CAT_FOLDER_IMG_SRC'	=> $user->img($folder_img, $cats[$cat_id]['cat_name'], false, '', 'src'),
+			'CAT_FOLDER_IMG_ALT'	=> $cats[$cat_id]['cat_name'],
+			'CAT_IMAGE'				=> ($cats[$cat_id]['cat_image']) ? '<img src="' . $phpbb_root_path . $cats[$cat_id]['cat_image'] . '" alt="' . $user->lang['KB_CATS'] . '" />' : '',
+			'CAT_IMAGE_SRC'			=> ($cats[$cat_id]['cat_image']) ? $phpbb_root_path . $cats[$cat_id]['cat_image'] : '',
+			'SUBCATS'				=> $s_subcats_list,
+			'LATEST_ARTICLE'		=> $latest_articles,
+
+			'L_SUBCAT'				=> ($visible_subcats[$cat_id] == 1) ? $user->lang['SUBCAT'] : $user->lang['SUBCATS'],
+			'U_VIEWCAT'				=> kb_append_sid('cat', array('id' => $cats[$cat_id]['cat_id'], 'title' => $cats[$cat_id]['cat_name'])),
+			'U_RSS_CAT'				=> append_sid("{$phpbb_root_path}kb.$phpEx", 'i=feed&amp;feed_type=cat&amp;feed_cat_id=' . $cats[$cat_id]['cat_id'] . '&amp;feed_cat_name=' . $cats[$cat_id]['cat_name']),
+		));		
+	}
 	return;
 }
 

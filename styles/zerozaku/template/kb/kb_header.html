@@ -6,23 +6,32 @@
 <!-- ELSE -->
 <!-- INCLUDE overall_header.html -->
 
-<div class="panel smooth info tag">
-	<img src="{T_THEME_PATH}/images/tags/book.png" alt="{L_KB}" />
-	<h2 class="infotitle">{L_KB}</h2>
-	<p>{L_KB_EXPLAIN}</p>
-</div>
-
 <!-- ENDIF -->
 <!-- IF not S_IS_MCP and not S_IS_UCP -->
-
-<table style="width: 100%">
-	<tr>
-		<!-- IF .left_menu -->
-		<td id="left_menu" style="width: {LEFT_MENU_WIDTH}; vertical-align: top;">
-			<!-- BEGIN left_menu -->
-			{left_menu.CONTENT}
-			<!-- END left_menu -->
-		</td>
-		<!-- ENDIF -->
-		
-		<td style="vertical-align: top;<!-- IF .left_menu --> padding-left: 10px;<!-- ENDIF --><!-- IF .right_menu --> padding-right: 10px;<!-- ENDIF -->"><!-- ENDIF -->
+	<!-- IF .left_menu -->
+	<div id="left_menu" style="width: {LEFT_MENU_WIDTH}; vertical-align: top;">
+		<!-- BEGIN left_menu -->
+		{left_menu.CONTENT}
+		<!-- END left_menu -->
+	</div>
+	<!-- ENDIF -->
+	
+	<!-- IF .right_menu -->
+	<div id="right_menu" style="width: {RIGHT_MENU_WIDTH}; vertical-align: top; margin-left: 10px;">
+		<!-- BEGIN right_menu -->
+		{right_menu.CONTENT}
+		<!-- END right_menu -->
+	</div>
+	<!-- ENDIF -->
+	
+	<div id="kb_search">
+		<form id="kb_searchform" method="post" action="{U_KB_SEARCH}">
+			<fieldset>
+				<input name="q" id="kb_keywords" type="text" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" />
+				<input class="button1" value="{L_GO}" type="submit" /><br />
+				{S_HIDDEN_FIELDS}
+			</fieldset>
+		</form>
+	</div>
+	
+	<div style="width: 707px; float: left;"><!-- ENDIF -->

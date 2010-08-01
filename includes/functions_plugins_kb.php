@@ -146,12 +146,9 @@ function generate_menu($page = 'index', $cat_id = 0)
 			$show_pages = unserialize($plugin['PERM']);
 			if (in_array($page, $show_pages))
 			{	
-				if($menu != 'no')
-				{
-					$template->assign_block_vars($menu . '_menu', array(
-						'CONTENT'		=> $plugin['FILE']($cat_id),
-					));
-				}
+				$template->assign_block_vars($menu . '_menu', array(
+					'CONTENT'		=> $plugin['FILE']($cat_id),
+				));
 			}
 		}
 	}

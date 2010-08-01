@@ -5,9 +5,9 @@
 			<!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_preview.html --><!-- ENDIF -->
 			<!-- ENDIF -->
 			<div class="panel" id="postingbox">
-				<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="inner">
 				
-				<h3>{L_POST_A}</h3>
+				<h3 class="head">{L_POST_A}</h3>
 			
 				<fieldset class="fields1">
 				<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
@@ -97,12 +97,12 @@
 				</div>
 				</fieldset>
 				
-					<span class="corners-bottom"><span></span></span></div>
+					</div>
 				</div>
 				
 				<!-- IF S_HAS_ATTACHMENTS -->
 					<div class="panel bg2">
-						<div class="inner"><span class="corners-top"><span></span></span>
+						<div class="inner">
 						<h3>{L_POSTED_ATTACHMENTS}</h3>
 			
 						<fieldset class="fields2">
@@ -124,12 +124,12 @@
 			
 						</fieldset>
 			
-						<span class="corners-bottom"><span></span></span></div>
+						</div>
 					</div>
 				<!-- ENDIF -->
 				
 				<div class="panel bg2">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner">
 					<fieldset class="submit-buttons">
 						{S_HIDDEN_ADDRESS_FIELD}
 						{S_HIDDEN_FIELDS}
@@ -138,7 +138,7 @@
 			
 					</fieldset>
 			
-					<span class="corners-bottom"><span></span></span></div>
+					</div>
 				</div>
 				
 				<!-- IF S_IS_UCP || S_IS_MCP -->
@@ -155,7 +155,7 @@
 				</div>
 			
 				<div class="panel bg3" id="options-panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner">
 			
 					<fieldset class="fields1">
 						<!-- IF S_OPEN_ALLOWED -->
@@ -188,14 +188,14 @@
 						<!-- ENDIF -->
 					</fieldset>
 					{S_FORM_TOKEN}
-					<span class="corners-bottom"><span></span></span></div>
+					</div>
 				</div>
 			
 			
 			<!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
 			<!-- IF S_IS_ARTICLE -->
 				<div class="panel bg3" id="tags-panel">
-					<div class="inner"><span class="corners-top"><span></span></span>
+					<div class="inner">
 					<fieldset class="fields1">
 					{L_TAGS_EXPLAIN}
 					<dl>
@@ -203,7 +203,7 @@
 						<dd><input type="text" name="tags" id="tags" value="{TAGS}" class="inputbox" size="65" maxlength="255" /></dd>
 					</dl>
 					</fieldset>
-					<span class="corners-bottom"><span></span></span></div>
+					</div>
 				</div>
 			<!-- ENDIF -->
 			</form>
@@ -214,7 +214,7 @@
 			</script>
 			<!-- ELSE -->
 			<div class="panel bg3">
-				<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="inner">
 			
 				<fieldset class="fields1">
 					<!-- IF S_BBCODE_ALLOWED -->
@@ -231,10 +231,10 @@
 					<!-- ENDIF -->
 				</fieldset>
 				{S_FORM_TOKEN}
-				<span class="corners-bottom"><span></span></span></div>
+				</div>
 			</div>
 			<div class="panel bg3">
-				<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="inner">
 			
 				<p>{L_ADD_ATTACHMENT_EXPLAIN}</p>
 				
@@ -252,7 +252,7 @@
 				</dl>
 				</fieldset>
 			
-				<span class="corners-bottom"><span></span></span></div>
+				</div>
 			</div>
 			<!-- ENDIF -->
 <!-- INCLUDE kb/kb_footer.html -->

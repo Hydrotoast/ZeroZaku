@@ -504,7 +504,7 @@ class knowledge_base
 		generate_kb_nav('', $cat_data);
 		
 		// Output the page
-		$this->page_header($user->lang['VIEW_CAT'] . ' - ' . $cat_data['cat_name']);
+		$this->page_header($cat_data['cat_name']);
 		
 		$template->set_filenames(array(
 			'body' => 'kb/view_cat_list.html')
@@ -1260,7 +1260,7 @@ class knowledge_base
 					'viewonline'			=> $row['user_allow_viewonline'],
 					'allow_pm'				=> $row['user_allow_pm'],
 	
-					'avatar'				=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], $row['user_avatar_width'], $row['user_avatar_height']) : '',
+					'avatar'				=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 45, 45) : '',
 					'age'					=> '',
 	
 					'rank_title'			=> '',
@@ -4165,7 +4165,7 @@ class knowledge_base
 				'EDIT_BY'			=> sprintf($user->lang['EDITED_BY'], get_username_string('full', $data['article_user_id'], $data['article_user_name'], $data['article_user_color'])),
 				'S_IS_CONTRIB'		=> $data['article_edit_contribution'],
 				'S_CAN_DIFF_F'		=> false,
-				'S_CAN_DIFF_T'		=> (in_array(EDIT_TYPE_CONTENT, $rowset[count($rowset) - 1]['edit_type'])) ? true : false,
+				'S_CAN_DIFF_T'		=> (isset($rowset[count($rowset) - 1]['edit_type']) && in_array(EDIT_TYPE_CONTENT, $rowset[count($rowset) - 1]['edit_type'])) ? true : false,
 				'S_NEWEST'			=> true,
 				'EDIT_TIME'			=> $user->format_date($data['article_last_edit_time'], false, true),
 				'EDIT_ID'			=> 'a_' . $this->article_id,

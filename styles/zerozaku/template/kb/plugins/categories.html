@@ -1,12 +1,8 @@
 <!-- IF .cat_list -->
-<div class="panel smooth">
-	<div class="right_menu_title">{L_KB_CATS}</div>
-	<div class="user_menu">
-		<div id="cat_list">
-		<!-- BEGIN cat_list -->
-			<a href="{cat_list.U_VIEW_CAT}"><!-- IF cat_list.CAT_SEL --><strong>{cat_list.CAT_NAME}</strong><!-- ELSE -->{cat_list.CAT_NAME}<!-- ENDIF --></a><br />
-		<!-- END cat_list -->				
-		</div>
-	</div>
+<div class="right_menu_title">{L_KB_CATS}</div>
+<div id="kb_side_catlist">
+<!-- BEGIN cat_list -->
+	<a href="{cat_list.U_VIEW_CAT}"><!-- IF cat_list.CAT_SEL --><strong>{cat_list.CAT_NAME}</strong><!-- ELSE -->{cat_list.CAT_NAME}<!-- ENDIF --></a>
+<!-- END cat_list -->				
 </div>
 <!-- ENDIF -->
