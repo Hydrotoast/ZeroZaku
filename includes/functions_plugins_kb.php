@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: functions_plugins_kb.php 456 2010-04-13 19:41:34Z softphp $
+* @version $Id: functions_plugins_kb.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -126,6 +126,11 @@ function generate_menu($page = 'index', $cat_id = 0)
 	$plugins = cached_plugins();
 	foreach($menus as $menu)
 	{
+		if($menu != 'no' && $config['kb_disable_' . $menu . '_menu'])
+		{
+			continue;
+		}
+		
 		foreach ($plugins[$menu] as $plugin)
 		{
 			if (isset($config['kb_' . $plugin['FILE'] . '_enable']) ? !$config['kb_' . $plugin['FILE'] . '_enable'] && !$plugin['PERMANENT'] === true : !$plugin['PERMANENT'] === true) // Permanent plugins doesn't nescesarily need to be enabled via usual vars
@@ -133,14 +138,14 @@ function generate_menu($page = 'index', $cat_id = 0)
 				continue;
 			}
 		
+			if(!function_exists($plugin['FILE']))
+			{
+				include($plugin_loc . 'kb_' . $plugin['FILE'] . '.' . $phpEx);
+			}
+			
 			$show_pages = unserialize($plugin['PERM']);
 			if (in_array($page, $show_pages))
-			{
-				if(!function_exists($plugin['FILE']))
-				{
-					include($plugin_loc . 'kb_' . $plugin['FILE'] . '.' . $phpEx);
-				}
-				
+			{	
 				if($menu != 'no')
 				{
 					$template->assign_block_vars($menu . '_menu', array(
@@ -650,7 +655,7 @@ function clean_url($url)
 	return str_replace(array(' ', '___'), '_', str_replace($match, '', $url));
 }
 
-function kb_append_sid($mode, $info, $return = false, $page_name = 'kb')
+function kb_append_sid($mode, $info, $return = false, $page_name = 'kb', $meta_refresh = false)
 {
 	global $phpbb_root_path, $phpEx, $user, $config;
 
@@ -693,7 +698,8 @@ function kb_append_sid($mode, $info, $return = false, $page_name = 'kb')
 		$send = $page_name . '.' . $phpEx . '?' . $clause . '=' . $info['id'] . $add;
 	}
 	
-	return ($return) ? $send : append_sid($phpbb_root_path . $send);
+	$send = (($meta_refresh) ? generate_board_url() . '/' . $send : (($return) ? $send : $phpbb_root_path . $send));
+	return ($return) ? $send : append_sid($send);
 }
 
 // Makes a list of pages for acp select

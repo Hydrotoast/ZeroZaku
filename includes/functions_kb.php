@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: functions_kb.php 458 2010-04-14 11:19:05Z softphp $
+* @version $Id: functions_kb.php 514 2010-06-23 12:32:18Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -208,7 +208,7 @@ function kb_upload_attachment($form_name, $cat_id, $local = false, $local_storag
 		}
 		else
 		{
-			$allowed_filesize = ($is_message) ? $config['max_filesize_pm'] : $config['max_filesize'];
+			$allowed_filesize = $config['max_filesize'];
 		}
 
 		$file->upload->set_max_filesize($allowed_filesize);
@@ -435,7 +435,7 @@ function check_edit_type($data, $old_data, $update_message = false)
 	{
 		$edit_type[] = EDIT_TYPE_TITLE;
 	}
-	
+
 	if($data['article_desc'] != $old_data['article_desc'])
 	{
 		$edit_type[] = EDIT_TYPE_DESC;
@@ -473,40 +473,40 @@ function check_edit_type($data, $old_data, $update_message = false)
 * Submit edit
 * submits all information about article edits to the 
 */
-function edit_submit($data, $old_data, $update_message)
+function edit_submit($data, $edit_moderated, $article_id)
 {
 	global $db, $user;
 	
 	// Build edits table to take care of old data
 	$sql_data[KB_EDITS_TABLE]['sql'] = array(
-		'article_id'						=> 		$old_data['article_id'],
-		'parent_id'							=>		$old_data['article_last_edit_id'], // So silly of me, no need for a function here
+		'article_id'						=> 		$article_id,
+		'parent_id'							=>		$data['article_last_edit_id'], // So silly of me, no need for a function here
 		'edit_user_id'						=>		$user->data['user_id'], // Data of the user doing the edit
 		'edit_user_name'					=>		$user->data['username'],
 		'edit_user_color'					=>		$user->data['user_colour'],
-		'edit_time'							=>		$old_data['article_time'],
-		'edit_article_title'				=>		$old_data['article_title'],
-		'edit_article_desc'					=>		$old_data['article_desc'],
-		'edit_article_desc_bitfield'		=>		$old_data['article_desc_bitfield'],
-		'edit_article_desc_options'			=>		$old_data['article_desc_options'],
-		'edit_article_desc_uid'				=>		$old_data['article_desc_uid'],
-		'edit_article_checksum'				=>		$old_data['article_checksum'],
-		'edit_article_text'					=>		$old_data['article_text'],
-		'edit_enable_bbcode'                =>      $old_data['enable_bbcode'],
-		'edit_enable_smilies'               =>      $old_data['enable_smilies'],
-		'edit_enable_magic_url'             =>      $old_data['enable_magic_url'],
-		'edit_enable_sig'                   =>      $old_data['enable_sig'],
-		'edit_bbcode_bitfield'				=>		$old_data['bbcode_bitfield'],
-		'edit_bbcode_uid'					=>		$old_data['bbcode_uid'],
-		'edit_article_status'				=>		$old_data['article_status'],
-		'edit_reason'						=>		$old_data['article_edit_reason'],
-		'edit_reason_global'				=>		$old_data['article_edit_reason_global'],
-		'edit_moderated'					=>		$old_data['edit_moderated'],
-		'edit_type'							=>		$old_data['article_edit_type'], //serialize($edit_type),
-		'edit_cat_id'						=>		$old_data['cat_id'],
-		'edit_article_tags'					=>		$old_data['article_tags'],
-		'edit_article_type'					=>		$old_data['article_type'],
-		'edit_contribution'					=>		$old_data['article_edit_contribution'],
+		'edit_time'							=>		$data['article_time'],
+		'edit_article_title'				=>		$data['article_title'],
+		'edit_article_desc'					=>		$data['article_desc'],
+		'edit_article_desc_bitfield'		=>		$data['article_desc_bitfield'],
+		'edit_article_desc_options'			=>		$data['article_desc_options'],
+		'edit_article_desc_uid'				=>		$data['article_desc_uid'],
+		'edit_article_checksum'				=>		$data['article_checksum'],
+		'edit_article_text'					=>		$data['message'],
+		'edit_enable_bbcode'                =>      $data['enable_bbcode'],
+		'edit_enable_smilies'               =>      $data['enable_smilies'],
+		'edit_enable_magic_url'             =>      $data['enable_urls'],
+		'edit_enable_sig'                   =>      $data['enable_sig'],
+		'edit_bbcode_bitfield'				=>		$data['bbcode_bitfield'],
+		'edit_bbcode_uid'					=>		$data['bbcode_uid'],
+		'edit_article_status'				=>		$data['article_status'],
+		'edit_reason'						=>		$data['article_edit_reason'],
+		'edit_reason_global'				=>		$data['article_edit_reason_global'],
+		'edit_moderated'					=>		($edit_moderated) ? 1 : 0,
+		'edit_type'							=>		serialize($data['edit_type']), //serialize($edit_type),
+		'edit_cat_id'						=>		$data['cat_id'],
+		'edit_article_tags'					=>		$data['article_tags'],
+		'edit_article_type'					=>		$data['article_type'],
+		'edit_contribution'					=>		$data['article_contribution'],
 	);
 	
 	$sql = 'INSERT INTO ' . KB_EDITS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_data[KB_EDITS_TABLE]['sql']);
@@ -519,7 +519,7 @@ function edit_submit($data, $old_data, $update_message)
 /**
 * Submit Article
 */
-function article_submit($mode, &$data, $update_message = true, $old_data = array())
+function article_submit($mode, &$data, $update_message = true, $article_id = 0)
 {
 	global $db, $auth, $user, $config, $phpEx, $template, $phpbb_root_path;
 	
@@ -572,20 +572,22 @@ function article_submit($mode, &$data, $update_message = true, $old_data = array
 		'article_edit_reason_global'	=>	$data['article_edit_reason_global'],
 		'article_open'					=>  $data['article_open'],
 		'article_edit_contribution'		=>  $data['article_contribution'],
-		'article_edit_type'				=>  ($mode == 'edit') ? serialize(check_edit_type($data, $old_data, $update_message)) : serialize(array()),
+		'article_edit_type'				=>	serialize($data['edit_type']),
 	);
-	
-	// Submit an edit based on this edit
-	if($mode == 'edit')
-	{
-		$edit_id = edit_submit($data, $old_data, $update_message);
-		$sql_data[KB_TABLE]['sql']['article_last_edit_id'] = $edit_id;
-	}
+	$data['article_edit_type'] = $sql_data[KB_TABLE]['sql']['article_edit_type'];
 	
 	// Only update text if needed
 	if($update_message)
 	{
 		$sql_data[KB_TABLE]['sql']['article_text'] = $data['message'];
+	}
+	
+	// Submit an edit based on this edit
+	if($mode == 'edit')
+	{
+		$edit_moderated = ($auth->acl_get('m_kb_edit')) ? true : false;
+		$edit_id = edit_submit($data, $edit_moderated, $article_id);
+		$sql_data[KB_TABLE]['sql']['article_last_edit_id'] = $edit_id;
 	}
 	
 	// Submit article
@@ -616,7 +618,7 @@ function article_submit($mode, &$data, $update_message = true, $old_data = array
 	}
 	
 	// Synchronize tables when moving category
-	if($mode == 'edit' && $data['article_status'] == STATUS_APPROVED && $old_data['article_status'] == STATUS_APPROVED && $data['cat_id'] != $old_data['cat_id'])
+	if($mode == 'edit' && $data['article_status'] == STATUS_APPROVED && $data['edit_data']['article_status'] == STATUS_APPROVED && $data['cat_id'] != $data['edit_data']['cat_id'])
 	{
 		$sql = 'UPDATE ' . KB_CATS_TABLE . '
 				SET cat_articles = cat_articles + 1
@@ -1398,6 +1400,180 @@ function request_delete($request_id)
 }
 
 /*
+* KB handling of user deletion
+* This function is called when a user is deleted and will take care of deleting all KB related user stuff
+*/
+function kb_user_delete($mode, $user_id, $post_username)
+{
+	global $db, $user, $config, $cache;
+	
+	if(!defined('KB_TABLE'))
+	{
+		global $phpEx, $phpbb_root_path, $table_prefix;
+		include($phpbb_root_path . 'includes/constants_kb.' . $phpEx);
+	}
+	
+	// Clear other tables from his info
+	$sql = 'DELETE FROM ' . KB_ACL_USERS_TABLE . '
+			WHERE user_id = ' . $user_id;
+	$db->sql_query($sql);
+	
+	// Delete from comments table - no need to store these
+	$comment_ids = array();
+	$article_ids = array();
+	$sql = 'SELECT comment_id, article_id
+			FROM ' . KB_COMMENTS_TABLE . "
+			WHERE comment_user_id = " . $user_id;
+	$result = $db->sql_query($sql);
+	while($row = $db->sql_fetchrow($result))
+	{
+		// Don't loop this: comment_delete($row['comment_id'], $article_id, false);
+		$comment_ids[] = $row['comment_id'];
+		
+		if(!isset($article_ids[$row['article_id']]))
+		{
+			$article_ids[$row['article_id']] = 1;
+		}
+		else
+		{
+			$article_ids[$row['article_id']]++;
+		}
+	}
+	$db->sql_freeresult($result);
+	
+	if(sizeof($comment_ids))
+	{
+		// Delete comments
+		$sql = 'DELETE FROM ' . KB_COMMENTS_TABLE . "
+				WHERE " . $db->sql_in_set('comment_id', $comment_ids);
+		$db->sql_query($sql);
+		
+		// Delete from attachments table, and delete attachment files
+		kb_delete_attachments('comment', $comment_ids);
+		
+		// Update comment count for articles
+		foreach($article_ids as $article_id => $comments_num)
+		{
+			$sql = 'UPDATE ' . KB_TABLE . '
+					SET article_comments = article_comments - ' . $comments_num . '
+					WHERE article_id = ' . $article_id;
+			$db->sql_query($sql);
+		}
+		
+		set_config('kb_total_comments', $config['kb_total_comments'] - count($comment_ids), true);
+	}
+
+	$sql = 'DELETE FROM ' . KB_RATE_TABLE . '
+			WHERE user_id = ' . $user_id;
+	$db->sql_query($sql);
+	
+	$sql = 'DELETE FROM ' . KB_REQ_TABLE . '
+			WHERE request_user_id = ' . $user_id;
+	$db->sql_query($sql);
+	
+	$sql = 'DELETE FROM ' . KB_TRACK_TABLE . '
+			WHERE user_id = ' . $user_id;
+	$db->sql_query($sql);
+	
+	// Retrieve all articles in category
+	$sql = 'SELECT article_id
+			FROM ' . KB_TABLE . ' 
+			WHERE article_user_id = ' . $user_id;
+	$result = $db->sql_query($sql);
+	while($row = $db->sql_fetchrow($result))
+	{
+		$article_ids[] = $row['article_id'];
+	}
+	$db->sql_freeresult($result);
+	
+	// Delete his articles
+	if(sizeof($article_ids))
+	{
+		// Delete them en masse
+		// Delete from rate table
+		$sql = 'DELETE FROM ' . KB_RATE_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		// Delete from comments table - no need to store these
+		$comment_ids = array();
+		$sql = 'SELECT comment_id
+				FROM ' . KB_COMMENTS_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$result = $db->sql_query($sql);
+		while($row = $db->sql_fetchrow($result))
+		{
+			// Don't loop this: comment_delete($row['comment_id'], $article_id, false);
+			$comment_ids[] = $row['comment_id'];
+		}
+		$db->sql_freeresult($result);
+		
+		if(sizeof($comment_ids))
+		{
+			// Delete comments
+			$sql = 'DELETE FROM ' . KB_COMMENTS_TABLE . "
+					WHERE " . $db->sql_in_set('comment_id', $comment_ids);
+			$db->sql_query($sql);
+			
+			// Delete from attachments table, and delete attachment files
+			kb_delete_attachments('comment', $comment_ids);
+		}
+		
+		// Delete from edits table
+		$sql = 'DELETE FROM ' . KB_EDITS_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		// Delete from attachments table, and delete attachment files
+		kb_delete_attachments('delete', $article_ids);
+		
+		// Delete from tags table
+		$sql = 'DELETE FROM ' . KB_TAGS_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		// Delete from tracking table
+		$sql = 'DELETE FROM ' . KB_TRACK_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		// Delete from article table
+		$sql = 'DELETE FROM ' . KB_TABLE . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		// Unset requests...
+		$sql = 'UPDATE ' . KB_REQ_TABLE . " 
+				SET article_id = 0, request_accepted = 0, request_status = " . STATUS_REQUEST . "
+				WHERE " . $db->sql_in_set('article_id', $article_ids);
+		$db->sql_query($sql);
+		
+		//Resync Stats
+		$total_articles = sizeof($article_ids);
+		$total_comments = sizeof($comment_ids);
+		
+		set_config('kb_total_articles', $config['kb_total_articles'] - $total_articles, true);
+		if ($total_comments)
+		{
+			set_config('kb_total_comments', $config['kb_total_comments'] - $total_comments, true);
+		}
+		set_config('kb_last_updated', time(), true);
+		$cache->destroy('config');
+	}
+	
+	// Set all edits by this user to guest status
+	$sql = 'UPDATE ' . KB_COMMENTS_TABLE . "
+			SET comment_edit_id = " . ANONYMOUS . ", comment_edit_name = '" . $user->lang['GUEST'] . "', comment_edit_color = ''
+			WHERE comment_edit_id = " . $user_id;
+	$db->sql_query($sql);
+	
+	$sql = 'UPDATE ' . KB_EDITS_TABLE . "
+			SET edit_user_id = " . ANONYMOUS . ", edit_user_name = '" . $user->lang['GUEST'] . "', edit_user_color = ''
+			WHERE edit_user_id = " . $user_id;
+	$db->sql_query($sql);
+}
+
+/*
 * Show request list
 * shows list of requests so it can be used both in and outside of menus
 * in menu = true|false, num = shown requests, start = start var
@@ -1468,13 +1644,21 @@ function show_request_list($in_menu, $num, $start = 0)
 	
 	$template->assign_vars(array(
 		'U_ADD_REQ'			=> ($auth->acl_get('u_kb_request')) ? append_sid("{$phpbb_root_path}kb.$phpEx", 'i=request&amp;action=add') : '',
+		'ADD_REQ_IMG'		=> ($in_menu) ? '' : $user->img('button_request_new', 'KB_ADD_REQUEST'),
 		'U_VIEW_ALL'		=> ($in_menu) ? append_sid("{$phpbb_root_path}kb.$phpEx", 'i=request&amp;action=list') : '',
-		'PAGINATION'		=> ($in_menu) ? '' : generate_pagination(append_sid("{$phpbb_root_path}kb.$phpEx", "i=request&amp;action=list"), $requests_count, $num, $start),
-		'PAGE_NUMBER'		=> ($in_menu) ? '' : on_page($requests_count, $num, $start),
-		'TOTAL_REQUESTS' 	=> ($in_menu) ? '' : $requests_count,
 		'S_SHOW_REQ_LIST'	=> ($in_menu) ? true : false,
 		'S_IN_MAIN'			=> ($in_menu) ? false : true,
 	));
+	
+	// Moved here due to complications with pagination
+	if(!$in_menu)
+	{
+		$template->assign_vars(array(
+			'PAGINATION'		=> kb_generate_pagination(append_sid("{$phpbb_root_path}kb.$phpEx", "i=request&amp;action=list"), $requests_count, $num, $start),
+			'PAGE_NUMBER'		=> on_page($requests_count, $num, $start),
+			'TOTAL_REQUESTS' 	=> $requests_count,
+		));
+	}
 }
 	
 /*
@@ -1986,10 +2170,10 @@ function handle_related_articles($article_id, $article_title, $article_title_cle
 	
 	$words = array();
 	//Remove standard words
-	if (file_exists($phpbb_root_path . "{$user->lang_path}{$user->lang_name}/search_ignore_words.$phpEx"))
+	if (file_exists($user->lang_path . $user->lang_name . "/search_ignore_words.$phpEx"))
 	{
 		// include the file containing ignore words
-		include($phpbb_root_path . "{$user->lang_path}{$user->lang_name}/search_ignore_words.$phpEx");
+		include($user->lang_path . $user->lang_name . "/search_ignore_words.$phpEx");
 	}
 	
 	foreach($split_title as $term)
@@ -2564,7 +2748,7 @@ function make_cat_select($select_id = false, $ignore_id = false, $in_acp = false
 	global $db, $user, $auth;
 
 	// This query is identical to the jumpbox one
-	$sql = 'SELECT cat_id, cat_name, parent_id, left_id, right_id
+	$sql = 'SELECT cat_id, cat_name, cat_desc, parent_id, left_id, right_id
 		FROM ' . KB_CATS_TABLE . '
 		ORDER BY left_id ASC';
 	$result = $db->sql_query($sql);
@@ -2651,21 +2835,21 @@ function make_time_selects($current_time)
 	for($i = 1; $i <= 12; $i++)
 	{
 		$selected = ($date[1] == $i) ? ' selected="selected"' : '';
-		$month_options .= '<option value="' . $i . '"' . $selected . '>' . $user->lang['datetime'][$month_names[$i]] . '</option>\n';
+		$month_options .= '<option value="' . $i . '"' . $selected . '>' . $user->lang['datetime'][$month_names[$i]] . '</option>';
 	}
 	
 	$day_options = "";
 	for($i = 1; $i <= 31; $i++)
 	{
 		$selected = ($date[0] == $i) ? ' selected="selected"' : '';
-		$day_options .= '<option value="' . $i . '"' . $selected . '">' . $i . '</option>\n';
+		$day_options .= '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
 	}
 	
 	$year_options = "";
 	for($i = $date[2] - 10; $i < ($date[2] + 10); $i++)
 	{
 		$selected = ($date[2] == $i) ? ' selected="selected"' : '';
-		$year_options .= '<option value="' . $i . '"' . $selected . '>' . $i . '</option>\n';
+		$year_options .= '<option value="' . $i . '"' . $selected . '>' . $i . '</option>';
 	}
 	
 	$hour_options = "";
@@ -2677,7 +2861,7 @@ function make_time_selects($current_time)
 			$o = "0";
 		}
 		$selected = ($date[3] == $i) ? ' selected="selected"' : '';
-		$hour_options .= '<option value="' . $i . '"' . $selected . '>' . $o . $i . '</option>\n';
+		$hour_options .= '<option value="' . $i . '"' . $selected . '>' . $o . $i . '</option>';
 	}
 	
 	$min_options = "";
@@ -2690,7 +2874,7 @@ function make_time_selects($current_time)
 		}
 		$minute = $o . $i;
 		$selected = ($date[4] == $minute) ? ' selected="selected"' : '';
-		$min_options .= '<option value="' . $i . '"' . $selected . '>' . $minute . '</option>\n';
+		$min_options .= '<option value="' . $i . '"' . $selected . '>' . $minute . '</option>';
 	}
 	
 	return array(
@@ -3023,6 +3207,66 @@ function make_direction_select($direction)
 	$select .= '</select>';
 	
 	return $select;
+}
+
+// Titania function to show rating stars, slightly tweaked
+function get_rating_stars($article_id, $cat_id, $has_rated, $can_rate, $rating, $votes)
+{
+	global $auth, $user, $template, $config;
+	global $phpbb_root_path, $phpEx;
+	
+	//$rate_url = titania_url::build_url('rate', array('type' => $this->rating_type, 'id' => $this->rating_object_id));
+	$rate_url = append_sid($phpbb_root_path . "kb.$phpEx", "i=rate&a=$article_id");
+	
+	// If it has not had any ratings yet, give it 1/2 the max for the rating
+	if ($votes == 0)
+	{
+		$rating = 3;
+	}
+
+	$template->set_filenames(array(
+		'rate'	=> 'kb/rate.html',
+	));
+
+	$theme_path = "{$phpbb_root_path}styles/" . $user->theme['theme_path'] . '/theme';
+	$template->assign_vars(array(
+		'ARTICLE_ID'			=> $article_id,
+		'ARTICLE_RATING'		=> $rating,
+
+		'RATE_URL'				=> $rate_url,
+
+		'S_HAS_RATED'			=> ($has_rated > 0) ? true : false,
+		'S_CAN_RATE'			=> $can_rate,
+		'S_AJAX'				=> $config['kb_ajax_rating'],
+
+		'UA_GREY_STAR_SRC'		=> $theme_path . '/images/star_grey.gif',
+		'UA_GREEN_STAR_SRC'		=> $theme_path . '/images/star_green.gif',
+		'UA_RED_STAR_SRC'		=> $theme_path . '/images/star_red.gif',
+		'UA_ORANGE_STAR_SRC'	=> $theme_path . '/images/star_orange.gif',
+		'UA_REMOVE_STAR_SRC'	=> $theme_path . '/images/star_remove.gif',
+		'UA_MAX_RATING'			=> 6, // Not configurable as of yet
+	));
+
+	// reset the stars block
+	$template->destroy_block_vars('stars');
+	$template->destroy_block_vars('reset_stars');
+	
+	for ($i = 1; $i <= 6; $i++)
+	{
+		$user_rating = (!$can_rate) ? $rating : (($has_rated) ? $has_rated : $i);
+		$template->assign_block_vars('stars', array(
+			'ALT'		=> $user_rating . '/' . 6,
+			'ID'		=> $i,
+			'RATE_URL'	=> ($config['kb_ajax_rating']) ? 'javascript:rateArticle(' . $i . ')' : $rate_url . '&amp;rating=' . $i,
+		));
+		
+		$template->assign_block_vars('reset_stars', array(
+			'RATING'	=> $i,
+			'JS_VAR'	=> ($rating >= $i) ? 'orange_star.src' : 'grey_star.src',
+		));
+	}
+
+	return $template->assign_display('rate', '', true);
 }
 
 /*

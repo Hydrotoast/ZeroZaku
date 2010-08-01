@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Knowledge Base Mod (KB)
-* @version $Id: functions_install_kb.php 459 2010-04-14 13:41:37Z softphp $
+* @version $Id: functions_install_kb.php 504 2010-06-21 14:38:48Z andreas.nexmann@gmail.com $
 * @copyright (c) 2009 Andreas Nexmann, Tom Martin
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -102,6 +102,11 @@ function kb_update_versions()
 		'1.0.2RC3' => array(
 			// Resync count, clear plugin cache
 			'custom'	=> 'kb_update_1_0_2RC2_to_1_0_2RC3',
+		),
+		
+		'1.0.2' => array(
+			// Clear history table
+			'custom'	=> 'kb_update_1_0_2RC3_to_1_0_2',
 		),
 	);
 	
@@ -1108,6 +1113,19 @@ function get_install_info($type)
 // ALL FUNCTIONS BELOW THIS LINE ARE CUSTOM UPDATE FUNCTIONS
 // (expect long and annoying function names)
 //
+function kb_update_1_0_2RC3_to_1_0_2($action, $version)
+{
+	global $db, $table_prefix;
+
+	if($action != 'update')
+	{
+		return;
+	}
+	
+	$sql = 'DELETE FROM ' . $table_prefix . 'article_edits';
+	$db->sql_query($sql);
+}
+	
 function kb_update_1_0_2RC2_to_1_0_2RC3($action, $version)
 {
 	global $db, $cache, $table_prefix;
