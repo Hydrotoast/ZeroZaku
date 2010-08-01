@@ -344,7 +344,7 @@ $table = ($in_kb) ? KB_ATTACHMENTS_TABLE : ATTACHMENTS_TABLE;
 if ($display_cat == ATTACHMENT_CATEGORY_IMAGE && $mode === 'view' && (strpos($attachment['mimetype'], 'image') === 0) && ((strpos(strtolower($user->browser), 'msie') !== false) && (strpos(strtolower($user->browser), 'msie 8.0') === false)))
 {
 $kb_link = ($in_kb) ? '&amp;kb=1' : '';
-	wrap_img_in_html(append_sid($phpbb_root_path . 'download/file.' . $phpEx, 'id=' . $attachment['attach_id'] . $in_kb), $attachment['real_filename']);
+	wrap_img_in_html(append_sid($phpbb_root_path . 'download/file.' . $phpEx, 'id=' . $attachment['attach_id'] . $kb_link), $attachment['real_filename']);
 	file_gc();
 }
 else

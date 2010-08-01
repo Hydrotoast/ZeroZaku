@@ -3,117 +3,6 @@ textarea.desc {
 	width: 40%;
 }
 
-/* Rating styles */
-.star-rating
-{
-	list-style:none;
-	margin-left:5px!important;
-	padding:0px;
-	width: 150px;
-	height: 25px;
-	position: relative;
-	background: url("{T_THEME_PATH}/images/rate_star.gif") top left repeat-x;		
-}
-
-.star-rating li
-{
-	padding:0px;
-	margin:0px;
-	/*\*/
-	float: left;
-	/* */
-}
-
-.star-rating li a
-{
-	display:block;
-	width:25px;
-	height: 25px;
-	text-decoration: none;
-	text-indent: -9000px;
-	z-index: 20;
-	position: absolute;
-	padding: 0px;
-}
-
-.star-rating li a:hover
-{
-	background: url("{T_THEME_PATH}/images/rate_star.gif") left bottom;
-	z-index: 2;
-	left: 0px;
-}
-
-.star-rating a.one-star
-{
-	left: 0px;
-}
-
-.star-rating a.one-star:hover
-{
-	width:25px;
-}
-
-.star-rating a.two-stars
-{
-	left:25px;
-}
-
-.star-rating a.two-stars:hover
-{
-	
-	width: 50px;
-}
-
-.star-rating a.three-stars
-{
-	left: 50px;
-}
-
-.star-rating a.three-stars:hover
-{
-	width: 75px;
-}
-
-.star-rating a.four-stars
-{
-	left: 75px;
-}	
-
-.star-rating a.four-stars:hover
-{
-	width: 100px;
-}
-
-.star-rating a.five-stars
-{
-	left: 100px;
-}
-
-.star-rating a.five-stars:hover
-{
-	width: 125px;
-}
-
-.star-rating a.six-stars
-{
-	left: 125px;
-}
-
-.star-rating a.six-stars:hover
-{
-	width: 150px;
-}
-
-.star-rating li.current-rating
-{
-	background: url("{T_THEME_PATH}/images/rate_star.gif") left center;
-	position: absolute;
-	height: 25px;
-	display: block;
-	text-indent: -9000px;
-	z-index: 1;
-}
-
 /**
 * Left menu
 */
@@ -166,9 +55,28 @@ textarea.desc {
 .buttons div.comment-icon		{ width: {IMG_BUTTON_COMMENT_NEW_WIDTH}px; height: {IMG_BUTTON_COMMENT_NEW_HEIGHT}px; }
 .comment-icon span		{ background-image: url("{IMG_BUTTON_COMMENT_NEW_SRC}"); }
 
+.request-icon span		{ background: transparent none 0 0 no-repeat; }
+.buttons div.request-icon		{ width: {IMG_BUTTON_REQUEST_NEW_WIDTH}px; height: {IMG_BUTTON_REQUEST_NEW_HEIGHT}px; }
+.request-icon span		{ background-image: url("{IMG_BUTTON_REQUEST_NEW_SRC}"); }
+
 .icon-kb {
 	background-image: url("{T_THEME_PATH}/images/icon_kb.gif");
 	background-position: 0 50%;
 	background-repeat: no-repeat;
 	padding: 1px 0 0 23px;
+}
+
+/* Rating Code */
+ul.rating, ul.rated {
+	list-style-type: none;
+	display: inline;
+}
+
+ul.rating li, ul.rated li {
+	display: inline;
+	border: 0;
+}
+
+.hidden {
+	display: none !important;
 }

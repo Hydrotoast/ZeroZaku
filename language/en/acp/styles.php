@@ -260,6 +260,7 @@ $lang = array_merge($lang, array(
 	'IMG_BUTTON_TOPIC_REPLY'	=> 'Reply topic',
 	'IMG_BUTTON_ARTICLE_NEW'	=> 'New article',
 	'IMG_BUTTON_COMMENT_NEW'	=> 'New comment',
+	'IMG_BUTTON_REQUEST_NEW'	=> 'New request',
 
 	'IMG_USER_ICON1'		=> 'User defined image 1',
 	'IMG_USER_ICON2'		=> 'User defined image 2',

@@ -1,19 +1,8 @@
-<!-- INCLUDE kb/rate_article.html -->
 <div class="post bg3">
 	<div class="inner">
 		<span class="corners-top"><span></span></span>
 		<div class="left_menu_title">{L_RATINGS}</div>
-		<ul style="list-style: none;" class="star-rating">
-			<li class="current-rating" id="current-rating" style="width: {RATING_PX}px"></li>
-			<span id="ratelinks"<!-- IF S_HAS_RATED --> style="display: none;"<!-- ENDIF -->>
-				<li><a href="{U_RATE_1}" title="1 {L_STARS_OUT_OF} 6" class="one-star">1</a></li>
-				<li><a href="{U_RATE_2}" title="2 {L_STARS_OUT_OF} 6" class="two-stars">2</a></li>
-				<li><a href="{U_RATE_3}" title="3 {L_STARS_OUT_OF} 6" class="three-stars">3</a></li>
-				<li><a href="{U_RATE_4}" title="4 {L_STARS_OUT_OF} 6" class="four-stars">4</a></li>
-				<li><a href="{U_RATE_5}" title="5 {L_STARS_OUT_OF} 6" class="five-stars">5</a></li>
-				<li><a href="{U_RATE_6}" title="6 {L_STARS_OUT_OF} 6" class="six-stars">6</a></li>
-			</span>
-		</ul>
+		{RATING_STARS}<br />
 		<span id="ratingtext">{L_CURRENT_RATING}</span>
 		<span class="corners-bottom"><span></span></span>
 	</div>

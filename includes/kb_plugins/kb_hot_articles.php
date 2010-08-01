@@ -45,23 +45,18 @@ function hot_articles($cat_id)
 	}
 	
 	$limit = $config['kb_hot_articles_limit'];
-	$sql_where = ($cat_id) ? 'cat_id = ' . $cat_id : $db->sql_in_set('a.cat_id', get_readable_cats());
-	$sql = 'SELECT a.article_id, a.article_title, a.article_views, c.cat_name
-			FROM ' . KB_TABLE . ' a
-				JOIN ' . KB_CATS_TABLE . " c
+	$sql_where = ($cat_id) ? 'cat_id = ' . $cat_id : $db->sql_in_set('cat_id', get_readable_cats());
+	$sql = 'SELECT article_id, article_title, article_views
+			FROM ' . KB_TABLE . "
 			WHERE article_status = " . STATUS_APPROVED . " 
-				AND $sql_where 
-				AND c.cat_id = a.cat_id
+			AND $sql_where 
 			ORDER BY article_views DESC";
 	$result = $db->sql_query_limit($sql, $limit);
-	
 	while($row = $db->sql_fetchrow($result))
 	{
-	    
 		$template->assign_block_vars('hotrow', array(
 			'ARTICLE_TITLE'		=> censor_text($row['article_title']),
 			'U_VIEW_ARTICLE'	=> kb_append_sid('article', array('id' => $row['article_id'], 'title' => censor_text($row['article_title']))),
-		    'ARTICLE_CAT'		=> $row['cat_name'],
 			'ARTICLE_VIEWS'		=> $row['article_views'],
 		));
 	}

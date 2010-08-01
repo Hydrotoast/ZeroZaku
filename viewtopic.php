@@ -1143,6 +1143,7 @@ while ($row = $db->sql_fetchrow($result))
 				'type'			=> '',
 		// End : Inactive and Banned Users` Custom Titles & Avatars
 				'posts'			=> '',
+				'articles'		=> '',
 				'from'			=> '',
 
 				'sig'					=> '',
@@ -1197,6 +1198,7 @@ while ($row = $db->sql_fetchrow($result))
 				'type'			=> $row['user_type'],
 		// End : Inactive and Banned Users` Custom Titles & Avatars
 				'posts'			=> $row['user_posts'],
+				'articles'		=> $row['user_articles'],
 				'warnings'		=> (isset($row['user_warnings'])) ? $row['user_warnings'] : 0,
 				'from'			=> (!empty($row['user_from'])) ? $row['user_from'] : '',
 
@@ -1629,6 +1631,8 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'RANK_IMG_SRC'		=> $user_cache[$poster_id]['rank_image_src'],
 		'POSTER_JOINED'		=> $user_cache[$poster_id]['joined'],
 		'POSTER_POSTS'		=> $user_cache[$poster_id]['posts'],
+		'POSTER_ARTICLES'	=> $user_cache[$poster_id]['articles'],
+		'U_POSTER_ARTICLES' => append_sid($phpbb_root_path . 'kb.' . $phpEx, 'i=search&amp;author_id= ' . $poster_id),
 		'POSTER_FROM'		=> $user_cache[$poster_id]['from'],
 		'POSTER_AVATAR'		=> $user_cache[$poster_id]['avatar'],
 		'POSTER_WARNINGS'	=> $user_cache[$poster_id]['warnings'],
