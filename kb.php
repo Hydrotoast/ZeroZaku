@@ -57,13 +57,6 @@ if (!isset($config['kb_enable']) || !$config['kb_enable'] && !($auth->acl_get('a
 $kb_auth = new kb_auth;
 $kb_auth->acl($user->data, $auth);
 
-$copyright = '';
-$copyright .= sprintf($user->lang['KB_COPYRIGHT'], '<a href="http://kb.softphp.dk">', '</a>', KB_VERSION);
-$copyright .= ($user->lang['KB_TRANSLATION'] != '') ? '&nbsp;&bull;&nbsp;' . $user->lang['KB_TRANSLATION'] : '';
-$copyright .= ($user->lang['TRANSLATION_INFO'] != '') ? '<br />' . $user->lang['TRANSLATION_INFO'] : '';
-
-$user->lang['TRANSLATION_INFO'] = $copyright;  
-
 // set cat id here needed for search and random article to work properly
 $cat_id = request_var('c', 0);
 
