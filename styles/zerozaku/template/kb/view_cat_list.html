@@ -1,127 +1,89 @@
 <!-- INCLUDE kb/kb_header.html -->
-			<!-- IF .catrow -->
-				<!-- IF S_CAT_STYLE -->
-					<!-- INCLUDE kb/cat_list_modern.html -->
-				<!-- ELSE -->
-					<!-- INCLUDE kb/cat_list_classic.html -->
-				<!-- ENDIF -->
-			<!-- ELSEIF S_ON_INDEX -->
-			<div class="panel">
-				<div class="inner">
-				<strong>{L_NO_CATS}</strong>
-				</div>
-			</div>
-			<!-- ENDIF -->	
-						
-			<!-- IF .articlerow -->
-			<div class="topic-actions">
-				<!-- IF U_ADD_NEW_ARTICLE -->
-				<div class="buttons">
-					<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}"><span></span>{L_KB_ADD_ARTICLE}</a></div>
-				</div>
-				<!-- ENDIF -->
-				
-				<div class="pagination">
-					{TOTAL_ARTICLES} {L_ARTICLES_LC}
-					<!-- IF PAGE_NUMBER -->
-						<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
-					<!-- ENDIF -->
-				</div>
-			</div>
-			
-			<h2 class="cattitle"><span>{L_CATEGORY_NAME}</span></h2>
-			<div class="forumbg">
-				<div class="inner">
-				<ul class="topiclist">
-					<li class="header">
-						<dl class="meta">
-							<dt>{L_ARTICLES}</dt>
-							<dd class="stats"><div class="inner">{L_STATS}</div></dd>
-							<dd class="lastpost"><div class="inner">{L_AUTHOR}</div></dd>
-						</dl>
-					</li>
-				</ul>
-				<ul class="topiclist topics">
-					<!-- BEGIN articlerow -->
-					<li class="row<!-- IF articlerow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-						<dl class="icon" style="background-image: url({articlerow.ARTICLE_FOLDER_IMG_SRC}); background-repeat: no-repeat; background-position: 10px center;">
-							<dt>
-								<div class="inner">
-									<!-- IF articlerow.ARTICLE_TYPE_IMG --><span class="forum-image"><img src="{articlerow.ARTICLE_TYPE_IMG}" width="{articlerow.ARTICLE_TYPE_IMG_WIDTH}" height="{articlerow.ARTICLE_TYPE_IMG_HEIGHT}" alt="" /></span><!-- ENDIF --><a href="{articlerow.U_VIEW_ARTICLE}" class="topictitle">{articlerow.ARTICLE_TITLE}</a>
-									<!-- IF articlerow.ARTICLE_UNAPPROVED --><a href="{articlerow.U_MCP_QUEUE}">{UNAPPROVED_IMG}</a> <!-- ENDIF -->
-									<br /><!-- IF articlerow.ARTICLE_DESC -->{articlerow.ARTICLE_DESC}<!-- ENDIF -->
-								</div>
-							</dt>
-							<dd class="stats">
-								<div class="inner">
-									<dfn>{articlerow.VIEWS} {L_VIEWS}</dfn>
-									<br /><dfn>{articlerow.COMMENTS} {L_COMMENTS}</dfn>
-								</div>
-							</dd>
-							<dd class="lastpost">
-									<div class="inner"><span>{L_POST_BY_AUTHOR} {articlerow.ARTICLE_AUTHOR_FULL}
-									<br /><span class="date"><!-- IF articlerow.ATTACH_ICON_IMG -->{articlerow.ATTACH_ICON_IMG} <!-- ENDIF -->{articlerow.FIRST_POST_TIME}	</span></div></span>
-							</dd>
-						</dl>
-					</li>
-					<!-- END articlerow -->
-				</ul>
-				</div>
-			</div>
-			
-			<form id="sort_cat" method="post" action="{S_ARTICLE_ACTION}">
-			<fieldset class="display-options" style="margin-top: 0; ">
-				<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
-				<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-				<!-- IF not S_IS_BOT -->
-				<label>{L_KB_SORT_BY} {S_SORT_OPTIONS}</label> <label>{S_SORT_DIRECTION} <input type="submit" name="gosort" value="{L_GO}" class="button2" /></label>
-				<!-- ENDIF -->
-			</fieldset>
-		
-			</form>
-			<hr />
-			<div class="topic-actions">
-				<!-- IF U_ADD_NEW_ARTICLE -->
-				<div class="buttons">
-					<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}"><span></span>{L_KB_ADD_ARTICLE}</a></div>
-				</div>
-				<!-- ENDIF -->
-				
-				<div class="pagination">
-					{TOTAL_ARTICLES} {L_ARTICLES_LC}
-					<!-- IF PAGE_NUMBER -->
-						<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
-					<!-- ENDIF -->
-				</div>
-			</div>
+		<!-- IF .cat -->
+			<!-- IF S_CAT_STYLE -->
+				<!-- INCLUDE kb/cat_list_modern.html -->
 			<!-- ELSE -->
-			<!-- IF not S_NO_TOPIC -->
-			<table width="100%">
-				<tr>
-					<td style="vertical-align: top;">
-						<div class="topic-actions">
-							<!-- IF U_ADD_NEW_ARTICLE -->
-							<div class="buttons">
-								<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}" class="button1"><span></span>{L_KB_ADD_ARTICLE}</a></div>
-							</div>
-							<!-- ENDIF -->
-							
-							<div class="pagination">
-								{TOTAL_ARTICLES} {L_ARTICLES_LC}
-								<!-- IF PAGE_NUMBER -->
-									<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
-								<!-- ENDIF -->
-							</div>
-						</div>
-						
-						<div class="panel">
-							<div class="inner">
-							<strong>{L_NO_ARTICLES}</strong>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
+				<!-- INCLUDE kb/cat_list_classic.html -->
 			<!-- ENDIF -->
+		<!-- ELSEIF S_ON_INDEX -->
+		<div id="content">
+			<strong>{L_NO_CATS}</strong>
+		</div>
+		<!-- ENDIF -->	
+					
+		<!-- IF .articlerow -->
+		<div class="topic-actions">
+			<!-- IF U_ADD_NEW_ARTICLE -->
+			<div class="buttons">
+				<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}"><span></span>{L_KB_ADD_ARTICLE}</a></div>
+			</div>
 			<!-- ENDIF -->
+			
+			<div class="pagination">
+				{TOTAL_ARTICLES} {L_ARTICLES_LC}
+				<!-- IF PAGE_NUMBER -->
+					<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+				<!-- ENDIF -->
+			</div>
+		</div>
+		
+		<div id="container">
+		<h2 class="kb_head">{PAGE_TITLE}</h2>
+		<ul class="kb_articlelist">
+			<!-- BEGIN articlerow -->
+			<li class="row<!-- IF articlerow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+				<a href="{articlerow.U_VIEW_ARTICLE}" class="articletitle">{articlerow.ARTICLE_TITLE}</a> <!-- IF articlerow.ARTICLE_UNAPPROVED --><a href="{articlerow.U_MCP_QUEUE}">{UNAPPROVED_IMG}</a> <!-- ENDIF -->
+				<br /><!-- IF articlerow.ARTICLE_DESC --><p>{articlerow.ARTICLE_DESC}</p><!-- ENDIF -->
+				<span>{L_POST_BY_AUTHOR} {articlerow.ARTICLE_AUTHOR_FULL}</span> on <span class="date"><!-- IF articlerow.ATTACH_ICON_IMG -->{articlerow.ATTACH_ICON_IMG} <!-- ENDIF -->{articlerow.FIRST_POST_TIME}	</span> | <dfn>{articlerow.VIEWS} {L_VIEWS}</dfn> | <dfn>{articlerow.COMMENTS} {L_COMMENTS}</dfn>
+			</li>
+			<!-- END articlerow -->
+		</ul>
+		
+		<form id="sort_cat" method="post" action="{S_ARTICLE_ACTION}">
+		<fieldset class="display-options">
+			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+			<!-- IF not S_IS_BOT -->
+			<label>{L_KB_SORT_BY} {S_SORT_OPTIONS}</label> <label>{S_SORT_DIRECTION} <input type="submit" name="gosort" value="{L_GO}" class="button2" /></label>
+			<!-- ENDIF -->
+		</fieldset>
+	
+		</form>
+
+		<div class="topic-actions">
+			<!-- IF U_ADD_NEW_ARTICLE -->
+			<div class="buttons">
+				<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}"><span></span>{L_KB_ADD_ARTICLE}</a></div>
+			</div>
+			<!-- ENDIF -->
+			
+			<div class="pagination">
+				{TOTAL_ARTICLES} {L_ARTICLES_LC}
+				<!-- IF PAGE_NUMBER -->
+					<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+				<!-- ENDIF -->
+			</div>
+		</div>
+		<!-- ELSE -->
+		<!-- IF not S_NO_TOPIC -->
+			<div class="topic-actions">
+				<!-- IF U_ADD_NEW_ARTICLE -->
+				<div class="buttons">
+					<div class="article-icon"><a href="{U_ADD_NEW_ARTICLE}" title="{L_KB_ADD_ARTICLE}"><span></span>{L_KB_ADD_ARTICLE}</a></div>
+				</div>
+				<!-- ENDIF -->
+				
+				<div class="pagination">
+					{TOTAL_ARTICLES} {L_ARTICLES_LC}
+					<!-- IF PAGE_NUMBER -->
+						<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+					<!-- ENDIF -->
+				</div>
+			</div>
+			
+			<strong>{L_NO_ARTICLES}</strong>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+		</div>
+		
 <!-- INCLUDE kb/kb_footer.html -->

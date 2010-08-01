@@ -580,7 +580,7 @@ class acp_kb
 */
 function select_menu_check($value, $key = '')
 {
-	$radio_ary = array(LEFT_MENU => 'LEFT_MENU', RIGHT_MENU => 'RIGHT_MENU');
+	$radio_ary = array(LEFT_MENU => 'LEFT_MENU', RIGHT_MENU => 'RIGHT_MENU', NO_MENU => 'NO_MENU');
 
 	return h_radio('config[' . $key . ']', $radio_ary, $value, $key);
 }

@@ -1,9 +1,24 @@
 <div id="container">
-	<dt class="kb_head">{L_MOST_VIEWED_ARTICLES}</dt>
-	<!-- BEGIN hotrow -->
-		<dd class="kb_item"><a href="{hotrow.U_VIEW_ARTICLE}"><p>
-			<strong>{hotrow.ARTICLE_TITLE} [{hotrow.ARTICLE_VIEWS}]</strong>
-			{hotrow.ARTICLE_CAT}
-		</p></a></dd>
-	<!-- END hotrow -->	
+	<!-- IF .hotrow -->
+		<dt class="kb_head">{L_MOST_VIEWED_ARTICLES}</dt>
+		<!-- BEGIN hotrow -->
+			<dd class="kb_item"><a href="{hotrow.U_VIEW_ARTICLE}"><p>
+				<strong>{hotrow.ARTICLE_TITLE} [{hotrow.ARTICLE_VIEWS}]</strong>
+				<br />{hotrow.ARTICLE_CAT}
+			</p></a></dd>
+		<!-- END hotrow -->	
+	<!-- ENDIF -->
+	
+	<h2 class="kb_head">{L_KB_CATS}</h2>
+	<ul class="kb_catlist">
+		<!-- BEGIN cat -->
+		<li style="width: {S_COL_WIDTH}%">
+			<div class="content">
+				<h3><a href="{cat.U_VIEWCAT}">{cat.CAT_NAME} ({cat.ARTICLES})</a> <a href="{cat.U_RSS_CAT}"><img src="{T_THEME_PATH}/images/feed.gif" width="14" height="14" alt="{L_RSS_CAT}" title="{L_RSS_CAT}" /></a></h3><div style="text-align: center;">{cat.CAT_IMAGE}</div>
+				<!-- IF cat.CAT_DESC} --><span class="genmed">{cat.CAT_DESC}</span>
+				<!-- ENDIF -->
+			</div>
+		</li>
+		<!-- END cat -->
+	</ul>
 </div>

@@ -210,15 +210,6 @@ span.banned {
 	cursor: pointer;
 }
 
-
-#comment .commentrow ul.comment-icons {display: none;}
-#comment .commentrow:hover ul.comment-icons {
-	display: block;
-	position: absolute;
-	right: 10px;
-	top: 10px;	
-}
-
 /* Hover Buttons
 -------------------------------------------------*/
 .hb_container {position: relative;}
@@ -243,8 +234,10 @@ span.banned {
 	}
 	
 	.hb li a {
+		font-size: 11px !important;
+		text-decoration: none;
 		margin: 0 !important;
-		padding: 3px 6px;
+		padding: 4px 6px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-khtml-border-radius: 5px;
@@ -252,7 +245,6 @@ span.banned {
 	}
 	
 	.hb li {
-		font-size: 0.9166em;
 		margin-left: 0.5em;
 		list-style-type: none;
 	}
@@ -265,6 +257,7 @@ span.banned {
 	
 	.hb li a:hover, .hb li a:active {
 		background: #212121;
+		border-color: #212121;
 		color: #FFFFFF;
 	}
 

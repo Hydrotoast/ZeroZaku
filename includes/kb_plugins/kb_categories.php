@@ -53,7 +53,7 @@ function categories($cat_id = 0)
 	{
 		$template->assign_block_vars('cat_list', array(
 			'CAT_SEL'				=> $cat['selected'],
-			'CAT_NAME'				=> $cat['padding'] . $cat['cat_name'],
+			'CAT_NAME'				=> '<span' . (($cat['padding']) ?  ' class="subcat"' : '') . '>' . $cat['cat_name'] . '</span>',
 			'CAT_DESC'				=> generate_text_for_display($cat['cat_desc'], '', '', 0), // Generate without bbcodes for link title
 			'U_VIEW_CAT'			=> kb_append_sid('cat', array('id' => $cat['cat_id'], 'title' => $cat['cat_name'])),
 		));

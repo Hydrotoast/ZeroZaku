@@ -1,33 +1,32 @@
 <!-- INCLUDE kb/kb_header.html -->
 			<!-- IF S_VIEW_EDIT -->
 			<div id="a" class="panel smooth">
-					<div class="postbody" style="width: 100%;">
-						<h3><a href="{U_VIEW_ARTICLE}">{ARTICLE_TITLE}</a></h3>
-						<h4>{L_EDIT_AUTHOR}:</h4>
-						<div class="content">{EDIT_AUTHOR}</div>
-						<h4>{L_EDIT_TIME}:</h4>
-						<div class="content">{EDIT_TIME}</div>
-						<h4>{L_REV_CHANGES}:</h4>
-						<p><!-- BEGIN changerow -->{changerow.CHANGE}<br /><!-- END changerow --></p>
-						<!-- IF EDIT_REASON != '' and EDIT_REASON_GLOBAL -->
-						<h4>{L_EDIT_REASON}:</h4>
-						<div class="content">{EDIT_REASON}</div>
-						<!-- ENDIF -->
-						<h4>{L_ARTICLE_TITLE}:</h4> 
-						<div class="content">{EDIT_TITLE}</div>
-						<h4>{L_ARTICLE_CAT}:</h4> 
-						<div class="content">{CAT_NAME}</div>
-						<h4>{L_ARTICLE_TYPE}:</h4> 
-						<div class="content">{EDIT_TYPE}</div>
-						<h4>{L_TAGS}:</h4> 
-						<div class="content">{EDIT_TAGS}</div>
-						<h4>{L_ARTICLE_STATUS}:</h4> 
-						<div class="content">{EDIT_STATUS}</div>
-						<h4>{L_ARTICLE_DESC}:</h4>
-						<div class="content">{ARTICLE_DESC}</div>
-						<h4>{L_CONTENT}:</h4>
-						<div class="content">{ARTICLE_MESSAGE}</div>
-					</div>
+				<div class="postbody" style="width: 100%;">
+					<h3><a href="{U_VIEW_ARTICLE}">{ARTICLE_TITLE}</a></h3>
+					<h4>{L_EDIT_AUTHOR}:</h4>
+					<div class="content">{EDIT_AUTHOR}</div>
+					<h4>{L_EDIT_TIME}:</h4>
+					<div class="content">{EDIT_TIME}</div>
+					<h4>{L_REV_CHANGES}:</h4>
+					<p><!-- BEGIN changerow -->{changerow.CHANGE}<br /><!-- END changerow --></p>
+					<!-- IF EDIT_REASON != '' and EDIT_REASON_GLOBAL -->
+					<h4>{L_EDIT_REASON}:</h4>
+					<div class="content">{EDIT_REASON}</div>
+					<!-- ENDIF -->
+					<h4>{L_ARTICLE_TITLE}:</h4> 
+					<div class="content">{EDIT_TITLE}</div>
+					<h4>{L_ARTICLE_CAT}:</h4> 
+					<div class="content">{CAT_NAME}</div>
+					<h4>{L_ARTICLE_TYPE}:</h4> 
+					<div class="content">{EDIT_TYPE}</div>
+					<h4>{L_TAGS}:</h4> 
+					<div class="content">{EDIT_TAGS}</div>
+					<h4>{L_ARTICLE_STATUS}:</h4> 
+					<div class="content">{EDIT_STATUS}</div>
+					<h4>{L_ARTICLE_DESC}:</h4>
+					<div class="content">{ARTICLE_DESC}</div>
+					<h4>{L_CONTENT}:</h4>
+					<div class="content">{ARTICLE_MESSAGE}</div>
 				</div>
 			</div>
 		<!-- ELSEIF S_VIEW_DIFF -->
@@ -138,8 +137,11 @@
 				overflow: auto;
 				display: block;
 				width: 100%;
-				overflow: auto;
 				display: block;
+			}
+			
+			table.hrdiff td.modified pre {
+				padding-top: 8px;
 			}
 			
 			table.hrdiff .unmodified {
@@ -187,7 +189,7 @@
 			
 			/* ]]> */
 			</style>
-			<h2>{L_VIEWING_EDIT_DIFF}</h2>		
+			<h2 class="pagetitle">{L_VIEWING_EDIT_DIFF}</h2>		
 			<div class="panel smooth">
 				<div class="inner">
 						<div id="diff_content">
@@ -233,7 +235,7 @@
 						<dl>
 							<dt class="no-icon" style="width: 30%">
 								<div class="inner">
-									<a href="{editrow.U_EDIT}">{editrow.ARTICLE_TITLE}</a> {editrow.EDIT_BY} <!-- IF editrow.S_NEWEST -->&nbsp;<strong>({L_NEWEST})</strong><!-- ELSEIF editrow.S_ORG -->&nbsp;<strong>({L_ORIGINAL})</strong><!-- ENDIF --><br />
+									<a href="{editrow.U_EDIT}">{editrow.ARTICLE_TITLE}</a> <!-- IF editrow.S_NEWEST -->&nbsp;<strong>({L_NEWEST})</strong><!-- ELSEIF editrow.S_ORG -->&nbsp;<strong>({L_ORIGINAL})</strong><!-- ENDIF --><br />
 									[ <a href="{editrow.U_EDIT}">{L_VIEW_REV_INFO}</a> ]
 								</div>
 							</dt>
@@ -241,13 +243,13 @@
 							<dd class="extra"><!-- IF editrow.S_CAN_DIFF_T --><input type="radio" id="dt-{editrow.NUM}" onclick="" name="dt" value="{editrow.EDIT_ID}" /><!-- ELSE -->{L_N_A}<!-- ENDIF --></dd>
 							<dd class="extra">{editrow.EDIT_STATUS}</dd>
 							
-							<dd class="time" style="width: 30%"><div class="inner"><span>{editrow.EDIT_TIME}</span></div></dd>
+							<dd class="time" style="width: 30%"><div class="inner">{editrow.EDIT_BY} <br />{editrow.EDIT_TIME}</div></dd>
 						</dl>
 					</li>
 				<!-- END editrow -->
 				</ul>
 				<fieldset class="display-options">
-						<input name="submit" value="{L_VIEW_DIFF}" class="button1" type="submit" />
+						<input name="submit" value="{L_VIEW_DIFF}" class="button2" type="submit" />
 						<input name="i" value="history" type="hidden" />
 						<input name="a" value="{ARTICLE_ID}" type="hidden" />
 				</fieldset>
