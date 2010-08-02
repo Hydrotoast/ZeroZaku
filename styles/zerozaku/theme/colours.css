@@ -4,7 +4,7 @@ Colours and backgrounds for common.css
 -------------------------------------------------------------- */
 
 html, body {
-	background: #FFFFFF;
+	background: #FFFFFF url("{T_THEME_PATH}/images/body_bg.gif") repeat-x scroll center 114px;
 	color: #212121;
 }
 
