@@ -200,6 +200,14 @@ hr.dashed {
 	color: #666666;
 }
 
+.panel.clean .inner { 
+	background-color: #FFFFFF; 
+	border-color: #F0F0F0;
+}
+
+.panel.clean .inner .left { border-color: #F0F0F0 }
+.panel.clean h2 { color: #C0C0C0 }
+
 .panel h3.head, .panel h3.sub {	
 	background-color: #D0D0D0;
 	border-color: #C0C0C0;
@@ -1009,16 +1017,11 @@ fieldset.quick-login input.inputbox {background-color: #F2F3F3;}
 ---------------------------------------- */
 .inputbox {
 	border-color: #BBBBBB;
-	color: #212121;
+	color: #444444;
 }
 
-.inputbox:hover {border-color: #000000;}
-
-.inputbox:focus {
-	background-color: #FFFFFF;
-	/*border-color: #4F8A10;*/
-	color: #000000;
-}
+.inputbox:hover { border-color: #000000 }
+.inputbox:focus { background-color: #FFFFFF; border-color: #BBBBBB; outline-color: #00AA00; color: #000000; }
 
 /* Form button styles
 ---------------------------------------- */
