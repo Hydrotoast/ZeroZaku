@@ -46,9 +46,12 @@ hr.dashed {
 /* Quickpanel block
 --------------------------------------------- */
 #news {
-	background-color: #C9D2D8;
-	border-color: #0D4473
+	background-color: #394248;
+	color: #FFFFFF;
 }
+
+#news a:link, #news a:visited { color: #C9D2D8 }
+#news a:hover, #news a:active { color: #FF0000 }
 
 #quickpanel {
 	background-color: #111111;
