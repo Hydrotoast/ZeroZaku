@@ -371,6 +371,7 @@ ul.topiclist dd.searchextra {
 	margin: 10px 0;
 	height: 24px;
 	min-height: 24px;
+	clear: both;
 }
 div[class].topic-actions {
 	height: auto;

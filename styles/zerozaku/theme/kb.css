@@ -1,4 +1,8 @@
 /* CSS for the Knowledge Base */
+#a {
+	margin-bottom: 15px;
+}
+
 h2.article_header {
 	font-size: 1em;
 	font-weight: bold;;
@@ -10,7 +14,7 @@ h2.article_header {
 	border-radius: 5px;
 }
 
-h1.articletitle {
+h1.articletitle, h1.kb_requesttitle {
 	font-size: 2.1666em;
 	margin-bottom: 6px;
 }
@@ -314,3 +318,22 @@ h3.kb_cat img {
 }
 
 #kb_keywords {background-color: #FFFFFF;}
+
+.article-icon span		{ background: transparent none 0 0 no-repeat; }
+.buttons div.article-icon		{ width: {IMG_BUTTON_ARTICLE_NEW_WIDTH}px; height: {IMG_BUTTON_ARTICLE_NEW_HEIGHT}px; }
+.article-icon span		{ background-image: url("{IMG_BUTTON_ARTICLE_NEW_SRC}"); }
+
+.comment-icon span		{ background: transparent none 0 0 no-repeat; }
+.buttons div.comment-icon		{ width: {IMG_BUTTON_COMMENT_NEW_WIDTH}px; height: {IMG_BUTTON_COMMENT_NEW_HEIGHT}px; }
+.comment-icon span		{ background-image: url("{IMG_BUTTON_COMMENT_NEW_SRC}"); }
+
+.request-icon span		{ background: transparent none 0 0 no-repeat; }
+.buttons div.request-icon		{ width: {IMG_BUTTON_REQUEST_NEW_WIDTH}px; height: {IMG_BUTTON_REQUEST_NEW_HEIGHT}px; }
+.request-icon span		{ background-image: url("{IMG_BUTTON_REQUEST_NEW_SRC}"); }
+
+.icon-kb {
+	background-image: url("{T_THEME_PATH}/images/icon_kb.gif");
+	background-position: 0 50%;
+	background-repeat: no-repeat;
+	padding: 1px 0 0 23px;
+}

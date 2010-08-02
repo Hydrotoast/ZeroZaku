@@ -1,5 +1,6 @@
 <!-- INCLUDE kb/kb_header.html -->
 <div class="topic-actions">
+	<div class="buttons"><div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div></div>
 	<div class="pagination">
 		{TOTAL_REQUESTS} {L_REQUESTS}
 		<!-- IF PAGE_NUMBER -->
@@ -10,32 +11,15 @@
 
 <!-- BEGIN req_list -->
 	<!-- IF req_list.S_FIRST_ROW -->
-	<div class="forabg">
-		<div class="inner">
-			<ul class="topiclist">
-				<li class="header">
-					<dl>
-						<dt>{L_KB_REQS}</dt>
-						<dd class="lastpost"><span>&nbsp;</span></dd>
-					</dl>
-				</li>
-			</ul>
-			<ul class="topiclist forums">
+	<h2 class="kb_head">{L_KB_REQS}</h2>
+	<ul class="kb_articlelist"
 	<!-- ENDIF -->
-				<li class="row">
-					<dl>
-						<dt>
-							<a href="{req_list.U_VIEW_REQ}">{req_list.REQ_TITLE}</a>
-						</dt>
-						<dd class="lastpost">
-							<span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {req_list.REQ_AUTHOR_FULL}<br />{req_list.REQ_DATE}</span>
-						</dd>
-					</dl>
-				</li>
+		<li class="row">
+			<a href="{req_list.U_VIEW_REQ}">{req_list.REQ_TITLE}</a>
+			<br /><span>{L_LAST_POST} {L_POST_BY_AUTHOR} {req_list.REQ_AUTHOR_FULL} | {req_list.REQ_DATE}</span>
+		</li>
 	<!-- IF req_list.S_LAST_ROW -->
-			</ul>
-		</div>
-	</div>
+	</ul>
 	<!-- ENDIF -->
 <!-- BEGINELSE -->
 	<div class="panel">
@@ -45,9 +29,7 @@
 	</div>
 <!-- END req_list -->
 
-<!-- IF U_ADD_REQ -->
-	<!-- IF U_ADD_REQ --><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}">{L_KB_ADD_REQUEST}</a><!-- ENDIF -->
-<!-- ENDIF -->
+<!-- IF U_ADD_REQ --><!-- IF U_ADD_REQ --><br /><div class="buttons"><div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div></div><!-- ENDIF --><!-- ENDIF -->
 	
 <div class="topic-actions">
 	<div class="pagination">

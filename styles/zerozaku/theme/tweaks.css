@@ -699,21 +699,6 @@ div.mChatBodyFix {
     padding: 0;
 }
 
-.article-icon span		{ background: transparent none 0 0 no-repeat; }
-.buttons div.article-icon		{ width: {IMG_BUTTON_ARTICLE_NEW_WIDTH}px; height: {IMG_BUTTON_ARTICLE_NEW_HEIGHT}px; }
-.article-icon span		{ background-image: url("{IMG_BUTTON_ARTICLE_NEW_SRC}"); }
-
-.comment-icon span		{ background: transparent none 0 0 no-repeat; }
-.buttons div.comment-icon		{ width: {IMG_BUTTON_COMMENT_NEW_WIDTH}px; height: {IMG_BUTTON_COMMENT_NEW_HEIGHT}px; }
-.comment-icon span		{ background-image: url("{IMG_BUTTON_COMMENT_NEW_SRC}"); }
-
-.icon-kb {
-	background-image: url("{T_THEME_PATH}/images/icon_kb.gif");
-	background-position: 0 50%;
-	background-repeat: no-repeat;
-	padding: 1px 0 0 23px;
-}
-
 /*** INSTANT MESSENGER / STYLE FILE ***/
 
 
