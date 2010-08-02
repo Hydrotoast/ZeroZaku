@@ -281,6 +281,10 @@ fieldset.submit-buttons input {
 	cursor: text;
 }
 
+.inputbox:focus {
+	outline: 1px solid;
+}
+
 input.inputbox	{ width: 85%; }
 input.medium	{ width: 50%; }
 input.narrow	{ width: 25%; }

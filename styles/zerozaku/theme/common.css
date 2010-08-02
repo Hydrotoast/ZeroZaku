@@ -496,6 +496,46 @@ textarea#message {
 	border-radius: 5px;
 }
 
+.panel.clean, .panel.clean .inner {
+	padding: 10px;
+	border: 0;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.panel.clean .inner:last-child { margin-bottom: 0 }
+.panel.clean .inner { 
+	border: 1px solid;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.panel.clean .inner fieldset.submit-buttons { margin: 0 }
+
+.panel.clean h2 {
+	font: bold 1.3333em Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	margin: 0 0 6px 0;
+	padding: 0 0 0 10px;
+}
+
+.panel.clean .inner fieldset.fields2 dt { width: 12em }
+.panel.clean .inner fieldset.fields2 dd { margin-left: 13em }
+.panel.clean .left .autowidth, .panel.clean .right .autowidth { width: 75% !important; }
+.panel.clean .inner .left { 
+	border-right: 1px solid; 
+	width: 49%;
+	float: left; 
+}
+
+.panel.clean .inner .right { 
+	width: 49%; 
+	padding-left: 1%;
+	float: right; 
+}
+
 .post {
 	margin-bottom: 1px;
 	padding: 0 10px;

@@ -1,8 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-
-
 <!-- IF S_SHOW_COPPA or S_REGISTRATION -->
-
 	<!-- IF S_LANG_OPTIONS -->
 	<script type="text/javascript">
 	// <![CDATA[
@@ -18,29 +15,27 @@
 	// ]]>
 	</script>
 	
-		<form method="post" action="{S_UCP_ACTION}" id="register">
-			<p class="rightside">
-				<label for="lang">{L_LANGUAGE}:</label><select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select>
-				{S_HIDDEN_FIELDS}
-			</p>
-		</form>
-	
-		<div class="clear"></div>
+	<form method="post" action="{S_UCP_ACTION}" id="register">
+		<p class="rightside">
+			<label for="lang">{L_LANGUAGE}:</label><select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select>
+			{S_HIDDEN_FIELDS}
+		</p>
+	</form>
+
+	<div class="clear"></div>
 	
 	<!-- ENDIF -->
 
-	<h2 class="pagetitle">{SITENAME} - {L_REGISTRATION}</h2>
 	<form method="post" action="{S_UCP_ACTION}" id="agreement">
 
-	<div class="panel">
-		<div class="inner">
+	<div class="panel clean">
+	<h2>{SITENAME} - {L_REGISTRATION}</h2>
+	<div class="inner">
 		<div class="content">
 			<p><!-- IF S_SHOW_COPPA -->{L_COPPA_BIRTHDAY}<!-- ELSE -->{L_TERMS_OF_USE}<!-- ENDIF --></p>
 		</div>
 		</div>
-	</div>
 
-	<div class="panel">
 		<div class="inner">
 		<fieldset class="submit-buttons">
 			<!-- IF S_SHOW_COPPA -->
@@ -53,22 +48,18 @@
 			{S_FORM_TOKEN}
 		</fieldset>
 		</div>
+		
+		<!-- ELSEIF S_AGREEMENT -->
+			<div class="inner">
+			<div class="content">
+				<h2>{SITENAME} - {AGREEMENT_TITLE}</h2>
+				<p>{AGREEMENT_TEXT}</p>
+				<hr class="dashed" />
+				<p><a href="{U_BACK}" class="button2">{L_BACK}</a></p>
+			</div>
+			</div>
+		<!-- ENDIF -->
 	</div>
 	</form>
-
-<!-- ELSEIF S_AGREEMENT -->
-
-	<div class="panel">
-		<div class="inner">
-		<div class="content">
-			<h2>{SITENAME} - {AGREEMENT_TITLE}</h2>
-			<p>{AGREEMENT_TEXT}</p>
-			<hr class="dashed" />
-			<p><a href="{U_BACK}" class="button2">{L_BACK}</a></p>
-		</div>
-		</div>
-	</div>
-
-<!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->
