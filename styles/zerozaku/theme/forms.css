@@ -248,10 +248,13 @@ fieldset.submit-buttons input {
 	vertical-align: top;
 }
 
+
+/* PM Message box */
+.ucp-main #message-box textarea { width: 80% }
+.ucp-main #smiley-box { width: 19% }
+
 /* Main message box */
-#message-box {
-	width: 80%;
-}
+#message-box { width: 700px; }
 
 #message-box textarea {
 	font-size: 1em;
@@ -261,7 +264,7 @@ fieldset.submit-buttons input {
 
 /* Emoticons panel */
 #smiley-box {
-	width: 18%;
+	width: 200px;
 	float: right;
 }
 
