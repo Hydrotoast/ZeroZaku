@@ -117,12 +117,12 @@ $lang = array_merge($lang, array(
 
 	'POST_IP'				=> 'Posted from IP/domain',
 	'PROFILE_COMMENTS'		=> 'Profile comments',
-	'PROFILE_COMMENT_SUB'			=> 'Submit a comment',
-	'LIST_COMMENT'     				=> '1 comment',
-	'LIST_COMMENTS'					=> '%d comments',
-	'FRIEND_COMMENT'				=> 'This user only allows friends to leave comments!',
-	'ONLY_FRIEND'					=> 'This user only allows friends to view comments!',
-	'NO_COMMENT'					=> 'This user has no comments! leave one below.',
+	'PROFILE_COMMENT_SUB'	=> 'Submit a comment',
+	'LIST_COMMENT'     		=> '1 comment',
+	'LIST_COMMENTS'			=> '%d comments',
+	'FRIEND_COMMENT'		=> 'This user only allows friends to leave comments!',
+	'ONLY_FRIEND'			=> 'This user only allows friends to view comments!',
+	'NO_COMMENT'			=> 'This user has no comments! leave one below.',
 
 	'RANK'					=> 'Rank',
 	'REAL_NAME'				=> 'Recipient name',
