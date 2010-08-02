@@ -168,7 +168,7 @@ h2.kb_head.kb_comments { width: 675px; }
 
 dt.kb_head, h2.kb_head {
 	font: 1.3333em Anivers-Regular;
-	background-color: #E0E0E0;
+	background-color: #F0F0F0;
 	padding: 10px 15px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -256,14 +256,14 @@ h3.kb_cat img {
 #kb_side_catlist a { text-decoration: none; }
 
 #kb_side_catlist a span {
-	background-color: #E0E0E0;
+	background-color: #F6F6F6;
 	border-bottom: 1px solid #C0C0C0;
 	padding: 4px 12px;
 	display: block;
 }
 
 #kb_side_catlist a span.subcat {
-	background-color: #F6F6F6;
+	background-color: #E0E0E0;
 	padding-left: 24px;
 }
 
