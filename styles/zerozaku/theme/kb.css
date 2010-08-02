@@ -172,8 +172,9 @@ h2.kb_head.kb_comments { width: 675px; }
 
 dt.kb_head, h2.kb_head {
 	font: 1.3333em Anivers-Regular;
-	background-color: #F0F0F0;
-	padding: 10px 15px;
+	background-color: #394248;
+	color: #FFFFFF;
+	padding: 6px 15px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;

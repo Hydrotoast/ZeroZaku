@@ -69,15 +69,14 @@ a img { border: none; }
 /* Quickpanel block
 --------------------------------------------- */
 #news {
-	border-style: solid;
-	border-width: 1px 0;
 	width: 100%;
+	padding: 6px 0;
 	position: relative;
 	top: -10px;
 }
 
 #news .inner {
-	margin: 10px auto;
+	margin: 0 auto;
 	width: 960px;
 	overflow: hidden;
 }
