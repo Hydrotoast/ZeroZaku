@@ -61,6 +61,11 @@ a img { border: none; }
 	width: 23.9583%;
 }
 
+#page-sidebar.left {
+	float: left;
+	padding-right: 10px;
+}
+
 #page-footer {
 	width: 960px;
 	clear: both;

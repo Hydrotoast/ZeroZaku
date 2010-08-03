@@ -23,6 +23,9 @@ $(function() {
 	$('textarea#message').growing({maxHeight: 540, buffer: 0});
 	$('textarea').tabby();
 	
+	if(localStorage.getItem('sidebar_side') == 'left')
+		$('#page-sidebar').addClass('left');
+	
 	// Starts IM
 	if(localStorage.getItem('im_open') == 'true')
 	{
