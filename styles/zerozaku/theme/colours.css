@@ -9,7 +9,7 @@ body {
 }
 
 body.simple {
-	background: none !important;
+	background: none;
 }
 
 h1 {color: #212121;}
