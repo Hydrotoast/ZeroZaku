@@ -71,9 +71,9 @@
 		this.regexList = [
 			{ regex: r.multiLineDoubleQuotedString,					css: 'string' },			// double quoted strings
 			{ regex: r.multiLineSingleQuotedString,					css: 'string' },			// single quoted strings
-			{ regex: r.singleLineCComments,							css: 'comments' },			// one line comments
 			{ regex: r.multiLineCComments,							css: 'comments' },			// multiline comments
-			{ regex: /\s*#.*/gm,									css: 'preprocessor' },		// preprocessor tags like #region and #endregion
+			{ regex: /\;.*$/gm										css: 'comments' },			// one line comments
+			{ regex: /\s*#.*/gm,									css: 'comments' },			// preprocessor tags like #region and #endregion
 			{ regex: /\$\w+/g,										css: 'variable' },			// variables
 			{ regex: new RegExp(this.getKeywords(funcs), 'gmi'),	css: 'functions' },			// documented functions
 			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),	css: 'keyword' },			// keywords
