@@ -38,19 +38,11 @@ class ucp_register
 		include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
 
 		$coppa			= (isset($_REQUEST['coppa'])) ? ((!empty($_REQUEST['coppa'])) ? 1 : 0) : false;
-		$agreed			= (!empty($_POST['agreed'])) ? 1 : 0;
 		$submit			= (isset($_POST['submit'])) ? true : false;
 		$change_lang	= request_var('change_lang', '');
 		$user_lang		= request_var('lang', $user->lang_name);
 
-		if ($agreed)
-		{
-			add_form_key('ucp_register');
-		}
-		else
-		{
-			add_form_key('ucp_register_terms');
-		}
+		add_form_key('ucp_register');
 
 		if ($change_lang || $user_lang != $config['default_lang'])
 		{
@@ -61,9 +53,6 @@ class ucp_register
 				if ($change_lang)
 				{
 					$submit = false;
-
-					// Setting back agreed to let the user view the agreement in his/her language
-					$agreed = (empty($_GET['change_lang'])) ? 0 : $agreed;
 				}
 
 				$user->lang_name = $user_lang = $use_lang;
@@ -77,13 +66,12 @@ class ucp_register
 				$user_lang = $user->lang_name;
 			}
 		}
-
-
+		
 		$cp = new custom_profile();
 
-		$error = $cp_data = $cp_error = array();
+		$errors = $cp_data = $cp_error = array();
 
-		if (!$agreed || ($coppa === false && $config['coppa_enable']) || ($coppa && !$config['coppa_enable']))
+		if (($coppa === false && $config['coppa_enable']) || ($coppa && !$config['coppa_enable']))
 		{
 			$add_lang = ($change_lang) ? '&amp;change_lang=' . urlencode($change_lang) : '';
 			$add_coppa = ($coppa !== false) ? '&amp;coppa=' . $coppa : '';
@@ -102,7 +90,6 @@ class ucp_register
 					'lang'				=> $user->lang_name,
 					'tz'				=> request_var('tz', (float) $config['board_timezone']),
 				));
-
 			}
 
 			// Checking amount of available languages
@@ -188,6 +175,7 @@ class ucp_register
 			'new_password'		=> request_var('new_password', '', true),
 			'password_confirm'	=> request_var('password_confirm', '', true),
 			'email'				=> strtolower(request_var('email', '')),
+		    'agree'				=> request_var('agree', '', true),
 			'lang'				=> basename(request_var('lang', $user->lang_name)),
 			'tz'				=> request_var('tz', (float) $timezone),
 		);
@@ -195,7 +183,7 @@ class ucp_register
 		// Check and initialize some variables if needed
 		if ($submit)
 		{
-			$error = validate_data($data, array(
+			$errors = validate_data($data, array(
 				'username'			=> array(
 					array('string', false, $config['min_name_chars'], $config['max_name_chars']),
 					array('username', '')),
@@ -206,29 +194,35 @@ class ucp_register
 				'email'				=> array(
 					array('string', false, 6, 60),
 					array('email')),
+				'agree'				=> array('string', false),
 				'tz'				=> array('num', false, -14, 14),
 				'lang'				=> array('match', false, '#^[a-z_\-]{2,}$#i'),
 			));
+			
+			if($data['agree'] != $user->lang['AGREE'])
+			{
+			    $errors[] = 'You must agree to the Terms of Use.';
+			}
 
 			if (!check_form_key('ucp_register'))
 			{
-				$error[] = $user->lang['FORM_INVALID'];
+				$errors[] = $user->lang['FORM_INVALID'];
 			}
 
 			// Replace "error" strings with their real, localised form
-			$error = preg_replace('#^([A-Z_]+)$#e', "(!empty(\$user->lang['\\1'])) ? \$user->lang['\\1'] : '\\1'", $error);
+			$errors = preg_replace('#^([A-Z_]+)$#e', "(!empty(\$user->lang['\\1'])) ? \$user->lang['\\1'] : '\\1'", $errors);
 
 			if ($config['enable_confirm'])
 			{
 				$vc_response = $captcha->validate($data);
 				if ($vc_response !== false)
 				{
-					$error[] = $vc_response;
+					$errors[] = $vc_response;
 				}
 
 				if ($config['max_reg_attempts'] && $captcha->get_attempt_count() > $config['max_reg_attempts'])
 				{
-					$error[] = $user->lang['TOO_MANY_REGISTERS'];
+					$errors[] = $user->lang['TOO_MANY_REGISTERS'];
 				}
 			}
 
@@ -237,22 +231,22 @@ class ucp_register
 			{
 				if (($dnsbl = $user->check_dnsbl('register')) !== false)
 				{
-					$error[] = sprintf($user->lang['IP_BLACKLISTED'], $user->ip, $dnsbl[1]);
+					$errors[] = sprintf($user->lang['IP_BLACKLISTED'], $user->ip, $dnsbl[1]);
 				}
 			}
 
 			// validate custom profile fields
-			$cp->submit_cp_field('register', $user->get_iso_lang_id(), $cp_data, $error);
+			$cp->submit_cp_field('register', $user->get_iso_lang_id(), $cp_data, $errors);
 
-			if (!sizeof($error))
+			if (!sizeof($errors))
 			{
 				if ($data['new_password'] != $data['password_confirm'])
 				{
-					$error[] = $user->lang['NEW_PASSWORD_ERROR'];
+					$errors[] = $user->lang['NEW_PASSWORD_ERROR'];
 				}
 			}
 
-			if (!sizeof($error))
+			if (!sizeof($errors))
 			{
 				$server_url = generate_board_url();
 
@@ -428,7 +422,6 @@ class ucp_register
 		}
 
 		$s_hidden_fields = array(
-			'agreed'		=> 'true',
 			'change_lang'	=> 0,
 		);
 
@@ -465,8 +458,12 @@ class ucp_register
 			break;
 		}
 
+		foreach($errors as $error)
+		{
+		    $template->assign_block_vars('error', array('MESSAGE'	=> $error));
+		}
+		
 		$template->assign_vars(array(
-			'ERROR'				=> (sizeof($error)) ? implode('<br />', $error) : '',
 			'USERNAME'			=> $data['username'],
 			'PASSWORD'			=> $data['new_password'],
 			'PASSWORD_CONFIRM'	=> $data['password_confirm'],
