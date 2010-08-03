@@ -1302,10 +1302,21 @@ a.nivo-prevNav {
 
 /* adBrite
 -------------------------------------------------*/
-.adbrite {
-	text-align: center;
+#bottom-ad {
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #E0E0E0;
+	margin: 10px 0;
+	padding: 10px 0;
 }
 
-#bottom-ad {
-	margin: 10px 0;
+#bottom-ad img { 
+	background-color: #FFFFFF; 
+	border: 1px solid #C0C0C0; 
+	padding: 4px;
+}
+
+#bottom-ad div {
+	font-size: 0.9166em;
+	color: #606060;
 }
