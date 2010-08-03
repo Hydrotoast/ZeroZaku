@@ -2,18 +2,11 @@
 --------------------------------------------------------------
 Colours and backgrounds for common.css
 -------------------------------------------------------------- */
+body { color: #212121 }
+body#phpbb { background: #FFFFFF url("{T_THEME_PATH}/images/body_bg.gif") repeat-x scroll center 114px }
 
-body {
-	background: #FFFFFF url("{T_THEME_PATH}/images/body_bg.gif") repeat-x scroll center 114px;
-	color: #212121;
-}
-
-body.simple {
-	background: none;
-}
-
-h1 {color: #212121;}
-h2 {color: #212121;}
+h1 { color: #212121 }
+h2 { color: #212121 }
 
 h3 {
 	border-bottom-color: #CCCCCC;
