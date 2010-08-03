@@ -15,10 +15,18 @@
 	onload_functions.push('apply_onkeypress_event()');
 	<!-- ENDIF -->
 
+	function TermsUse(form) {
+		if (form.agree.checked == false) {
+			alert("You must agree to the Terms of Use before you can register");
+			return false;
+		}
+		else 
+			return true;
+	}
 // ]]>
 </script>
 
-<form method="post" action="{S_UCP_ACTION}" id="register">
+<form method="post" action="{S_UCP_ACTION}" id="register" onSubmit="return TermsUse(this)">
 
 <div class="panel clean">
 	<h2>{L_SIGN_UP} for {SITENAME}</h2>
@@ -27,7 +35,12 @@
 	<div class="left">
 		<fieldset class="fields2">
 		<p><strong>{L_ITEMS_REQUIRED}</strong></p>
-		<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
+		
+		<!-- IF .error -->
+			<!-- BEGIN error -->
+				<div class="error">{error.MESSAGE}</div>
+			<!-- END error -->
+		<!-- ENDIF -->
 	
 		<dl>
 			<dt><label for="username">*{L_USERNAME}</label></dt>
@@ -45,6 +58,9 @@
 			<dt><label for="password_confirm">*{L_CONFIRM_PASSWORD}</label></dt>
 			<dd><input type="password" tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_PASSWORD}" /></dd>
 		</dl>
+		<dl>
+			<dd><input type="checkbox" tabindex="6" name="agree" id="agree" value="{L_AGREE}" /> I agree to the <a href="{U_TERMS_USE}" title="{L_TERMS_USE}">{L_TERMS_USE}</a></dd>
+		</dl>
 		</fieldset>
 	</div>
 	
@@ -53,11 +69,11 @@
 		<!-- IF L_REG_COND --><p><strong>{L_REG_COND}</strong></p><!-- ENDIF -->
 		<dl>
 			<dt><label for="lang">{L_LANGUAGE}</label></dt>
-			<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
+			<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="7" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
 		</dl>
 		<dl>
 			<dt><label for="tz">{L_TIMEZONE}</label></dt>
-			<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
+			<dd><select name="tz" id="tz" tabindex="8" class="autowidth">{S_TZ_OPTIONS}</select></dd>
 		</dl>
 		<!-- IF .profile_fields -->
 			<!-- BEGIN profile_fields -->
