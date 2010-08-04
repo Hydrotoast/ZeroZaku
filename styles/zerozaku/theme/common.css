@@ -32,7 +32,6 @@ a img { border: none; }
 /* Main blocks
 ---------------------------------------- */
 #page-header {
-	margin-bottom: 10px;
 	height: 84px;
 	width: 100%;
 }
@@ -40,6 +39,11 @@ a img { border: none; }
 #page-header .inner {
 	margin: 0 auto;
 	width: 960px;
+}
+
+#main {
+	min-height: 412px;
+	padding-top: 10px;
 }
 
 #wrap {
@@ -76,8 +80,6 @@ a img { border: none; }
 #news {
 	width: 100%;
 	padding: 6px 0;
-	position: relative;
-	top: -10px;
 }
 
 #news .inner {
@@ -87,19 +89,16 @@ a img { border: none; }
 }
 
 #quickpanel {
-	border-top: 1px solid;
 	border-bottom: 1px solid;
 	width: 100%;
 	padding: 20px 0;
-	position: relative;
-	top: -10px;
-	overflow: hidden;
 }
 
 #quickpanel .inner {
 	text-align: left;
 	margin: 0 auto;
 	width: 960px;
+	overflow: hidden;
 }
 
 #quickpanel #blurb {
