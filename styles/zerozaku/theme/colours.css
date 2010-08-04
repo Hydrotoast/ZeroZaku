@@ -3,7 +3,6 @@
 Colours and backgrounds for common.css
 -------------------------------------------------------------- */
 body { color: #212121 }
-body#phpbb { background: #FFFFFF url("{T_THEME_PATH}/images/body_bg.gif") repeat-x scroll center 114px }
 
 h1 { color: #212121 }
 h2 { color: #212121 }
@@ -25,8 +24,10 @@ hr.dashed {
 
 /* Main blocks
 --------------------------------------------- */
+#main { background: #FFFFFF url("{T_THEME_PATH}/images/body_bg.gif") repeat-x scroll 0  0 }
+
 #page-header {
-	background: #EEEEEE url("{T_THEME_PATH}/images/header_bg.png") scroll repeat-x;
+	background: #EEEEEE url("{T_THEME_PATH}/images/header_bg_light.png") scroll repeat-x;
 }
 
 #board-statistics {
@@ -43,17 +44,16 @@ hr.dashed {
 /* Quickpanel block
 --------------------------------------------- */
 #news {
-	background-color: #394248;
-	color: #FFFFFF;
+	background-color: #F6F6F6;
+	color: #444444;
 }
 
-#news a:link, #news a:visited { color: #C9D2D8 }
+#news a:link, #news a:visited { color: #0D4473 }
 #news a:hover, #news a:active { color: #FF0000 }
 
 #quickpanel {
 	background-color: #111111;
-	border-bottom-color: #000000;
-	border-top-color: #333333;
+	border-bottom-color: #333333;
 	color: #FFFFFF;
 }
 
@@ -109,27 +109,28 @@ hr.dashed {
 
 /* Navbar
 --------------------------------------------- */
-.navbar { color: #666666; }
+.navbar { color: #C0C0C0; }
 
 .navbar li.current a {
-	background: #FFFFFF;
-	color: #212121;
+	background: #212121;
+	border-color: #212121;
+	color: #FFFFFF;
 }
-.navbar li.current a span {color: #666666;}
+.navbar li.current a span {color: #C0C0C0;}
 
 .navbar a:link, .navbar a:visited {
-	border-left-color: #F6F6F6;
-	border-right-color: #E0E0E0;
-	color: #666666;
+	border-left-color: #333333;
+	border-right-color: #444444;
+	color: #C0C0C0;
 }
 .navbar a:hover, .navbar a:active {
-	background: #EEEEEE url("{T_THEME_PATH}/images/tab_arrow.png") no-repeat scroll top center;
-	border-left-color: #F6F6F6;
-	color: #000000;
+	background: #444444 url("{T_THEME_PATH}/images/tab_arrow.png") no-repeat scroll top center;
+	border-left-color: #394248;
+	color: #FFFFFF;
 }
 
-.navbar a:hover span, .navbar a:active span { color: #606060; }
-.navbar span { color: #C0C0C0; }
+.navbar a:hover span, .navbar a:active span { color: #999999; }
+.navbar span { color: #606060; }
 
 
 /* Authentication
