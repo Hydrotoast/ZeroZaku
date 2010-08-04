@@ -191,7 +191,7 @@ dd.kb_item {
 
 dd.kb_item a {
 	text-decoration: none;
-	background: url("{T_THEME_PATH}/images/doc_lines_stright.png") no-repeat scroll 10px center transparent;
+	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
 	border-left: 1px solid #E0E0E0;
 	height: 80px;
 	padding: 0 15px 0 57px;
