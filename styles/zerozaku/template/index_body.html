@@ -11,6 +11,21 @@
 	</ul>
 	<!-- ENDIF -->
 
+	<!-- IF .hot_topics -->
+	<div class="aggro">
+	<dt class="aggro_head">{L_RECENT_HOT_TOPIC}</dt>
+	<!-- BEGIN hot_topics -->
+		<dd class="aggro_item"><a href="{hot_topics.U_VIEW_TOPIC}" title="{hot_topics.FULL_TITLE}">
+			<p>
+				<strong>{hot_topics.TITLE}</strong>
+				<br /><span>{hot_topics.FORUM}</span>
+			</p>
+		</a></dd>
+	<!-- END hot_topics -->
+	</dt>
+	</div>
+	<!-- ENDIF -->
+
 
 <!-- INCLUDE forumlist_body.html -->
 <!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
