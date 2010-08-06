@@ -46,6 +46,11 @@ if ($portal_config['portal_top_posters'])
 	include($phpbb_root_path . 'portal/block/top_posters.'.$phpEx);
 }
 
+if ($portal_config['portal_recent']) 
+{ 
+	include($phpbb_root_path . 'portal/block/popular.'.$phpEx);
+}
+
 function get_db_stat($mode)
 {
 	global $db, $user;

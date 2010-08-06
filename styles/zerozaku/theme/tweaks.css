@@ -1300,7 +1300,52 @@ a.nivo-prevNav {
 	left:10px;
 }
 
-/* adBrite
+/* Aggregrations
+-------------------------------------------------*/
+dt.aggro_head {
+	font: 1.3333em Anivers-Regular;
+	background-color: #212121;
+	color: #FFFFFF;
+	padding: 6px 15px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	clear: both;
+}
+
+dd.aggro_item {
+	border-bottom: 1px solid #E0E0E0;
+	width: 33%;
+	padding: 15px 0;
+	float: left;
+}
+
+dd.aggro_item a {
+	text-decoration: none;
+	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
+	border-left: 1px solid #E0E0E0;
+	height: 80px;
+	padding: 0 15px 0 57px;
+	display: inline-block;
+}
+
+dd.aggro_item:nth-child(n+5) { border: 0; }
+dd.aggro_item:nth-child(3n+2) a { border: 0; }
+
+dd.aggro_item p {
+	color: #606060;
+	padding: 6px 0;
+}
+
+dd.aggro_item p strong {
+	color: #212121;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+
+/* Advertisements
 -------------------------------------------------*/
 #bottom-ad {
 	border-width: 1px 0;
