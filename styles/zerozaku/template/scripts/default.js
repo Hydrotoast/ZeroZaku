@@ -27,7 +27,7 @@ $(function() {
 		$('#page-sidebar').addClass('left');
 	
 	// Starts IM
-	if(localStorage.getItem('im_open') == 'true')
+	if(localStorage.getItem('im_open') == null || localStorage.getItem('im_open') == 'true')
 	{
 		$('#site-bottom-bar').hide();
 		$('#site-bottom-bar-frame').hide();
