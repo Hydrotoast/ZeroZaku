@@ -267,6 +267,7 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
+define('VOTES_TABLE', $table_prefix . 'posts_votes');
 define('MILESTONES_TABLE',			$table_prefix . 'milestones');
 // MOD :: INSTANT MESSENGER -- START
 define('IM_TABLE',					$table_prefix . 'im');

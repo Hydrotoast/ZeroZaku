@@ -677,3 +677,6 @@ pre {
 .username-coloured {
 	font-weight: bold;
 }
+.score {
+	font-size: 1.2em;
+}

@@ -118,6 +118,8 @@
 		<div class="postbody">
 			<!-- IF postrow.S_IGNORE_POST -->
 				<div class="ignore">{postrow.L_IGNORE_POST}</div>
+			<!-- ELSEIF postrow.S_BURIED_POST -->
+				<div class="ignore">{postrow.L_BURIED_POST}</div>
 			<!-- ELSE -->
 
 			<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
@@ -148,11 +150,10 @@
 			<!-- IF postrow.S_POST_DELETED --><div class="notice">{postrow.DELETED_MESSAGE}<br/></div><!-- ENDIF -->
 			<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
 			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
-		
+			<!-- ENDIF -->
 		</div>
-		<!-- ENDIF -->
 
-		<!-- IF not postrow.S_IGNORE_POST -->
+		<!-- IF not postrow.S_IGNORE_POST && not postrow.S_BURIED_POST -->
 		<dl class="postprofile" id="profile{postrow.POST_ID}">
 			<dt>
 				<!-- IF postrow.POSTER_AVATAR -->
@@ -193,9 +194,15 @@
 		<!-- END custom_fields -->
 
 		</dl>
-		<!-- ENDIF -->
 
-		<div class="back2top"><a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
+		<div class="caffeine">
+			<div>
+			<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
+				<strong class="<!-- IF postrow.POST_SCORE > 0 -->positive<!-- ELSE -->negative<!-- ENDIF -->">{postrow.POST_SCORE}</strong>
+			  	<!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED --><span class="hover"><a href="{postrow.U_UPVOTE}" title="{L_UPVOTE}"><img src="{T_IMAGES_PATH}reputation/add.png" class="positive" /></a> <a href="{postrow.U_DOWNVOTE}" title="{L_DOWNVOTE}"><img src="{T_IMAGES_PATH}reputation/subtract.png" class="negative" /></a></span><!-- ENDIF -->
+			<!-- ENDIF -->
+			</div>
+		</div>
 
 		<ul class="profile-icons">
 		<!-- IF not S_IS_BOT -->
@@ -211,6 +218,7 @@
 		<!-- ENDIF -->
 		</ul>
 		
+		<!-- ENDIF -->
 		</div>
 	</div>
 <!-- END postrow -->

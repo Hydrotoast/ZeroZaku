@@ -45,6 +45,15 @@ $voted_id = (sizeof($voted_id) > 1) ? array_unique($voted_id) : $voted_id;
 
 $start		= request_var('start', 0);
 $view		= request_var('view', '');
+//-- mod : Community Moderation ------------------------------------------------------------
+$force		= request_var('force', '');
+$vmode		= request_var('vmode', '');
+
+if (!class_exists('community_moderation'))
+{
+	require($phpbb_root_path . 'includes/functions_community_moderation.' . $phpEx);
+}
+//-- fin mod : Community Moderation --------------------------------------------------------
 
 $default_sort_days	= (!empty($user->data['user_post_show_days'])) ? $user->data['user_post_show_days'] : 0;
 $default_sort_key	= (!empty($user->data['user_post_sortby_type'])) ? $user->data['user_post_sortby_type'] : 't';
@@ -1058,6 +1067,23 @@ $sql = $db->sql_build_query('SELECT', array(
 	'WHERE'		=> $db->sql_in_set('p.post_id', $post_list) . '
 		AND u.user_id = p.poster_id'
 ));
+//-- mod : Community Moderation ------------------------------------------------------------
+global $community_moderation;
+$community_moderation = new community_moderation();
+
+if ($vmode)
+{
+	// Check the mode...
+	if (!in_array($vmode, array('upvote','downvote')))
+	{
+		trigger_error('NO_MODE');
+	}
+
+	$community_moderation->record_vote_info($vmode, $post_id, $auth, $viewtopic_url, $forum_id);
+}
+
+$community_moderation->viewtopic_sql($sql);
+//-- fin mod : Community Moderation --------------------------------------------------------
 
 $result = $db->sql_query($sql);
 
@@ -1104,6 +1130,13 @@ while ($row = $db->sql_fetchrow($result))
 		'post_deleted'		=> $row['post_deleted'],
 		'post_deleted_time'	=> $row['post_deleted_time'],
 		'post_edit_locked'	=> $row['post_edit_locked'],
+		//-- mod : Community Moderation ------------------------------------------------------------
+		'post_upvotes'		=> $row['post_upvotes'],
+		'post_downvotes'	=> $row['post_downvotes'],
+		'post_score'		=> (isset($row['post_score'])) ? $row['post_score'] : '',
+		'is_buried'		=> (isset($row['is_buried'])) ? $row['is_buried'] : '',
+		'has_voted'		=> (isset($row['has_voted'])) ? $row['has_voted'] : '',
+		//-- fin mod : Community Moderation --------------------------------------------------------
 
 		// Make sure the icon actually exists
 		'icon_id'			=> (isset($icons[$row['icon_id']]['img'], $icons[$row['icon_id']]['height'], $icons[$row['icon_id']]['width'])) ? $row['icon_id'] : 0,
@@ -1121,6 +1154,10 @@ while ($row = $db->sql_fetchrow($result))
 		'status'			=> $row['user_status'],
 	);
 
+
+	//-- mod : Community Moderation ------------------------------------------------------------
+	$community_moderation->viewtopic_rowset($rowset[$row['post_id']], $user, $row, $force);
+	//-- fin mod : Community Moderation --------------------------------------------------------
 	// Define the global bbcode bitfield, will be used to load bbcodes
 	$bbcode_bitfield = $bbcode_bitfield | base64_decode($row['bbcode_bitfield']);
 
@@ -1723,6 +1760,10 @@ if ($config['inactive_users_enable'] && $auth->acl_get('u_view_customavatars') &
 	}
 }
 // End : Inactive and Banned Users` Custom Titles & Avatars
+
+	//-- mod : Community Moderation ------------------------------------------------------------
+	$community_moderation->viewtopic_postrow($postrow, $auth, $user_cache[$poster_id], $poster_id, $row, $viewtopic_url, $forum_id);
+	//-- fin mod : Community Moderation --------------------------------------------------------
 	// Dump vars into template
 	$template->assign_block_vars('postrow', $postrow);
 

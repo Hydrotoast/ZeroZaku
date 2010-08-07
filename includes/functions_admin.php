@@ -804,6 +804,9 @@ function delete_posts($where_type, $where_ids, $auto_sync = true, $posted_sync =
 	$db->sql_transaction('begin');
 
 	$table_ary = array(POSTS_TABLE, REPORTS_TABLE);
+	//-- mod : Community Moderation ------------------------------------------------------------
+	$table_ary[] = VOTES_TABLE;
+	//-- fin mod : Community Moderation --------------------------------------------------------
 
 	foreach ($table_ary as $table)
 	{

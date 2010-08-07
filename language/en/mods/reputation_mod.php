@@ -42,6 +42,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
+    'RP'						=> 'Reputation',
 	'RP_ADD_POINTS'				=> 'Give good reputation point to',
 	'RP_COMMENT'				=> 'Comment',
 	'RP_COMMENTS'				=> 'Comments',
@@ -67,10 +68,8 @@ $lang = array_merge($lang, array(
 	'RP_TOTAL_POINTS'			=> 'Reputation points',
 	'RP_USER_DISABLED'			=> 'You are not allowed to give reputation point.',
 	'RP_USER_SELF_DISABLED'		=> 'This user has disabled reputation feature.',
-));
 
-// Reputation settings
-$lang = array_merge($lang, array(
+    // Reputation settings
 	'ACP_REPUTATION_SETTINGS_EXPLAIN'	=> 'Here you can configure user reputation points settings.',
 	'RP_BLOCK_PER_POINTS'		=> 'Block per points',
 	'RP_BLOCK_PER_POINTS_EXPLAIN'	=> 'Add 1 block for every x reputation points.',
@@ -108,10 +107,8 @@ $lang = array_merge($lang, array(
 	'RP_USER_SPREAD'			=> 'Reputation spread',
 	'RP_USER_SPREAD_EXPLAIN'	=> 'Spread reputation to others before giving reputation to the same user.',
 	'RP_USER_SPREAD_FIRST'		=> 'You must spread your reputation point to other users before giving to the same user.',
-));
-
-// Rank management
-$lang = array_merge($lang, array(
+    
+    // Rank management
 	'ACP_REP_RANKS_EXPLAIN'		=> 'Using this form you can add, edit, view and delete ranks based on reputation points. ',
 	'RP_ADD_RANK'				=> 'Add rank',
 	'RP_MUST_SELECT_RANK'		=> 'You must select a rank',
@@ -120,19 +117,15 @@ $lang = array_merge($lang, array(
 	'RP_RANK_MINIMUM'			=> 'Minimum points',
 	'RP_RANK_TITLE'				=> 'Title',
 	'RP_RANK_UPDATED'			=> 'The rank was successfully updated.',
-));
 
-// Point management
-$lang = array_merge($lang, array(
+    // Point management
 	'RP_ADD'					=> 'Add',
 	'RP_ALTER_SUCCESS'			=> 'The user point was successfully updated.',
 	'RP_CHANGE'					=> 'Change to',
 	'RP_SUBTRACT'				=> 'Subtract',
 	'RP_WRONG_USERNAMES'		=> 'Wrong usernames entered.',
-));
 
-// UMIL auto installer
-$lang = array_merge($lang, array(
+    // UMIL auto installer
 	'INSTALL_REPUTATION_POINT'				=> 'Install user reputation points',
 	'INSTALL_REPUTATION_POINT_CONFIRM'		=> 'Are you ready to install user reputation points?',
 
