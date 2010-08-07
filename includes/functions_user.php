@@ -2470,7 +2470,7 @@ function avatar_process_user(&$error, $custom_userdata = false)
 * Add or edit a group. If we're editing a group we only update user
 * parameters such as rank, etc. if they are changed
 */
-function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow_desc_bbcode = false, $allow_desc_urls = false, $allow_desc_smilies = false, $group_data = '')
+function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow_desc_bbcode = false, $allow_desc_urls = false, $allow_desc_smilies = false)
 {
 	global $phpbb_root_path, $config, $db, $user, $file_upload;
 
@@ -2508,7 +2508,6 @@ function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow
 			'group_desc_uid'		=> '',
 			'group_desc_bitfield'	=> '',
 			'group_type'			=> (int) $type,
-			'group_data'			=> ($group_data === '') ? '' : (string) $group_data,
 		);
 
 		// Parse description

@@ -536,9 +536,10 @@ li.row:hover, li.row:hover dd.stats, li.row:hover dd.posts, li.row:hover dd.view
 	border-left-color: transparent;
 }
 
-.back2top a {
-	background: #EEEEEE;
-}
+.caffeine div { background: #EEEEEE; }
+.caffeine div strong { background: #F9F9F9; }
+.caffeine div strong.positive { background: #F0FEF0; }
+.caffeine div strong.negative { background: #FEBFBF; }
 
 .jump2post a {
 	background: #BBBBBB;

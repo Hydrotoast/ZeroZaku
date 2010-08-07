@@ -121,6 +121,8 @@
 		<div class="postbody">
 			<!-- IF postrow.S_IGNORE_POST -->
 				<div class="ignore">{postrow.L_IGNORE_POST}</div>
+        	<!-- ELSEIF postrow.S_BURIED_POST -->
+				<div class="ignore">{postrow.L_BURIED_POST}</div>
 			<!-- ELSE -->
 
 		<!-- IF not S_IS_BOT -->
@@ -134,6 +136,13 @@
 					<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{L_WARN_USER}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
+					  <!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED -->
+               	      			  <li class="upvote-icon"><a href="{postrow.U_UPVOTE}" title="{L_UPVOTE}"><span>{L_UPVOTE}</span></a></li>
+					  <li class="downvote-icon"><a href="{postrow.U_DOWNVOTE}" title="{L_DOWNVOTE}"><span>{L_DOWNVOTE}</span></a></li>
+					  <!-- ENDIF -->
+					<li class="score" title="+{postrow.POST_UPVOTES} -{postrow.POST_DOWNVOTES}">{postrow.POST_SCORE}<span>{L_POST_SCORE}</span></li>
+					<!-- ENDIF -->
 <!-- IF SIMPLE_QC_ENABLED && S_USER_LOGGED_IN -->
 <li><a id="link{postrow.POST_ID}" href="javascript:display('show', {postrow.POST_ID})"><img src="{T_IMAGESET_PATH}/quick_comment.gif" /></a></li>
 <!-- ENDIF -->

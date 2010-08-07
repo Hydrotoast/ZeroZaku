@@ -139,6 +139,8 @@
 
 	<!-- IF postrow.S_IGNORE_POST -->
 			<td class="gensmall" colspan="2" height="25" align="center"><!-- IF postrow.S_FIRST_UNREAD --><a name="unread"></a><!-- ENDIF --><a name="p{postrow.POST_ID}"></a>{postrow.L_IGNORE_POST}</td>
+	<!-- ELSEIF postrow.S_BURIED_POST -->
+			<td class="gensmall" colspan="2" height="25" align="center"><!-- IF postrow.S_FIRST_UNREAD --><a name="unread"></a><!-- ENDIF --><a name="p{postrow.POST_ID}"></a>{postrow.L_BURIED_POST}</td>
 	<!-- ELSE -->
 
 			<td align="center" valign="middle">
@@ -294,6 +296,13 @@
 								<!-- IF postrow.U_INFO --><a href="{postrow.U_INFO}">{INFO_IMG}</a> <!-- ENDIF --> 
 								<!-- IF postrow.U_WARN --><a href="{postrow.U_WARN}">{WARN_IMG}</a> <!-- ENDIF --> 
 								<!-- IF postrow.U_DELETE --><a href="{postrow.U_DELETE}">{DELETE_IMG}</a> <!-- ENDIF -->
+								<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
+								  <!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED -->
+			                      <a href="{postrow.U_UPVOTE}">{UPVOTE_IMG}</a>
+								  <a href="{postrow.U_DOWNVOTE}">{DOWNVOTE_IMG}</a>
+								  <!-- ENDIF -->
+								<span class="score" title="+{postrow.POST_UPVOTES} -{postrow.POST_DOWNVOTES}">{postrow.POST_SCORE}</span>
+								<!-- ENDIF -->
 							<!-- ENDIF -->
 							</td>
 						</tr>

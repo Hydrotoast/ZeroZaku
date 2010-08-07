@@ -147,6 +147,10 @@ ul.profile-icons li a:hover { background: none; }
 .delete-icon, .delete-icon a		{ background: none top left no-repeat; }
 .info-icon, .info-icon a			{ background: none top left no-repeat; }
 
+
+/* Community Moderation */
+.upvote-icon, .upvote-icon a		{ background: none top left no-repeat; }
+.downvote-icon, .downvote-icon a		{ background: none top left no-repeat; }
 /* Set profile icon dimensions */
 ul.profile-icons li.email-icon		{ width: {IMG_ICON_CONTACT_EMAIL_WIDTH}px; height: {IMG_ICON_CONTACT_EMAIL_HEIGHT}px; }
 ul.profile-icons li.aim-icon	{ width: {IMG_ICON_CONTACT_AIM_WIDTH}px; height: {IMG_ICON_CONTACT_AIM_HEIGHT}px; }
@@ -163,6 +167,8 @@ ul.profile-icons li.quick-edit-icon   { width: {IMG_ICON_POST_QUICKEDIT_WIDTH}px
 ul.profile-icons li.delete-icon	{ width: {IMG_ICON_POST_DELETE_WIDTH}px; height: {IMG_ICON_POST_DELETE_HEIGHT}px; }
 ul.profile-icons li.info-icon	{ width: {IMG_ICON_POST_INFO_WIDTH}px; height: {IMG_ICON_POST_INFO_HEIGHT}px; }
 ul.profile-icons li.warn-icon	{ width: {IMG_ICON_USER_WARN_WIDTH}px; height: {IMG_ICON_USER_WARN_HEIGHT}px; }
+ul.profile-icons li.upvote-icon	{ width: {IMG_ICON_POST_UPVOTE_WIDTH}px; height: {IMG_ICON_POST_UPVOTE_HEIGHT}px; }
+ul.profile-icons li.downvote-icon	{ width: {IMG_ICON_POST_DOWNVOTE_WIDTH}px; height: {IMG_ICON_POST_DOWNVOTE_HEIGHT}px; }
 
 /* Fix profile icon default margins */
 ul.profile-icons li.edit-icon	{ margin: 0 0 0 3px; }

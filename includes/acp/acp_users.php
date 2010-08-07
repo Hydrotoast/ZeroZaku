@@ -1473,6 +1473,10 @@ class acp_users
 					'post_sk'			=> request_var('post_sk', ($user_row['user_post_sortby_type']) ? $user_row['user_post_sortby_type'] : 't'),
 					'post_sd'			=> request_var('post_sd', ($user_row['user_post_sortby_dir']) ? $user_row['user_post_sortby_dir'] : 'a'),
 					'post_st'			=> request_var('post_st', ($user_row['user_post_show_days']) ? $user_row['user_post_show_days'] : 0),
+					//-- mod : Community Moderation ------------------------------------------------------------
+					'post_threshold'	=> request_var('post_threshold', $user_row['user_posts_bury_threshold']),
+					'bury_hide'			=> request_var('bury_hide', $user_row['user_posts_bury_hide']),
+					//-- fin mod : Community Moderation --------------------------------------------------------
 
 					'view_images'		=> request_var('view_images', $this->optionget($user_row, 'viewimg')),
 					'view_flash'		=> request_var('view_flash', $this->optionget($user_row, 'viewflash')),
@@ -1498,6 +1502,10 @@ class acp_users
 						'topic_sd'		=> array('string', false, 1, 1),
 						'post_sk'		=> array('string', false, 1, 1),
 						'post_sd'		=> array('string', false, 1, 1),
+						//-- mod : Community Moderation ------------------------------------------------------------
+						'post_threshold'	=> array('num', false, -99, -1),
+						'bury_hide'		=> array('num', false, 0, 2),
+						//-- fin mod : Community Moderation --------------------------------------------------------
 					));
 
 					if (!check_form_key($form_name))
@@ -1538,6 +1546,10 @@ class acp_users
 							'user_post_sortby_type'		=> $data['post_sk'],
 							'user_topic_sortby_dir'		=> $data['topic_sd'],
 							'user_post_sortby_dir'		=> $data['post_sd'],
+							//-- mod : Community Moderation ------------------------------------------------------------
+							'user_posts_bury_threshold'		=> $data['post_threshold'],
+							'user_posts_bury_hide'			=> $data['bury_hide'],
+							//-- fin mod : Community Moderation --------------------------------------------------------
 
 							'user_topic_show_days'	=> $data['topic_st'],
 							'user_post_show_days'	=> $data['post_st'],
@@ -1637,6 +1649,10 @@ class acp_users
 					'VIEW_SIGS'			=> $data['view_sigs'],
 					'VIEW_AVATARS'		=> $data['view_avatars'],
 					'VIEW_WORDCENSOR'	=> $data['view_wordcensor'],
+					//-- mod : Community Moderation ------------------------------------------------------------
+					'BURY_THRESHOLD'	=> $data['post_threshold'],
+					'BURY_HIDE'			=> $data['bury_hide'],
+					//-- fin mod : Community Moderation --------------------------------------------------------
 
 					'S_TOPIC_SORT_DAYS'		=> $s_limit_topic_days,
 					'S_TOPIC_SORT_KEY'		=> $s_sort_topic_key,

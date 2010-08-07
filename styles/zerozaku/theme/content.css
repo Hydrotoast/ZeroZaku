@@ -122,20 +122,35 @@ li.header dl.icon dt {
 	border: 1px solid;
 }
 
-.back2top {
-	margin: 0 0 2px -10px;
+.caffeine {
+	margin: 0 -10px 2px;
 	clear: both;
 }
 
-.back2top a {
+.caffeine div {
 	text-decoration: none;
-	padding: 6px 10px;
+	padding: 8px;
+	float: right;
 	-moz-border-radius: 5px 5px 0 0;
-	-webkit-border-radius: 5px 5px 0 0
+	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
 	behavior: url(PIE.htc); 
 }
+
+.caffeine div strong {
+	padding: 4px 6px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.caffeine div .hover { width: 44px; float: right; }
+.caffeine div a { position: relative; }
+.caffeine div a img { position: absolute; }
+.caffeine div a img.positive { left: 4px; }
+.caffeine div a img.negative { left: 24px; }
 
 .jump2post {
 	margin-top: 2px;

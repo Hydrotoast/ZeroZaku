@@ -705,6 +705,8 @@ a.fontsize {
 .delete-icon, .delete-icon a		{ background-image: url("{IMG_ICON_POST_DELETE_SRC}"); }
 .info-icon, .info-icon a			{ background-image: url("{IMG_ICON_POST_INFO_SRC}"); }
 .warn-icon, .warn-icon a			{ background-image: url("{IMG_ICON_USER_WARN_SRC}"); } /* Need updated warn icon */
+.upvote-icon, .upvote-icon a		{ background-image: url("{IMG_ICON_POST_UPVOTE_SRC}"); }
+.downvote-icon, .downvote-icon a		{ background-image: url("{IMG_ICON_POST_DOWNVOTE_SRC}"); }
 
 /*  	
 --------------------------------------------------------------

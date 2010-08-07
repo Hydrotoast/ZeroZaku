@@ -198,6 +198,10 @@ class ucp_prefs
 					'post_sk'		=> request_var('post_sk', (!empty($user->data['user_post_sortby_type'])) ? $user->data['user_post_sortby_type'] : 't'),
 					'post_sd'		=> request_var('post_sd', (!empty($user->data['user_post_sortby_dir'])) ? $user->data['user_post_sortby_dir'] : 'a'),
 					'post_st'		=> request_var('post_st', (!empty($user->data['user_post_show_days'])) ? $user->data['user_post_show_days'] : 0),
+					//-- mod : Community Moderation ------------------------------------------------------------
+					'post_threshold'	=> request_var('post_threshold', (int) $user->data['user_posts_bury_threshold']),
+					'bury_hide'		=> request_var('bury_hide', (int) $user->data['user_posts_bury_hide']),
+					//-- fin mod : Community Moderation --------------------------------------------------------
 
 					'mchat'			=> request_var('mchat', (bool) $user->optionget('mchat')),
 					'images'		=> request_var('images', (bool) $user->optionget('viewimg')),
@@ -217,6 +221,10 @@ class ucp_prefs
 						'topic_sd'	=> array('string', false, 1, 1),
 						'post_sk'	=> array('string', false, 1, 1),
 						'post_sd'	=> array('string', false, 1, 1),
+						//-- mod : Community Moderation ------------------------------------------------------------
+						'post_threshold'	=> array('num', false, -99, -1),
+						'bury_hide'	=> array('num', false, 0, 2),
+						//-- fin mod : Community Moderation --------------------------------------------------------
 					));
 
 					if (!check_form_key('ucp_prefs_view'))
@@ -249,6 +257,10 @@ class ucp_prefs
 
 							'user_topic_show_days'	=> $data['topic_st'],
 							'user_post_show_days'	=> $data['post_st'],
+							//-- mod : Community Moderation ------------------------------------------------------------
+							'user_posts_bury_threshold'	=> $data['post_threshold'],
+							'user_posts_bury_hide'		=> $data['bury_hide'],
+							//-- fin mod : Community Moderation --------------------------------------------------------
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
@@ -318,6 +330,13 @@ class ucp_prefs
 					'S_SIGS'			=> $data['sigs'],
 					'S_AVATARS'			=> $data['avatars'],
 					'S_DISABLE_CENSORS'	=> $data['wordcensor'],
+					//-- mod : Community Moderation ------------------------------------------------------------
+					'S_BURY_THRESHOLD'	=> $data['post_threshold'],
+					'S_BURY_HIDE'		=> $data['bury_hide'],
+
+					'S_CAN_BURY_THRESHOLD'	=> ($auth->acl_get('u_com_threshold')) ? true : false,
+					'S_CAN_BURY_HIDE'		=> ($auth->acl_get('u_com_style')) ? true : false,
+					//-- fin mod : Community Moderation --------------------------------------------------------
 					'S_QUICKREPLY'		=> $data['quickreply'],
 					'QUICK_REPLY'		=> ($config['allow_quick_reply']) ? true : false,
 					'S_QUICKPOST'		=> $data['quickpost'],

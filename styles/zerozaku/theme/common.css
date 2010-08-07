@@ -848,5 +848,10 @@ em {font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; }
 	background: transparent;
 }
 
+.score {
+	font-size: 1.4em; 
+	padding-top: 3px; 
+}
+
 .hide {display: none;}
 .show {display: block;}

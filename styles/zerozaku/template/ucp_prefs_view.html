@@ -106,6 +106,23 @@
 			<dt><label>{L_VIEW_POSTS_DIR}:</label></dt>
 			<dd>{S_POST_SORT_DIR}</dd>
 		</dl>
+				<hr />
+		<!-- IF S_CAN_BURY_THRESHOLD -->
+		<dl>
+			<dt><label for="post_threshold">{L_POST_THRESHOLD}:</label><br /><span>{L_POST_THRESHOLD_EXPLAIN}</span></dt>
+			<dd><input type="text" id="post_threshold" name="post_threshold" value="{S_BURY_THRESHOLD}" maxlength="3" size="5" /></dd>
+		</dl>
+		<!-- ENDIF -->
+		<!-- IF S_CAN_BURY_HIDE -->
+		<dl>
+			<dt><label for="bury_hide2">{L_BURY_HIDE}:</label><br /><span>{L_BURY_HIDE_EXPLAIN}</span></dt>
+			<dd>
+				<label for="bury_hide2"><input type="radio" name="bury_hide" id="bury_hide2" value="2"<!-- IF S_BURY_HIDE == 2 --> checked="checked"<!-- ENDIF --> /> {L_BURY_HIDE_NONE}</label>
+				<label for="bury_hide1"><input type="radio" name="bury_hide" id="bury_hide1" value="1"<!-- IF S_BURY_HIDE == 1 --> checked="checked"<!-- ENDIF --> /> {L_BURY_HIDE_FRIENDS}</label>
+				<label for="bury_hide0"><input type="radio" name="bury_hide" id="bury_hide0" value="0"<!-- IF S_BURY_HIDE == 0 --> checked="checked"<!-- ENDIF --> /> {L_BURY_HIDE_ALL}</label>
+			</dd>
+		</dl>
+		<!-- ENDIF -->
 		</fieldset>
 
 	</div>
