@@ -76,17 +76,7 @@ class acp_community_moderation
 
 			'S_MOD_ENABLE'						=> $enable_community_moderation,
 			'S_POSTS_BURY_THRESHOLD'			=> $posts_bury_threshold,
-			'S_ENABLE_ULTIMATE_POINTS'			=> $enable_community_moderation_ups,
-			'S_ULTIMATE_POINTS_UPVOTE'			=> $community_moderation_ups_up,
-			'S_ULTIMATE_POINTS_DOWNVOTE'		=> $community_moderation_ups_down,
 		));
-
-		if ($community_moderation->ultimate_points_installed())
-		{
-			$template->assign_vars(array(
-				'S_ULTIMATE_POINTS_INSTALLED' 	=> true,
-			));
-		}
 	}
 }
 
