@@ -538,6 +538,7 @@ li.row:hover, li.row:hover dd.stats, li.row:hover dd.posts, li.row:hover dd.view
 
 .caffeine div { background: #EEEEEE; }
 .caffeine div strong { background: #F9F9F9; }
+.caffeine div strong.positive { background: #C9D2D8; }
 .caffeine div strong.positive { background: #F0FEF0; }
 .caffeine div strong.negative { background: #FEBFBF; }
 
