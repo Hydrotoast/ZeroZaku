@@ -28,24 +28,6 @@
 	</dl>
 </fieldset>
 
-<!-- IF S_ULTIMATE_POINTS_INSTALLED -->
-<fieldset id="ultimate_points_settings">
-	<legend>{L_ULTIMATE_POINTS_SETTINGS}</legend>
-	<dl>
-		<dt><label for="enable_community_moderation_ups">{L_ULTIMATE_POINTS_ENABLE}:</label></dt>
-		<dd><label><input type="radio" class="radio" id="enable_community_moderation_ups" name="enable_community_moderation_ups"<!-- IF S_ENABLE_ULTIMATE_POINTS --> checked="checked"<!-- ENDIF --> value="1" /> {L_YES}</label><label><input type="radio" class="radio" name="enable_community_moderation_ups"<!-- IF not S_ENABLE_ULTIMATE_POINTS --> checked="checked"<!-- ENDIF --> value="0" /> {L_NO}</label></dd>
-	</dl>
-	<dl>
-		<dt><label for="community_moderation_ups_up">{L_ULTIMATE_POINTS_UPVOTE}:</label><br /><span>{L_ULTIMATE_POINTS_UPVOTE_EXPLAIN}</span></dt>
-		<dd><input size="5" maxlength="5" type="text" id="ups_upvote" name="community_moderation_ups_up" value="{S_ULTIMATE_POINTS_UPVOTE}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="community_moderation_ups_down">{L_ULTIMATE_POINTS_DOWNVOTE}:</label><br /><span>{L_ULTIMATE_POINTS_DOWNVOTE_EXPLAIN}</span></dt>
-		<dd><input size="5" maxlength="5" type="text" id="community_moderation_ups_down" name="community_moderation_ups_down" value="{S_ULTIMATE_POINTS_DOWNVOTE}" /></dd>
-	</dl>
-</fieldset>
-<!-- ENDIF -->
-
 <fieldset class="submit-buttons">
 	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
