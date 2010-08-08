@@ -1,29 +1,92 @@
-<!-- DEFINE $CA_PAGE = 'faction' --><!-- INCLUDE overall_header.html -->
-<div id="center">
-	<div id="faction">
-		
-		<div class="details">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Faction App - ZeroZaku</title>
+		<style type="text/css">
+			body {
+				font: 12px/1.4 Arial, Helvetica, sans-serif;
+				text-align: center;
+			}
+			
+			.panel.clean {
+				text-align: left;
+				background-color: #F0F0F0;
+				width: 600px;
+				margin: 0 auto;
+				padding: 15px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-khtml-border-radius: 5px;
+				border-radius: 5px;
+			}
+			
+			.panel.clean .inner {
+				background-color: #FFFFFF;
+				margin: 15px 0;
+				padding: 15px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-khtml-border-radius: 5px;
+				border-radius: 5px;
+			}
+			
+			p { color: #606060; margin: 6px 0; }
+			
+			h1 {
+				font: bold 1.5em Arial, Helvetica, sans-serif;
+				text-transform: uppercase;
+				color: #C0C0C0;
+				margin-top: 0;
+			}
+			
+			fieldset { border: 0; padding: 0; }
+			fieldset dl { margin: 6px 0; clear: both; overflow: hidden; }
+			
+			fieldset dl dt {
+				font-weight: bold;
+				width: 12em;
+				float: left;
+			}
+			
+			fieldset dl dt span { font-weight: normal; color: #606060; display: block; }
+			
+			fieldset dl dd {
+				margin-left: 13em;
+			}
+			
+			input[type=text], textarea {
+				width: 360px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="panel clean">
+		<h1>Faction Application</h1>
 			<div class="inner">
-				<!-- IF FACTION_NAME --><h2 class="name"<!-- IF FACTION_COLOUR --> style="color:#{FACTION_COLOUR};"<!-- ENDIF -->><img src="{FACTION_BANNER}" alt="{FACTION_NAME}" /></h2><!-- ENDIF -->
-				<dl>
-					<dt>{L_FACTION_FOUNDER}:</dt><dd>{FACTION_FOUNDER}</dd>
-				  	<dt>{L_FACTION_TOTAL_USERS}:</dt><dd>consectetuer adipiscing elit.</dd>
-				</dl>
-				
-				<ul class="buttons">
-					<li><a class="button2" href="{U_FACTION_MEMBERS}" title="{L_FACTION_MEMBERS}">{L_FACTION_MEMBERS}</a></li>
-					<!-- BEGIN block_request -->
-					<li><a class="button1" href="{block_request.U_FACTION_REQUEST}" title="{L_FACTION_JOIN}">{L_FACTION_JOIN}</a></li>
-					<!-- END block_request -->
-				</ul>
+			<form>
+			<fieldset title="main fieldset">
+				<fieldset title="Basics">
+					<dl><dt><label for="username">Username:</label></dt> <dd>{USERNAME}</dd></dl>
+					<dl><dt><label for="irlname">Real Name:</label></dt> <dd>{REAL_NAME}</dd></dl>
+					<dl><dt><label for="email">Email:</label></dt> <dd>{EMAIL}</dd></dl>
+					<dl><dt><label for="contrib">Contributions:</label></dt> <dd>{CONTRIBUTIONS}</dd></dl>
+				</fieldset>
+			</div>
+			<div class="inner">
+				<fieldset title="Faction">
+					<dl><dt><label for="faction">Faction Name:</label></dt> <dd>{FACTION_NAME}</dd></dl>
+					<dl><dt><label for="forum">Desired Forum: </label></dt> <dd>{DESIRED_FORUM}</dd></dl>
+					<dl><dt><label for="desc">Faction Description:</label></dt>{FACTION_DESCRIPTION}<dd></dd></dl>
+				</fieldset>
+			</div>
+			<div class="inner">
+				<fieldset title="Member">
+					<dl><dt><label for="member1">Username (Member 1):</label></dt> <dd>{MEMBER1}</dd></dl>
+					<dl><dt><label for="member2">Username (Member 2):</label></dt> <dd>{MEMBER2}</dd></dl>
+				</fieldset>
+			</div>
 			</div>
 		</div>
-		
-		<div class="desc_disp">
-			<div class="inner">
-				{FACTION_DESC_DISP}
-			</div>		
-		</div>
-	</div>
-</div>
-<!-- INCLUDE overall_footer.html -->
+	</body>
+</html>

@@ -40,18 +40,11 @@ class ucp_profile
 		$s_hidden_fields = '';
 
 		switch ($mode)
-		{   
+		{
 		    case 'css_override':
-		        add_form_key('css_override');
-		        
 		        if($submit)
 		        {
-		            if (!check_form_key('css_override'))
-					{
-						trigger_error($user->lang['FORM_INVALID']);
-					}
-		            
-			        $css = request_var('css', '');
+			        $css = (isset($_POST['css'])) ? $_POST['css'] : '';
 	
 					// Check for valid images if the user put in any urls.
 					$urls = array();
