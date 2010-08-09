@@ -1,14 +1,11 @@
-<!-- INCLUDE kb/kb_header.html -->
-			<h2 class="pagetitle"><a href="{U_VIEW_FORUM}">{CAT_NAME}</a></h2>
+<!-- INCLUDE kb/kb_header.html --><!-- DEFINE $CA_KB = true -->
 			<form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
 			<!-- IF not S_IS_UCP && not S_IS_MCP -->
 			<!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_preview.html --><!-- ENDIF -->
 			<!-- ENDIF -->
-			<div class="panel" id="postingbox">
+			<div class="panel clean" id="postingbox">
+				<h2>{L_POST_A}</h2>
 				<div class="inner">
-				
-				<h3 class="head">{L_POST_A}</h3>
-			
 				<fieldset class="fields1">
 				<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 				
@@ -92,50 +89,45 @@
 					<!-- ENDIF -->
 				</div>
 			
-				<div id="message-box">
-					<textarea name="message" id="kb_message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" class="inputbox">{TEXT_MESSAGE}</textarea>
+				<div id="kb-message-box">
+					<textarea name="message" id="message" rows="15" cols="69" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" class="inputbox">{TEXT_MESSAGE}</textarea>
 				</div>
 				</fieldset>
 				
-					</div>
 				</div>
 				
 				<!-- IF S_HAS_ATTACHMENTS -->
-					<div class="panel bg2">
-						<div class="inner">
-						<h3>{L_POSTED_ATTACHMENTS}</h3>
-			
-						<fieldset class="fields2">
-			
-						<!-- BEGIN attach_row -->
-						<dl>
-			
-							<dt><label for="comment_list[{attach_row.ASSOC_INDEX}]">{L_FILE_COMMENT}:</label></dt>
-							<dd><textarea name="comment_list[{attach_row.ASSOC_INDEX}]" id="comment_list[{attach_row.ASSOC_INDEX}]" rows="1" cols="35" class="inputbox">{attach_row.FILE_COMMENT}</textarea></dd>
-							<dd><a href="{attach_row.U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{attach_row.FILENAME}</a></dd>
-							<dd style="margin-top: 5px;">
-								<!-- IF S_INLINE_ATTACHMENT_OPTIONS --><input type="button" value="{L_PLACE_INLINE}" onclick="attach_inline({attach_row.ASSOC_INDEX}, '{attach_row.A_FILENAME}');" class="button2" />&nbsp; <!-- ENDIF -->
-								<input type="submit" name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" class="button2" />
-							</dd>
-						</dl>
-						{attach_row.S_HIDDEN}
-							<!-- IF not attach_row.S_LAST_ROW --><hr class="dashed" /><!-- ENDIF -->
-						<!-- END attach_row -->
-			
-						</fieldset>
-			
-						</div>
+					<div class="inner">
+					<h3>{L_POSTED_ATTACHMENTS}</h3>
+		
+					<fieldset class="fields2">
+		
+					<!-- BEGIN attach_row -->
+					<dl>
+		
+						<dt><label for="comment_list[{attach_row.ASSOC_INDEX}]">{L_FILE_COMMENT}:</label></dt>
+						<dd><textarea name="comment_list[{attach_row.ASSOC_INDEX}]" id="comment_list[{attach_row.ASSOC_INDEX}]" rows="1" cols="35" class="inputbox">{attach_row.FILE_COMMENT}</textarea></dd>
+						<dd><a href="{attach_row.U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{attach_row.FILENAME}</a></dd>
+						<dd style="margin-top: 5px;">
+							<!-- IF S_INLINE_ATTACHMENT_OPTIONS --><input type="button" value="{L_PLACE_INLINE}" onclick="attach_inline({attach_row.ASSOC_INDEX}, '{attach_row.A_FILENAME}');" class="button2" />&nbsp; <!-- ENDIF -->
+							<input type="submit" name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" class="button2" />
+						</dd>
+					</dl>
+					{attach_row.S_HIDDEN}
+						<!-- IF not attach_row.S_LAST_ROW --><hr class="dashed" /><!-- ENDIF -->
+					<!-- END attach_row -->
+		
+					</fieldset>
+		
 					</div>
 				<!-- ENDIF -->
 				
-				<div class="panel bg2">
 					<div class="inner">
 					<fieldset class="submit-buttons">
 						{S_HIDDEN_ADDRESS_FIELD}
 						{S_HIDDEN_FIELDS}
-						<input type="submit" tabindex="5" name="preview" value="{L_PREVIEW}" class="button1" onclick="document.getElementById('postform').action += '#preview';" />&nbsp;
 						<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1" />&nbsp;
-			
+						<input type="submit" tabindex="5" name="preview" value="{L_PREVIEW}" class="button2" onclick="document.getElementById('postform').action += '#preview';" />
 					</fieldset>
 			
 					</div>

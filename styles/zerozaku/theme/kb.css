@@ -43,7 +43,7 @@ h1.articletitle, h1.kb_requesttitle {
 }
 
 textarea.desc {
-	width: 40%;
+	width: 60%;
 }
 
 fieldset dt span {
@@ -59,9 +59,14 @@ h2.kb_head.kb_comments { width: 675px; }
 	margin-bottom: 15px;
 }
 
-#message-box #kb_message {
+#kb-message-box {
 	float: left;
-	width: auto;
+}
+
+#kb-message-box #message {
+	text-align: left;
+	width: 100%;
+	float: left;
 }
 
 /* Rating styles */
