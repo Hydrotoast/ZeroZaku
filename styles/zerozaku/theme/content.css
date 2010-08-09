@@ -403,6 +403,7 @@ a.forumtitle:hover { text-decoration: underline; }
 
 /* Post body styles
 ----------------------------------------*/
+#preview .postbody { width: 690px; }
 .postbody {
 	margin: 10px 0;
 	padding: 0;

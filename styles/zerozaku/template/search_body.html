@@ -2,12 +2,9 @@
 
 <form method="get" action="{S_SEARCH_ACTION}">
 
-<h2 class="pagetitle">{L_SEARCH}</h2>
-
-<div class="panel">
+<div class="panel clean">
+	<h2>{L_SEARCH_QUERY}</h2>
 	<div class="inner">
-	<h3 class="head">{L_SEARCH_QUERY}</h3>
-	
 	<fieldset>
 	<dl>
 		<dt><label for="keywords">{L_SEARCH_KEYWORDS}</label></dt>
@@ -20,9 +17,10 @@
 		<dd><input type="text" class="inputbox" name="author" id="author" size="40" title="{L_SEARCH_AUTHOR}" /><br /><span>{L_SEARCH_AUTHOR_EXPLAIN}</span></dd>
 	</dl>
 	</fieldset>
-
-	<h3 class="head">{L_SEARCH_OPTIONS}</h3>
+	</div>
 	
+	<h2>{L_SEARCH_OPTIONS}</h2>
+	<div class="inner">
 	<fieldset>
 	<dl>
 		<dt><label for="search_forum">{L_SEARCH_FORUMS}</label></dt>
@@ -68,18 +66,13 @@
 		<dd><select name="ch" title="{L_RETURN_FIRST}">{S_CHARACTER_OPTIONS}</select> {L_POST_CHARACTERS}</dd>
 	</dl>
 	</fieldset>
-
 	</div>
-</div>
-
-<div class="panel bg3">
+	
 	<div class="inner">
-
 	<fieldset class="submit-buttons">
 		{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="{L_SEARCH}" class="button1" />&nbsp; 
 		<input type="reset" value="{L_RESET}" name="reset" class="button2" />
 	</fieldset>
-
 	</div>
 </div>
 
