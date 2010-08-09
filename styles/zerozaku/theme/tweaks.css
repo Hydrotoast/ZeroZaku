@@ -1302,6 +1302,8 @@ a.nivo-prevNav {
 
 /* Aggregrations
 -------------------------------------------------*/
+.aggro { overflow: hidden; }
+
 dt.aggro_head {
 	font: 1.3333em Anivers-Regular;
 	background-color: #212121;
@@ -1314,14 +1316,15 @@ dt.aggro_head {
 	clear: both;
 }
 
-dd.aggro_item {
+dd.aggro_item, dd.aggro_item_quad {
 	border-bottom: 1px solid #E0E0E0;
 	width: 33%;
 	padding: 15px 0;
 	float: left;
 }
+dd.aggro_item_quad { width: 25%; }
 
-dd.aggro_item a {
+dd.aggro_item a, dd.aggro_item_quad a {
 	text-decoration: none;
 	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
 	border-left: 1px solid #E0E0E0;
@@ -1332,13 +1335,15 @@ dd.aggro_item a {
 
 dd.aggro_item:nth-child(n+5) { border: 0; }
 dd.aggro_item:nth-child(3n+2) a { border: 0; }
+dd.aggro_item_quad:nth-child(n+6) { border: 0; }
+dd.aggro_item_quad:nth-child(4n+2) a { border: 0; }
 
-dd.aggro_item p {
+dd.aggro_item p, dd.aggro_item_quad p {
 	color: #606060;
 	padding: 6px 0;
 }
 
-dd.aggro_item p strong {
+dd.aggro_item p strong, dd.aggro_item_quad p strong {
 	color: #212121;
 	font-weight: bold;
 	line-height: 1em;

@@ -31,7 +31,7 @@ if ($portal_config['portal_exclude_forums'])
 	{
 		if ($id > 0)
 		{
-			$sql_where .= ' AND forum_id <> ' . trim($id);
+			$sql_where .= ' AND t.forum_id <> ' . trim($id);
 		}
 	}
 }
@@ -53,73 +53,20 @@ $result = $db->sql_query_limit($sql, 1);
 $g_forum_id = (int) $db->sql_fetchfield('forum_id');
 
 //
-// Recent announcements
-//
-$sql = 'SELECT topic_title, forum_id, topic_id
-	FROM ' . TOPICS_TABLE . '
-	WHERE topic_status <> ' . FORUM_LINK . '
-		AND topic_approved = 1 
-		AND ( topic_type = ' . POST_ANNOUNCE . ' OR topic_type = ' . POST_GLOBAL . ' )
-		AND topic_moved_id = 0
-		' . $sql_where . '
-	ORDER BY topic_time DESC';
-
-$result = $db->sql_query_limit($sql, $portal_config['portal_max_topics']);
-
-while( ($row = $db->sql_fetchrow($result)) && ($row['topic_title']) )
-{
-	// auto auth
-	if ( ($auth->acl_get('f_read', $row['forum_id'])) || ($row['forum_id'] == '0') )
-	{
-		$template->assign_block_vars('latest_announcements', array(
-			'TITLE'	 		=> character_limit($row['topic_title'], $portal_config['portal_recent_title_limit']),
-			'FULL_TITLE'	=> censor_text($row['topic_title']),
-			'U_VIEW_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . ( ($row['forum_id'] == 0) ? $g_forum_id : $row['forum_id'] ) . '&amp;t=' . $row['topic_id'])
-		));
-	}
-}
-$db->sql_freeresult($result);
-
-//
-// Recent hot topics
-//
-$sql = 'SELECT topic_title, forum_id, topic_id
-	FROM ' . TOPICS_TABLE . '
-	WHERE topic_approved = 1 
-		AND topic_replies >=' . $config['hot_threshold'] . '
-		AND topic_moved_id = 0
-		' . $sql_where . '
-	ORDER BY topic_time DESC';
-
-$result = $db->sql_query_limit($sql, $portal_config['portal_max_topics']);
-
-while( ($row = $db->sql_fetchrow($result)) && ($row['topic_title']) )
-{
-	// auto auth
-	if ( ($auth->acl_get('f_read', $row['forum_id'])) || ($row['forum_id'] == '0') )
-	{
-		$template->assign_block_vars('latest_hot_topics', array(
-			'TITLE'	 		=> character_limit($row['topic_title'], $portal_config['portal_recent_title_limit']),
-			'FULL_TITLE'	=> censor_text($row['topic_title']),
-			'U_VIEW_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . ( ($row['forum_id'] == 0) ? $g_forum_id : $row['forum_id'] ) . '&amp;t=' . $row['topic_id'])
-		));
-	}
-}
-$db->sql_freeresult($result);
-
-//
 // Recent topic (only show normal topic)
 //
-$sql = 'SELECT topic_title, forum_id, topic_id
-	FROM ' . TOPICS_TABLE . '
-	WHERE topic_status <> ' . ITEM_MOVED . '
-		AND topic_approved = 1 
-		AND topic_type = ' . POST_NORMAL . '
-		AND topic_moved_id = 0
+$sql = 'SELECT t.topic_title, t.forum_id, t.topic_id, f.forum_name
+	FROM ' . TOPICS_TABLE . ' t
+		JOIN ' . FORUMS_TABLE . ' f
+	ON t.forum_id = f.forum_id
+	WHERE t.topic_status <> ' . ITEM_MOVED . '
+		AND t.topic_approved = 1 
+		AND t.topic_type = ' . POST_NORMAL . '
+		AND t.topic_moved_id = 0
 		' . $sql_where . '
 	ORDER BY topic_time DESC';
 
-$result = $db->sql_query_limit($sql, $portal_config['portal_max_topics']);
+$result = $db->sql_query_limit($sql, 8);
 
 while( ($row = $db->sql_fetchrow($result)) && ($row['topic_title']) )
 {
@@ -129,7 +76,8 @@ while( ($row = $db->sql_fetchrow($result)) && ($row['topic_title']) )
 		$template->assign_block_vars('latest_topics', array(
 			'TITLE'	 		=> character_limit($row['topic_title'], $portal_config['portal_recent_title_limit']),
 			'FULL_TITLE'	=> censor_text($row['topic_title']),
-			'U_VIEW_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $row['forum_id'] . '&amp;t=' . $row['topic_id'])
+			'U_VIEW_TOPIC'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $row['forum_id'] . '&amp;t=' . $row['topic_id']),
+		    'FORUM'			=> $row['forum_name']
 		));
 	}
 }

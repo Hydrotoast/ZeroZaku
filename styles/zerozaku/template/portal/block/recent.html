@@ -1,41 +1,13 @@
-<!--version $Id: recent.html 479 2009-03-15 11:19:27Z kevin74 $ //-->
-<!-- IF .latest_announcements or .latest_hot_topics or .latest_topics -->
-
-<table id="recent" class="table1" width="100%">
-	<tr class="meta">
-		<!-- IF .latest_announcements --><th class="row1">{L_RECENT_ANN}</th><!-- ENDIF -->
-		<!-- IF .latest_hot_topics --><th class="row1">{L_RECENT_HOT_TOPIC}</th><!-- ENDIF -->
-		<!-- IF .latest_topics --><th class="row1">{L_RECENT_TOPIC}</th><!-- ENDIF -->
-	</tr>
-	<tr>
-		<!-- IF .latest_announcements -->
-		<td class="row1" style="width: 33%;" valign="top">
-			<span class="gensmall">
-			<!-- BEGIN latest_announcements -->
-						<a href="{latest_announcements.U_VIEW_TOPIC}" title="{latest_announcements.FULL_TITLE}">{latest_announcements.TITLE}</a><br />
-			<!-- END latest_announcements -->
-			</span>
-		</td>
-		<!-- ENDIF -->
-		<!-- IF .latest_hot_topics -->
-		<td class="row1" style="width: 33%;" valign="top">
-			<span class="gensmall">
-			<!-- BEGIN latest_hot_topics -->
-				<a href="{latest_hot_topics.U_VIEW_TOPIC}" title="{latest_hot_topics.FULL_TITLE}">{latest_hot_topics.TITLE}</a><br />
-			<!-- END latest_hot_topics -->
-			</span>
-		</td>
-		<!-- ENDIF -->
-		<!-- IF .latest_topics -->
-		<td class="row1" style="width: 33%;" valign="top">
-			<span class="gensmall">
-			<!-- BEGIN latest_topics -->
-				<a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">{latest_topics.TITLE}</a><br />
-			<!-- END latest_topics -->
-			</span>
-		</td>
-		<!-- ENDIF -->
-	</tr>
-</table>
-
+<!-- IF .latest_topics -->
+<div class="aggro">	
+<!-- IF .latest_topics --><dt class="aggro_head">{L_RECENT_TOPIC}</dt><!-- ENDIF -->
+	<!-- BEGIN latest_topics -->
+	<dd class="aggro_item_quad"><a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">
+		<p>
+			<strong>{latest_topics.TITLE}</strong>
+			<br /><span>{latest_topics.FORUM}</span>
+		</p>
+	</a></dd>
+	<!-- END latest_topics -->
+</div>
 <!-- ENDIF -->
