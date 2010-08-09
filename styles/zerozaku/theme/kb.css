@@ -59,6 +59,10 @@ h2.kb_head.kb_comments { width: 675px; }
 	margin-bottom: 15px;
 }
 
+#message-box #kb_message {
+	float: left;
+	width: auto;
+}
 
 /* Rating styles */
 .star-rating
@@ -252,7 +256,7 @@ h3.kb_cat img {
 
 .kb_articlelist li:last-child { border-bottom: 0; }
 .kb_articlelist li {
-	background: url("{T_THEME_PATH}/images/doc_lines_stright.png") no-repeat scroll 10px center transparent;
+	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
 	border-bottom: 1px solid #E0E0E0;
 	color: #999999;
 	list-style: none;
