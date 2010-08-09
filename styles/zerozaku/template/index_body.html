@@ -1,6 +1,6 @@
 <!-- DEFINE $SIDEBAR = '1' --><!-- DEFINE $CA_PAGE = 'index' --><!-- INCLUDE overall_header.html --><!-- INCLUDE portal/_block_config.html -->
 
-<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
+	<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
 
 	<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
 	<ul class="linklist">
@@ -10,22 +10,6 @@
 		<!-- IF not S_IS_BOT and U_MARK_FORUMS --><li class="rightside"><a class="button2 mark-read" href="{U_MARK_FORUMS}"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_FORUMS_READ}</a></li><!-- ENDIF -->
 	</ul>
 	<!-- ENDIF -->
-
-	<!-- IF .hot_topics -->
-	<div class="aggro">
-	<dt class="aggro_head">{L_RECENT_HOT_TOPIC}</dt>
-	<!-- BEGIN hot_topics -->
-		<dd class="aggro_item"><a href="{hot_topics.U_VIEW_TOPIC}" title="{hot_topics.FULL_TITLE}">
-			<p>
-				<strong>{hot_topics.TITLE}</strong>
-				<br /><span>{hot_topics.FORUM}</span>
-			</p>
-		</a></dd>
-	<!-- END hot_topics -->
-	</dt>
-	</div>
-	<!-- ENDIF -->
-
 
 <!-- INCLUDE forumlist_body.html -->
 <!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
