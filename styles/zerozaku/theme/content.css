@@ -290,7 +290,6 @@ dl.icon dt li {
 }
 
 dl.meta {
-	border-bottom: 1px solid;
 	font-size: 0.9166em;
 	font-weight: bold;
 }
@@ -941,7 +940,6 @@ dl.pmlist dd {
 .postmeta {
 	font-weight: bold;
 	line-height: 24px;
-	border-bottom: 1px solid;
 	margin: 0 -10px;
 	padding: 4px 10px;
 	height: 24px;

@@ -435,10 +435,11 @@ h1.topictitle a:active, h3.solo a:active { color: #FF0000; }
 
 /* Profile meta */
 .postmeta {
-	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg.gif") repeat-x;
-	border-bottom-color: #C0C0C0;
-	color: #212121;
+	background: #181818 url("{T_THEME_PATH}/images/meta_bg2.gif") repeat-x;
+	color: #FFFFFF;
 }
+
+.postmeta a { color: #C9D2D8; }
 
 /* Profile icons */
 ul.profile-icons {
@@ -492,14 +493,13 @@ ul.topics {background-color: #FFFFFF;}
 ul.topiclist li {color: #606060;}
 
 ul.topiclist dl.meta {
-	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg.gif") repeat-x;
-	border-bottom-color: #C0C0C0;
-	color: #212121;
+	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg2.gif") repeat-x;
+	color: #FFFFFF;
 }
 
 ul.topiclist dl.meta dt, ul.topiclist dl.meta dd {
-	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg.gif") repeat-x;
-	color: #212121;
+	background: #EEEEEE url("{T_THEME_PATH}/images/meta_bg2.gif") repeat-x;
+	color: #FFFFFF;
 }
 
 ul.topiclist dl.meta dd {
