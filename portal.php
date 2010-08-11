@@ -86,6 +86,23 @@ if ($portal_config['portal_top_posters'])
 	include($phpbb_root_path . 'portal/block/top_posters.'.$phpEx);
 }
 
+// BEGIN USER STATUSES
+$sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
+	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
+		ON uim.user_id = u.user_id
+	ORDER BY uim.user_lastchange DESC
+	LIMIT 0, 10';
+$result = $db->sql_query($sql);
+
+while($row = $db->sql_fetchrow($result))
+{
+	$template->assign_block_vars('user_statuses', array(
+		'USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+	    'STATUS'	=> $row['user_status'],
+	));
+}
+// END USER STATUSES
+
 // BEGIN mChat Mod
 if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enable'] && $auth->acl_get('u_mchat_view') && $user->optionget('mchat'))
 {
