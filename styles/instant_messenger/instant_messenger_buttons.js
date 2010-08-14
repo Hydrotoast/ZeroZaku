@@ -27,9 +27,6 @@ function load_onlinelist(){jQuery(function($){
 		url		: im_cfg.rootPath + 'instant_messenger.php',
 		data	: { action: 'onlinelist' },
 		dataType: 'html',
-		error	: function(XMLHttpRequest, textStatus, errorThrown) {
-			$('#online_list ul').html('<li>AJAX Error<br />Online list users load</li>');
-		},
 		success : function (data) {
 			$('#im-online-list ul').html(data);
 			$('#im-online-list ul li a').removeAttr('href').css('cursor', 'pointer');
@@ -40,7 +37,7 @@ function load_onlinelist(){jQuery(function($){
 	showOnlineStatus();
 	
 	if ( $('div#im-online-list .block:visible')) {
-		setTimeout( 'load_onlinelist()', 60 * 1000);
+		setTimeout( 'load_onlinelist()', 600 * 1000);
 	}
 });}
 
@@ -51,9 +48,6 @@ function load_news() {jQuery(function($){
 		cache	: false,
 		async	: false,
 		url		: im_cfg.rootPath + 'instant_messenger.php',
-		error	: function(){
-			alert( 'AJAX Error:\nLoading News');
-		},
 		data	: { action: 'newposts' },
 		dataType: 'html'
 		
@@ -286,10 +280,6 @@ function load_startIM( im_config) {
 			document.title = originalTitle;
 		});
 		
-		setTimeout( 'window_resize()', 200);
-		$(window).resize(function(){
-			window_resize();
-		});
 		showOnlineStatus();
 	});
 }
