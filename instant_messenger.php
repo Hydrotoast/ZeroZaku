@@ -67,16 +67,16 @@ switch( $action)
 	case 'chatheartbeat':
 		chatHeartbeat();
 		break;
-	case "sendchat":
+	case 'sendchat':
 		sendChat();
 		break;
-	case "closechat":
+	case 'closechat':
 		closeChat();
 		break;
-	case "startchatsession":
+	case 'startchatsession':
 		startChatSession();
 		break;
-	case "onlinelist":
+	case 'onlinelist':
 		showOnlineList();
 		break;
 	case 'newposts':
