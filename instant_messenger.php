@@ -399,47 +399,50 @@ function user_status()
 {
 	global $db, $user;
 
-	$mode	= request_var('mode', 'add');
-	
-	$sql = 'SELECT user_id FROM ' . USERS_IM_TABLE . ' WHERE user_id = ' . (int) $user->data['user_id'];
-	
-	$rs = $db->sql_query( $sql);
-	$row = $db->sql_fetchrow( $rs);
-	switch ($mode)
+	if($user->data['user_id'] != ANONYMOUS)
 	{
-		case 'add':
-			$status_text = filter_var($db->sql_escape(request_var('status_text','',true)), FILTER_SANITIZE_STRING);
-			
-			$illegal_statuses = array('administrator', 'moderator', 'admin', 'mod', 'developer', 'dev', 'staff');
-			if (in_array(strtolower($status_text), $illegal_statuses)) 
-			{
-			    break;
-			}
-			
-			if ($status_text != '' && strlen($status_text) < 91)
-			{
-				$time = time();
-				$sql_update = 'UPDATE ' . USERS_IM_TABLE . "
-						SET user_status = '{$status_text}', user_lastchange = '{$time}'" . '
+		$mode	= request_var('mode', 'add');
+		
+		$sql = 'SELECT user_id FROM ' . USERS_IM_TABLE . ' WHERE user_id = ' . (int) $user->data['user_id'];
+		
+		$rs = $db->sql_query( $sql);
+		$row = $db->sql_fetchrow( $rs);
+		switch ($mode)
+		{
+			case 'add':
+				$status_text = filter_var($db->sql_escape(request_var('status_text','',true)), FILTER_SANITIZE_STRING);
+				
+				$illegal_statuses = array('administrator', 'moderator', 'admin', 'mod', 'developer', 'dev', 'staff');
+				if (in_array(strtolower($status_text), $illegal_statuses)) 
+				{
+				    break;
+				}
+				
+				if ($status_text != '' && strlen($status_text) < 91)
+				{
+					$time = time();
+					$sql_update = 'UPDATE ' . USERS_IM_TABLE . "
+							SET user_status = '{$status_text}', user_lastchange = '{$time}'" . '
+							WHERE user_id = ' . $user->data['user_id'];
+					$sql_insert = 'INSERT INTO ' . USERS_IM_TABLE . " (user_id, user_status) VALUES ('{$user->data['user_id']}', '{$status_text}')";
+				}
+				break;
+			case 'delete':
+				$status_text = '';
+				$sql_update = 'UPDATE ' . USERS_IM_TABLE . '
+						SET user_status = null
 						WHERE user_id = ' . $user->data['user_id'];
-				$sql_insert = 'INSERT INTO ' . USERS_IM_TABLE . " (user_id, user_status) VALUES ('{$user->data['user_id']}', '{$status_text}')";
-			}
-			break;
-		case 'delete':
-			$status_text = '';
-			$sql_update = 'UPDATE ' . USERS_IM_TABLE . '
-					SET user_status = null
-					WHERE user_id = ' . $user->data['user_id'];
-			$sql_insert = 'INSERT INTO ' . USERS_IM_TABLE . " (user_id, user_status) VALUES ('{$user->data['user_id']}', null)";
-			break;
-	}
-
-	if (!$db->sql_query($row['user_id'] == $user->data['user_id'] ? $sql_update : $sql_insert))
-	{
-		die( 'false');
-	}
+				$sql_insert = 'INSERT INTO ' . USERS_IM_TABLE . " (user_id, user_status) VALUES ('{$user->data['user_id']}', null)";
+				break;
+		}
 	
-	die ('true');
+		if (!$db->sql_query($row['user_id'] == $user->data['user_id'] ? $sql_update : $sql_insert))
+		{
+			die( 'false');
+		}
+		
+		die ('true');
+	}
 }
 
 /*
