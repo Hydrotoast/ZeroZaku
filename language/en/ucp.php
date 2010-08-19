@@ -571,8 +571,13 @@ $lang = array_merge($lang, array(
 	'NO_MEMBER'		=> 'No group memberships',
 	'NO_PENDING'	=> 'No pending memberships',
 	'NO_NONMEMBER'	=> 'No non-member groups',
-		
-	'CSS_OVERRIDE_EXPLAIN'			=> 'Customize your profile by using your own CSS override. If you need help with CSS, check out <a href="http://css.zerozaku.com">CSS Nova</a>.',
+
+	'ABOUT_ME'						=> 'About me',
+	'ABOUT_ME_EXPLAIN'				=> 'Describe yourself on your profile',
+	'MEDIA'							=> 'Media',
+	'MEDIA_EXPLAIN'					=> 'Link to the video, music, or other types of media',
+	'CSS_OVERRIDE'					=> 'CSS override',
+	'CSS_OVERRIDE_EXPLAIN'			=> 'Customize your profile by using your own CSS override. If you need help with CSS, check out <a href="http://css.zerozaku.com">CSS Nova</a>',
 		));
 
 		?>

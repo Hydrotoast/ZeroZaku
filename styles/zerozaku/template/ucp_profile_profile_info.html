@@ -6,10 +6,25 @@
 
 <div class="panel">
 	<div class="inner">
+	<fieldset>
+		<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+		<dl>
+			<dt><label for="about">{L_ABOUT_ME}:</label><br /><span>{L_ABOUT_ME_EXPLAIN}</span></dt>
+			<dd><textarea name="about" cols="60" rows="8">{ABOUT}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label for="media">{L_MEDIA}:</label></dt>
+			<dd><input type="text" name="media" id="media" maxlength="255" value="{MEDIA}" class="inputbox" /><br /><span>{L_MEDIA_EXPLAIN}</span></dd>
+		</dl>
+	</fieldset>
+	</div>
+</div>
+
+<div class="panel">
+	<div class="inner">
 	<p>{L_PROFILE_INFO_NOTICE}</p>
 
 	<fieldset>
-	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
 	<dl>
 		<dt><label for="icq">{L_UCP_ICQ}:</label></dt>
 		<dd><input type="text" name="icq" id="icq" maxlength="15" value="{ICQ}" class="inputbox" /></dd>
@@ -48,20 +63,20 @@
 	</dl>
 	<!-- IF S_BIRTHDAYS_ENABLED -->
 		<dl>
-			<dt><label for="bday_day">{L_BIRTHDAY}:</label><br /><span>{L_BIRTHDAY_EXPLAIN}</span></dt>
+			<dt><label for="bday_day">{L_BIRTHDAY}:</label></dt>
 			<dd>
 				<label for="bday_day">{L_DAY}: <select name="bday_day" id="bday_day" style="width: 4em;">{S_BIRTHDAY_DAY_OPTIONS}</select></label> 
 				<label for="bday_month">{L_MONTH}: <select name="bday_month" id="bday_month" style="width: 4em;">{S_BIRTHDAY_MONTH_OPTIONS}</select></label> 
 				<label for="bday_year">{L_YEAR}: <select name="bday_year" id="bday_year" style="width: 6em;">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
+				<br /><span>{L_BIRTHDAY_EXPLAIN}</span>
 			</dd>
 		</dl>
 	<!-- ENDIF -->
 	<!-- BEGIN profile_fields -->
 		<dl>
-			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
-			<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF --></dt>
+			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label></dt>
 			<!-- IF profile_fields.ERROR --><dd class="error">{profile_fields.ERROR}</dd><!-- ENDIF -->
-			<dd>{profile_fields.FIELD}</dd>
+			<dd>{profile_fields.FIELD}<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF --></dd>
 		</dl>
 	<!-- END profile_fields -->
 	</fieldset>
