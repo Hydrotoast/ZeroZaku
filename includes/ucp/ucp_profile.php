@@ -331,6 +331,8 @@ class ucp_profile
 					'location'		=> utf8_normalize_nfc(request_var('location', $user->data['user_from'], true)),
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user->data['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
+				    'about'		    => utf8_normalize_nfc(request_var('about', $user->data['user_about'])),
+				    'media'			=> utf8_normalize_nfc(request_var('media', $user->data['user_media'])),
 				);
 
 				if ($config['allow_birthdays'])
@@ -368,6 +370,10 @@ class ucp_profile
 						'location'		=> array('string', true, 2, 100),
 						'occupation'	=> array('string', true, 2, 500),
 						'interests'		=> array('string', true, 2, 500),
+						'about'			=> array('string', true, 2, 500),
+						'media'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i')),
 					);
 
 					if ($config['allow_birthdays'])
@@ -381,7 +387,6 @@ class ucp_profile
 					}
 
 					$error = validate_data($data, $validate_array);
-
 
 					//Begin: Custom Profile Fields for Groups
 					if ($auth->acl_get('u_cpf_allow_use'))
@@ -415,16 +420,18 @@ class ucp_profile
 						}
 
 						$sql_ary = array(
-							'user_icq'		=> $data['icq'],
-							'user_aim'		=> $data['aim'],
-							'user_msnm'		=> $data['msn'],
-							'user_yim'		=> $data['yim'],
-							'user_jabber'	=> $data['jabber'],
-							'user_website'	=> $data['website'],
-							'user_from'		=> $data['location'],
-							'user_occ'		=> $data['occupation'],
-							'user_interests'=> $data['interests'],
+							'user_icq'		    => $data['icq'],
+							'user_aim'		    => $data['aim'],
+							'user_msnm'		    => $data['msn'],
+							'user_yim'		    => $data['yim'],
+							'user_jabber'	    => $data['jabber'],
+							'user_website'	    => $data['website'],
+							'user_from'		    => $data['location'],
+							'user_occ'		    => $data['occupation'],
+							'user_interests'    => $data['interests'],
 							'user_notify_type'	=> $data['notify'],
+						    'user_about'		=> $data['about'],
+						    'user_media'		=> $data['media'],
 						);
 
 						if ($config['allow_birthdays'])
@@ -495,6 +502,8 @@ class ucp_profile
 					'LOCATION'	=> $data['location'],
 					'OCCUPATION'=> $data['occupation'],
 					'INTERESTS'	=> $data['interests'],
+				    'ABOUT'		=> $data['about'],
+				    'MEDIA'		=> $data['media'],
 				));
 
 

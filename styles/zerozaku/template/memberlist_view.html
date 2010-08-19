@@ -90,6 +90,30 @@
 	
 	<div id="profile-body">
 		
+	<!-- IF ABOUT -->
+	<div id="about" class="profile-box">
+		<h2 class="header">{L_ABOUT}</h2>
+		<div class="inner">
+			{ABOUT}
+		</div>
+	</div>
+	<!-- ENDIF -->
+	
+	<!-- IF MEDIA -->
+	<div id="media" class="profile-box">
+		<h2 class="header">{L_MEDIA}</h2>
+		<div class="inner">
+			 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="550" height="400" id="movie">
+			 	<param name="movie" value="{MEDIA}"></param>
+				<param name="quality" value="high"></param>
+				<param name="bgcolor" value="#FFFFFF"></param>
+				<param name="wmode" value="transparent"></param>
+				<embed src="{MEDIA}" quality="high" bgcolor="#FFFFFF" width="550" height="400" name="flash" align="" type="application/x-shockwave-flash" pluginspace="http://www.macromedia.com/go/getflashplayer"></embed>
+			</object>
+		</div>
+	</div>
+	<!-- ENDIF -->
+	
 	<!-- IF not S_NO_FRIENDS -->
 	<div id="friends" class="profile-box">
 		<h2 class="header">{L_FRIENDS}</h2>
