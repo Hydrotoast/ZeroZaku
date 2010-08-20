@@ -782,20 +782,22 @@ switch ($mode)
 		));
 		// MOD :: INSTANT MESSENGER -- END
 		
-		// BEGIN USER CSS
-		$sql = 'SELECT user_css FROM ' . USERS_TABLE . '
+		// BEGIN USER EXTRA
+		$profile_extra = array();
+		
+		$sql = 'SELECT user_css, user_about, user_media FROM ' . USERS_TABLE . '
 			WHERE user_id = ' . $user_id;
 		$result = $db->sql_query($sql);
-		$user_css = stripslashes($db->sql_fetchfield('user_css'));
+		$profile_extra = $result;
 		$db->sql_freeresult($result);
-		// END USER CSS
+		// END USER EXTRA
 		
 		$template->assign_vars(array(
 			'L_POSTS_IN_QUEUE'	=> $user->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
 
-		    'USER_CSS'			=> $user_css,
-		    'ABOUT'				=> $user->data['user_about'],
-		    'MEDIA'				=> $user->data['user_media'],
+		    'USER_CSS'			=> $profile_extra['user_css'],
+		    'ABOUT'				=> $profile_extra['user_about'],
+		    'MEDIA'				=> $profile_extra['user_media'],
 		
 			'POSTS_DAY'			=> sprintf($user->lang['POST_DAY'], $posts_per_day),
 			'POSTS_PCT'			=> sprintf($user->lang['POST_PCT'], $percentage),
