@@ -30,7 +30,6 @@ function get_mutual_friends($user_id)
 			ORDER BY u.username_clean ASC';
 		$result = $db->sql_query($sql);
 		
-		$rows = 0;
 		while($row = $db->sql_fetchrow($result))
 		{
 		    $zebra_id = ($row['zebra_id'] == $user_id) ? $row['user_id'] : $row['zebra_id'];
@@ -38,9 +37,7 @@ function get_mutual_friends($user_id)
 		    $template->assign_block_vars('mutual_friend', array(
 		     	'USER_ID'	    => $zebra_id,
 		        'USERNAME'	    => get_username_string(($row['user_type'] <> USER_IGNORE) ? 'full' : 'no_profile', $zebra_id, $row['username'], $row['user_colour']),
-		        'S_FIRST'		=> (($rows === 0) ? true : false)
 		    ));
-		    $rows++;
 		}
 		
 		$template->assign_vars(array(
@@ -100,25 +97,22 @@ function get_recommended_friends()
 	    $result = $db->sql_query($sql);
 	    
 	    // Set template variables
-	    $rows = 0;
 		while($row = $db->sql_fetchrow($result))
 		{
-		    $zebra_id = (in_array($row['zebra_id'], $friends)) ? $row['user_id'] : $row['zebra_id'];
-		    
 		    if($zebra_id !== $user->data['user_id'])
 		    {
+		        $zebra_id = (in_array($row['zebra_id'], $friends)) ? $row['user_id'] : $row['zebra_id'];
+		        
 			    $template->assign_block_vars('rec_friend', array(
 			        'USER_ID'		=> $zebra_id,
 			        'USERNAME'	    => get_username_string(($row['user_type'] <> USER_IGNORE) ? 'full' : 'no_profile', $zebra_id, $row['username'], $row['user_colour']),
 			        'ADD_URL'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=friends', true, $user->session_id),
-			        'S_FIRST'		=> (($rows === 0) ? true : false)
 			    ));  
-			    ++$rows;
 		    }
 		}
 		
 		$template->assign_vars(array(
-		    'REC_FRIEND_TOTAL' => $rows,
+		    'REC_FRIEND_TOTAL' => $result->num_rows,
 		));
 		
 		$db->sql_freeresult($result);
