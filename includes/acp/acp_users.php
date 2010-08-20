@@ -1317,6 +1317,10 @@ class acp_users
 					'location'		=> utf8_normalize_nfc(request_var('location', $user_row['user_from'], true)),
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user_row['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user_row['user_interests'], true)),
+				
+				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about'])),
+				    'media'			=> request_var('media', $user_row['user_media']),
+				
 					'bday_day'		=> 0,
 					'bday_month'	=> 0,
 					'bday_year'		=> 0,
@@ -1351,6 +1355,12 @@ class acp_users
 						'location'		=> array('string', true, 2, 100),
 						'occupation'	=> array('string', true, 2, 500),
 						'interests'		=> array('string', true, 2, 500),
+
+						'about'			=> array('string', true, 2, 500),
+						'media'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i')),
+							
 						'bday_day'		=> array('num', true, 1, 31),
 						'bday_month'	=> array('num', true, 1, 12),
 						'bday_year'		=> array('num', true, 1901, gmdate('Y', time())),
@@ -1382,6 +1392,8 @@ class acp_users
 							'user_occ'		=> $data['occupation'],
 							'user_interests'=> $data['interests'],
 							'user_birthday'	=> $data['user_birthday'],
+						    'user_about'	=> $data['about'],
+						    'user_media'	=> $data['media'],
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
@@ -1433,6 +1445,9 @@ class acp_users
 					'LOCATION'		=> $data['location'],
 					'OCCUPATION'	=> $data['occupation'],
 					'INTERESTS'		=> $data['interests'],
+				
+				    'ABOUT'			=> $data['about'],
+				    'MEDIA'			=> $data['media'],
 
 					'S_BIRTHDAY_DAY_OPTIONS'	=> $s_birthday_day_options,
 					'S_BIRTHDAY_MONTH_OPTIONS'	=> $s_birthday_month_options,

@@ -462,8 +462,10 @@ $lang = array_merge($lang, array(
 	'UCP_PM_VIEW'				=> 'View messages',
 
 	'UCP_PROFILE'				=> 'Profile',
+    'UCP_PROFILE_ABOUT'			=> 'About',
 	'UCP_PROFILE_AVATAR'		=> 'Edit avatar',
 	'UCP_PROFILE_CSS_OVERRIDE'	=> 'Override CSS',
+    'UCP_PROFILE_MEDIA'			=> 'Media',
 	'UCP_PROFILE_PROFILE_INFO'	=> 'Edit profile',
 	'UCP_PROFILE_REG_DETAILS'	=> 'Edit account settings',
 	'UCP_PROFILE_SIGNATURE'		=> 'Edit signature',

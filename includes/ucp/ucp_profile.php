@@ -332,7 +332,7 @@ class ucp_profile
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user->data['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
 				    'about'		    => utf8_normalize_nfc(request_var('about', $user->data['user_about'])),
-				    'media'			=> utf8_normalize_nfc(request_var('media', $user->data['user_media'])),
+				    'media'			=> request_var('media', $user->data['user_media']),
 				);
 
 				if ($config['allow_birthdays'])
