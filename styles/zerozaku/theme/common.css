@@ -770,12 +770,15 @@ li.pagination {
 
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
-	display: block;
-	float: right;
+	display: none;
+	float: none;
 	width: auto;
-	margin-top: 0;
-	padding: 7px 2% 7px 1em;
+	position: relative;
+	top: 9px;
+	left: 1em;
 }
+
+.row:hover .pagination { display: inline-block; }
 
 .row .pagination span a:hover {
 	-moz-box-shadow: none;
