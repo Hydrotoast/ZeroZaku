@@ -33,7 +33,7 @@ function get_mutual_friends($user_id)
 		$rows = 0;
 		while($row = $db->sql_fetchrow($result))
 		{
-		    $zebra_id = ($row['zebra_id'] === $user_id) ? $row['user_id'] : $row['zebra_id'];
+		    $zebra_id = ($row['zebra_id'] == $user_id) ? $row['user_id'] : $row['zebra_id'];
 		    
 		    $template->assign_block_vars('mutual_friend', array(
 		     	'USER_ID'	    => $zebra_id,
