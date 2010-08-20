@@ -476,7 +476,7 @@ switch ($mode)
          
 	while($row_av = $db->sql_fetchrow( $result )) 
 	{
-	    $zebra_id = ($row_av['zebra_id'] === $user_id) ? $row_av['user_id'] : $row_av['zebra_id'];
+	    $zebra_id = ($row_av['zebra_id'] == $user_id) ? $row_av['user_id'] : $row_av['zebra_id'];
 	    
 		$avatar_friend = get_user_avatar($row_av['user_avatar'], $row_av['user_avatar_type'], $row_av['user_avatar_width'], $row_av['user_avatar_height']);
 		$avatar_size_size = 70;
