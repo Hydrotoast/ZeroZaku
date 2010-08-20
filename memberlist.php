@@ -788,7 +788,7 @@ switch ($mode)
 		$sql = 'SELECT user_css, user_about, user_media FROM ' . USERS_TABLE . '
 			WHERE user_id = ' . $user_id;
 		$result = $db->sql_query($sql);
-		$profile_extra = $result;
+		$profile_extra = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 		// END USER EXTRA
 		
