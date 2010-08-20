@@ -114,22 +114,12 @@ function update_last_username()
 function user_update_name($old_name, $new_name)
 {
 	global $config, $db, $cache;
-	
-    if(!defined('KB_TABLE'))
-	{
-		global $phpbb_root_path, $phpEx, $table_prefix;
-		include($phpbb_root_path . 'includes/constants_kb.' . $phpEx);
-	}
 
 	$update_ary = array(
 		FORUMS_TABLE			=> array('forum_last_poster_name'),
 		MODERATOR_CACHE_TABLE	=> array('username'),
 		POSTS_TABLE				=> array('post_username'),
 		TOPICS_TABLE			=> array('topic_first_poster_name', 'topic_last_poster_name'),
-		KB_TABLE				=> array('article_user_name'),
-		KB_COMMENTS_TABLE		=> array('comment_user_name', 'comment_edit_name'),
-		KB_EDITS_TABLE			=> array('edit_user_name'),
-		KB_REQ_TABLE			=> array('request_user_name'),
 	);
 // idiotnesia wuz here - user rep point
 	$update_ary[REPUTATIONS_TABLE] = array('username');
@@ -240,6 +230,9 @@ function user_add($user_row, $cp_data = false)
 
 		'user_form_salt'			=> unique_id(),
 		'user_kb_permissions'		=> '',
+	
+	    'user_css'					=> '',
+	    'user_about'				=> '',
 	);
 
 	// Now fill the sql array with not required variables
@@ -487,12 +480,6 @@ function user_delete($mode, $user_id, $post_username = false)
 						SET user_posts = user_posts + ' . $user_row['user_posts'] . '
 						WHERE user_id = ' . ANONYMOUS;
 					$db->sql_query($sql);
-					
-					if(!function_exists('kb_user_delete'))
-					{
-						include($phpbb_root_path . 'includes/functions_kb.' . $phpEx);
-					}
-					kb_user_delete($mode, $user_id, $post_username);
 				}
 			}
 
@@ -2470,7 +2457,7 @@ function avatar_process_user(&$error, $custom_userdata = false)
 * Add or edit a group. If we're editing a group we only update user
 * parameters such as rank, etc. if they are changed
 */
-function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow_desc_bbcode = false, $allow_desc_urls = false, $allow_desc_smilies = false)
+function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow_desc_bbcode = false, $allow_desc_urls = false, $allow_desc_smilies = false, $group_data = '')
 {
 	global $phpbb_root_path, $config, $db, $user, $file_upload;
 
@@ -2508,6 +2495,7 @@ function group_create(&$group_id, $type, $name, $desc, $group_attributes, $allow
 			'group_desc_uid'		=> '',
 			'group_desc_bitfield'	=> '',
 			'group_type'			=> (int) $type,
+			'group_data'			=> ($group_data === '') ? '' : (string) $group_data,
 		);
 
 		// Parse description
@@ -3382,32 +3370,6 @@ function group_set_user_default($group_id, $user_id_ary, $group_attributes = fal
 			WHERE " . $db->sql_in_set('topic_last_poster_id', $user_id_ary);
 		$db->sql_query($sql);
 
-		if(!defined('KB_TABLE'))
-		{
-			global $phpbb_root_path, $phpEx, $table_prefix;
-			include($phpbb_root_path . 'includes/constants_kb.' . $phpEx);
-		}
-		
-		$sql = 'UPDATE ' . KB_TABLE . " SET article_user_color = '" . $db->sql_escape($sql_ary['user_colour']) . "'
-				WHERE " . $db->sql_in_set('article_user_id', $user_id_ary);
-		$db->sql_query($sql);
-		
-		$sql = 'UPDATE ' . KB_COMMENTS_TABLE . " SET comment_user_color = '" . $db->sql_escape($sql_ary['user_colour']) . "'
-				WHERE " . $db->sql_in_set('comment_user_id', $user_id_ary);
-		$db->sql_query($sql);
-		
-		$sql = 'UPDATE ' . KB_COMMENTS_TABLE . " SET comment_edit_color = '" . $db->sql_escape($sql_ary['user_colour']) . "'
-				WHERE " . $db->sql_in_set('comment_edit_id', $user_id_ary);
-		$db->sql_query($sql);
-		
-		$sql = 'UPDATE ' . KB_EDITS_TABLE . " SET edit_user_color = '" . $db->sql_escape($sql_ary['user_colour']) . "'
-				WHERE " . $db->sql_in_set('edit_user_id', $user_id_ary);
-		$db->sql_query($sql);
-		
-		$sql = 'UPDATE ' . KB_REQ_TABLE . " SET request_user_color = '" . $db->sql_escape($sql_ary['user_colour']) . "'
-				WHERE " . $db->sql_in_set('request_user_id', $user_id_ary);
-		$db->sql_query($sql);
-		
 		global $config;
 
 		if (in_array($config['newest_user_id'], $user_id_ary))
