@@ -159,6 +159,9 @@ $lang = array_merge($lang, array(
 	'VISITED'				=> 'Last visited',
 
 	'WWW'					=> 'Website',
+	
+	'ABOUT'    => 'About',
+	'MEDIA'    => 'Media',
 ));
 
 ?>
