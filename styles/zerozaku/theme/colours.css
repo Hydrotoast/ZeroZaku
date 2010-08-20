@@ -509,9 +509,8 @@ ul.topiclist dl.meta dd {
 ul.topiclist li.row dt a.subforum.read {background: url("{IMG_SUBFORUM_READ_SRC}") left center no-repeat scroll;}
 ul.topiclist li.row dt a.subforum.unread {background: url("{IMG_SUBFORUM_UNREAD_SRC}") left center no-repeat scroll;}
 
-.bg1 dd.stats, .bg1 dd.posts, .bg1 dd.lastpost, tr.bg1 td.posts, tr.bg1 td.joined {background-color: #FFFFFF;}
-
-.bg2 dd.stats, .bg2 dd.posts, .bg2 dd.lastpost, tr.bg2 td.posts, tr.bg2 td.joined {background-color: #F6F6F6;}
+.bg1 dd.stats, .bg1 dd.posts, .bg1 dd.lastpost, tr.bg1 td.posts, tr.bg1 td.joined { background-color: #FFFFFF; }
+.bg2 dd.stats, .bg2 dd.posts, .bg2 dd.lastpost, tr.bg2 td.posts, tr.bg2 td.joined { background-color: #F6F6F6; }
 
 ul.topiclist li.row.bg1, ul.topiclist li.row.bg2 { border-bottom-color: #F0F0F0; }
 li.row strong { color: #000000; }
@@ -526,6 +525,7 @@ li.row.reported:hover, li.row.reported:hover dd.stats, li.row.reported:hover dd.
 	color: #212121;
 }
 
+li.row:hover dl.meta dd.stats, li.row:hover dl.meta dd.posts, li.row:hover dl.meta dd.views, li.row:hover dl.meta dd.lastpost { color: #FFFFFF; }
 li.row:hover, li.row:hover dd.stats, li.row:hover dd.posts, li.row:hover dd.views, li.row:hover dd.lastpost {
 	background-color: #FFFEDE;
 	color: #212121;
