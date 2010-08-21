@@ -15,7 +15,7 @@ page_header($user->lang['FACTIONS_TITLE']);
 $mode	= request_var('mode', '');
 $submit = (isset($_POST['submit']) ? true : false);
 
-if(!in_array($mode, array('index', 'view', '')))
+if(!in_array($mode, array('index', 'view', 'apply', '')))
 {
     trigger_error('Invalid action');
 }
