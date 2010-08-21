@@ -9,6 +9,8 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('mods/lang_factions');
 
+page_header($user->lang['FACTIONS_TITLE']);
+
 // Start the output.
 $mode	= request_var('mode', '');
 $submit = (isset($_POST['submit']) ? true : false);
@@ -237,8 +239,6 @@ if($auth->acl_getf_global('a_'))
         'U_FAPP_INDEX'	=> append_sid("{$phpbb_root_path}faction.$phpEx", 'mode=index')
     ));
 }
-
-page_header($user->lang['FACTIONS_TITLE']);
 
 // Include the file for the action called.
 $template->set_filenames(array('body' => $template_file));
