@@ -4,80 +4,54 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>Faction App - ZeroZaku</title>
 		<style type="text/css">
-			body {
-				font: 12px/1.4 Arial, Helvetica, sans-serif;
-				text-align: center;
-			}
+			body { font: 12px/1.4 Arial, Helvetica, sans-serif; text-align: center; }
 			
-			.panel.clean {
-				text-align: left;
-				background-color: #F0F0F0;
-				width: 600px;
-				margin: 0 auto;
-				padding: 15px;
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 5px;
-				-khtml-border-radius: 5px;
-				border-radius: 5px;
-			}
-			
-			.panel.clean .inner {
-				background-color: #FFFFFF;
-				margin: 15px 0;
-				padding: 15px;
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 5px;
-				-khtml-border-radius: 5px;
-				border-radius: 5px;
-			}
+			.panel.clean { text-align: left; background-color: #F0F0F0; width: 600px; margin: 0 auto; padding: 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
+			.panel.clean .inner { background-color: #FFFFFF; margin: 15px 0; padding: 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 			
 			p { color: #606060; margin: 6px 0; }
-			
-			h1 {
-				font: bold 1.5em Arial, Helvetica, sans-serif;
-				text-transform: uppercase;
-				color: #C0C0C0;
-				margin-top: 0;
-			}
+			h1 { font: bold 1.5em Arial, Helvetica, sans-serif; text-transform: uppercase; color: #C0C0C0; margin-top: 0; }
 			
 			fieldset { border: 0; padding: 0; }
 			fieldset dl { margin: 6px 0; clear: both; overflow: hidden; }
-			
-			fieldset dl dt {
-				font-weight: bold;
-				width: 12em;
-				float: left;
-			}
-			
+			fieldset dl dt { font-weight: bold; width: 12em; float: left; }
 			fieldset dl dt span { font-weight: normal; color: #606060; display: block; }
+			fieldset dl dd { margin-left: 13em; }
 			
-			fieldset dl dd {
-				margin-left: 13em;
-			}
-			
-			input[type=text], textarea {
-				width: 360px;
-			}
+			input[type=text], textarea { width: 360px; }
 		</style>
 	</head>
 	<body>
 		<div class="panel clean">
-		<h1>Faction Application</h1>
+		<h1><!-- IF S_INDEX -->Faction Applications<!-- ELSE -->Faction Application<!-- ENDIF --></h1>
+			<form method="POST" action="{S_ACTION}">
+
+			<!-- IF S_INDEX -->
+			<!-- BEGIN faction_app -->
 			<div class="inner">
-			<form>
 			<fieldset title="main fieldset">
+				<a href="{faction_app.LINK}"><strong>{faction_app.FACTION_NAME}</strong></a>
+				<dl><dt><label for="forum">Desired Forum: </label></dt> <dd>{faction_app.DESIRED_FORUM}</dd></dl>
+				<dl><dt><label for="username">Username:</label></dt> <dd>{faction_app.USERNAME}</dd></dl>
+				<dl><dt><label for="username">Faction Status:</label></dt> <dd>{faction_app.FACTION_STATUS}</dd></dl>
+			</fieldset>
+			</div>
+			<!-- END faction_app -->
+			<!-- ENDIF -->
+			
+			<!-- IF S_VIEW -->
+			<div class="inner">
 				<fieldset title="Basics">
 					<dl><dt><label for="username">Username:</label></dt> <dd>{USERNAME}</dd></dl>
-					<dl><dt><label for="irlname">Real Name:</label></dt> <dd>{REAL_NAME}</dd></dl>
 					<dl><dt><label for="email">Email:</label></dt> <dd>{EMAIL}</dd></dl>
-					<dl><dt><label for="contrib">Contributions:</label></dt> <dd>{CONTRIBUTIONS}</dd></dl>
+					<dl><dt><label for="contrib">Contributions:</label></dt> <dd>{CONTRIB}</dd></dl>
 				</fieldset>
 			</div>
 			<div class="inner">
 				<fieldset title="Faction">
 					<dl><dt><label for="faction">Faction Name:</label></dt> <dd>{FACTION_NAME}</dd></dl>
 					<dl><dt><label for="forum">Desired Forum: </label></dt> <dd>{DESIRED_FORUM}</dd></dl>
-					<dl><dt><label for="desc">Faction Description:</label></dt>{FACTION_DESCRIPTION}<dd></dd></dl>
+					<dl><dt><label for="desc">Faction Description:</label></dt>{FACTION_DESC}<dd></dd></dl>
 				</fieldset>
 			</div>
 			<div class="inner">
@@ -86,7 +60,21 @@
 					<dl><dt><label for="member2">Username (Member 2):</label></dt> <dd>{MEMBER2}</dd></dl>
 				</fieldset>
 			</div>
+			<div class="inner">
+				<!-- IF not FACTION_STATUS -->
+				<fieldset>
+					{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="Approve" />
+					<input type="submit" name="submit" value="Deny" />
+					{S_FORM_TOKEN}
+				</fieldset>
+				<!-- ELSE -->
+					<strong>Faction Status:</strong> {FACTION_STATUS}
+				<!-- ENDIF -->
 			</div>
+			<!-- ENDIF -->
+			
+			</form>
 		</div>
+		<!-- IF S_VIEW --><a href="{U_FAPP_INDEX}">Faction Application Index</a><!-- ENDIF -->
 	</body>
 </html>

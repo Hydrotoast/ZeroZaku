@@ -1419,7 +1419,7 @@ class acp_users
 						// Update Custom Fields
 						$cp->update_profile_field_data($user_id, $cp_data);
 
-						trigger_error($user->lang['USER_PROFILE_UPDATED'] . adm_back_link($this->u_action . '&amp;u=' . $user_id));
+						trigger_error($user->lang['USER_PROFILE_UPDATED'] . '<br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid($phpbb_root_path . 'index.' . $phpEx) . '">', '</a>');
 					}
 
 					// Replace "error" strings with their real, localised form

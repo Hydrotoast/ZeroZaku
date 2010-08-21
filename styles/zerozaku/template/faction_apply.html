@@ -4,60 +4,21 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<title>Faction App - ZeroZaku</title>
 		<style type="text/css">
-			body {
-				font: 12px/1.4 Arial, Helvetica, sans-serif;
-				text-align: center;
-			}
+			body { font: 12px/1.4 Arial, Helvetica, sans-serif; text-align: center; }
 			
-			.panel.clean {
-				text-align: left;
-				background-color: #F0F0F0;
-				width: 600px;
-				margin: 0 auto;
-				padding: 15px;
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 5px;
-				-khtml-border-radius: 5px;
-				border-radius: 5px;
-			}
-			
-			.panel.clean .inner {
-				background-color: #FFFFFF;
-				margin: 15px 0;
-				padding: 15px;
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 5px;
-				-khtml-border-radius: 5px;
-				border-radius: 5px;
-			}
+			.panel.clean { text-align: left; background-color: #F0F0F0; width: 600px; margin: 0 auto; padding: 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
+			.panel.clean .inner { background-color: #FFFFFF; margin: 15px 0; padding: 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 			
 			p { color: #606060; margin: 6px 0; }
-			
-			h1 {
-				font: bold 1.5em Arial, Helvetica, sans-serif;
-				text-transform: uppercase;
-				color: #C0C0C0;
-				margin-top: 0;
-			}
+			h1 { font: bold 1.5em Arial, Helvetica, sans-serif; text-transform: uppercase; color: #C0C0C0; margin-top: 0; }
 			
 			fieldset { border: 0; padding: 0; }
 			fieldset dl { margin: 6px 0; clear: both; overflow: hidden; }
-			
-			fieldset dl dt {
-				font-weight: bold;
-				width: 12em;
-				float: left;
-			}
-			
+			fieldset dl dt { font-weight: bold; width: 12em; float: left; }
 			fieldset dl dt span { font-weight: normal; color: #606060; display: block; }
+			fieldset dl dd { margin-left: 13em; }
 			
-			fieldset dl dd {
-				margin-left: 13em;
-			}
-			
-			input[type=text], textarea {
-				width: 360px;
-			}
+			input[type=text], textarea { width: 360px; }
 		</style>
 	</head>
 	<body>
@@ -65,80 +26,102 @@
 		<h1>Faction Application</h1>
 			<div class="inner">
 			<!-- You put description of a Faction here -->
-			<form>
-			<fieldset title="main fieldset">
+			<form id="postform" method="post" action="{S_ACTION}">
+				<!-- IF ERROR --><div class="error">{ERROR}</div><!-- ENDIF -->
 				<fieldset title="Basics">
-					<dl><dt><label for="contrib">Contributions: <span>What have you contributed to ZeroZaku before?</span></label></dt> <dd><textarea rows="2" name="contrib" id="contrib" ></textarea></dd></dl>
+					<dl>
+						<dt><label for="contrib">Contributions: <span>What have you contributed to ZeroZaku before?</span></label></dt>
+						<dd><textarea rows="2" name="contrib" id="contrib" >{CONTRIB}</textarea></dd></dl>
 				</fieldset>
 			</div>
 			<div class="inner">
 				<p>Describe your faction.</p>
 				<fieldset title="Faction">
-					<dl><dt><label for="faction">Faction Name: <span>Must be between 3 and 20 characters.</span></label></dt> <dd><input type="text" name="faction" id="faction" /></dd></dl>
-					<dl><dt><label for="forum">Desired Forum: </label></dt> 
-						<dd><select name="forum" id="forum">
+					<dl>
+						<dt><label for="faction_name">Faction Name: <span>Must be between 3 and 20 characters.</span></label></dt>
+						<dd><input type="text" name="faction_name" id="faction_name" value="{FACTION_NAME}" /></dd></dl>
+					<dl><dt><label for="forum_id">Desired Forum: </label></dt> 
+						<dd><select name="forum_id" id="forum_id">
 						<option value="-1">Select a forum</option>	
 						<option value="-1">------------------</option>
-						<option value="10">The Lounge</option>
-						<option value="12" selected="selected">&nbsp; &nbsp;General Chat</option>
-						<option value="26">&nbsp; &nbsp;&nbsp; &nbsp;Television &amp; Movies</option>
-						<option value="28">&nbsp; &nbsp;&nbsp; &nbsp;Literature &amp; Books</option>
-						<option value="58">&nbsp; &nbsp;&nbsp; &nbsp;Homework Help</option>
-						<option value="60">&nbsp; &nbsp;&nbsp; &nbsp;Life Discussion</option>
-						<option value="24">&nbsp; &nbsp;Debates &amp; Discussion</option>
-						<option value="63">&nbsp; &nbsp;&nbsp; &nbsp;Mandates</option>
-						<option value="30">&nbsp; &nbsp;Black Market</option>
-						<option value="11">&nbsp; &nbsp;Introductions</option>
-						<option value="64">&nbsp; &nbsp;&nbsp; &nbsp;Goodbyes</option>
-						<option value="29">&nbsp; &nbsp;Spam</option>
-						<option value="50">Anime Scene</option>
-						<option value="51">&nbsp; &nbsp;Anime</option>
-						<option value="52">&nbsp; &nbsp;Manga</option>
-						<option value="31">Artisans Scene</option>
-						<option value="14">&nbsp; &nbsp;Showcase</option>
-						<option value="32">&nbsp; &nbsp;Traditional Arts</option>
-						<option value="33">&nbsp; &nbsp;Graphics Design</option>
-						<option value="54">&nbsp; &nbsp;&nbsp; &nbsp;SOTW</option>
-						<option value="67">&nbsp; &nbsp;&nbsp; &nbsp;Profile Design</option>
-						<option value="56">&nbsp; &nbsp;&nbsp; &nbsp;Requests &amp; Services</option>
-						<option value="25">&nbsp; &nbsp;Music</option>
-						<option value="15">Technology Scene</option>
-						<option value="16">&nbsp; &nbsp;General Technology</option>
-						<option value="19">&nbsp; &nbsp;Computer Programming</option>
-						<option value="34">&nbsp; &nbsp;&nbsp; &nbsp;Web Design &amp; Development</option>
-						<option value="57">&nbsp; &nbsp;&nbsp; &nbsp;Tutorials &amp; Source Codes</option>
-						<option value="62">&nbsp; &nbsp;Project Development &amp; Testing</option>
-						<option value="35">Online Gaming Scene</option>
-						<option value="46">&nbsp; &nbsp;Console Games</option>
-						<option value="47">&nbsp; &nbsp;&nbsp; &nbsp;Call of Duty</option>
-						<option value="48">&nbsp; &nbsp;&nbsp; &nbsp;Halo</option>
-						<option value="36">&nbsp; &nbsp;Gaiaonline</option>
-						<option value="37">&nbsp; &nbsp;Blizzard</option>
-						<option value="41">&nbsp; &nbsp;Ragnarok Online</option>
-						<option value="42">&nbsp; &nbsp;Maplestory</option>
-						<option value="44">&nbsp; &nbsp;Other Online Games</option>
-						<option value="38">&nbsp; &nbsp;&nbsp; &nbsp;Neopets</option>
-						<option value="40">&nbsp; &nbsp;&nbsp; &nbsp;Runescape</option> 
-						<option value="59">&nbsp; &nbsp;&nbsp; &nbsp;Counter-Strike</option> 
+						<option value="10" <!-- IF FORUM_ID eq '10' -->selected="selected"<!-- ENDIF -->>The Lounge</option>
+						<option value="12" <!-- IF FORUM_ID eq '12' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;General Chat</option>
+						<option value="26" <!-- IF FORUM_ID eq '26' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Television &amp; Movies</option>
+						<option value="28" <!-- IF FORUM_ID eq '28' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Literature &amp; Books</option>
+						<option value="58" <!-- IF FORUM_ID eq '58' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Homework Help</option>
+						<option value="60" <!-- IF FORUM_ID eq '60' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Life Discussion</option>
+						<option value="24" <!-- IF FORUM_ID eq '24' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Debates &amp; Discussion</option>
+						<option value="63" <!-- IF FORUM_ID eq '63' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Mandates</option>
+						<option value="30" <!-- IF FORUM_ID eq '30' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Black Market</option>
+						<option value="11" <!-- IF FORUM_ID eq '11' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Introductions</option>
+						<option value="64" <!-- IF FORUM_ID eq '64' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Goodbyes</option>
+						<option value="29" <!-- IF FORUM_ID eq '29' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Spam</option>
+						<option value="50" <!-- IF FORUM_ID eq '50' -->selected="selected"<!-- ENDIF -->>Anime Scene</option>
+						<option value="51" <!-- IF FORUM_ID eq '51' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Anime</option>
+						<option value="52" <!-- IF FORUM_ID eq '52' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Manga</option>
+						<option value="31" <!-- IF FORUM_ID eq '31' -->selected="selected"<!-- ENDIF -->>Artisans Scene</option>
+						<option value="14" <!-- IF FORUM_ID eq '14' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Showcase</option>
+						<option value="32" <!-- IF FORUM_ID eq '32' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Traditional Arts</option>
+						<option value="33" <!-- IF FORUM_ID eq '33' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Graphics Design</option>
+						<option value="54" <!-- IF FORUM_ID eq '54' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;SOTW</option>
+						<option value="67" <!-- IF FORUM_ID eq '67' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Profile Design</option>
+						<option value="56" <!-- IF FORUM_ID eq '56' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Requests &amp; Services</option>
+						<option value="25" <!-- IF FORUM_ID eq '25' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Music</option>
+						<option value="15" <!-- IF FORUM_ID eq '15' -->selected="selected"<!-- ENDIF -->>Technology Scene</option>
+						<option value="16" <!-- IF FORUM_ID eq '16' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;General Technology</option>
+						<option value="19" <!-- IF FORUM_ID eq '19' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Computer Programming</option>
+						<option value="34" <!-- IF FORUM_ID eq '34' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Web Design &amp; Development</option>
+						<option value="57" <!-- IF FORUM_ID eq '57' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Tutorials &amp; Source Codes</option>
+						<option value="62" <!-- IF FORUM_ID eq '62' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Project Development &amp; Testing</option>
+						<option value="35" <!-- IF FORUM_ID eq '35' -->selected="selected"<!-- ENDIF -->>Online Gaming Scene</option>
+						<option value="46" <!-- IF FORUM_ID eq '46' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Console Games</option>
+						<option value="47" <!-- IF FORUM_ID eq '47' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Call of Duty</option>
+						<option value="48" <!-- IF FORUM_ID eq '48' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Halo</option>
+						<option value="36" <!-- IF FORUM_ID eq '36' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Gaiaonline</option>
+						<option value="37" <!-- IF FORUM_ID eq '37' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Blizzard</option>
+						<option value="41" <!-- IF FORUM_ID eq '41' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Ragnarok Online</option>
+						<option value="42" <!-- IF FORUM_ID eq '42' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Maplestory</option>
+						<option value="44" <!-- IF FORUM_ID eq '44' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;Other Online Games</option>
+						<option value="38" <!-- IF FORUM_ID eq '38' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Neopets</option>
+						<option value="40" <!-- IF FORUM_ID eq '40' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Runescape</option> 
+						<option value="59" <!-- IF FORUM_ID eq '59' -->selected="selected"<!-- ENDIF -->>&nbsp; &nbsp;&nbsp; &nbsp;Counter-Strike</option> 
 					</select>  
 					</dd></dl>
-					<dl><dt><label for="desc">Faction Description: <span>Will be displayed publicly.</span></label></dt> <dd><textarea rows="2" name="desc" id="desc" ></textarea></dd></dl>
+					<dl>
+						<dt><label for="faction_desc">Faction Description: <span>Will be displayed publicly.</span></label></dt>
+						<dd><textarea rows="2" name="faction_desc" id="faction_desc" >{FACTION_DESC}</textarea></dd></dl>
 				</fieldset>
 			</div>
 			<div class="inner">
 				<p>You need two initial members to start a faction.</p>
 				<fieldset title="Member">
-					<dl><dt><label for="member1">Username (Member 1):</label></dt> <dd><input type="text" name="member1" id="member1" /></dd></dl>
-					<dl><dt><label for="member2">Username (Member 2):</label></dt> <dd><input type="text" name="member2" id="member2" /></dd></dl>
+					<dl>
+						<dt><label for="member1">Username (Member 1):</label></dt>
+						<dd><input type="text" name="member1" id="member1" value="{MEMBER1}" /></dd></dl>
+					<dl>
+						<dt><label for="member2">Username (Member 2):</label></dt>
+						<dd><input type="text" name="member2" id="member2" value="{MEMBER2}" /></dd></dl>
 				</fieldset>
 			</div>
+			<!-- IF not FACTION_STATUS or FACTION_STATUS eq 'Pending' -->
 			<div class="inner">
 				<fieldset>
-					<input type="submit" name="submit" value="Submit" /> <input type="reset" name="reset" style="margin-left: 10px;" />
+					{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="Submit" />
+					<input type="reset" name="reset" style="margin-left: 10px;" />
+					{S_FORM_TOKEN}
 				</fieldset>
-				</form>
-			</fieldset>
+			</div>
+			<!-- ENDIF -->
+			
+			<!-- IF FACTION_STATUS -->
+			<div class="inner">
+				<fieldset><strong>Faction Status:</strong> {FACTION_STATUS}</fieldset>
+			</div>
+			<!-- ENDIF -->
+			
+			</form>
 			</div>
 		</div>
+		<a href="{U_FAPP_INDEX}">Faction Application Index</a>
 	</body>
 </html>
