@@ -103,6 +103,7 @@
 						<dd><input type="text" name="member2" id="member2" value="{MEMBER2}" /></dd></dl>
 				</fieldset>
 			</div>
+			<!-- IF not FACTION_STATUS or FACTION_STATUS eq 'Pending' -->
 			<div class="inner">
 				<fieldset>
 					{S_HIDDEN_FIELDS}<input type="submit" name="submit" value="Submit" />
@@ -110,6 +111,13 @@
 					{S_FORM_TOKEN}
 				</fieldset>
 			</div>
+			<!-- ENDIF -->
+			
+			<!-- IF FACTION_STATUS -->
+			<div class="inner">
+				<fieldset><strong>Faction Status:</strong> {FACTION_STATUS}</fieldset>
+			</div>
+			<!-- ENDIF -->
 			
 			</form>
 			</div>

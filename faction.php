@@ -43,7 +43,7 @@ switch($mode)
             
 	        switch($row['faction_status'])
 	        {
-	            case 0: $status = 'N/A'; break;
+	            case 0: $status = 'Pending'; break;
 	            case 1: $status = 'Approved'; break;
 	            case 2: $status = 'Denied'; break;
 	        }
@@ -208,9 +208,19 @@ switch($mode)
 			$error = preg_replace('#^([A-Z_]+)$#e', "(!empty(\$user->lang['\\1'])) ? \$user->lang['\\1'] : '\\1'", $error);
         }
         
+        switch($row['faction_status'])
+        {
+            case 0: $status = 'Pending'; break;
+            case 1: $status = 'Approved'; break;
+            case 2: $status = 'Denied'; break;
+        }
+        
         $template->assign_vars(array(
         	'ERROR'			=> (sizeof($error)) ? implode('<br />', $error) : '',
             'S_ACTION'	    => append_sid("{$phpbb_root_path}faction.$phpEx", 'mode=apply'),
+            
+            'S_STATUS'			=> $row['faciton_status'],
+            'FACTION_STATUS'	=> $status,
             
             'FACTION_NAME'	=> $data['faction_name'],
             'FACTION_DESC'	=> $data['faction_desc'],
