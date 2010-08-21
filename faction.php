@@ -13,8 +13,6 @@ $user->setup('mods/lang_factions');
 $mode	= request_var('mode', '');
 $submit = (isset($_POST['submit']) ? true : false);
 
-page_header($user->lang['FACTIONS_TITLE']);
-
 if(!in_array($mode, array('index', 'view', '')))
 {
     trigger_error('Invalid action');
@@ -240,7 +238,7 @@ if($auth->acl_getf_global('a_'))
     ));
 }
 
-page_header();
+page_header($user->lang['FACTIONS_TITLE']);
 
 // Include the file for the action called.
 $template->set_filenames(array('body' => $template_file));
