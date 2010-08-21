@@ -120,6 +120,7 @@ switch($mode)
             'MEMBER2'	=> $members[$row['member2']]
         ));
     break;
+    case 'apply':
     default:
         $template_file = 'faction_apply.html';
         
@@ -213,6 +214,7 @@ switch($mode)
             case 0: $status = 'Pending'; break;
             case 1: $status = 'Approved'; break;
             case 2: $status = 'Denied'; break;
+            default: $status = 0; break;
         }
         
         $template->assign_vars(array(
