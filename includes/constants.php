@@ -290,8 +290,6 @@ define ( 'SEASONDATA_TABLE', $table_prefix . 'factions_seasondata' );
 define('MCHAT_TABLE',				$table_prefix . 'mchat');
 define('MCHAT_CONFIG_TABLE',		$table_prefix . 'mchat_config');
 // END mChat Mod
-define('FACTIONS_TABLE',			$table_prefix . 'factions');
-define('USER_FACTIONS_TABLE',		$table_prefix . 'user_faction');
 
 define('PORTAL_CONFIG_TABLE',		$table_prefix . 'portal_config');
 
@@ -305,5 +303,7 @@ define('ADAPT_HIDE_IGNORE_LIMIT_GROUPS', '4,5,7');
 // BEGIN HERO CLIENTS
 define('CLIENTS_TABLE', $table_prefix . 'user_clients');
 // END HERO CLIENTS
+
+define('FACTION_APP_TABLE', $table_prefix . 'faction_app');
 
 ?>
