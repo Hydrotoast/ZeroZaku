@@ -1304,8 +1304,16 @@ class acp_users
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
 				$db->sql_freeresult($result);
-
 				$user_row['iso_lang_id'] = $row['lang_id'];
+				
+				$sql = 'SELECT user_status 
+					FROM ' . USERS_IM_TABLE . '
+					WHERE user_id = ' . $user_id;
+				$result = $db->sql_query($sql);
+				$row = $db->sql_fetchrow($result);
+                $db->sql_freeresult($result);
+                $user_row['user_status'] = $row['user_status'];
+                
 
 				$data = array(
 					'icq'			=> request_var('icq', $user_row['user_icq']),
@@ -1317,6 +1325,11 @@ class acp_users
 					'location'		=> utf8_normalize_nfc(request_var('location', $user_row['user_from'], true)),
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user_row['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user_row['user_interests'], true)),
+				
+				    'status'		=> request_var('status', $user_row['user_status']),
+				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about'], true)),
+				    'media'			=> request_var('media', $user_row['user_media']),
+				
 					'bday_day'		=> 0,
 					'bday_month'	=> 0,
 					'bday_year'		=> 0,
@@ -1351,6 +1364,13 @@ class acp_users
 						'location'		=> array('string', true, 2, 100),
 						'occupation'	=> array('string', true, 2, 500),
 						'interests'		=> array('string', true, 2, 500),
+
+						'status'		=> array('string', true, 2, 90),
+						'about'			=> array('string', true, 2, 500),
+						'media'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i')),
+							
 						'bday_day'		=> array('num', true, 1, 31),
 						'bday_month'	=> array('num', true, 1, 12),
 						'bday_year'		=> array('num', true, 1901, gmdate('Y', time())),
@@ -1382,11 +1402,18 @@ class acp_users
 							'user_occ'		=> $data['occupation'],
 							'user_interests'=> $data['interests'],
 							'user_birthday'	=> $data['user_birthday'],
+						    'user_about'	=> $data['about'],
+						    'user_media'	=> $data['media'],
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
 							SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
 							WHERE user_id = $user_id";
+						$db->sql_query($sql);
+						
+						$sql = 'UPDATE ' . USERS_IM_TABLE . '
+							SET user_status= \'' . $data['status'] . '\'
+							WHERE user_id = ' . $user_id;
 						$db->sql_query($sql);
 
 						// Update Custom Fields
@@ -1433,6 +1460,10 @@ class acp_users
 					'LOCATION'		=> $data['location'],
 					'OCCUPATION'	=> $data['occupation'],
 					'INTERESTS'		=> $data['interests'],
+				
+				    'USER_STATUS'	=> $data['status'],
+				    'ABOUT'			=> $data['about'],
+				    'MEDIA'			=> $data['media'],
 
 					'S_BIRTHDAY_DAY_OPTIONS'	=> $s_birthday_day_options,
 					'S_BIRTHDAY_MONTH_OPTIONS'	=> $s_birthday_month_options,
