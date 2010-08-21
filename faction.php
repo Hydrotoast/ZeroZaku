@@ -177,7 +177,6 @@ switch($mode)
             {   
                 $sql_ary = array(
     				'faction_name'	            => $data['faction_name'],
-    				'faction_name_clean'	    => utf8_clean_string($data['faction_name']),
                     'faction_desc'			    => $data['faction_desc'],
                     'forum_id'				    => $data['forum_id'],
                     'faction_leader'		    => $user->data['user_id'],
