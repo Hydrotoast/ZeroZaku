@@ -9,13 +9,13 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('mods/lang_factions');
 
+page_header($user->lang['FACTIONS_TITLE']);
+
 // Start the output.
 $mode	= request_var('mode', '');
 $submit = (isset($_POST['submit']) ? true : false);
 
-page_header($user->lang['FACTIONS_TITLE']);
-
-if(!in_array($mode, array('index', 'view', '')))
+if(!in_array($mode, array('index', 'view', 'apply', '')))
 {
     trigger_error('Invalid action');
 }
@@ -120,6 +120,7 @@ switch($mode)
             'MEMBER2'	=> $members[$row['member2']]
         ));
     break;
+    case 'apply':
     default:
         $template_file = 'faction_apply.html';
         
@@ -213,6 +214,7 @@ switch($mode)
             case 0: $status = 'Pending'; break;
             case 1: $status = 'Approved'; break;
             case 2: $status = 'Denied'; break;
+            default: $status = 0; break;
         }
         
         $template->assign_vars(array(
@@ -239,8 +241,6 @@ if($auth->acl_getf_global('a_'))
         'U_FAPP_INDEX'	=> append_sid("{$phpbb_root_path}faction.$phpEx", 'mode=index')
     ));
 }
-
-page_header();
 
 // Include the file for the action called.
 $template->set_filenames(array('body' => $template_file));
