@@ -331,6 +331,7 @@ class ucp_profile
 					'location'		=> utf8_normalize_nfc(request_var('location', $user->data['user_from'], true)),
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user->data['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
+				
 				    'about'		    => utf8_normalize_nfc(request_var('about', $user->data['user_about'])),
 				    'media'			=> request_var('media', $user->data['user_media']),
 				);

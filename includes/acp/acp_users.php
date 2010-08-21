@@ -1304,8 +1304,16 @@ class acp_users
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
 				$db->sql_freeresult($result);
-
 				$user_row['iso_lang_id'] = $row['lang_id'];
+				
+				$sql = 'SELECT user_status 
+					FROM ' . USERS_IM_TABLE . '
+					WHERE user_id = ' . $user_id;
+				$result = $db->sql_query($sql);
+				$row = $db->sql_fetchrow($result);
+                $db->sql_freeresult($result);
+                $user_row['user_status'] = $row['user_status'];
+                
 
 				$data = array(
 					'icq'			=> request_var('icq', $user_row['user_icq']),
@@ -1318,7 +1326,8 @@ class acp_users
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user_row['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user_row['user_interests'], true)),
 				
-				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about'])),
+				    'status'		=> request_var('status', $user_row['user_status']),
+				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about'], true)),
 				    'media'			=> request_var('media', $user_row['user_media']),
 				
 					'bday_day'		=> 0,
@@ -1356,6 +1365,7 @@ class acp_users
 						'occupation'	=> array('string', true, 2, 500),
 						'interests'		=> array('string', true, 2, 500),
 
+						'status'		=> array('string', true, 2, 90),
 						'about'			=> array('string', true, 2, 500),
 						'media'			=> array(
 							array('string', true, 12, 255),
@@ -1399,6 +1409,11 @@ class acp_users
 						$sql = 'UPDATE ' . USERS_TABLE . '
 							SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
 							WHERE user_id = $user_id";
+						$db->sql_query($sql);
+						
+						$sql = 'UPDATE ' . USERS_IM_TABLE . '
+							SET user_status= \'' . $data['status'] . '\'
+							WHERE user_id = ' . $user_id;
 						$db->sql_query($sql);
 
 						// Update Custom Fields
@@ -1446,6 +1461,7 @@ class acp_users
 					'OCCUPATION'	=> $data['occupation'],
 					'INTERESTS'		=> $data['interests'],
 				
+				    'USER_STATUS'	=> $data['status'],
 				    'ABOUT'			=> $data['about'],
 				    'MEDIA'			=> $data['media'],
 

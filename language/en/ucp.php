@@ -574,6 +574,7 @@ $lang = array_merge($lang, array(
 	'NO_PENDING'	=> 'No pending memberships',
 	'NO_NONMEMBER'	=> 'No non-member groups',
 
+	'USER_STATUS'						=> 'User status',
 	'ABOUT_ME'						=> 'About me',
 	'ABOUT_ME_EXPLAIN'				=> 'Describe yourself on your profile',
 	'MEDIA'							=> 'Media',
