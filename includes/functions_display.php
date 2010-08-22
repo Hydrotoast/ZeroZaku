@@ -608,6 +608,32 @@ function generate_forum_nav(&$forum_data)
 }
 
 /**
+* Generates the ad for the specified forum
+*/
+function generate_ad(&$forum_id)
+{
+    global $db, $template;
+    
+    $sql = 'SELECT ad_id, ad_name, ad_url, ad_img, ad_text FROM ' . ADS_TABLE . '
+		WHERE forum_id = ' . (int) $forum_id . '
+		ORDER BY RAND()';
+	$result = $db->sql_query($sql);
+	$row = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
+	
+	$template->assign_vars(array(
+	    'AD_URL'	=> $row['ad_url'],
+	    'AD_IMG'	=> $phpbb_root_path . 'images/affiliates/' . basename($row['ad_name']) . '/' . basename($row['ad_img']),
+	    'AD_TEXT'	=> $row['ad_text']
+	));
+	
+	$sql = 'UPDATE ' . ADS_TABLE . '
+		SET ad_impressions = ad_impressions+1
+		WHERE ad_id = ' . $row['ad_id'];
+    $db->sql_query($sql);
+}
+
+/**
 * Returns forum parents as an array. Get them from forum_data if available, or update the database otherwise
 */
 function get_forum_parents(&$forum_data)
