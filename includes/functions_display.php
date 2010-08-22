@@ -630,19 +630,22 @@ function generate_rss(&$forum_data)
 	
     $rss = simplexml_load_string($xml);
     
-    for($i = 0; $i < 6; $i++)
-    {
-        $item = $rss->channel->item[$i];
-        $template->assign_block_vars('rss', array(
-            'TITLE'	=> substr($item->title, 18),
-            'LINK'	=> $item->link,
-            'DATE'	=> $item->pubDate
-        ));
+    if(sizeof($rss->channel->item))
+	{
+	    for($i = 0; $i < 6; $i++)
+	    {
+	        $item = $rss->channel->item[$i];
+	        $template->assign_block_vars('rss', array(
+	            'TITLE'	=> substr($item->title, 18),
+	            'LINK'	=> $item->link,
+	            'DATE'	=> $item->pubDate
+	        ));
+	    }
+	    
+	    $template->assign_vars(array(
+	        'FEED_NAME'	=> $row['feed_name']
+	    ));
     }
-    
-    $template->assign_vars(array(
-        'FEED_NAME'	=> $row['feed_name']
-    ));
 }
 
 /**
