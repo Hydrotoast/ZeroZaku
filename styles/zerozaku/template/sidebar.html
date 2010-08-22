@@ -48,6 +48,20 @@
 		<!-- INCLUDE portal/block/donation.html -->
 	<!-- ENDIF -->
 	
+	<!-- IF .faction_rec -->
+	<div class="leaderboard">
+		<h2>{JOIN_FACTION}</h2>
+		<ul>
+			<!-- BEGIN faction_rec -->
+			<li><div class="inner">
+				<strong><a href="{faction_rec.U_JOIN}">{faction_rec.NAME}</a></strong>
+				<br />in {faction_rec.FORUM}
+			</div></li>
+			<!-- END faction_rec -->
+		</ul>
+	</div>
+	<!-- ENDIF -->
+	
 	<div id="bottom-ad" class="center">
 		<a href="http://www.mediatemple.net/go/order/?refdom=zerozaku.com" title="Get hosting by Media Temple"><img src="{T_THEME_PATH}/images/mediatemple.jpg" alt="Get a server at Mediatemple" /></a>
 		<div>Get web hosting from Media Temple</div>
