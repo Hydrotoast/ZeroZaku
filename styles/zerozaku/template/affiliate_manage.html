@@ -1,0 +1,40 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="panel smooth info tag">
+	<img src="{T_THEME_PATH}/images/tags/cog.png" alt="{L_AFFILIATE_MANAGE}" />
+	<h2 class="infotitle">{L_AFFILIATE_MANAGE}</h2>
+	<p>{L_AFFILIATE_MANAGE_EXPLAIN}</p>
+</div>
+
+<!-- IF .ad_stats -->
+<h2 class="comtitle">{AFFILIATE_NAME}</h2>
+<div class="forumbg forumbg-table">
+	<div class="inner">
+
+	<table class="table1" cellspacing="1" id="ad_stats">
+	<thead>
+	<tr class="meta">
+		<th class="info">{L_IMAGE}</th>
+		<th class="info">{L_URL}</th>
+		<th class="mark">{L_IMPRESSIONS}</th>
+		<th class="mark">{L_CLICKS}</th>
+	</tr>
+	</thead>
+	<tbody>
+	</tbody>
+	<!-- BEGIN ad_stats -->
+		<tr <!-- IF ad_stats.S_ROW_COUNT is even -->class="bg1"<!-- ELSE -->class="bg2"<!-- ENDIF -->>
+			<td class="info"><div class="inner">
+				<a href="{ad_stats.IMG}" title="{ad_stats.NAME}">{ad_stats.IMG_NAME}</a>
+				<br /><span>in {ad_stats.FORUM_NAME}</span>
+			</div></td>
+			<td class="info"><div class="inner">{ad_stats.URL}</div></td>
+			<td class="mark"><div class="inner">{ad_stats.IMPRESSIONS}</div></td>
+			<td class="mark"><div class="inner">{ad_stats.CLICKS}</div></td>
+		</tr>
+	<!-- END ad_stats -->
+	</table>
+	
+	</div>
+</div>
+<!-- ENDIF -->
