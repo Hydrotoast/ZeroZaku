@@ -608,6 +608,32 @@ function generate_forum_nav(&$forum_data)
 }
 
 /**
+* Generates an external feed for the specified forum
+*/
+function generate_rss(&$forum_data)
+{
+    // cURL to get external feed
+    $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $forum_data['forum_feed']);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$xml = curl_exec($ch);
+	curl_close($ch);
+	
+    $rss = simplexml_load_string($xml);
+    
+    for($i = 0; $i <= 6; $i++)
+    {
+        $item = $rss->channel->item[$i];
+        $template->assign_block_vars('rss', array(
+            'TITLE'	=> $item->title,
+            'LINK'	=> $item->link,
+            'DATE'	=> $item->pubDate
+        ));
+    }
+}
+
+/**
 * Generates the ad for the specified forum
 */
 function generate_ad(&$forum_id)
