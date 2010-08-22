@@ -600,6 +600,9 @@ generate_forum_nav($topic_data);
 // Forum Rules
 generate_forum_rules($topic_data);
 
+// Build the ad
+generate_ad($forum_id);
+
 // Moderators
 $forum_moderators = array();
 if ($config['load_moderators'])

@@ -300,10 +300,8 @@ define('ADAPT_HIDE_LIMIT_POSTS', 1250);
 define('ADAPT_HIDE_IGNORE_LIMIT_GROUPS', '4,5,7');
 // end Adaptive Hide BBcodes MOD
 
-// BEGIN HERO CLIENTS
+// Modification tables
 define('CLIENTS_TABLE', $table_prefix . 'user_clients');
-// END HERO CLIENTS
-
 define('FACTION_APP_TABLE', $table_prefix . 'faction_app');
-
+define('ADS_TABLE', $table_prefix . 'ads');
 ?>
