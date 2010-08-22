@@ -303,5 +303,7 @@ define('ADAPT_HIDE_IGNORE_LIMIT_GROUPS', '4,5,7');
 // Modification tables
 define('CLIENTS_TABLE', $table_prefix . 'user_clients');
 define('FACTION_APP_TABLE', $table_prefix . 'faction_app');
+define('AFFILIATE_TABLE', $table_prefix . 'affiliate');
+define('FORUMS_FEED_TABLE', $table_prefix . 'forums_feed');
 define('ADS_TABLE', $table_prefix . 'ads');
 ?>

@@ -608,6 +608,47 @@ function generate_forum_nav(&$forum_data)
 }
 
 /**
+* Generates an external feed for the specified forum
+*/
+function generate_rss(&$forum_data)
+{
+    global $db, $template;
+    
+    $sql = 'SELECT feed_name, feed_url FROM ' . FORUMS_FEED_TABLE . '
+    	WHERE forum_id = ' . $forum_data['forum_id'];
+    $result = $db->sql_query($sql);
+    $row = $db->sql_fetchrow($result);
+    $db->sql_freeresult($sql);
+    
+    // cURL to get external feed
+    $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $row['feed_url']);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$xml = curl_exec($ch);
+	curl_close($ch);
+	
+    $rss = simplexml_load_string($xml);
+    
+    if(sizeof($rss->channel->item))
+	{
+	    for($i = 0; $i < 6; $i++)
+	    {
+	        $item = $rss->channel->item[$i];
+	        $template->assign_block_vars('rss', array(
+	            'TITLE'	=> substr($item->title, 18),
+	            'LINK'	=> $item->link,
+	            'DATE'	=> $item->pubDate
+	        ));
+	    }
+	    
+	    $template->assign_vars(array(
+	        'FEED_NAME'	=> $row['feed_name']
+	    ));
+    }
+}
+
+/**
 * Generates the ad for the specified forum
 */
 function generate_ad(&$forum_id)
