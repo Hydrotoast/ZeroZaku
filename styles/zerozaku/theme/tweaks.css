@@ -1324,6 +1324,7 @@ dd.aggro_item, dd.aggro_item_quad {
 }
 dd.aggro_item_quad { width: 25%; }
 
+dd.aggro_item.video a, dd.aggro_item_quad.video a { background: url("{T_THEME_PATH}/images/movie.png") no-repeat scroll 10px center transparent; }
 dd.aggro_item a, dd.aggro_item_quad a {
 	text-decoration: none;
 	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
@@ -1348,7 +1349,6 @@ dd.aggro_item p strong, dd.aggro_item_quad p strong {
 	font-weight: bold;
 	line-height: 1em;
 }
-
 
 /* Advertisements
 -------------------------------------------------*/

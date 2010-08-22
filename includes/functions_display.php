@@ -612,40 +612,59 @@ function generate_forum_nav(&$forum_data)
 */
 function generate_rss(&$forum_data)
 {
-    global $db, $template;
+    global $template, $cache;
     
-    $sql = 'SELECT feed_name, feed_url FROM ' . FORUMS_FEED_TABLE . '
-    	WHERE forum_id = ' . $forum_data['forum_id'];
-    $result = $db->sql_query($sql);
-    $row = $db->sql_fetchrow($result);
-    $db->sql_freeresult($sql);
+    if(($feed = $cache->get('f_' . $forum_data['forum_id'] . '_feed')) === FALSE)
+    {
+        global $db;
     
-    // cURL to get external feed
-    $ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $row['feed_url']);
-	curl_setopt($ch, CURLOPT_HEADER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$xml = curl_exec($ch);
-	curl_close($ch);
-	
-    $rss = simplexml_load_string($xml);
-    
-    if(sizeof($rss->channel->item))
-	{
-	    for($i = 0; $i < 6; $i++)
-	    {
-	        $item = $rss->channel->item[$i];
-	        $template->assign_block_vars('rss', array(
-	            'TITLE'	=> substr($item->title, 18),
-	            'LINK'	=> $item->link,
-	            'DATE'	=> $item->pubDate
-	        ));
-	    }
+        $feed = array();
+        
+	    $sql = 'SELECT feed_name, feed_url FROM ' . FORUMS_FEED_TABLE . '
+	    	WHERE forum_id = ' . $forum_data['forum_id'];
+	    $result = $db->sql_query($sql);
+	    $row = $db->sql_fetchrow($result);
+	    $db->sql_freeresult($sql);
 	    
-	    $template->assign_vars(array(
-	        'FEED_NAME'	=> $row['feed_name']
-	    ));
+	    // cURL to get external feed
+	    $ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $row['feed_url']);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$xml = curl_exec($ch);
+		curl_close($ch);
+		
+	    $rss = simplexml_load_string($xml);
+	    
+	    if(sizeof($rss->channel->item))
+		{
+			for($i = 0; $i < 8; $i++)
+		    {
+		        $item = $rss->channel->item[$i];
+		        $feed[$i] = array(
+		        	'LINK'	=> $item->link,
+		            'TITLE'	=> substr($item->title, 18),
+		        	'DATE'	=> preg_replace('/ ([0-9]{2}:){2}[0-9]{2} GMT/i', '', $item->pubDate)
+		        );
+		    }
+		    
+		    $cache->put('f_' . $forum_data['forum_id'] . '_feed', $feed, 3600);
+		    $cache->put('f_' . $forum_data['forum_id'] . '_feed_name', $row['feed_name'], 3600);
+	    }
     }
+    
+    foreach($feed as $item)
+    {
+        $template->assign_block_vars('rss', array(
+        	'LINK'	=> $item['LINK'],
+            'TITLE'	=> $item['TITLE'],
+        	'DATE'	=> $item['DATE']
+        ));
+    }
+    
+    $template->assign_vars(array(
+        'FEED_NAME'	=>  $cache->get('f_' . $forum_data['forum_id'] . '_feed_name', $row['feed_name'])
+    ));
 }
 
 /**
