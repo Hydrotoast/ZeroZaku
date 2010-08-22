@@ -23,6 +23,12 @@ $(function() {
 	$('textarea#message').growing({maxHeight: 540, buffer: 0});
 	$('textarea').tabby();
 	
+	// Handle ad clicks
+	$('a.ad').click(function() {
+		var ad_id = $(this).attr('rel');
+		$.get(config.root_path + 'affiliate.php?mode=click&a=' + ad_id);
+	});
+	
 	if(localStorage.getItem('sidebar_side') == 'left')
 		$('#page-sidebar').addClass('left');
 	
@@ -118,8 +124,7 @@ $(function() {
 				$.jGrowl('Forum collapsed');
 			}
 		}
-			
-		
+
 		return false;
 	});
 	
