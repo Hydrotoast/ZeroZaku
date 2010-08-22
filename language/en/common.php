@@ -1001,4 +1001,10 @@ $lang = array_merge($lang, array(
 	'REQUESTS_EXPLAIN'				=> 'Requests are made by other users that want to be your friend. Accepted requests will be added to your friends list.',
 ));
 // END MUTUAL FRIENDS
+
+// BEGIN FACTIONS
+$lang = array_merge($lang, array(
+	'JOIN_FACTION'				=> 'Join a faction',
+));
+// END FACTIONS
 ?>

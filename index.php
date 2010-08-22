@@ -22,6 +22,7 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+include($phpbb_root_path . 'includes/functions_user.'.$phpEx);
 include($phpbb_root_path . 'portal/includes/functions.'.$phpEx);
 
 $portal_config = obtain_portal_config();
@@ -112,6 +113,42 @@ while($row = $db->sql_fetchrow($result))
 	));
 }
 // END USER STATUSES
+
+// BEGIN FACTION RECOMMENDATIONS 
+if(!group_memberships(false, $user->data['user_id'], true))
+{
+	$sql = 'SELECT g.group_id, g.group_name, f.forum_name FROM ' .  GROUPS_TABLE . ' g
+		JOIN ' . ACL_GROUPS_TABLE . ' ag
+			ON g.group_id = ag.group_id
+		JOIN ' . FORUMS_TABLE . ' f
+			ON ag.forum_id = f.forum_id
+		WHERE g.group_faction = 1
+		LIMIT 0, 5';
+	$result = $db->sql_query($sql);
+	
+	$sql = 'SELECT g.group_id, g.group_name, f.forum_name FROM ' .  GROUPS_TABLE . ' g
+		JOIN ' . ACL_GROUPS_TABLE . ' ag
+			ON g.group_id = ag.group_id
+		JOIN ' . FORUMS_TABLE . ' f
+			ON ag.forum_id = f.forum_id
+		WHERE g.group_faction = 1
+		LIMIT 0, 5';
+	$result = $db->sql_query($sql);
+	
+	while($row = $db->sql_fetchrow($result))
+	{
+	    $group_id = $row['group_id'];
+	    
+	    $template->assign_block_vars('faction_rec', array(
+	        'NAME'	    => $row['group_name'],
+	        'FORUM'		=> $row['forum_name'],
+	        'U_JOIN'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=groups&mode=membership")
+	    ));
+	}
+    
+	$db->sql_freeresult($result);
+}
+// END FACTION RECOMMENDATIONS
 
 // Grab group details for legend display
 if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
