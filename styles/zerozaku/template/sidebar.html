@@ -19,7 +19,30 @@
 		</ul>
 	</div>
 	
-	<!-- IF REC_FRIEND_TOTAL > 0 -->
+	<div class="bottom-ad center">
+		<a href="http://www.mediatemple.net/go/order/?refdom=zerozaku.com" title="Get hosting by Media Temple"><img src="{T_THEME_PATH}/images/mediatemple.jpg" alt="Get a server at Mediatemple" /></a>
+		<div>Get web hosting from Media Temple</div>
+	</div>
+	
+	<div class="bottom-ad center">
+		<a href="http://www.aniworlds.net/" title="Aniworlds"><img src="{T_IMAGES_PATH}affiliates/aniworlds/af_aniworlds.png" alt="Aniworlds "/></a>
+	</div>
+	
+	<!-- IF .faction_rec -->
+	<div class="leaderboard">
+		<h2>{JOIN_FACTION}</h2>
+		<ul>
+			<!-- BEGIN faction_rec -->
+			<li><div class="inner">
+				<strong><a href="{faction_rec.U_JOIN}">{faction_rec.NAME}</a></strong>
+				<br />in {faction_rec.FORUM}
+			</div></li>
+			<!-- END faction_rec -->
+		</ul>
+	</div>
+	<!-- ENDIF -->
+	
+	<!-- IF .rec_friend -->
 	<div class="leaderboard rec_friend">
 		<h2>{L_MF_PEOPLE_LIKE}</h2>
 		<ul>
@@ -46,6 +69,9 @@
 	
 	<!-- IF S_DISPLAY_PAY_C -->
 		<!-- INCLUDE portal/block/donation.html -->
+<<<<<<< HEAD
+	<!-- ENDIF -->
+=======
 	<!-- ENDIF -->
 	
 	<!-- IF .faction_rec -->
@@ -66,7 +92,4 @@
 		<a href="http://www.mediatemple.net/go/order/?refdom=zerozaku.com" title="Get hosting by Media Temple"><img src="{T_THEME_PATH}/images/mediatemple.jpg" alt="Get a server at Mediatemple" /></a>
 		<div>Get web hosting from Media Temple</div>
 	</div>
-	
-	<div id="bottom-ad" class="center">
-		<a href="http://www.aniworlds.net/" title="Aniworlds"><img src="{T_THEME_PATH}/images/af_aniworlds.png" alt="Aniworlds "/></a>
-	</div>
+>>>>>>> 547cb27... Add affiliate image and appended to sidebar
