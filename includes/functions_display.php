@@ -627,10 +627,13 @@ function generate_ad(&$forum_id)
 	    'AD_TEXT'	=> $row['ad_text']
 	));
 	
-	$sql = 'UPDATE ' . ADS_TABLE . '
-		SET ad_impressions = ad_impressions+1
-		WHERE ad_id = ' . $row['ad_id'];
-    $db->sql_query($sql);
+	if($row['ad_id'])
+	{
+		$sql = 'UPDATE ' . ADS_TABLE . '
+			SET ad_impressions = ad_impressions+1
+			WHERE ad_id = ' . $row['ad_id'];
+	    $db->sql_query($sql);
+	}
 }
 
 /**
