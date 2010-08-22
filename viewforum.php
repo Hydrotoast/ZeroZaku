@@ -119,6 +119,9 @@ if ($forum_data['forum_type'] == FORUM_LINK && $forum_data['forum_link'])
 // Build navigation links
 generate_forum_nav($forum_data);
 
+// Build the ad
+generate_ad($forum_id);
+
 // Forum Rules
 if ($auth->acl_get('f_read', $forum_id))
 {
