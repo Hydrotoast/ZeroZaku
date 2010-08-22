@@ -11,3 +11,4 @@
 /.buildpath
 /.project
 /.settings
+*.db
