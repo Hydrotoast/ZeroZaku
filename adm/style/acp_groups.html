@@ -32,6 +32,10 @@
 			<label><input type="checkbox" class="radio" name="desc_parse_smilies"<!-- IF S_DESC_SMILIES_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_SMILIES}</label>
 			<label><input type="checkbox" class="radio" name="desc_parse_urls"<!-- IF S_DESC_URLS_CHECKED --> checked="checked"<!-- ENDIF --> /> {L_PARSE_URLS}</label></dd>
 	</dl>
+	<dl>
+		<dt><label for="group_faction">{L_GROUP_FACTION}:</label><br /><span>{L_GROUP_FACTION_EXPLAIN}</span></dt>
+		<dd><input name="group_faction" type="checkbox" class="radio" id="group_faction" value="1" <!-- IF GROUP_FACTION eq 1 -->checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
 	<!-- IF not S_SPECIAL_GROUP -->
 		<dl>
 			<dt><label for="group_type">{L_GROUP_TYPE}:</label><br /><span>{L_GROUP_TYPE_EXPLAIN}</span></dt>
