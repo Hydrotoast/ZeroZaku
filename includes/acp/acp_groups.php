@@ -293,6 +293,7 @@ class acp_groups
 					$group_name	= utf8_normalize_nfc(request_var('group_name', '', true));
 					$group_desc = utf8_normalize_nfc(request_var('group_desc', '', true));
 					$group_type	= request_var('group_type', GROUP_FREE);
+					$group_faction = request_var('group_faction', 0);
 
 					$allow_desc_bbcode	= request_var('desc_parse_bbcode', false);
 					$allow_desc_urls	= request_var('desc_parse_urls', false);
@@ -449,7 +450,7 @@ class acp_groups
 							}
 						}
 
-						if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies)))
+						if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies, $group_faction)))
 						{
 							$group_perm_from = request_var('group_perm_from', 0);
 
@@ -626,6 +627,9 @@ class acp_groups
 					'GROUP_OPEN'		=> $type_open,
 					'GROUP_CLOSED'		=> $type_closed,
 					'GROUP_HIDDEN'		=> $type_hidden,
+				    
+				    'GROUP_FACTION'		=> (isset($group_row['group_faction'])) ? $group_row['group_faction'] : $group_faction,
+				
 					// auto group mod
 					'MIN_GROUP_DAYS'		=> (isset($group_row['group_min_days'])) ? $group_row['group_min_days'] : 0,
 					'MAX_GROUP_DAYS'		=> (isset($group_row['group_max_days'])) ? $group_row['group_max_days'] : 0,
