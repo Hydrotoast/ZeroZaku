@@ -637,7 +637,7 @@ function generate_rss(&$forum_data)
 	        $item = $rss->channel->item[$i];
 	        $template->assign_block_vars('rss', array(
 	        	'LINK'	=> $item->link,
-	            'TITLE'	=> substr($item->title, 18),
+	            'TITLE'	=> preg_replace('/(Video Directory \- )|(New Release! - )/i', '', $item->title, 18),
 	        	'DATE'	=> preg_replace('/ ([0-9]{2}:){2}[0-9]{2} GMT/i', '', $item->pubDate)
 	        ));
 	    }
