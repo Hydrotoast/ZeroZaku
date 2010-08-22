@@ -115,7 +115,16 @@ while($row = $db->sql_fetchrow($result))
 // END USER STATUSES
 
 // BEGIN FACTION RECOMMENDATIONS 
-if(!group_memberships(false, $user->data['user_id'], true))
+$sql = 'SELECT COUNT(*) AS count FROM ' . GROUPS_TABLE . ' g
+	JOIN ' . USER_GROUP_TABLE . ' ug
+		ON ug.group_id = g.group_id
+	WHERE ug.user_id = ' . $user->data['user_id'] . '
+		AND g.group_faction = 1';
+$result = $db->sql_query($sql);
+$memberships = $db->sql_fetchfield('count');
+$db->sql_freeresult($result);
+
+if(!$memberships)
 {
 	$sql = 'SELECT g.group_id, g.group_name, f.forum_name FROM ' .  GROUPS_TABLE . ' g
 		JOIN ' . ACL_GROUPS_TABLE . ' ag
@@ -138,14 +147,13 @@ if(!group_memberships(false, $user->data['user_id'], true))
 	while($row = $db->sql_fetchrow($result))
 	{
 	    $group_id = $row['group_id'];
-	    
 	    $template->assign_block_vars('faction_rec', array(
 	        'NAME'	    => $row['group_name'],
 	        'FORUM'		=> $row['forum_name'],
 	        'U_JOIN'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=groups&mode=membership")
 	    ));
 	}
-    
+	    
 	$db->sql_freeresult($result);
 }
 // END FACTION RECOMMENDATIONS
