@@ -167,7 +167,7 @@ li.header dl.icon dt {
 	behavior: url(PIE.htc); 
 }
 
-a.topictitle h3 { font-weight: bold; }
+a.topictitle { font-weight: bold; }
 a.topictitle span { text-transform: capitalize; }
 
 h2.comtitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
