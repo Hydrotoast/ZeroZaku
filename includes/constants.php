@@ -306,4 +306,6 @@ define('FACTION_APP_TABLE', $table_prefix . 'faction_app');
 define('AFFILIATE_TABLE', $table_prefix . 'affiliate');
 define('FORUMS_FEED_TABLE', $table_prefix . 'forums_feed');
 define('ADS_TABLE', $table_prefix . 'ads');
+
+define('PROFILE_EXTENDED_TABLE', $table_prefix . 'profile_extended');
 ?>

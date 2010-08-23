@@ -230,9 +230,6 @@ function user_add($user_row, $cp_data = false)
 
 		'user_form_salt'			=> unique_id(),
 		'user_kb_permissions'		=> '',
-	
-	    'user_css'					=> '',
-	    'user_about'				=> '',
 	);
 
 	// Now fill the sql array with not required variables
@@ -257,6 +254,17 @@ function user_add($user_row, $cp_data = false)
 	$db->sql_query($sql);
 
 	$user_id = $db->sql_nextid();
+	
+	// Insert extended profile sections
+	$sql_ary = array(
+	    'user_id'			=> (int) $user_id,
+        'user_css'	        => '',
+        'user_about'        => '',
+	    'user_media'		=> ''
+	);
+	
+	$sql = 'INSERT INTO ' . PROFILE_EXTENDED_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary);
+	$db->sql_query($sql);
 
 	// Insert Custom Profile Fields
 	if ($cp_data !== false && sizeof($cp_data))
