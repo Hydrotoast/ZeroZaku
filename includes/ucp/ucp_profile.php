@@ -62,7 +62,7 @@ class ucp_profile
 					
 					// Now we shall run our main filters.
 					$script_matches = array('#javascript#', '#vbscript#', '#manuscript#', "#[^a-zA-Z]java#", "#java[^a-zA-Z]#", "#[^a-zA-Z]script#", "#script[^a-zA-Z]#", "#[^a-zA-Z]expression#", "#expression[^a-zA-Z]#", "#[^a-zA-Z]eval#", "#eval[^a-zA-Z]#");
-					if (preg_replace($script_matches, ' ', strtolower($css)) != strtolower($css))
+					if (preg_replace($script_matches, '', strtolower($css)) != strtolower($css))
 					{
 						// If they are going to try something so obvious, instead of trying to filter it I'll just delete everything.
 						$css = '';
@@ -74,13 +74,13 @@ class ucp_profile
 						$css = preg_replace($matches, '', $css);
 					}
 					
-					$sql = 'UPDATE ' . USERS_TABLE . '
+					$sql = 'UPDATE ' . PROFILE_EXTENDED_TABLE . '
 						SET user_css = \'' . addslashes($css) . '\'
 							WHERE user_id = ' . (int) $user->data['user_id'];
 					$db->sql_query($sql);
 		        }
 		        
-	            $sql = 'SELECT user_css FROM ' . USERS_TABLE . '
+	            $sql = 'SELECT user_css FROM ' . PROFILE_EXTENDED_TABLE . '
 					WHERE user_id = ' . $user->data['user_id'];
 				$result = $db->sql_query($sql);
 				$user_css = stripslashes($db->sql_fetchfield('user_css'));
@@ -318,9 +318,16 @@ class ucp_profile
 				include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
 
 				$cp = new custom_profile();
-
 				$cp_data = $cp_error = array();
 
+				$sql = 'SELECT user_about, user_about_uid, user_about_options, user_media FROM ' . PROFILE_EXTENDED_TABLE . '
+					WHERE user_id = ' . (int) $user->data['user_id'];
+				$result = $db->sql_query($sql);
+				$row = $db->sql_fetchrow($result);
+				$db->sql_freeresult($result);
+				
+				$user_about = generate_text_for_edit($row['user_about'], $row['user_about_uid'], $row['user_about_options']);
+				
 				$data = array(
 					'icq'			=> request_var('icq', $user->data['user_icq']),
 					'aim'			=> request_var('aim', $user->data['user_aim']),
@@ -332,8 +339,8 @@ class ucp_profile
 					'occupation'	=> utf8_normalize_nfc(request_var('occupation', $user->data['user_occ'], true)),
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
 				
-				    'about'		    => utf8_normalize_nfc(request_var('about', $user->data['user_about'])),
-				    'media'			=> request_var('media', $user->data['user_media']),
+				    'about'		    => utf8_normalize_nfc(request_var('about', $user_about['text'])),
+				    'media'			=> request_var('media', $row['user_media']),
 				);
 
 				if ($config['allow_birthdays'])
@@ -371,11 +378,14 @@ class ucp_profile
 						'location'		=> array('string', true, 2, 100),
 						'occupation'	=> array('string', true, 2, 500),
 						'interests'		=> array('string', true, 2, 500),
-						'about'			=> array('string', true, 2, 500),
 						'media'			=> array(
 							array('string', true, 12, 255),
 							array('match', true, '/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i')),
 					);
+					
+					$uid = $options = $bitfield = '';
+					$allow_bbcode = $allow_urls =  $allow_smilies = true;
+					generate_text_for_storage($data['about'], $uid, $bitfield, $options, $allow_bbcode, $allow_urls, $allow_smilies);
 
 					if ($config['allow_birthdays'])
 					{
@@ -431,8 +441,6 @@ class ucp_profile
 							'user_occ'		    => $data['occupation'],
 							'user_interests'    => $data['interests'],
 							'user_notify_type'	=> $data['notify'],
-						    'user_about'		=> $data['about'],
-						    'user_media'		=> $data['media'],
 						);
 
 						if ($config['allow_birthdays'])
@@ -441,6 +449,20 @@ class ucp_profile
 						}
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', $sql_ary) . '
+							WHERE user_id = ' . $user->data['user_id'];
+						$db->sql_query($sql);
+						
+						// Update extended profile sections
+						$sql_ary = array(
+						    'user_about'		    => $data['about'],
+						    'user_about_bitfield'	=> $bitfield,
+						    'user_about_options'	=> $options,
+						    'user_about_uid'		=> $uid,
+						    'user_media'		    => $data['media']
+						);
+						
+						$sql = 'UPDATE ' . PROFILE_EXTENDED_TABLE . '
 							SET ' . $db->sql_build_array('UPDATE', $sql_ary) . '
 							WHERE user_id = ' . $user->data['user_id'];
 						$db->sql_query($sql);
@@ -508,18 +530,18 @@ class ucp_profile
 				));
 
 
-			//Begin: Custom Profile Fields for Groups
-			if ($auth->acl_get('u_cpf_allow_use'))
-			{
-			//End: Custom Profile Fields for Groups
-
-				// Get additional profile fields and assign them to the template block var 'profile_fields'
-				$user->get_profile_fields($user->data['user_id']);
-
-				$cp->generate_profile_fields('profile', $user->get_iso_lang_id());
-			//Begin: Custom Profile Fields for Groups
-			}
-			//End: Custom Profile Fields for Groups
+				//Begin: Custom Profile Fields for Groups
+				if ($auth->acl_get('u_cpf_allow_use'))
+				{
+				//End: Custom Profile Fields for Groups
+	
+					// Get additional profile fields and assign them to the template block var 'profile_fields'
+					$user->get_profile_fields($user->data['user_id']);
+	
+					$cp->generate_profile_fields('profile', $user->get_iso_lang_id());
+				//Begin: Custom Profile Fields for Groups
+				}
+				//End: Custom Profile Fields for Groups
 
 			break;
 
