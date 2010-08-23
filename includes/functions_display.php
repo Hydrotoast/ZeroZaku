@@ -655,16 +655,20 @@ function generate_ad(&$forum_id)
 {
     global $db, $template;
     
-    $sql = 'SELECT ad_id, ad_name, ad_url, ad_img, ad_text FROM ' . ADS_TABLE . '
-		WHERE forum_id = ' . (int) $forum_id . '
+    $sql = 'SELECT ad.ad_id, ad.ad_url, ad.ad_img, ad.ad_text, ad.ad_enable, af.affiliate_name FROM ' . ADS_TABLE . ' ad
+    	JOIN ' . AFFILIATE_TABLE . ' af
+    		ON ad.affiliate_id = af.affiliate_id
+		WHERE ad.forum_id = ' . (int) $forum_id . '
+			AND ad.ad_enable = 1
 		ORDER BY RAND()';
 	$result = $db->sql_query($sql);
 	$row = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
 	
 	$template->assign_vars(array(
+	    'AD_ID'		=> $row['ad_id'],
 	    'AD_URL'	=> $row['ad_url'],
-	    'AD_IMG'	=> $phpbb_root_path . 'images/affiliates/' . basename($row['ad_name']) . '/' . basename($row['ad_img']),
+	    'AD_IMG'	=> $phpbb_root_path . 'images/affiliates/' . basename($row['affiliate_name']) . '/' . basename($row['ad_img']),
 	    'AD_TEXT'	=> $row['ad_text']
 	));
 	
