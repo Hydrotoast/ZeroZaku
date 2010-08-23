@@ -785,7 +785,7 @@ switch ($mode)
 		// BEGIN USER EXTRA
 		$profile_extra = array();
 		
-		$sql = 'SELECT user_css, user_about, user_media FROM ' . USERS_TABLE . '
+		$sql = 'SELECT user_css, user_about, user_about_uid, user_about_options, user_about_bitfield, user_media FROM ' . PROFILE_EXTENDED_TABLE . '
 			WHERE user_id = ' . $user_id;
 		$result = $db->sql_query($sql);
 		$profile_extra = $db->sql_fetchrow($result);
@@ -796,7 +796,7 @@ switch ($mode)
 			'L_POSTS_IN_QUEUE'	=> $user->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
 
 		    'USER_CSS'			=> $profile_extra['user_css'],
-		    'ABOUT'				=> $profile_extra['user_about'],
+		    'ABOUT'				=> generate_text_for_display($profile_extra['user_about'], $profile_extra['user_about_uid'], $profile_extra['user_about_bitfield'], $profile_extra['user_about_options']),
 		    'MEDIA'				=> $profile_extra['user_media'],
 		
 			'POSTS_DAY'			=> sprintf($user->lang['POST_DAY'], $posts_per_day),
