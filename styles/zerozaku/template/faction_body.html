@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_FACTION_PAGE -->
+	<div class="panel smooth info tag">
+		<img src="{T_THEME_PATH}/images/tags/layers_2.png" alt="{FACTION_NAME}" />
+		<h1 class="infotitle">	<!-- IF FACTION_COLOR --><span style="color:#{FACTION_COLOR};">{FACTION_NAME}</span><!-- ELSE -->{FACTION_NAME}<!-- ENDIF --><br /></h1>
+		<p><!-- IF FACTION_DESC -->{FACTION_DESC}<!-- ENDIF --></p>
+	</div>
+	
+	<!-- IF .faction_member -->
+		<!-- BEGIN faction_member -->
+		<dl class="user-tag">
+			<dt>{faction_member.AVATAR}</dt>
+			<dd>{faction_member.NAME}</dd>
+			<dd>{faction_member.RANK}</dd>
+		</dl>
+		<!-- END faction_member -->
+	<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF .factions_row -->
+<div class="panel smooth info tag">
+	<img src="{T_THEME_PATH}/images/tags/layers_2.png" alt="{PAGE_TITLE}" />
+	<h1 class="infotitle">{PAGE_TITLE}</h1>
+	<p>{L_FACTION_EXPLAIN}</p>
+</div>
+
+<div class="forabg forumbg-table">
+	<table class="table1" cellspacing="1" id="factions_page">
+	<thead>
+	<tr>
+		<th>{L_FACTION_NAME}, {L_FACTION_DESC}</th>
+		<th class="extra">{L_FACTION_MEMBERS}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- BEGIN factions_row -->
+	<tr class="<!-- IF factions_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+		<td>
+			<a href="{factions_row.U_FACTION}"><!-- IF factions_row.FACTION_COLOR --><span style="color:#{factions_row.FACTION_COLOR};">{factions_row.FACTION_NAME}</span><!-- ELSE -->{factions_row.FACTION_NAME}<!-- ENDIF --></a><br />
+			<span><!-- IF factions_row.FACTION_DESC -->{factions_row.FACTION_DESC}<!-- ENDIF --></span>
+		</td>
+		<td class="extra">{factions_row.FACTION_COUNT}</td>
+	</tr>
+	<!-- END factions_row -->
+	</tbody>
+	</table>
+</div>
+<!-- ENDIF -->
+	
+<!-- INCLUDE overall_footer.html -->

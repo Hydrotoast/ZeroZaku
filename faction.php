@@ -15,7 +15,7 @@ page_header($user->lang['FACTIONS_TITLE']);
 $mode	= request_var('mode', '');
 $submit = (isset($_POST['submit']) ? true : false);
 
-if(!in_array($mode, array('index', 'view', 'apply', '')))
+if(!in_array($mode, array('index', 'view', 'apply', 'page', '')))
 {
     trigger_error('Invalid action');
 }
@@ -121,7 +121,6 @@ switch($mode)
         ));
     break;
     case 'apply':
-    default:
         $template_file = 'faction_apply.html';
         
         $sql = 'SELECT * FROM ' . FACTION_APP_TABLE . '
@@ -232,6 +231,107 @@ switch($mode)
             'MEMBER2'	=> $data['member2']
         ));
     break;
+    case 'page':
+		$template_file = 'faction_body.html';
+
+		$faction_id = request_var('f', $user->data['group_id']);
+		
+		$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_rank
+        	FROM ' . USERS_TABLE . ' u
+        	JOIN ' . USER_GROUP_TABLE . ' ug
+        		ON u.user_id = ug.user_id
+			WHERE ug.group_id = ' . (int) $faction_id;
+		$result = $db->sql_query($sql);
+		
+		while($row = $db->sql_fetchrow($result))
+		{
+		    get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+		    
+		    $template->assign_block_vars('faction_member', array(
+		        'NAME'	    => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+		    	'AVATAR'	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',    
+		    	'RANK'		=> $row['rank_title'],
+		    	'U_PROFILE'	=> get_username_string('profile', $row['user_id'], $row['username'], $row['user_colour']),
+		    ));
+		}
+		$db->sql_freeresult($result);
+		
+        $sql = 'SELECT group_name, group_colour, group_desc, group_desc_uid, group_desc_bitfield, group_desc_options 
+        	FROM ' . GROUPS_TABLE . ' 
+			WHERE group_faction = 1
+				AND group_id = ' . (int) $user->data['group_id'];
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+		
+		get_user_rank($row['user_rank'], true, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+		
+		$template->assign_vars(array(
+			'S_FACTION_PAGE'    => true,
+
+			'FACTION_NAME'	=> $row['group_name'],
+			'FACTION_DESC'	=> generate_text_for_display($row['group_desc'], $row['group_desc_uid'], $row['group_desc_bitfield'], $row['group_desc_options']),
+			'FACTION_COLOR'	=> $row['group_colour'],
+		));
+		
+    break;
+    default:
+		$template_file = 'faction_body.html';
+        
+        // grab user count of groups
+		$sql = 'SELECT group_id FROM ' . USER_GROUP_TABLE . '
+			WHERE user_pending <> 1
+				ORDER BY group_id';
+		$result = $db->sql_query($sql);
+		
+		$groups_count = array();
+		while($row = $db->sql_fetchrow($result))
+		{
+			$groups_count[] = $row['group_id'];
+		}
+		$db->sql_freeresult($result);
+		$total_groups_count = sizeof($groups_count);
+		
+		$sql = 'SELECT group_id, group_name, group_colour, group_desc, group_desc_uid, group_desc_bitfield, group_desc_options 
+			FROM ' . GROUPS_TABLE . '
+			WHERE group_faction = 1
+			ORDER BY group_name';
+		$result = $db->sql_query($sql);
+
+		while($row = $db->sql_fetchrow($result))
+		{
+			if($row['group_type'] == GROUP_HIDDEN && !$auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
+			{
+				continue;
+			}
+			// how many users does the group have?
+			if($total_groups_count)
+			{
+				$user_count = 0;
+				for ($i = 0; $i < $total_groups_count; $i++)
+				{
+		            if ($row['group_id'] == $groups_count[$i])
+		            {
+						$user_count++;
+		            }
+				}
+			}
+
+			// Misusing the avatar function for displaying group avatars...
+			$u_faction = append_sid("{$phpbb_root_path}faction.$phpEx", 'mode=page&amp;f=' . $row['group_id']);
+	
+			$template->assign_block_vars('factions_row', array(
+				'FACTION_NAME'	=> $row['group_name'],
+				'FACTION_DESC'	=> generate_text_for_display($row['group_desc'], $row['group_desc_uid'], $row['group_desc_bitfield'], $row['group_desc_options']),
+				'FACTION_COLOR'	=> $row['group_colour'],
+				'FACTION_COUNT'	=> number_format($user_count),	
+				
+				'U_FACTION'		=> $u_faction,
+			));
+		}
+		
+		$db->sql_freeresult($result);
+	break;
 }
 
 if($auth->acl_getf_global('a_'))

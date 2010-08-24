@@ -1350,6 +1350,12 @@ dd.aggro_item p strong, dd.aggro_item_quad p strong {
 	line-height: 1em;
 }
 
+/* User tags
+-------------------------------------------------*/
+dl.user-tag  { background-color: #F6F6F6; border-bottom: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; width: 209px;  margin: 0 10px 10px 0; padding: 10px; display: inline-block; float: left;  overflow: hidden; }
+dl.user-tag dt { float: left; height: 40px; width: 40px; margin-right: 10px; }
+dl.user-tag dd { display: block; clear: right; }
+
 /* Advertisements
 -------------------------------------------------*/
 .bottom-ad { border-top: 1px solid #E0E0E0; margin: 10px 0; padding-top: 10px; }
