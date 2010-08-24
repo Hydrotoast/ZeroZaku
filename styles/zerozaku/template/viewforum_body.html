@@ -2,7 +2,7 @@
 
 <!-- IF FORUM_DESC or FORUM_SEO_DESC -->
 	<div class="panel smooth <!-- IF FORUM_SEO_DESC -->tag<!-- ENDIF -->">
-			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h2 class="infotitle">{FORUM_SEO_KEY}</h2><p><span>{FORUM_SEO_DESC}</span></p>
+			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h1 class="infotitle">{FORUM_SEO_KEY}</h2><p><span>{FORUM_SEO_DESC}</span></p>
 			<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
 	</div>
 <!-- ENDIF -->
@@ -161,12 +161,10 @@
 	<li><ul class="topiclist topics">
 <!-- ENDIF -->
 
-
 	<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED or topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->">
 		<dl class="icon">
 			<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ELSE --> style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat; background-position: 10px center"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
-				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
-				<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><!-- IF topicrow.S_TOPIC_REPORTED --><span class="meta">[reported]</span><!-- ENDIF --><h3>{topicrow.TOPIC_TITLE}</h3></a>
+				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><!-- IF topicrow.S_TOPIC_REPORTED --><span class="meta">[reported]</span><!-- ENDIF -->{topicrow.TOPIC_TITLE}</a>
 				<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 				<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
 				<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
@@ -174,8 +172,8 @@
 			</dt>
 			<dd class="stats">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn><br />{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
 			<dd class="lastpost">
-					{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
-					<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br /><span class="date">{topicrow.LAST_POST_TIME}</span>
+				{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+				<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br /><span class="date">{topicrow.LAST_POST_TIME}</span>
 			</dd>
 		</dl>
 	</li>
