@@ -771,11 +771,9 @@ li.pagination {
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
 	display: none;
-	float: none;
 	width: auto;
-	position: relative;
-	top: 9px;
-	left: 1em;
+	padding: 7px 0;
+	float: right;
 }
 
 .row:hover .pagination { display: inline-block; }
