@@ -1,13 +1,13 @@
 <!-- IF .latest_topics -->
 <div class="aggro">	
-<!-- IF .latest_topics --><dt class="aggro_head">{L_RECENT_TOPIC}</dt><!-- ENDIF -->
+<!-- IF .latest_topics --><h2 class="aggro_head">{L_RECENT_TOPIC}</h2><!-- ENDIF -->
 	<!-- BEGIN latest_topics -->
-	<dd class="aggro_item_quad"><a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">
+	<div class="aggro_item_quad"><a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">
 		<p>
 			<strong>{latest_topics.TITLE}</strong>
 			<br /><span>{latest_topics.FORUM}</span>
 		</p>
-	</a></dd>
+	</a></div>
 	<!-- END latest_topics -->
 </div>
 <!-- ENDIF -->
