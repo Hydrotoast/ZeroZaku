@@ -6,28 +6,28 @@
 	
 	<!-- IF .latest_announcements -->
 	<div class="aggro">
-	<dt class="aggro_head">{L_RECENT_ANN}</dt>
+	<h2 class="kb_head">{L_RECENT_ANN}</h2>
 		<!-- BEGIN latest_announcements -->
-		<dd class="aggro_item"><a href="{latest_announcements.U_VIEW_TOPIC}" title="{latest_announcements.FULL_TITLE}">
+		<div class="aggro_item"><a href="{latest_announcements.U_VIEW_TOPIC}" title="{latest_announcements.FULL_TITLE}">
 			<p>
 				<strong>{latest_announcements.TITLE}</strong>
 				<br /><span>by {latest_announcements.USERNAME}</span>
 			</p>
-		</a></dd>
+		</a></div>
 		<!-- END latest_announcements -->
 	</div>
 	<!-- ENDIF -->
 	
 	<!-- IF .hot_topics -->
 	<div class="aggro">
-	<dt class="aggro_head">{L_RECENT_HOT_TOPIC}</dt>
+	<h2 class="aggro_head">{L_RECENT_HOT_TOPIC}</h2>
 		<!-- BEGIN hot_topics -->
-		<dd class="aggro_item"><a href="{hot_topics.U_VIEW_TOPIC}" title="{hot_topics.FULL_TITLE}">
+		<div class="aggro_item"><a href="{hot_topics.U_VIEW_TOPIC}" title="{hot_topics.FULL_TITLE}">
 			<p>
 				<strong>{hot_topics.TITLE}</strong>
 				<br /><span>{hot_topics.FORUM}</span>
 			</p>
-		</a></dd>
+		</a></div>
 		<!-- END hot_topics -->
 	</dt>
 	</div>
@@ -35,11 +35,11 @@
 		
 	<!-- IF not .latest_topics -->
 	<div class="aggro">
-	<dt class="aggro_head">{L_RECENT_TOPIC}</dt>
+	<h2 class="aggro_head">{L_RECENT_TOPIC}</h2>
 		<!-- BEGIN latest_topics -->
-		<dd class="aggro_item"><a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">
+		<div class="aggro_item"><a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">
 			<p><strong>{latest_topics.TITLE}</strong></p>
-		</a></dd>
+		</a></div>
 		<!-- END latest_topics -->
 	</div>
 	<!-- ENDIF -->         

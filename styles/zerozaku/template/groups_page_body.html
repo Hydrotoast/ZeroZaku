@@ -1,0 +1,32 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2 class="solo">{PAGE_TITLE}</h2>
+<div class="forabg forumbg-table">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<table class="table1" cellspacing="1" id="groups_page">
+		<thead>
+		<tr>
+			<th>{L_GROUP_NAME}</th>
+			<th>{L_GROUP_RANK}</th>
+			<th>{L_GROUP_AVATAR}</th>
+			<th>{L_GROUP_DESC}</th>
+			<th style="width:15%;">{L_GROUP_MEMBERS}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN group_row -->
+		<tr class="<!-- IF group_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+			<td><!-- IF group_row.S_BOT_GROUP --><!-- IF group_row.GROUP_COLOR --><span style="color:#{group_row.GROUP_COLOR};"><!-- ENDIF -->{group_row.GROUP_NAME}<!-- IF group_row.GROUP_COLOR --></span><!-- ENDIF --><!-- ELSE --><a href="{group_row.U_GROUP}"><!-- IF group_row.GROUP_COLOR --><span style="color:#{group_row.GROUP_COLOR};"><!-- ENDIF -->{group_row.GROUP_NAME}<!-- IF group_row.GROUP_COLOR --></span><!-- ENDIF --></a><!-- ENDIF --><br /><em>{group_row.GROUP_TYPE}</em></td>
+			<td><!-- IF group_row.RANK_IMG --><span class="rank-img">{group_row.RANK_IMG}</span><!-- ELSE --><span class="rank-img">{group_row.RANK_TITLE}</span><!-- ENDIF --></td>
+			<td><!-- IF group_row.AVATAR_IMG -->{group_row.AVATAR_IMG}<!-- ENDIF --></td>
+			<td><!-- IF group_row.GROUP_DESC -->{group_row.GROUP_DESC}<!-- ENDIF --></td>
+			<td style="text-align:center;">{group_row.GROUP_COUNT}</td>
+		</tr>
+		<!-- END group_row -->
+		</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span>
+		</div>
+</div>
+	
+<!-- INCLUDE overall_footer.html -->
