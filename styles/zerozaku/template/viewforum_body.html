@@ -2,8 +2,8 @@
 
 <!-- IF FORUM_DESC or FORUM_SEO_DESC -->
 	<div class="panel smooth <!-- IF FORUM_SEO_DESC -->tag<!-- ENDIF -->">
-			<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h1 class="infotitle">{FORUM_SEO_KEY}</h2><p><span>{FORUM_SEO_DESC}</span></p>
-			<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
+		<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h1 class="infotitle">{FORUM_SEO_KEY}</h2><p><span>{FORUM_SEO_DESC}</span></p>
+		<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
 	</div>
 <!-- ENDIF -->
 
@@ -11,14 +11,14 @@
 
 <!-- IF .rss -->
 <div class="aggro">
-	<dt class="aggro_head">{FEED_NAME}</dt>
+	<h2 class="aggro_head">{FEED_NAME}</h2>
 <!-- BEGIN rss -->
-	<dd class="aggro_item_quad video"><a href="{rss.LINK}">
+	<div class="aggro_item_quad video"><a href="{rss.LINK}">
 		<p>
 			<strong>{rss.TITLE}</strong>
 			<br /><span>{rss.DATE}</span>
 		</p>
-	</a></dd>
+	</a></div>
 <!-- END rss -->
 </div>
 <!-- ENDIF -->
