@@ -1304,51 +1304,21 @@ a.nivo-prevNav {
 -------------------------------------------------*/
 .aggro { overflow: hidden; }
 
-h2.aggro_head {
-	font: 1.3333em Anivers-Regular;
-	background-color: #212121;
-	color: #FFFFFF;
-	padding: 6px 15px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-	clear: both;
-}
+h2.aggro_head { font: 1.3333em Anivers-Regular; background-color: #212121; color: #FFFFFF; padding: 6px 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; clear: both; }
 
-.aggro_item, .aggro_item_quad {
-	border-bottom: 1px solid #E0E0E0;
-	width: 33%;
-	padding: 15px 0;
-	float: left;
-}
+.aggro_item, .aggro_item_quad { border-bottom: 1px solid #E0E0E0; width: 33%; padding: 15px 0; float: left; }
 .aggro_item_quad { width: 25%; }
 
 .aggro_item.video a, .aggro_item_quad.video a { background: url("{T_THEME_PATH}/images/movie.png") no-repeat scroll 10px center transparent; }
-.aggro_item a, .aggro_item_quad a {
-	text-decoration: none;
-	background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent;
-	border-left: 1px solid #E0E0E0;
-	height: 80px;
-	padding: 0 15px 0 57px;
-	display: inline-block;
-}
+.aggro_item a, .aggro_item_quad a {	text-decoration: none; background: url("{T_THEME_PATH}/images/doc_lines_straight.png") no-repeat scroll 10px center transparent; border-left: 1px solid #E0E0E0; height: 90px; padding: 0 15px 0 57px; display: inline-block; 
 
 .aggro_item:nth-child(n+5) { border: 0; }
 .aggro_item:nth-child(3n+2) a { border: 0; }
 .aggro_item_quad:nth-child(n+6) { border: 0; }
 .aggro_item_quad:nth-child(4n+2) a { border: 0; }
 
-.aggro_item p, .aggro_item_quad p {
-	color: #606060;
-	padding: 6px 0;
-}
-
-.aggro_item p strong, .aggro_item_quad p strong {
-	color: #212121;
-	font-weight: bold;
-	line-height: 1em;
-}
+.aggro_item p, .aggro_item_quad p { color: #606060; padding: 6px 0; }
+.aggro_item p strong, .aggro_item_quad p strong { color: #212121; font-weight: bold; line-height: 1em; }
 
 /* User tags
 -------------------------------------------------*/
