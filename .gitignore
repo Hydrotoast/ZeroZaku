@@ -11,4 +11,4 @@
 /.buildpath
 /.project
 /.settings
-*.db
+Thumbs.db
