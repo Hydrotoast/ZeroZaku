@@ -562,7 +562,7 @@ a.forumtitle:hover { text-decoration: underline; }
 .content {
 	min-height: 3em;
 	overflow: hidden;
-	line-height: 1.7em;
+	line-height: 1.8em;
 	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif; 
 	font-size: 1em;
 }
@@ -875,7 +875,7 @@ fieldset.polls dd div {
 	border-width: 15px 0 15px 15px; /* vary these values to change the angle of the vertex */
 }
 
-.postprofile dd, .postprofile dt { line-height: 1.7em; }
+.postprofile dd, .postprofile dt { line-height: 1.8em; }
 .postprofile dd { margin-bottom: 0.5em; }
 
 .postprofile dd strong {
