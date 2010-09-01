@@ -1311,8 +1311,17 @@ class acp_users
 					WHERE user_id = ' . $user_id;
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
-                $db->sql_freeresult($result);
-                $user_row['user_status'] = $row['user_status'];
+        $db->sql_freeresult($result);
+        $user_row['user_status'] = $row['user_status'];
+                
+        $sql = 'SELECT user_about, user_about_uid, user_about_options, user_media 
+          FROM ' . PROFILE_EXTENDED_TABLE . '
+          WHERE user_id = ' . $user_id;
+        $result = $db->sql_query($sql);
+        $row = $db->sql_fetchrow($result);
+        $db->sql_freeresult($result);
+        $user_row['user_about'] =  generate_text_for_edit($row['user_about'], $row['user_about_uid'], $row['user_about_options']);
+        $user_row['user_media'] = $row['user_media'];
                 
 
 				$data = array(
@@ -1366,7 +1375,6 @@ class acp_users
 						'interests'		=> array('string', true, 2, 500),
 
 						'status'		=> array('string', true, 2, 90),
-						'about'			=> array('string', true, 2, 500),
 						'media'			=> array(
 							array('string', true, 12, 255),
 							array('match', true, '/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/i')),
@@ -1376,6 +1384,10 @@ class acp_users
 						'bday_year'		=> array('num', true, 1901, gmdate('Y', time())),
 						'user_birthday'	=> array('date', true),
 					));
+					
+					$uid = $options = $bitfield = '';
+          $allow_bbcode = $allow_urls =  $allow_smilies = true;
+          generate_text_for_storage($data['about'], $uid, $bitfield, $options, $allow_bbcode, $allow_urls, $allow_smilies);
 
 					// validate custom profile fields
 					$cp->submit_cp_field('profile', $user_row['iso_lang_id'], $cp_data, $cp_error);
@@ -1402,14 +1414,25 @@ class acp_users
 							'user_occ'		=> $data['occupation'],
 							'user_interests'=> $data['interests'],
 							'user_birthday'	=> $data['user_birthday'],
-						    'user_about'	=> $data['about'],
-						    'user_media'	=> $data['media'],
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
 							SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
 							WHERE user_id = $user_id";
 						$db->sql_query($sql);
+						
+						$sql_ary = array(
+						  'user_about'  => $data['about'],
+						  'user_about_bitfield' => $bitfield,
+              'user_about_options'  => $options,
+              'user_about_uid'    => $uid,
+              'user_media'  => $data['media'],
+						)
+						
+						$sql = 'UPDATE ' . PROFILE_EXTENDED_TABLE . '
+              SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
+              WHERE user_id = $user_id";
+            $db->sql_query($sql);
 						
 						$sql = 'UPDATE ' . USERS_IM_TABLE . '
 							SET user_status= \'' . $data['status'] . '\'
