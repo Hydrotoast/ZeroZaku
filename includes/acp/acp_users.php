@@ -1435,7 +1435,8 @@ class acp_users
             $db->sql_query($sql);
 						
 						$sql = 'UPDATE ' . USERS_IM_TABLE . '
-							SET user_status= \'' . $data['status'] . '\'
+							SET user_status = \'' . $data['status'] . '\',
+						    user_lastchange = \'' . time() . '\'
 							WHERE user_id = ' . $user_id;
 						$db->sql_query($sql);
 
