@@ -1336,7 +1336,7 @@ class acp_users
 					'interests'		=> utf8_normalize_nfc(request_var('interests', $user_row['user_interests'], true)),
 				
 				    'status'		=> request_var('status', $user_row['user_status']),
-				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about'], true)),
+				    'about'			=> utf8_normalize_nfc(request_var('about', $user_row['user_about']['text'], true)),
 				    'media'			=> request_var('media', $user_row['user_media']),
 				
 					'bday_day'		=> 0,
@@ -1427,7 +1427,7 @@ class acp_users
               'user_about_options'  => $options,
               'user_about_uid'    => $uid,
               'user_media'  => $data['media'],
-						)
+						);
 						
 						$sql = 'UPDATE ' . PROFILE_EXTENDED_TABLE . '
               SET ' . $db->sql_build_array('UPDATE', $sql_ary) . "
