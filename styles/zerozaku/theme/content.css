@@ -46,7 +46,7 @@ ul.topiclist dd {
 }
 
 ul.topiclist dd div.inner {
-	margin: 0 10px;
+	margin: 0 15px;
 }
 
 ul.topiclist li.row dt a.subforum {
@@ -76,7 +76,7 @@ li.header dl.icon dt {
 /* Sidebar blocks */
 .forabg-sidebar {
 	border: 1px solid;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
@@ -106,13 +106,13 @@ li.header dl.icon dt {
 
 .forabg-sidebar ul.topiclist dd {
 	margin-bottom: 0;
-	padding: 6px 10px;
+	padding: 10px 15px;
 }
 
 .forabg-sidebar h2.sidebar {
 	font-size: 1.1em;
 	font-weight: bold;
-	margin: 0 0 0 10px;
+	margin: 0 0 0 15px;
 	padding: 6px 0;
 }
 
@@ -123,7 +123,7 @@ li.header dl.icon dt {
 }
 
 .caffeine {
-	margin: 0 -10px 2px;
+	margin: 0 -15px 2px;
 	clear: both;
 }
 
@@ -159,7 +159,7 @@ li.header dl.icon dt {
 
 .jump2post a {
 	text-decoration: none;
-	padding: 4px 10px;
+	padding: 4px 15px;
 	-moz-border-radius: 0 0 5px 5px;
 	-webkit-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
@@ -175,7 +175,7 @@ h2.comtitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
 	font-size: 1.6667em;
 	font-weight: normal;
 	text-align: left;
-	padding: 9px 10px;
+	padding: 9px 15px;
 	overflow: hidden;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
@@ -197,7 +197,7 @@ h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg
 }
 
 h2.cattitle:first-child { margin-top: 0; }
-h2.cattitle { margin-top: 10px; }
+h2.cattitle { margin-top: 15px; }
 h2.cattitle.collapsed {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -224,7 +224,7 @@ h2.pagetitle, h2.comtitle {
 	font-weight: normal;
 	border-width: 1px 1px 0;
 	border-style: solid;
-	padding: 9px 20px;
+	padding: 9px 30px;
 	overflow: hidden;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
@@ -234,11 +234,11 @@ h2.pagetitle, h2.comtitle {
 	clear: both;
 }
 
-h2.comtitle { padding: 9px 10px; }
+h2.comtitle { padding: 9px 15px; }
 
 h2.comtitle.login {
 	margin: 0 auto;
-	width: 720px;
+	width: 741px;
 }
 
 h2 { font: 2em Anivers-Regular; }
@@ -272,7 +272,7 @@ h1.topictitle a.topicactions {
 }
 
 /* Forum list column styles */
-ul.topiclist li.header dl.icon dt { margin-left: 10px; }
+ul.topiclist li.header dl.icon dt { margin-left: 15px; }
 dl.icon { min-height: 40px; }
 dl.icon dt, .meta dt { padding-left: 45px; } /* Space for folder icon */
 .meta dt.no-icon { padding: 4px 0; } /* Space for folder icon */
@@ -314,11 +314,11 @@ ul.topiclist dd.stats dfn { font-style: normal; }
 dd.posts, dd.views {
 	line-height: 2.7em;
 	text-align: center;
-	width: 10%;
+	width: 168px;
 }
 
 dd.lastpost {
-	width: 29.5%;
+	width: 252px;
 	padding-left: 0.5% !important;
 }
 
@@ -334,7 +334,7 @@ dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.t
 
 dt.no-icon .inner {
 	margin: 0;
-	padding: 0 10px;
+	padding: 0 15px;
 }
 
 .meta dd.time {line-height: 1.3em;}
@@ -382,7 +382,7 @@ ul.topiclist dd.searchextra {
 
 /* Container for post/reply buttons and pagination */
 .topic-actions {
-	margin: 10px 0;
+	margin: 15px 0;
 	height: 24px;
 	min-height: 24px;
 	clear: both;
@@ -404,9 +404,9 @@ a.forumtitle:hover { text-decoration: underline; }
 ----------------------------------------*/
 #preview .postbody { width: 690px; }
 .postbody {
-	margin: 10px 0;
+	margin: 15px 0;
 	padding: 0;
-	width: 700px;
+	width: 741px;
 	float: right;
 	clear: both;
 }
@@ -457,7 +457,7 @@ a.forumtitle:hover { text-decoration: underline; }
 }
 
 #topicreview .post .content {
-	margin: 10px 0;
+	margin: 15px 0;
 }
 
 #topicreview h2 {
@@ -471,8 +471,8 @@ a.forumtitle:hover { text-decoration: underline; }
 /* Content container styles
 ----------------------------------------*/
 .panel.login {
-	margin: 0 auto 10px auto;
-	width: 700px;
+	margin: 0 auto 15px auto;
+	width: 726px;
 }
 
 .panel h3.head, .panel h3.sub {
@@ -485,8 +485,8 @@ a.forumtitle:hover { text-decoration: underline; }
 .panel h3.head {
 	font-size: 1.6667em;
 	text-transform: none;
-	margin: 0 -20px 1em -20px;
-	padding: 0.25em 20px;
+	margin: 0 -30px 1em -30px;
+	padding: 0.25em 30px;
 }
 
 .panel h3.sub {
@@ -521,7 +521,7 @@ a.forumtitle:hover { text-decoration: underline; }
 }
 
 .panel.info p, .panel.tag p {
-	margin: 10px 0;
+	margin: 15px 0;
 	padding-left: 34px;
 }
 
@@ -541,19 +541,19 @@ a.forumtitle:hover { text-decoration: underline; }
 /* panel sidebar */
 .panel-sidebar {
 	float: right;
-	margin: 10px 0 10px 1%;
+	margin: 15px 0 15px 1%;
 	padding: 1px;
 	width: 33%;
 }
 
 .panel-sidebar .inner {
-	padding: 4px 10px;
+	padding: 6px 15px;
 	height: 100%;
 }
 
 .panel-sidebar h3 {
 	font-weight: bold;
-	padding: 4px 10px;
+	padding: 6px 15px;
 }
 
 .panel.faq_box { margin-bottom: 0; }
@@ -600,8 +600,8 @@ p.author {
 /* Post signature */
 .signature {
 	border-top: 1px solid;
-	margin-top: 10px;
-	padding-top: 10px;
+	margin-top: 15px;
+	padding-top: 15px;
 	clear: left;
 	line-height: 140%;
 	overflow: hidden;
@@ -645,7 +645,7 @@ blockquote {
 	border: 1px solid;
 	margin: 0 1px 0 0;
 	overflow: hidden;
-	padding: 10px;
+	padding: 15px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -660,7 +660,7 @@ blockquote blockquote {
 
 blockquote cite {
 	/* Username/source of quoter */
-	margin-left: 20px;
+	margin-left: 30px;
 	display: block;
 }
 
@@ -775,14 +775,14 @@ fieldset.polls h3 {
 	font-size: 1.6667em;
 	border-top: 1px solid;
 	margin-top: 6px;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 fieldset.polls dl {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	border: 1px solid;
-	margin: 10px 0;
-	padding: 10px 20px 6px 20px;
+	margin: 15px 0;
+	padding: 10px 15px 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -795,7 +795,7 @@ fieldset.polls dt {
 	float: left;
 	display: block;
 	width: 20%;
-	padding: 0 10px 0 0;
+	padding: 0 15px 0 0;
 	margin: 0;
 	clear: both;
 }
@@ -841,7 +841,7 @@ fieldset.polls dd div {
 .postprofile {
 	/* Also see tweaks.css */
 	border-right: 1px solid;
-	margin: 10px 0 10px 0;
+	margin: 15px 0 15px 0;
 	min-height: 80px;
 	width: 220px;
 	float: left;
@@ -853,7 +853,7 @@ fieldset.polls dd div {
 .user_status {
 	font-size: 0.9167em;
 	position: relative;
-	padding: 6px 10px;
+	padding: 10px 15px;
 	margin: 0 1em 0 0;
 	border-bottom: 1px solid;
 	border-right: 1px solid;
@@ -870,7 +870,7 @@ fieldset.polls dd div {
 	display: block; /* reduce the damage in FF3.0 */
 	position: absolute;
 	top: -45px;
-	left: 10px;
+	left: 15px;
 	border-style: solid;
 	border-width: 15px 0 15px 15px; /* vary these values to change the angle of the vertex */
 }
@@ -919,7 +919,6 @@ fieldset.polls dd div {
 /* Poster profile used by search*/
 .search .postprofile {
 	float: left;
-	padding-right: 10px;
 }
 
 /* PM Styles
@@ -940,8 +939,8 @@ dl.pmlist dd {
 .postmeta {
 	font-weight: bold;
 	line-height: 24px;
-	margin: 0 -10px;
-	padding: 4px 10px;
+	margin: 0 -15px;
+	padding: 4px 15px;
 	height: 24px;
 }
 

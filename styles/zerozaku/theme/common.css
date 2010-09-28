@@ -13,7 +13,7 @@ body {
 }
 
 #simple-wrap {
-	padding: 51px 0 0 20px;
+	padding: 51px 0 0 30px;
 }
 
 hr {
@@ -38,40 +38,38 @@ a img { border: none; }
 
 #page-header .inner {
 	margin: 0 auto;
-	width: 960px;
+	width: 1008px;
 }
 
 #main {
 	min-height: 412px;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 #wrap {
 	margin: 0 auto;
-	width: 960px;
+	width: 1008px;
 }
 
 #page-body {
 	text-align: left;
 	float: left;
-	min-width: 720px;
-	width: 75%
+	width: 741px;
 }
 
 #page-sidebar {
 	text-align: left;
 	float: right;
-	min-width: 230px;
-	width: 23.9583%;
+	width: 252px;
 }
 
 #page-sidebar.left {
 	float: left;
-	padding-right: 10px;
+	padding-right: 15px;
 }
 
 #page-footer {
-	width: 960px;
+	width: 1008px;
 	clear: both;
 }
 
@@ -84,20 +82,20 @@ a img { border: none; }
 
 #news .inner {
 	margin: 0 auto;
-	width: 960px;
+	width: 1008px;
 	overflow: hidden;
 }
 
 #quickpanel {
 	border-bottom: 1px solid;
 	width: 100%;
-	padding: 20px 0;
+	padding: 30px 0;
 }
 
 #quickpanel .inner {
 	text-align: left;
 	margin: 0 auto;
-	width: 960px;
+	width: 1008px;
 	overflow: hidden;
 }
 
@@ -105,7 +103,7 @@ a img { border: none; }
 	float: right;
 	width: 360px;
 	padding-left: 30px;
-	margin: 20px 0;
+	margin: 30px 0;
 }
 
 	#blurb h1 {
@@ -157,7 +155,7 @@ a img { border: none; }
 }
 
 #account-actions li {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 #account-actions li {
@@ -178,7 +176,7 @@ a img { border: none; }
 	text-align: left;
 	white-space: nowrap; /* For Opera */
 	position: relative;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	padding: 6px 5%;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -239,8 +237,8 @@ a img { border: none; }
 
 .breadcrumbs .inner {
 	margin: 0 auto !important;
-	padding: 0 20px !important;
-	width: 960px !important;
+	padding: 0 30px !important;
+	width: 1008px !important;
 }
 
 .breadcrumbs strong {
@@ -255,7 +253,7 @@ a img { border: none; }
 }
 
 .breadcrumbs.simple .navlinks {
-	padding: 0 20px !important;
+	padding: 0 30px !important;
 }
 
 /* Navbar
@@ -282,7 +280,7 @@ a img { border: none; }
 	text-decoration: none;
 	display: block;
 	height: 84px;
-	padding: 20px 20px 0 20px;
+	padding: 20px 30px 0 30px;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -299,7 +297,7 @@ a img { border: none; }
 /* Footer
 ---------------------------------------- */
 #page-footer h3 {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 #board-statistics {
@@ -312,7 +310,7 @@ a img { border: none; }
 
 	#board-statistics p {
 		border-bottom: 1px solid;
-		padding-bottom: 10px;
+		padding-bottom: 15px;
 		width: 75%;
 	}
 
@@ -324,7 +322,7 @@ a img { border: none; }
 	}
 	
 	#board-statistics .stats dl {
-		margin: 4px 0 10px;
+		margin: 4px 0 15px;
 	}
 	
 	#board-statistics .stats dt {
@@ -341,7 +339,7 @@ a img { border: none; }
 	}
 
 #footer-utilities {
-	padding: 10px 20px;
+	padding: 15px 30px;
 	clear: both;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -366,13 +364,13 @@ a img { border: none; }
 }
 
 .signup ul {
-	margin: 1em 0 0 20px;
+	margin: 1em 0 0 30px;
 }
 
 /* Sidebar
  * ---------------------------------------- */
 #page-sidebar ul {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .leaderboard h2, #user_statuses h2 {
@@ -387,7 +385,7 @@ a img { border: none; }
 	border-style: solid;
 	list-style: none;
 	margin-bottom: 6px;
-	padding: 6px 10px;
+	padding: 10px 15px;
 	display: block;
 	overflow: hidden;
 }
@@ -409,7 +407,7 @@ a img { border: none; }
 .rec_friend li .inner {
 	border-width: 0 1px 1px 0;
 	border-style: solid;
-	padding: 6px 10px;
+	padding: 10px 15px;
 	display: inline-block;
 	width: auto;
 	word-wrap: break-word;
@@ -422,7 +420,7 @@ a img { border: none; }
 	border-width: 0 1px 1px 0;
 	border-style: solid;
 	margin-bottom: 6px;
-	padding: 6px 10px;
+	padding: 10px 15px;
 	display: inline-block;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -439,7 +437,7 @@ textarea#message {
 	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
 }
 #message, #confirm {text-align: center;}
-#message .inner, #confirm .inner {padding: 20px 0;}
+#message .inner, #confirm .inner {padding: 30px 0;}
 
 #message p.message, #confirm p.message {
 	font-size: 1.166em;
@@ -473,7 +471,7 @@ textarea#message {
 }
 
 .forabg {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	clear: both;
 }
 
@@ -482,14 +480,14 @@ textarea#message {
 }
 
 .forumbg {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	clear: both;
 }
 
 .panel {
 	border: 1px solid;
-	margin-bottom: 10px;
-	padding: 0 20px;
+	margin-bottom: 15px;
+	padding: 0 30px;
 	overflow: hidden;
 }
 
@@ -501,7 +499,7 @@ textarea#message {
 }
 
 .panel.clean, .panel.clean .inner {
-	padding: 10px;
+	padding: 15px;
 	border: 0;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -512,7 +510,7 @@ textarea#message {
 .panel.clean .inner:last-child { margin-bottom: 0 }
 .panel.clean .inner { 
 	border: 1px solid;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	overflow: hidden;
 }
 
@@ -522,7 +520,7 @@ textarea#message {
 	font: bold 1.3333em Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
 	margin: 0 0 6px 0;
-	padding: 0 0 0 10px;
+	padding: 0 0 0 15px;
 }
 
 .panel.clean .inner fieldset.fields2 dt { width: 12em }
@@ -542,12 +540,12 @@ textarea#message {
 
 .post {
 	margin-bottom: 1px;
-	padding: 0 10px;
+	padding: 0 15px;
 	overflow: hidden;
 }
 
 .search.post {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .rowbg {
@@ -559,7 +557,7 @@ textarea#message {
 ul.linklist {
 	display: block;
 	margin: 0;
-	margin: 10px 0;
+	margin: 15px 0;
 	height: auto;
 }
 
@@ -629,7 +627,7 @@ table.table1 thead th {
 	font-size: 0.9166em;
 	font-weight: bold;
 	line-height: 1.3em;
-	padding: 6px 10px;
+	padding: 10px 15px;
 }
 
 table.table1 thead th span {
@@ -648,10 +646,10 @@ table.table1 tbody th {
 /* Specific column styles */
 table.table1 .name		{ text-align: left; }
 table.table1 .posts		{ text-align: center !important; width: 7%; }
-table.table1 .joined	{ text-align: left; width: 15%; }
-table.table1 .active	{ text-align: left; width: 15%; }
+table.table1 .joined	{ text-align: left; width: 20%; }
+table.table1 .active	{ text-align: left; width: 20%; }
 table.table1 .mark		{ text-align: center; width: 7%; }
-table.table1 .info		{ text-align: left; width: 30%; }
+table.table1 .info		{ text-align: left; width: 25%; }
 table.table1 .info div	{ width: 100%; white-space: normal; overflow: hidden; }
 table.table1 .autocol	{ white-space: nowrap; }
 table.table1 thead .autocol { padding-left: 1em; }
@@ -701,7 +699,7 @@ table.info tbody th {
 }
 
 dl.details {
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 dl.details dt {
@@ -794,31 +792,31 @@ li.pagination {
 	width: auto;
 	padding-left: 5px;
 	margin-left: 5px;
-	margin-top: 10px;
+	margin-top: 15px;
 	text-align: right;
 }
 
 .copyright {
 	float: left;
-	padding: 10px 10px 0 40px;
+	padding: 15px 15px 0 40px;
 	text-align: left;
 }
 
 .util_links {
 	float: right;
-	padding: 10px 20px 0 0;
+	padding: 15px 30px 0 0;
 	text-align: right;
 }
 
 .titlespace {margin-bottom: 15px;}
-.headerspace {margin: 10px 0;}
+.headerspace {margin: 15px 0;}
 
 div.rules {
-	padding: 0 10px;
-	margin: 10px 0;
+	padding: 0 15px;
+	margin: 15px 0;
 }
 
-div.rules ul, div.rules ol {margin-left: 20px;}
+div.rules ul, div.rules ol {margin-left: 30px;}
 p.rules {padding: 5px;}
 p.rules img {vertical-align: middle; padding-top: 5px;}
 
@@ -830,13 +828,13 @@ p.rules a {
 .error {
 	border: 1px solid;
 	display: inline-block;
-	margin: 0 10px 6px 0;
+	margin: 0 15px 10px 0;
 	padding: 4px 6px;
 	width: auto;
 	clear: both;
 }
 
-p {margin: 10px 0;}
+p {margin: 15px 0;}
 .center {text-align: center;}
 
 em {font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; }

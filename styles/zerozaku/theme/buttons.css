@@ -1,4 +1,4 @@
-/* proSilver Button Styles
+rofile-icons/* proSilver Button Styles
 ---------------------------------------- */
 .button1, .button2 {
 	text-decoration: none;
@@ -114,8 +114,8 @@ a.print, a.sendemail, a.fontsize {
 /* Poster profile icons
 ----------------------------------------*/
 ul.profile-icons {
-	margin: 0 -10px;
-	padding: 4px 10px;
+	margin: 0 -15px;
+	padding: 4px 15px;
 	list-style: none;
 	clear: both;
 	overflow: hidden;
