@@ -128,13 +128,13 @@ $(function() {
 		return false;
 	});
 	
-	// Window resize event handler
+	/* Window resize event handler
 	$(window).resize(function(){
 		var window_width = $(window).width();
 		
-		if (window_width > 950) {
+		if (window_width > 1000) {
 			$('#page-body').stop().animate({
-				width: '75%'
+				width: '72%'
 			}, 600, 'swing', function()
 			{
 				$('#page-sidebar').show();
@@ -148,7 +148,7 @@ $(function() {
 				}, 600, 'swing');
 			});
 		}
-	});
+	});*/
 });
 
 function collapse() {
