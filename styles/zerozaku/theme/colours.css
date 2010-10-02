@@ -93,7 +93,7 @@ hr.dashed {
 	color: #999999 !important;
 }
 
-.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #C9D2D8 !important; }
+.breadcrumbs .navlinks .icon-home a.index:link, .breadcrumbs .navlinks .icon-home a.index:visited { color: #FFFFFF !important; }
 .breadcrumbs .navlinks .icon-home a.index:hover, .breadcrumbs .navlinks .icon-home a.index:active { color: #FF0000 !important; }
 
 .breadcrumbs .navlinks .icon-home a:link, .breadcrumbs .navlinks .icon-home a:visited {
@@ -105,7 +105,7 @@ hr.dashed {
 	/* Account actions box
 	--------------------------------------------- */
 	#account-actions li a:link, #account-actions li a:visited { color: #C9D2D8; }
-	#account-actions li a:hover, #account-actions li a:active { color: #FF0000; }
+	#account-actions li a:hover, #account-actions li a:active { background-color: #444444; }
 
 /* Navbar
 --------------------------------------------- */
@@ -1090,23 +1090,17 @@ fieldset.display-options label { color: #FFFFFF; }
 --------------------------------------------- */
 
 /* CSS Dropdown */
-.dropdown > span {
-	background-color: #444444;
-	border-color: #606060;
-}
-
 .dropdown > span a { color: #C9D2D8; }
 .dropdown:hover > span a { color: #2D587E; }
 
 .dropdown:hover > span {
-	background-color: #F6F6F6;
-	border-color: #F6F6F6;
+	background-color: #444444;
 	color: #212121;
 }
 
 .dropdown ul {
 	background-color: #444444;
-	border-color: #606060;
+	border-color: #212121;
 }
 
 .dropdown ul a:link, .dropdown ul a:visited {
@@ -1114,7 +1108,7 @@ fieldset.display-options label { color: #FFFFFF; }
 } /* 2D587E */
 
 .dropdown ul li a:hover {
-	color: #C9D2D8 !important;
+	background-color: #212121 !important;
 } /* #C9D2D8 */
 .dropdown ul li span {background: none;}
 
