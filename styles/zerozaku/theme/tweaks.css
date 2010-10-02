@@ -117,7 +117,6 @@ table#recent {
 
 .dropdown span {
 	line-height: 21px;
-	border: 1px solid;
 	display: block;
 	height: 21px;
 }
@@ -127,7 +126,7 @@ span.banned {
 }
 
 .dropdown span a {
-	padding: 1px 6px;
+	padding: 2px 10px !important;
 	display: inline-block;
 }
 
@@ -138,17 +137,18 @@ span.banned {
 }
 
 .dropdown ul {
-	border: 1px solid;
 	font-size: 1em;
 	line-height: 20px;
+	border-bottom: 4px solid;
 	display: none;
 	position: absolute;
 	left: 0;
-	top: 24px;
+	top: 21px;
 	margin: 0 0 10px 0;
-	padding: 6px 1.25em 6px 0;
+	padding: 10px 1.25em 0 0;
 	width: auto;
 	z-index: 9999;
+	overflow: hidden;
 }
 
 .dropdown:hover ul {
@@ -181,10 +181,13 @@ span.banned {
 	display: block;
 	padding: 0 1.25em 0 1em;
 	width: 100%;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	-khtml-border-radius: 0 !important;
+	border-radius: 0 !important;
 } 
 
 .dropdown ul li a:hover, .dropdown ul li a:active {
-	text-decoration: underline !important;
 }
 
 /* Dropdowns used by search */
