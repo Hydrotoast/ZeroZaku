@@ -26,7 +26,7 @@
 		<ul class="topiclist">
 			<li class="header">
 				<dl class="meta">
-					<dt class="no-icon">{L_VIEW_DETAILS}</dt>
+					<dt class="no-icon"><div class="inner">{L_VIEW_DETAILS}</div></dt>
 					<dd class="mark"><span>{L_MARK}</span></dd>
 					<dd class="moderation">{L_REPORTER}<!-- IF not S_PM --> &amp; {L_FORUM}<!-- ENDIF --></dd>
 				</dl>
@@ -38,10 +38,12 @@
 			<li class="row<!-- IF postrow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 				<dl>
 					<!-- IF S_PM -->
-					<dt class="no-icon">	
-						<a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.PM_SUBJECT}</a> {postrow.ATTACH_ICON_IMG}<br />
-						<span>{L_MESSAGE_BY_AUTHOR} {postrow.PM_AUTHOR_FULL} &raquo; {postrow.PM_TIME}</span><br />
-						<span>{L_MESSAGE_TO} {postrow.RECIPIENTS}</span>
+					<dt class="no-icon">
+						<div class="inner">
+							<a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.PM_SUBJECT}</a> {postrow.ATTACH_ICON_IMG}<br />
+							<span>{L_MESSAGE_BY_AUTHOR} {postrow.PM_AUTHOR_FULL} &raquo; {postrow.PM_TIME}</span><br />
+							<span>{L_MESSAGE_TO} {postrow.RECIPIENTS}</span>
+						</div>
 					</dt>
 					<dd class="mark"><input type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" /></dd>
 					<dd class="moderation">
@@ -49,8 +51,10 @@
 					</dd>
 					<!-- ELSE -->
 					<dt class="no-icon">
-							<a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.POST_SUBJECT}</a> {postrow.ATTACH_ICON_IMG}<br />
-							<span>{L_POSTED} {L_POST_BY_AUTHOR} {postrow.POST_AUTHOR_FULL} &raquo; {postrow.POST_TIME}</span>
+						<div class="inner">
+								<a href="{postrow.U_VIEW_DETAILS}" class="topictitle">{postrow.POST_SUBJECT}</a> {postrow.ATTACH_ICON_IMG}<br />
+								<span>{L_POSTED} {L_POST_BY_AUTHOR} {postrow.POST_AUTHOR_FULL} &raquo; {postrow.POST_TIME}</span>
+						</div>
 					</dt>
 					<dd class="mark"><input type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" /></dd>
 					<dd class="moderation">

@@ -306,6 +306,10 @@ a img { border: none; }
 	padding: 1.9812%;
 	clear: both;
 	overflow: hidden;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
 
 	#board-statistics p {
@@ -339,7 +343,7 @@ a img { border: none; }
 	}
 
 #footer-utilities {
-	padding: 15px 30px;
+	padding: 10px 15px;
 	clear: both;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
