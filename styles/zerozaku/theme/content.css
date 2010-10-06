@@ -921,6 +921,63 @@ fieldset.polls dd div {
 	float: left;
 }
 
+/* User columns
+----------------------------------------*/
+.user_column {
+  /* Also see tweaks.css */
+  border: 1px solid;
+  margin: 15px 15px 15px 0;
+	padding: 15px;
+  width: 200px;
+  float: left;
+  display: inline;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.user_column dt { text-align: center; }
+
+.user_column dd, .user_column dt { line-height: 1.8em; }
+.user_column dd { margin-bottom: 0.5em; }
+
+.user_column dd strong {
+  display: inline-block;
+  width: 5em;
+  margin-right: 0.5em;
+  padding: 0.1em 0.4em;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  behavior: url(PIE.htc); 
+  text-align: center;
+}
+
+.user_column dd.reputation {
+  margin-right: 1em;
+  padding: 0.1em 0.4em;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  behavior: url(PIE.htc); 
+  text-align: center;
+}
+
+.user_column dd.reputation strong {
+  display: inline;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -khtml-border-radius: 0;
+  border-radius: 0;
+  behaviour: url(PIE.htc);
+}
+
 /* PM Styles
 ----------------------------------------*/
 .pm {border: 1px solid;}
