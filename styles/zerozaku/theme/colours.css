@@ -31,15 +31,15 @@ hr.dashed {
 }
 
 #board-statistics {
-	background: #F6F6F6;
-	border-color: #D0D0D0;
+	background: transparent;
+	border-color: #E0E0E0;
 	color: #606060;
 }
 
-#board-statistics p { border-color: #D0D0D0; }
+#board-statistics p { border-color: #E0E0E0; }
 
-#board-statistics .stats { border-color: #D0D0D0; }
-#board-statistics .stats dd {border-color: #D0D0D0; }
+#board-statistics .stats { border-color: #E0E0E0; }
+#board-statistics .stats dd {border-color: #E0E0E0; }
 
 /* Quickpanel block
 --------------------------------------------- */
@@ -105,7 +105,7 @@ hr.dashed {
 	/* Account actions box
 	--------------------------------------------- */
 	#account-actions li a:link, #account-actions li a:visited { color: #C9D2D8; }
-	#account-actions li a:hover, #account-actions li a:active { background-color: #444444; }
+	#account-actions li a:hover, #account-actions li a:active { background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0;#E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0; color: #212121; }
 
 /* Navbar
 --------------------------------------------- */
@@ -886,7 +886,7 @@ ul.cplist {
 	color: #212121;
 }
 
-#tabs a:hover { background: #E0E0E0; }
+#tabs a:hover { background: #F6F6F6; }
 
 #tabs .activetab a { 
 	background: #F6F6F6; 
@@ -904,25 +904,23 @@ ul.cplist {
 
 /* UCP navigation menu
 ----------------------------------------*/
-#navigation {border-right-color: #CCCCCC;}
-
 /* Link styles for the sub-section links */
 #navigation a {
 	background-color: #FFFFFF;
-	background-image: url("{T_THEME_PATH}/images/bg_menu.gif");
-	border-color: #D0D0D0;
+	border-color: #C0C0C0;
 	color: #212121;
 }
 
 #navigation a:hover {
-	background-image: none;
-	color: #FF530D;
+	background-color: #FF530D;
+	border-color: #FF530D;
+	color: #FFFFFF;
 }
 
 #navigation #active-subsection a {
-	color: #212121;
-	background-color: #D0D0D0;
-	background-image: none;
+	background-color: #212121;
+	border-color: #212121;
+	color: #FFFFFF;
 }
 
 /* Preferences pane layout
@@ -1090,25 +1088,26 @@ fieldset.display-options label { color: #FFFFFF; }
 --------------------------------------------- */
 
 /* CSS Dropdown */
-.dropdown > span a { color: #C9D2D8; }
-.dropdown:hover > span a { color: #2D587E; }
+.dropdown:hover > span a { color: #212121 !important; }
 
 .dropdown:hover > span {
-	background-color: #444444;
-	color: #212121;
+	background-color: #E0E0E0;
+	color: #212121 !important;
 }
 
 .dropdown ul {
-	background-color: #444444;
+	background-color: #E0E0E0;
 	border-color: #212121;
 }
 
 .dropdown ul a:link, .dropdown ul a:visited {
-	color: #FFFFFF !important;
+	background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll 0 0;
+	color: #212121 !important;
 } /* 2D587E */
 
 .dropdown ul li a:hover {
-	background-color: #212121 !important;
+	background: #212121 !important;
+	color: #FFFFFF !important;
 } /* #C9D2D8 */
 .dropdown ul li span {background: none;}
 

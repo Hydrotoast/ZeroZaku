@@ -6,8 +6,8 @@
 ----------------------------------------*/
 #cp-menu {
 	float:left;
-	width: 18.5%;
-	margin: 0 1% 5px 0;
+	width: 15%;
+	margin: 0 30px 5px 0;
 	padding-bottom: 10px;
 }
 
@@ -25,9 +25,13 @@
 ul.cplist { margin-bottom: 10px; }
 
 #cp-main .panel {
-	padding: 10px;
-	margin-bottom: 10px;
+	padding: 15px;
+	margin-bottom: 15px;
 	width: 100%;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
 
 #cp-main table.table1 {
@@ -150,9 +154,8 @@ ul.cplist { margin-bottom: 10px; }
 ----------------------------------------*/
 /* Container for sub-navigation list */
 #navigation {
-	border-right: 2px solid;
-	margin-top: 41px;
-	padding: 0 3px 0 0;
+	margin-top: 40px;
+	padding: 0;
 	width: 100%;
 }
 
@@ -169,19 +172,37 @@ ul.cplist { margin-bottom: 10px; }
 
 /* Link styles for the sub-section links */
 #navigation a {
-	border-style: solid;
-	border-width: 1px;
 	font-weight: bold;
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
 	display: block;
-	padding: 5px;
-	margin: 4px 0;
+	padding: 10px 15px;
+}
+
+#navigation li:first-child a
+{
+	border-width: 1px;
+	-moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  -khtml-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+#navigation li:last-child a
+{
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -khtml-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+#navigation a:hover {
+	text-decoration: none;
 }
 
 
 #navigation #active-subsection a {
 	display: block;
-	margin-right: -3px;
-	padding-right: 3px;
 }
 
 /* Preferences pane layout
