@@ -792,6 +792,18 @@ fieldset.polls dd div {
 
 .online {}
 
+/* User columns
+----------------------------------------*/
+.user_column {
+  color: #666666;
+  border-color: #E0E0E0;
+}
+
+.user_column strong {
+  background-color: #EEEEEE;
+  color: #000000;
+}
+
 /*  	
 --------------------------------------------------------------
 Colours and backgrounds for buttons.css
