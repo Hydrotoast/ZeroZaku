@@ -112,6 +112,7 @@ dd select {
 }
 
 dd textarea {
+	font: 12px Verdana, Helvetica, Arial, sans-serif;
 	width: 85%;
 }
 
