@@ -42,6 +42,35 @@
 		</a></div>
 		<!-- END latest_topics -->
 	</div>
-	<!-- ENDIF -->         
+	<!-- ENDIF -->
+	
+	<!-- IF .user_column -->
+	<div id="user_columns">
+		<!-- BEGIN user_column -->
+		<dl class="user_column" id="profile{user_column.USER_ID}">
+	    <dt>
+	    	{user_column.USERNAME}<br />
+	      <!-- IF user_column.AVATAR -->
+	        {user_column.AVATAR}<br />
+	      <!-- ELSE -->
+	        <img src="{T_THEME_PATH}/images/no-avatar.png" height="100px" width="100px" alt="Default Avatar" />
+	      <!-- ENDIF -->
+	    </dt>
+	    
+	    <!-- IF user_column.STATUS neq '' -->
+	      <dd class="user_status">{user_column.STATUS}</dd>
+	    <!-- ENDIF -->
+	    
+	    <br />
+	
+		  <!-- IF user_column.RANK_TITLE or user_column.RANK_IMG --><dd><strong>{L_RANK_TITLE}</strong> {user_column.RANK_TITLE}<!-- IF user_column.RANK_TITLE and user_column.RANK_IMG --><br /><!-- ENDIF -->{user_column.RANK_IMG}</dd><!-- ENDIF -->
+		  <!-- IF user_column.POSTS != '' --><dd><strong>{L_POSTS}</strong> {user_column.POSTS}</dd><!-- ENDIF -->
+		  <!-- IF user_column.JOINED --><dd><strong>{L_JOINED}</strong> {user_column.JOINED}</dd><!-- ENDIF -->
+		  <!-- IF user_column.FROM --><dd><strong>{L_LOCATION}</strong> {user_column.FROM}</dd><!-- ENDIF -->
+	
+	  </dl>
+		<!-- END user_column -->
+	</div>
+	<!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->

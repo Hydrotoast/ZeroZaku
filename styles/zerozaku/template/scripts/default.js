@@ -29,6 +29,9 @@ $(function() {
 		$.get(config.root_path + 'affiliate.php?mode=click&a=' + ad_id);
 	});
 	
+	// Set equal heights
+	equalHeight($('.user_column'));
+	
 	if(localStorage.getItem('sidebar_side') == 'left')
 		$('#page-sidebar').addClass('left');
 	
@@ -165,6 +168,18 @@ function collapse() {
 		}
 	});
 }
+
+function equalHeight(group) {
+	var tallest = 0;
+	group.each(function() {
+		var thisHeight = $(this).height();
+		if(thisHeight > tallest) {
+			tallest = thisHeight;
+		}
+	});
+	group.height(tallest);
+}
+
 
 function shConfig() {
 	SyntaxHighlighter.config.bloggerMode = true;

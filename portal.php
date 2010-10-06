@@ -165,6 +165,45 @@ if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enab
 include($phpbb_root_path . 'includes/functions_activity_stats.' . $phpEx);
 activity_mod();
 
+// BEGIN USER COLUMN
+
+// Get user...
+$sql = 'SELECT u.*, im.user_status
+  FROM ' . USERS_TABLE . ' u
+  JOIN ' . USERS_IM_TABLE . ' im
+    ON u.user_id = im.user_id
+  WHERE u.user_posts > 0 
+    AND u.user_warnings < 2 
+    AND u.user_id <> ' . ANONYMOUS. '
+    AND im.user_status <> ""
+  ORDER BY RAND()
+  LIMIT 0, 6';
+$result = $db->sql_query($sql);
+
+while($row = $db->sql_fetchrow($result))
+{
+    get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+    
+    $id_cache[] = $member;
+    
+    $member = array(
+      'USERNAME'          => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+      'AVATAR'            => ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], $row['user_avatar_width'], $row['user_avatar_height']) : '',
+      'USER_ID'           => $row['user_id'],
+      'RANK_TITLE'        => $row['rank_title'],
+      'RANK_IMG'          => $row['rank_image'],
+      'RANK_IMG_SRC'      => $row['rank_image_src'],
+			'JOINED'            => $user->format_date($row['user_regdate'], "M jS Y", true),
+			'POSTS'             => $row['user_posts'],
+			'FROM'              => (!empty($row['user_from'])) ? $row['user_from'] : '',
+      'STATUS'            => ($row['user_status']) ? $row['user_status'] : '',
+    );
+
+    $template->assign_block_vars('user_column', $member);
+}
+$db->sql_freeresult($result);
+// END USER COLUMN
+
 // Grab group details for legend display
 if ($auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
 {
