@@ -26,10 +26,6 @@ a:active	{ color: #000000; text-decoration: none; }
 
 img, .noprint, #sub-header, #sub-footer, .navbar, .box1, .divider, .signature { display: none; }
 
-.post {
-	overflow: hidden;
-}
-
 /* Display smilies (Bug #47265) */
 .content img {
 	display: inline;
