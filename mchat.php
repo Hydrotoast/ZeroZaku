@@ -480,7 +480,6 @@ switch ($mchat_mode)
 		exit;
 	break;
 	
-	
 	// Add function...
 	case 'add':
 	
