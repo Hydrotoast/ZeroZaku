@@ -483,6 +483,15 @@ switch ($mchat_mode)
 	// Add function...
 	case 'add':
 	
+		//check referer to avoid CSRF
+		$referer = $_SERVER['HTTP_REFERER'];
+		if (preg_match('~http://[a-zA-Z0-9]*.?zerozaku.com/?[(index|mchat).php]?~', $referer) == 0)
+		{
+			//referer is invalid. Forbidden.
+			header('HTTP/1.0 403 Forbidden');
+			exit('HTTP/1.0 403 Forbidden');
+		}
+		
 		// If mChat disabled
 		if (!$config['mchat_enable'] || !$mchat_add_mess)
 		{
