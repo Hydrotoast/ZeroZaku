@@ -485,7 +485,7 @@ switch ($mchat_mode)
 	
 		//check referer to avoid CSRF
 		$referer = $_SERVER['HTTP_REFERER'];
-		if (preg_match('~http://[a-zA-Z0-9]*.?zerozaku.com/?[(index|mchat).php]?~', $referer) == 0)
+		if (preg_match('~http://[a-zA-Z0-9]*.?(zerozaku.com){1}/?((index|mchat).php)?(sid\=)?[a-f0-9]*$~', $referer) == 0)
 		{
 			//referer is invalid. Forbidden.
 			header('HTTP/1.0 403 Forbidden');
