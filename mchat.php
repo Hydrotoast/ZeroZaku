@@ -483,6 +483,7 @@ switch ($mchat_mode)
 	// Add function...
 	case 'add':
 	
+	    
 		// If mChat disabled
 		if (!$config['mchat_enable'] || !$mchat_add_mess)
 		{
