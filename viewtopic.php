@@ -1133,6 +1133,7 @@ while ($row = $db->sql_fetchrow($result))
 		'post_deleted'		=> $row['post_deleted'],
 		'post_deleted_time'	=> $row['post_deleted_time'],
 		'post_edit_locked'	=> $row['post_edit_locked'],
+	
 		//-- mod : Community Moderation ------------------------------------------------------------
 		'post_upvotes'		=> $row['post_upvotes'],
 		'post_downvotes'	=> $row['post_downvotes'],
