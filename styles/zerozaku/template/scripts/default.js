@@ -9,11 +9,11 @@ var config = {
 	im_started: false
 };
 
-function init(t_root_path, t_template_path, t_theme_path, t_aid) {
-	config.root_path = t_root_path;
-	config.template_path = t_template_path;
-	config.theme_path = t_theme_path;
-	config.aid = t_aid;
+function init(p_root_path, p_template_path, p_theme_path, p_aid) {
+	config.root_path = p_root_path;
+	config.template_path = p_template_path;
+	config.theme_path = p_theme_path;
+	config.aid = p_aid;
 	
 	collapse();
 	shConfig();
