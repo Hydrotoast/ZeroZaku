@@ -217,7 +217,7 @@ function sendChat() {
                     
 	global $db, $aid;       
        
-		//Verify link hash...
+	 	//Verify link hash...
 		
 	if (!check_link_hash($aid, 'ajax'))
 	{
