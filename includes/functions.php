@@ -4243,6 +4243,8 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'ROOT_PATH'			=> $phpbb_root_path,
 		'BOARD_URL'			=> $board_url,
 
+    'AID'         => generate_link_hash('ajax'),
+
 		'L_LOGIN_LOGOUT'	=> $l_login_logout,
 		'L_INDEX'			=> $user->lang['FORUM_INDEX'],
 		'L_ONLINE_EXPLAIN'	=> $l_online_time,
