@@ -407,6 +407,14 @@ function user_status()
 		
 		$rs = $db->sql_query( $sql);
 		$row = $db->sql_fetchrow( $rs);
+		
+		//Verify link hash...
+		$aid = request_var('aid', '');
+		if (!check_link_hash($aid, 'ajax'))
+		{
+			trigger_error('Invalid link hash');
+		}
+		
 		switch ($mode)
 		{
 			case 'add':
