@@ -35,6 +35,8 @@ session_name( $user->data['session_id']);
 session_id( $user->data['session_id']);
 session_start();
 
+$aid = request_var('aid', '');
+
 /**
  * INITIAL SESSION SET
  */
@@ -397,7 +399,7 @@ function displayNewestPosts()
 
 function user_status()
 {
-	global $db, $user;
+	global $db, $user, $aid;
 
 	if($user->data['user_id'] != ANONYMOUS)
 	{
@@ -409,7 +411,7 @@ function user_status()
 		$row = $db->sql_fetchrow( $rs);
 		
 		//Verify link hash...
-		$aid = request_var('aid', '');
+		
 		if (!check_link_hash($aid, 'ajax'))
 		{
 			trigger_error('Invalid link hash');
