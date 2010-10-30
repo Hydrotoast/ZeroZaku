@@ -314,11 +314,11 @@ ul.topiclist dd.stats dfn { font-style: normal; }
 dd.posts, dd.views {
 	line-height: 2.7em;
 	text-align: center;
-	width: 168px;
+	width: 10%;
 }
 
 dd.lastpost {
-	width: 252px;
+	width: 26%;
 	padding-left: 0.5% !important;
 }
 
