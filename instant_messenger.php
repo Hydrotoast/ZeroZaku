@@ -35,6 +35,7 @@ session_name( $user->data['session_id']);
 session_id( $user->data['session_id']);
 session_start();
 
+//get the link hash for later use
 $aid = request_var('aid', '');
 
 /**
@@ -214,8 +215,15 @@ function startChatSession()
  */
 function sendChat() {      
                     
-	global $db;       
+	global $db, $aid;       
        
+		//Verify link hash...
+		
+	if (!check_link_hash($aid, 'ajax'))
+	{
+		trigger_error('Invalid link hash');
+	}
+	
 	$from = $_SESSION['user_id'];
 	$to = request_var('uid', '', true);
 	$to_name = request_var( 'uname', '', true);

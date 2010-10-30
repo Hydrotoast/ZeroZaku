@@ -277,7 +277,7 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle, s_username) {j
 				cache: false,
 				dataType: 'json',
 				url: im_cfg.rootPath + 'instant_messenger.php',
-				data: { action: 'sendchat', uid: chatboxtitle, uname: s_username, message: s_message},
+				data: { action: 'sendchat', uid: chatboxtitle, uname: s_username, message: s_message, aid: config.aid},
 				error: function(){
 					alert( 'AJAX Error: checkChatBoxInputKey()');
 				},
