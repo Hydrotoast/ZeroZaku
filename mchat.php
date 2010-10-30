@@ -493,6 +493,13 @@ switch ($mchat_mode)
 			exit('HTTP/1.0 403 Forbidden');
 		}
 				
+		//Verify link hash...
+		$aid = request_var('aid', '');
+		if (!check_link_hash($aid, 'ajax'))
+		{
+			trigger_error('Invalid link hash');
+		}
+		
 		// Reguest...
 		$message = utf8_normalize_nfc(request_var('message', '', true));
 		
