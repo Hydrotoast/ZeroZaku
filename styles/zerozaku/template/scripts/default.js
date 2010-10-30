@@ -5,13 +5,15 @@ var config = {
 	root_path: '',
 	template_path: '',
 	theme_path: '',
+	aid: '',
 	im_started: false
 };
 
-function init(t_root_path, t_template_path, t_theme_path) {
+function init(t_root_path, t_template_path, t_theme_path, t_aid) {
 	config.root_path = t_root_path;
 	config.template_path = t_template_path;
 	config.theme_path = t_theme_path;
+	config.aid = t_aid;
 	
 	collapse();
 	shConfig();
