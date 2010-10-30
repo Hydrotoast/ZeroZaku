@@ -24,7 +24,7 @@ function load_onlinelist(){jQuery(function($){
 		type	: 'post',
 		cache	: false,
 		async	: false,
-		url		: im_cfg.rootPath + 'instant_messenger.php',
+		url		: im_cfg.rootPath + 'instant_messenger.php?aid=' + config.aid,
 		data	: { action: 'onlinelist' },
 		dataType: 'html',
 		success : function (data) {
@@ -47,7 +47,7 @@ function load_news() {jQuery(function($){
 		type	: 'post',
 		cache	: false,
 		async	: false,
-		url		: im_cfg.rootPath + 'instant_messenger.php',
+		url		: im_cfg.rootPath + 'instant_messenger.php?aid=' + config.aid,
 		data	: { action: 'newposts' },
 		dataType: 'html'
 		
@@ -164,7 +164,7 @@ function load_startIM( im_config) {
 			type: 'post',
 			cache: false,
 			dataType: 'json',
-			url: im_cfg.rootPath + 'instant_messenger.php'
+			url: im_cfg.rootPath + 'instant_messenger.php?aid=' + config.aid
 		});
 		
 		// Stupid loading of CSS
