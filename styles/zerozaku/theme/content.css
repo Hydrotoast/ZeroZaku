@@ -511,7 +511,7 @@ a.forumtitle:hover { text-decoration: underline; }
 
 .panel.info img, .panel.tag img {
 	float: left;
-	margin: 6px 0;
+	margin: 12px 0;
 }
 
 .panel.tag img {
