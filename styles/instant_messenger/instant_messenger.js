@@ -153,7 +153,7 @@ function chatHeartbeat() {jQuery(function($){
 	}
 	
 	$.ajax({
-	  url: im_cfg.rootPath + "instant_messenger.php?aid="+config.aid,
+	  url: im_cfg.rootPath + "instant_messenger.php",
 	  data: {action: 'chatheartbeat'},
 	  success: function(data) {
 
@@ -276,7 +276,7 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle, s_username) {j
 				type: 'post',
 				cache: false,
 				dataType: 'json',
-				url: im_cfg.rootPath + 'instant_messenger.php?aid'+config.aid,
+				url: im_cfg.rootPath + 'instant_messenger.php',
 				data: { action: 'sendchat', uid: chatboxtitle, uname: s_username, message: s_message},
 				error: function(){
 					alert( 'AJAX Error: checkChatBoxInputKey()');
