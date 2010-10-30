@@ -113,7 +113,9 @@ var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote
 				<!-- IF MCHAT_ADD_MESSAGE -->
 				<input type="hidden" name="mode" value="add" />
 				<input type="text" tabindex="1" name="message" class="mChatText" id="mChatMessage" />
-				<input type="button" tabindex="2" class="button1" onclick="mChat.add();" value="{L_MCHAT_ADD}" />
+				<input type="hidden" name="aid" value="{AID}" />
+                <input type="button" tabindex="2" class="button1" onclick="mChat.add();" value="{L_MCHAT_ADD}" />
+                
 				<!-- ENDIF -->
 			
 				<br />
