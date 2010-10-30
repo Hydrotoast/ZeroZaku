@@ -151,7 +151,7 @@ function window_resize() {jQuery(function($){
 
 
 /** START - assign all event **/
-function load_startIM( im_config) {
+function load_startIM(im_config) {
 
 	// Taking ownership over $ function, map $ as jQuery;
 	jQuery(function($){
@@ -244,7 +244,9 @@ function load_startIM( im_config) {
 				data: {
 					action: 'userstatus',
 					mode: s_this,
+					aid: config.aid,
 					status_text: $('#status_text').val()
+					
 				},
 				error: function(){
 					alert('AJAX Error\nUpdate status');
