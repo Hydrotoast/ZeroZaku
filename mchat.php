@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ *  
  * @package mChat PHP Code
  * @version 1.3.7 26.10.2009
  * @copyright (c) djs596 ( http://djs596.com/ ), (c) RMcGirr83 ( http://www.rmcgirr83.org/ ), (c) Stokerpiller ( http://www.phpbb3bbcodes.com/ )
@@ -87,9 +87,9 @@ switch ($mchat_mode)
         {
             include($phpbb_root_path . 'includes/functions_user.' . $phpEx);
         }
-        	
+         
         $user_ip = request_var('ip', '');
-        	
+         
         $template->assign_var('WHOIS', user_ipwhois($user_ip));
 
         // Output the page
@@ -98,7 +98,7 @@ switch ($mchat_mode)
         $template->set_filenames(array(
 				'body' => 'viewonline_whois.html')
         );
-        	
+         
         // Update breadcrumbs
         $template->assign_block_vars('navlinks', array(
 				'FORUM_NAME' => $user->lang['MCHAT_TITLE'],
@@ -117,7 +117,7 @@ switch ($mchat_mode)
 
     // Clean function...
     case 'clean';
-    	
+     
     // User logged in?
     if(!$user->data['is_registered'] || !$mchat_founder)
     {
@@ -181,7 +181,7 @@ switch ($mchat_mode)
         {
             mchat_prune((int) $config_mchat['prune_num']);
         }
-        	
+         
         // Reguest...
         $mchat_archive_start = request_var('start', 0);
         // Message row
@@ -243,7 +243,7 @@ switch ($mchat_mode)
             // If archive mode request set true
             $mchat_archive_mode = true;
         }
-        	
+         
         // Update breadcrumbs
         $template->assign_block_vars('navlinks', array(
 				'FORUM_NAME' => $user->lang['MCHAT_TITLE'],
@@ -352,7 +352,7 @@ switch ($mchat_mode)
         $result = $db->sql_query($sql);
         $mchat_guests_online = (int) $db->sql_fetchfield('num_guests');
         $db->sql_freeresult($result);
-        	
+         
         $mchat_online_users = array(
 			'online_users'			=> array(),
 			'hidden_users'			=> array(),
@@ -480,7 +480,7 @@ switch ($mchat_mode)
         exit;
         break;
 
-    // Add function...
+        // Add function...
     case 'add':
 
         // If mChat disabled
@@ -510,7 +510,7 @@ switch ($mchat_mode)
         }
         $message_chars = preg_replace($RegEx, '', $message);
         $message_chars = (utf8_strlen(trim($message_chars)) > 0) ? true : false;
-        	
+         
         if (!$message || !$message_chars)
         {
             // Not Implemented (for jQ AJAX request)
@@ -750,7 +750,7 @@ switch ($mchat_mode)
             // Stop running code
             exit;
         }
-        	
+         
         // If not include in index.php set mchat.php page true
         if (!$mchat_include_index)
         {
@@ -767,7 +767,7 @@ switch ($mchat_mode)
                 // Stop running code
                 exit;
             }
-            	
+             
             // user has permissions to view the custom chat?
             if (!$mchat_view && $mchat_custom_page)
             {
@@ -775,7 +775,7 @@ switch ($mchat_mode)
                 // Stop running code
                 exit;
             }
-            	
+             
             // prune the chats if nescessary and amount in ACP not empty
             if ($config_mchat['prune_enable'] && $config_mchat['prune_num'] > 0)
             {
@@ -829,7 +829,7 @@ switch ($mchat_mode)
                 // functions_mchat.php
                 mchat_users();
             }
-            	
+             
             // Update breadcrumbs
             $template->assign_block_vars('navlinks', array(
 				'FORUM_NAME' => $user->lang['MCHAT_TITLE'],
@@ -847,7 +847,7 @@ switch ($mchat_mode)
 				ORDER BY message_id DESC';
             $result = $db->sql_query_limit($sql, $config_mchat['message_limit']);
             $rows = $db->sql_fetchrowset($result);
-            	
+             
             foreach($rows as $row)
             {
                 // edit, delete and permission auths
@@ -879,14 +879,14 @@ switch ($mchat_mode)
             }
 
             $db->sql_freeresult($result);
-            	
+             
             // Write no message
             if (empty($rows))
             {
                 // Template function...
                 $template->assign_vars(array('MCHAT_NOMESSAGE_MODE' => true));
             }
-            	
+             
             // Smile row
             if ($mchat_smilies)
             {
@@ -903,7 +903,7 @@ switch ($mchat_mode)
                     }
                 }
                 $db->sql_freeresult($result);
-                	
+                 
                 if(sizeof($smilies))
                 {
                     foreach($smilies as $row)
