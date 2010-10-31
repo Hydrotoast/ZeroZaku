@@ -31,12 +31,9 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup();
 
-session_name( $user->data['session_id']);
-session_id( $user->data['session_id']);
+session_name($user->data['session_id']);
+session_id($user->data['session_id']);
 session_start();
-
-//get the link hash for later use
-$aid = request_var('aid', '');
 
 /**
  * INITIAL SESSION SET
@@ -215,10 +212,12 @@ function startChatSession()
  */
 function sendChat() {      
                     
-	global $db, $aid;       
-       
-	 	//Verify link hash...
-		
+	global $db;
+	
+	//get the link hash for later use
+  $aid = request_var('aid', '');
+	
+	//Verify link hash...
 	if (!check_link_hash($aid, 'ajax'))
 	{
 		trigger_error('Invalid link hash');
@@ -407,7 +406,7 @@ function displayNewestPosts()
 
 function user_status()
 {
-	global $db, $user, $aid;
+	global $db, $user;
 
 	if($user->data['user_id'] != ANONYMOUS)
 	{
@@ -418,8 +417,10 @@ function user_status()
 		$rs = $db->sql_query( $sql);
 		$row = $db->sql_fetchrow( $rs);
 		
-		//Verify link hash...
+		//get the link hash for later use
+    $aid = request_var('aid', '');
 		
+		//Verify link hash...
 		if (!check_link_hash($aid, 'ajax'))
 		{
 			trigger_error('Invalid link hash');
