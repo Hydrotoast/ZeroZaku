@@ -1,6 +1,6 @@
 <?php
 /**
- *  
+ * 
  * @package phpBB3 instant messenger
  * @version $Id: instant messenger.php 0.4.2
  * @copyright (c) 2010 Gio Borje www.zerozaku.com
