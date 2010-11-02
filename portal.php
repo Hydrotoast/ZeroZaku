@@ -183,8 +183,9 @@ $result = $db->sql_query($sql);
 while($row = $db->sql_fetchrow($result))
 {
     get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+    $member = array();
     
-    $id_cache[] = $member;
+	$id_cache[] = $member;
     
     $member = array(
       'USERNAME'          => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
