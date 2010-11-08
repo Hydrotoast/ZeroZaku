@@ -1,0 +1,1 @@
+<?php $licensekey = 'R0DOG-FIIY7-LJ2UI-XNY0K-EX7OK';?>
