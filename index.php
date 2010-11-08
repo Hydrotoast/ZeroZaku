@@ -264,7 +264,7 @@ if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enab
 {
 	define('MCHAT_INCLUDE', true);
 	$mchat_include_index = true;
-	include($phpbb_root_path.'mchat.'.$phpEx);
+	include($phpbb_root_path.'chat.'.$phpEx);
 }
 // END mChat Mod
 // Output page
