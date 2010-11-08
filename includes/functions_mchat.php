@@ -25,7 +25,7 @@ function mchat_obtain_guest_count()
 {
 	global $db, $config, $phpEx;
 
-	$reading_sql = ' AND s.session_page = "mchat.'.$phpEx.'"';
+	$reading_sql = ' AND s.session_page = "chat.'.$phpEx.'"';
 
 	$time = (time() - (intval($config['load_online_time']) * 60));
 
@@ -83,7 +83,7 @@ function mchat_obtain_users_online()
 	$sql = 'SELECT s.session_user_id, s.session_ip, s.session_viewonline
 		FROM ' . SESSIONS_TABLE . ' s
 		WHERE s.session_time >= ' . ($time - ((int) ($time % 30))) . '
-		AND s.session_page = "mchat.'.$phpEx.'"
+		AND s.session_page = "chat.'.$phpEx.'"
 		AND s.session_user_id <> ' . ANONYMOUS;
 	$result = $db->sql_query($sql);
 
