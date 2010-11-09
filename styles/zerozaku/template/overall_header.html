@@ -33,15 +33,10 @@
 	Original author:  Gio Borje (http://www.zerozaku.com/)
 -->
 
-<!--[if lt IE 7]>
-  <link href="{T_THEME_PATH}/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
-<![endif]-->
-
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
 
 <!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
 <link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
-<!-- IF S_USER_ALLOW_IM --><link href="{T_THEME_PATH}/instant_messenger_bidi.css" rel="stylesheet" type="text/css" media="screen, projection" /><!-- ENDIF -->
 <!-- ENDIF -->
 
 <!-- INCLUDE reimg_content.html -->
@@ -139,18 +134,10 @@ window.onunload = function()
 <link type="text/css" href="{ROOT_PATH}cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
 <script type="text/javascript" src="{ROOT_PATH}cometchat/cometchatjs.php" charset="utf-8"></script>
 
-<!-- IF S_USER_ALLOW_IM -->
-	<!-- IF S_USER_LOGGED_IN and not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger.js"></script><!-- ENDIF -->
-	<!-- IF not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger_buttons.js"></script><!-- ENDIF -->
-<!-- ENDIF -->
 </head>
 
 <body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">
-	
-<!-- IF S_USER_ALLOW_IM and not S_IS_BOT -->
-	<!-- INCLUDE instant_messenger_bar.html -->
-<!-- ENDIF --> 
-	
+
 <div class="breadcrumbs">
 	<div class="inner">
 		<ul class="navlinks">
