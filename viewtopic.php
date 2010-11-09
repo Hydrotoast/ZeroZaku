@@ -1049,7 +1049,7 @@ if (!sizeof($post_list))
 $max_post_time = 0;
 
 $sql = $db->sql_build_query('SELECT', array(
-	'SELECT'	=> 'u.*, z.friend, z.foe, p.*, uim.user_status',
+	'SELECT'	=> 'u.*, z.friend, z.foe, p.*, c.message',
 
 	'FROM'		=> array(
 		USERS_TABLE		=> 'u',
@@ -1062,8 +1062,8 @@ $sql = $db->sql_build_query('SELECT', array(
 			'ON'	=> 'z.user_id = ' . $user->data['user_id'] . ' AND z.zebra_id = p.poster_id'
 		),
 		array(
-			'FROM'	=> array(USERS_IM_TABLE => 'uim'),
-			'ON'	=> 'uim.user_id = p.poster_id'
+			'FROM'	=> array(CHAT_STATUS_TABLE => 'c'),
+			'ON'	=> 'c.userid = p.poster_id'
 		)
 	),
 
@@ -1155,7 +1155,7 @@ while ($row = $db->sql_fetchrow($result))
 		'enable_sig'		=> $row['enable_sig'],
 		'friend'			=> $row['friend'],
 		'foe'				=> $row['foe'],
-		'status'			=> $row['user_status'],
+		'status'			=> $row['message'],
 	);
 
 
@@ -1273,7 +1273,7 @@ while ($row = $db->sql_fetchrow($result))
 				'author_colour'		=> get_username_string('colour', $poster_id, $row['username'], $row['user_colour']),
 				'author_username'	=> get_username_string('username', $poster_id, $row['username'], $row['user_colour']),
 				'author_profile'	=> get_username_string('profile', $poster_id, $row['username'], $row['user_colour']),
-				'status'		=> ($row['user_status']) ? $row['user_status'] : '',
+				'status'		=> ($row['message']) ? $row['message'] : '',
 			);
 
 			get_user_rank($row['user_rank'], $row['user_posts'], $user_cache[$poster_id]['rank_title'], $user_cache[$poster_id]['rank_image'], $user_cache[$poster_id]['rank_image_src']);

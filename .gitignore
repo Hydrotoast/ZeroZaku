@@ -1,4 +1,6 @@
 /cache
+/cometchat/.htaccess
+/cometchat/config.php
 /files
 /images/avatars/upload
 /sitemap
