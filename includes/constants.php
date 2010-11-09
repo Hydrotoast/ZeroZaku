@@ -295,6 +295,9 @@ define('PORTAL_CONFIG_TABLE',		$table_prefix . 'portal_config');
 
 define('WPM_TABLE',					$table_prefix . 'wpm');
 
+define('CHAT_ANNOUNCEMENTS_TABLE', 'cometchat_announcements');
+define('CHAT_STATUS_TABLE', 'cometchat_status');
+
 // Adaptive Hide BBcodes MOD
 define('ADAPT_HIDE_LIMIT_POSTS', 1250);
 define('ADAPT_HIDE_IGNORE_LIMIT_GROUPS', '4,5,7');
