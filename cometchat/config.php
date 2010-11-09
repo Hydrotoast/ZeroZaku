@@ -27,13 +27,9 @@ $rtl = 0;
 
 /* ICONS START */
 
-$trayicon[] = array('home','Home','/','','','','','');
 $trayicon[] = array('chatrooms','Chatrooms','modules/chatrooms/index.php','_popup','500','300','','1');
 $trayicon[] = array('announcements','Announcements','modules/announcements/index.php','_popup','280','300','','1');
-$trayicon[] = array('games','Single Player Games','modules/games/index.php','_popup','500','300','','1');
-$trayicon[] = array('translate','Translate This Page','modules/translate/index.php','_popup','280','300','','1');
 $trayicon[] = array('share','Share This Page','modules/share/index.php','_popup','340','50','','1');
-$trayicon[] = array('scrolltotop','Scroll To Top','javascript:jqcc.cometchat.scrollToTop();','','','','','');
 
 /* ICONS END */
 
@@ -41,7 +37,7 @@ $trayicon[] = array('scrolltotop','Scroll To Top','javascript:jqcc.cometchat.scr
 
 /* PLUGINS START */
 
-$plugins = array('games','handwrite','chathistory','clearconversation','chattime');
+$plugins = array('games','handwrite','transliterate','chathistory','clearconversation','chattime');
 
 /* PLUGINS END */
 
@@ -81,7 +77,7 @@ $smileys = array(
 
 /* BANNED START */
 
-$bannedWords = array( 'asshole','fuck','bastard','bitch',);
+$bannedWords = array(  );
 $bannedUserIDs = array();
 $bannedMessage = 'Sorry, you have been banned from using this service. Your messages will not be delivered.';
 
@@ -91,8 +87,8 @@ $bannedMessage = 'Sorry, you have been banned from using this service. Your mess
 
 /* ADMIN START */
 
-define('ADMIN_USER','cometchat');
-define('ADMIN_PASS','cometchat');
+define('ADMIN_USER','admin');
+define('ADMIN_PASS','consanguine');
 
 /* ADMIN END */
 
@@ -125,7 +121,7 @@ $barType = 'fluid';			// Bar layout
 $barWidth = '960';			// If set to fixed, enter the width of the bar in pixels
 $barAlign = 'center';			// If set to fixed, enter alignment of the bar
 $barPadding = '20';			// Padding of bar from the end of the window
-$minHeartbeat = '3000';			// Minimum poll-time in milliseconds (1 second = 1000 milliseconds)
+$minHeartbeat = '5000';			// Minimum poll-time in milliseconds (1 second = 1000 milliseconds)
 $maxHeartbeat = '12000';			// Maximum poll-time in milliseconds
 $longNameLength = '24';			// The length after which characters will be truncated in long names
 $shortNameLength = '12';			// The length after which characters will be truncated in short names
@@ -145,7 +141,7 @@ $armyTime = '0';			// If set to yes, show time plugin will use 24-hour clock for
 $disableForIE6 = '0';			// If set to yes, CometChat will be hidden in IE6
 $disableForMobileDevices = '1';			// If set to yes, CometChat will be hidden in mobile devices
 $iPhoneView = '0';			// iPhone style messages in chatboxes?
-$hideBar = '0';			// Hide bar for non-logged in users?
+$hideBar = '1';			// Hide bar for non-logged in users?
 $fixFlash = '0';			// Set to yes, if Adobe Flash animations/ads are appearing on top of the bar
 
 
@@ -155,7 +151,7 @@ $fixFlash = '0';			// Set to yes, if Adobe Flash animations/ads are appearing on
 
 /* DISPLAYSETTINGS START */
 
-define('DISPLAY_ALL_USERS','0');
+define('DISPLAY_ALL_USERS','1');
 
 /* DISPLAYSETTINGS END */
 

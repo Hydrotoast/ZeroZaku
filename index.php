@@ -259,14 +259,6 @@ $template->assign_vars(array(
 include($phpbb_root_path . 'includes/functions_activity_stats.' . $phpEx);
 activity_mod();
 
-// BEGIN mChat Mod
-if(!defined('MCHAT_INCLUDE') && $config['mchat_on_index'] && $config['mchat_enable'] && $auth->acl_get('u_mchat_view') && $user->optionget('mchat'))
-{
-	define('MCHAT_INCLUDE', true);
-	$mchat_include_index = true;
-	include($phpbb_root_path.'chat.'.$phpEx);
-}
-// END mChat Mod
 // Output page
 page_header($user->lang['INDEX']);
 

@@ -758,29 +758,25 @@ switch ($mode)
 		{
 			$member['posts_in_queue'] = 0;
 		}
-		// MOD :: INSTANT MESSENGER -- START
-		$sql = 'SELECT user_status, user_deny_im
-			FROM ' . USERS_IM_TABLE . '
-			WHERE user_id = ' . $user_id;
+		
+		$sql = 'SELECT message
+			FROM ' . CHAT_STATUS_TABLE . '
+			WHERE userid = ' . $user_id;
 		$result = $db->sql_query( $sql);
 		$row = $db->sql_fetchrow( $result);
 		if ( !is_array( $row))
 		{
 			$row = array(
 				'user_status'	=> '',
-				'user_deny_im'	=> 0
 			);
 		}
-		$member = array_merge( $member, $row);
+		$member = array_merge($member, $row);
 		$db->sql_freeresult( $result);
 		
 		$template->assign_vars(array(
-			'USER_STATUS'		=> $member['user_status'],
-			'USER_ID'			=> $user_id,
-			'S_ALLOW_IM'		=> $user_id != $user->data['user_id'] && $member['user_deny_im'] == 0,
-			'S_CAN_WITH_IM'		=> $friend, 
+			'USER_STATUS'    => $member['message'],
+			'USER_ID'        => $user_id,
 		));
-		// MOD :: INSTANT MESSENGER -- END
 		
 		// BEGIN USER EXTRA
 		$profile_extra = array();
@@ -1740,29 +1736,12 @@ switch ($mode)
 				{
 					$cp_row = (isset($profile_fields_cache[$user_id])) ? $cp->generate_profile_fields_template('show', false, $profile_fields_cache[$user_id]) : array();
 				}
-				// MOD :: INSTANT MESSENGER -- START
-				$sql = "SELECT uim.user_deny_im, z.friend
-						FROM " . USERS_IM_TABLE . " uim RIGHT OUTER JOIN " . ZEBRA_TABLE . " z ON z.user_id = uim.user_id
-						WHERE uim.user_id = " . $user_id . "
-							AND z.zebra_id = " . $user->data['user_id'] . "
-							AND z.user_id = " . $user_id;
-				$result = $db->sql_query( $sql);
-				$im_row = $db->sql_fetchrow( $result);
-				$row['user_deny_im'] = (int) $im_row['user_deny_im'];
-				$row['friend'] =  ((int) $im_row['friend'] == 1 ) ? true : false;
-				//if ( $user_id == 2) {print_r( $im_row);die( $row);}
-				$db->sql_freeresult( $result);
-				// MOD :: INSTANT MESSENGER -- END
 
 				$memberrow = array_merge(show_profile($row), array(
 					'ROW_NUMBER'		=> $i + ($start + 1),
 
 					'S_CUSTOM_PROFILE'	=> (isset($cp_row['row']) && sizeof($cp_row['row'])) ? true : false,
 					'S_GROUP_LEADER'	=> $is_leader,
-					// MOD :: INSTANT MESSENGER -- START
-					'S_ALLOW_IM'		=> $row['user_deny_im'] == 0 && $user->data['user_id'] != $user_id,
-					'S_CAN_WITH_IM'		=> $row['friend'] ? true : false,
-					// MOD :: INSTANT MESSENGER -- END
 
 					'U_VIEW_PROFILE'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&amp;u=' . $user_id))
 				);
@@ -1819,9 +1798,6 @@ switch ($mode)
 			'U_SORT_ACTIVE'			=> ($auth->acl_get('u_viewonline')) ? $sort_url . '&amp;sk=l&amp;sd=' . (($sort_key == 'l' && $sort_dir == 'a') ? 'd' : 'a') : '',
 			'U_SORT_RANK'			=> $sort_url . '&amp;sk=m&amp;sd=' . (($sort_key == 'm' && $sort_dir == 'a') ? 'd' : 'a'),
 			'U_LIST_CHAR'			=> $sort_url . '&amp;sk=a&amp;sd=' . (($sort_key == 'l' && $sort_dir == 'a') ? 'd' : 'a'),
-			// MOD :: INSTANT MESSENGER -- START
-			'USER_ID'			=> $user->data['user_id'],
-			// MOD :: INSTANT MESSENGER -- END
 
 			'S_SHOW_GROUP'		=> ($mode == 'group') ? true : false,
 			'S_VIEWONLINE'		=> $auth->acl_get('u_viewonline'),
@@ -1910,9 +1886,6 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 
 	// Dump it out to the template
 	return array(
-		// MOD :: INSTANT MESSENGER -- START
-		'USER_ID'		=> $user_id,
-		// MOD :: INSTANT MESSENGER -- END
 		'AGE'			=> $age,
 		'RANK_TITLE'	=> $rank_title,
 		'JOINED'		=> $user->format_date($data['user_regdate']),
