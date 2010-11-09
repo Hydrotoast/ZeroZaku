@@ -99,7 +99,7 @@ function updateLastActivity($userid) {
 }
 
 function getUserStatus($userid) {
-	 $sql = ("select cometchat_status.message, cometchat_status.status from cometchat_status where userid = '".mysql_real_escape_string($userid)."'");
+	 $sql = ("SELECT cometchat_status.message, cometchat_status.status FROM cometchat_status WHERE userid = '".mysql_real_escape_string($userid)."'");
 	 return $sql;
 }
 
@@ -134,7 +134,8 @@ function processTime($time) {
 /* HOOKS */
 
 function hooks_statusupdate($userid,$statusmessage) {
-	
+	$sql = ('UPDATE cometchat_status SET lastchange = ' . time() . ' WHERE userid = ' . (int)$userid);
+  $query = mysql_query($sql);
 }
 
 function hooks_forcefriends() {

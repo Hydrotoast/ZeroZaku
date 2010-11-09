@@ -98,18 +98,18 @@ function get_db_stat($mode)
 
 
 // BEGIN USER STATUSES
-$sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
-	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
-		ON uim.user_id = u.user_id
-	ORDER BY uim.user_lastchange DESC
+$sql = 'SELECT c.message,  u.user_id, u.username, u.user_colour
+	FROM ' . CHAT_STATUS_TABLE . ' c INNER JOIN ' . USERS_TABLE . ' u
+		ON c.userid = u.user_id
+	ORDER BY c.lastchange DESC
 	LIMIT 0, 10';
 $result = $db->sql_query($sql);
 
 while($row = $db->sql_fetchrow($result))
 {
 	$template->assign_block_vars('user_statuses', array(
-		'USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-	    'STATUS'	=> $row['user_status'],
+		  'USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+	    'STATUS'	=> $row['message'],
 	));
 }
 // END USER STATUSES
