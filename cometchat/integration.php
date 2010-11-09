@@ -72,12 +72,9 @@ function getFriendsList($userid,$time) {
 	else
 	{
     $sql = ("select DISTINCT ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." userid, ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_NAME." username, ".TABLE_PREFIX."sessions.session_time lastactivity, ".TABLE_PREFIX.DB_USERTABLE.".user_avatar avatar, ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." link, cometchat_status.message, cometchat_status.status 
-	    FROM ".TABLE_PREFIX."zebra join ".TABLE_PREFIX.DB_USERTABLE." 
-        ON  ".TABLE_PREFIX."zebra.zebra_id = ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." 
-	    LEFT JOIN cometchat_status 
-        ON ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = cometchat_status.userid 
-	    LEFT JOIN ".TABLE_PREFIX."sessions 
-        ON  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." =  ".TABLE_PREFIX."sessions.session_user_id 
+	    FROM ".TABLE_PREFIX."zebra join ".TABLE_PREFIX.DB_USERTABLE." ON  ".TABLE_PREFIX."zebra.zebra_id = ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." 
+	    LEFT JOIN cometchat_status ON ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = cometchat_status.userid 
+	    LEFT JOIN ".TABLE_PREFIX."sessions ON  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." =  ".TABLE_PREFIX."sessions.session_user_id 
         WHERE ".TABLE_PREFIX."zebra.user_id = '".mysql_real_escape_string($userid)."' 
           AND ".TABLE_PREFIX."zebra.friend = 1 
           AND ".TABLE_PREFIX."zebra.foe = 0 
@@ -88,7 +85,11 @@ function getFriendsList($userid,$time) {
 }
 
 function getUserDetails($userid) {
-	$sql = ("select ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." userid, ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_NAME." username, ".TABLE_PREFIX."sessions.session_time lastactivity,  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." link,  ".TABLE_PREFIX.DB_USERTABLE.".user_avatar avatar, cometchat_status.message, cometchat_status.status from ".TABLE_PREFIX.DB_USERTABLE." left join cometchat_status on ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = cometchat_status.userid left join ".TABLE_PREFIX."sessions on  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." =  ".TABLE_PREFIX."sessions.session_user_id where ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = '".mysql_real_escape_string($userid)."'");
+	$sql = ("select ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." userid, ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_NAME." username, ".TABLE_PREFIX."sessions.session_time lastactivity,  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." link,  ".TABLE_PREFIX.DB_USERTABLE.".user_avatar avatar, cometchat_status.message, cometchat_status.status
+    FROM ".TABLE_PREFIX.DB_USERTABLE." 
+    LEFT JOIN cometchat_status ON ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = cometchat_status.userid 
+    LEFT JOIN ".TABLE_PREFIX."sessions ON  ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." =  ".TABLE_PREFIX."sessions.session_user_id 
+      WHERE ".TABLE_PREFIX.DB_USERTABLE.".".DB_USERTABLE_USERID." = '".mysql_real_escape_string($userid)."'");
 	return $sql;
 }
 
