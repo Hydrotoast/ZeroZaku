@@ -37,39 +37,6 @@ $(function() {
 	if(localStorage.getItem('sidebar_side') == 'left')
 		$('#page-sidebar').addClass('left');
 	
-	// Starts IM
-	if(localStorage.getItem('im_open') == null || localStorage.getItem('im_open') == 'true')
-	{
-		$('#site-bottom-bar').hide();
-		$('#site-bottom-bar-frame').hide();
-		$('#im_open').show();
-	}
-	else load_startIM({rootPath: config.root_path, themePath: config.theme_path, started: true});
-	
-	// Closes IM
-	$('.button[rel=im_close]').click(function() {
-		localStorage.setItem('im_open', 'true');
-		$('#site-bottom-bar').hide();
-		$('#site-bottom-bar-frame').hide();
-		$('#im_open').show();
-		$.jGrowl('Instant Messenger has been closed. You will not receive IMs during this time, but your site performance will increase');
-	});
-	
-	// Opens IM
-	$('#im_open').click(function() {
-		if (config.im_started == false)
-		{
-			load_startIM({rootPath: config.root_path, themePath: config.theme_path});
-			config.im_started = true;
-		}
-		
-		localStorage.setItem('im_open', 'false');
-		$(this).hide();
-		$('#site-bottom-bar').show();
-		$('#site-bottom-bar-frame').show();
-		$.jGrowl('Instant Messenger has been opened. You will receive IMs again, but your site performance will decrease');
-	});
-	
 	// Toggles the quick login panel
 	var quickpanel = $('#quickpanel');
 	$('a.quick').toggle(function() {
