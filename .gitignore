@@ -1,4 +1,6 @@
 /cache
+/cometchat/plugins/filetransfer/uploads
+/cometchat/plugins/handwrite/uploads
 /cometchat/.htaccess
 /cometchat/config.php
 /files
