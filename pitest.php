@@ -1,5 +1,5 @@
 <?php
 
-echo "everything should be fine.";
+echo "everything should be live.";
 
 ?>
