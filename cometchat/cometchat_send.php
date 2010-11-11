@@ -56,12 +56,19 @@ THE SOFTWARE.
 include_once dirname(__FILE__)."/cometchat_init.php";
 
 //Quick Hotfix added by Pirate until a proper fix is set in place.
-if (preg_match ("*" . $_SERVER["SERVER_NAME"] . "*", $_SERVER['HTTP_REFERER']) > 0)
+//if (preg_match ("*" . $_SERVER["SERVER_NAME"] . "*", $_SERVER['HTTP_REFERER']) > 0)
+//{
+//	exit(0);
+//}
+
+//Verify link hash...
+$aid = $_POST['aid'];
+if (!check_link_hash($aid))
 {
-	exit(0);
+  trigger_error('Invalid link hash');
 }
 
-if (!empty($_POST['status'])) {
+if (!empty($_POST['status'])) {  
 	$message = $_POST['status'];
 	$sql = ("insert into cometchat_status (userid,status) values ('".mysql_real_escape_string($userid)."','".mysql_real_escape_string(sanitize_core($message))."') on duplicate key update status = '".mysql_real_escape_string(sanitize_core($message))."'");
 	$query = mysql_query($sql);
