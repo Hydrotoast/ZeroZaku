@@ -8,7 +8,7 @@ define('SET_SESSION_NAME','');			// Session name
 define('DO_NOT_START_SESSION','0');		// Set to 1 if you have already started the session
 define('DO_NOT_DESTROY_SESSION','0');	// Set to 1 if you do not want to destroy session on logout
 define('SWITCH_ENABLED','1');		
-define('INCLUDE_JQUERY','1');	
+define('INCLUDE_JQUERY','0');	
 define('FORCE_MAGIC_QUOTES','0');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -53,6 +53,12 @@ THE SOFTWARE.
 
 */
 
+function check_link_hash($token)
+{
+  $useragent = (isset($_SERVER["HTTP_USER_AGENT"]) ) ? $_SERVER["HTTP_USER_AGENT"] : $HTTP_USER_AGENT;
+  return $token === substr(sha1($useragent.'chat'), 0, 8);
+}
+
 function sanitize($text) {
 	global $smileys;
 

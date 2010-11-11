@@ -56,6 +56,13 @@ THE SOFTWARE.
 include_once dirname(__FILE__)."/cometchat_init.php";
 include_once dirname(__FILE__)."/license.php";
 
+//Verify link hash...
+$aid = $_POST['aid'];
+if (!check_link_hash($aid))
+{
+  trigger_error('Invalid link hash');
+}
+
 $response = array();
 $messages = array();
 $lastPushedAnnouncement = 0;

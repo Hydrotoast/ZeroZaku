@@ -53,7 +53,7 @@ THE SOFTWARE.
 
 */
 
-include_once (dirname(__FILE__).DIRECTORY_SEPARATOR."config.php");
+include_once(dirname(__FILE__).DIRECTORY_SEPARATOR . 'config.php');
 
 $mtime = microtime();
 $mtime = explode(" ",$mtime);
@@ -91,7 +91,8 @@ if (file_exists("cache") && CACHING_ENABLED == 1) {
 	}
 
 	$settings = '';
-
+  $settings .= "var _aid = '".substr(sha1($useragent.'chat'), 0, 8)."';\n";
+	
 	if ((defined('DISPLAY_ALL_USERS') && DISPLAY_ALL_USERS == 1) || (defined('FORCE_ALL_USERS') && FORCE_ALL_USERS == 1)) {
 		$language[14] = $language[28];
 	}
