@@ -60,7 +60,7 @@ include_once dirname(__FILE__)."/license.php";
 $aid = $_POST['aid'];
 if (!check_link_hash($aid))
 {
-  trigger_error('Invalid link hash');
+  exit(0);
 }
 
 $response = array();
