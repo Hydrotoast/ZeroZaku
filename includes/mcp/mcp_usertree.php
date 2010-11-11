@@ -31,19 +31,19 @@ class mcp_usertree
 		global $users;
 		$returnval = '';
 		$users[] = 1;
-		$res = $db->sql_query("SELECT DISTINCT poster_ip FROM forum_posts WHERE poster_id = $userid AND poster_ip <> '$parentip'");
+		$res = $db->sql_query("SELECT DISTINCT poster_ip FROM phpbb_posts WHERE poster_id = $userid AND poster_ip <> '$parentip'");
 
 		$returnval .= '<ul>';
 		while ($row=$db->sql_fetchrow($res))
 		{
-			$ipres = $db->sql_query("SELECT DISTINCT poster_id FROM forum_posts WHERE poster_ip='" . $row['poster_ip'] . "'");
+			$ipres = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip='" . $row['poster_ip'] . "'");
 					
 				while ($iprow = $db->sql_fetchrow($ipres))
 				{
 					if (!in_array($iprow['poster_id'], $users))
 					{
 						$users[] = $iprow['poster_id'];
-						$usrres = $db->sql_query("SELECT username, user_colour FROM forum_users WHERE user_id =" . $iprow['poster_id']);
+						$usrres = $db->sql_query("SELECT username, user_colour FROM phpbb_users WHERE user_id =" . $iprow['poster_id']);
 						$usrrow = $db->sql_fetchrow($usrres);
 						$returnval .=  '<li style="padding-left: 5px; margin-left: 5px;"><span style="font-weight:bold; color:#' . $usrrow['user_colour'] . ';">' . $usrrow['username'] . "</span> (" . $iprow['poster_id'] . ") - " .$row['poster_ip']. "</li>";
 						$returnval .= $this->usertreenode($iprow['poster_id'], $row['poster_ip']);
@@ -81,7 +81,7 @@ class mcp_usertree
 			if (isset($_POST['submit']))
 			{
 				$searchuser = 0;
-				$res = $db->sql_query("SELECT * FROM forum_users WHERE username_clean = '" . strtolower(request_var('searchuser', '')) . "'");
+				$res = $db->sql_query("SELECT * FROM phpbb_users WHERE username_clean = '" . strtolower(request_var('searchuser', '')) . "'");
 				while ($userrow = $db->sql_fetchrow($res))
 				{
 					$searchuser = $userrow['user_id'];
