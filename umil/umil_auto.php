@@ -4,7 +4,7 @@
  * @author Nathan Guse (EXreaction) http://lithiumstudios.org
  * @author David Lewis (Highway of Life) highwayoflife@gmail.com
  * @package umil
- * @version $Id: umil_auto.php 176 2009-09-19 03:15:41Z exreaction $
+ * @version $Id: umil_auto.php 406 2009-06-29 16:06:16Z femu $
  * @copyright (c) 2008 phpBB Group
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -69,7 +69,6 @@ if (isset($logo_img))
 	$template->assign_var('LOGO_IMG', $phpbb_root_path . $logo_img);
 }
 
-// Display a login box if they are not logged in
 if (!$user->data['is_registered'])
 {
 	login_box();

@@ -145,7 +145,15 @@ window.onunload = function()
 			<li id="usernav-box">
 				<ul id="account-actions">
 				<!-- IF S_USER_LOGGED_IN -->
-					<li>{S_USERNAME_FULL}</li>
+					<li>
+						<div class="dropdown">
+							<span>{S_USERNAME_FULL}</span>
+              <div id="info">
+                <div id="avatar">{S_AVATAR}</div>
+								<dl><dt>{S_USER_POINTS}</dt><dd>{L_POINTS}</dd></dl>
+              </div>
+						</div>
+						</li>
 					
 					<!-- IF U_PROFILE -->
           <li>
@@ -156,7 +164,7 @@ window.onunload = function()
 								<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">{L_MANAGE_FRIENDS}</a></li>                   
 								<li><a href="{U_MANAGE_BOOKMARKS}" title="{L_MANAGE_BOOKMARKS}">{L_MANAGE_BOOKMARKS}</a></li>
 								<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">{L_SEARCH_SELF}</a></li><!-- ENDIF -->
-						    </ul>
+						  </ul>
 						</div>
 					</li>
 					<!-- ENDIF -->

@@ -155,6 +155,18 @@ function user_update_name($old_name, $new_name)
 function user_add($user_row, $cp_data = false)
 {
 	global $db, $user, $auth, $config, $phpbb_root_path, $phpEx;
+	// Start Ultimate Points
+	global $points_config, $points_values;
+
+	if ( $config['points_enable'] )
+	{
+		$register_points = $points_values['reg_points_bonus'];
+	}
+	else
+	{
+		$register_points = 0;
+	}
+	// End Ultimate Points
 
 	if (empty($user_row['username']) || !isset($user_row['group_id']) || !isset($user_row['user_email']) || !isset($user_row['user_type']))
 	{
@@ -194,6 +206,8 @@ function user_add($user_row, $cp_data = false)
 		// We do not set the new flag here - registration scripts need to specify it
 		'user_new'			=> 0,
 
+
+		'user_points'			=> $register_points,
 		'user_inactive_reason'	=> 0,
 		'user_inactive_time'	=> 0,
 		'user_lastmark'			=> time(),

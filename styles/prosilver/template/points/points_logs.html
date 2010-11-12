@@ -1,5 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<!-- $Id: points_logs.html 406 2009-06-29 16:06:16Z femu $ -->
+<!-- $Id: points_logs.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
 
 <div id="tabs">
 	<ul>
@@ -10,26 +10,26 @@
 		<!-- IF LOTTERY_ENABLE and U_USE_LOTTERY --><li><a href="{U_LOTTERY}"><span>{LOTTERY_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF BANK_ENABLE and U_USE_BANK --><li><a href="{U_BANK}"><span>{BANK_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF ROBBERY_ENABLE and U_USE_ROBBERY --><li><a href="{U_ROBBERY}"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
-   </ul>
+	</ul>
 </div>
 
 <div class="panel bg3">
 	<div class="inner">
-		<span class="corners-top"><span></span></span>    
+		<span class="corners-top"><span></span></span>
 
-			<div id="cp-menu">          
+			<div id="cp-menu">
 				<div class="cp-mini">
-        			<div class="inner"><span class="corners-top"><span></span></span>
-	        			<dl class="mini">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<dl class="mini">
 							<dd><h3>{L_POINTS_DESCRIPTION}</h3></dd>
 							<dd>{L_LOGS_DESCRIPTION}</dd>
-	        			</dl>
-        			<span class="corners-bottom"><span></span></span></div>
-        		</div>				
+						</dl>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
 			</div>
-  
+
 			<div id="cp-main" class="ucp-main">
-				<h2>{L_POINTS_LOGS}</h2>  
+				<h2>{L_POINTS_LOGS}</h2>
 				<div class="panel">
 					<div class="inner">
 						<span class="corners-top"><span></span></span>
@@ -71,12 +71,12 @@
 							{L_POINTS_LOG_TOTAL}: {L_TOTAL_ENTRIES}
 							<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
 							</div>
-															
+
 						<span class="corners-bottom"><span></span></span>
 					</div>
 				</div>
 			</div>
-			
+
 		<span class="corners-bottom"><span></span></span>
 	</div>
 </div>

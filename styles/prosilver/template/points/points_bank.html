@@ -1,5 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<!-- $Id: points_bank.html 428 2009-07-06 15:52:18Z Wuerzi $ -->
+<!-- $Id: points_bank.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
 
 <div id="tabs">
 	<ul>
@@ -10,15 +10,15 @@
 		<!-- IF LOTTERY_ENABLE and U_USE_LOTTERY --><li><a href="{U_LOTTERY}"><span>{LOTTERY_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF BANK_ENABLE and U_USE_BANK --><li class="activetab"><a href="{U_BANK}"><span>{BANK_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF ROBBERY_ENABLE and U_USE_ROBBERY --><li><a href="{U_ROBBERY}"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
-   </ul>
+	</ul>
 </div>
 
 <div class="panel bg3">
 	<div class="inner">
-		<span class="corners-top"><span></span></span> 
+		<span class="corners-top"><span></span></span>
 
 			<div id="cp-menu">
-          
+
 					<div class="cp-mini">
 						<div class="inner"><span class="corners-top"><span></span></span>
 							<dl>
@@ -27,11 +27,11 @@
 								</dd>
 								<!-- IF S_DISPLAY_INDEX -->
 								<dt>
-					                <!-- BEGIN bank -->
+									<!-- BEGIN bank -->
 									<span style="float:left; padding-left:5px; padding-top:2px;">{bank.USERNAME}</span>
 									<span style="float:right;padding-right:10px; padding-top:2px;">{bank.POINT}</span>
 									<br style="clear:both" />
-					                <!-- END bank -->
+									<!-- END bank -->
 								</dt>
 								<!-- ELSE -->
 								<dt>{L_POINTS_MOST_RICH_USERS_DISABLED}</dt>
@@ -39,7 +39,7 @@
 							</dl>
 						<span class="corners-bottom"><span></span></span></div>
 					</div>
-					
+
 					<div class="cp-mini">
 						<div class="inner"><span class="corners-top"><span></span></span>
 							<dl class="mini">
@@ -48,38 +48,37 @@
 							</dl>
 						<span class="corners-bottom"><span></span></span></div>
 					</div>
-	
+
 			</div>
   
 			<div id="cp-main" class="ucp-main">
-				<h2>{BANK_NAME}</h2>  
+				<h2>{BANK_NAME}</h2>
 				<div class="panel">
 					<div class="inner">
 						<span class="corners-top"><span></span></span>
 							<fieldset>
-							<!-- IF not S_USER_LOGGED_IN -->
-							<p>{L_POINTS_BOT_GUEST}</p>
-							<!-- ENDIF -->
 							<!-- IF S_USER_LOGGED_IN -->
-							<!-- BEGIN has_account -->
-							<h3>{L_BANK_ACTIONS}</h3>
-							<form method="post" action="{U_DEPOSIT}">
-							<dl>
-								<dt><label><input type="submit" tabindex="2" name="deposit" value="{L_BANK_BUTTON_DEPOSIT}" class="button1" /></label></dt>
-								<dd><input type="text" tabindex="1" maxlength="10" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="deposit" size="20" value="{USER_GOLD}" /> {POINTS_NAME}</dd>
-							</dl>
-							</form>
-							<form method="post" action="{U_WITHDRAW}">
-							<dl>
-								<dt><label><input type="submit" tabindex="4"  name="withdraw" value="{L_BANK_BUTTON_WITHDRAW}" class="button1" /></label></dt>
-								<dd><input type="text" tabindex="3" maxlength="10" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="withdraw" size="20" value="{USER_WITHDRAW}" /> {POINTS_NAME}</dd>
-							</dl>
-							</form>
-							<!-- END has_account -->
-							<!-- BEGIN no_account -->
-							<p>{no_account.USER_NO_ACCOUNT}</p>
-							<p><strong>{no_account.OPEN_ACCOUNT}</strong></p>              
-							<!-- END no_account -->
+								<!-- BEGIN has_account -->
+								<h3>{L_BANK_ACTIONS}</h3>
+								<form id="bank_deposit" method="post" action="{U_DEPOSIT}">
+								<dl>
+									<dt><label><input type="submit" tabindex="2" name="deposit" value="{L_BANK_BUTTON_DEPOSIT}" class="button1" /></label></dt>
+									<dd><input type="text" tabindex="1" maxlength="10" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="deposit" size="20" value="{USER_GOLD}" /> {POINTS_NAME}{S_FORM_TOKEN}</dd>
+								</dl>
+								</form>
+								<form id="bank_withdraw" method="post" action="{U_WITHDRAW}">
+								<dl>
+									<dt><label><input type="submit" tabindex="4"  name="withdraw" value="{L_BANK_BUTTON_WITHDRAW}" class="button1" /></label></dt>
+									<dd><input type="text" tabindex="3" maxlength="10" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="withdraw" size="20" value="{USER_WITHDRAW}" /> {POINTS_NAME}{S_FORM_TOKEN}</dd>
+								</dl>
+								</form>
+								<!-- END has_account -->
+								<!-- BEGIN no_account -->
+								<p>{no_account.USER_NO_ACCOUNT}</p>
+								<p><strong>{no_account.OPEN_ACCOUNT}</strong></p>
+								<!-- END no_account -->
+							<!-- ELSE -->
+							<p>{L_POINTS_BOT_GUEST}</p>
 							<!-- ENDIF -->
 							<h3>{L_BANK_INFO}</h3>
 							<!-- BEGIN has_account -->
@@ -130,12 +129,12 @@
 								<dt>{L_BANK_HOLDING}</dt>
 								<dd>{BANK_HOLDINGS} {POINTS_NAME}</dd>
 							</dl>
-							</fieldset>			  
+							</fieldset>
 						<span class="corners-bottom"><span></span></span>
 					</div>
 				</div>
 			</div>
-      			
+
 		<span class="corners-bottom"><span></span></span>
 	</div>
 </div>

@@ -267,6 +267,14 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
+// Ultimate Points
+define('IN_ULTIMATE_POINTS', true);
+define('POINTS_BANK_TABLE',				$table_prefix . 'points_bank');
+define('POINTS_CONFIG_TABLE',			$table_prefix . 'points_config');
+define('POINTS_LOG_TABLE',				$table_prefix . 'points_log');
+define('POINTS_LOTTERY_HISTORY_TABLE',	$table_prefix . 'points_lottery_history');
+define('POINTS_LOTTERY_TICKETS_TABLE',	$table_prefix . 'points_lottery_tickets');
+define('POINTS_VALUES_TABLE',			$table_prefix . 'points_values');
 define('VOTES_TABLE', $table_prefix . 'posts_votes');
 define('MILESTONES_TABLE',			$table_prefix . 'milestones');
 // MOD :: INSTANT MESSENGER -- START

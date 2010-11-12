@@ -4,7 +4,7 @@
  * @author Nathan Guse (EXreaction) http://lithiumstudios.org
  * @author David Lewis (Highway of Life) highwayoflife@gmail.com
  * @package umil
- * @version $Id: umil.php 207 2010-03-14 16:27:00Z exreaction $
+ * @version $Id: umil.php 463 2009-07-25 20:02:13Z Wuerzi $
  * @copyright (c) 2008 phpBB Group
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
@@ -84,16 +84,12 @@ $lang = array_merge($lang, array(
 	'PERMISSION_ALREADY_EXISTS'		=> 'ERROR: Permission option %s already exists.',
 	'PERMISSION_NOT_EXIST'			=> 'ERROR: Permission option %s does not exist.',
 	'PERMISSION_REMOVE'				=> 'Removing permission option: %s',
-	'PERMISSION_ROLE_ADD'			=> 'Adding new permission role: %s',
-	'PERMISSION_ROLE_UPDATE'		=> 'Updating permission role: %s',
-	'PERMISSION_ROLE_REMOVE'		=> 'Removing permission role: %s',
 	'PERMISSION_SET_GROUP'			=> 'Setting permissions for the %s group.',
 	'PERMISSION_SET_ROLE'			=> 'Setting permissions for the %s role.',
 	'PERMISSION_UNSET_GROUP'		=> 'Unsetting permissions for the %s group.',
 	'PERMISSION_UNSET_ROLE'			=> 'Unsetting permissions for the %s role.',
 
-	'ROLE_ALREADY_EXISTS'			=> 'Permission role already exists.',
-	'ROLE_NOT_EXIST'				=> 'Permission role does not exist',
+	'ROLE_NOT_EXIST'				=> 'Role does not exist',
 
 	'SUCCESS'						=> 'Success',
 

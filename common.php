@@ -205,6 +205,10 @@ require($phpbb_root_path . 'includes/functions_reputation.' . $phpEx);
 // end
 
 
+
+// Start Ultimate Points
+require($phpbb_root_path . 'includes/points/functions_points.' . $phpEx);
+// End Ultimate Points
 // Set PHP error handler to ours
 set_error_handler(defined('PHPBB_MSG_HANDLER') ? PHPBB_MSG_HANDLER : 'msg_handler');
 
@@ -223,6 +227,13 @@ unset($dbpasswd);
 
 // Grab global variables, re-cache if necessary
 $config = $cache->obtain_config();
+// Start Ultimate Points
+if ( isset($config['points_name']) )
+{
+	$points_config = $cache->obtain_points_config();
+	$points_values = $cache->obtain_points_values();
+}
+// End Ultimate Points
 
 // Add own hook handler
 require($phpbb_root_path . 'includes/hooks/index.' . $phpEx);

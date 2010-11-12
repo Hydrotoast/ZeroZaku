@@ -1,5 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<!-- $Id: points_main.html 428 2009-07-06 15:52:18Z Wuerzi $ -->
+<!-- $Id: points_main.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
 <div id="tabs">
 	<ul>
 		<li class="activetab"><a href="{U_POINTS}"><span>{L_POINTS_OVERVIEW}</span></a></li>
@@ -9,15 +9,15 @@
 		<!-- IF LOTTERY_ENABLE and U_USE_LOTTERY --><li><a href="{U_LOTTERY}"><span>{LOTTERY_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF BANK_ENABLE and U_USE_BANK --><li><a href="{U_BANK}"><span>{BANK_NAME}</span></a></li><!-- ENDIF -->
 		<!-- IF ROBBERY_ENABLE and U_USE_ROBBERY --><li><a href="{U_ROBBERY}"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
-   </ul>
+	</ul>
 </div>
 
 <div class="panel bg3">
 	<div class="inner">
-		<span class="corners-top"><span></span></span>    
+		<span class="corners-top"><span></span></span>
 
-			<div id="cp-menu">       
-          
+			<div id="cp-menu">
+
 					<div class="cp-mini">
 						<div class="inner"><span class="corners-top"><span></span></span>
 							<dl>
@@ -37,8 +37,8 @@
 								<!-- ENDIF -->
 							</dl>
 						<span class="corners-bottom"><span></span></span></div>
-					</div>          
-	
+					</div>
+
 			</div>
   
 			<div id="cp-main" class="ucp-main">
@@ -54,29 +54,25 @@
 								<dl>
 									<dt>{L_MAIN_ON_HAND}</dt>
 								</dl>
-								<!-- BEGIN has_bank_account -->
-								<dl>
-									<dt>{has_bank_account.L_MAIN_BANK_HAVE}</dt>
-								</dl>
-								<!-- END has_bank_account -->
+									<!-- BEGIN has_bank_account -->
+									<dl>
+										<dt>{has_bank_account.L_MAIN_BANK_HAVE}</dt>
+									</dl>
+									<!-- END has_bank_account -->
 								<dl>
 									<dt>{L_MAIN_LOTTERY_TICKETS}</dt>
 								</dl>
 								<!-- ENDIF -->
 								<br /><br />
-							</fieldset>			  
+							</fieldset>
 						<span class="corners-bottom"><span></span></span>
 					</div>
 				</div>
 			</div>
-      
 
-			
 		<span class="corners-bottom"><span></span></span>
 	</div>
 </div>
-
-
 
 <br /><div style="text-align: center;" class="copyright">{L_POINTS_COPYRIGHT}{POINT_VERS}</div>
 

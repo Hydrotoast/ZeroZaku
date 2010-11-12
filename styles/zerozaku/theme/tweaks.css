@@ -135,13 +135,14 @@ span.banned {
 	vertical-align: middle;
 }
 
-.dropdown ul {
+.dropdown ul, .dropdown div#info {
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
 	font-size: 1em;
 	line-height: 20px;
-	border-bottom: 4px solid;
 	display: none;
 	position: absolute;
-	left: 0;
+	left: -1px;
 	top: 21px;
 	margin: 0 0 10px 0;
 	padding: 10px 1.25em 0 0;
@@ -150,20 +151,24 @@ span.banned {
 	overflow: hidden;
 }
 
-.dropdown:hover ul {
+.dropdown:hover ul, .dropdown:hover div#info {
 	display: block;
 	box-shadow: 1px 2px 2px #212121;
 	-moz-box-shadow: 1px 2px 2px #212121;
 	-webkit-box-shadow: 1px 2px 2px #212121;
 }
 
+.dropdown div#info dl { margin: 10px 15px 10px 69px; }
+.dropdown div#info dl dt { font-size: 2.5em; text-align: center; }
+.dropdown div#info dl dd { font-weight: normal; }
+
 .dropdown ul li {
 	line-height: 1.5em !important;
 	border: 0;
 	margin: 0 !important;
 	padding: 0;
-	float: none !important;
 	display: block;
+	float: none !important;
 	overflow: hidden;
 }
 
@@ -171,7 +176,14 @@ span.banned {
 	content: "" !important;
 }
 
-.dropdown ul li a {
+.dropdown div#avatar {
+	float: left;
+	display: block;
+	padding: 0 1em;
+}
+
+.dropdown ul li a:hover, .dropdown ul li a:active {}
+.dropdown ul li a, .dropdown ul li span {
 	border: 0;
 	font-size: 0.9167em;
 	font-weight: normal;
@@ -185,9 +197,6 @@ span.banned {
 	-khtml-border-radius: 0 !important;
 	border-radius: 0 !important;
 } 
-
-.dropdown ul li a:hover, .dropdown ul li a:active {
-}
 
 /* Dropdowns used by search */
 .search .dropdown:hover span img {
