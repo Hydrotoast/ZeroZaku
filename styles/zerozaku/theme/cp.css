@@ -290,3 +290,7 @@ ol.def-rules li {
 	width: auto;
 	text-align: center;
 }
+
+ul {
+	padding: auto !important;
+}
