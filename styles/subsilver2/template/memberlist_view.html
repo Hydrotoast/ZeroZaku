@@ -104,6 +104,28 @@
 			<!-- ENDIF -->
 			<!-- ENDIF -->
 			<!-- End Ultimate Points -->
+			<!-- Start Ultimate Points -->
+			<!-- IF USE_POINTS -->
+			<tr>
+				<td class="gen" align="{S_CONTENT_FLOW_END}" nowrap="nowrap">{L_POINTS_CASH_ON_HAND}:</td>
+				<td><!-- IF U_LOCKED --><b>{L_POINTS_LOCKED}</b><!-- ELSE -->{U_POINTS1} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{U_POINTS_DONATE}">{L_DONATE}</a> <a href="{U_POINTS_MODIFY}">{L_MOD_USER_POINTS}</a><!-- ENDIF --></td>
+			</tr>
+			<!-- IF USE_BANK -->
+			<!-- BEGIN has_account -->
+			<tr>   
+				<td class="gen" align="{S_CONTENT_FLOW_END}" nowrap="nowrap">{L_BANK_BALANCE}:</td>
+	 			<td><!-- IF U_BLOCKED --><b>{L_POINTS_LOCKED}</b><!-- ELSE --> {BANK_GOLD} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{U_BANK_MODIFY}">{L_MOD_USER_BANK}</a><!-- ENDIF --></td>
+			</tr> 
+			<!-- END has_account -->
+			<!-- BEGIN no_account -->
+			<tr>   
+				<td class="gen" align="{S_CONTENT_FLOW_END}" nowrap="nowrap">{L_BANK_BALANCE}:</td>
+	 			<td>{no_account.BANK_NO_ACCOUNT}</td>
+			</tr> 
+			<!-- END no_account -->
+			<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- End Ultimate Points -->
 			<tr>
 				<td class="gen" align="{S_CONTENT_FLOW_END}" nowrap="nowrap">{L_VISITED}: </td>
 				<td width="100%"><b class="gen">{VISITED}</b></td>

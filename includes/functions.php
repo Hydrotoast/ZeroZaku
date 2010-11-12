@@ -4216,6 +4216,22 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		include($phpbb_root_path . 'includes/functions_milestones.' . $phpEx);
 	}
 	milestones();
+
+	// Start Ultimate Points
+	$user->add_lang('mods/points');
+	
+	// Check if Installer is already run
+	if ( isset($config['points_name']) )
+	{
+		$template->assign_vars(array(
+			'U_POINTS'				=> append_sid("{$phpbb_root_path}points.$phpEx"),
+			'POINTS_LINK'			=> $config['points_name'],
+			'USER_POINTS'			=> sprintf(number_format_points($user->data['user_points'])),
+			'S_POINTS_ENABLE'		=> $config['points_enable'],
+			'S_USE_POINTS'			=> $auth->acl_get('u_use_points'),
+		));
+	}
+	// End Ultimate Points
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
 		'SITENAME'						=> $config['sitename'],
@@ -4235,6 +4251,8 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'S_USER_NEW_PRIVMSG'			=> $user->data['user_new_privmsg'],
 		'S_USER_UNREAD_PRIVMSG'			=> $user->data['user_unread_privmsg'],
 		'S_USERNAME_FULL'				=> get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour']),
+		'S_AVATAR'            => get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], 54, 54),
+	  'S_USER_POINTS'       => $user->data['user_points'],
 		'S_USER_NEW'					=> $user->data['user_new'],
 
 		'SID'				=> $SID,

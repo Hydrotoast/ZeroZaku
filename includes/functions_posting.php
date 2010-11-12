@@ -1639,6 +1639,9 @@ $sql = 'SELECT post_id, poster_id
 function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $update_message = true, $update_search_index = true)
 {
 	global $db, $auth, $user, $config, $phpEx, $template, $phpbb_root_path;
+	// Start Ultimate Points
+	global $ultimate_points, $points_config, $points_values;
+	// End Ultimate Points
 
 	// We do not handle erasing posts here
 	if ($mode == 'delete')
@@ -1800,6 +1803,70 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 
 			if ($update_message)
 			{
+				// Start Ultimate Points
+				$p_poll_received = $p_topic_received = $p_post_received = '';
+				
+				// Check the forum points in the forum tables
+				$p_pertopic = $p_perpost = $p_peredit = '';
+				
+				$sql = 'SELECT forum_pertopic, forum_perpost, forum_peredit
+					FROM ' . FORUMS_TABLE . '
+					WHERE forum_id = ' . $data['forum_id'];
+				$result = $db->sql_query_limit($sql, 1);
+				$forumrow = $db->sql_fetchrow($result);
+				$db->sql_freeresult($result);
+
+				// Now let's define the variables with the points from the forum
+				$p_pertopic	= $forumrow['forum_pertopic'];
+				$p_perpost 	= $forumrow['forum_perpost'];
+				$p_peredit 	= $forumrow['forum_peredit'];
+
+				// Check the rest of the points
+				$sql = 'SELECT points_poll_received, points_topic_received, points_post_received, poster_id
+					FROM ' . POSTS_TABLE . '
+					WHERE post_id = ' . $data['post_id'];
+				$result = $db->sql_query_limit($sql, 1);
+				$row = $db->sql_fetchrow($result);
+				$db->sql_freeresult($result);
+
+				// Now let's define the variables with the points for the post
+				$p_poll_received 	= $row['points_poll_received'];
+				$p_topic_received 	= $row['points_topic_received'];
+				$p_post_received 	= $row['points_post_received'];
+
+				// If the topic_received greater than 0 and pertopic = 1
+				if ( ($p_topic_received > 0) && ($p_pertopic > 0) && $points_config['pertopic_enable'])
+				{
+					// First substract points from user account
+					substract_points($row['poster_id'], $p_topic_received);
+
+					// Reset the field $p_topic_received
+					reset_topic_received($data['post_id']);
+					
+					// Now recalculate points
+					$ultimate_points->update_topic_ch($data['poster_id'], $data['forum_id'], $data['topic_id'], $ultimate_points->strip_text($data['message']));
+				}
+
+				// If the post_received is greater than 0 and and perpost = 1
+				if ( ($p_post_received > 0) && ($p_perpost > 0) && $points_config['perpost_enable'])
+				{
+					// First substract old post received points from user points
+					substract_points($row['poster_id'], $p_post_received);
+
+					// Now substract the post received points from the post table
+					reset_post_received($data['post_id']);
+					
+					// Now update the post table
+					$ultimate_points->update_post_ch($data['poster_id'], $data['forum_id'], $data['post_id'], $ultimate_points->strip_text($data['message']));
+				}
+
+				//  If the poll_reveived greater than 0 and topic received = 0  and pertopic = 1
+				if ( ($p_poll_received > 0) && ($p_pertopic > 0) && ($p_topic_received == 0) && ($points_config['pertopic_enable']) )
+				{
+					// Update Poll Text with new topic
+					$ultimate_points->update_topic_ch($poster_id, $data['forum_id'], $data['topic_id'], $ultimate_points->strip_text($data['message']));
+				}				
+				// End Ultimate Points
 				$sql_data[POSTS_TABLE]['sql']['post_text'] = $data['message'];
 			}
 
@@ -1988,6 +2055,41 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		unset($sql_data[TOPICS_TABLE]['sql']);
 	}
 
+
+	// Start Ultimate Points
+	if( isset($data['user_points']) )
+	{
+		if ( !$data['user_points'] )
+		{
+			$data['user_points'] = 0;
+		}
+	}
+	else
+	{
+		$data['user_points'] = 0;
+	}
+
+	if ( $config['points_enable'] )
+	{
+		$sql = "UPDATE " . USERS_TABLE . " SET user_points = user_points + " . $data['user_points'] . " WHERE user_id = '" . $user->data['user_id'] . "'";
+		$db->sql_query($sql);
+	}
+	
+	// Check the forum points in the forum tables
+	$p_pertopic = $p_perpost = $p_peredit = '';
+
+	$sql = 'SELECT forum_pertopic, forum_perpost, forum_peredit
+		FROM ' . FORUMS_TABLE . '
+		WHERE forum_id = ' . $data['forum_id'];
+	$result = $db->sql_query_limit($sql, 1);
+	$forumrow = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
+
+	// Now let's define the variables with the points from the forum
+	$p_pertopic	= $forumrow['forum_pertopic'];
+	$p_perpost 	= $forumrow['forum_perpost'];
+	$p_peredit 	= $forumrow['forum_peredit'];
+	// End Ultimate Points
 	// Submit new post
 	if ($post_mode == 'post' || $post_mode == 'reply')
 	{
@@ -2001,6 +2103,12 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		$sql = 'INSERT INTO ' . POSTS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_data[POSTS_TABLE]['sql']);
 		$db->sql_query($sql);
 		$data['post_id'] = $db->sql_nextid();
+		// Start Ultimate Points
+		if ( $post_mode == 'reply' && $config['points_enable'] && $points_config['perpost_enable'] && $p_perpost > 0)
+		{
+			$ultimate_points->new_post_ch($data['forum_id'], $data['post_id'], $ultimate_points->strip_text($sql_data[POSTS_TABLE]['sql']['post_text']));
+		}
+		// End Ultimate Points
 
 		if ($post_mode == 'post')
 		{
@@ -2013,12 +2121,25 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_last_poster_colour'	=> $user->data['user_colour'],
 				'topic_last_post_subject'	=> (string) $subject,
 			);
+			// Start Ultimate Points
+			if ( $config['points_enable'] && $points_config['pertopic_enable'] && $p_pertopic > 0 )
+			{
+				$ultimate_points->new_topic_ch($data['forum_id'], $data['topic_id'], $ultimate_points->strip_text($data['message']));
+			}
+			// End Ultimate Points
 		}
 
 		unset($sql_data[POSTS_TABLE]['sql']);
 	}
 
 	$make_global = false;
+	// Start Ultimate Points
+	if ( $config['points_enable'] )
+	{
+		$sql = "UPDATE " . POSTS_TABLE . " SET points_received = points_received + " . $data['user_points'] . " WHERE post_id = '" . $data['post_id'] . "'";
+		$db->sql_query($sql);
+	}
+	// End Ultimate Points
 
 	// Are we globalising or unglobalising?
 	if ($post_mode == 'edit_first_post' || $post_mode == 'edit_topic')
@@ -2140,6 +2261,26 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 
 		$db->sql_multi_insert(POLL_OPTIONS_TABLE, $sql_insert_ary);
 
+
+		// Start Ultimate Points
+		$p_poll_received = '';
+
+		// Check the rest of the points
+		$sql = 'SELECT points_poll_received, poster_id
+			FROM ' . POSTS_TABLE . '
+			WHERE post_id = ' . $data['post_id'];
+		$result = $db->sql_query_limit($sql, 1);
+		$row = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+
+		// Now let's define the variables with the points for the post
+		$p_poll_received = $row['points_poll_received'];
+			
+		if ( $config['points_enable'] && ($p_poll_received == 0) && $points_config['pertopic_enable'] && ($p_pertopic > 0) )
+		{
+			$ultimate_points->new_poll($data['forum_id'], $data['post_id'], sizeof($sql_insert_ary));
+		}
+		// End Ultimate Points
 		if (sizeof($poll['poll_options']) < sizeof($cur_poll_options))
 		{
 			$sql = 'DELETE FROM ' . POLL_OPTIONS_TABLE . '
@@ -2153,6 +2294,20 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		{
 			$db->sql_query('DELETE FROM ' . POLL_VOTES_TABLE . ' WHERE topic_id = ' . $data['topic_id']);
 			$db->sql_query('UPDATE ' . POLL_OPTIONS_TABLE . ' SET poll_option_total = 0 WHERE topic_id = ' . $data['topic_id']);
+			// Start Ultimate Points
+			// If the forum points per topic values is greater 0 and topic_received is greater than 0 and pertopic = 1
+			if ( ($p_poll_received > 0) && $points_config['pertopic_enable'] && ($p_pertopic > 0) )
+			{
+				// First substract points from user account
+				substract_points($row['poster_id'], $p_poll_received);
+
+				// Reset the field $p_poll_received
+				reset_poll_received($data['post_id']);
+
+				// Now recalculate points
+				$ultimate_points->update_poll($row['poster_id'], $data['forum_id'], $data['post_id'], sizeof($poll['poll_options']));
+			}
+			// End Ultimate Points
 		}
 	}
 
@@ -2232,8 +2387,60 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			set_config_count('upload_dir_size', $space_taken, true);
 			set_config_count('num_files', $files_added, true);
 		}
+		// Start Ultimate Points
+		if ( $mode == 'post' || $mode == 'reply' || $mode == 'quote' && $config['points_enable'] == 1 )
+		{
+			$ultimate_points->new_attachment($data['forum_id'], $data['post_id'], $files_added);
+		}
+		// End Ultimate Points
 	}
 
+
+	// Start Ultimate Points
+	if ( $mode == 'edit' && $config['points_enable'] == 1 )
+	{
+		$p_attachment_received = '';
+
+		// Check the attachment points
+		$sql = 'SELECT points_attachment_received, poster_id
+			FROM ' . POSTS_TABLE . '
+			WHERE post_id = ' . $data['post_id'];
+		$result = $db->sql_query_limit($sql, 1);
+		$row = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+
+		// Now let's define the variables with the points for the attachment
+		$p_attachment_received 	= $row['points_attachment_received'];
+
+		// First substract points from user account
+		substract_points($row['poster_id'], $p_attachment_received);
+
+		// Recalculate the points for the field points_attachment_received
+		$new_number = '';
+		$sql = 'SELECT COUNT(attach_id) AS number_attachments
+			FROM ' . ATTACHMENTS_TABLE . '
+			WHERE post_msg_id = ' . $data['post_id'];
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);
+		$new_number = $row['number_attachments'];
+		$db->sql_freeresult($result);
+
+		if ( empty($new_number) )
+		{
+			$new_points = 0;
+		}
+		else
+		{
+			$new_points = $points_values['points_per_attach'] + ($new_number * $points_values['points_per_attach_file']);
+		}
+		
+		// Adding points to points_attachment_received
+		update_attachment_field($data['post_id'], $new_points);
+
+		// Update users points
+		add_points($poster_id, $new_points);
+	}
+	// End Ultimate Points
 	// we need to update the last forum information
 	// only applicable if the topic is not global and it is approved
 	// we also check to make sure we are not dealing with globaling the latest topic (pretty rare but still needs to be checked)

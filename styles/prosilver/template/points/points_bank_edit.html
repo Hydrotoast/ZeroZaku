@@ -1,5 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<!-- $Id: points_bank_edit.html 406 2009-06-29 16:06:16Z femu $ -->
+<!-- $Id: points_bank_edit.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
 
 <!-- BEGIN administer_bank -->
 <br style="clear:both" />
@@ -17,24 +17,25 @@
 			</div>
 			<div class="column2">
 				<h3>&nbsp;</h3>
-				<p>&nbsp;</p>	
+				<p>&nbsp;</p>
 				<dl class="details">
-					<dt>{L_SET_AMOUNT}:</dt> 
-					<dd><input type="text" tabindex="1" class="inputbox autowidth" maxlength="10" name="points" size="20" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" value="" /></dd>
+					<dt>{L_SET_AMOUNT}:</dt>
+					<dd><input type="text" tabindex="1" class="inputbox autowidth" maxlength="10" name="points" size="20" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" value="{CURRENT_VALUE}" /></dd>
 				</dl>
 			</div>
 		<span class="corners-bottom"><span></span></span></div>
-	</div> 
-	
+	</div>
+
 	<div class="panel bg2">
 		<div class="inner"><span class="corners-top"><span></span></span>
 		<fieldset class="submit-buttons">
 			{S_HIDDEN_FIELDS}
-			<input type="submit" tabindex="2" accesskey="s" name="submit" value="{L_SUBMIT}" class="button1" />&nbsp;
+			<input type="submit" tabindex="2" accesskey="s" name="submit" value="{L_SUBMIT}" class="button1" />
+			{S_FORM_TOKEN}
 		</fieldset>
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
-	
+
 </form>
 <br style="clear:both" />
 <!-- END administer_bank -->

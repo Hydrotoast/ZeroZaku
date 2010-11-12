@@ -4,9 +4,11 @@
  * @author Nathan Guse (EXreaction) http://lithiumstudios.org
  * @author David Lewis (Highway of Life) highwayoflife@gmail.com
  * @package umil
- * @version $Id: umil.php 220 2010-04-19 21:17:32Z exreaction $
+ * @version $Id: umil.php 149 2009-06-16 00:58:51Z exreaction $
  * @copyright (c) 2008 phpBB Group
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ *
+ * Translated By:
  *
  */
 
@@ -84,16 +86,12 @@ $lang = array_merge($lang, array(
 	'PERMISSION_ALREADY_EXISTS'		=> 'EROARE: Opţiunea de permisiune %s există deja.',
 	'PERMISSION_NOT_EXIST'			=> 'EROARE: Opţiunea de permisiune %s nu există.',
 	'PERMISSION_REMOVE'				=> 'Şterge opţiunea de permisiune: %s',
-	'PERMISSION_ROLE_ADD'			=> 'Adaugă permisiunea pentru noul rol: %s',
-	'PERMISSION_ROLE_UPDATE'		=> 'Actualizează permisiunea pentru rol: %s',
-	'PERMISSION_ROLE_REMOVE'		=> 'Elimină permisiunea pentru rol: %s',
 	'PERMISSION_SET_GROUP'			=> 'Specifică permisiuniile pentru grupul %s.',
 	'PERMISSION_SET_ROLE'			=> 'Specifică permisiuniile pentru rolul %s.',
 	'PERMISSION_UNSET_GROUP'		=> 'Elimină permisiuniile pentru grupul %s.',
 	'PERMISSION_UNSET_ROLE'			=> 'Elimină permisiuniile pentru rolul %s.',
 
-	'ROLE_ALREADY_EXISTS'			=> 'Permisiunile pentru rol deja există.',
-	'ROLE_NOT_EXIST'				=> 'Permisiunea pentru rol nu există',
+	'ROLE_NOT_EXIST'				=> 'Rolul nu există',
 
 	'SUCCESS'						=> 'Succes',
 

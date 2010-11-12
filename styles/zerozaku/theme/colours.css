@@ -1107,9 +1107,17 @@ fieldset.display-options label { color: #FFFFFF; }
 	color: #212121 !important;
 }
 
-.dropdown ul {
+.dropdown ul, .dropdown div#info {
 	background-color: #E0E0E0;
 	border-color: #212121;
+}
+
+.dropdown div#info dl dt {
+	color: #212121;
+}
+
+.dropdown ul li span {
+	color: #212121 !important;
 }
 
 .dropdown ul a:link, .dropdown ul a:visited {

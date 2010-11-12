@@ -116,6 +116,9 @@ $in_kb = request_var('kb', false);
 $user->session_begin(false);
 $auth->acl($user->data);
 $user->setup('viewtopic');
+// Start Ultimate Points
+$user->add_lang('mods/points');
+// End Ultimate Points
 
 if (!$download_id)
 {
@@ -126,6 +129,13 @@ if (!$config['allow_attachments'] && !$config['allow_pm_attach'] && !$config['kb
 {
 	trigger_error('ATTACHMENT_FUNCTIONALITY_DISABLED');
 }
+// Start Ultimate Points
+if ($config['allow_attachments'] && $config['points_enable'] && ($user->data['user_points'] < $points_values['points_dl_cost_per_attach']))
+{
+	$message = sprintf($user->lang['POINTS_ATTACHMENT_MINI_POSTS'], $config['points_name']) . '<br /><br /><a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">&laquo; ' . $user->lang['POINTS_RETURN_INDEX'] . '</a>';
+	trigger_error($message);
+}
+// End Ultimate Points
 
 if($in_kb)
 {
@@ -159,6 +169,12 @@ $sql = 'SELECT attach_id, in_message, post_msg_id, extension, is_orphan, poster_
 $result = $db->sql_query_limit($sql, 1);
 $attachment = $db->sql_fetchrow($result);
 $db->sql_freeresult($result);
+// Start Ultimate Points
+if ( $config['points_enable'] )
+{
+	substract_points($user->data['user_id'], $points_values['points_dl_cost_per_attach']);
+}
+// End Ultimate Points
 }
 
 if (!$attachment)

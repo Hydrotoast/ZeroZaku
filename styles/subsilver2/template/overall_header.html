@@ -206,6 +206,12 @@ function marklist(id, name, state)
 				<a href="{U_POINTS}"><img src="{T_THEME_PATH}/images/icon_points.gif" width="12" height="13" alt="*" /> {POINTS_LINK}</a><!-- IF S_USER_LOGGED_IN --> [ {USER_POINTS} ]<!-- ENDIF -->&nbsp; &nbsp;
 				<!-- ENDIF -->				
 				<!-- End Ultimate Points -->
+
+				<!-- Start Ultimate Points -->
+				<!-- IF S_POINTS_ENABLE -->				
+				<a href="{U_POINTS}"><img src="{T_THEME_PATH}/images/icon_points.gif" width="12" height="13" alt="*" /> {POINTS_LINK}</a><!-- IF S_USER_LOGGED_IN and S_USE_POINTS --> [ {USER_POINTS} ]<!-- ENDIF -->&nbsp; &nbsp;
+				<!-- ENDIF -->				
+				<!-- End Ultimate Points -->
 				<a href="{U_FAQ}"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> {L_FAQ}</a>
 				<!-- IF S_MCHAT_ENABLE and U_MCHAT -->&nbsp; &nbsp;<a href="{U_MCHAT}"><img src="{T_THEME_PATH}/images/icon_mini_groups.gif" width="12" height="13" alt="*" /> {L_MCHAT}</a><!-- ENDIF -->
 				<!-- IF S_DISPLAY_SEARCH -->&nbsp; &nbsp;<a href="{U_SEARCH}"><img src="{T_THEME_PATH}/images/icon_mini_search.gif" width="12" height="13" alt="*" /> {L_SEARCH}</a><!-- ENDIF -->

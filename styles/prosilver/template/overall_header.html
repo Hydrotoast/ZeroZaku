@@ -196,6 +196,12 @@
 				<!-- End Ultimate Points -->
 
 <li class="icon-kb"><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB}</a></li>
+
+				<!-- Start Ultimate Points -->
+				<!-- IF S_POINTS_ENABLE -->
+				<li class="icon-points"><a href="{U_POINTS}" title="{L_POINTS_EXPLAIN}">{POINTS_LINK}<!-- IF S_USER_LOGGED_IN and S_USE_POINTS --> [ {USER_POINTS} ] <!-- ENDIF --></a></li>
+				<!-- ENDIF -->
+				<!-- End Ultimate Points -->
 				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
 				<!-- IF S_MCHAT_ENABLE and U_MCHAT --><li class="icon-bump"><a href="{U_MCHAT}" title="{L_MCHAT}">{L_MCHAT}</a></li><!-- ENDIF -->
 				<!-- IF not S_IS_BOT -->
