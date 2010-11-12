@@ -788,10 +788,19 @@ switch ($mode)
 		$db->sql_freeresult($result);
 		// END USER EXTRA
 		
+		//Switch off user css if safemode = 1
+		
+		if(request_var('safemode', 0) == 1)
+		{
+			$user_css = '';
+		} else {
+			$user_css = $profile_extra['user_css'];
+		}
+		
 		$template->assign_vars(array(
 			'L_POSTS_IN_QUEUE'	=> $user->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
 
-		    'USER_CSS'			=> $profile_extra['user_css'],
+		    'USER_CSS'			=> $user_css,
 		    'ABOUT'				=> generate_text_for_display($profile_extra['user_about'], $profile_extra['user_about_uid'], $profile_extra['user_about_bitfield'], $profile_extra['user_about_options']),
 		    'MEDIA'				=> $profile_extra['user_media'],
 		
