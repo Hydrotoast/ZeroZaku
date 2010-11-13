@@ -1320,7 +1320,7 @@ class acp_users
 				
 				$sql = 'SELECT message 
 					FROM ' . CHAT_STATUS_TABLE . '
-					WHERE user_id = ' . $user_id;
+					WHERE userid = ' . $user_id;
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
         $db->sql_freeresult($result);
@@ -1449,7 +1449,7 @@ class acp_users
 						$sql = 'UPDATE ' . CHAT_STATUS_TABLE . '
 							SET message = \'' . $data['status'] . '\',
 						    lastchange = \'' . time() . '\'
-							WHERE user_id = ' . $user_id;
+							WHERE userid = ' . $user_id;
 						$db->sql_query($sql);
 
 						// Update Custom Fields
