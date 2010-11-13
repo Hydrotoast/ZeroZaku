@@ -1071,10 +1071,10 @@ $sql = $db->sql_build_query('SELECT', array(
 			'FROM'	=> array(ZEBRA_TABLE => 'z'),
 			'ON'	=> 'z.user_id = ' . $user->data['user_id'] . ' AND z.zebra_id = p.poster_id'
 		),
-		, array(
+		array(
 			'FROM'	=> array(POINTS_BANK_TABLE => 'pb'),
 			'ON'	=> 'pb.user_id = p.poster_id'
-		)
+		),
 		array(
 			'FROM'	=> array(CHAT_STATUS_TABLE => 'c'),
 			'ON'	=> 'c.userid = p.poster_id'
