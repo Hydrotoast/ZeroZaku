@@ -78,7 +78,11 @@ class mcp_usertree
 		{
 			case 'search':
 			
-			if (isset($_POST['submit']))
+			if (isset($_GET['u']))
+			{
+				$tree_result = $this->usertreenode(request_var('u', 0));
+			}
+			elseif (isset($_POST['submit']) || isset($_GET['searchuser']) || isset($_GET['u']))
 			{
 				$searchuser = 0;
 				$res = $db->sql_query("SELECT * FROM phpbb_users WHERE username_clean = '" . strtolower(request_var('searchuser', '')) . "'");
