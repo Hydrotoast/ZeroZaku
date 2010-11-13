@@ -33,7 +33,7 @@ class mcp_usertree
 		$users[] = 1;
 		$res = $db->sql_query("SELECT DISTINCT poster_ip FROM phpbb_posts WHERE poster_id = $userid AND poster_ip <> '$parentip'");
 
-		$returnval .= '<ul>';
+		$returnval .= '<ul style="margin-left: 15px;">';
 		while ($row=$db->sql_fetchrow($res))
 		{
 			$ipres = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip='" . $row['poster_ip'] . "'");
