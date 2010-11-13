@@ -4227,6 +4227,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 			'U_POINTS'				=> append_sid("{$phpbb_root_path}points.$phpEx"),
 			'POINTS_LINK'			=> $config['points_name'],
 			'USER_POINTS'			=> sprintf(number_format_points($user->data['user_points'])),
+		  'POINTS_NAME'     => $config['points_name'],
 			'S_POINTS_ENABLE'		=> $config['points_enable'],
 			'S_USE_POINTS'			=> $auth->acl_get('u_use_points'),
 		));
