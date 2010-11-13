@@ -1318,13 +1318,13 @@ class acp_users
 				$db->sql_freeresult($result);
 				$user_row['iso_lang_id'] = $row['lang_id'];
 				
-				$sql = 'SELECT user_status 
-					FROM ' . USERS_IM_TABLE . '
+				$sql = 'SELECT message 
+					FROM ' . CHAT_STATUS_TABLE . '
 					WHERE user_id = ' . $user_id;
 				$result = $db->sql_query($sql);
 				$row = $db->sql_fetchrow($result);
         $db->sql_freeresult($result);
-        $user_row['user_status'] = $row['user_status'];
+        $user_row['user_status'] = $row['message'];
                 
         $sql = 'SELECT user_about, user_about_uid, user_about_options, user_media 
           FROM ' . PROFILE_EXTENDED_TABLE . '
@@ -1446,9 +1446,9 @@ class acp_users
               WHERE user_id = $user_id";
             $db->sql_query($sql);
 						
-						$sql = 'UPDATE ' . USERS_IM_TABLE . '
-							SET user_status = \'' . $data['status'] . '\',
-						    user_lastchange = \'' . time() . '\'
+						$sql = 'UPDATE ' . CHAT_STATUS_TABLE . '
+							SET message = \'' . $data['status'] . '\',
+						    lastchange = \'' . time() . '\'
 							WHERE user_id = ' . $user_id;
 						$db->sql_query($sql);
 
