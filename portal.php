@@ -137,10 +137,10 @@ function get_db_stat($mode)
 }
 
 // BEGIN USER STATUSES
-$sql = 'SELECT uim.user_status,  u.user_id, u.username, u.user_colour
-	FROM ' . USERS_IM_TABLE . ' uim INNER JOIN ' . USERS_TABLE . ' u
-		ON uim.user_id = u.user_id
-	ORDER BY uim.user_lastchange DESC
+$sql = 'SELECT c.message,  u.user_id, u.username, u.user_colour
+	FROM ' . CHAT_STATUS_TABLE . ' c INNER JOIN ' . USERS_TABLE . ' u
+		ON c.userid = u.user_id
+	ORDER BY c.lastchange DESC
 	LIMIT 0, 10';
 $result = $db->sql_query($sql);
 
@@ -148,7 +148,7 @@ while($row = $db->sql_fetchrow($result))
 {
 	$template->assign_block_vars('user_statuses', array(
 		'USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-	    'STATUS'	=> $row['user_status'],
+	    'STATUS'	=> $row['message'],
 	));
 }
 // END USER STATUSES
@@ -168,14 +168,14 @@ activity_mod();
 // BEGIN USER COLUMN
 
 // Get user...
-$sql = 'SELECT u.*, im.user_status
+$sql = 'SELECT u.*, c.message
   FROM ' . USERS_TABLE . ' u
-  JOIN ' . USERS_IM_TABLE . ' im
-    ON u.user_id = im.user_id
+  JOIN ' . CHAT_STATUS_TABLE . ' c
+    ON u.user_id = c.userid
   WHERE u.user_posts > 0 
     AND u.user_warnings < 2 
     AND u.user_id <> ' . ANONYMOUS. '
-    AND im.user_status <> ""
+    AND c.message <> ""
   ORDER BY RAND()
   LIMIT 0, 6';
 $result = $db->sql_query($sql);
@@ -197,7 +197,7 @@ while($row = $db->sql_fetchrow($result))
 			'JOINED'            => $user->format_date($row['user_regdate'], "M jS Y", true),
 			'POSTS'             => $row['user_posts'],
 			'FROM'              => (!empty($row['user_from'])) ? $row['user_from'] : '',
-      'STATUS'            => ($row['user_status']) ? $row['user_status'] : '',
+      'STATUS'            => ($row['message']) ? $row['message'] : '',
     );
 
     $template->assign_block_vars('user_column', $member);
