@@ -217,7 +217,6 @@ class points_transfer_user
 			'U_LOTTERY'        			=> append_sid("{$phpbb_root_path}points.$phpEx", "mode=lottery"),
 			'U_BANK'        			=> append_sid("{$phpbb_root_path}points.$phpEx", "mode=bank"),
 			'U_ROBBERY'        			=> append_sid("{$phpbb_root_path}points.$phpEx", "mode=robbery"),
-			'U_INFO'					=> append_sid("{$phpbb_root_path}points.$phpEx", "mode=info"),
 			'U_FIND_USERNAME'			=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=searchuser&amp;form=post&amp;field=username"),
 			'U_USE_TRANSFER'			=> $auth->acl_get('u_use_transfer'),
 			'U_USE_LOGS'				=> $auth->acl_get('u_use_logs'),

@@ -426,7 +426,6 @@ class points_bank
 			'U_LOTTERY'				=> append_sid("{$phpbb_root_path}points.$phpEx", 'mode=lottery'),
 			'U_BANK'				=> append_sid("{$phpbb_root_path}points.$phpEx", 'mode=bank'),
 			'U_ROBBERY'				=> append_sid("{$phpbb_root_path}points.$phpEx", 'mode=robbery'),
-			'U_INFO'				=> append_sid("{$phpbb_root_path}points.$phpEx", 'mode=info'),
 			'U_USE_TRANSFER'		=> $auth->acl_get('u_use_transfer'),
 			'U_USE_LOGS'			=> $auth->acl_get('u_use_logs'),
 			'U_USE_LOTTERY'			=> $auth->acl_get('u_use_lottery'),

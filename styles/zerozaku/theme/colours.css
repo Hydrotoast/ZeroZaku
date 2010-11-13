@@ -1112,9 +1112,8 @@ fieldset.display-options label { color: #FFFFFF; }
 	border-color: #212121;
 }
 
-.dropdown div#info dl dt {
-	color: #212121;
-}
+.dropdown div#info dl dt { color: #212121; }
+.dropdown div#info a { background: transparent; color: #666666; }
 
 .dropdown ul li span {
 	color: #212121 !important;
