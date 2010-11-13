@@ -1,0 +1,67 @@
+<!-- INCLUDE overall_header.html -->
+<!-- $Id: points_transfer_user.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
+
+<div id="tabs">
+	<ul>
+		<li><a href="{U_POINTS}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+
+		<!-- IF TRANSFER_ENABLE and U_USE_TRANSFER --><li class="activetab"><a href="{U_TRANSFER_USER}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE and U_USE_LOTTERY --><li><a href="{U_LOTTERY}"><span>{LOTTERY_NAME}</span></a></li><!-- ENDIF -->
+		<!-- IF BANK_ENABLE and U_USE_BANK --><li><a href="{U_BANK}"><span>{BANK_NAME}</span></a></li><!-- ENDIF -->
+		<!-- IF ROBBERY_ENABLE and U_USE_ROBBERY --><li><a href="{U_ROBBERY}"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+	</ul>
+</div>
+
+<div class="panel bg3">
+	<div class="inner">
+		
+
+			<div id="cp-menu">
+				<div id="navigation">
+          <ul>
+            <li><a href="{U_TRANSFER_USER}"><span>{L_POINTS_TRANSFER}</span></a></li>
+            <li><a href="{U_LOGS}"><span>{L_POINTS_LOGS}</span></a></li>
+          </ul>
+        </div>
+			</div>
+
+			<form id="post" action="{U_ACTION}" method="post">
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_POINTS_TRANSFER}</h2>
+				<div class="panel">
+					<div class="inner">
+						
+							<!-- IF S_USER_LOGGED_IN -->
+							<p>{L_TRANSFER_DESCRIPTION}</p>
+							<fieldset>
+							 <dl class="details">
+									<dt><label for="username">{L_TRANSFER_SET_USERNAME}</label></dt>
+									<dd><input type="text" tabindex="1" id="username" class="inputbox" name="username" value=""/></dd>
+									<dd><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd>
+									<dt><label>{L_TRANSFER_AMOUNT}:</label></dt>
+									<dd><input type="text" maxlength="10" tabindex="2" class="inputbox autowidth" title="{L_POINTS_NUMBER_FORMAT_EXPLAIN}" name="amount" value="" /> {POINTS_NAME}</dd>
+								<!-- IF POINTS_COMMENTS and S_ALLOW_SEND_PM -->
+									<dt><label for="comment">{L_TRANSFER_COMMENT}:</label></dt>
+									<dd><textarea id="comment" tabindex="3" class="inputbox" name="comment" cols="50" rows="3" >{COMMENT}</textarea></dd>
+								<!-- ENDIF -->
+								</dl>
+							</fieldset>
+							<fieldset class="submit-buttons">
+							{S_HIDDEN_FIELDS}
+							<input type="submit" tabindex="4" name="submit" value="{L_SUBMIT}" class="button1" />
+							{S_FORM_TOKEN}
+							</fieldset>
+							<!-- ELSE -->
+							<p>{L_POINTS_BOT_GUEST}</p>
+							<!-- ENDIF -->	
+						
+					</div>
+				</div>
+			</div>
+			</form>
+
+		
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

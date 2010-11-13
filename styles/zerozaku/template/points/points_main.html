@@ -1,0 +1,68 @@
+<!-- INCLUDE overall_header.html -->
+<!-- $Id: points_main.html 587 2009-10-14 18:36:12Z Wuerzi $ -->
+<div id="tabs">
+	<ul>
+		<li class="activetab"><a href="{U_POINTS}"><span>{L_POINTS_OVERVIEW}</span></a></li>
+
+		<!-- IF TRANSFER_ENABLE and U_USE_TRANSFER --><li><a href="{U_TRANSFER_USER}"><span>{L_POINTS_TRANSFER}</span></a></li><!-- ENDIF -->
+		<!-- IF LOTTERY_ENABLE and U_USE_LOTTERY --><li><a href="{U_LOTTERY}"><span>{LOTTERY_NAME}</span></a></li><!-- ENDIF -->
+		<!-- IF BANK_ENABLE and U_USE_BANK --><li><a href="{U_BANK}"><span>{BANK_NAME}</span></a></li><!-- ENDIF -->
+		<!-- IF ROBBERY_ENABLE and U_USE_ROBBERY --><li><a href="{U_ROBBERY}"><span>{L_POINTS_ROBBERY}</span></a></li><!-- ENDIF -->
+	</ul>
+</div>
+
+<div class="panel bg3">
+	<div class="inner">
+		<fieldset>
+			  <!-- IF S_USER_LOGGED_IN -->
+				<p>{L_MAIN_ON_HAND}</p>
+				<!-- BEGIN has_bank_account -->
+          <p>{has_bank_account.L_MAIN_BANK_HAVE}</p>
+				<!-- END has_bank_account -->
+				<p>{L_MAIN_LOTTERY_TICKETS}</p>
+			<!-- ENDIF -->
+	  </fieldset>
+		
+		<fieldset>
+			<h3 class="sub">{L_INFO_GENERAL_INFORMATIONS}</h3>
+			<p>{POINTS_INFO_DESCRIPTION}</p>
+			
+      <dl class="details">
+        <dt>{L_INFO_ATTACH}:</dt>
+        <dd>{INFO_ATTACH}</dd>
+        
+        <dt>{L_INFO_ADD_ATTACH}:</dt>
+        <dd>{INFO_ADD_ATTACH}</dd>
+
+        <dt>{L_INFO_POLL}:</dt>
+        <dd>{INFO_POLL}</dd>
+
+        <dt>{L_INFO_POLL_OPTION}:</dt>
+        <dd>{INFO_POLL_OPTION}</dd>
+
+        <dt>{L_INFO_TOPIC_WORD}:</dt>
+        <dd>{INFO_TOPIC_WORD}</dd>
+
+        <dt>{L_INFO_TOPIC_CHARACTER}:</dt>
+        <dd>{INFO_TOPIC_CHARACTER}</dd>
+
+        <dt>{L_INFO_POST_WORD}:</dt>
+        <dd>{INFO_POST_WORD}</dd>
+
+        <dt>{L_INFO_POST_CHARACTER}:</dt>
+        <dd>{INFO_POST_CHARACTER}</dd>
+
+        <dt>{L_INFO_COST_DL_ATTACH}:</dt>
+        <dd>{INFO_COST_DL_ATTACH}</dd>
+
+        <dt>{L_INFO_COST_WARNING}:</dt>
+        <dd>{INFO_COST_WARNING}</dd>
+
+        <dt>{L_INFO_REG_BONUS}:</dt>
+        <dd>{INFO_REG_BONUS}</dd>
+      </dl>
+    </fieldset>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

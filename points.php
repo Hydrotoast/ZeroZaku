@@ -125,7 +125,6 @@ switch( $mode )
 	case 'points_edit':
 	case 'bank':
 	case 'bank_edit':
-	case 'info':
 		$module->load('points', $mode);
 		$module->display("{L_POINTS_}" . strtoupper($mode));
 	break;
