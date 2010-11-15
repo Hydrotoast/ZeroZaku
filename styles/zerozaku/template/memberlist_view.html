@@ -41,12 +41,14 @@
 				<!-- IF S_WARNINGS -->
 				<dt>{L_WARNINGS}: </dt>
 				<dd><strong>{WARNINGS}</strong><!-- IF U_NOTES or U_WARN --> [ <!-- IF U_NOTES --><a href="{U_NOTES}">{L_VIEW_NOTES}</a><!-- ENDIF --> <!-- IF U_WARN --><!-- IF U_NOTES --> | <!-- ENDIF --><a href="{U_WARN}">{L_WARN_USER}</a><!-- ENDIF --> ]<!-- ENDIF --></dd>
-				<!-- ENDIF -->
+				
+                <!-- ENDIF -->
 				<dt>{L_TOTAL_POSTS}:</dt>
 					<dd>{POSTS} <!-- IF S_DISPLAY_SEARCH -->| <strong><a href="{U_SEARCH_USER}">{L_SEARCH_USER_POSTS}</a></strong><!-- ENDIF -->
 						<!-- IF POSTS_PCT --><br />({POSTS_PCT} / {POSTS_DAY})<!-- ENDIF -->
 						<!-- IF POSTS_IN_QUEUE and U_MCP_QUEUE --><br />(<a href="{U_MCP_QUEUE}">{L_POSTS_IN_QUEUE}</a>)<!-- ELSEIF POSTS_IN_QUEUE --><br />({L_POSTS_IN_QUEUE})<!-- ENDIF -->
-					</dd>
+					
+                    </dd>
 				<!-- IF S_SHOW_ACTIVITY and POSTS -->
 					<dt>{L_ACTIVE_IN_FORUM}:</dt> <dd><!-- IF ACTIVE_FORUM --><strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong><br />({ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
 					<dt>{L_ACTIVE_IN_TOPIC}:</dt> <dd><!-- IF ACTIVE_TOPIC --><strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong><br />({ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
@@ -58,6 +60,7 @@
 				<!-- IF MF -->
 					<dt>{MF_TOTAL} {L_MUTUAL_FRIENDS}<!-- IF MF_TOTAL > 0 -->:<!-- ENDIF --></dt> <dd><!-- IF MF_TOTAL > 0 --><!-- BEGIN mutual_friend --><!-- IF not mutual_friend.S_FIRST_ROW -->, <!-- ENDIF -->{mutual_friend.USERNAME}<!-- END mutual_friend --><!-- ENDIF --></dd>
 				<!-- ENDIF -->
+                <!-- IF U_MCP_TREE --><dt>User Tree:</dt> <dd>[<a href="{U_MCP_TREE}">View User Tree</a>]</dd><!-- ENDIF -->
 			</dl>
 			
 			</div>
