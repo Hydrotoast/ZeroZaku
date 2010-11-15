@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* @package mChat PHP Code
-* @version 1.3.7 26.10.2009
-* @copyright (c) djs596 ( http://djs596.com/ ), (c) RMcGirr83 ( http://www.rmcgirr83.org/ ), (c) Stokerpiller ( http://www.phpbb3bbcodes.com/ )
+* @package Affiliate
+* @version 1.0.0
+* @copyright (c) Gio Borje (www.zerozaku.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 **/
