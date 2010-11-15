@@ -33,7 +33,7 @@ class mcp_usertree
 		$users[] = 1;
 		$res = $db->sql_query("SELECT DISTINCT poster_ip FROM phpbb_posts WHERE poster_id = $userid AND poster_ip <> '$parentip'");
 
-		$returnval .= '<ul>';
+		$returnval .= '<ul style="margin-left: 15px;">';
 		while ($row=$db->sql_fetchrow($res))
 		{
 			$ipres = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip='" . $row['poster_ip'] . "'");
@@ -78,7 +78,11 @@ class mcp_usertree
 		{
 			case 'search':
 			
-			if (isset($_POST['submit']))
+			if (isset($_GET['u']))
+			{
+				$tree_result = $this->usertreenode(request_var('u', 0));
+			}
+			elseif (isset($_POST['submit']) || isset($_GET['searchuser']) || isset($_GET['u']))
 			{
 				$searchuser = 0;
 				$res = $db->sql_query("SELECT * FROM phpbb_users WHERE username_clean = '" . strtolower(request_var('searchuser', '')) . "'");
