@@ -25,6 +25,30 @@ class mcp_usertree
 {
 	var $u_action;
 	var $users = array();
+	function iptreenode($ip, $parentip = 'null')
+	{
+		global $db;
+		global $users;
+		$returnval = '';
+		$users[] = 1;
+		$res = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip = '$ip'");
+		
+		$returnval .= '<ul style="margin-left: 15px;">';
+		
+		while ($row=$db->sql_fetchrow($res))
+		{
+					if (!in_array($row['poster_id'], $users))
+					{
+						$users[] = $row['poster_id'];
+						$usrres = $db->sql_query("SELECT username, user_colour FROM phpbb_users WHERE user_id =" . $row['poster_id']);
+						$usrrow = $db->sql_fetchrow($usrres);
+						$returnval .=  '<li style="padding-left: 5px; margin-left: 5px;"><span style="font-weight:bold; color:#' . $usrrow['user_colour'] . ';">' . $usrrow['username'] . "</span> (" . $row['poster_id'] . ") - " . $ip . "</li>";
+						$returnval .= $this->usertreenode($row['poster_id'], $ip);
+					}
+		}
+		$returnval .= '</ul>';
+		return $returnval;
+	}
 	function usertreenode($userid, $parentip = 'null')
 	{
 		global $db;
@@ -81,8 +105,9 @@ class mcp_usertree
 			if (isset($_GET['u']))
 			{
 				$tree_result = $this->usertreenode(request_var('u', 0));
-			}
-			elseif (isset($_POST['submit']) || isset($_GET['searchuser']) || isset($_GET['u']))
+			} elseif (isset($_GET['ip'])) {
+				$tree_result = $this->iptreenode(request_var('ip', ''));
+			} elseif (isset($_POST['submit']) || isset($_GET['searchuser']) || isset($_GET['u']))
 			{
 				$searchuser = 0;
 				$res = $db->sql_query("SELECT * FROM phpbb_users WHERE username_clean = '" . strtolower(request_var('searchuser', '')) . "'");
