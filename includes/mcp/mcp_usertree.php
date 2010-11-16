@@ -31,6 +31,7 @@ class mcp_usertree
 		global $users;
 		$returnval = '';
 		$users[] = 1;
+		$count = 0;
 		$res = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip = '$ip'");
 		
 		$returnval .= '<ul style="margin-left: 15px;">';
@@ -45,8 +46,31 @@ class mcp_usertree
 						$returnval .=  '<li style="padding-left: 5px; margin-left: 5px;"><span style="font-weight:bold; color:#' . $usrrow['user_colour'] . ';">' . $usrrow['username'] . "</span> (" . $row['poster_id'] . ") - " . $ip . "</li>";
 						$returnval .= $this->usertreenode($row['poster_id'], $ip);
 					}
+					$count++;
 		}
 		$returnval .= '</ul>';
+		
+		if ($count == 0)
+		{
+			$returnval .= 'No post IPs found.  Checking Registeration IPs...<ul>';
+			$res = $db->sql_query("SELECT DISTINCT user_id FROM phpbb_users WHERE user_ip = '$ip'");
+			
+					while ($row=$db->sql_fetchrow($res))
+					{
+						if (!in_array($row['user_id'], $users))
+						{
+							$users[] = $row['user_id'];
+							$usrres = $db->sql_query("SELECT username, user_colour FROM phpbb_users WHERE user_id =" . $row['user_id']);
+							$usrrow = $db->sql_fetchrow($usrres);
+							$returnval .=  '<li style="padding-left: 5px; margin-left: 5px;"><span style="font-weight:bold; color:#' . $usrrow['user_colour'] . ';">' . $usrrow['username'] . "</span> (" . $row['user_id'] . ") - " . $ip . "</li>";
+							$returnval .= $this->usertreenode($row['user_id'], $ip);
+						}
+						$count++;
+					}
+					$returnval .= '</ul>';
+		
+		}
+		
 		return $returnval;
 	}
 	function usertreenode($userid, $parentip = 'null')
@@ -55,6 +79,7 @@ class mcp_usertree
 		global $users;
 		$returnval = '';
 		$users[] = 1;
+		$count = 0;
 		$res = $db->sql_query("SELECT DISTINCT poster_ip FROM phpbb_posts WHERE poster_id = $userid AND poster_ip <> '$parentip'");
 
 		$returnval .= '<ul style="margin-left: 15px;">';
@@ -73,8 +98,35 @@ class mcp_usertree
 						$returnval .= $this->usertreenode($iprow['poster_id'], $row['poster_ip']);
 					}
 				}
+				$count++;
 			}
 			$returnval .= '</ul>';
+			if ($count == 0)
+			{
+			 $returnval .= 'No posts found for this user, performing search based on registered IP...<ul>';
+			 $res = $db->sql_query("SELECT DISTINCT user_ip FROM phpbb_users WHERE user_id = $userid");	
+			 
+			 while ($row=$db->sql_fetchrow($res))
+				{
+				$ipres = $db->sql_query("SELECT DISTINCT poster_id FROM phpbb_posts WHERE poster_ip='" . $row['user_ip'] . "'");
+					
+				while ($iprow = $db->sql_fetchrow($ipres))
+				{
+					if (!in_array($iprow['poster_id'], $users))
+					{
+						$users[] = $iprow['poster_id'];
+						$usrres = $db->sql_query("SELECT username, user_colour FROM phpbb_users WHERE user_id =" . $iprow['poster_id']);
+						$usrrow = $db->sql_fetchrow($usrres);
+						$returnval .=  '<li style="padding-left: 5px; margin-left: 5px;"><span style="font-weight:bold; color:#' . $usrrow['user_colour'] . ';">' . $usrrow['username'] . "</span> (" . $iprow['poster_id'] . ") - " .$row['poster_ip']. "</li>";
+						$returnval .= $this->usertreenode($iprow['poster_id'], $row['poster_ip']);
+					}
+				}
+				$count++;
+				}
+				$returnval .= '</ul>';
+			}
+			
+			
 		return $returnval;
 	}
 	function main($id, $mode)
