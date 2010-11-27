@@ -28,7 +28,7 @@ $type = request_var('format', 'json');
 $user_id = request_var('user_id', 0);
 $username = request_var('username', '');
 
-if(!in_array($method, array('user', 'generate')))
+if(!in_array($method, array('user', 'check', 'generate')))
 {
     echo 'Invalid method: method does not exist';
 }
@@ -50,6 +50,16 @@ switch($method)
 {
     case 'generate':
         echo substr(sha1(unique_id() + 'zanzibar'), 0, 12);
+    break;
+    case 'check':
+        $sql = 'SELECT user_api_key
+			FROM ' . USERS_TABLE . ' 
+			WHERE user_id = ' . $user->data['user_id'];
+		$result = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($result);
+		$db->sql_freeresult($result);
+		
+	    echo json_encode($row);
     break;
     case 'user':
         if(empty($api_key) || strlen($api_key) !== 12)
