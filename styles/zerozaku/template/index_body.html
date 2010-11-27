@@ -1,4 +1,18 @@
 <!-- DEFINE $SIDEBAR = '1' --><!-- DEFINE $CA_PAGE = 'index' --><!-- INCLUDE overall_header.html --><!-- INCLUDE portal/_block_config.html -->
+	<h2 class="cattitle"><a href="{U_MCHAT}" title="{L_MCHAT}">{L_MCHAT_TITLE}</a></h2>
+	<script type="text/javascript">
+	(function($){
+	    $(document).ready( function(){
+	        $('#shoutbox').load(function() {
+	            var iframe = $(this).contents();
+	            $('ol.tabs', iframe ).hide();
+	            
+	            document.getElementById('shoutbox').contentwindow.windowResize();
+	        });
+	    });
+	})(jQuery);
+	</script>
+	<iframe id='shoutbox' src='{ROOT_PATH}/cometchat/modules/chatrooms/index.php?roomid=3&roomname=976a0a4bb610bae5b5d07265be4652ef' ></iframe>
 
 	<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
 
@@ -12,6 +26,5 @@
 	<!-- ENDIF -->
 
 <!-- INCLUDE forumlist_body.html -->
-<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->
