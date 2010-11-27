@@ -14,6 +14,8 @@ define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
+include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+
 
 // Start session management
 $user->session_begin();
@@ -80,7 +82,7 @@ switch($method)
 		unset($sql);
 		if(!empty($user_id))
 		{
-		    $sql = 'SELECT user_id, username, group_id, user_posts, user_rank, user_avatar, user_lastvisit
+		    $sql = 'SELECT user_id AS id, username, group_id, user_posts AS posts, user_reputation AS reputation, user_avatar AS avatar, user_lastvisit AS lastvisit
 		    	FROM ' . USERS_TABLE . ' WHERE user_id = ' . (int) $user_id;
 		    $result = $db->sql_query($sql);
 		    $row = $db->sql_fetchrow($result);
@@ -90,13 +92,13 @@ switch($method)
 		}
 		elseif(!empty($username))
 		{
-		    $sql = 'SELECT user_id, username, group_id, user_posts, user_rank, user_avatar, user_lastvisit
+		    $sql = 'SELECT user_id AS id, username, group_id, user_posts AS posts, user_reputation AS reputation, user_avatar AS avatar, user_lastvisit AS lastvisit
 		    	FROM ' . USERS_TABLE . '
 		    	WHERE username = \'' . $db->sql_escape(utf8_clean_string($username)) . '\'';
 		    $result = $db->sql_query($sql);
 		    $row = $db->sql_fetchrow($result);
 		    $db->sql_freeresult($result);
-		    
+
 		    format_api_data($row);
 		}
 		else
