@@ -126,7 +126,8 @@ if ($autoLogin != 0) {
 				$(chatboxtextarea).val('');
 				$(chatboxtextarea).css('height','18px');
 				
-				var height = getWindowHeight();
+				var visible = $('ol.tabs').is(':visible');
+	            var height = getWindowHeight() + ((visible == true) ? 0 : 24);
 				$("#currentroom_convo").css('height',height-58-parseInt($('.cometchat_textarea').css('height'))-8);
 
 				$(chatboxtextarea).css('overflow-y','hidden');
