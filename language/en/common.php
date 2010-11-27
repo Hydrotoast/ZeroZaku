@@ -345,6 +345,7 @@ $lang = array_merge($lang, array(
 	'MARK_FORUMS_READ'		=> 'Mark forums read',
 	'MB'					=> 'MB',
 	'MIB'					=> 'MiB',
+    'MCHAT_TITLE'		    => 'Mini-chat',
 	'MCP'					=> 'Moderator Control Panel',
 	'MEMBERLIST'			=> 'Members',
 	'MEMBERLIST_EXPLAIN'	=> 'Welcome to the member list where you can view complete list of members',

@@ -1337,6 +1337,15 @@ dl.user-tag  { background-color: #F6F6F6; border-bottom: 1px solid #C0C0C0; bord
 dl.user-tag dt { float: left; height: 40px; width: 40px; margin-right: 10px; }
 dl.user-tag dd { display: block; clear: right; }
 
+/* Shoutbox
+-------------------------------------------------*/
+#shoutbox {
+	background: #FFFFFF;
+	border: 1px solid #F0F0F0;
+	height: 360px;
+	width: 100%;
+}
+
 /* Advertisements
 -------------------------------------------------*/
 .bottom-ad { border-top: 1px solid #E0E0E0; margin: 10px 0; padding-top: 10px; }

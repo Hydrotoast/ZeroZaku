@@ -112,7 +112,7 @@ EOD;
 
 $time = getTimeStamp();
 
-if (!empty($_SESSION['cometchat_chatroomspopout']) && $time-$_SESSION['cometchat_chatroomspopout'] < $maxHeartbeat*2/1000) {
+/*if (!empty($_SESSION['cometchat_chatroomspopout']) && $time-$_SESSION['cometchat_chatroomspopout'] < $maxHeartbeat*2/1000) {
 	echo <<<EOD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -137,7 +137,7 @@ if (!empty($_SESSION['cometchat_chatroomspopout']) && $time-$_SESSION['cometchat
 </html>
 EOD;
 	exit;
-}
+}*/
 
 echo <<<EOD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
