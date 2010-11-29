@@ -86,7 +86,7 @@ function obtain_active_user_data()
 					'ON'	=> 's.session_user_id = u.user_id',
 				),
 			),
-			'WHERE'		=> 'u.user_lastvisit > ' . (time() - 1296000) . ' OR s.session_user_id <> ' . ANONYMOUS,
+			'WHERE'		=> 'u.user_lastvisit > ' . (time() - 604800) . ' OR s.session_user_id <> ' . ANONYMOUS,
 			'GROUP_BY'	=> 'u.user_id',
 			'ORDER_BY'	=> 'u.username',
 		);
@@ -128,7 +128,7 @@ function obtain_active_guest_data()
 
 		// grab a list of users who are currently online
 		// and users who have visited in the last 24 hours
-		$sql = 'SELECT session_id FROM ' . SESSIONS_TABLE . ' WHERE session_last_visit > ' . (time() - 1296000) . ' AND session_user_id = ' . ANONYMOUS;
+		$sql = 'SELECT session_id FROM ' . SESSIONS_TABLE . ' WHERE session_last_visit > ' . (time() - 604800) . ' AND session_user_id = ' . ANONYMOUS;
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
