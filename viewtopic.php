@@ -624,6 +624,27 @@ if ($config['allow_quick_reply'])
 {
 	include($phpbb_root_path . 'includes/quick_reply.' . $phpEx);
 }
+
+//Perform Penlty check and standard lock check
+$is_topic_locked = ($topic_data['topic_status'] == ITEM_UNLOCKED && $topic_data['forum_status'] == ITEM_UNLOCKED) ? false : true;
+
+if ($is_topic_locked == false)
+{
+	$penres = $db->sql_query("SELECT penalty_zerons, penalty_rep, penalty_posts FROM phpbb_penalties WHERE forum_id = $forum_id AND penalty_type = 'reply' LIMIT 1");
+	while ($row = $db->sql_fetchrow($penres))
+	{
+		$final_points = $user->data['user_points'] - $row['penalty_zerons'];
+		$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
+		$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
+					
+		if ($final_points < 0 || $final_posts < 0)
+		{
+			$is_topic_locked = true;
+		}
+	}	
+}
+
+//End Penalty Check
 // Send vars to template
 $template->assign_vars(array(
 	'FORUM_ID' 		=> $forum_id,
@@ -676,7 +697,7 @@ $template->assign_vars(array(
 	'UNAPPROVED_IMG'	=> $user->img('icon_topic_unapproved', 'POST_UNAPPROVED'),
 	'WARN_IMG'			=> $user->img('icon_user_warn', 'WARN_USER'),
 
-	'S_IS_LOCKED'			=> ($topic_data['topic_status'] == ITEM_UNLOCKED && $topic_data['forum_status'] == ITEM_UNLOCKED) ? false : true,
+	'S_IS_LOCKED'			=> $is_topic_locked,
 	'S_SELECT_SORT_DIR' 	=> $s_sort_dir,
 	'S_SELECT_SORT_KEY' 	=> $s_sort_key,
 	'S_SELECT_SORT_DAYS' 	=> $s_limit_days,

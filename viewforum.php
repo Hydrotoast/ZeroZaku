@@ -273,6 +273,26 @@ if ($start < 0 || $start > $topics_count)
 // Basic pagewide vars
 $post_alt = ($forum_data['forum_status'] == ITEM_LOCKED) ? $user->lang['FORUM_LOCKED'] : $user->lang['POST_NEW_TOPIC'];
 
+//Perform penalty check to see if user can actually post in this forum, as well as regular lock checking.
+$is_forum_locked = ($forum_data['forum_status'] == ITEM_LOCKED) ? true : false;
+
+if ($is_forum_locked == false)
+{
+	$penres = $db->sql_query("SELECT penalty_zerons, penalty_rep, penalty_posts FROM phpbb_penalties WHERE forum_id = $forum_id AND penalty_type = 'post' LIMIT 1");
+	while ($row = $db->sql_fetchrow($penres))
+	{
+		$final_points = $user->data['user_points'] - $row['penalty_zerons'];
+		$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
+		$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
+					
+		if ($final_points < 0 || $final_posts < 0)
+		{
+			$is_forum_locked = true;
+		}
+	}	
+}
+//End Penalty Check
+
 // Display active topics?
 $s_display_active = ($forum_data['forum_type'] == FORUM_CAT && ($forum_data['forum_flags'] & FORUM_FLAG_ACTIVE_TOPICS)) ? true : false;
 if ($config['allow_quick_post'])
@@ -319,7 +339,7 @@ $template->assign_vars(array(
 	'S_DISPLAY_SEARCHBOX'	=> ($auth->acl_get('u_search') && $auth->acl_get('f_search', $forum_id) && $config['load_search']) ? true : false,
 	'S_SEARCHBOX_ACTION'	=> append_sid("{$phpbb_root_path}search.$phpEx", 'fid[]=' . $forum_id),
 	'S_SINGLE_MODERATOR'	=> (!empty($moderators[$forum_id]) && sizeof($moderators[$forum_id]) > 1) ? false : true,
-	'S_IS_LOCKED'			=> ($forum_data['forum_status'] == ITEM_LOCKED) ? true : false,
+	'S_IS_LOCKED'			=> $is_forum_locked,
 	'S_VIEWFORUM'			=> true,
 
 	'U_MCP'				=> ($auth->acl_get('m_', $forum_id)) ? append_sid("{$phpbb_root_path}mcp.$phpEx", "f=$forum_id&amp;i=main&amp;mode=forum_view", true, $user->session_id) : '',

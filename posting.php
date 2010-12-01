@@ -293,8 +293,34 @@ if ($post_data['forum_type'] != FORUM_POST && in_array($mode, array('post', 'bum
 	trigger_error('USER_CANNOT_FORUM_POST');
 }
 
+//Penalty check and standard lock check
+$is_locked = (($post_data['forum_status'] == ITEM_LOCKED || (isset($post_data['topic_status']) && $post_data['topic_status'] == ITEM_LOCKED)) && !$auth->acl_get('m_edit', $forum_id)) ? true : false;
+
+if ($is_locked == false)
+{
+	$penres = $db->sql_query("SELECT penalty_type, penalty_zerons, penalty_rep, penalty_posts FROM phpbb_penalties WHERE forum_id = $forum_id ORDER BY penalty_type ASC LIMIT 1");
+	while ($row = $db->sql_fetchrow($penres))
+	{
+		$final_points = $user->data['user_points'] - $row['penalty_zerons'];
+		$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
+		$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
+					
+		if ($final_points < 0 || $final_posts < 0)
+		{
+			$is_locked = true;
+			if ($row['penalty_type'] == 'post')
+			{
+				$post_data['forum_status'] = ITEM_LOCKED;
+			} else {
+				$post_data['topic_status'] = ITEM_LOCKED;
+			}
+		}
+	}	
+}
+//End Penalty check
+
 // Forum/Topic locked?
-if (($post_data['forum_status'] == ITEM_LOCKED || (isset($post_data['topic_status']) && $post_data['topic_status'] == ITEM_LOCKED)) && !$auth->acl_get('m_edit', $forum_id))
+if ($is_locked == true)
 {
 	trigger_error(($post_data['forum_status'] == ITEM_LOCKED) ? 'FORUM_LOCKED' : 'TOPIC_LOCKED');
 }
