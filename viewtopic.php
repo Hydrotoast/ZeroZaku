@@ -637,7 +637,7 @@ if ($is_topic_locked == false)
 		$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
 		$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
 					
-		if ($final_points < 0 || $final_posts < 0)
+		if ($final_points < 0 || $final_posts < 0 || $final_rep < -100)
 		{
 			$is_topic_locked = true;
 		}
