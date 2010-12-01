@@ -1643,6 +1643,8 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 	global $ultimate_points, $points_config, $points_values;
 	// End Ultimate Points
 
+
+	
 	// We do not handle erasing posts here
 	if ($mode == 'delete')
 	{
@@ -1666,6 +1668,30 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		$post_mode = ($data['topic_replies_real'] == 0) ? 'edit_topic' : (($data['topic_first_post_id'] == $data['post_id']) ? 'edit_first_post' : (($data['topic_last_post_id'] == $data['post_id']) ? 'edit_last_post' : 'edit'));
 	}
 
+	//Start Penalty Check
+	if ($post_mode == 'post' || $post_mode == 'reply')
+	{
+		$penres = $db->sql_query("SELECT penalty_zerons, penalty_rep, penalty_posts FROM phpbb_penalties WHERE forum_id = " . $data['forum_id'] . " AND penalty_type = '$post_mode' LIMIT 1");
+		while ($row = $db->sql_fetchrow($penres))
+		{
+			$final_points = $user->data['user_points'] - $row['penalty_zerons'];
+			$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
+			$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
+					
+			if ($final_points < 0 || $final_posts < 0)
+			{
+				return false;
+			}
+			if ($res = $db->sql_query("UPDATE " . USERS_TABLE . " SET user_posts = " . $final_posts . ", user_reputation = " . $final_rep . ", user_points = " . $final_points . " WHERE user_id = " . $user->data['user_id']))
+			{
+				//success, continue.
+			} else {
+				return false;
+			}
+		}
+	}
+	//End Penalty Check
+	
 	// First of all make sure the subject and topic title are having the correct length.
 	// To achieve this without cutting off between special chars we convert to an array and then count the elements.
 	$subject = truncate_string($subject);
@@ -1880,6 +1906,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 	switch ($post_mode)
 	{
 		case 'post':
+			
 			$sql_data[TOPICS_TABLE]['sql'] = array(
 				'topic_poster'				=> (int) $user->data['user_id'],
 				'topic_time'				=> $current_time,
@@ -1934,6 +1961,7 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		break;
 
 		case 'reply':
+			
 			$sql_data[TOPICS_TABLE]['stat'][] = 'topic_last_view_time = ' . $current_time . ',
 				topic_replies_real = topic_replies_real + 1,
 				topic_bumped = 0,
@@ -2109,7 +2137,9 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			$ultimate_points->new_post_ch($data['forum_id'], $data['post_id'], $ultimate_points->strip_text($sql_data[POSTS_TABLE]['sql']['post_text']));
 		}
 		// End Ultimate Points
+		
 
+		
 		if ($post_mode == 'post')
 		{
 			$sql_data[TOPICS_TABLE]['sql'] = array(
@@ -2121,12 +2151,14 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'topic_last_poster_colour'	=> $user->data['user_colour'],
 				'topic_last_post_subject'	=> (string) $subject,
 			);
+			
 			// Start Ultimate Points
 			if ( $config['points_enable'] && $points_config['pertopic_enable'] && $p_pertopic > 0 )
 			{
 				$ultimate_points->new_topic_ch($data['forum_id'], $data['topic_id'], $ultimate_points->strip_text($data['message']));
 			}
 			// End Ultimate Points
+			
 		}
 
 		unset($sql_data[POSTS_TABLE]['sql']);

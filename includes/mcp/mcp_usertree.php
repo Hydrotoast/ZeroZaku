@@ -50,7 +50,7 @@ class mcp_usertree
 		}
 		$returnval .= '</ul>';
 		
-		if ($count == 0)
+		if ($count == 0 && $parentip == 'null';)
 		{
 			$returnval .= 'No post IPs found.  Checking Registeration IPs...<ul>';
 			$res = $db->sql_query("SELECT DISTINCT user_id FROM phpbb_users WHERE user_ip = '$ip'");
@@ -101,7 +101,7 @@ class mcp_usertree
 				$count++;
 			}
 			$returnval .= '</ul>';
-			if ($count == 0)
+			if ($count == 0 && $parentip == 'null')
 			{
 			 $returnval .= 'No posts found for this user, performing search based on registered IP...<ul>';
 			 $res = $db->sql_query("SELECT DISTINCT user_ip FROM phpbb_users WHERE user_id = $userid");	
@@ -121,7 +121,6 @@ class mcp_usertree
 						$returnval .= $this->usertreenode($iprow['poster_id'], $row['poster_ip']);
 					}
 				}
-				$count++;
 				}
 				$returnval .= '</ul>';
 			}
