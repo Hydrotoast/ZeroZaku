@@ -537,6 +537,11 @@ body {
 	font-weight: bold;
 	margin-left: -1em;
 	text-align: left;
+	text-decoration: none;
+}
+
+.cometchat_chatboxmessagefrom a {
+	text-decoration: none;
 }
 
 .cometchat_statustextarea {
@@ -606,7 +611,7 @@ body {
 }
 
 .cometchat_tabcontent a {
-	color: #287197;
+	color: #0D4473;
 	text-align: left;
 }
 

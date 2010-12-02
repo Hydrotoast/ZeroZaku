@@ -31,6 +31,7 @@ define('DB_USERTABLE',				'users'									);
 define('DB_USERTABLE_NAME',			'username'								);
 define('DB_USERTABLE_USERID',		'user_id'								);
 define('DB_USERTABLE_LASTACTIVITY',	'lastactivity'							);
+define('DB_ZEBRATABLE',             'zebra'                                        );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

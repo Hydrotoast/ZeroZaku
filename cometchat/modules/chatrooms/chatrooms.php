@@ -111,6 +111,8 @@ function heartbeat() {
 	$usertable = TABLE_PREFIX.DB_USERTABLE;
 	$usertable_username = DB_USERTABLE_NAME;
 	$usertable_userid = DB_USERTABLE_USERID;
+	
+	$zebratable = TABLE_PREFIX.DB_ZEBRATABLE;
 
 	$time = getTimeStamp();
 	$chatroomList = array();
@@ -187,10 +189,20 @@ function heartbeat() {
 		
 		
 		$reverse = 1;
-		$sql = ("select cometchat_chatroommessages.id, cometchat_chatroommessages.message, cometchat_chatroommessages.sent, m.$usertable_username `from`, cometchat_chatroommessages.userid fromid, m.$usertable_userid userid from cometchat_chatroommessages, $usertable m where cometchat_chatroommessages.chatroomid = '".mysql_real_escape_string($_POST['currentroom'])."' and m.$usertable_userid = cometchat_chatroommessages.userid order by cometchat_chatroommessages.id desc limit $lastMessages");
+		$sql = ("SELECT cr.id, cr.message, cr.sent, m.$usertable_username `from`, cr.userid fromid, m.$usertable_userid userid 
+			FROM cometchat_chatroommessages cr
+			JOIN $usertable m ON m.$usertable_userid = cr.userid
+			WHERE cr.chatroomid = '".mysql_real_escape_string($_POST['currentroom'])."' 
+			ORDER BY cr.id DESC 
+			LIMIT $lastMessages");
 
 		if ($_POST['timestamp'] != 0) {
-			$sql = ("select cometchat_chatroommessages.id, cometchat_chatroommessages.message, cometchat_chatroommessages.sent, m.$usertable_username `from`, cometchat_chatroommessages.userid fromid, m.$usertable_userid userid from cometchat_chatroommessages, $usertable m where cometchat_chatroommessages.chatroomid = '".mysql_real_escape_string($_POST['currentroom'])."' and m.$usertable_userid = cometchat_chatroommessages.userid and cometchat_chatroommessages.id > '".mysql_real_escape_string($_POST['timestamp'])."' order by cometchat_chatroommessages.id desc");
+			$sql = ("SELECT cr.id, cr.message, cr.sent, m.$usertable_username `from`, cr.userid fromid, m.$usertable_userid userid 
+				FROM cometchat_chatroommessages cr
+				JOIN $usertable m ON m.$usertable_userid = cr.userid 
+				WHERE cr.chatroomid = '".mysql_real_escape_string($_POST['currentroom'])."' 
+					AND cr.id > '".mysql_real_escape_string($_POST['timestamp'])."' 
+				ORDER BY cr.id DESC");
 			$reverse = 0;
 		}
 
