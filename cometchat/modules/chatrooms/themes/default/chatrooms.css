@@ -58,6 +58,10 @@ html {
 	font-weight: bold;
 }
 
+.cometchat_chatboxmessagefrom a {
+	text-decoration: none;
+}
+
 .cometchat_textarea {
 	border: 0px;
 	height: 18px;
@@ -197,7 +201,7 @@ ol, ul {
 }
 
 .content_div a {
-	color: #287197;
+	color: #0D4473;
 }
 
 .lobby_rooms {
