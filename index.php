@@ -93,6 +93,56 @@ function get_db_stat($mode)
 	return false;
 }
 
+// cURL to get external feed
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://www.zerozaku.com/feed.php?mode=news');
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$xml = curl_exec($ch);
+curl_close($ch);
+
+$rss = simplexml_load_string($xml);
+    
+if(sizeof($rss->entry))
+{
+    $i = $j = 0;
+    while($j < 6)
+    {
+        $item = $rss->entry[$i];
+        
+        if($i == sizeof($rss->entry))
+        {
+            break;
+        }
+        
+        if($item->category)
+        {
+	        $category[] = array();
+	        foreach($item->category->attributes() as $key => $value) {
+	            $category[$key] = $value;
+	        }
+        
+	        if($category['label'] == 'Tutorials & Source Codes')
+	        {
+		        $template->assign_block_vars('tutorial', array(
+		        	'LINK'	=> $item->id,
+		            'TITLE'	=> substr($item->title, 0, 48),
+		        	'AUTHOR'=> $item->author->name
+		        ));
+		        
+		        $j++;
+	        }
+	       
+        }
+        
+        $i++;
+    }
+    
+    $template->assign_vars(array(
+        'AGGRO_NAME'	=> 'Tutorials & Source Codes'
+    ));
+}
+
 
 // BEGIN USER STATUSES
 $sql = 'SELECT c.message,  u.user_id, u.username, u.user_colour

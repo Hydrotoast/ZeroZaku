@@ -16,9 +16,21 @@
 	</script>
 	<iframe id='shoutbox' src='{ROOT_PATH}/cometchat/modules/chatrooms/index.php?roomid=3&roomname=976a0a4bb610bae5b5d07265be4652ef' ></iframe>
 	<!-- ENDIF -->
-
-	<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
-
+	
+	<!-- IF .tutorial -->
+	<div class="aggro">
+		<h2 class="aggro_head">{AGGRO_NAME}</h2>
+	<!-- BEGIN tutorial -->
+		<div class="aggro_item"><a href="{tutorial.LINK}">
+			<p>
+				<strong>{tutorial.TITLE}</strong>
+				<br /><span>{tutorial.AUTHOR}</span>
+			</p>
+		</a></div>
+	<!-- END tutorial -->
+	</div>
+	<!-- ENDIF -->
+	
 	<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
 	<ul class="linklist">
 		<!-- IF S_DISPLAY_SEARCH -->
