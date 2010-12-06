@@ -1344,6 +1344,7 @@ dl.user-tag dd { display: block; clear: right; }
 	border: 1px solid #F0F0F0;
 	height: 300px;
 	width: 100%;
+	margin-bottom: 10px;
 }
 
 /* Advertisements
