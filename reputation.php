@@ -32,6 +32,12 @@ $cancel			= (isset($_POST['cancel'])) ? true : false;
 $message		= request_var('message', '', true);
 $error			= '';
 $redirect		= append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id) . '#p' . $post_id;
+$key            = request_var('key', '');
+
+if ($key != md5($user->session_id))
+{
+	trigger_error('This key is invalid.');
+}
 
 if ($cancel)
 {
