@@ -259,7 +259,7 @@ switch($mode)
         $sql = 'SELECT group_name, group_colour, group_desc, group_desc_uid, group_desc_bitfield, group_desc_options 
         	FROM ' . GROUPS_TABLE . ' 
 			WHERE group_faction = 1
-				AND group_id = ' . (int) $user->data['group_id'];
+				AND group_id = ' . (int) $faction_id;
 		$result = $db->sql_query($sql);
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
@@ -298,6 +298,7 @@ switch($mode)
 			ORDER BY group_name';
 		$result = $db->sql_query($sql);
 
+		$factions = array();
 		while($row = $db->sql_fetchrow($result))
 		{
 			if($row['group_type'] == GROUP_HIDDEN && !$auth->acl_gets('a_group', 'a_groupadd', 'a_groupdel'))
@@ -319,7 +320,12 @@ switch($mode)
 
 			// Misusing the avatar function for displaying group avatars...
 			$u_faction = append_sid("{$phpbb_root_path}faction.$phpEx", 'mode=page&amp;f=' . $row['group_id']);
-	
+		
+	        $factions[] = array(
+				'id'        =>    $row['group_id'],
+				'name'      =>    $row['group_name'], 
+		    );
+			
 			$template->assign_block_vars('factions_row', array(
 				'FACTION_NAME'	=> $row['group_name'],
 				'FACTION_DESC'	=> generate_text_for_display($row['group_desc'], $row['group_desc_uid'], $row['group_desc_bitfield'], $row['group_desc_options']),
@@ -329,6 +335,10 @@ switch($mode)
 				'U_FACTION'		=> $u_faction,
 			));
 		}
+		
+		$template->assign_vars(array(
+		    'FACTIONS_JSON'	=> json_encode($factions),
+		));
 		
 		$db->sql_freeresult($result);
 	break;
