@@ -175,7 +175,7 @@
 			<dd class="reputation">
 				<!-- IF S_REP_DISPLAY neq 'block' --><strong>{L_RP_TOTAL_POINTS}:</strong> {postrow.REPUTATION_TEXT}<!-- ENDIF -->
 				<!-- IF S_REP_DISPLAY neq 'text'  --><!-- IF postrow.U_VIEW_REP --><a href="{postrow.U_VIEW_REP}" onclick="popup(this.href, 780, 550); return false;" ><!-- ENDIF -->{postrow.REPUTATION_BLOCK}<!-- IF postrow.U_VIEW_REP --></a><!-- ENDIF --><!-- ENDIF -->
-				<br /><!-- IF postrow.S_GIVE_REPUTATION --><a href="{postrow.U_ADD_POS}&key={REP_KEY}"> <img src="{T_IMAGES_PATH}reputation/add.png" title="{L_RP_ADD_POINTS} {postrow.POST_AUTHOR}" alt="{L_RP_ADD_POINTS} {postrow.POST_AUTHOR}" /></a> <!-- IF postrow.S_GIVE_NEGATIVE--><a href="{postrow.U_ADD_NEG}&key={REP_KEY}"><img src="{T_IMAGES_PATH}reputation/subtract.png" title="{L_RP_SUBTRACT_POINTS} {postrow.POST_AUTHOR}" alt="{L_RP_SUBTRACT_POINTS} {postrow.POST_AUTHOR}" /></a><!-- ENDIF --><!-- ENDIF -->
+				<br /><!-- IF postrow.S_GIVE_REPUTATION --><a href="{postrow.U_ADD_POS}"><img src="{T_IMAGES_PATH}reputation/add.png" title="{L_RP_ADD_POINTS} {postrow.POST_AUTHOR}" alt="{L_RP_ADD_POINTS} {postrow.POST_AUTHOR}" /></a> <!-- IF postrow.S_GIVE_NEGATIVE--><a href="{postrow.U_ADD_NEG}"><img src="{T_IMAGES_PATH}reputation/subtract.png" title="{L_RP_SUBTRACT_POINTS} {postrow.POST_AUTHOR}" alt="{L_RP_SUBTRACT_POINTS} {postrow.POST_AUTHOR}" /></a><!-- ENDIF --><!-- ENDIF -->
 			</dd>
 			<!-- ENDIF -->
 
