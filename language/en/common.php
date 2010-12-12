@@ -188,6 +188,7 @@ $lang = array_merge($lang, array(
 	'EXTENSION'							=> 'Extension',
 	'EXTENSION_DISABLED_AFTER_POSTING'	=> 'The extension <strong>%s</strong> has been deactivated and can no longer be displayed.',
 
+    'MY_FACTION'			=> 'Manage Faction',
 	'FACTION'				=> 'Faction',
 	'FACTION_EXPLAIN'		=> 'Manage your faction',
 	'FAQ'					=> 'FAQ',
