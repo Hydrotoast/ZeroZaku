@@ -259,8 +259,8 @@ class reputation
 				'REPUTATION_TEXT'	=> $reputation_cache[$poster_id]['user_reputation'],
 				'REPUTATION_BLOCK'	=> $this->get_images($poster_id),
 				'U_VIEW_REP' 		=> ($auth->acl_get('u_rp_view_comment') || ($auth->acl_get('m_rp_moderate')) || $poster_id == $user->data['user_id']) ? append_sid("{$phpbb_root_path}viewreputation.$phpEx", 'id=' . $poster_id) : '',
-				'U_ADD_POS' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id),
-				'U_ADD_NEG' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;mode=negative'),
+				'U_ADD_POS' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;key=' . md5($user->session_id)),
+				'U_ADD_NEG' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;mode=negative&amp;key=' . md5($user->session_id)),
 			);
 		}
 

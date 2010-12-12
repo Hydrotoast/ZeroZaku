@@ -196,7 +196,9 @@ $template->assign_vars(array(
 	'S_GIVE_NEGATIVE'	=> ($auth->acl_get('u_rp_give_negative')) ? true : false,
 	'ERROR'				=> ($error) ? $error : '',
 	'COMMENT'			=> $message,
+	'REP_KEY'           => md5($user->session_id),
 	'U_POST_ACTION'		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id),)
+
 );
 
 page_header($user->lang['RP_TITLE']); 
