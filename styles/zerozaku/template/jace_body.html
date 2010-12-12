@@ -1,0 +1,71 @@
+<!-- INCLUDE overall_header.html -->
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/config.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/util.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/shapes.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Bubble.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Room.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Node.js"></script>
+<script type="text/javascript">
+var canvas = null, ctx = null;
+var canvasMinX = 0, canvasMaxX = 0, canvasMinY = 0, canvasMaxY = 0, canvasCenterX = 0, canvasCenterY = 0;
+var room = null;
+
+var username = '{S_USERNAME}';
+
+window.onload = init;
+
+function init(){
+    // Initialize variables and other stuff
+	canvas = document.getElementById('jace');
+    ctx = canvas.getContext('2d');
+    
+    canvasMinX = $('#jace').offset().left;
+    canvasMaxX = canvasMinX + canvas.width;
+    
+    canvasMinY = $('#jace').offset().top;
+    canvasMaxY = canvasMinY + canvas.height;
+    
+    canvasCenterX = mouseX = canvas.width / 2;
+    canvasCenterY = mouseY = canvas.height / 2;
+    
+    canvas.onclick = MouseCoordinates;
+    
+    room = new Room();
+    room.addNode(new Node());
+    
+	// Event handling
+    $('#speech').submit(function(){
+        var message = $('#message').val();
+        room.nodes[0].addMessage(message);
+        $('#message').val('');
+        return false;
+    });
+    
+	// The loop
+    setInterval(draw, 1000 / config.FPS);
+}
+
+function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears the screen
+    room.display(); // Displays the room
+}
+
+var mouseX = 0, mouseY = 0, dx = 1, dy = 1;
+var movingX = false, movingY = false;
+function MouseCoordinates(evt){
+    mouseX = Math.round(evt.pageX - canvasMinX);
+    mouseY = Math.round(evt.pageY - canvasMinY);
+    
+    movingX = movingY = true;
+    dx = hcf(mouseX, room.nodes[0].x);
+    dy = hcf(mouseY, room.nodes[0].y);
+}
+
+</script>
+<canvas id="jace" height="400" width="1008">
+    <p>Browser does not support canvas.</p>
+</canvas>
+<p><form id="speech" action="#" method="post">
+	<input type="text" name="message" id="message" style="text-align: left" /> <input type="submit" name="say" value="say" id="say" class="button2" />
+</form></p>
+<!-- INCLUDE overall_footer.html -->
