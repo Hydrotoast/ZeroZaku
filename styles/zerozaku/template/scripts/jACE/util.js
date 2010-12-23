@@ -29,6 +29,11 @@ Queue.prototype = {
 	}
 };
 
+/**
+ * Find GCF of two integers
+ * @param {a} first integer to compare
+ * @param {b} second integer to compare
+ */
 function hcf(a, b){
     var gcd = 1;
     if (a > b) {
@@ -49,4 +54,23 @@ function hcf(a, b){
         }
     }
     return gcd;
+}
+
+/**
+ * Locate the real position of an element,
+ * relative to its parent's offsets
+ * @param {obj} DOM element to find offset of
+ */
+function findPos (obj) {
+    var curleft = 0,
+        curtop = 0;
+
+    if (obj.offsetParent) {
+        do {
+            curleft += obj.offsetLeft;
+            curtop += obj.offsetTop;
+        } while (obj = obj.offsetParent);
+
+        return { x: curleft, y: curtop };
+    }
 }

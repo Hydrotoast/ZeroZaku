@@ -1,71 +1,164 @@
 <!-- INCLUDE overall_header.html -->
+<div class="panel smooth tag">
+	<img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="jACE" /><h1 class="infotitle">jACE</h1><p>javascript Avatar Chat Engine</p>
+</div>
+
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/config.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/util.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/shapes.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Bubble.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Chatlog.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Room.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Node.js"></script>
 <script type="text/javascript">
-var canvas = null, ctx = null;
-var canvasMinX = 0, canvasMaxX = 0, canvasMinY = 0, canvasMaxY = 0, canvasCenterX = 0, canvasCenterY = 0;
-var room = null;
+var roomCanvas = null, roomCtx = null, 
+	nodeCanvas = null, nodeCtx = null;
+var roomCanvasMinX = 0, roomCanvasMaxX = 0, roomCanvasMinY = 0, roomCanvasMaxY = 0, roomCanvasCenterX = 0, roomCanvasCenterY = 0,
+	nodeCanvasMinX = 0, nodeCanvasMaxX = 0, nodeCanvasMinY = 0, nodeCanvasMaxY = 0, nodeCanvasCenterX = 0, nodeCanvasCenterY = 0;
+var room = null,
+	chatlog = null,
+	nodes = null;
 
 var username = '{S_USERNAME}';
 
 window.onload = init;
 
-function init(){
-    // Initialize variables and other stuff
-	canvas = document.getElementById('jace');
-    ctx = canvas.getContext('2d');
-    
-    canvasMinX = $('#jace').offset().left;
-    canvasMaxX = canvasMinX + canvas.width;
-    
-    canvasMinY = $('#jace').offset().top;
-    canvasMaxY = canvasMinY + canvas.height;
-    
-    canvasCenterX = mouseX = canvas.width / 2;
-    canvasCenterY = mouseY = canvas.height / 2;
-    
-    canvas.onclick = MouseCoordinates;
-    
-    room = new Room();
-    room.addNode(new Node());
-    
-	// Event handling
-    $('#speech').submit(function(){
-        var message = $('#message').val();
-        room.nodes[0].addMessage(message);
-        $('#message').val('');
-        return false;
-    });
-    
-	// The loop
-    setInterval(draw, 1000 / config.FPS);
-}
-
 function draw(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears the screen
-    room.display(); // Displays the room
+    nodeCtx.clearRect(0, 0, nodeCanvas.width, nodeCanvas.height); // Clears the screen
+    
+	// Loop through each user and display them
+	for(var i in nodes) {
+		nodes[i].display();
+	}
 }
 
 var mouseX = 0, mouseY = 0, dx = 1, dy = 1;
 var movingX = false, movingY = false;
 function MouseCoordinates(evt){
-    mouseX = Math.round(evt.pageX - canvasMinX);
-    mouseY = Math.round(evt.pageY - canvasMinY);
+    mouseX = Math.round(evt.pageX - nodeCanvasMinX);
+    mouseY = Math.round(evt.pageY - nodeCanvasMinY);
     
     movingX = movingY = true;
-    dx = hcf(mouseX, room.nodes[0].x);
-    dy = hcf(mouseY, room.nodes[0].y);
+    dx = Math.round(Math.abs(nodes[0].getX() - mouseX)/config.FPS);
+    dy = Math.round(Math.abs(nodes[0].getY() - mouseY)/config.FPS);
+}
+
+function init(){
+   initGameVariables();
+   initEventHandlers();
+   
+   room.display(); // Displays the room
+    
+	// The loop
+    setInterval(draw, 1000 / config.FPS);
+}
+
+function initGameVariables() {
+	 // Initialize variables and other stuff
+	roomCanvas = document.getElementById('jaceRoom');
+    roomCtx = roomCanvas.getContext('2d');
+	
+	nodeCanvas = document.getElementById('jaceNode');
+    nodeCtx = nodeCanvas.getContext('2d');
+    
+	var relative = findPos(nodeCanvas);
+    roomCanvasMinX = nodeCanvasMinX = relative.x;
+    roomCanvasMaxX = nodeCanvasMaxX = roomCanvasMinX + roomCanvas.width;
+    
+    roomCanvasMinY = nodeCanvasMinY = relative.y;
+    roomCanvasMaxY = nodeCanvasMaxY = roomCanvasMinY + roomCanvas.height;
+    
+    roomCanvasCenterX = mouseX = roomCanvas.width / 2;
+    roomCanvasCenterY = mouseY = roomCanvas.height / 2;
+    
+    room = new Room();
+    room.addNode(new Node());
+	
+	nodes = new Array();
+	nodes.push(new Node());
+	
+	chatlog = new Chatlog();
+}
+
+function initEventHandlers() {
+	nodeCanvas.onclick = MouseCoordinates;
+	
+	// Event handling
+    $('#speech').submit(function() {
+		var message = $('#message').val();
+	    nodes[0].addMessage(message);
+		chatlog.addLog(username, message);
+	    $('#message').val('');
+	    return false;
+	});
+	
+	$('#nodeConfig').submit(function() {
+		var color = $('#nodeColor').val();
+		nodes[0].setColor(color);
+		$('#nodeColor').val('');
+		return false;
+	});
 }
 
 </script>
-<canvas id="jace" height="400" width="1008">
+<style type="text/css">
+#jaceRoom, #jaceNode, #jaceChatlog {
+	height: 400px;
+}
+
+#jaceChatlog {
+	background-color: #FFFFFF;
+	border: 1px solid #D0D0D0;
+	position: absolute;
+	height: 380px;
+	width: 188px;
+	padding: 12px 16px;
+	overflow: auto;
+}
+
+#jaceChatlog li {
+	color: #666666;
+	border-bottom: 1px solid #D0D0D0;
+	list-style-type: none;
+	padding-bottom: 8px;
+	margin-bottom: 8px;
+}
+
+#jaceChatlog li strong {
+	color: #212121;
+}
+	
+#jaceNode {
+	 position: absolute;
+	 width: 1008px;
+}
+
+#jaceRoom {
+	width: 1008px;
+}
+
+#nodeConfig #nodeColor { font-family: "Courier New", Courier, monospace;}
+#speech #message, #nodeConfig #nodeColor {
+	border: 1px solid #D0D0D0;
+	width: 160px;
+	padding: 4px 4px 3px;
+	text-align: left
+}
+</style>
+
+<form id="nodeConfig" action="#" method="post">
+	<p><input type="text" name="nodeColor" id="nodeColor" /> <input type="submit" class="button2" value="Color Node" /></p>
+</form>
+
+<canvas id="jaceNode" height="400" width="1008">
     <p>Browser does not support canvas.</p>
 </canvas>
-<p><form id="speech" action="#" method="post">
-	<input type="text" name="message" id="message" style="text-align: left" /> <input type="submit" name="say" value="say" id="say" class="button2" />
-</form></p>
+<ul id="jaceChatlog">
+</ul>
+<canvas id="jaceRoom" height="400" width="1008">
+    <p>Browser does not support canvas.</p>
+</canvas>
+<form id="speech" action="#" method="post">
+	<p><input type="text" name="message" id="message" /> <input type="submit" name="say" value="Say" id="say" class="button2" /></p>
+</form><br />
 <!-- INCLUDE overall_footer.html -->

@@ -1,17 +1,19 @@
+/* Initializes the room and all objects within the room including all players or nodes
+ * 
+ */
 var Room = function() {
 	// The damn list of people
-	this.nodes = new Array();
-};
+	var nodes = new Array();
+	var background = null;
 
-Room.prototype.addNode = function(node) {
-	// Add people to the room
-	node.id = this.nodes.length;
-	this.nodes.push(node);
-};
-
-Room.prototype.display = function(){
-	// Loop through each user and display them
-	for(var i in this.nodes) {
-		this.nodes[i].display();
-	}
+	return {
+		addNode: function(node) {
+			// Add people to the room
+			node.id = nodes.length;
+			nodes.push(node);
+		},
+		display: function(){
+			
+		}
+	};
 };
