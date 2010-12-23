@@ -1,70 +1,81 @@
 var Node = function() {
-	this.id = 0;
-	this.name = username;
+	var id = 0;
+	var name = username;
+	var nodeColor = '#212121';
 
-	this.x = canvas.width / 2;
-	this.y = canvas.height / 2;
-	this.width = 24;
-	this.height = 24;
+	var x = nodeCanvas.width / 2;
+	var y = nodeCanvas.height / 2;
+	var width = 24;
+	var height = 24;
 
-	this.saying = false;
-	this.message = null;
-};
+	var saying = false;
+	var message = null;
 
-Node.prototype.addMessage = function(message) {
-	if (this.message !== null) {
-		// Stack messages
-		var oldBubble = this.message;
-		this.message = new Bubble(message);
-		this.message.extend(oldBubble);
-	} else {
-		// Initial message
-		this.message = new Bubble(message);
-	}
+	var say = function() {
+		message.display(x, y);
+		
+		// Kill the queue processing once the last messsage dies
+		if (message.getLife() === 0) {
+			saying = false;
+		}
+	};
 	
-	// Start queue processing
-	this.saying = true;
-};
-
-Node.prototype.say = function() {
-	this.message.display(this.x, this.y);
+	return {
+		getX: function() { return x; },
+		getY: function() { return y; },
+		setColor: function(p_nodeColor) {
+			// Check for hexadecimal colors
+			if(p_nodeColor.match(/#[0-9A-Fa-f]{6}/i))
+			{
+				nodeColor = p_nodeColor;
+			}
+		},
+		addMessage: function(p_message) {
+			if (message !== null) {
+				// Stack messages
+				var oldBubble = message;
+				message = new Bubble(p_message);
+				message.extend(oldBubble);
+			} else {
+				// Initial message
+				message = new Bubble(p_message);
+			}
+			
+			// Start queue processing
+			saying = true;
+		},
+		display: function() {
+			// Set new X coordinates
+			if (x + 1 >= mouseX && x - 1 <= mouseX) {
+				movingX = false;
+			} else {
+				x += (mouseX > x ? dx : -dx);
+			}
 	
-	// Kill the queue processing once the last messsage dies
-	if (this.message.life === 0) {
-		this.saying = false;
-	}
-};
-
-Node.prototype.display = function() {
-	// Set new X coordinates
-	if (this.x == mouseX) {
-		movingX = false;
-	} else {
-		this.x += (mouseX > this.x ? dx : -dx);
-	}
-
-	// Set new Y coordinates
-	if (this.y == mouseY) {
-		movingY = false;
-	} else {
-		this.y += (mouseY > this.y ? dy : -dy);
-	}
-
-	// My circle
-	ctx.fillStyle = '#212121';
-	ctx.beginPath();
-	ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2, false);
-	ctx.closePath();
-	ctx.fill();
+			// Set new Y coordinates
+			if (y + 1 >= mouseY && y - 1 <= mouseY) {
+				movingY = false;
+			} else {
+				y += (mouseY > y ? dy : -dy);
+			}
 	
-	// My name
-	ctx.font = '11px Tahoma';
-	ctx.textAlign = 'left';
-	ctx.textBaseline = 'bottom';
-	ctx.fillText(this.name, this.x - ctx.measureText(this.name).width/2, this.y + this.height + 13, canvas.width);
-
-	// Queue execution? Needs better abstraction
-	if (this.saying) {
-		this.say();
-	}
+			// My circle
+			nodeCtx.fillStyle = nodeColor;
+			nodeCtx.beginPath();
+			nodeCtx.arc(x, y, width, 0, Math.PI * 2, false);
+			nodeCtx.closePath();
+			nodeCtx.fill();
+			
+			// My name
+			nodeCtx.font = '11px Tahoma';
+			nodeCtx.textAlign = 'left';
+			nodeCtx.textBaseline = 'bottom';
+			nodeCtx.fillText(name, x - nodeCtx.measureText(name).width/2, y + height + 13, nodeCanvas.width);
+			
+			// Queue execution? Needs better abstraction
+			if (saying) {
+				say();
+			}
+		}
+	};
 };
