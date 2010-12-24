@@ -34,5 +34,17 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
 	}
 	if (fill) {
 		ctx.fill();
-	}        
+	}
+}
+
+function circle(ctx, radius, stroke) {
+	ctx.beginPath();
+	ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
+	ctx.closePath();
+	
+	if(stroke === true) {
+		ctx.stroke();
+	} else {
+		ctx.fill();
+	}
 }

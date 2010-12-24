@@ -1,6 +1,6 @@
 var config = {
-	FPS : 25,
-	bubbleLife : (25 * 12),
+	FPS : 40,
+	bubbleLife : (40 * 12),
 	
 	lightColor: '#FFFFFF',
 	darkColor: '#212121'
