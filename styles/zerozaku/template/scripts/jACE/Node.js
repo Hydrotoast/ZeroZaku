@@ -5,14 +5,21 @@ var Node = function() {
 
 	var x = nodeCanvas.width / 2;
 	var y = nodeCanvas.height / 2;
+	var z = 1;
 	var width = 24;
 	var height = 24;
 
 	var saying = false;
 	var message = null;
 
+	var velocity = 2;
+	var acceleration = 1.6;
+	var boostLife = 0;
+	var brakeLife = 0;
+	
 	var say = function() {
-		message.display(x, y);
+		message.update(x, y);
+		message.render();
 		
 		// Kill the queue processing once the last messsage dies
 		if (message.getLife() === 0) {
@@ -44,33 +51,55 @@ var Node = function() {
 			// Start queue processing
 			saying = true;
 		},
-		display: function() {
-			// Set new X coordinates
-			if (x + 1 >= mouseX && x - 1 <= mouseX) {
-				movingX = false;
-			} else {
-				x += (mouseX > x ? dx : -dx);
+		boost: function() {
+			if (boostLife <= 0) { 
+				room.addFx(new Explode(room.getCtx(), x, y, width, 5, '0, 0, 255', 25*6));
+				boostLife = 1;
 			}
-	
+		},
+		update: function() {
 			// Set new Y coordinates
-			if (y + 1 >= mouseY && y - 1 <= mouseY) {
-				movingY = false;
-			} else {
-				y += (mouseY > y ? dy : -dy);
+			if (x + velocity >= mouseX && x - velocity <= mouseX && y + 1 >= mouseY && y - velocity <= mouseY) {
+				moving = false;
+				velocity = 2;
+				z = 1;
 			}
-	
-			// My circle
-			nodeCtx.fillStyle = nodeColor;
-			nodeCtx.beginPath();
-			nodeCtx.arc(x, y, width, 0, Math.PI * 2, false);
-			nodeCtx.closePath();
-			nodeCtx.fill();
 			
-			// My name
-			nodeCtx.font = '11px Tahoma';
-			nodeCtx.textAlign = 'left';
-			nodeCtx.textBaseline = 'bottom';
-			nodeCtx.fillText(name, x - nodeCtx.measureText(name).width/2, y + height + 13, nodeCanvas.width);
+			if (boostLife > 0) {
+				velocity += acceleration * (-Math.cos(boostLife*Math.PI)/2 + 0.5);
+				boostLife = boostLife - 2 / config.FPS;
+			}
+			
+			if (moving === true) {
+				x += velocity * Math.cos(angle);
+				y += velocity * Math.sin(angle);
+				
+				z -= 0.01;
+				if (z < 0.8) z = 0.8;
+				console.log(z);
+			}
+		},
+		render: function() {
+			nodeCtx.save();
+				nodeCtx.translate(x, y);
+				nodeCtx.scale(z, z);
+			
+				// My circle
+				if(boostLife <= 0) {
+					nodeCtx.fillStyle = '#0000FF';
+					circle(nodeCtx, width + 3, false);
+				}
+				
+				nodeCtx.fillStyle = nodeColor;
+				circle(nodeCtx, width, false);
+				
+				// My name
+				nodeCtx.fillStyle = nodeColor;
+				nodeCtx.font = '11px Tahoma';
+				nodeCtx.textAlign = 'left';
+				nodeCtx.textBaseline = 'bottom';
+				nodeCtx.fillText(name, -nodeCtx.measureText(name).width/2, height + 18, nodeCanvas.width);
+			nodeCtx.restore();
 			
 			// Queue execution? Needs better abstraction
 			if (saying) {
