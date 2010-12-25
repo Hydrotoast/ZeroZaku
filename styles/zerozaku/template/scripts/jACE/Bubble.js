@@ -1,4 +1,4 @@
-var Bubble = function(message) {
+function Bubble(message) {
 	var x = 0, 
 		y = 0;
 	var height = 24,
@@ -32,11 +32,11 @@ var Bubble = function(message) {
 		render: function() {
 			nodeCtx.save();
 				// Bubble shape
-				nodeCtx.fillStyle = '#FFFFFF';
+				nodeCtx.fillStyle = color(config.fgColor);
 				roundRect(nodeCtx, x - 24, y - height * 2, width + 22, 33, 5, true, true);
 	
 				// Bubble text
-				nodeCtx.fillStyle = '#212121';
+				nodeCtx.fillStyle = color(config.bgColor);
 				nodeCtx.font = '11px Tahoma';
 				nodeCtx.textAlign = 'left';
 				nodeCtx.textBaseline = 'bottom';

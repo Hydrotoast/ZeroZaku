@@ -42,9 +42,47 @@ function circle(ctx, radius, stroke) {
 	ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
 	ctx.closePath();
 	
-	if(stroke === true) {
+	if (stroke === true) {
 		ctx.stroke();
 	} else {
 		ctx.fill();
 	}
+}
+
+
+function Player(ctx, stroke) {
+	
+	// Base
+    ctx.save();
+    ctx.translate(-22.5, -24.875);
+	    ctx.beginPath();
+	    ctx.moveTo(28.0, 5.9);
+	    ctx.bezierCurveTo(38.3, 8.0, 46.0, 17.1, 46.0, 28.1);
+	    ctx.bezierCurveTo(46.0, 40.7, 35.9, 50.9, 23.5, 50.9);
+	    ctx.bezierCurveTo(11.1, 50.9, 1.0, 40.7, 1.0, 28.1);
+	    ctx.bezierCurveTo(1.0, 17.2, 8.7, 8.0, 19.0, 5.9);
+	    ctx.fillStyle = color(config.fgColor);
+	    ctx.fill();
+	    ctx.lineWidth = 2.0;
+	    if (stroke === true) {
+		    ctx.strokeStyle = color(config.hlColor);
+		    ctx.stroke();
+	    }
+    ctx.restore();
+
+    // Arrowhead
+    ctx.save();
+    ctx.translate(-22.5, -24.875);
+	    ctx.beginPath();
+	    ctx.moveTo(23.5, 1.1);
+	    ctx.lineTo(18.3, 11.6);
+	    ctx.lineTo(23.5, 8.1);
+	    ctx.lineTo(28.8, 11.6);
+	    ctx.lineTo(23.5, 1.1);
+	    ctx.closePath();
+	    ctx.fillStyle = color(config.hlColor);
+	    ctx.fill();
+	    ctx.strokeStyle = color(config.hlColor);
+	    ctx.stroke();
+    ctx.restore();
 }

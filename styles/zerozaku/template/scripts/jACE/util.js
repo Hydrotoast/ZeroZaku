@@ -31,23 +31,23 @@ Queue.prototype = {
 
 /**
  * Find GCF of two integers
- * @param {a} first integer to compare
- * @param {b} second integer to compare
+ * @param {p_a} first integer to compare
+ * @param {p_b} second integer to compare
  */
-function hcf(a, b){
+function hcf(p_a, p_b){
     var gcd = 1;
-    if (a > b) {
-        a = a + b;
-        b = a - b;
-        a = a - b;
+    if (p_a > p_b) {
+    	p_a = p_a + p_b;
+    	p_b = p_a - p_b;
+        p_a = p_a - p_b;
     }
-    if ((b == (Math.round(b / a)) * a)) {
-        gcd = a
+    if ((p_b == (Math.round(p_b / p_a)) * p_a)) {
+        gcd = p_a
     }
     else {
-        for (var i = Math.round(a / 2); i > 1; i = i - 1) {
-            if ((a == (Math.round(a / i)) * i)) 
-                if ((b == (Math.round(b / i)) * i)) {
+        for (var i = Math.round(p_a / 2); i > 1; i = i - 1) {
+            if ((p_a == (Math.round(p_a / i)) * i)) 
+                if ((p_b == (Math.round(p_b / i)) * i)) {
                     gcd = i;
                     i = -1;
                 }
@@ -59,18 +59,28 @@ function hcf(a, b){
 /**
  * Locate the real position of an element,
  * relative to its parent's offsets
- * @param {obj} DOM element to find offset of
+ * @param {p_obj} DOM element to find offset of
  */
-function findPos (obj) {
+function findPos(p_obj) {
     var curleft = 0,
         curtop = 0;
 
-    if (obj.offsetParent) {
+    if (p_obj.offsetParent) {
         do {
-            curleft += obj.offsetLeft;
-            curtop += obj.offsetTop;
-        } while (obj = obj.offsetParent);
+            curleft += p_obj.offsetLeft;
+            curtop += p_obj.offsetTop;
+        } while (p_obj = p_obj.offsetParent);
 
         return { x: curleft, y: curtop };
     }
+}
+
+/**
+ * Create an RGBA color string
+ * @param {p_rgb} RGB values for the color
+ * @param {p_opacity} opacity of the color
+ * @return RGBA color string
+ */
+function color(p_rgb, p_opacity) {
+	return 'rgba(' + p_rgb + ', ' + (p_opacity ? p_opacity : 1) + ')';
 }
