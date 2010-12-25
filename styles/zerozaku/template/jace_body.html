@@ -6,15 +6,22 @@
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/config.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/util.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/shapes.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Doodads.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Effects.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Bubble.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Chatlog.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Room.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Node.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Viewport.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Devices.js"></script>
 <script type="text/javascript">
+var mouse = null,
+	keyboard = null;
+	
 var room = null,
 	chatlog = null,
-	nodes = null;
+	nodes = null,
+	viewport = null;
 
 var username = '{S_USERNAME}';
 
@@ -26,13 +33,10 @@ function init(){
    initEventHandlers();
     
 	// The loop
-    setInterval(draw, 1000 / config.FPS);
+    setInterval(render, 1000 / config.FPS);
 }
 
 function initGameVariables() {
-	 // Initialize variables and other stuff
-	room = new Room('jaceRoom');
-	
 	nodeCanvas = document.getElementById('jaceNode');
     nodeCtx = nodeCanvas.getContext('2d');
     
@@ -42,71 +46,60 @@ function initGameVariables() {
     
     nodeCanvasMinY = relative.y;
     nodeCanvasMaxY = nodeCanvasMinY + nodeCanvas.height;
-    
-    mouseX = nodeCanvas.width / 2;
-    mouseY = nodeCanvas.height / 2;
+	
+	 // Initialize variables and other stuff
+	room = new Room('jaceRoom');
+	room.addDoodad(new Rock(room.getCtx(), 0, 0));
+	room.addDoodad(new Rock(room.getCtx(), room.width * 0.5, room.height * 0.5));
 	
 	nodes = new Array();
 	nodes.push(new Node());
 	
 	chatlog = new Chatlog();
+	
+	viewport = new Viewport(.1, .5, .75, nodes[0], 1.75, 800);
+	
+	mouse = new Mouse();
+	keyboard = new Keyboard();
+	
+	nodeCanvas.onclick = function(evt) {
+	    mouse.x = Math.round(evt.pageX - nodeCanvasMinX) + room.ox;
+	    mouse.y = Math.round(evt.pageY - nodeCanvasMinY) + room.oy;
+
+	    var dx = mouse.x - nodes[0].x;
+	    var dy = mouse.y - nodes[0].y;
+		nodes[0].angle = Math.atan2(dy, dx);
+
+		mouse.moving = true;
+	};
 }
 
 function initEventHandlers() {
-	nodeCanvas.onclick = MouseCoordinates;
-	
 	// Event handling
-    $('#speech').submit(function() {
-		var message = $('#message').val();
-	    nodes[0].addMessage(message);
-		chatlog.addLog(username, message);
-	    $('#message').val('');
+	var speech = document.getElementById('speech');
+	var message = document.getElementById('message');
+    speech.onsubmit = function() {
+		var messageValue = message.value;
+	    nodes[0].addMessage(messageValue);
+		chatlog.addLog(username, messageValue);
+		message.value = '';
 	    return false;
-	});
+	};
 	
-	$('#nodeConfig').submit(function() {
-		var color = $('#nodeColor').val();
+	var nodeConfig = document.getElementById('nodeConfig');
+	var nodeColor = document.getElementById('nodeColor');
+	nodeConfig.onsubmit = function() {
+		var color = nodeColor.value;
 		nodes[0].setColor(color);
-		$('#nodeColor').val('');
+		nodeColor.value = '';
 		return false;
-	});
-	
-	// Keyboard handler
-	document.onkeydown = function(evt) {
-		switch(evt.which) {
-			case 32: // space
-				nodes[0].boost();
-			break;
-		}
-	}
+	};
 }
 
-function draw(){
-	// Clear the 
-    nodeCtx.clearRect(0, 0, nodeCanvas.width, nodeCanvas.height); // Clears the nodes
-	
-	room.update(); // draws the room
-	room.render(); // draws the room
-	
-	// Draw Each Player
-	var i = nodes.length;
-	while(i--) {
-		nodes[i].update();
-		nodes[i].render();
-	}
-}
-
-var mouseX = 0, mouseY = 0, angle = 1;
-var moving = false;
-function MouseCoordinates(evt){
-    mouseX = Math.round(evt.pageX - nodeCanvasMinX);
-    mouseY = Math.round(evt.pageY - nodeCanvasMinY);
-
-    dx = mouseX - nodes[0].getX();
-    dy = mouseY - nodes[0].getY();
-	angle = Math.atan2(dy, dx);
-	
-	moving = true;
+function render() {
+	viewport.clear();
+	viewport.update();
+	viewport.render();
 }
 
 </script>
