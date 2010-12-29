@@ -58,6 +58,28 @@ function initGameVariables() {
 	chatlog = new Chatlog();
 	
 	viewport = new Viewport(.1, .5, .75, nodes[0], 1.75, 800);
+}
+
+function initEventHandlers() {
+	// Event handling
+	speech = document.getElementById('speech');
+	message = document.getElementById('message');
+    speech.onsubmit = function() {
+		var messageValue = message.value;
+	    nodes[0].addMessage(messageValue);
+		chatlog.addLog(username, messageValue);
+		message.value = '';
+	    return false;
+	};
+	
+	nodeConfig = document.getElementById('nodeConfig');
+	nodeColor = document.getElementById('nodeColor');
+	nodeConfig.onsubmit = function() {
+		var color = nodeColor.value;
+		nodes[0].setColor(color);
+		nodeColor.value = '';
+		return false;
+	};
 	
 	mouse = new Mouse();
 	keyboard = new Keyboard();
@@ -71,28 +93,6 @@ function initGameVariables() {
 		nodes[0].angle = Math.atan2(dy, dx);
 
 		mouse.moving = true;
-	};
-}
-
-function initEventHandlers() {
-	// Event handling
-	var speech = document.getElementById('speech');
-	var message = document.getElementById('message');
-    speech.onsubmit = function() {
-		var messageValue = message.value;
-	    nodes[0].addMessage(messageValue);
-		chatlog.addLog(username, messageValue);
-		message.value = '';
-	    return false;
-	};
-	
-	var nodeConfig = document.getElementById('nodeConfig');
-	var nodeColor = document.getElementById('nodeColor');
-	nodeConfig.onsubmit = function() {
-		var color = nodeColor.value;
-		nodes[0].setColor(color);
-		nodeColor.value = '';
-		return false;
 	};
 }
 

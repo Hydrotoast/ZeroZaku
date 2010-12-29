@@ -20,12 +20,10 @@ function Viewport(k, ox, oy, target, tight, viewport) {
 			// with respect to the room
 			room.getCtx().translate(room.width * 0.5, room.height * 0.5); // Center room to camera
 			room.getCtx().translate(-x, -y); // Move inverse to point
-			room.getCtx().scale(this.z, this.z);
 		
 		nodeCtx.save();
 			nodeCtx.translate(nodeCanvas.width * 0.5, nodeCanvas.height * 0.5);
-			nodeCtx.translate(this.x, this.y);
-			nodeCtx.scale(this.z, this.z);
+			nodeCtx.scale(z, z);
 	};
 	
 	return {
