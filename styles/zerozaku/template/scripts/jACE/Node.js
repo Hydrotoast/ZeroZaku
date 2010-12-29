@@ -93,6 +93,7 @@ Node.prototype = {
 		keyboard.move();
 		
 		if (this.z < 0.75) this.z = 0.75;
+		if (this.z > 1) this.z = 1;
 	},
 	render: function() {
 		nodeCtx.save();

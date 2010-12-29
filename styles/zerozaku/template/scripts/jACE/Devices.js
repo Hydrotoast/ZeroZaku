@@ -38,7 +38,7 @@ function Keyboard() {
 			case 40: // down
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].brake = true;
+					nodes[0].reverse = true;
 				}
 			break;
 			case 32: // space
@@ -62,7 +62,7 @@ function Keyboard() {
 				nodes[0].turn_right = false;
 			break;
 			case 40: // down
-				nodes[0].brake = false;
+				nodes[0].reverse = false;
 			break;
 		}
 	};
@@ -83,7 +83,10 @@ Keyboard.prototype = {
 		if (nodes[0].thrust === true) {
 			nodes[0].x += nodes[0].velocity * Math.cos(nodes[0].angle);
 			nodes[0].y += nodes[0].velocity * Math.sin(nodes[0].angle);
+			nodes[0].z -= 0.02;
 			mouse.moving = false;
+		} else {
+			nodes[0].z += 0.02
 		}
 		
 		if (nodes[0].reverse === true) {
