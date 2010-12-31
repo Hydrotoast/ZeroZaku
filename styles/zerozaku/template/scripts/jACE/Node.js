@@ -42,7 +42,7 @@ Node.prototype = {
 		// Check for hexadecimal colors
 		if(p_nodeColor.match(/#[0-9A-Fa-f]{6}/i))
 		{
-			nthis.odeColor = p_nodeColor;
+			this.nodeColor = p_nodeColor;
 		}
 	},
 	addMessage: function(p_message) {

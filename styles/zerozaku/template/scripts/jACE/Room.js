@@ -43,8 +43,6 @@ var Room = function(canvasId) {
 				theta = Math.atan2(dx, dy);
 			}
 			
-			//console.log(dx, dy, theta);
-			
 			// Update effects
 			var i = fx.length;
 			while(i--) {
