@@ -679,6 +679,8 @@ function generate_ad(&$forum_id)
 			WHERE ad_id = ' . $row['ad_id'];
 	    $db->sql_query($sql);
 	}
+	
+	return $row['ad_enable'];
 }
 
 /**
