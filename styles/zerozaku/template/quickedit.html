@@ -1,10 +1,10 @@
 <!-- IF EDIT_FORM -->
 <div id="message-box" style="width: 95%;">
 	<textarea name="quickedit-textarea" id="quickedit-textarea" class="inputbox" rows="15" cols="76" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" style="font-size: 1.0em;" >{POST_TEXT}</textarea><br />
-</div><br />
+</div>
 <div class="center">
-	<input class="button1" type="button" onclick="submit_changes({POST_ID});" value="{L_SUBMIT}" style="font-size:1.2em;" />
-	<input class="button2" type="button" onclick="cancel_changes({POST_ID});" value="{L_CANCEL}" style="font-size:1.2em;" />
+	<input class="button1" type="button" onclick="submit_changes({POST_ID});" value="{L_SUBMIT}" />
+	<input class="button2" type="button" onclick="cancel_changes({POST_ID});" value="{L_CANCEL}" />
 </div>
 <!-- ELSEIF SEND_TEXT -->
 {TEXT}
