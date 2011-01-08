@@ -1,5 +1,4 @@
 <!-- DEFINE $SIDEBAR = '1' --><!-- DEFINE $CA_PAGE = 'index' --><!-- INCLUDE overall_header.html --><!-- INCLUDE portal/_block_config.html -->
-	
 	<!-- IF S_USER_LOGGED_IN -->
 	<h2 class="cattitle"><a href="{U_MCHAT}" title="{L_MCHAT}">{L_MCHAT_TITLE}</a></h2>
 	<script type="text/javascript">
@@ -14,32 +13,30 @@
 	    });
 	})(jQuery);
 	</script>
+	
 	<iframe id='shoutbox' src='{ROOT_PATH}/cometchat/modules/chatrooms/index.php?roomid=3&roomname=976a0a4bb610bae5b5d07265be4652ef' ></iframe>
 	<!-- ENDIF -->
 	
 	<!-- IF .tutorial -->
 	<div class="aggro">
 		<h2 class="aggro_head">{AGGRO_NAME}</h2>
-	<!-- BEGIN tutorial -->
-		<div class="aggro_item"><a href="{tutorial.LINK}">
-			<p>
-				<strong>{tutorial.TITLE}</strong>
-				<br /><span>{tutorial.AUTHOR}</span>
-			</p>
-		</a></div>
-	<!-- END tutorial -->
+		<!-- BEGIN tutorial -->
+		<div class="aggro_item">
+			<a href="{tutorial.LINK}"><p><strong>{tutorial.TITLE}</strong>
+					<br/>
+					<span>{tutorial.AUTHOR}</span>
+				</p>
+			</a>
+		</div>
+		<!-- END tutorial -->
 	</div>
 	<!-- ENDIF -->
 	
 	<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
 	<ul class="linklist">
-		<!-- IF S_DISPLAY_SEARCH -->
-			<li><a class="button2" href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a><!-- IF S_USER_LOGGED_IN --> <a class="button2" href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a> <a class="button2" href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a><!-- ENDIF --> <a class="button2" href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></li>
-		<!-- ENDIF -->
-		<!-- IF not S_IS_BOT and U_MARK_FORUMS --><li class="rightside"><a class="button2 mark-read" href="{U_MARK_FORUMS}"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_FORUMS_READ}</a></li><!-- ENDIF -->
-	</ul>
-	<!-- ENDIF -->
+		<!-- IF S_DISPLAY_SEARCH --><li><a class="button2" href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a><!-- IF S_USER_LOGGED_IN --><a class="button2" href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a><a class="button2" href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a><!-- ENDIF --><a class="button2" href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></li>
+		<!-- ENDIF --><!-- IF not S_IS_BOT and U_MARK_FORUMS --><li class="rightside"><a class="button2 mark-read" href="{U_MARK_FORUMS}"><img src="{T_THEME_PATH}/images/eye.png" />{L_MARK_FORUMS_READ}</a></li><!-- ENDIF -->
+	</ul><!-- ENDIF -->
 
-<!-- INCLUDE forumlist_body.html -->
-
+	<!-- INCLUDE forumlist_body.html -->
 <!-- INCLUDE overall_footer.html -->

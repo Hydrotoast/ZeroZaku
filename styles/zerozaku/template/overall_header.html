@@ -141,89 +141,91 @@ MathJax.Hub.Config({
 <div class="breadcrumbs">
 	<div class="inner">
 		<ul class="navlinks">
-			<!-- IF not S_IS_BOT -->
-			<li id="usernav-box">
+			<!-- IF not S_IS_BOT --><li id="usernav-box">
 				<ul id="account-actions">
-				<!-- IF S_USER_LOGGED_IN -->
+					<!-- IF S_USER_LOGGED_IN -->
 					<li>
 						<div class="dropdown">
 							<span>{S_USERNAME_FULL}</span>
-              <div id="info">
-                <div id="avatar">{S_AVATAR}</div>
-								<dl><dt>{S_USER_POINTS}</dt><dd><a href="{U_POINTS}">{POINTS_NAME}</a></dd></dl>
-              </div>
+							<div id="info">
+								<div id="avatar">
+									{S_AVATAR}
+								</div>
+								<dl>
+									<dt>{S_USER_POINTS}</dt>
+									<dd><a href="{U_POINTS}">{POINTS_NAME}</a></dd>
+								</dl>
+							</div>
 						</div>
-						</li>
-					
+					</li>
 					<!-- IF U_PROFILE -->
-          <li>
+					<li>
 						<div class="dropdown">
 							<span><a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="e">{L_M_UCP}</a></span>
 							<ul>
-								<li><a href="{U_ACCOUNT_SETTINGS}" title="{L_ACCOUNT_SETTINGS}">{L_ACCOUNT_SETTINGS}</a></li> 
-								<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">{L_MANAGE_FRIENDS}</a></li>      
-								<li><a href="{U_FACTION}" title="L_MY_FACTION}">{L_MY_FACTION}</a></li>             
+								<li><a href="{U_ACCOUNT_SETTINGS}" title="{L_ACCOUNT_SETTINGS}">{L_ACCOUNT_SETTINGS}</a></li>
+								<li><a href="{U_MANAGE_FRIENDS}" title="{L_MANAGE_FRIENDS}">{L_MANAGE_FRIENDS}</a></li>
+								<li><a href="{U_FACTION}" title="L_MY_FACTION}">{L_MY_FACTION}</a></li>
 								<li><a href="{U_MANAGE_BOOKMARKS}" title="{L_MANAGE_BOOKMARKS}">{L_MANAGE_BOOKMARKS}</a></li>
-								<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">{L_SEARCH_SELF}</a></li><!-- ENDIF -->
-						  </ul>
+								<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><li><a href="{U_SEARCH_SELF}" title="{L_SEARCH_SELF}">{L_SEARCH_SELF}</a></li>
+								<!-- ENDIF -->
+							</ul>
 						</div>
 					</li>
+					<!-- ENDIF --><!-- IF U_MCP --><li><a href="{U_MCP}" title="{L_MCP}">{L_M_MCP}</a></li>
+					<!-- ENDIF --><!-- IF U_ACP --><li><a href="{U_ACP}" title="{L_ACP}">{L_M_ACP}</a></li>
+					<!-- ENDIF --><li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
+					<!-- ELSEIF not S_USER_LOGGED_IN --><li><a href="{U_LOGIN_LOGOUT}" class="quick" title="{L_LOGIN}" accesskey="l" rel="#quicklogin">{L_LOGIN}</a><!-- IF S_REGISTER_ENABLED --> or <a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></li>
 					<!-- ENDIF -->
-					
-					<!-- IF U_MCP --><li><a href="{U_MCP}" title="{L_MCP}">{L_M_MCP}</a></li><!-- ENDIF -->
-					<!-- IF U_ACP --><li><a href="{U_ACP}" title="{L_ACP}">{L_M_ACP}</a></li><!-- ENDIF -->
-						<li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
-				<!-- ELSEIF not S_USER_LOGGED_IN -->
-					<li><a href="{U_LOGIN_LOGOUT}" class="quick" title="{L_LOGIN}" accesskey="l" rel="#quicklogin">{L_LOGIN}</a><!-- IF S_REGISTER_ENABLED --> or <a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></li>
-				<!-- ENDIF -->
 				</ul>
 			</li>
-			<!-- ENDIF -->
-			
-			<li class="icon-home"><a href="{U_PORTAL}" class="index">{L_PORTAL}</a> &#149; <a href="{U_INDEX}" accesskey="h" class="index">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&raquo;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+			<!-- ENDIF --><li class="icon-home"><a href="{U_PORTAL}" class="index">{L_PORTAL}</a> &#149; <a href="{U_INDEX}" accesskey="h" class="index">{L_INDEX}</a><!-- BEGIN navlinks --><strong>&raquo;</strong><a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
 		</ul>
 	</div>
 </div>
 
 <div id="page-header">
-	<div class="inner">	
+	<div class="inner">
 		<div id="site-description">
 			<a href="{U_INDEX}" title="{L_INDEX}" id="logo">{SITE_LOGO_IMG}</a>
 		</div>
-		
 		<ul class="navbar">
-			<li<!-- IF $CA_PAGE == 'index' --> class="current"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h" title="Forums">{L_FORUMS} <span>debate &amp; discuss</span></a></li>
-			<li<!-- IF $CA_PAGE == 'kb' --> class="current"<!-- ENDIF -->><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB} <span>{L_KB_EXPLAIN}</span></a></li>
-			<li<!-- IF $CA_PAGE == 'support' --> class="current"<!-- ENDIF -->><a href="{U_SUPPORT}" title="{L_SUPPORT_EXPLAIN}">{L_SUPPORT} <span>{L_SUPPORT_EXPLAIN}</span></a></li>
-			<li<!-- IF $CA_PAGE == 'search' --> class="current"<!-- ENDIF -->><a href="{U_SEARCH}" title="{L_SEARCH_KEYWORDS}">{L_SEARCH} <span>{L_SEARCH_KEYWORDS}</span></a></li>
+			<li<!-- IF $CA_PAGE == 'index' -->class="current"<!-- ENDIF -->><a href="{U_INDEX}" accesskey="h" title="Forums">{L_FORUMS} <span>debate &amp; discuss</span></a></li>
+			<li<!-- IF $CA_PAGE == 'kb' -->class="current"<!-- ENDIF -->><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB} <span>{L_KB_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE == 'support' -->class="current"<!-- ENDIF -->><a href="{U_SUPPORT}" title="{L_SUPPORT_EXPLAIN}">{L_SUPPORT} <span>{L_SUPPORT_EXPLAIN}</span></a></li>
+			<li<!-- IF $CA_PAGE == 'search' -->class="current"<!-- ENDIF -->><a href="{U_SEARCH}" title="{L_SEARCH_KEYWORDS}">{L_SEARCH} <span>{L_SEARCH_KEYWORDS}</span></a></li>
 		</ul>
 	</div>
 </div>
 
 <!-- IF not S_USER_LOGGED_IN  and not S_IS_BOT -->
-<div id="quickpanel" <!-- IF $UCP_LOGIN == true or $CA_PAGE != 'index' -->class="hide"<!-- ENDIF -->>
+<div id="quickpanel"<!-- IF $UCP_LOGIN == true or $CA_PAGE != 'index' -->class="hide"<!-- ENDIF -->>
 	<div class="inner">
 		<div id="blurb">
 			<img src="{T_THEME_PATH}/images/blurb_copy.png" alt="{L_BLURB_BODY}" />
 		</div>
-		
 		<div id="quicklogin">
 			<h2>{L_LOGIN_PAGE_TITLE}</h2>
 			<form method="post" action="{S_QUICK_LOGIN_ACTION}">
 				<fieldset class="quick-login">
-					<dl><dt><label for="username">{L_USERNAME}</label></dt><dd><input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></dd></dl>
-					<dl><dt><label for="password">{L_PASSWORD}</label></dt><dd><input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /></dd></dl>
-					
-					<!-- IF S_AUTOLOGIN_ENABLED -->
-					<dl><dd><input type="checkbox" name="autologin" id="autologin" /> <label for="autologin">{L_REMEMBER_ME}</label></dd></dl>
+					<dl>
+						<dt><label for="username">{L_USERNAME}</label></dt>
+						<dd><input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></dd>
+					</dl>
+					<dl>
+						<dt><label for="password">{L_PASSWORD}</label></dt>
+						<dd><input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /></dd>
+					</dl><!-- IF S_AUTOLOGIN_ENABLED -->
+					<dl>
+						<dd><input type="checkbox" name="autologin" id="autologin" /><label for="autologin">{L_REMEMBER_ME}</label></dd>
+					</dl>
 					<!-- ENDIF -->
-					
-					<dl><dd><input type="submit" name="login" value="{L_LOGIN}" class="button2" /></dd></dl>
-					{S_LOGIN_REDIRECT}
+					<dl>
+						<dd><input type="submit" name="login" value="{L_LOGIN}" class="button2" /></dd>
+					</dl> {S_LOGIN_REDIRECT}
 				</fieldset>
 			</form>
 		</div>
-		
 		<div id="quickregister">
 			<h2>{L_REGISTER_PAGE_TITLE}</h2>
 			<p><a href="{U_REGISTER}" class="button2">{L_CREATE_ACCOUNT}</a></p>
@@ -236,41 +238,34 @@ MathJax.Hub.Config({
 <!-- IF S_DISPLAY_WELCOME and $CA_PAGE == 'index' --><!-- INCLUDE portal/block/welcome.html --><!-- ENDIF -->
 
 <div id="main">
-<div id="wrap"<!-- IF $UCP_LOGIN == true --> class="center"<!-- ENDIF -->>
-	<a id="top" name="top" accesskey="t"></a>
+<div id="wrap"<!-- IF $UCP_LOGIN == true --> class="center"<!-- ENDIF -->><a id="top" name="top" accesskey="t"></a>
 	<a name="start_here"></a>
-	
 	<!-- IF $SIDEBAR eq '1' -->
 	<div id="page-sidebar">
-	<!-- INCLUDE sidebar.html -->
+		<!-- INCLUDE sidebar.html -->
 	</div>
 	<!-- ENDIF -->
-	
-	<div<!-- IF $SIDEBAR eq '1' --> id="page-body"<!-- ENDIF -->>
-		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+	<div<!-- IF $SIDEBAR eq '1' --> id="page-body"<!-- ENDIF -->><!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">
 			<div class="inner">
-				<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}
+				<strong>{L_INFORMATION}:</strong>
+				{L_BOARD_DISABLED}
 			</div>
 		</div>
+		<!-- ENDIF --><!-- IF not S_IS_BOT && S_USER_LOGGED_IN --><!-- IF NEW_REQUESTS -->
+		<div class="panel info">
+			<img src="{T_THEME_PATH}/images/info.png" />
+			<p><a href="{U_REQUESTS_LIST}">{NEW_REQUESTS}</a></p>
+		</div>
+		<!-- ENDIF --><!-- IF SIMPLE_COMMENT_ENABLED && not S_NO_NEW_COMMENTS -->
+		<div class="panel info">
+			<img src="{T_THEME_PATH}/images/comments.png" alt="{L_UNREAD_MESSAGES}" />
+			<p><a href="{U_COMMENTS}">{L_TOTAL_COMMENT}</a></p>
+		</div>
+		<!-- ENDIF --><!-- IF S_USER_NEW_PRIVMSG && S_DISPLAY_PM -->
+		<div class="panel info">
+			<img src="{T_THEME_PATH}/images/mail_receive.png" alt="{L_UNREAD_MESSAGES}" />
+			<p><a href="{U_PRIVATEMSGS}">{L_YOU_NEW_PM}</a></p>
+		</div>
 		<!-- ENDIF -->
-
-		<!-- IF not S_IS_BOT && S_USER_LOGGED_IN -->			
-			<!-- IF NEW_REQUESTS -->
-				<div class="panel info">
-					<img src="{T_THEME_PATH}/images/info.png" /><p><a href="{U_REQUESTS_LIST}">{NEW_REQUESTS}</a></p>
-				</div>
-			<!-- ENDIF -->
-			
-			<!-- IF SIMPLE_COMMENT_ENABLED && not S_NO_NEW_COMMENTS -->
-				<div class="panel info">
-					<img src="{T_THEME_PATH}/images/comments.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_COMMENTS}">{L_TOTAL_COMMENT}</a></p>
-				</div>
-			<!-- ENDIF -->
-			
-			<!-- IF S_USER_NEW_PRIVMSG && S_DISPLAY_PM -->
-				<div class="panel info">
-					<img src="{T_THEME_PATH}/images/mail_receive.png" alt="{L_UNREAD_MESSAGES}" /><p><a href="{U_PRIVATEMSGS}">{L_YOU_NEW_PM}</a></p>
-				</div>
-			<!-- ENDIF -->
 		<!-- ENDIF -->

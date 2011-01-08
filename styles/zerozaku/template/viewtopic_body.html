@@ -12,20 +12,17 @@
 <!-- IF S_FORUM_RULES -->
 	<div class="rules">
 		<div class="inner">
-
 		<!-- IF U_FORUM_RULES -->
 			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
 		<!-- ELSE -->
 			<strong>{L_FORUM_RULES}</strong><br />
 			{FORUM_RULES}
 		<!-- ENDIF -->
-
 		</div>
 	</div>
 <!-- ENDIF -->
 
 <div class="topic-actions">
-
 	<div class="buttons">
 	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
 		<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TOPIC}" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->"><span></span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED_SHORT}<!-- ELSE -->{L_REPLY}<!-- ENDIF --></a></div>
@@ -51,22 +48,11 @@
 			<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
 		</div>
 	<!-- ENDIF -->
-
 </div>
 <div class="clear"></div>
 
-
-
 <!-- IF S_HAS_POLL -->
-	<script type="text/javascript">
-	$(function() {
-		$(".pollbar").each(function(){
-      		var percentage = $(this).attr("rel");
-      		$(this).css({width: "0%"}).animate({
-                width: percentage}, 2000, 'easeOutSine');
-	  });
-	});
-	</script>
+	<script type="text/javascript">$(function(){$(".pollbar").each(function(){var a=$(this).attr("rel");$(this).css({width:"0%"}).animate({width:a},2000,"easeOutSine")})});</script>
 
 	<form method="post" action="{S_POLL_ACTION}">
 		<fieldset class="polls">
@@ -194,7 +180,6 @@
 				<dd><strong>{postrow.custom_fields.PROFILE_FIELD_NAME}</strong> {postrow.custom_fields.PROFILE_FIELD_VALUE}</dd>
 			<!-- ENDIF -->
 		<!-- END custom_fields -->
-
 		</dl>
 
 		<div class="caffeine">
@@ -278,25 +263,5 @@
 	<p>{LOGGED_IN_USER_LIST}</p>
 <!-- ENDIF -->
 </div>
-
-<!-- image slider --> 
-<div class="simple_overlay" id="gallerySlider"> 
- 
-    <!-- "previous image" action --> 
-    <a class="prev">prev</a> 
- 
-    <!-- "next image" action --> 
-    <a class="next">next</a> 
- 
-    <!-- image information --> 
-    <div class="info"></div> 
- 
-    <!-- load indicator (animated gif) --> 
-    <img class="progress" src="http://static.flowplayer.org/tools/img/overlay/loading.gif" /> 
-</div>
-<!-- image slider -->
-
-<!-- one single tooltip element --> 
-<div id="tooltipSlider"></div>
 
 <!-- INCLUDE overall_footer.html -->
