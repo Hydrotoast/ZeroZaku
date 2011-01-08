@@ -119,10 +119,13 @@ if ($forum_data['forum_type'] == FORUM_LINK && $forum_data['forum_link'])
 // Build navigation links
 generate_forum_nav($forum_data);
 
-// Build the ad
-generate_ad($forum_id);
 
-generate_rss($forum_data);
+// Build the ad
+$ads_enabled = generate_ad($forum_id);
+
+if ($ads_enabled) {
+    generate_rss($forum_data);
+}
 
 // Forum Rules
 if ($auth->acl_get('f_read', $forum_id))
