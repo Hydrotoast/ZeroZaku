@@ -397,7 +397,7 @@ class fulltext_mysql extends search_backend
 				$sql_sort_join	= ' AND f.forum_id = p.forum_id ';
 			break;
 		}
-
+		
 		// Build some display specific sql strings
 		switch ($fields)
 		{
@@ -423,7 +423,7 @@ class fulltext_mysql extends search_backend
 				$sql_match_where = '';
 			break;
 		}
-
+		
 		if (!sizeof($m_approve_fid_ary))
 		{
 			$m_approve_fid_sql = ' AND p.post_approved = 1';
@@ -469,8 +469,9 @@ class fulltext_mysql extends search_backend
 			WHERE MATCH ($sql_match) AGAINST ('" . $db->sql_escape(htmlspecialchars_decode($this->search_query)) . "' IN BOOLEAN MODE)
 				$sql_where_options
 			ORDER BY $sql_sort";
-		$result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
 
+		$result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
+		
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$id_ary[] = (int) $row[$field];

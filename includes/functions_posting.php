@@ -1487,6 +1487,10 @@ function delete_post($forum_id, $topic_id, $post_id, &$data)
 				$sql_data[FORUMS_TABLE] .= ($sql_data[FORUMS_TABLE]) ? ', ' : '';
 				$sql_data[FORUMS_TABLE] .= implode(', ', $update_sql[$forum_id]);
 			}
+			
+			$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
+				WHERE topic_id = ' . (int) $topic_id;
+			$db->sql_query($sql);
 		break;
 
 		case 'delete_first_post':
@@ -1510,6 +1514,10 @@ function delete_post($forum_id, $topic_id, $post_id, &$data)
 			$sql_data[TOPICS_TABLE] .= ', topic_replies_real = topic_replies_real - 1' . (($data['post_approved']) ? ', topic_replies = topic_replies - 1' : '');
 
 			$next_post_id = (int) $row['post_id'];
+			
+			$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
+				WHERE topic_id = ' . (int) $topic_id;
+			$db->sql_query($sql);
 		break;
 
 		case 'delete_last_post':
@@ -1548,7 +1556,7 @@ function delete_post($forum_id, $topic_id, $post_id, &$data)
 		break;
 
 		case 'delete':
-$sql = 'SELECT post_id, poster_id
+            $sql = 'SELECT post_id, poster_id
 				FROM ' . POSTS_TABLE . "
 				WHERE topic_id = $topic_id " .
 					((!$auth->acl_get('m_approve', $forum_id)) ? 'AND post_approved = 1' : '') . '
@@ -1642,8 +1650,6 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 	// Start Ultimate Points
 	global $ultimate_points, $points_config, $points_values;
 	// End Ultimate Points
-
-
 	
 	// We do not handle erasing posts here
 	if ($mode == 'delete')
@@ -1671,23 +1677,31 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 	//Start Penalty Check
 	if ($post_mode == 'post' || $post_mode == 'reply')
 	{
-		$penres = $db->sql_query("SELECT penalty_zerons, penalty_rep, penalty_posts FROM phpbb_penalties WHERE forum_id = " . $data['forum_id'] . " AND penalty_type = '$post_mode' LIMIT 1");
-		while ($row = $db->sql_fetchrow($penres))
+	    $sql = 'SELECT penalty_zerons, penalty_rep, penalty_posts 
+	    	FROM phpbb_penalties 
+	    	WHERE forum_id = ' . $data['forum_id'] . ' 
+	    		AND penalty_type = \'' . $post_mode . '\'
+	    	LIMIT 1';
+		$penres = $db->sql_query($sql);
+		$row = $db->sql_fetchrow($penres);
+		
+		$final_points = $user->data['user_points'] - $row['penalty_zerons'];
+		$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
+		$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
+				
+		if ($final_points < 0 || $final_posts < 0 || $final_rep < -100)
 		{
-			$final_points = $user->data['user_points'] - $row['penalty_zerons'];
-			$final_posts = $user->data['user_posts'] - $row['penalty_posts'];
-			$final_rep = $user->data['user_reputation'] - $row['penalty_rep'];
-					
-			if ($final_points < 0 || $final_posts < 0 || $final_rep < -100)
-			{
-				return false;
-			}
-			if ($res = $db->sql_query("UPDATE " . USERS_TABLE . " SET user_posts = " . $final_posts . ", user_reputation = " . $final_rep . ", user_points = " . $final_points . " WHERE user_id = " . $user->data['user_id']))
-			{
-				//success, continue.
-			} else {
-				return false;
-			}
+			return false;
+		}
+		
+		$sql = 'UPDATE ' . USERS_TABLE . ' 
+			SET user_posts = ' . $final_posts . ', user_reputation = ' . $final_rep . ', user_points = ' . $final_points . ' 
+			WHERE user_id = ' . $user->data['user_id'];
+		$result = $db->sql_query($sql);
+		
+		if (!$result)
+		{
+			return false;
 		}
 	}
 	//End Penalty Check
@@ -2011,10 +2025,29 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 
 				'topic_attachment'			=> (!empty($data['attachment_data'])) ? 1 : (isset($data['topic_attachment']) ? $data['topic_attachment'] : 0),
 			);
-// idiotnesia wuz here
+			
+            // idiotnesia wuz here
 			$sql_data[TOPICS_TABLE]['sql']['poll_show_voters'] = (isset($poll['poll_show_voters'])) ? $poll['poll_show_voters'] : 0;
-// finsih
-
+            // finsih
+			
+			$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
+				WHERE topic_id = ' . (int) $data['topic_id'];
+			$db->sql_query($sql);
+			
+			foreach ($data['topic_terms'] as $term)
+			{
+			    $sql = 'INSERT INTO ' . TERMS_TABLE . "
+			    	SET term_name = '$term'
+			    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
+			    $db->sql_query($sql);
+			    
+			    $data['term_id'] = $db->sql_nextid();
+			    
+			    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
+			    	VALUES ('{$data['topic_id']}', '{$data['term_id']}')";
+			    $db->sql_query($sql);
+			}
+			
 			// Correctly set back the topic replies and forum posts... only if the topic was approved before and now gets disapproved
 			if (!$post_approval && $data['topic_approved'])
 			{
@@ -2070,17 +2103,29 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 
 	// Submit new topic
 	if ($post_mode == 'post')
-	{
+	{   
 		$sql = 'INSERT INTO ' . TOPICS_TABLE . ' ' .
 			$db->sql_build_array('INSERT', $sql_data[TOPICS_TABLE]['sql']);
 		$db->sql_query($sql);
 
 		$data['topic_id'] = $db->sql_nextid();
-
+		
 		$sql_data[POSTS_TABLE]['sql'] = array_merge($sql_data[POSTS_TABLE]['sql'], array(
 			'topic_id' => $data['topic_id'])
 		);
 		unset($sql_data[TOPICS_TABLE]['sql']);
+		
+	    foreach ($data['topic_terms'] as $term)
+	    {
+		    $sql = 'INSERT INTO ' . TERMS_TABLE . "
+		    	SET term_name = '$term'
+		    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
+		    $db->sql_query($sql);
+		    
+		    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
+		    	VALUES ('{$data['topic_id']}', '{$db->sql_nextid()}')";
+		    $db->sql_query($sql);
+	    }
 	}
 
 

@@ -694,6 +694,10 @@ class delete
 
 			$this->delete_attachment_data();
 
+			$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
+				WHERE topic_id = ' . (int) $topic_id;
+			$db->sql_query($sql);
+			
 			$this->hard_delete_topics();
 		}
 	}

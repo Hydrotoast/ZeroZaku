@@ -101,7 +101,7 @@
 	<!-- ENDIF -->
 
 	<!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
-	<dl style="clear: left;">
+	<dl>
 		<dt><label for="subject">{L_SUBJECT}:</label></dt>
 		<dd><input type="text" name="subject" id="subject" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->60<!-- ELSE -->64<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox autowidth" /></dd>
 	</dl>
@@ -144,6 +144,13 @@
 	<div id="message-box">
 		<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> rows="15" cols="76" tabindex="4" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();" class="inputbox">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
 	</div>
+	
+	<!-- IF S_FIRST_POST and S_MANAGE_TERM -->
+	<dl>
+		<dt><label for="topic_terms">{L_TERMS}:</label></dt>
+		<dd><input type="text" name="topic_terms" id="topic_terms"  size="45" maxlength="60" tabindex="2" value="{TOPIC_TERMS}" class="inputbox autowidth"  /></dd>
+	</dl>
+	<!-- ENDIF -->
 </fieldset>
 
 <!-- IF $EXTRA_POSTING_OPTIONS eq 1 -->

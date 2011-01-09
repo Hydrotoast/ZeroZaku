@@ -19,6 +19,7 @@ include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'includes/message_parser.' . $phpEx);
 include($phpbb_root_path . 'portal/includes/functions.'.$phpEx);
+include($phpbb_root_path . 'includes/functions_terms.' . $phpEx);
 
 $portal_config = obtain_portal_config();
 
@@ -43,6 +44,8 @@ $cancel		= (isset($_POST['cancel']) && !isset($_POST['save'])) ? true : false;
 $refresh	= (isset($_POST['add_file']) || isset($_POST['delete_file']) || isset($_POST['full_editor']) || isset($_POST['cancel_unglobalise']) || $save || $load) ? true : false;
 $mode		= ($delete && !$preview && !$refresh && $submit) ? 'delete' : request_var('mode', '');
 
+$manage_term = ($auth->acl_get('f_manage_term', $forum_id) || $auth->acl_get('m_manage_term')) ?  true : false;
+
 $error = $post_data = array();
 $current_time = time();
 
@@ -58,7 +61,6 @@ if (in_array($mode, array('post', 'reply', 'quote', 'edit', 'delete')) && !$foru
 {
 	trigger_error('NO_FORUM');
 }
-
 
 include("{$phpbb_root_path}includes/mods/soft_delete.$phpEx");
 if ($mode == 'undelete')
@@ -165,6 +167,12 @@ if (!$sql)
 $result = $db->sql_query($sql);
 $post_data = $db->sql_fetchrow($result);
 $db->sql_freeresult($result);
+
+if ($mode == 'edit')
+{
+    $terms = implode(', ', getTerms($post_data['topic_id']));
+    $post_data = array_merge($post_data, array('topic_terms' => $terms));
+}
 
 if (!$post_data)
 {
@@ -923,6 +931,18 @@ if ($submit || $preview || $refresh)
 	}
 
 
+	$topic_terms = explode(',',  trim(strtolower(utf8_normalize_nfc(request_var('topic_terms', '')))));
+	
+	if (!empty($topic_terms) && !$manage_term)
+	{
+	    $error[] = $user->lang['NOT_AUTHORISED'];
+	}
+	else
+	{
+	    $post_data['topic_terms'] = array_unique($topic_terms);
+	    array_splice($post_data['topic_terms'], 5);
+	}
+	
 // Begin : Anti Double Posts 
 	if ($submit && $mod_adp && !empty($post_data['adp_auto_edit']))
 	{		
@@ -1271,7 +1291,7 @@ if ($submit || $preview || $refresh)
 			// Lock/Unlock Topic
 			$change_topic_status = $post_data['topic_status'];
 			$perm_lock_unlock = ($auth->acl_get('m_lock', $forum_id) || ($auth->acl_get('f_user_lock', $forum_id) && $user->data['is_registered'] && !empty($post_data['topic_poster']) && $user->data['user_id'] == $post_data['topic_poster'] && $post_data['topic_status'] == ITEM_UNLOCKED)) ? true : false;
-
+			
 			if ($post_data['topic_status'] == ITEM_LOCKED && !$topic_lock && $perm_lock_unlock)
 			{
 				$change_topic_status = ITEM_UNLOCKED;
@@ -1360,6 +1380,7 @@ if ($submit || $preview || $refresh)
 				'topic_last_post_id'	=> (isset($post_data['topic_last_post_id'])) ? (int) $post_data['topic_last_post_id'] : 0,
 				'topic_time_limit'		=> (int) $post_data['topic_time_limit'],
 				'topic_attachment'		=> (isset($post_data['topic_attachment'])) ? (int) $post_data['topic_attachment'] : 0,
+			    'topic_terms'			=> $post_data['topic_terms'],
 				'post_id'				=> (int) $post_id,
 				'topic_id'				=> (int) $topic_id,
 				'forum_id'				=> (int) $forum_id,
@@ -1398,6 +1419,7 @@ if ($submit || $preview || $refresh)
 			{
 				$data['topic_replies_real'] = $post_data['topic_replies_real'];
 				$data['topic_replies'] = $post_data['topic_replies'];
+				$data['topic_terms'] = $post_data['topic_terms'];
 			}
 
 			// The last parameter tells submit_post if search indexer has to be run
@@ -1727,6 +1749,7 @@ $template->assign_vars(array(
 	'FORUM_NAME'			=> $post_data['forum_name'],
 	'FORUM_DESC'			=> ($post_data['forum_desc']) ? generate_text_for_display($post_data['forum_desc'], $post_data['forum_desc_uid'], $post_data['forum_desc_bitfield'], $post_data['forum_desc_options']) : '',
 	'TOPIC_TITLE'			=> censor_text($post_data['topic_title']),
+    'TOPIC_TERMS'			=> (isset($post_data['topic_terms']) && ($post_id == $post_data['topic_first_post_id'])) ? $post_data['topic_terms'] : '',
 	'MODERATORS'			=> (sizeof($moderators)) ? implode(', ', $moderators[$forum_id]) : '',
 	'USERNAME'				=> ((!$preview && $mode != 'quote') || $preview) ? $post_data['username'] : '',
 	'SUBJECT'				=> $post_data['post_subject'],
@@ -1772,6 +1795,10 @@ $template->assign_vars(array(
 	'S_SAVE_ALLOWED'			=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $mode != 'edit') ? true : false,
 	'S_HAS_DRAFTS'				=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $post_data['drafts']) ? true : false,
 	'S_FORM_ENCTYPE'			=> $form_enctype,
+    'S_FIRST_POST'				=> ($post_id == $post_data['topic_first_post_id']) ? true : false,
+    // BEGIN Term
+    'S_MANAGE_TERM'				=> $manage_term,
+    // END Term
 
 	'S_BBCODE_IMG'			=> $img_status,
 	'S_BBCODE_URL'			=> $url_status,
