@@ -319,4 +319,7 @@ define('FORUMS_FEED_TABLE', $table_prefix . 'forums_feed');
 define('ADS_TABLE', $table_prefix . 'ads');
 
 define('PROFILE_EXTENDED_TABLE', $table_prefix . 'profile_extended');
+
+define('TERMS_TABLE', $table_prefix . 'terms');
+define('TERMMAP_TABLE', $table_prefix . 'termmap');
 ?>

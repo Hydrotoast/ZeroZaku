@@ -1347,6 +1347,21 @@ dl.user-tag dd { display: block; clear: right; }
 	margin-bottom: 10px;
 }
 
+/* Terms
+-------------------------------------------------*/
+#post-term-box p {
+	margin: 18px 0;
+	padding-left: 44px;
+}
+
+a.term {
+	background-color: #E6E6E6;
+	border-bottom: 1px solid #D0D0D0;
+	border-right: 1px solid #D0D0D0;
+	font-weight: bold;
+	padding: 8px 14px;
+}
+
 /* Advertisements
 -------------------------------------------------*/
 .bottom-ad { border-top: 1px solid #E0E0E0; margin: 10px 0; padding-top: 10px; }

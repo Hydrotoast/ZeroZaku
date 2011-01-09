@@ -20,6 +20,7 @@ include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'includes/bbcode.' . $phpEx);
 include($phpbb_root_path . 'portal/includes/functions.'.$phpEx);
+include($phpbb_root_path . 'includes/functions_terms.' . $phpEx);
 
 $portal_config = obtain_portal_config();
 
@@ -643,8 +644,19 @@ if ($is_topic_locked == false)
 		}
 	}	
 }
-
 //End Penalty Check
+
+// BEGIN Terms
+$terms = getTerms($topic_id);
+foreach ($terms as $term)
+{
+	$template->assign_block_vars('term', array(
+	    'NAME'	    => $term,
+	    'U_TERM'	=> append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . $term . '&sr=topics&search_id=tagsearch'),
+	));
+}
+// END Terms
+
 // Send vars to template
 $template->assign_vars(array(
 	'FORUM_ID' 		=> $forum_id,
@@ -653,7 +665,6 @@ $template->assign_vars(array(
 	'TOPIC_ID' 		=> $topic_id,
 	'TOPIC_TITLE' 	=> $topic_data['topic_title'],
 	'TOPIC_POSTER'	=> $topic_data['topic_poster'],
-
 
 	// Start Ultimate Points
 	'P_NAME'			=> $config['points_name'],

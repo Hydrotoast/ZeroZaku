@@ -1009,4 +1009,11 @@ $lang = array_merge($lang, array(
 	'JOIN_FACTION'				=> 'Join a faction',
 ));
 // END FACTIONS
+
+// BEGIN TERMS
+$lang = array_merge($lang, array(
+    'TERM'	=> 'Tag',
+    'TERMS'	=> 'Tags',
+));
+// END TERMS
 ?>

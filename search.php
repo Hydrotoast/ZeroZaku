@@ -40,6 +40,7 @@ $search_terms	= request_var('terms', 'all');
 $search_fields	= request_var('sf', 'all');
 $search_child	= request_var('sc', true);
 
+
 $sort_days		= request_var('st', 0);
 $sort_key		= request_var('sk', 't');
 $sort_dir		= request_var('sd', 'd');
@@ -297,6 +298,23 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 	{
 		switch ($search_id)
 		{
+		    case 'tagsearch':
+				$l_search_title = $user->lang['SEARCH_ACTIVE_TOPICS'];
+				$show_results = 'topics';
+				$sort_key = 't';
+				$sort_dir = 'd';
+				$search_set = $db->sql_in_set('terms.term_name', explode('+', trim($search->search_query)));
+				
+				$sql = 'SELECT t.topic_last_post_time, t.topic_id
+					FROM ' . TOPICS_TABLE . ' t
+						LEFT JOIN ' . TERMMAP_TABLE . ' tm ON (t.topic_id = tm.topic_id)
+				    	LEFT JOIN ' . TERMS_TABLE . " terms ON (tm.term_id = terms.term_id)
+					WHERE $search_set
+						" . ((sizeof($ex_fid_ary)) ? ' AND ' . $db->sql_in_set('t.forum_id', $ex_fid_ary, true) : '') . '
+					ORDER BY t.topic_last_post_time DESC';
+				$field = 'topic_id';
+		    break;
+		    
 			// Oh holy Bob, bring us some activity...
 			case 'active_topics':
 				$l_search_title = $user->lang['SEARCH_ACTIVE_TOPICS'];
@@ -487,16 +505,16 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 	sort($m_approve_fid_ary);
 	sort($author_id_ary);
 
-	if (!empty($search->search_query))
+	if (!empty($search->search_query) && $search_id !== 'tagsearch')
 	{
 		$total_match_count = $search->keyword_search($show_results, $search_fields, $search_terms, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $author_id_ary, $sql_author_match, $id_ary, $start, $per_page);
 	}
-	else if (sizeof($author_id_ary))
+	else if (sizeof($author_id_ary) && $search_id !== 'tagsearch')
 	{
 		$firstpost_only = ($search_fields === 'firstpost' || $search_fields == 'titleonly') ? true : false;
 		$total_match_count = $search->author_search($show_results, $firstpost_only, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $author_id_ary, $sql_author_match, $id_ary, $start, $per_page);
 	}
-
+	
 	// For some searches we need to print out the "no results" page directly to allow re-sorting/refining the search options.
 	if (!sizeof($id_ary) && !$search_id)
 	{
@@ -507,9 +525,10 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 	if (sizeof($id_ary))
 	{
-		$sql_where .= $db->sql_in_set(($show_results == 'posts') ? 'p.post_id' : 't.topic_id', $id_ary);
+	    $sql_where .= $db->sql_in_set(($show_results == 'posts') ? 'p.post_id' : 't.topic_id', $id_ary);
 		$sql_where .= (sizeof($ex_fid_ary)) ? ' AND (' . $db->sql_in_set('f.forum_id', $ex_fid_ary, true) . ' OR f.forum_id IS NULL)' : '';
 		$sql_where .= ($show_results == 'posts') ? $m_approve_fid_sql : str_replace(array('p.post_approved', 'p.forum_id'), array('t.topic_approved', 't.forum_id'), $m_approve_fid_sql);
+	    
 	}
 
 	if ($show_results == 'posts')
@@ -559,10 +578,21 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 	$u_search .= ($search_fields != 'all') ? '&amp;sf=' . $search_fields : '';
 	$u_search .= ($return_chars != 300) ? '&amp;ch=' . $return_chars : '';
 
+	$search_words = explode('+', trim($search->search_query));
+	foreach ($search_words as $word)
+	{
+	    if (!empty($word))
+	    {
+			$template->assign_block_vars('search_word', array(
+			    'WORD'	=> $word,
+			));
+	    }
+	}
+	
 	$template->assign_vars(array(
 		'SEARCH_TITLE'		=> $l_search_title,
 		'SEARCH_MATCHES'	=> $l_search_matches,
-		'SEARCH_WORDS'		=> $search->search_query,
+		//'SEARCH_WORDS'		=> $search->search_query,
 		'IGNORED_WORDS'		=> (sizeof($search->common_words)) ? implode(' ', $search->common_words) : '',
 		'PAGINATION'		=> generate_pagination($u_search, $total_match_count, $per_page, $start),
 		'PAGE_NUMBER'		=> on_page($total_match_count, $per_page, $start),
@@ -633,13 +663,13 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					$sql_select .= ', tt.mark_time, ft.mark_time as f_mark_time';
 				}
 			}
-
+			
 			if ($config['load_anon_lastread'] || ($user->data['is_registered'] && !$config['load_db_lastread']))
 			{
 				$tracking_topics = (isset($_COOKIE[$config['cookie_name'] . '_track'])) ? ((STRIP) ? stripslashes($_COOKIE[$config['cookie_name'] . '_track']) : $_COOKIE[$config['cookie_name'] . '_track']) : '';
 				$tracking_topics = ($tracking_topics) ? tracking_unserialize($tracking_topics) : array();
 			}
-
+			
 			$sql = "SELECT $sql_select
 				FROM $sql_from
 				WHERE $sql_where";
