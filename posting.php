@@ -930,15 +930,14 @@ if ($submit || $preview || $refresh)
 // finish
 	}
 
-
-	$topic_terms = explode(',',  trim(strtolower(utf8_normalize_nfc(request_var('topic_terms', '')))));
-	
+    $topic_terms = trim(strtolower(utf8_normalize_nfc(request_var('topic_terms', ''))));
 	if (!empty($topic_terms) && !$manage_term)
 	{
 	    $error[] = $user->lang['NOT_AUTHORISED'];
 	}
 	else
 	{
+	    $topic_terms = explode(',',  $topic_terms);
 	    $post_data['topic_terms'] = array_unique($topic_terms);
 	    array_splice($post_data['topic_terms'], 5);
 	}
