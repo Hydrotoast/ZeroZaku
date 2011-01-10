@@ -2115,17 +2115,20 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 		);
 		unset($sql_data[TOPICS_TABLE]['sql']);
 		
-	    foreach ($data['topic_terms'] as $term)
-	    {
-		    $sql = 'INSERT INTO ' . TERMS_TABLE . "
-		    	SET term_name = '$term'
-		    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
-		    $db->sql_query($sql);
-		    
-		    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
-		    	VALUES ('{$data['topic_id']}', '{$db->sql_nextid()}')";
-		    $db->sql_query($sql);
-	    }
+		if (sizeof($data['topic_terms']) > 0)
+		{
+		    foreach ($data['topic_terms'] as $term)
+		    {
+			    $sql = 'INSERT INTO ' . TERMS_TABLE . "
+			    	SET term_name = '$term'
+			    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
+			    $db->sql_query($sql);
+			    
+			    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
+			    	VALUES ('{$data['topic_id']}', '{$db->sql_nextid()}')";
+			    $db->sql_query($sql);
+		    }
+		}
 	}
 
 
