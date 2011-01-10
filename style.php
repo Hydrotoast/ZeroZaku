@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB3
-* @version $Id: style.php 10299 2009-12-06 02:30:24Z naderman $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -80,6 +80,20 @@ if ($id)
 
 	$config = $cache->obtain_config();
 	$user = false;
+
+	// try to get a session ID from REQUEST array
+	$sid = request_var('sid', '');
+
+	if (!$sid)
+	{
+		// if that failed, then look in the cookies
+		$sid = request_var($config['cookie_name'] . '_sid', '', false, true);
+	}
+
+	if (strspn($sid, 'abcdefABCDEF0123456789') !== strlen($sid))
+	{
+		$sid = '';
+	}
 
 	if ($sid)
 	{
@@ -217,7 +231,7 @@ if ($id)
 	}
 
 	header('Content-type: text/css; charset=UTF-8');
-	
+
 	// Parse Theme Data
 	$replace = array(
 		'{T_THEME_PATH}'			=> "{$phpbb_root_path}styles/" . $theme['theme_path'] . '/theme',
