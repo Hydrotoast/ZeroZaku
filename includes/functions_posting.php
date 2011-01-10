@@ -2030,22 +2030,25 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 			$sql_data[TOPICS_TABLE]['sql']['poll_show_voters'] = (isset($poll['poll_show_voters'])) ? $poll['poll_show_voters'] : 0;
             // finsih
 			
-			$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
-				WHERE topic_id = ' . (int) $data['topic_id'];
-			$db->sql_query($sql);
-			
-			foreach ($data['topic_terms'] as $term)
+			if (sizeof($data['topic_terms']) > 0)
 			{
-			    $sql = 'INSERT INTO ' . TERMS_TABLE . "
-			    	SET term_name = '$term'
-			    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
-			    $db->sql_query($sql);
-			    
-			    $data['term_id'] = $db->sql_nextid();
-			    
-			    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
-			    	VALUES ('{$data['topic_id']}', '{$data['term_id']}')";
-			    $db->sql_query($sql);
+				$sql = 'DELETE FROM ' . TERMMAP_TABLE . '
+					WHERE topic_id = ' . (int) $data['topic_id'];
+				$db->sql_query($sql);
+				
+				foreach ($data['topic_terms'] as $term)
+				{
+				    $sql = 'INSERT INTO ' . TERMS_TABLE . "
+				    	SET term_name = '$term'
+				    	ON DUPLICATE KEY UPDATE term_id = LAST_INSERT_ID(term_id)";
+				    $db->sql_query($sql);
+				    
+				    $data['term_id'] = $db->sql_nextid();
+				    
+				    $sql = 'REPLACE INTO ' . TERMMAP_TABLE . " (topic_id, term_id)
+				    	VALUES ('{$data['topic_id']}', '{$data['term_id']}')";
+				    $db->sql_query($sql);
+				}
 			}
 			
 			// Correctly set back the topic replies and forum posts... only if the topic was approved before and now gets disapproved
