@@ -171,7 +171,8 @@ $db->sql_freeresult($result);
 if ($mode == 'edit')
 {
     $terms = implode(', ', getTerms($post_data['topic_id']));
-    $post_data = array_merge($post_data, array('topic_terms' => $terms));
+    
+    if (!empty($terms)) $post_data = array_merge($post_data, array('topic_terms' => $terms));
 }
 
 if (!$post_data)
@@ -931,15 +932,18 @@ if ($submit || $preview || $refresh)
 	}
 
     $topic_terms = trim(strtolower(utf8_normalize_nfc(request_var('topic_terms', ''))));
-	if (!empty($topic_terms) && !$manage_term)
+	if (!empty($topic_terms))
 	{
-	    $error[] = $user->lang['NOT_AUTHORISED'];
-	}
-	else
-	{
-	    $topic_terms = explode(',',  $topic_terms);
-	    $post_data['topic_terms'] = array_unique($topic_terms);
-	    array_splice($post_data['topic_terms'], 5);
+	    if (!$manage_term)
+	    {
+		    $error[] = $user->lang['NOT_AUTHORISED'];
+	    }
+	    else
+	    {
+		    $topic_terms = explode(',',  $topic_terms);
+		    $post_data['topic_terms'] = array_unique($topic_terms);
+		    array_splice($post_data['topic_terms'], 5);
+	    }
 	}
 	
 // Begin : Anti Double Posts 
