@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_styles.php 10361 2009-12-22 16:56:55Z bantu $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -645,13 +645,13 @@ parse_css_file = {PARSE_CSS_FILE}
 		{
 			while (($file = readdir($dp)) !== false)
 			{
-				if (!is_dir($phpbb_root_path . 'styles/' . $file))
+				if ($file[0] == '.' || !is_dir($phpbb_root_path . 'styles/' . $file))
 				{
 					continue;
 				}
 
 				$subpath = ($mode != 'style') ? "$mode/" : '';
-				if ($file[0] != '.' && file_exists("{$phpbb_root_path}styles/$file/$subpath$mode.cfg"))
+				if (file_exists("{$phpbb_root_path}styles/$file/$subpath$mode.cfg"))
 				{
 					if ($cfg = file("{$phpbb_root_path}styles/$file/$subpath$mode.cfg"))
 					{
@@ -750,7 +750,7 @@ parse_css_file = {PARSE_CSS_FILE}
 			$additional = '';
 
 			// If the template is stored on the filesystem try to write the file else store it in the database
-			if (!$safe_mode && !$template_info['template_storedb'] && file_exists($file) && @is_writable($file))
+			if (!$safe_mode && !$template_info['template_storedb'] && file_exists($file) && phpbb_is_writable($file))
 			{
 				if (!($fp = @fopen($file, 'wb')))
 				{
@@ -1157,7 +1157,7 @@ parse_css_file = {PARSE_CSS_FILE}
 			$message = $user->lang['THEME_UPDATED'];
 
 			// If the theme is stored on the filesystem try to write the file else store it in the database
-			if (!$safe_mode && !$theme_info['theme_storedb'] && file_exists($file) && @is_writable($file))
+			if (!$safe_mode && !$theme_info['theme_storedb'] && file_exists($file) && phpbb_is_writable($file))
 			{
 				if (!($fp = @fopen($file, 'wb')))
 				{
@@ -2248,7 +2248,7 @@ parse_css_file = {PARSE_CSS_FILE}
 			{
 				// a rather elaborate check we have to do here once to avoid trouble later
 				$check = "{$phpbb_root_path}styles/" . $style_row["{$mode}_path"] . (($mode === 'theme') ? '/theme/stylesheet.css' : '/template');
-				if (($style_row["{$mode}_storedb"] != $store_db) && !$store_db && ($safe_mode || !@is_writable($check)))
+				if (($style_row["{$mode}_storedb"] != $store_db) && !$store_db && ($safe_mode || !phpbb_is_writable($check)))
 				{
 					$error[] = $user->lang['EDIT_' . strtoupper($mode) . '_STORED_DB'];
 					$store_db = 1;
@@ -2328,7 +2328,7 @@ parse_css_file = {PARSE_CSS_FILE}
 						{
 							$theme_data = $this->db_theme_data($style_row);
 						}
-						else if (!$store_db && !$safe_mode && @is_writable("{$phpbb_root_path}styles/{$style_row['theme_path']}/theme/stylesheet.css"))
+						else if (!$store_db && !$safe_mode && phpbb_is_writable("{$phpbb_root_path}styles/{$style_row['theme_path']}/theme/stylesheet.css"))
 						{
 							$store_db = 1;
 							$theme_data = $style_row['theme_data'];
@@ -2359,7 +2359,7 @@ parse_css_file = {PARSE_CSS_FILE}
 						}
 						else
 						{
-							if (!$store_db && !$safe_mode && @is_writable("{$phpbb_root_path}styles/{$style_row['template_path']}/template"))
+							if (!$store_db && !$safe_mode && phpbb_is_writable("{$phpbb_root_path}styles/{$style_row['template_path']}/template"))
 							{
 								$err = $this->store_in_fs('template', $style_row['template_id']);
 								if ($err)
@@ -2533,13 +2533,21 @@ parse_css_file = {PARSE_CSS_FILE}
 
 		// Match CSS imports
 		$matches = array();
-		preg_match_all('/@import url\(["\'](.*)["\']\);/i', $stylesheet, $matches);
+		preg_match_all('/@import url\((["\'])(.*)\1\);/i', $stylesheet, $matches);
+
+		// remove commented stylesheets (very simple parser, allows only whitespace
+		// around an @import statement)
+		preg_match_all('#/\*\s*@import url\((["\'])(.*)\1\);\s\*/#i', $stylesheet, $commented);
+		$matches[2] = array_diff($matches[2], $commented[2]);
 
 		if (sizeof($matches))
 		{
 			foreach ($matches[0] as $idx => $match)
 			{
-				$stylesheet = str_replace($match, acp_styles::load_css_file($theme_row['theme_path'], $matches[1][$idx]), $stylesheet);
+				if (isset($matches[2][$idx]))
+				{
+					$stylesheet = str_replace($match, acp_styles::load_css_file($theme_row['theme_path'], $matches[2][$idx]), $stylesheet);
+				}
 			}
 		}
 
@@ -3730,7 +3738,7 @@ parse_css_file = {PARSE_CSS_FILE}
 
 		$store_db = 0;
 		$error = array();
-		if (!$safe_mode && @is_writable("{$phpbb_root_path}styles/{$path}/template"))
+		if (!$safe_mode && phpbb_is_writable("{$phpbb_root_path}styles/{$path}/template"))
 		{
 			$sql = 'SELECT *
 					FROM ' . STYLES_TEMPLATE_DATA_TABLE . "

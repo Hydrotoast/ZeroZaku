@@ -11,12 +11,9 @@
 <meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9" />
 {META}
 <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<!-- IF S_USER_LOGGED_IN and not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger.js"></script><!-- ENDIF -->
-<!-- IF not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger_buttons.js"></script><!-- ENDIF -->
 
 <!-- IF S_ENABLE_FEEDS -->
 	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
@@ -28,13 +25,7 @@
 	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
 <!-- ENDIF -->
 
-
-<!-- INCLUDE reimg_content.html -->
 <link rel="stylesheet" href="{T_STYLESHEET_LINK}" type="text/css" />
-<link rel="stylesheet" href="{T_THEME_PATH}/instant_messenger.css" type="text/css" />
-<!--[if lt IE 7]>
-  <link href="{T_THEME_PATH}/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
-<![endif]-->
 
 <script type="text/javascript">
 // <![CDATA[
@@ -111,9 +102,6 @@ function marklist(id, name, state)
 		}
 	}
 }
-	window.onload = function() {
-		load_startIM('{ROOT_PATH}', '{T_THEME_PATH}');
-	}
 
 <!-- IF ._file -->
 
@@ -155,22 +143,8 @@ function marklist(id, name, state)
 
 // ]]>
 </script>
-
-
-
-
-
-<!-- IF S_MCHAT_ENABLE -->
-<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_core_mini.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
-<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_subsilver2.css" type="text/css" />
-<!-- ENDIF -->
 </head>
 <body class="{S_CONTENT_DIRECTION}">
-<!-- IF not S_IS_BOT -->
-  <!-- INCLUDE instant_messenger_bar.html -->
-
-<!-- ENDIF -->
 
 <a name="top"></a>
 
@@ -200,20 +174,7 @@ function marklist(id, name, state)
 				<!-- ENDIF -->
 			</td>
 			<td class="genmed" align="{S_CONTENT_FLOW_END}">
-
-				<!-- Start Ultimate Points -->
-				<!-- IF S_POINTS_ENABLE -->				
-				<a href="{U_POINTS}"><img src="{T_THEME_PATH}/images/icon_points.gif" width="12" height="13" alt="*" /> {POINTS_LINK}</a><!-- IF S_USER_LOGGED_IN --> [ {USER_POINTS} ]<!-- ENDIF -->&nbsp; &nbsp;
-				<!-- ENDIF -->				
-				<!-- End Ultimate Points -->
-
-				<!-- Start Ultimate Points -->
-				<!-- IF S_POINTS_ENABLE -->				
-				<a href="{U_POINTS}"><img src="{T_THEME_PATH}/images/icon_points.gif" width="12" height="13" alt="*" /> {POINTS_LINK}</a><!-- IF S_USER_LOGGED_IN and S_USE_POINTS --> [ {USER_POINTS} ]<!-- ENDIF -->&nbsp; &nbsp;
-				<!-- ENDIF -->				
-				<!-- End Ultimate Points -->
 				<a href="{U_FAQ}"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> {L_FAQ}</a>
-				<!-- IF S_MCHAT_ENABLE and U_MCHAT -->&nbsp; &nbsp;<a href="{U_MCHAT}"><img src="{T_THEME_PATH}/images/icon_mini_groups.gif" width="12" height="13" alt="*" /> {L_MCHAT}</a><!-- ENDIF -->
 				<!-- IF S_DISPLAY_SEARCH -->&nbsp; &nbsp;<a href="{U_SEARCH}"><img src="{T_THEME_PATH}/images/icon_mini_search.gif" width="12" height="13" alt="*" /> {L_SEARCH}</a><!-- ENDIF -->
 				<!-- IF not S_IS_BOT -->
 					<!-- IF S_DISPLAY_MEMBERLIST -->&nbsp; &nbsp;<a href="{U_MEMBERLIST}"><img src="{T_THEME_PATH}/images/icon_mini_members.gif" width="12" height="13" alt="*" /> {L_MEMBERLIST}</a><!-- ENDIF -->
@@ -223,16 +184,6 @@ function marklist(id, name, state)
 		</tr>
 		</table>
 	</div>
-			<br />
-		<div id="menubar">
-		<a href="{U_PLATFORMS}" title="{L_PLATFORMS}"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" alt="*" /> {L_PLATFORMS}</a>&nbsp; &nbsp;
-		<a href="{U_GROUPLIST}" title="{L_GROUPLIST}"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" alt="*" /> {L_GROUPLIST}</a>&nbsp; &nbsp;
-		<!-- IF S_USER_LOGGED_IN -->
-		<a href="{U_ADDGROUP}" title="{L_ADDGROUP}"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" alt="*" /> {L_ADDGROUP}</a>&nbsp; &nbsp;<a href="{U_GROUPCP}" title="{L_GROUPCP}"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" alt="*" /> {L_GROUPCP}</a>&nbsp; &nbsp;
-		<!-- ENDIF -->
-		<a href="{U_TOURNAMENTS}" title="{L_TOURNAMENTS}"><img src="{T_THEME_PATH}/images/icon_mini_login.gif" width="12" height="13" alt="*" /> {L_TOURNAMENTS}</a>
-		</div>
-		<br />
 
 	<div id="datebar">
 		<table width="100%" cellspacing="0">
@@ -250,8 +201,8 @@ function marklist(id, name, state)
 	<!-- IF S_DISPLAY_SEARCH -->
 	<p class="searchbar">
 		<span style="float: {S_CONTENT_FLOW_BEGIN};"><a href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a> | <a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></span>
-		<!-- IF S_USER_LOGGED_IN -->
-		<span style="float: {S_CONTENT_FLOW_END};"><a href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a> | <a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a> | <a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a></span>
+		<!-- IF S_USER_LOGGED_IN or S_LOAD_UNREADS -->
+		<span style="float: {S_CONTENT_FLOW_END};"><!-- IF S_LOAD_UNREADS --><a href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a><!-- IF S_USER_LOGGED_IN --> | <!-- ENDIF --><!-- ENDIF --><!-- IF S_USER_LOGGED_IN --><a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a> | <a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a><!-- ENDIF --></span>
 		<!-- ENDIF -->
 	</p>
 	<!-- ENDIF -->
