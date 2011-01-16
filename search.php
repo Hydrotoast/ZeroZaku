@@ -679,13 +679,13 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					$sql_select .= ', tt.mark_time, ft.mark_time as f_mark_time';
 				}
 			}
-			
+
 			if ($config['load_anon_lastread'] || ($user->data['is_registered'] && !$config['load_db_lastread']))
 			{
 				$tracking_topics = (isset($_COOKIE[$config['cookie_name'] . '_track'])) ? ((STRIP) ? stripslashes($_COOKIE[$config['cookie_name'] . '_track']) : $_COOKIE[$config['cookie_name'] . '_track']) : '';
 				$tracking_topics = ($tracking_topics) ? tracking_unserialize($tracking_topics) : array();
 			}
-			
+
 			$sql = "SELECT $sql_select
 				FROM $sql_from
 				WHERE $sql_where";

@@ -27,6 +27,7 @@ $portal_config = obtain_portal_config();
 $user->session_begin();
 $auth->acl($user->data);
 
+
 // Grab only parameters needed here
 $post_id	= request_var('p', 0);
 $topic_id	= request_var('t', 0);
@@ -1310,7 +1311,7 @@ if ($submit || $preview || $refresh)
 			// Lock/Unlock Topic
 			$change_topic_status = $post_data['topic_status'];
 			$perm_lock_unlock = ($auth->acl_get('m_lock', $forum_id) || ($auth->acl_get('f_user_lock', $forum_id) && $user->data['is_registered'] && !empty($post_data['topic_poster']) && $user->data['user_id'] == $post_data['topic_poster'] && $post_data['topic_status'] == ITEM_UNLOCKED)) ? true : false;
-			
+
 			if ($post_data['topic_status'] == ITEM_LOCKED && !$topic_lock && $perm_lock_unlock)
 			{
 				$change_topic_status = ITEM_UNLOCKED;
@@ -1527,7 +1528,7 @@ if (!sizeof($error) && $preview)
 		$parse_sig->bbcode_bitfield = $preview_signature_bitfield;
 
 		// Not sure about parameters for bbcode/smilies/urls... in signatures
-		$parse_sig->format_display($config['allow_sig_bbcode'], true, $config['allow_sig_smilies']);
+		$parse_sig->format_display($config['allow_sig_bbcode'], $config['allow_sig_links'], $config['allow_sig_smilies']);
 		$preview_signature = $parse_sig->message;
 		unset($parse_sig);
 	}
