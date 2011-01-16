@@ -803,8 +803,8 @@ class phpbb_feed_overall extends phpbb_feed_post_base
 							'p.post_id, p.topic_id, p.post_time, p.post_approved, p.post_subject, p.post_text, p.bbcode_bitfield, p.bbcode_uid, p.enable_bbcode, p.enable_smilies, p.enable_magic_url, ' .
 							'u.username, u.user_id',
 			'FROM'		=> array(
-				POSTS_TABLE		=> 'p',
 				USERS_TABLE		=> 'u',
+				POSTS_TABLE		=> 'p',
 			),
 			'LEFT_JOIN'	=> array(
 				array(
@@ -1432,7 +1432,7 @@ class phpbb_feed_topics_active extends phpbb_feed_topic_base
 
 		$this->sql = array(
 			'SELECT'	=> 'f.forum_id, f.forum_name,
-							t.topic_id, t.topic_title, t.topic_replies, t.topic_views,
+							t.topic_id, t.topic_title, t.topic_replies, t.topic_replies_real, t.topic_views,
 							t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_post_time,
 							p.post_id, p.post_time, p.post_text, p.bbcode_bitfield, p.bbcode_uid, p.enable_bbcode, p.enable_smilies, p.enable_magic_url',
 			'FROM'		=> array(
