@@ -1,5 +1,4 @@
 <!-- INCLUDE overall_header.html -->
-<!-- INCLUDE quickedit.html -->
 
 <!-- IF S_FORUM_RULES -->
 	<div class="forumrules">
@@ -121,7 +120,7 @@
 			{S_HIDDEN_FIELDS}
 			{S_FORM_TOKEN}
 			</form>
-			
+
 		</td>
 	</tr>
 <!-- ENDIF -->
@@ -139,8 +138,6 @@
 
 	<!-- IF postrow.S_IGNORE_POST -->
 			<td class="gensmall" colspan="2" height="25" align="center"><!-- IF postrow.S_FIRST_UNREAD --><a name="unread"></a><!-- ENDIF --><a name="p{postrow.POST_ID}"></a>{postrow.L_IGNORE_POST}</td>
-	<!-- ELSEIF postrow.S_BURIED_POST -->
-			<td class="gensmall" colspan="2" height="25" align="center"><!-- IF postrow.S_FIRST_UNREAD --><a name="unread"></a><!-- ENDIF --><a name="p{postrow.POST_ID}"></a>{postrow.L_BURIED_POST}</td>
 	<!-- ELSE -->
 
 			<td align="center" valign="middle">
@@ -158,7 +155,7 @@
 				</table>
 			</td>
 		</tr>
-		
+
 		<!-- IF postrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
 
 			<td valign="top" class="profile">
@@ -183,18 +180,6 @@
 					<td>{postrow.POSTER_AVATAR}</td>
 				</tr>
 			<!-- ENDIF -->
-			<!-- IF postrow.S_STATUS neq '' -->
-				<tr>
-					<td align="center" class="left-box">
-						<div class="bubble">
-							<cite>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</cite>
-							<blockquote>
-								<p style="white-space:nowrap">{postrow.S_STATUS}</p>
-							</blockquote>
-						</div>
-					</td>
-				</tr>
-			<!-- ENDIF -->
 			<!-- IF not (postrow.ONLINE_IMG or postrow.RANK_TITLE or postrow.RANK_IMG or postrow.POSTER_AVATAR) -->
 				<tr>
 					<td></td>
@@ -204,14 +189,6 @@
 
 				<span class="postdetails">
 					<!-- IF postrow.POSTER_JOINED --><br /><b>{L_JOINED}:</b> {postrow.POSTER_JOINED}<!-- ENDIF -->
-					<!-- Begin Ultimate Points -->
-					<!-- IF USE_POINTS --><br /><strong>{L_POINTS_CASH_ON_HAND}:</strong> <!-- IF postrow.POSTER_LOCK -->{L_POINTS_LOCKED}<!-- ELSE --><br />{postrow.POSTER_POINTS} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><!-- IF not postrow.S_IS_OWN_POST and S_USER_LOGGED_IN --><br /><a href="{postrow.U_POINTS_DONATE}">{postrow.L_DONATE}</a><!-- ELSE --><br /><!-- ENDIF --><a href="{postrow.U_POINTS_MODIFY}">{postrow.L_MOD_USER_POINTS}</a><!-- ENDIF -->
-					<!-- IF USE_BANK --><!-- IF postrow.BANK_ACCOUNT --><br /><strong>{L_BANK_TITLE_MAIN}:</strong><!-- IF postrow.POSTER_BANK_LOCK --> {L_POINTS_LOCKED}<!-- ELSE --><br />{postrow.BANK_GOLD} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{postrow.U_BANK_MODIFY}">{postrow.L_MOD_USER_POINTS}</a><!-- ENDIF --><!-- ENDIF --><!-- ENDIF --><!-- ENDIF -->			
-					<!-- End Ultimate Points -->
-					<!-- Begin Ultimate Points -->
-					<!-- IF USE_POINTS --><br /><strong>{L_POINTS_CASH_ON_HAND}:</strong> <!-- IF postrow.POSTER_LOCK -->{L_POINTS_LOCKED}<!-- ELSE --><br />{postrow.POSTER_POINTS} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><!-- IF not postrow.S_IS_OWN_POST and S_USER_LOGGED_IN --><br /><a href="{postrow.U_POINTS_DONATE}">{postrow.L_DONATE}</a><!-- ELSE --><br /><!-- ENDIF --><a href="{postrow.U_POINTS_MODIFY}">{postrow.L_MOD_USER_POINTS}</a><!-- ENDIF -->
-					<!-- IF USE_BANK --><!-- IF postrow.BANK_ACCOUNT --><br /><strong>{L_BANK_TITLE_MAIN}:</strong><!-- IF postrow.POSTER_BANK_LOCK --> {L_POINTS_LOCKED}<!-- ELSE --><br />{postrow.BANK_GOLD} <!-- IF USE_IMAGES_POINTS --><img src="{T_THEME_PATH}/images/money.png" width="11px" height="11px" alt="" /><!-- ELSE -->{P_NAME}<!-- ENDIF --><br /><a href="{postrow.U_BANK_MODIFY}">{postrow.L_MOD_USER_POINTS}</a><!-- ENDIF --><!-- ENDIF --><!-- ENDIF --><!-- ENDIF -->			
-					<!-- End Ultimate Points -->
 					<!-- IF postrow.POSTER_POSTS != '' --><br /><b>{L_POSTS}:</b> {postrow.POSTER_POSTS}<!-- ENDIF -->
 					<!-- IF postrow.POSTER_FROM --><br /><b>{L_LOCATION}:</b> {postrow.POSTER_FROM}<!-- ENDIF -->
 
@@ -240,7 +217,7 @@
 						<br clear="all" />
 					<!-- ENDIF -->
 
-						<div class="postbody" id="postdiv{postrow.POST_ID}">{postrow.MESSAGE}</div>
+						<div class="postbody">{postrow.MESSAGE}</div>
 
 					<!-- IF postrow.S_HAS_ATTACHMENTS -->
 						<br clear="all" /><br />
@@ -261,7 +238,7 @@
 						<span class="gensmall error"><br /><br />{L_DOWNLOAD_NOTICE}</span>
 					<!-- ENDIF -->
 					<!-- IF postrow.SIGNATURE -->
-						<span class="postbody"><br />_________________<br />{postrow.SIGNATURE}</span>
+						<div class="postbody"><br />_________________<br />{postrow.SIGNATURE}</div>
 					<!-- ENDIF -->
 
 					<!-- IF postrow.EDITED_MESSAGE or postrow.EDIT_REASON -->
@@ -281,11 +258,6 @@
 						<!-- ENDIF -->
 					<!-- ENDIF -->
 
-
-					<!-- IF postrow.S_POST_DELETED -->
-						<br />_________________<br />
-						<span class="gensmall">{postrow.DELETED_MESSAGE}</span>
-					<!-- ENDIF -->
 					<!-- IF postrow.BUMPED_MESSAGE -->
 						<span class="gensmall"><br /><br />{postrow.BUMPED_MESSAGE}</span>
 					<!-- ENDIF -->
@@ -300,13 +272,6 @@
 								<!-- IF postrow.U_INFO --><a href="{postrow.U_INFO}">{INFO_IMG}</a> <!-- ENDIF --> 
 								<!-- IF postrow.U_WARN --><a href="{postrow.U_WARN}">{WARN_IMG}</a> <!-- ENDIF --> 
 								<!-- IF postrow.U_DELETE --><a href="{postrow.U_DELETE}">{DELETE_IMG}</a> <!-- ENDIF -->
-								<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
-								  <!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED -->
-			                      <a href="{postrow.U_UPVOTE}">{UPVOTE_IMG}</a>
-								  <a href="{postrow.U_DOWNVOTE}">{DOWNVOTE_IMG}</a>
-								  <!-- ENDIF -->
-								<span class="score" title="+{postrow.POST_UPVOTES} -{postrow.POST_DOWNVOTES}">{postrow.POST_SCORE}</span>
-								<!-- ENDIF -->
 							<!-- ENDIF -->
 							</td>
 						</tr>
@@ -320,7 +285,7 @@
 		<!-- IF postrow.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
 
 			<td class="profile"><strong><a href="#wrapheader">{L_BACK_TO_TOP}</a></strong></td>
-			<td><div class="gensmall" style="float: {S_CONTENT_FLOW_BEGIN};">&nbsp;<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{PROFILE_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_PM --><a href="{postrow.U_PM}">{PM_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_EMAIL --><a href="{postrow.U_EMAIL}">{EMAIL_IMG}</a> <!-- ENDIF -->&nbsp;</div> <div class="gensmall" style="float: {S_CONTENT_FLOW_END};"><!-- IF not S_IS_BOT --><!-- IF postrow.U_EDIT --><a href="#" id="quick_edit{postrow.POST_ID}" onclick="quick_edit({postrow.POST_ID}); return false;">{QUICKEDIT_IMG}</a> <a href="{postrow.U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF --> <!-- ENDIF -->&nbsp;</div></td>
+			<td><div class="gensmall" style="float: {S_CONTENT_FLOW_BEGIN};">&nbsp;<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{PROFILE_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_PM --><a href="{postrow.U_PM}">{PM_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_EMAIL --><a href="{postrow.U_EMAIL}">{EMAIL_IMG}</a> <!-- ENDIF -->&nbsp;</div> <div class="gensmall" style="float: {S_CONTENT_FLOW_END};"><!-- IF not S_IS_BOT --><!-- IF postrow.U_EDIT --><a href="{postrow.U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF --> <!-- IF postrow.U_QUOTE --><a href="{postrow.U_QUOTE}">{QUOTE_IMG}</a> <!-- ENDIF --> <!-- ENDIF -->&nbsp;</div></td>
 	<!-- ENDIF -->
 		</tr>
 

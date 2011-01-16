@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @version $Id: acp_groups.php 9625 2009-06-19 09:51:50Z acydburn $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -52,7 +52,7 @@ class acp_groups
 
 
 		// Clear some vars
-		$can_upload = (file_exists($phpbb_root_path . $config['avatar_path']) && @is_writable($phpbb_root_path . $config['avatar_path']) && $file_uploads) ? true : false;
+		$can_upload = (file_exists($phpbb_root_path . $config['avatar_path']) && phpbb_is_writable($phpbb_root_path . $config['avatar_path']) && $file_uploads) ? true : false;
 		$group_row = array();
 
 		// Grab basic data for group, if group_id is set and exists
@@ -409,13 +409,22 @@ class acp_groups
 						}
 					}
 
+					// Validate the length of "Maximum number of allowed recipients per private message" setting.
+					// We use 16777215 as a maximum because it matches MySQL unsigned mediumint maximum value
+					// which is the lowest amongst DBMSes supported by phpBB3
+					if ($max_recipients_error = validate_data($submit_ary, array('max_recipients' => array('num', false, 0, 16777215))))
+					{
+						// Replace "error" string with its real, localised form
+						$error = array_merge($error, array_map(array(&$user, 'lang'), $max_recipients_error));
+					}
+
 					if (!sizeof($error))
 					{
 						// Only set the rank, colour, etc. if it's changed or if we're adding a new
 						// group. This prevents existing group members being updated if no changes
 						// were made.
 
-						$group_attributes = array();				
+						$group_attributes = array();
 						$test_variables = array(
 							'rank'			=> 'int',
 							'colour'		=> 'string',
@@ -450,7 +459,7 @@ class acp_groups
 							}
 						}
 
-						if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies, $group_faction)))
+						if (!($error = group_create($group_id, $group_type, $group_name, $group_desc, $group_attributes, $allow_desc_bbcode, $allow_desc_urls, $allow_desc_smilies)))
 						{
 							$group_perm_from = request_var('group_perm_from', 0);
 
@@ -559,7 +568,7 @@ class acp_groups
 				$type_closed	= ($group_type == GROUP_CLOSED) ? ' checked="checked"' : '';
 				$type_hidden	= ($group_type == GROUP_HIDDEN) ? ' checked="checked"' : '';
 
-				$avatar_img = (!empty($group_row['group_avatar'])) ? get_user_avatar($group_row['group_avatar'], $group_row['group_avatar_type'], $group_row['group_avatar_width'], $group_row['group_avatar_height'], 'GROUP_AVATAR') : '<img src="' . $phpbb_admin_path . 'images/no_avatar.png" alt="" />';
+				$avatar_img = (!empty($group_row['group_avatar'])) ? get_user_avatar($group_row['group_avatar'], $group_row['group_avatar_type'], $group_row['group_avatar_width'], $group_row['group_avatar_height'], 'GROUP_AVATAR') : '<img src="' . $phpbb_admin_path . 'images/no_avatar.gif" alt="" />';
 
 				$display_gallery = (isset($_POST['display_gallery'])) ? true : false;
 
@@ -643,13 +652,11 @@ class acp_groups
 					'U_SWATCH'			=> append_sid("{$phpbb_admin_path}swatch.$phpEx", 'form=settings&amp;name=group_colour'),
 					'U_ACTION'			=> "{$this->u_action}&amp;action=$action&amp;g=$group_id",
 					'L_AVATAR_EXPLAIN'	=> sprintf($user->lang['AVATAR_EXPLAIN'], $config['avatar_max_width'], $config['avatar_max_height'], round($config['avatar_filesize'] / 1024)),
-					)
-				);
+					));
 // idiotnesia wuz here - user rep point
 				$template->assign_vars(array(
 					'GROUP_REPUTATION_POWER'	=> (isset($group_row['group_reputation_power'])) ? $group_row['group_reputation_power'] : 0,
-					)
-				);
+				));
 // end
 
 				return;
@@ -823,8 +830,7 @@ class acp_groups
 
 					'GROUP_NAME'	=> $group_name,
 					'TOTAL_MEMBERS'	=> $row['total_members'],
-					)
-				);
+				));
 			}
 		}
 	}

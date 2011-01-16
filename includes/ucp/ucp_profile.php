@@ -2,7 +2,7 @@
 /**
 *
 * @package ucp
-* @version $Id: ucp_profile.php 10438 2010-01-25 09:11:16Z brainy $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -191,10 +191,7 @@ class ucp_profile
 
 							$server_url = generate_board_url();
 
-							$user_actkey = gen_rand_string(10);
-							$key_len = 54 - (strlen($server_url));
-							$key_len = ($key_len > 6) ? $key_len : 6;
-							$user_actkey = substr($user_actkey, 0, $key_len);
+							$user_actkey = gen_rand_string(mt_rand(6, 10));
 
 							$messenger = new messenger(false);
 
@@ -318,6 +315,7 @@ class ucp_profile
 				include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
 
 				$cp = new custom_profile();
+
 				$cp_data = $cp_error = array();
 
 				$sql = 'SELECT user_about, user_about_uid, user_about_options, user_media FROM ' . PROFILE_EXTENDED_TABLE . '
@@ -431,15 +429,15 @@ class ucp_profile
 						}
 
 						$sql_ary = array(
-							'user_icq'		    => $data['icq'],
-							'user_aim'		    => $data['aim'],
-							'user_msnm'		    => $data['msn'],
-							'user_yim'		    => $data['yim'],
-							'user_jabber'	    => $data['jabber'],
-							'user_website'	    => $data['website'],
-							'user_from'		    => $data['location'],
-							'user_occ'		    => $data['occupation'],
-							'user_interests'    => $data['interests'],
+							'user_icq'		=> $data['icq'],
+							'user_aim'		=> $data['aim'],
+							'user_msnm'		=> $data['msn'],
+							'user_yim'		=> $data['yim'],
+							'user_jabber'	=> $data['jabber'],
+							'user_website'	=> $data['website'],
+							'user_from'		=> $data['location'],
+							'user_occ'		=> $data['occupation'],
+							'user_interests'=> $data['interests'],
 							'user_notify_type'	=> $data['notify'],
 						);
 
@@ -663,7 +661,7 @@ class ucp_profile
 				$avatar_select = basename(request_var('avatar_select', ''));
 				$category = basename(request_var('category', ''));
 
-				$can_upload = (file_exists($phpbb_root_path . $config['avatar_path']) && @is_writable($phpbb_root_path . $config['avatar_path']) && $auth->acl_get('u_chgavatar') && (@ini_get('file_uploads') || strtolower(@ini_get('file_uploads')) == 'on')) ? true : false;
+				$can_upload = (file_exists($phpbb_root_path . $config['avatar_path']) && phpbb_is_writable($phpbb_root_path . $config['avatar_path']) && $auth->acl_get('u_chgavatar') && (@ini_get('file_uploads') || strtolower(@ini_get('file_uploads')) == 'on')) ? true : false;
 
 				add_form_key('ucp_avatar');
 
@@ -671,7 +669,7 @@ class ucp_profile
 				{
 					if (check_form_key('ucp_avatar'))
 					{
-						if (avatar_process_user($error))
+						if (avatar_process_user($error, false, $can_upload))
 						{
 							meta_refresh(3, $this->u_action);
 							$message = $user->lang['PROFILE_UPDATED'] . '<br />' . sprintf($user->lang['RETURN_UCP'], '<a href="' . $this->u_action . '">', '</a>');

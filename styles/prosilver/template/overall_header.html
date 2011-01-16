@@ -11,12 +11,9 @@
 <meta name="copyright" content="2000, 2002, 2005, 2007 phpBB Group" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9" />
 {META}
 <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<!-- IF S_USER_LOGGED_IN and not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger.js"></script><!-- ENDIF -->
-<!-- IF not S_IS_BOT --><script type="text/javascript" src="{ROOT_PATH}styles/instant_messenger/instant_messenger_buttons.js"></script><!-- ENDIF -->
 
 <!-- IF S_ENABLE_FEEDS -->
 	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
@@ -66,7 +63,6 @@
 		popup(url, 760, 570, '_usersearch');
 		return false;
 	}
-	onload_functions.push( "load_startIM('{ROOT_PATH}', '{T_THEME_PATH}')");
 
 	/**
 	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
@@ -91,16 +87,9 @@
 </script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/styleswitcher.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/xs_bbcode_fn.js"></script>
-<script type="text/javascript" src="./classes/scripts/select_expand_bbcodes.js"></script>
 
-
-<!-- INCLUDE reimg_content.html -->
 <link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
-<!--[if lt IE 7]>
-  <link href="{T_THEME_PATH}/instant_messenger_ie.css" rel="stylesheet" media="all" type="text/css"  />
-<![endif]-->
 
 <link href="{T_THEME_PATH}/normal.css" rel="stylesheet" type="text/css" title="A" />
 <link href="{T_THEME_PATH}/medium.css" rel="alternate stylesheet" type="text/css" title="A+" />
@@ -110,22 +99,9 @@
 	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
 <!-- ENDIF -->
 
-
-
-
-
-
-<!-- IF S_MCHAT_ENABLE -->
-<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_core_mini.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}mchat/jquery_cookie_mini.js"></script>
-<link rel="stylesheet" href="{ROOT_PATH}mchat/mchat_prosilver.css" type="text/css" />
-<!-- ENDIF -->
 </head>
 
 <body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">
-<!-- IF not S_IS_BOT -->
-	<!-- INCLUDE instant_messenger_bar.html -->
-<!-- ENDIF -->
 
 <div id="wrap">
 	<a id="top" name="top" accesskey="t"></a>
@@ -155,13 +131,11 @@
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 
-
-<!-- IF not $S_IN_PORTAL or S_DISPLAY_PHPBB_MENU -->
 		<div class="navbar">
 			<div class="inner"><span class="corners-top"><span></span></span>
 
 			<ul class="linklist navlinks">
-				<li class="icon-home"><!-- IF U_PORTAL --><a href="{U_PORTAL}">{L_PORTAL}</a> &#187; <!-- ENDIF --><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+				<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
 
 				<li class="rightside"><a href="#" onclick="fontsizeup(); return false;" onkeypress="return fontsizeup(event);" class="fontsize" title="{L_CHANGE_FONT_SIZE}">{L_CHANGE_FONT_SIZE}</a></li>
 
@@ -177,10 +151,9 @@
 					<a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="e">{L_PROFILE}</a>
 						<!-- IF S_DISPLAY_PM --> (<a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a>)<!-- ENDIF -->
 					<!-- IF S_DISPLAY_SEARCH --> &bull;
-        						<!-- IF SIMPLE_COMMENT_ENABLED --><a href="{U_COMMENTS}">({L_TOTAL_COMMENT})</a><!-- ENDIF -->
 					<a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a>
 					<!-- ENDIF -->
-<!-- IF U_RESTORE_PERMISSIONS --> &bull;
+					<!-- IF U_RESTORE_PERMISSIONS --> &bull;
 					<a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a>
 					<!-- ENDIF -->
 				</li>
@@ -188,22 +161,7 @@
 			<!-- ENDIF -->
 
 			<ul class="linklist rightside">
-
-				<!-- Start Ultimate Points -->
-				<!-- IF S_POINTS_ENABLE -->
-				<li class="icon-points"><a href="{U_POINTS}" title="{L_POINTS_EXPLAIN}">{POINTS_LINK}<!-- IF S_USER_LOGGED_IN --> [ {USER_POINTS} ] <!-- ENDIF --></a></li>
-				<!-- ENDIF -->
-				<!-- End Ultimate Points -->
-
-<li class="icon-kb"><a href="{U_KB}" title="{L_KB_EXPLAIN}">{L_KB}</a></li>
-
-				<!-- Start Ultimate Points -->
-				<!-- IF S_POINTS_ENABLE -->
-				<li class="icon-points"><a href="{U_POINTS}" title="{L_POINTS_EXPLAIN}">{POINTS_LINK}<!-- IF S_USER_LOGGED_IN and S_USE_POINTS --> [ {USER_POINTS} ] <!-- ENDIF --></a></li>
-				<!-- ENDIF -->
-				<!-- End Ultimate Points -->
 				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
-				<!-- IF S_MCHAT_ENABLE and U_MCHAT --><li class="icon-bump"><a href="{U_MCHAT}" title="{L_MCHAT}">{L_MCHAT}</a></li><!-- ENDIF -->
 				<!-- IF not S_IS_BOT -->
 					<!-- IF S_DISPLAY_MEMBERLIST --><li class="icon-members"><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a></li><!-- ENDIF -->
 					<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><li class="icon-register"><a href="{U_REGISTER}">{L_REGISTER}</a></li><!-- ENDIF -->
@@ -213,17 +171,6 @@
 
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
-            <br />
-         <ul class="linklist">
-            <li><a href="{U_PLATFORMS}" title="{L_PLATFORMS}" class="icon-ucp">{L_PLATFORMS}</a></li>
-			<li><a href="{U_GROUPLIST}" title="{L_GROUPLIST}" class="icon-ucp">{L_GROUPLIST}</a></li>
-            <!-- IF S_USER_LOGGED_IN -->
-            <li><a href="{U_ADDGROUP}" title="{L_ADDGROUP}" class="icon-ucp">{L_ADDGROUP}</a></li>
-			<li><a href="{U_GROUPCP}" title="{L_GROUPCP}" class="icon-ucp">{L_GROUPCP}</a></li>
-            <!-- ENDIF -->
-            <li><a href="{U_TOURNAMENTS}" title="{L_TOURNAMENTS}" class="icon-ucp">{L_TOURNAMENTS}</a></li>
-         </ul><br />
-<!-- ENDIF -->
 
 	</div>
 

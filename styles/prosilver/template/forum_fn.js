@@ -98,16 +98,21 @@ function viewableArea(e, itself)
 /**
 * Set display of page element
 * s[-1,0,1] = hide,toggle display,show
+* type = string: inline, block, inline-block or other CSS "display" type
 */
-function dE(n, s)
+function dE(n, s, type)
 {
-	var e = document.getElementById(n);
+	if (!type)
+	{
+		type = 'block';
+	}
 
+	var e = document.getElementById(n);
 	if (!s)
 	{
-		s = (e.style.display == '' || e.style.display == 'block') ? -1 : 1;
+		s = (e.style.display == '' || e.style.display == type) ? -1 : 1;
 	}
-	e.style.display = (s == 1) ? 'block' : 'none';
+	e.style.display = (s == 1) ? type : 'none';
 }
 
 /**
@@ -268,20 +273,6 @@ function play_qt_file(obj)
 	obj.SetControllerVisible(true);
 	obj.Play();
 }
-function display(action, id)
-{
-	if (action == 'show')
-	{
-		document.getElementById("explanation"+id).style.display = "block";
-		document.getElementById("link"+id).href= "javascript:display('hide', "+id+")";
-	}
-
-	if (action == 'hide')
-	{
-		document.getElementById("explanation"+id).style.display = "none";
-		document.getElementById("link"+id).href= "javascript:display('show', "+id+")";
-	}
-}
 
 /**
 * Check if the nodeName of elem is name
@@ -440,8 +431,8 @@ function apply_onkeypress_event()
 	{
 		if (element.type == 'text' || element.type == 'password')
 		{
-		// onkeydown is possible too
-		element.onkeypress = function (evt) { submit_default_button((evt || window.event), this, 'default-submit-action'); }; 
+			// onkeydown is possible too
+			element.onkeypress = function (evt) { submit_default_button((evt || window.event), this, 'default-submit-action'); };
 		}
 	}
 }

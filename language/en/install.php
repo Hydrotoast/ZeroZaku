@@ -4,7 +4,7 @@
 * install [English]
 *
 * @package language
-* @version $Id: install.php 10152 2009-09-16 13:02:13Z acydburn $
+* @version $Id$
 * @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -128,7 +128,7 @@ $lang = array_merge($lang, array(
 	'DB_ERR_QUERY_FIRST_TABLE'	=> 'Error while executing <var>query_first</var>, %s (“%s”).',
 	'DB_ERR_SELECT'				=> 'Error while running <code>SELECT</code> query.',
 	'DB_HOST'					=> 'Database server hostname or DSN',
-	'DB_HOST_EXPLAIN'			=> 'DSN stands for Data Source Name and is relevant only for ODBC installs.',
+	'DB_HOST_EXPLAIN'			=> 'DSN stands for Data Source Name and is relevant only for ODBC installs. On PostgreSQL, use localhost to connect to the local server via UNIX domain socket and 127.0.0.1 to connect via TCP.',
 	'DB_NAME'					=> 'Database name',
 	'DB_PASSWORD'				=> 'Database password',
 	'DB_PORT'					=> 'Database server port',
@@ -147,6 +147,7 @@ $lang = array_merge($lang, array(
 	'DLL_MBSTRING'				=> 'Multi-byte character support',
 	'DLL_MSSQL'					=> 'MSSQL Server 2000+',
 	'DLL_MSSQL_ODBC'			=> 'MSSQL Server 2000+ via ODBC',
+	'DLL_MSSQLNATIVE'			=> 'MSSQL Server 2005+ [ Native ]',
 	'DLL_MYSQL'					=> 'MySQL',
 	'DLL_MYSQLI'				=> 'MySQL with MySQLi Extension',
 	'DLL_ORACLE'				=> 'Oracle',
@@ -214,6 +215,7 @@ $lang = array_merge($lang, array(
 		<li>SQLite 2.8.2+</li>
 		<li>Firebird 2.1+</li>
 		<li>MS SQL Server 2000 or above (directly or via ODBC)</li>
+		<li>MS SQL Server 2005 or above (native)</li>
 		<li>Oracle</li>
 	</ul>
 
@@ -557,6 +559,7 @@ $lang = array_merge($lang, array(
 	'UPDATING_DATA'					=> 'Updating data',
 	'UPDATING_TO_LATEST_STABLE'		=> 'Updating database to latest stable release',
 	'UPDATED_VERSION'				=> 'Updated version',
+	'UPGRADE_INSTRUCTIONS'			=> 'A new feature release <strong>%1$s</strong> is available. Please read <a href="%2$s" title="%2$s"><strong>the release announcement</strong></a> to learn about what it has to offer, and how to upgrade.',
 	'UPLOAD_METHOD'					=> 'Upload method',
 
 	'UPDATE_DB_SUCCESS'				=> 'Database update was successful.',
