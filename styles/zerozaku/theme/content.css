@@ -465,7 +465,21 @@ a.forumtitle:hover { text-decoration: underline; }
 }
 
 .post-ignore .postbody {
-	display: none;
+	display: none
+}
+
+/* MCP Post details
+----------------------------------------*/
+#post_details
+{
+   /* This will only work in IE7+, plus the others */
+   overflow: auto;
+   max-height: 300px;
+}
+
+#expand
+{
+   clear: both;
 }
 
 /* Content container styles

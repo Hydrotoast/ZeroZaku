@@ -53,7 +53,7 @@
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 		<div class="buttons">
-			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->"><a href="{U_POST_NEW_TOPIC}" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_NEW_TOPIC}<!-- ENDIF --></a></div>
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><a href="{U_POST_NEW_TOPIC}"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_NEW_TOPIC}<!-- ENDIF --></a></div>
 		</div>
 	<!-- ENDIF -->
 
@@ -129,7 +129,7 @@
 
 <!-- IF topicrow and S_IS_POSTABLE and not S_IS_LOCKED -->
 <h2 class="cattitle"><a href="{U_VIEW_FORUM}">{FORUM_NAME}</a></h2>
-<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH --> announcement<!-- ENDIF -->">
+<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) --> announcement<!-- ENDIF -->">
 <!-- ENDIF -->
 <!-- DEFINE $STICKY = 0 -->
 <!-- BEGIN topicrow -->
@@ -142,7 +142,7 @@
 	<ul class="topiclist forums">
 	<li class="row">
 		<dl class="meta">
-			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and topicrow.S_TOPIC_TYPE gt 1 -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
+			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
 			<dd class="stats">{L_STATS}</dd>
 			<dd class="lastpost">{L_LAST_POST}</dd>
 		</dl>
@@ -153,7 +153,7 @@
 	<ul class="topiclist forums">
 	<li class="row">
 		<dl class="meta">
-			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and topicrow.S_TOPIC_TYPE eq 1 -->{L_POST_STICKY}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
+			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_POST_STICKY}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
 			<dd class="stats">{L_STATS}</dd>
 			<dd class="lastpost">{L_LAST_POST}</dd>
 		</dl>
@@ -161,7 +161,7 @@
 	<li><ul class="topiclist topics">
 <!-- ENDIF -->
 
-	<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED or topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->">
+	<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL  --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED or topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->">
 		<dl class="icon">
 			<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ELSE --> style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat; background-position: 10px center"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
 				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><!-- IF topicrow.S_TOPIC_REPORTED --><span class="meta">[reported]</span><!-- ENDIF -->{topicrow.TOPIC_TITLE}</a>
