@@ -30,7 +30,7 @@ class reputation
 	{
 		global $db, $user;
 
-		$sql = 'SELECT p.forum_id, u.user_id, u.user_hide_reputation
+		$sql = 'SELECT p.forum_id, p.post_upvotes, p.post_downvotes, u.user_id, u.user_hide_reputation
 			FROM ' . POSTS_TABLE . ' p
 			LEFT JOIN ' . USERS_TABLE . ' u ON (u.user_id = p.poster_id)
 			WHERE p.post_id = ' . $post_id;
@@ -241,7 +241,7 @@ class reputation
 		));
 	}
 
-	function reputation_row($poster_id, $post_id, $reputation_cache)
+	function reputation_row($poster_id, $post_id, $forum_id, $reputation_cache)
 	{
 		global $auth, $phpbb_root_path, $phpEx, $user;
 
@@ -249,7 +249,6 @@ class reputation
 		{
 			$reputation_row = array();
 		}
-
 		else
 		{
 			$reputation_row = array(
@@ -259,8 +258,8 @@ class reputation
 				'REPUTATION_TEXT'	=> $reputation_cache[$poster_id]['user_reputation'],
 				'REPUTATION_BLOCK'	=> $this->get_images($poster_id),
 				'U_VIEW_REP' 		=> ($auth->acl_get('u_rp_view_comment') || ($auth->acl_get('m_rp_moderate')) || $poster_id == $user->data['user_id']) ? append_sid("{$phpbb_root_path}viewreputation.$phpEx", 'id=' . $poster_id) : '',
-				'U_ADD_POS' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;key=' . md5($user->session_id)),
-				'U_ADD_NEG' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;mode=negative&amp;key=' . md5($user->session_id)),
+				'U_ADD_POS' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;f=' . $forum_id . '&amp;hash=' . generate_link_hash("reputation_{$forum_id}")),
+				'U_ADD_NEG' 		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;f=' . $forum_id . '&amp;mode=negative&amp;hash=' . generate_link_hash("reputation_{$forum_id}")),
 			);
 		}
 

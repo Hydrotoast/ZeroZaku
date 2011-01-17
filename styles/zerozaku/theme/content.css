@@ -135,18 +135,18 @@ li.header dl.icon dt {
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
-	behavior: url(PIE.htc); 
 }
 
 .caffeine div strong {
-	padding: 4px 6px;
+	padding: 3px 6px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+    float: left;
 }
 
-.caffeine div .hover { width: 44px; float: right; }
+.caffeine div .hover { width: 44px; padding: 2px 0; float: right; }
 .caffeine div a { position: relative; }
 .caffeine div a img { position: absolute; }
 .caffeine div a img.positive { left: 4px; }

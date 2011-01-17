@@ -69,6 +69,8 @@ $lang = array_merge($lang, array(
 	'RP_USER_DISABLED'			=> 'You are not allowed to give reputation point.',
 	'RP_USER_SELF_DISABLED'		=> 'This user has disabled reputation feature.',
 
+    'RP_INVALID_HASH'           => 'Your hash is invalid. Are you logged in?',
+
     // Reputation settings
 	'ACP_REPUTATION_SETTINGS_EXPLAIN'	=> 'Here you can configure user reputation points settings.',
 	'RP_BLOCK_PER_POINTS'		=> 'Block per points',
