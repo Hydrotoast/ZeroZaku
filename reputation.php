@@ -24,19 +24,30 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('mods/reputation_mod');
 
+//-- mod : Community Moderation ------------------------------------------------------------
+$force		= request_var('force', '');
+$vmode		= request_var('vmode', '');
+
+if (!class_exists('community_moderation'))
+{
+	require($phpbb_root_path . 'includes/functions_community_moderation.' . $phpEx);
+}
+//-- fin mod : Community Moderation --------------------------------------------------------
+
 // Define initial vars
 $mode			= request_var('mode', 'positive');
 $post_id		= request_var('p', 0);
+$forum_id       = request_var('f', 0);
 $submit			= (isset($_POST['submit'])) ? true : false;
 $cancel			= (isset($_POST['cancel'])) ? true : false;
 $message		= request_var('message', '', true);
 $error			= '';
 $redirect		= append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id) . '#p' . $post_id;
-$key            = request_var('key', '');
+$token          = request_var('hash', '');
 
-if ($key != md5($user->session_id))
+if (!check_link_hash($token, "reputation_{$forum_id}"))
 {
-	trigger_error('This key is invalid.');
+	trigger_error('RP_INVALID_HASH');
 }
 
 if ($cancel)
@@ -178,7 +189,8 @@ if ($config['rp_disable_comment'] || ($submit && !$error))
 		'ip_address'	=> $user->ip
 	);
 
-	$reputation->give_point($user->data['user_id'], $user->data['username'], $poster['user_id'], $user_power, $mode, $data);
+    $community_moderation = new community_moderation();
+    $community_moderation->record_vote_info($mode, $post_id, $forum_id, $data);
 
 	meta_refresh(3, $redirect);
 
@@ -197,7 +209,7 @@ $template->assign_vars(array(
 	'ERROR'				=> ($error) ? $error : '',
 	'COMMENT'			=> $message,
 	'REP_KEY'           => md5($user->session_id),
-	'U_POST_ACTION'		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id),)
+	'U_POST_ACTION'		=> append_sid("{$phpbb_root_path}reputation.$phpEx", 'p=' . $post_id . '&amp;f=' . $forum_id . '&amp;hash=' . generate_link_hash("reputation_{$forum_id}")),)
 
 );
 

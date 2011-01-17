@@ -51,7 +51,6 @@ $start		= request_var('start', 0);
 $view		= request_var('view', '');
 //-- mod : Community Moderation ------------------------------------------------------------
 $force		= request_var('force', '');
-$vmode		= request_var('vmode', '');
 
 if (!class_exists('community_moderation'))
 {
@@ -1117,23 +1116,9 @@ $sql = $db->sql_build_query('SELECT', array(
 	'WHERE'		=> $db->sql_in_set('p.post_id', $post_list) . '
 		AND u.user_id = p.poster_id'
 ));
-//-- mod : Community Moderation ------------------------------------------------------------
-global $community_moderation;
+
 $community_moderation = new community_moderation();
-
-if ($vmode)
-{
-	// Check the mode...
-	if (!in_array($vmode, array('upvote','downvote')))
-	{
-		trigger_error('NO_MODE');
-	}
-
-	$community_moderation->record_vote_info($vmode, $post_id, $auth, $viewtopic_url, $forum_id);
-}
-
 $community_moderation->viewtopic_sql($sql);
-//-- fin mod : Community Moderation --------------------------------------------------------
 
 $result = $db->sql_query($sql);
 
@@ -1872,7 +1857,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		$postrow = array_merge($postrow, $cp_row['row']);
 	}
 // idiotnesia wuz here - user rep point
-	$postrow = array_merge($postrow, $reputation->reputation_row($poster_id, $row['post_id'], $reputation_cache));
+	$postrow = array_merge($postrow, $reputation->reputation_row($poster_id, $row['post_id'], $forum_id, $reputation_cache));
 // end
 
 

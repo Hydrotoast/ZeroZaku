@@ -36,9 +36,11 @@ class community_moderation
 	/**
 	* Store revision information into the database
 	*/
-	function record_vote_info(&$vmode, &$post_id, $auth, $viewtopic_url, $forum_id)
+	function record_vote_info(&$vmode, &$post_id, $forum_id, $data)
 	{
-		if (!$this->config['enabled'])
+        global $auth;
+
+        if (!$this->config['enabled'])
 		{
 			return;
 		}
@@ -59,66 +61,55 @@ class community_moderation
 			trigger_error('NO_POST');
 		}
 
-		// Has the user already voted for this post?
-		$sql = 'SELECT post_id
-					FROM ' . VOTES_TABLE . '
-					WHERE post_id = ' . $post_id . '
-						AND user_id = ' . $uid;
+        $db->sql_transaction('begin');
 
-		$result = $db->sql_query($sql);
-		$row = $db->sql_fetchrow($result);
-		$db->sql_freeresult($result);
+            // Has the user already voted for this post?
+            $sql = 'SELECT post_id
+                FROM ' . VOTES_TABLE . '
+                WHERE post_id = ' . $post_id . '
+                        AND user_id = ' . $uid;
 
-		if ($row)
-		{
-			trigger_error('USER_HAS_VOTED');
-		}
+            $result = $db->sql_query($sql);
+            $row = $db->sql_fetchrow($result);
+            $db->sql_freeresult($result);
 
-		// record vote details
-		$sql_ary = array(
-				'post_id'		=> (int) $post_id,
-				'user_id'		=> $user->data['user_id'],
-				'adjust'		=> ($vmode == 'upvote') ? 1 : 0,
-				'vote_time'		=> time(),
-				'voter_ip'		=> $user->ip
-		);
+            if ($row)
+            {
+                trigger_error('USER_HAS_VOTED');
+            }
 
-		$db->sql_query('INSERT INTO ' . VOTES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary));
+            // record vote details
+            $sql_ary = array(
+                    'post_id'		=> (int) $post_id,
+                    'user_id'		=> $user->data['user_id'],
+                    'adjust'		=> ($vmode == 'positive') ? 1 : 0,
+                    'vote_time'		=> time(),
+                    'voter_ip'		=> $user->ip
+            );
 
-		// update counts
-		$sql = 'SELECT post_upvotes, post_downvotes, poster_id
-					FROM ' . POSTS_TABLE . '
-					WHERE post_id = ' . $post_id;
+            $db->sql_query('INSERT INTO ' . VOTES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_ary));
 
-		$result = $db->sql_query($sql);
-		$row = $db->sql_fetchrow($result);
-		$db->sql_freeresult($result);
+            if ($vmode == 'negative')
+            {
+                $mode = 'negative';
+                $sql= 'post_downvotes = post_downvotes + 1';
+            }
+            else
+            {
+                $mode = 'positive';
+                $sql = 'post_upvotes = post_upvotes + 1';
+            }
 
-		if ($vmode == 'upvote')
-		{
-			$reputation->add_point($row['poster_id'], 1);
-			$vote_update = $row['post_upvotes'] + 1;
-			$sql_ary = array(
-				'post_upvotes'	=> (int) $vote_update
-			);
-		}
-		else
-		{
-			$reputation->subtract_point($row['poster_id'], 1);
-			$vote_update = $row['post_downvotes'] + 1;
-			$sql_ary = array(
-				'post_downvotes'	=> (int) $vote_update
-			);
-		}
+            $poster = $reputation->get_post_info($post_id);
+            $reputation->give_point($user->data['user_id'], $user->data['username'], $poster['user_id'], 1, $mode, &$data);
 
-		$sql = 'UPDATE ' . POSTS_TABLE . '
-			SET ' . $db->sql_build_array('UPDATE', $sql_ary) . '
-			WHERE post_id = ' . (int) $post_id;
+            $sql = 'UPDATE ' . POSTS_TABLE . '
+                SET ' . $sql . '
+                WHERE post_id = ' . (int) $post_id;
 
-		$db->sql_query($sql);
+            $db->sql_query($sql);
 
-		$redirect_url = $viewtopic_url . '&amp;p=' . $post_id;
-		redirect($redirect_url);
+        $db->sql_transaction('commit');
 	}
 
 	/**
@@ -204,7 +195,7 @@ class community_moderation
 			'POST_UPVOTES'		=> $row['post_upvotes'],
 			'POST_DOWNVOTES'	=> $row['post_downvotes'],
 
-			'U_UPVOTE'			=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id . '&amp;vmode=upvote'),
+			'U_UPVOTE'          => append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id . '&amp;vmode=upvote'),
 			'U_DOWNVOTE'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id . '&amp;vmode=downvote'),
 
 			'S_BURIED_POST'				=> $row['is_buried'],
