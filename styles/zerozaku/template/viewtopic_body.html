@@ -193,7 +193,15 @@
 			<div>
 			<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
 				<strong class="<!-- IF postrow.POST_SCORE == 0 -->neutral<!-- ELSEIF postrow.POST_SCORE > 0 -->positive<!-- ELSE -->negative<!-- ENDIF -->">{postrow.POST_SCORE}</strong>
-			  	<!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED --><span class="hover"><a href="{postrow.U_ADD_POS}" title="{L_UPVOTE}"><img src="{T_IMAGES_PATH}reputation/add.png" class="positive" /></a> <a href="{postrow.U_ADD_NEG}" title="{L_DOWNVOTE}"><img src="{T_IMAGES_PATH}reputation/subtract.png" class="negative" /></a></span><!-- ENDIF -->
+			  	<!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED -->
+                <span class="hover">
+                        <a href="{postrow.U_ADD_POS}" title="{L_UPVOTE}" rel="colorbox">
+                            <img src="{T_IMAGES_PATH}reputation/add.png" class="positive" />
+                        </a>
+                        <a href="{postrow.U_ADD_NEG}" title="{L_DOWNVOTE}" rel="colorbox">
+                            <img src="{T_IMAGES_PATH}reputation/subtract.png" class="negative" />
+                        </a>
+                </span><!-- ENDIF -->
 			<!-- ENDIF -->
 			</div>
 		</div>

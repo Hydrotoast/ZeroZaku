@@ -1,8 +1,10 @@
+<!-- IF not S_AJAX -->
 <!-- INCLUDE overall_header.html -->
+
+<h2 class="pagetitle">{L_RP}</h2>
 <div class="panel bg2">
 	<div class="inner">
 		<div class="postbody">
-		<br />
 		<form name ="reputation" method="post" action="{U_POST_ACTION}">
 		<fieldset>
 		<input type="hidden" name="key" value="{REP_KEY}" />
@@ -30,11 +32,36 @@
 		{S_FORM_TOKEN} 
 		</fieldset>
 		</form>
-		<br />
-	
 		</div>
 	</div>
 </div>
-<br />
 
 <!-- INCLUDE overall_footer.html -->
+
+<!-- ELSE -->
+
+<form name ="reputation" method="post" action="{U_POST_ACTION}">
+    <fieldset style="padding: 30px 30px 0 30px">
+    <input type="hidden" name="key" value="{REP_KEY}" />
+    <!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+    <label for="comment">{L_RP_COMMENT}:</label>
+    <textarea id="comment" class="inputbox" name="message" rows="2" cols="30">{COMMENT}</textarea>
+    <!-- IF S_GIVE_NEGATIVE -->
+    <dl>
+        <dd style="width: 100%; margin-left: 0;"><input type="radio" class="radio" name="mode" value="positive"<!-- IF POSITIVE --> checked="checked"<!-- ENDIF --> />{L_RP_POSITIVE} &nbsp; <input type="radio" class="radio" name="mode" value="negative"<!-- IF not POSITIVE --> checked="checked"<!-- ENDIF --> />{L_RP_NEGATIVE}</dd>
+    </dl>
+    <!-- ELSE -->
+    <input type="hidden" name="mode" value="positive" />
+    <!-- ENDIF -->
+
+    <dl>
+        <dd style="width: 100%; margin-left: 0;">
+            <input type="submit" class="button1" name="submit" value="{L_SUBMIT}" /> <input class="button2" type="submit" name="cancel" value="{L_CANCEL}" /></dd>
+        </dd>
+
+    </dl>
+    {S_FORM_TOKEN}
+    </fieldset>
+</form>
+
+<!-- ENDIF -->

@@ -45,6 +45,8 @@ $error			= '';
 $redirect		= append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'p=' . $post_id) . '#p' . $post_id;
 $token          = request_var('hash', '');
 
+$ajax = request_var('ajax', false);
+
 if (!check_link_hash($token, "reputation_{$forum_id}"))
 {
 	trigger_error('RP_INVALID_HASH');
@@ -192,20 +194,21 @@ if ($config['rp_disable_comment'] || ($submit && !$error))
     $community_moderation = new community_moderation();
     $community_moderation->record_vote_info($mode, $post_id, $forum_id, $data);
 
-	meta_refresh(3, $redirect);
+    meta_refresh(3, $redirect);
 
-	if ($config['rp_disable_comment']) 
-	{
-		redirect($redirect);
-	}
+    if ($config['rp_disable_comment'])
+    {
+        redirect($redirect);
+    }
 
-	trigger_error($user->lang['RP_SENT'] . '<br />' . sprintf($user->lang['RETURN_PAGE'], '<a href="' . $redirect . '">', '</a>'));
+    trigger_error($user->lang['RP_SENT'] . '<br />' . sprintf($user->lang['RETURN_PAGE'], '<a href="' . $redirect . '">', '</a>'));
 }
 
 
 $template->assign_vars(array(
 	'POSITIVE'			=> ($mode == 'positive') ? true : false,
 	'S_GIVE_NEGATIVE'	=> ($auth->acl_get('u_rp_give_negative')) ? true : false,
+    'S_AJAX'            => $ajax,
 	'ERROR'				=> ($error) ? $error : '',
 	'COMMENT'			=> $message,
 	'REP_KEY'           => md5($user->session_id),
@@ -213,11 +216,15 @@ $template->assign_vars(array(
 
 );
 
-page_header($user->lang['RP_TITLE']); 
+
+page_header($user->lang['RP_TITLE']);
 
 $template->set_filenames(array(
 	'body' => 'reputation_body.html')
 );
 
+
 page_footer();
+
+
 ?>

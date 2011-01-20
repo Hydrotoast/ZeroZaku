@@ -44,7 +44,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
     'RP'						=> 'Reputation',
 	'RP_ADD_POINTS'				=> 'Give good reputation point to',
-	'RP_COMMENT'				=> 'Comment',
+	'RP_COMMENT'				=> 'Comment before giving reputation',
 	'RP_COMMENTS'				=> 'Comments',
 	'RP_DISABLED'				=> 'Sorry, but the board administrator has disabled this feature.',
 	'RP_EMPTY_DATA'				=> 'This user has not received any reputation.',
