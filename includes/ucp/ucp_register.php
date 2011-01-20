@@ -42,7 +42,7 @@ class ucp_register
 		$change_lang	= request_var('change_lang', '');
 		$user_lang		= request_var('lang', $user->lang_name);
 
-		if ($submit == true && (!isset($_POST['botstop']) || $_POST['botstop'] != "1337")) {trigger_error("Ad Robot used REGISTER.<br/>Ad Robot's attack missed!<br />ZeroZaku used BOTSTOPPER.<br />It was super effective!<br />Enemy Ad Robot Fainted!<br />ZeroZaku gained 9001 EXP!"); }
+		if ($submit == true && (!isset($_POST['gender']) || ($_POST['gender'] != "M" && $_POST['gender'] != "F"))) {trigger_error("Ad Robot used REGISTER.<br/>Ad Robot's attack missed!<br />ZeroZaku used BOTSTOPPER.<br />It was super effective!<br />Enemy Ad Robot Fainted!<br />ZeroZaku gained 9001 EXP!"); }
 		
 		add_form_key('ucp_register');
 
