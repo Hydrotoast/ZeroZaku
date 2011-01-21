@@ -243,6 +243,7 @@ function user_add($user_row, $cp_data = false)
 		'user_sig_bbcode_bitfield'	=> '',
 
 		'user_form_salt'			=> unique_id(),
+        'user_points'               => 0.00,
 		'user_kb_permissions'		=> '',
 	);
 
