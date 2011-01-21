@@ -458,7 +458,7 @@ class bbcode_firstpass extends bbcode
 			break;
 
 			default:
-				return "[code='plain':" . $this->bbcode_uid . ']' . $this->bbcode_specialchars($code) . '[/code:' . $this->bbcode_uid . ']';
+				return "[code=plain:" . $this->bbcode_uid . ']' . $this->bbcode_specialchars($code) . '[/code:' . $this->bbcode_uid . ']';
 			break;
 		}
 	}
