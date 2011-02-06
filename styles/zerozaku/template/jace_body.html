@@ -4,103 +4,32 @@
 </div>
 
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/config.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/util.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/shapes.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Doodads.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Effects.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Bubble.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Chatlog.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/ulib.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/gui/GUI.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/gui/Chatlog.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/renderable/Doodads.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/renderable/Effects.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/renderable/Bubble.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/renderable/Node.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Room.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Node.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Viewport.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/Devices.js"></script>
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/jACE.js"></script>
+
 <script type="text/javascript">
 var mouse = null,
 	keyboard = null;
-	
+
 var room = null,
 	chatlog = null,
-	nodes = null,
+    localplayer = null;
+	nodes = [],
 	viewport = null;
 
 var username = '{S_USERNAME}';
 
-window.onload = init;
-
-
-function init(){
-   initGameVariables();
-   initEventHandlers();
-    
-	// The loop
-    setInterval(render, 1000 / config.FPS);
-}
-
-function initGameVariables() {
-	nodeCanvas = document.getElementById('jaceNode');
-    nodeCtx = nodeCanvas.getContext('2d');
-    
-	var relative = findPos(nodeCanvas);
-    nodeCanvasMinX = relative.x;
-    nodeCanvasMaxX = nodeCanvasMinX + nodeCanvas.width;
-    
-    nodeCanvasMinY = relative.y;
-    nodeCanvasMaxY = nodeCanvasMinY + nodeCanvas.height;
-	
-	 // Initialize variables and other stuff
-	room = new Room('jaceRoom');
-	room.addDoodad(new Rock(room.getCtx(), 0, 0));
-	room.addDoodad(new Rock(room.getCtx(), room.width * 0.5, room.height * 0.5));
-	
-	nodes = new Array();
-	nodes.push(new Node());
-	
-	chatlog = new Chatlog();
-	
-	viewport = new Viewport(.1, .5, .75, nodes[0], 1.75, 800);
-}
-
-function initEventHandlers() {
-	// Event handling
-	speech = document.getElementById('speech');
-	message = document.getElementById('message');
-    speech.onsubmit = function() {
-		var messageValue = message.value;
-	    nodes[0].addMessage(messageValue);
-		chatlog.addLog(username, messageValue);
-		message.value = '';
-	    return false;
-	};
-	
-	nodeConfig = document.getElementById('nodeConfig');
-	nodeColor = document.getElementById('nodeColor');
-	nodeConfig.onsubmit = function() {
-		var color = nodeColor.value;
-		nodes[0].setColor(color);
-		nodeColor.value = '';
-		return false;
-	};
-	
-	mouse = new Mouse();
-	keyboard = new Keyboard();
-	
-	nodeCanvas.onclick = function(evt) {
-	    mouse.x = Math.round(evt.pageX - nodeCanvasMinX) + room.ox;
-	    mouse.y = Math.round(evt.pageY - nodeCanvasMinY) + room.oy;
-
-	    var dx = mouse.x - nodes[0].x;
-	    var dy = mouse.y - nodes[0].y;
-		nodes[0].angle = Math.atan2(dy, dx);
-
-		mouse.moving = true;
-	};
-}
-
-function render() {
-	viewport.clear();
-	viewport.update();
-	viewport.render();
-}
+window.onload = jACE.init;
 
 </script>
 <style type="text/css">

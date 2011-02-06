@@ -18,9 +18,9 @@ function Explode(ctx, x, y, r, p_speed, p_color, p_duration) {
 		render: function() {
 			ctx.save();
 				ctx.translate(x, y);
-				ctx.strokeStyle = color(p_color, (1 - life / p_duration));
+				ctx.strokeStyle = $.color(p_color, (1 - life / p_duration));
 				ctx.lineWidth = 2;
-				circle(ctx, r, true);
+				$.Circle(ctx, r, true);
 			ctx.restore();
 		}
 	};

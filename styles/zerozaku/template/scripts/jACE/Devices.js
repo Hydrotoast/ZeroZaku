@@ -7,44 +7,46 @@ function Mouse() {
 Mouse.prototype = {
 	move: function() {
 		if (this.moving === true) {
-			nodes[0].x += nodes[0].velocity * Math.cos(nodes[0].angle);
-			nodes[0].y += nodes[0].velocity * Math.sin(nodes[0].angle);
-			nodes[0].z -= 0.02;
+			localplayer.x += localplayer.velocity * Math.cos(localplayer.angle);
+			localplayer.y += localplayer.velocity * Math.sin(localplayer.angle);
+			localplayer.z -= 0.02;
 		}
 	}
 };
 
 function Keyboard() {
+    this.moving = true;
+
 	document.onkeydown = function(evt) {
 		switch(evt.which) {
 			case 37: // left
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].turn_left = true;
+					localplayer.turn_left = true;
 				}
 			break;
 			case 38: // up
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].thrust = true;
+					localplayer.thrust = true;
 				}
 			break;
 			case 39: // right
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].turn_right = true;
+					localplayer.turn_right = true;
 				}
 			break;
 			case 40: // down
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].reverse = true;
+					localplayer.reverse = true;
 				}
 			break;
 			case 32: // space
 				if (message !== document.activeElement) {
 					evt.preventDefault();
-					nodes[0].boost();
+					localplayer.boost();
 				}
 			break;
 		}
@@ -53,16 +55,16 @@ function Keyboard() {
 	document.onkeyup = function(evt) {
 		switch(evt.which) {
 			case 37: // left
-				nodes[0].turn_left = false;
+				localplayer.turn_left = false;
 			break;
 			case 38: // up
-				nodes[0].thrust = false;
+				localplayer.thrust = false;
 			break;
 			case 39: // right
-				nodes[0].turn_right = false;
+				localplayer.turn_right = false;
 			break;
 			case 40: // down
-				nodes[0].reverse = false;
+				localplayer.reverse = false;
 			break;
 		}
 	};
@@ -70,28 +72,30 @@ function Keyboard() {
 
 Keyboard.prototype = {
 	move: function() {
-		if (nodes[0].turn_left === true) {
-			nodes[0].angle -= Math.PI * .02;
+		if (localplayer.turn_left === true) {
+			localplayer.angle -= Math.PI * .02;
 			mouse.moving = false;
 		}
 		
-		if (nodes[0].turn_right === true) {
-			nodes[0].angle += Math.PI * .02;
+		if (localplayer.turn_right === true) {
+			localplayer.angle += Math.PI * .02;
 			mouse.moving = false;
 		}
 		
-		if (nodes[0].thrust === true) {
-			nodes[0].x += nodes[0].velocity * Math.cos(nodes[0].angle);
-			nodes[0].y += nodes[0].velocity * Math.sin(nodes[0].angle);
-			nodes[0].z -= 0.02;
+		if (localplayer.thrust === true) {
+            localplayer.reverse = false;
+			localplayer.x += localplayer.velocity * Math.cos(localplayer.angle);
+			localplayer.y += localplayer.velocity * Math.sin(localplayer.angle);
+			localplayer.z -= 0.02;
 			mouse.moving = false;
 		} else {
-			nodes[0].z += 0.02
+			localplayer.z += 0.02
 		}
 		
-		if (nodes[0].reverse === true) {
-			nodes[0].x -= nodes[0].velocity * 0.4 * Math.cos(nodes[0].angle);
-			nodes[0].y -= nodes[0].velocity * 0.4 * Math.sin(nodes[0].angle);
+		if (localplayer.reverse === true) {
+            localplayer.thrust = false;
+			localplayer.x -= localplayer.velocity * 0.4 * Math.cos(localplayer.angle);
+			localplayer.y -= localplayer.velocity * 0.4 * Math.sin(localplayer.angle);
 			mouse.moving = false;
 		}
 	}

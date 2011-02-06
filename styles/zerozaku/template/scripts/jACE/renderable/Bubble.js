@@ -5,7 +5,7 @@ function Bubble(message) {
 		width = nodeCtx.measureText(message).width;
 	
 	var message = message;
-	var life = config.bubbleLife;
+	var life = $.bubbleLife;
 	
 	return {
 		getLife: function() { return life; },
@@ -32,11 +32,11 @@ function Bubble(message) {
 		render: function() {
 			nodeCtx.save();
 				// Bubble shape
-				nodeCtx.fillStyle = color(config.fgColor);
-				roundRect(nodeCtx, x - 24, y - height * 2, width + 22, 33, 5, true, true);
+				nodeCtx.fillStyle = $.color($.fgColor);
+				$.RoundRect(nodeCtx, x - 24, y - height * 2, width + 22, 33, 5, true, true);
 	
 				// Bubble text
-				nodeCtx.fillStyle = color(config.bgColor);
+				nodeCtx.fillStyle = $.color($.bgColor);
 				nodeCtx.font = '11px Tahoma';
 				nodeCtx.textAlign = 'left';
 				nodeCtx.textBaseline = 'bottom';

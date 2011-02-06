@@ -9,12 +9,13 @@ var Room = function(canvasId) {
     
 	var fx = [];
 	var doodads = [];
-	var background = color(config.bgColor);
-	
+
+    //var background = $.color($.bgColor);
+	var background = new Image();
+    background.src = $.bgImg;
+            
 	var	dx = 0,
-		dy = 0,
-		theta = 0;
-	var velocity = 2;
+		dy = 0;
 
 	return {
 		ox: 0,
@@ -50,17 +51,22 @@ var Room = function(canvasId) {
 			}
 		},
 		render: function() {
-			ctx.fillStyle = background;
+			//ctx.fillStyle = background;
 			// The set of all movable points 2x the size of the canvas
-			ctx.fillRect(-this.width * 0.25, -this.height * 0.25, this.width, this.height);
+			//ctx.fillRect(-this.width * 0.25, -this.height * 0.25, this.width, this.height);
+
+            var bgWidth = -this.width * 0.25;
+            while (bgWidth < this.width) {
+                var bgHeight = -this.height * 0.25;
+                while (bgHeight < this.height) {
+                    ctx.drawImage(background, bgWidth, bgHeight);
+                    bgHeight += background.height;
+                }
+
+                bgWidth += background.width;
+            }
+
 			//ctx.fillRect(-canvas.width * 0.5, -canvas.height * 0.5, this.width, this.height);
-			
-			ctx.beginPath();
-			ctx.moveTo(canvas.width * 0.5, canvas.height * 0.5);
-			ctx.lineTo(Math.cos(theta), Math.sin(theta));
-			ctx.closePath();
-			ctx.strokeStyle = '#888888';
-			ctx.stroke();
 			
 			// Render effects
 			var i = fx.length;
