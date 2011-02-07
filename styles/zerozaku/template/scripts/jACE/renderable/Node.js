@@ -110,8 +110,6 @@ Node.prototype = {
             this.x += this.velocity;
             this.y += this.velocity;
         }
-
-        console.log(this.y + this.velocity + ' ' + room.height * 1.5);
 	},
 	render: function() {
 		nodeCtx.save();

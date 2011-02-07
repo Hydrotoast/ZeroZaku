@@ -1,5 +1,5 @@
 var jACE_config = {
-	FPS : 60,
+	FPS : 50,
 
 	bubbleLife : (40 * 12),
 
