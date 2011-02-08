@@ -83,6 +83,13 @@ function sendmessage() {
 	global $userid;
 	global $db;
 	
+	//Verify link hash...
+	$aid = $_POST['aid'];
+	if (!check_link_hash($aid))
+	{
+		exit(0);
+	}
+	
 	if (!empty($_POST['message']) && !empty($_POST['currentroom'])) {
 		$to = $_POST['currentroom'];
 		$message = $_POST['message'];
@@ -249,6 +256,13 @@ function createchatroom() {
 	$password = $_POST['password'];
 	$type = $_POST['type'];
 
+	//Verify link hash...
+	$aid = $_POST['aid'];
+	if (!check_link_hash($aid))
+	{
+		exit(0);
+	}
+	
 		if ($userid != '') {
 			$time = getTimeStamp();
 			if (!empty($password)) {

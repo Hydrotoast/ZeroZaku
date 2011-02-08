@@ -62,6 +62,9 @@ if (file_exists(dirname(__FILE__).DIRECTORY_SEPARATOR."lang/".$lang.".php")) {
 	include dirname(__FILE__).DIRECTORY_SEPARATOR."lang/en.php";
 }
 
+$useragent = (isset($_SERVER["HTTP_USER_AGENT"]) ) ? $_SERVER["HTTP_USER_AGENT"] : $HTTP_USER_AGENT;
+$aid = substr(sha1($useragent.'chat'), 0, 8);
+
 if ($autoLogin != 0) {
 	$sql = ("select name from cometchat_chatrooms where id = '".mysql_real_escape_string($autoLogin)."' limit 1");
  	$query = mysql_query($sql);
@@ -92,6 +95,8 @@ if ($autoLogin != 0) {
 	var shortNameLength = <?php echo $shortNameLength;?>;
 
 	var fullName = <?php echo $displayFullName;?>;
+	
+	var _aid = "<?php echo $aid; ?>";
 
 	var heartbeatTime = minHeartbeat;
 	var heartbeatCount = 1;
@@ -134,7 +139,7 @@ if ($autoLogin != 0) {
 				$(chatboxtextarea).focus();
 
 				if (message != '') {
-					$.post("chatrooms.php?action=sendmessage", {message: message, currentroom: currentroom} , function(data){				
+					$.post("chatrooms.php?action=sendmessage", {message: message, currentroom: currentroom, aid: _aid} , function(data){				
 						if (data) {
 							addMessage('1', message, '1', '1', data,1,Math.floor(new Date().getTime()/1000));
 							$("#currentroom_convo").scrollTop($("#currentroom_convo")[0].scrollHeight);
@@ -190,7 +195,7 @@ if ($autoLogin != 0) {
 				password = '';
 			}
 
-			$.post("chatrooms.php?action=createchatroom", {name: name, type:type, password: password} , function(data){				
+			$.post("chatrooms.php?action=createchatroom", {name: name, type:type, password: password, aid: _aid} , function(data){				
 				if (data) {
 					currentp = MD5(password);
 					name = urlencode(name);
@@ -349,7 +354,7 @@ if ($autoLogin != 0) {
 						}
 				}
 
-				$.post("chatrooms.php?action=checkpassword", {password: password, id: id} , function(data) {
+				$.post("chatrooms.php?action=checkpassword", {password: password, id: id, aid: _aid} , function(data) {
 						if (data) { 
 							if (parseInt(data) == 1) {
 								currentp = password;
