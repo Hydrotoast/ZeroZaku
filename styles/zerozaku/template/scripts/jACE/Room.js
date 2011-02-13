@@ -53,7 +53,7 @@ var Room = function(canvasId, bufferId) {
 			}
 		},
 		render: function() {
-            //ctx.drawImage(buffer, 0, 0);
+            ctx.drawImage(buffer, 0, 0);
 			
 			// Render effects
 			var i = fx.length;
