@@ -94,8 +94,8 @@ Node.prototype = {
 		if (this.z < 0.75) this.z = 0.75;
 		if (this.z > 1) this.z = 1;
 
-        if (this.x + this.velocity + room.ox  >= room.width * 2
-            || this.y + this.velocity + room.oy >= room.height * 2) {
+        if (this.x + this.velocity + room.ox  >= room.width * 2 + room.width / 4
+            || this.y + this.velocity + room.oy >= room.height * 2 + room.height / 4) {
             mouse.moving = false;
             this.z = 1;
 			this.boostLife = 0;
@@ -103,8 +103,8 @@ Node.prototype = {
             this.y -= this.velocity;
         }
 
-        if (this.x + this.velocity + room.ox <= 0
-            || this.y + this.velocity + room.oy <= 0) {
+        if (this.x + this.velocity + room.ox <= 0 + room.width / 4
+            || this.y + this.velocity + room.oy <= 0 + room.height / 4) {
             mouse.moving = false;
             this.z = 1;
 			this.boostLife = 0;

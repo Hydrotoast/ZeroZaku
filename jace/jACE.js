@@ -20,9 +20,7 @@ var jACE = {};
 
          // Initialize variables and other stuff
         room = new Room('jaceRoom');
-        room.addDoodad(new Rock(room.getCtx(), 0, 0));
-        room.addDoodad(new Rock(room.getCtx(), room.width * 0.5, room.height * 0.5));
-
+        
         localplayer = new Node();
         nodes.push(localplayer);
         
