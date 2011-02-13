@@ -20,31 +20,31 @@ function Keyboard() {
 	document.onkeydown = function(evt) {
 		switch(evt.which) {
 			case 37: // left
-				if (message !== document.activeElement) {
+				if (GUI.message !== document.activeElement) {
 					evt.preventDefault();
 					localplayer.turn_left = true;
 				}
 			break;
 			case 38: // up
-				if (message !== document.activeElement) {
+				if (GUI.message !== document.activeElement) {
 					evt.preventDefault();
 					localplayer.thrust = true;
 				}
 			break;
 			case 39: // right
-				if (message !== document.activeElement) {
+				if (GUI.message !== document.activeElement) {
 					evt.preventDefault();
 					localplayer.turn_right = true;
 				}
 			break;
 			case 40: // down
-				if (message !== document.activeElement) {
+				if (GUI.message !== document.activeElement) {
 					evt.preventDefault();
 					localplayer.reverse = true;
 				}
 			break;
 			case 32: // space
-				if (message !== document.activeElement) {
+				if (GUI.message !== document.activeElement) {
 					evt.preventDefault();
 					localplayer.boost();
 				}
