@@ -8,7 +8,7 @@
 <script type="text/javascript" src="jace/aDbg.js"></script>
 <script type="text/javascript" src="jace/gui/GUI.js"></script>
 <script type="text/javascript" src="jace/gui/Chatlog.js"></script>
-<script type="text/javascript" src="jace/renderable/Doodads.js"></script>
+<script type="text/javascript" src="jace/renderable/Doodad.js"></script>
 <script type="text/javascript" src="jace/renderable/Effects.js"></script>
 <script type="text/javascript" src="jace/renderable/Bubble.js"></script>
 <script type="text/javascript" src="jace/renderable/Node.js"></script>
@@ -33,10 +33,10 @@ var username = '{S_USERNAME}';
 window.onload = jACE.init;
 
 A(jACE).after('initGameVariables', function() {
-    room.addDoodad(new LargeRock(room.getCtx(), 1, 1));
-    room.addDoodad(new SmallRock(room.getCtx(), 2, 2));
-    room.addDoodad(new Bush(room.getCtx(), 3, 2));
-    room.addDoodad(new Fern(room.getCtx(), 1, 3));
+    room.addDoodad(new Doodad(room.getCtx(), 'largerock', 1, 1));
+    room.addDoodad(new Doodad(room.getCtx(), 'fishpondflf', 2, 2));
+    room.addDoodad(new Doodad(room.getCtx(), 'smallrock', 3, 2));
+    room.addDoodad(new Doodad(room.getCtx(), 'shortgrass', 1, 3));
 });
 </script>
 <style type="text/css">
