@@ -54,21 +54,4 @@ var jACE = {};
         viewport.update();
         viewport.render();
     };
-
-    _.playerBeforeReturn = function(fn_old, fn_new) {
-        var old = localplayer[fn_old];
-        localplayer[fn_old] = function() {
-            fn_new.apply(this, arguments);
-            return old.apply(this, arguments);
-        }
-    };
-
-    _.playerAfterReturn = function(fn_old, fn_new) {
-        var old = localplayer[fn_old];
-        localplayer[fn_old] = function() {
-            var result = old.apply(this, arguments);
-            fn_new.call(this, result);
-            return result;
-        }
-    }
 })(jACE);

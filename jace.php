@@ -24,7 +24,7 @@ $user->setup();
 
 if ($user->data['user_id'] == ANONYMOUS)
 {
-	login_box($phpbb_root_path . 'client_check.' . $phpEx, $user->lang['LOGIN_VIEWPAGE']);
+	login_box($phpbb_root_path . 'jace.' . $phpEx, $user->lang['LOGIN_VIEWPAGE']);
 }
 
 // Output page

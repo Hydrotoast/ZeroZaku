@@ -5,6 +5,7 @@
 
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/config.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/ulib.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/aDbg.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/gui/GUI.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/gui/Chatlog.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/scripts/jACE/renderable/Doodads.js"></script>
@@ -30,7 +31,6 @@ var room = null,
 var username = '{S_USERNAME}';
 
 window.onload = jACE.init;
-
 </script>
 <style type="text/css">
 #jaceRoom, #jaceNode, #jaceChatlog {
@@ -89,6 +89,7 @@ window.onload = jACE.init;
 <canvas id="jaceRoom" height="400" width="780">
     <p>Browser does not support canvas.</p>
 </canvas>
+
 <form id="speech" action="#" method="post">
 	<p><input type="text" name="message" id="message" /> <input type="submit" name="say" value="Say" id="say" class="button2" /></p>
 </form><br />

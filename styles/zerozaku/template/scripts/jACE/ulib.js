@@ -1,6 +1,33 @@
 var $ = jACE_config;
 (function(ulib) {
     /**
+     * Draws a pattern to the given dimensions through a buffer
+     * @param {width} width of the canvas
+     * @param {height} height of the canvas
+     * @param {pattern} image pattern to be drawn
+     * @return Element that contains the drawn pattern
+     */
+    ulib.renderPattern = function(width, height, pattern) {
+        var buffer = document.createElement('canvas');
+        buffer.width = width;
+        buffer.height = height;
+        var bufferCtx = buffer.getContext('2d');
+
+        var row = 0;
+        while (row < width) {
+            var column = 0;
+            while (column < height) {
+                bufferCtx.drawImage(pattern, row, column);
+                column += pattern.height;
+            }
+
+            row += pattern.width;
+        }
+
+        return buffer;
+    }
+
+    /**
      * Draws a rounded rectangle using the current state of the canvas.
      * If you omit the last three params, it will draw a rectangle
      * outline with a 5 pixel border radius
@@ -13,7 +40,7 @@ var $ = jACE_config;
      * @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
      * @param {Boolean} stroke Whether to stroke the rectangle. Defaults to true.
      */
-    ulib.RoundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
+    ulib.renderRoundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
         if (typeof stroke == "undefined" ) {
             stroke = true;
         }
@@ -39,7 +66,7 @@ var $ = jACE_config;
         }
     };
 
-    ulib.Circle = function(ctx, radius, stroke) {
+    ulib.renderCircle = function(ctx, radius, stroke) {
         ctx.beginPath();
         ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
         ctx.closePath();
@@ -52,7 +79,7 @@ var $ = jACE_config;
     };
 
 
-    ulib.Player = function(ctx, stroke) {
+    ulib.renderPlayer = function(ctx, stroke) {
 
         // Base
         ctx.save();

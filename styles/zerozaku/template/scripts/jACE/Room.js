@@ -3,16 +3,18 @@
  * @param canvasId
  * @return
  */
-var Room = function(canvasId) {
+var Room = function(canvasId, bufferId) {
+    // Get handler for room canvas
 	var canvas = document.getElementById(canvasId);
 	var ctx = canvas.getContext('2d');
-    
-	var fx = [];
-	var doodads = [];
 
     //var background = $.color($.bgColor);
 	var background = new Image();
     background.src = $.bgImg;
+    var buffer = $.renderPattern(canvas.width * 2, canvas.height * 2, background);
+    
+	var fx = [];
+	var doodads = [];
             
 	var	dx = 0,
 		dy = 0;
@@ -51,22 +53,7 @@ var Room = function(canvasId) {
 			}
 		},
 		render: function() {
-			//ctx.fillStyle = background;
-			// The set of all movable points 2x the size of the canvas
-			//ctx.fillRect(-this.width * 0.25, -this.height * 0.25, this.width, this.height);
-
-            var bgWidth = -this.width * 0.25;
-            while (bgWidth < this.width) {
-                var bgHeight = -this.height * 0.25;
-                while (bgHeight < this.height) {
-                    ctx.drawImage(background, bgWidth, bgHeight);
-                    bgHeight += background.height;
-                }
-
-                bgWidth += background.width;
-            }
-
-			//ctx.fillRect(-canvas.width * 0.5, -canvas.height * 0.5, this.width, this.height);
+            //ctx.drawImage(buffer, 0, 0);
 			
 			// Render effects
 			var i = fx.length;
