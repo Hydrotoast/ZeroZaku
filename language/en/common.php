@@ -1016,4 +1016,10 @@ $lang = array_merge($lang, array(
     'TERMS'	=> 'Tags',
 ));
 // END TERMS
+
+// BEGIN TWITTER
+$lang = array_merge($lang, array(
+    'TWITTER'	=> 'Twitter',
+));
+// END TWITTER
 ?>

@@ -1418,3 +1418,39 @@ a.term {
 .bottom-ad { border-top: 1px solid #E0E0E0; margin: 10px 0; padding-top: 10px; }
 .bottom-ad img {  background-color: #FFFFFF;  border: 1px solid #C0C0C0;  padding: 4px; }
 .bottom-ad div { font-size: 0.9166em; color: #606060; }
+
+/* Twitter
+-------------------------------------------------*/
+#twitter_div h2 {
+    font-size: 1.6667em;
+    margin-bottom: 0.75em;
+}
+
+#twitter_update_list li {
+    font-size: 0.9167em;
+    position: relative;
+    background-color: #F6F6F6;
+    border-color: #E0E0E0;
+    color: #606060;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    padding: 10px 15px;
+    margin: 0 0 1em 0;
+    list-style-type: none;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+
+#twitter_update_list > li:first-child:after {
+    content: "\00a0";
+    display: block; /* reduce the damage in FF3.0 */
+    position: absolute;
+    top: -35px;
+    left: 15px;
+    border-color: transparent transparent #F6F6F6;
+    border-style: solid;
+    border-width: 10px 10px 10px 10px; /* vary these values to change the angle of the vertex */
+}
