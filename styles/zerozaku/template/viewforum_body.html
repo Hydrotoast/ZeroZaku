@@ -48,19 +48,6 @@
 	</div>
 <!-- ENDIF -->
 
-<!-- IF .faction_member -->
-<h2 class="user-tag-head"">{L_FACTION_MEMBERS}</h2>
-<div class="user-tags">
-    <!-- BEGIN faction_member -->
-    <dl class="user-tag">
-        <dt>{faction_member.AVATAR}</dt>
-        <dd>{faction_member.NAME}</dd>
-        <dd>{faction_member.RANK}</dd>
-    </dl>
-    <!-- END faction_member -->
-</div>
-<!-- ENDIF -->
-
 <!-- IF S_DISPLAY_POST_INFO or PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
 	<div class="topic-actions" <!-- IF S_HAS_SUBFORUM -->style="margin-top: 10px;"<!-- ENDIF -->>
 
@@ -261,4 +248,17 @@
 		<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
 	<!-- ENDIF -->
 </div>
+<!-- IF .faction_member -->
+<h2 class="user-tag-head"">{L_FACTION_MEMBERS}</h2>
+<div class="user-tags">
+    <!-- BEGIN faction_member -->
+    <dl class="user-tag">
+        <dt>{faction_member.AVATAR}</dt>
+        <dd>{faction_member.NAME}</dd>
+        <dd>{faction_member.RANK}</dd>
+    </dl>
+    <!-- END faction_member -->
+</div>
+<!-- ENDIF -->
+
 <!-- INCLUDE overall_footer.html -->
