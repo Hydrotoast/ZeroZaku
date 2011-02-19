@@ -276,6 +276,35 @@ if ($start < 0 || $start > $topics_count)
 // Basic pagewide vars
 $post_alt = ($forum_data['forum_status'] == ITEM_LOCKED) ? $user->lang['FORUM_LOCKED'] : $user->lang['POST_NEW_TOPIC'];
 
+// BEGIN FACTIONS
+$ranks = $cache->obtain_ranks();
+
+$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_reputation, u.user_rank, u.user_avatar, u.user_avatar_type
+    FROM ' . USERS_TABLE . ' u
+    JOIN ' . ACL_GROUPS_TABLE . ' ag
+        ON ag.forum_id = ' . (int) $forum_id . '
+    JOIN ' . GROUPS_TABLE . ' g
+        ON ag.group_id = g.group_id
+        AND g.group_faction = 1
+    JOIN ' . USER_GROUP_TABLE . ' ug
+        ON u.user_id = ug.user_id
+        WHERE ug.group_id = g.group_id';
+$result = $db->sql_query($sql);
+
+while($row = $db->sql_fetchrow($result))
+{
+    get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+
+    $template->assign_block_vars('faction_member', array(
+        'NAME'	    => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+        'AVATAR'	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',
+        'RANK'		=> ($row['rank_title']) ? $row['rank_title'] : $row['user_reputation'] . ' Reputation',
+        'U_PROFILE'	=> get_username_string('profile', $row['user_id'], $row['username'], $row['user_colour']),
+    ));
+}
+$db->sql_freeresult($result);
+// END FACTIONS
+
 //Perform penalty check to see if user can actually post in this forum, as well as regular lock checking.
 $is_forum_locked = ($forum_data['forum_status'] == ITEM_LOCKED) ? true : false;
 

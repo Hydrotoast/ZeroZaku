@@ -68,10 +68,16 @@ $lang = array_merge($lang, array(
 	'VIEW_FORUM_TOPICS'		=> '%d topics',
 ));
 
-
 $lang = array_merge($lang, array(
 	'DELETED_POST_SHOW'				=> 'This post has been soft deleted.  Click here to show the post.',
 	'SOFT_DELETED'					=> 'Soft Deleted',
 	'TOPIC_SOFT_DELETED'			=> 'This topic has been deleted.',
 ));
+
+// BEGIN FACTIONS
+$lang = array_merge($lang, array(
+    'FACTION_MEMBERS'   => 'Faction members for this forum'
+));
+// END FACTIONS
+
 ?>

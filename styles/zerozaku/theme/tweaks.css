@@ -1333,7 +1333,10 @@ h2.aggro_head { font: 1.3333em Anivers-Regular; background-color: #212121; color
 
 /* User tags
 -------------------------------------------------*/
-dl.user-tag  { background-color: #F6F6F6; border-bottom: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; width: 209px;  margin: 0 10px 10px 0; padding: 10px; display: inline-block; float: left;  overflow: hidden; }
+h2.user-tag-head { font: 1.3333em Anivers-Regular; background-color: #212121; color: #FFFFFF; margin-bottom: 10px; padding: 6px 15px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; clear: both; }
+
+dl.user-tag:nth-child(4n) { margin-right: 0; }
+dl.user-tag  { background-color: #F0F0F0; border-bottom: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; width: 223px;  margin: 0 10px 10px 0; padding: 10px; display: inline-block; float: left;  overflow: hidden; }
 dl.user-tag dt { float: left; height: 40px; width: 40px; margin-right: 10px; }
 dl.user-tag dd { display: block; clear: right; }
 

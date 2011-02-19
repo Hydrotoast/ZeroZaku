@@ -235,8 +235,10 @@ switch($mode)
 		$template_file = 'faction_body.html';
 
 		$faction_id = request_var('f', $user->data['group_id']);
-		
-		$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_rank
+
+        $ranks = $cache->obtain_ranks();
+
+		$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_reputation, u.user_rank, u.user_avatar, u.user_avatar_type
         	FROM ' . USERS_TABLE . ' u
         	JOIN ' . USER_GROUP_TABLE . ' ug
         		ON u.user_id = ug.user_id
@@ -249,8 +251,8 @@ switch($mode)
 		    
 		    $template->assign_block_vars('faction_member', array(
 		        'NAME'	    => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-		    	'AVATAR'	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',    
-		    	'RANK'		=> $row['rank_title'],
+		    	'AVATAR'	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',
+		    	'RANK'		=> ($row['rank_title']) ? $row['rank_title'] : $row['user_reputation'] . ' Reputation',
 		    	'U_PROFILE'	=> get_username_string('profile', $row['user_id'], $row['username'], $row['user_colour']),
 		    ));
 		}
@@ -264,7 +266,7 @@ switch($mode)
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 		
-		get_user_rank($row['user_rank'], true, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+		get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
 		
 		$template->assign_vars(array(
 			'S_FACTION_PAGE'    => true,
