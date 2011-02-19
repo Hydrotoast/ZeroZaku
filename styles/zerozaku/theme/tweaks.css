@@ -1453,7 +1453,7 @@ a.term {
     position: absolute;
     top: -35px;
     left: 15px;
-    border-color: transparent transparent #F6F6F6;
+    border-color: transparent transparent #D0D0D0;
     border-style: solid;
     border-width: 10px 10px 10px 10px; /* vary these values to change the angle of the vertex */
 }
