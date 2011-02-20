@@ -139,9 +139,8 @@ ul.profile-icons li a {
 
 /* Positioning of moderator icons */
 .postbody ul.profile-icons {
-	float: right;
 	width: auto;
-	padding: 0;
+    margin: 0;
 }
 
 .postbody ul.profile-icons li {

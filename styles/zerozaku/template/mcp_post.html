@@ -48,13 +48,7 @@
 	<div class="inner">
 
 	<div class="postbody">
-		<!-- IF U_EDIT -->
-		<ul class="profile-icons">
-			<li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li>
-		</ul>
-		<!-- ENDIF -->
-
-                <span class="right-box" id="expand"><a href="#post_details" onclick="viewableArea(getElementById('post_details'), true); var rev_text = getElementById('expand').getElementsByTagName('a').item(0).firstChild; if (rev_text.data == '{LA_EXPAND_VIEW}'){rev_text.data = '{LA_COLLAPSE_VIEW}'; } else if (rev_text.data == '{LA_COLLAPSE_VIEW}'){rev_text.data = '{LA_EXPAND_VIEW}'}; return false;">{L_EXPAND_VIEW}</a></span>
+        <span class="right-box" id="expand"><a href="#post_details" class="button2" onclick="viewableArea(getElementById('post_details'), true); var rev_text = getElementById('expand').getElementsByTagName('a').item(0).firstChild; if (rev_text.data == '{LA_EXPAND_VIEW}'){rev_text.data = '{LA_COLLAPSE_VIEW}'; } else if (rev_text.data == '{LA_COLLAPSE_VIEW}'){rev_text.data = '{LA_EXPAND_VIEW}'}; return false;">{L_EXPAND_VIEW}</a></span>
 
 		<h3 class="sub"><a href="{U_VIEW_POST}">{POST_SUBJECT}</a></h3>
 		
@@ -113,6 +107,12 @@
 			<!-- ENDIF --></div>
 		<!-- ENDIF -->
 
+        <!-- IF U_EDIT -->
+		<ul class="profile-icons">
+			<li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li>
+		</ul>
+		<!-- ENDIF -->
+
 	</div>
 
 	</div>
@@ -167,9 +167,7 @@
 <!-- IF S_MCP_QUEUE or S_MCP_REPORT or RETURN_TOPIC -->
 	<div class="panel">
 		<div class="inner">
-
-		<p><!-- IF S_MCP_QUEUE -->{RETURN_QUEUE} | {RETURN_TOPIC_SIMPLE} | {RETURN_POST}<!-- ELSEIF S_MCP_REPORT -->{RETURN_REPORTS}<!-- IF not S_PM --> | <a href="{U_VIEW_POST}">{L_VIEW_POST}</a> | <a href="{U_VIEW_TOPIC}">{L_VIEW_TOPIC}</a> | <a href="{U_VIEW_FORUM}">{L_VIEW_FORUM}</a><!-- ENDIF --><!-- ELSE -->{RETURN_TOPIC}<!-- ENDIF --></p>
-
+            <!-- IF S_MCP_QUEUE -->{RETURN_QUEUE} | {RETURN_TOPIC_SIMPLE} | {RETURN_POST}<!-- ELSEIF S_MCP_REPORT -->{RETURN_REPORTS}<!-- IF not S_PM --> | <a href="{U_VIEW_POST}" class="button2">{L_VIEW_POST}</a> | <a href="{U_VIEW_TOPIC}" class="button2">{L_VIEW_TOPIC}</a> | <a href="{U_VIEW_FORUM}" class="button2"">{L_VIEW_FORUM}</a><!-- ENDIF --><!-- ELSE -->{RETURN_TOPIC}<!-- ENDIF -->
 		</div>
 	</div>
 <!-- ENDIF -->
@@ -287,7 +285,7 @@
 			</tbody>
 			</table>
 
-			<p><a href="{U_LOOKUP_ALL}#ip">{L_LOOKUP_ALL}</a></p>
+			<p><a href="{U_LOOKUP_ALL}#ip" class="button2">{L_LOOKUP_ALL}</a></p>
 
 			</div>
 		</div>

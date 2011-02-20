@@ -279,7 +279,7 @@ $post_alt = ($forum_data['forum_status'] == ITEM_LOCKED) ? $user->lang['FORUM_LO
 // BEGIN FACTIONS
 $ranks = $cache->obtain_ranks();
 
-$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_reputation, u.user_rank, u.user_avatar, u.user_avatar_type
+$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_posts, u.user_reputation, u.user_rank, u.user_avatar, u.user_avatar_type
     FROM ' . USERS_TABLE . ' u
     JOIN ' . ACL_GROUPS_TABLE . ' ag
         ON ag.forum_id = ' . (int) $forum_id . '
@@ -293,7 +293,7 @@ $result = $db->sql_query($sql);
 
 while($row = $db->sql_fetchrow($result))
 {
-    get_user_rank($row['user_rank'], false, $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
+    get_user_rank($row['user_rank'], $row['user_posts'], $row['rank_title'], $row['rank_image'], $row['rank_image_src']);
 
     $template->assign_block_vars('faction_member', array(
         'NAME'	    => get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),

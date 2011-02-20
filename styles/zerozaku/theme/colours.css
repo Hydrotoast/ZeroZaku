@@ -910,9 +910,11 @@ ul.cplist {
 
 /* Mini tabbed menu used in MCP
 ----------------------------------------*/
-#minitabs li {background-color: #E1EBF2;}
-#minitabs li.activetab {background-color: #F9F9F9;}
-#minitabs li.activetab a, #minitabs li.activetab a:hover {color: #212121;}
+#minitabs li { background-color: #E0E0E0; }
+#minitabs li:hover { background-color: #F0F0F0; }
+#minitabs li.activetab, #minitabs li.activetab:hover { background-color: #D0D0D0; }
+
+#minitabs li a { color: #606060; }
 
 /* UCP navigation menu
 ----------------------------------------*/
