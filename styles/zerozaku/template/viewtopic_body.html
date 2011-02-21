@@ -151,13 +151,14 @@
 
 		<!-- IF not postrow.S_IGNORE_POST && not postrow.S_BURIED_POST -->
 		<dl class="postprofile" id="profile{postrow.POST_ID}">
-			<dt>
+            <dt>
 				<!-- IF postrow.POSTER_AVATAR -->
 					<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF --><br />
 				<!-- ELSE -->
 					<img src="{T_THEME_PATH}/images/no-avatar.png" height="100px" width="100px" alt="Default Avatar" />
 				<!-- ENDIF -->
 			</dt>
+            <!-- IF postrow.S_TOPIC_AUTHOR --><dt>{L_TOPIC_AUTHOR}</dt><!-- ENDIF -->
 			
 			<!-- IF postrow.S_STATUS neq '' -->
 				<dd class="user_status">{postrow.S_STATUS}</dd>
