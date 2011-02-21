@@ -158,13 +158,11 @@
 					<img src="{T_THEME_PATH}/images/no-avatar.png" height="100px" width="100px" alt="Default Avatar" />
 				<!-- ENDIF -->
 			</dt>
-            <!-- IF postrow.S_TOPIC_AUTHOR --><dt>{L_TOPIC_AUTHOR}</dt><!-- ENDIF -->
-			
 			<!-- IF postrow.S_STATUS neq '' -->
 				<dd class="user_status">{postrow.S_STATUS}</dd>
 			<!-- ENDIF -->
-			
-			<br />
+
+             <!-- IF postrow.S_TOPIC_AUTHOR --><dd class="center">{L_TOPIC_AUTHOR}</dd><!-- ELSE --><br /><!-- ENDIF -->
 			
 			<!-- IF S_REPUTATION and postrow.S_USER_REPUTATION -->
 			<dd class="reputation">
