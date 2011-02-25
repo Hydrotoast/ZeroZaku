@@ -474,6 +474,25 @@ class bbcode
 					);
 				break;
 
+                case 13:
+                    if ($user->optionget('viewimg'))
+					{
+						$this->bbcode_cache[$bbcode_id] = array(
+							'preg' => array(
+								'#\[bimg:$uid\](.*?)\[/bimg:$uid\]#s'		=> str_replace('$2', reimg_properties(), $this->bbcode_tpl('bimg', $bbcode_id)),
+							)
+						);
+					}
+					else
+					{
+						$this->bbcode_cache[$bbcode_id] = array(
+							'preg' => array(
+								'#\[bimg:$uid\](.*?)\[/bimg:$uid\]#s'		=> str_replace('$2', '[ bimg ]', $this->bbcode_tpl('url', $bbcode_id, true)),
+							)
+						);
+					}
+                break;
+
 				default:
 					if (isset($rowset[$bbcode_id]))
 					{
@@ -549,6 +568,7 @@ class bbcode
 				'u_open'	=> '<span style="text-decoration: underline">',
 				'u_close'	=> '</span>',
 				'img'		=> '<img src="$1" alt="' . $user->lang['IMAGE'] . '" ' . reimg_properties() . '/>',
+                'bimg'		=> '<div class="bimg"><div class="inner"><img src="$1" alt="' . $user->lang['IMAGE'] . '" ' . reimg_properties() . '/></div></div>',
 				'size'		=> '<span style="font-size: $1%; line-height: normal">$2</span>',
 				'color'		=> '<span style="color: $1">$2</span>',
 				'email'		=> '<a href="mailto:$1">$2</a>'

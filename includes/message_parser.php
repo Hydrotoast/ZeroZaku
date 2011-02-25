@@ -117,6 +117,7 @@ class bbcode_firstpass extends bbcode
 			'i'				=> array('bbcode_id' => 2,	'regexp' => array('#\[i\](.*?)\[/i\]#ise' => "\$this->bbcode_italic('\$1')")),
 			'url'			=> array('bbcode_id' => 3,	'regexp' => array('#\[url(=(.*))?\](.*)\[/url\]#iUe' => "\$this->validate_url('\$2', '\$3')")),
 			'img'			=> array('bbcode_id' => 4,	'regexp' => array('#\[img\](.*)\[/img\]#iUe' => "\$this->bbcode_img('\$1')")),
+            'bimg'			=> array('bbcode_id' => 13,	'regexp' => array('#\[bimg\](.*)\[/bimg\]#iUe' => "\$this->bbcode_bimg('\$1')")),
 			'size'			=> array('bbcode_id' => 5,	'regexp' => array('#\[size=([\-\+]?\d+)\](.*?)\[/size\]#ise' => "\$this->bbcode_size('\$1', '\$2')")),
 			'color'			=> array('bbcode_id' => 6,	'regexp' => array('!\[color=(#[0-9a-f]{3}|#[0-9a-f]{6}|[a-z\-]+)\](.*?)\[/color\]!ise' => "\$this->bbcode_color('\$1', '\$2')")),
 			'u'				=> array('bbcode_id' => 7,	'regexp' => array('#\[u\](.*?)\[/u\]#ise' => "\$this->bbcode_underline('\$1')")),
@@ -329,6 +330,68 @@ class bbcode_firstpass extends bbcode
 		}
 
 		return '[img:' . $this->bbcode_uid . ']' . $this->bbcode_specialchars($in) . '[/img:' . $this->bbcode_uid . ']';
+	}
+
+    /**
+	* Parse img tag
+	*/
+	function bbcode_bimg($in)
+	{
+		global $user, $config;
+
+		if (!$this->check_bbcode('bimg', $in))
+		{
+			return $in;
+		}
+
+		$in = trim($in);
+		$error = false;
+
+		$in = str_replace(' ', '%20', $in);
+
+		// Checking urls
+		if (!preg_match('#^' . get_preg_expression('url') . '$#i', $in) && !preg_match('#^' . get_preg_expression('www_url') . '$#i', $in))
+		{
+			return '[bimg]' . $in . '[/bimg]';
+		}
+
+		// Try to cope with a common user error... not specifying a protocol but only a subdomain
+		if (!preg_match('#^[a-z0-9]+://#i', $in))
+		{
+			$in = 'http://' . $in;
+		}
+
+		if ($config['max_' . $this->mode . '_bimg_height'] || $config['max_' . $this->mode . '_bimg_width'])
+		{
+			$stats = @getimagesize(htmlspecialchars_decode($in));
+
+			if ($stats === false)
+			{
+				$error = true;
+				$this->warn_msg[] = $user->lang['UNABLE_GET_IMAGE_SIZE'];
+			}
+			else
+			{
+				if ($config['max_' . $this->mode . '_bimg_height'] && $config['max_' . $this->mode . '_bimg_height'] < $stats[1])
+				{
+					$error = true;
+					$this->warn_msg[] = sprintf($user->lang['MAX_bimg_HEIGHT_EXCEEDED'], $config['max_' . $this->mode . '_bimg_height']);
+				}
+
+				if ($config['max_' . $this->mode . '_bimg_width'] && $config['max_' . $this->mode . '_bimg_width'] < $stats[0])
+				{
+					$error = true;
+					$this->warn_msg[] = sprintf($user->lang['MAX_bimg_WIDTH_EXCEEDED'], $config['max_' . $this->mode . '_bimg_width']);
+				}
+			}
+		}
+
+		if ($error || $this->path_in_domain($in))
+		{
+			return '[bimg]' . $in . '[/bimg]';
+		}
+
+		return '[bimg:' . $this->bbcode_uid . ']' . $this->bbcode_specialchars($in) . '[/bimg:' . $this->bbcode_uid . ']';
 	}
 
 	/**
