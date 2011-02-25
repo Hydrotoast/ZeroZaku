@@ -1769,7 +1769,7 @@ $template->assign_vars(array(
 	'FORUM_NAME'			=> $post_data['forum_name'],
 	'FORUM_DESC'			=> ($post_data['forum_desc']) ? generate_text_for_display($post_data['forum_desc'], $post_data['forum_desc_uid'], $post_data['forum_desc_bitfield'], $post_data['forum_desc_options']) : '',
 	'TOPIC_TITLE'			=> censor_text($post_data['topic_title']),
-    'TOPIC_TERMS'			=> (isset($post_data['topic_terms']) && ($post_id == $post_data['topic_first_post_id'])) ? $post_data['topic_terms'] : '',
+    'TOPIC_TERMS'			=> (isset($post_data['topic_terms']) && ($post_id == $post_data['topic_first_post_id'])) ? ((is_array($post_data['topic_terms'])) ? implode(', ', $post_data['topic_terms']) : $post_data['topic_terms']) : '',
 	'MODERATORS'			=> (sizeof($moderators)) ? implode(', ', $moderators[$forum_id]) : '',
 	'USERNAME'				=> ((!$preview && $mode != 'quote') || $preview) ? $post_data['username'] : '',
 	'SUBJECT'				=> $post_data['post_subject'],

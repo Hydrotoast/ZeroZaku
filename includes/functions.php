@@ -4509,7 +4509,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_MODCP'				=> append_sid("{$phpbb_root_path}mcp.$phpEx", false, true, $user->session_id),
 		'U_FAQ'					=> append_sid("{$phpbb_root_path}faq.$phpEx"),
         // BEGIN mChat Mod
-		'U_MCHAT'			=> $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
+		'U_MCHAT'               => $auth->acl_get('u_mchat_view') ? append_sid("{$phpbb_root_path}mchat.$phpEx") : '',
 		'S_MCHAT_ON_INDEX'		=> $config['mchat_on_index'] ? true : false,
 		'S_MCHAT_ENABLE'		=> ($config['mchat_enable'] && $auth->acl_get('u_mchat_view')) ? true : false,
         // END mChat Mod
