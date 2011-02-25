@@ -333,7 +333,7 @@ class bbcode_firstpass extends bbcode
 	}
 
     /**
-	* Parse img tag
+	* Parse bimg tag
 	*/
 	function bbcode_bimg($in)
 	{
@@ -361,7 +361,7 @@ class bbcode_firstpass extends bbcode
 			$in = 'http://' . $in;
 		}
 
-		if ($config['max_' . $this->mode . '_bimg_height'] || $config['max_' . $this->mode . '_bimg_width'])
+		if ($config['max_' . $this->mode . '_img_height'] || $config['max_' . $this->mode . '_img_width'])
 		{
 			$stats = @getimagesize(htmlspecialchars_decode($in));
 
@@ -372,16 +372,16 @@ class bbcode_firstpass extends bbcode
 			}
 			else
 			{
-				if ($config['max_' . $this->mode . '_bimg_height'] && $config['max_' . $this->mode . '_bimg_height'] < $stats[1])
+				if ($config['max_' . $this->mode . '_img_height'] && $config['max_' . $this->mode . '_img_height'] < $stats[1])
 				{
 					$error = true;
-					$this->warn_msg[] = sprintf($user->lang['MAX_bimg_HEIGHT_EXCEEDED'], $config['max_' . $this->mode . '_bimg_height']);
+					$this->warn_msg[] = sprintf($user->lang['MAX_IMG_HEIGHT_EXCEEDED'], $config['max_' . $this->mode . '_img_height']);
 				}
 
-				if ($config['max_' . $this->mode . '_bimg_width'] && $config['max_' . $this->mode . '_bimg_width'] < $stats[0])
+				if ($config['max_' . $this->mode . '_img_width'] && $config['max_' . $this->mode . '_img_width'] < $stats[0])
 				{
 					$error = true;
-					$this->warn_msg[] = sprintf($user->lang['MAX_bimg_WIDTH_EXCEEDED'], $config['max_' . $this->mode . '_bimg_width']);
+					$this->warn_msg[] = sprintf($user->lang['MAX_IMG_WIDTH_EXCEEDED'], $config['max_' . $this->mode . '_img_width']);
 				}
 			}
 		}

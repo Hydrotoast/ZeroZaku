@@ -626,6 +626,7 @@ class bbcode
 			'color'					=> array('{COLOR}'		=> '$1', '{TEXT}'			=> '$2'),
 			'size'					=> array('{SIZE}'		=> '$1', '{TEXT}'			=> '$2'),
 			'img'					=> array('{URL}'		=> '$1', '{REIMG_PROPERTIES}'	=> '$2'),
+            'bimg'					=> array('{URL}'		=> '$1', '{REIMG_PROPERTIES}'	=> '$2'),
 			'flash'					=> array('{WIDTH}'		=> '$1', '{HEIGHT}'			=> '$2', '{URL}'	=> '$3'),
 			'url'					=> array('{URL}'		=> '$1', '{DESCRIPTION}'	=> '$2'),
 			'email'					=> array('{EMAIL}'		=> '$1', '{DESCRIPTION}'	=> '$2')
