@@ -128,7 +128,7 @@ if(sizeof($rss->entry))
 	        if($category['label'] == 'Tutorials & Source Codes')
 	        {
 		        $template->assign_block_vars('tutorial', array(
-		        	'LINK'	=> $item->id,
+		        	'LINK'	=> preg_replace('&', '&amp;', $item->id),
 		            'TITLE'	=> substr($item->title, 0, 48),
 		        	'AUTHOR'=> $item->author->name
 		        ));
@@ -142,7 +142,7 @@ if(sizeof($rss->entry))
     }
     
     $template->assign_vars(array(
-        'AGGRO_NAME'	=> 'Tutorials & Source Codes'
+        'AGGRO_NAME'	=> 'Tutorials &amp; Source Codes'
     ));
 }
 
@@ -200,7 +200,7 @@ if(!$memberships)
 	    $template->assign_block_vars('faction_rec', array(
 	        'NAME'	    => $row['group_name'],
 	        'FORUM'		=> $row['forum_name'],
-	        'U_JOIN'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=groups&mode=membership")
+	        'U_JOIN'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=groups&amp;mode=membership")
 	    ));
 	}
 	    

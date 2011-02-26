@@ -8,9 +8,9 @@ fieldset {
 }
 
 input {
-	border: 1px solid;
-	vertical-align: middle;
 	padding: 2px 5px;
+    border: 1px solid;
+    vertical-align: middle;
 }
 
 input[type=radio], input[type=checkbox] {
@@ -18,8 +18,8 @@ input[type=radio], input[type=checkbox] {
 }
 
 select {
-	vertical-align: top;
 	padding: 1px;
+    vertical-align: top;
 }
 
 option {
@@ -27,16 +27,16 @@ option {
 }
 
 textarea {
-	border: 1px solid;
-	text-align: left;
 	width: 60%;
 	padding: 2px;
+    border: 1px solid;
+	text-align: left;
 }
 
 label {
-	cursor: default;
 	padding-right: 6px;
 	line-height: 2em;
+	cursor: default;
 }
 
 label input {
@@ -55,10 +55,10 @@ fieldset dl {
 }
 
 fieldset dt {
-	float: left;	
+    display: block;
+	float: left;
 	width: 15em;
 	text-align: right;
-	display: block;
 }
 
 fieldset dd {
@@ -87,7 +87,6 @@ fieldset.fields1 div {
 /* Set it back to 0px for the reCaptcha divs: PHPBB3-9587 */
 fieldset.fields1 #recaptcha_widget_div div {
    margin-bottom: 0;
-
 }
 
 /* Specific layout 2 */
