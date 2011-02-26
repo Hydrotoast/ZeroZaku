@@ -1,4 +1,4 @@
-rofile-icons/* proSilver Button Styles
+/* ZeroZaku Button Styles
 ---------------------------------------- */
 .button1, .button2 {
 	text-decoration: none;
@@ -23,11 +23,11 @@ rofile-icons/* proSilver Button Styles
 /* Rolloff state */
 .buttons div a {
 	display: block;
+    position: relative;
 	width: 100%;
 	height: 100%;
-	background-position: 0 0;
-	position: relative;
 	overflow: hidden;
+	background-position: 0 0;
 }
 
 /* Hide <a> text and hide off-state image when rolling over (prevents flicker in IE) */
@@ -36,13 +36,12 @@ rofile-icons/* proSilver Button Styles
 .buttons div span { 
 	position: absolute; 
 	width: 100%; 
-	height: 100%; 
-	cursor: pointer;
+	height: 100%;
+    cursor: pointer;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	behavior: url(ie-css3.htc);  
 }
 .buttons div a:hover span	{ background-position: 0 100%; }
 
@@ -56,8 +55,8 @@ rofile-icons/* proSilver Button Styles
 
 .mark-read img {
 	float: left;
-	height: 12px;
 	width: 18px;
+    height: 12px;
 	margin: 2px 0.5em 0 0;
 }
 
@@ -80,12 +79,11 @@ a.print, a.sendemail, a.fontsize {
 /* BBCode Buttons
 --------------------------------------------- */
 #format-buttons input, #mChatBBCodes input {
+    margin: 0 -3px 1em 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
-	margin: 0 -3px 1em 0;
-	behavior: url(ie-css3.htc);  
 }
 
 #format-buttons select, #mChatBBCodes select {
@@ -114,11 +112,11 @@ a.print, a.sendemail, a.fontsize {
 /* Poster profile icons
 ----------------------------------------*/
 ul.profile-icons {
+    clear: both;
+	overflow: hidden;
 	margin: 0 -15px;
 	padding: 4px 15px;
 	list-style: none;
-	clear: both;
-	overflow: hidden;
 }
 
 /* Rollover state */
@@ -129,12 +127,12 @@ ul.profile-icons li {
 
 /* Rolloff state */
 ul.profile-icons li a {
-	line-height: 20px;
-	text-decoration: none;
-	margin-left: 8px;
-	padding: 0 8px;
 	display: block;
 	height: 20px;
+    margin-left: 8px;
+	padding: 0 8px;
+    line-height: 20px;
+	text-decoration: none;
 }
 
 /* Positioning of moderator icons */
