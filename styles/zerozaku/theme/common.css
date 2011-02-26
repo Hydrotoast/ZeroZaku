@@ -7,9 +7,9 @@
 }
 
 body {
-	font: 12px/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 	margin: 0;
 	padding: 0 0 180px 0;
+    font: 12px/1.5 Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 #simple-wrap {
@@ -17,10 +17,10 @@ body {
 }
 
 hr {
+    clear: both;
+	margin: 0.5em 0;
 	border-style: solid none none;
 	border-width: 1px 0 0;
-	margin: 0.5em 0;
-	clear: both;
 }
 
 a { text-decoration: none; }
@@ -37,8 +37,8 @@ a img { border: none; }
 }
 
 #page-header .inner {
-	margin: 0 auto;
 	width: 1008px;
+    margin: 0 auto;
 }
 
 #main {
@@ -47,20 +47,20 @@ a img { border: none; }
 }
 
 #wrap {
-	margin: 0 auto;
 	width: 1008px;
+    margin: 0 auto;
 }
 
 #page-body {
-	text-align: left;
 	float: left;
 	width: 741px;
+    text-align: left;
 }
 
 #page-sidebar {
-	text-align: left;
 	float: right;
 	width: 252px;
+    text-align: left;
 }
 
 #page-sidebar.left {
@@ -69,8 +69,8 @@ a img { border: none; }
 }
 
 #page-footer {
+    clear: both;
 	width: 1008px;
-	clear: both;
 }
 
 /* Quickpanel block
@@ -81,22 +81,22 @@ a img { border: none; }
 }
 
 #news .inner {
+    overflow: hidden;
+    width: 1008px;
 	margin: 0 auto;
-	width: 1008px;
-	overflow: hidden;
 }
 
 #quickpanel {
-	border-bottom: 1px solid;
 	width: 100%;
 	padding: 30px 0;
+    border-bottom: 1px solid;
 }
 
 #quickpanel .inner {
-	text-align: left;
+    overflow: hidden;
+    width: 1008px;
 	margin: 0 auto;
-	width: 1008px;
-	overflow: hidden;
+    text-align: left;
 }
 
 #quickpanel #blurb {
@@ -107,7 +107,7 @@ a img { border: none; }
 }
 
 	#blurb h1 {
-		font: 2.5em Anivers-Regular;		
+		font: 2.5em Anivers-Regular;
 		line-height: 1em;
 	}
 	
@@ -117,11 +117,11 @@ a img { border: none; }
 	}
 
 #quickpanel #quicklogin {
-	border-left: 1px solid;
-	border-right: 1px solid;
+    float: right;
 	width: 240px;
 	padding: 0 30px;
-	float: right;
+    border-left: 1px solid;
+	border-right: 1px solid;
 }
 
 #quickregister { width: 240px; }
@@ -134,13 +134,14 @@ a img { border: none; }
 /* User Menu box
 --------------------------------------------- */
 #usernav-box {
-	line-height: 1.5em;
 	float: right;
+    z-index: 9999;
 	height: inherit;
-	max-width: 480px;
 	width: auto;
+    max-width: 480px;
+    line-height: 1.5em;
 	white-space: nowrap; /* For Opera */
-	z-index: 9999;
+	
 }
 
 #usernav-box a {
@@ -155,33 +156,25 @@ a img { border: none; }
 }
 
 #account-actions li {
-	line-height: 25px;
-	list-style-type: none;
 	display: inline;
 	float: left;
+	list-style-type: none;
+    line-height: 25px;
 }
 
 #account-actions li a {
-	word-spacing: normal;
 	padding: 4px 10px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+    word-spacing: normal;
 }
 
 /* Search box
 --------------------------------------------- */
 #search-box {
-	text-align: left;
-	white-space: nowrap; /* For Opera */
 	position: relative;
 	margin-bottom: 15px;
 	padding: 6px 5%;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+    text-align: left;
+	white-space: nowrap; /* For Opera */
 }
 
 #search-box fieldset {
@@ -193,10 +186,10 @@ a img { border: none; }
 }
 
 #search-box #keywords {
-	border: 0;
 	height: 15px;
 	width: 132px;
 	padding: 6px 8px 4px 26px;
+    border: 0;
 }
 
 #search-box .button1 {
@@ -229,16 +222,16 @@ a img { border: none; }
 /* Breadcrumbs box
 --------------------------------------------- */
 .breadcrumbs {
-	line-height: 26px !important;
 	height: 26px !important;
 	width: 100% !important;
 	padding: 2px 0 !important;
+    line-height: 26px !important;
 }
 
 .breadcrumbs .inner {
+    width: 1008px !important;
 	margin: 0 auto !important;
 	padding: 0 30px !important;
-	width: 1008px !important;
 }
 
 .breadcrumbs strong {
@@ -246,10 +239,10 @@ a img { border: none; }
 }
 
 .breadcrumbs.simple {
-	text-align: left !important;
 	position: absolute !important;
 	top: 0 !important;
 	left: 0 !important;
+    text-align: left !important;
 }
 
 .breadcrumbs.simple .navlinks {
@@ -259,10 +252,10 @@ a img { border: none; }
 /* Navbar
 --------------------------------------------- */
 .navbar {
+    float: right;
 	position: relative;
-	float: right;
 	height: 84px;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .navbar li {
@@ -272,26 +265,26 @@ a img { border: none; }
 }
 
 .navbar li a {
-	border-left: 1px solid;
+	display: block;
+	height: 84px;
+	padding: 20px 30px 0 30px;
+    border-left: 1px solid;
 	border-right: 1px solid;
 	font-size: 1.1666em;
 	font-weight: bold;
 	line-height: 1.4em;
 	text-decoration: none;
-	display: block;
-	height: 84px;
-	padding: 20px 30px 0 30px;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 }
 
 .navbar li a span {
-	font-size: 0.6428em;
-	line-height: 1.3em;
-	text-transform: uppercase;
 	display: block;
 	width: 100px;
+    font-size: 0.6428em;
+	line-height: 1.3em;
+	text-transform: uppercase;
 }
 
 /* Footer
@@ -301,28 +294,24 @@ a img { border: none; }
 }
 
 #board-statistics {
-	border: 1px solid;
-	margin: 0 0 1.0417% 0;
-	padding: 1.9812%;
-	clear: both;
+    clear: both;
 	overflow: hidden;
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+    margin: 0 0 1.0417% 0;
+	padding: 1.9812%;
+	border: 1px solid;
 }
 
 	#board-statistics p {
+        width: 75%;
+        padding-bottom: 15px;
 		border-bottom: 1px solid;
-		padding-bottom: 15px;
-		width: 75%;
 	}
 
 	#board-statistics .stats {
-		border-left: 1px solid;
-		float: right;
-		padding-left: 0.9783%;
+        float: right;
 		width: 22.8261%;
+        padding-left: 0.9783%;
+		border-left: 1px solid;
 	}
 	
 	#board-statistics .stats dl {
@@ -330,37 +319,33 @@ a img { border: none; }
 	}
 	
 	#board-statistics .stats dt {
-		text-align: left;
 		float: right;
+        width: 33.3333%;
 		padding: 0.25em;
-		width: 33.3333%;
+        text-align: left;
 	}
 	
 	#board-statistics .stats dd {
-		font-weight: bold;
-		border-top: 1px solid;
 		padding: 0.25em;
+		border-top: 1px solid;
+        font-weight: bold;
 	}
 
 #footer-utilities {
+    clear: both;
 	padding: 10px 15px;
-	clear: both;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 
-#footer-utilities ul.linklist {margin: 0;}
+#footer-utilities ul.linklist { margin: 0; }
 
 /* Authentication
 ---------------------------------------- */
 .login-box {
-	text-align: left;
-	border-left: 1px solid;
 	float: right;
+    width: 389px;
 	padding-left: 40px;
-	width: 389px;
+	border-left: 1px solid;
+    text-align: left;
 }
 
 .signup {
@@ -378,20 +363,20 @@ a img { border: none; }
 }
 
 .leaderboard h2, #user_statuses h2 {
-	font-size: 1.6667em;	
 	margin-bottom: 6px;
 	padding-bottom: 6px;
 	border-bottom: 1px solid #E0E0E0;
+    font-size: 1.6667em;
 }
 
 .leaderboard li {
-	border-width: 0 1px 1px 0;
-	border-style: solid;
-	list-style: none;
+    display: block;
+	overflow: hidden;
 	margin-bottom: 6px;
 	padding: 10px 15px;
-	display: block;
-	overflow: hidden;
+    border-width: 0 1px 1px 0;
+	border-style: solid;
+	list-style: none;
 }
 
 .leaderboard li span, .rec_friend li .username, .rec_friend li .username-coloured {
@@ -404,32 +389,28 @@ a img { border: none; }
 }
 
 .rec_friend li {
-	border: 0;
 	padding: 0;
+    border: 0;
 }
 
 .rec_friend li .inner {
-	border-width: 0 1px 1px 0;
-	border-style: solid;
-	padding: 10px 15px;
-	display: inline-block;
+    display: inline-block;
 	width: auto;
+	padding: 10px 15px;
+    border-width: 0 1px 1px 0;
+	border-style: solid;
 	word-wrap: break-word;
 }
 
 #user_statuses li { list-style: none; }
 
 #user_statuses li .inner {
-	font-size: 0.9167em;
-	border-width: 0 1px 1px 0;
-	border-style: solid;
-	margin-bottom: 6px;
-	padding: 10px 15px;
 	display: inline-block;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+    margin-bottom: 6px;
+	padding: 10px 15px;
+    border-width: 0 1px 1px 0;
+	border-style: solid;
+    font-size: 0.9167em;
 	word-wrap: break-word;
 }
 
@@ -440,12 +421,12 @@ a img { border: none; }
 textarea#message {
 	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
 }
-#message, #confirm {text-align: center;}
-#message .inner, #confirm .inner {padding: 30px 0;}
+#message, #confirm { text-align: center; }
+#message .inner, #confirm .inner { padding: 30px 0; }
 
 #message p.message, #confirm p.message {
-	font-size: 1.166em;
 	margin-bottom: 0.5em;
+    font-size: 1.166em;
 }
 
 #message p.message a #confirm p.message a {
@@ -470,13 +451,13 @@ textarea#message {
 
 .forum-image {
 	float: left;
+    margin-right: 5px;
 	padding-top: 5px;
-	margin-right: 5px;
 }
 
 .forabg {
+    clear: both;
 	margin-bottom: 15px;
-	clear: both;
 }
 
 .forabg-sidebar {
@@ -484,22 +465,15 @@ textarea#message {
 }
 
 .forumbg {
-	margin-bottom: 15px;
 	clear: both;
+    margin-bottom: 15px;
 }
 
 .panel {
-	border: 1px solid;
+    overflow: hidden;
 	margin-bottom: 15px;
 	padding: 0 30px;
-	overflow: hidden;
-}
-
-.panel.smooth {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	border: 1px solid;
 }
 
 .panel.clean, .panel.clean .inner {
@@ -513,39 +487,39 @@ textarea#message {
 
 .panel.clean .inner:last-child { margin-bottom: 0 }
 .panel.clean .inner { 
-	border: 1px solid;
-	margin-bottom: 15px;
 	overflow: hidden;
+	margin-bottom: 15px;
+    border: 1px solid;
 }
 
 .panel.clean .inner fieldset.submit-buttons { margin: 0 }
 
 .panel.clean h2 {
-	font: bold 1.3333em Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
 	margin: 0 0 6px 0;
 	padding: 0 0 0 15px;
+    font: bold 1.3333em Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
 }
 
 .panel.clean .inner fieldset.fields2 dt { width: 12em }
 .panel.clean .inner fieldset.fields2 dd { margin-left: 13em }
 .panel.clean .left .autowidth, .panel.clean .right .autowidth { width: 75% !important; }
 .panel.clean .inner .left { 
-	border-right: 1px solid; 
-	width: 49%;
-	float: left; 
+    float: left;
+    width: 49%;
+    border-right: 1px solid;
 }
 
-.panel.clean .inner .right { 
+.panel.clean .inner .right {
+    float: right;
 	width: 49%; 
 	padding-left: 1%;
-	float: right; 
 }
 
 .post {
+    overflow: hidden;
 	margin-bottom: 1px;
 	padding: 0 15px;
-	overflow: hidden;
 }
 
 .search.post {
@@ -560,17 +534,16 @@ textarea#message {
 ----------------------------------------*/
 ul.linklist {
 	display: block;
-	margin: 0;
 	margin: 15px 0;
 	height: auto;
 }
 
 ul.linklist li {
 	display: block;
-	list-style-type: none;
 	float: left;
 	width: auto;
 	margin-right: 5px;
+    list-style-type: none;
 }
 
 ul.linklist li a {
@@ -593,8 +566,8 @@ ul.linklist li.button {
 }
 
 ul.navlinks {
-	padding-bottom: 1px;
 	margin-bottom: 1px;
+    padding-bottom: 1px;
 	font-weight: bold;
 }
 
@@ -707,28 +680,28 @@ dl.details {
 }
 
 dl.details dt {
-	font-weight: bold;
+    display: block;
 	float: left;
 	width: 30%;
+    font-weight: bold;
 	text-align: left;
-	display: block;
 }
 
 dl.details dd {
+    float: left;
+    width: 68%;
+    margin-bottom: 4px;
 	margin-left: 0;
 	padding-left: 2%;
-	margin-bottom: 4px;
-	float: left;
-	width: 68%;
 }
 
 /* Pagination
 ---------------------------------------- */
 .pagination {
+    float: right;
 	height: 1%; /* IE tweak (holly hack) */
 	width: auto;
 	text-align: right;
-	float: right;
 }
 
 li.pagination {
@@ -773,9 +746,9 @@ li.pagination {
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
 	display: none;
+    float: right;
 	width: auto;
 	padding: 7px 0;
-	float: right;
 }
 
 .row:hover .pagination { display: inline-block; }
@@ -812,17 +785,17 @@ li.pagination {
 	text-align: right;
 }
 
-.titlespace {margin-bottom: 15px;}
-.headerspace {margin: 15px 0;}
+.titlespace { margin-bottom: 15px; }
+.headerspace { margin: 15px 0; }
 
 div.rules {
 	padding: 0 15px;
 	margin: 15px 0;
 }
 
-div.rules ul, div.rules ol {margin-left: 30px;}
-p.rules {padding: 5px;}
-p.rules img {vertical-align: middle; padding-top: 5px;}
+div.rules ul, div.rules ol { margin-left: 30px; }
+p.rules { padding: 5px; }
+p.rules img { vertical-align: middle; padding-top: 5px; }
 
 p.rules a {
 	vertical-align: middle;
@@ -830,18 +803,18 @@ p.rules a {
 }
 
 .error {
-	border: 1px solid;
 	display: inline-block;
+    clear: both;
+    width: auto;
 	margin: 0 15px 10px 0;
 	padding: 4px 6px;
-	width: auto;
-	clear: both;
+	border: 1px solid;
 }
 
-p {margin: 15px 0;}
-.center {text-align: center;}
+p { margin: 15px 0; }
+.center { text-align: center; }
 
-em {font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; }
+em { font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; }
 
 .clear {
 	display: block;
@@ -852,9 +825,16 @@ em {font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; }
 }
 
 .score {
-	font-size: 1.4em; 
-	padding-top: 3px; 
+	padding-top: 3px;
+    font-size: 1.4em; 
 }
 
-.hide {display: none;}
-.show {display: block;}
+.hide { display: none; }
+.show { display: block; }
+
+.rounded, .smooth {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -kthml-border-radius: 5px;
+    border-radius: 5px;
+}
