@@ -1,7 +1,3 @@
-/* proSilver Control Panel Styles
----------------------------------------- */
-
-
 /* Main CP box
 ----------------------------------------*/
 #cp-menu {
@@ -25,13 +21,9 @@
 ul.cplist { margin-bottom: 10px; }
 
 #cp-main .panel {
+    width: 100%;
+    margin-bottom: 15px;
 	padding: 15px;
-	margin-bottom: 15px;
-	width: 100%;
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
 }
 
 #cp-main table.table1 {
@@ -39,16 +31,16 @@ ul.cplist { margin-bottom: 10px; }
 }
 
 #cp-main table.table1 thead th {
-	font-weight: bold;
-	text-align: left;
 	padding: 5px;
+    font-weight: bold;
+	text-align: left;
 }
 
 #cp-main .pagination {
-	list-style-type: none;
 	float: right;
 	width: auto;
 	padding-top: 1px;
+    list-style-type: none;
 }
 
 #cp-main .postbody p {
@@ -56,9 +48,9 @@ ul.cplist { margin-bottom: 10px; }
 }
 
 #cp-main .pm-message {
-	margin: 10px 0;
-	width: auto;
 	float: none;
+    width: auto;
+	margin: 10px 0;
 }
 
 .pm-panel-message h2 {
@@ -110,35 +102,35 @@ ul.cplist { margin-bottom: 10px; }
 }
 
 #tabs a {
-	font-weight: bold;
-	text-decoration: none;
 	float: left;
+    position: relative;
+	bottom: -4px;
 	margin: 0  2px 0 0;
 	padding: 6px 10px;
-	position: relative;
-	bottom: -4px;
+    font-weight: bold;
+	text-decoration: none;
 	cursor: pointer;
 }
 
 #tabs a span {
+    display: block;
 	float: left;
-	display: block;
 	white-space: nowrap;
 }
 
 #tabs .activetab a {
-	border-style: solid;
-	border-width: 1px 1px 0 1px;
-	padding: 10px 10px 6px;
 	position: relative;
 	bottom: 0;
+	padding: 10px 10px 6px;
+    border-style: solid;
+	border-width: 1px 1px 0 1px;
 }
 
 /* Mini tabbed menu used in MCP
 ----------------------------------------*/
 #minitabs {
-	line-height: normal;
 	margin: -20px 7px 0 0;
+    line-height: normal;
 }
 
 #minitabs ul {
@@ -160,9 +152,9 @@ ul.cplist { margin-bottom: 10px; }
 ----------------------------------------*/
 /* Container for sub-navigation list */
 #navigation {
+    width: 100%;
 	margin-top: 40px;
 	padding: 0;
-	width: 100%;
 }
 
 #navigation ul {
@@ -171,35 +163,35 @@ ul.cplist { margin-bottom: 10px; }
 
 /* Default list state */
 #navigation li {
+    display: inline;
 	margin: 1px 0;
 	padding: 0;
-	display: inline;
 }
 
 /* Link styles for the sub-section links */
 #navigation a {
-	font-weight: bold;
-	border-width: 0 1px 1px 1px;
-	border-style: solid;
 	display: block;
 	padding: 10px 15px;
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+    font-weight: bold;
 }
 
 #navigation li:first-child a
 {
 	border-width: 1px;
-	-moz-border-radius: 5px 5px 0 0;
-  -webkit-border-radius: 5px 5px 0 0;
-  -khtml-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -khtml-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 
 #navigation li:last-child a
 {
-  -moz-border-radius: 0 0 5px 5px;
-  -webkit-border-radius: 0 0 5px 5px;
-  -khtml-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -khtml-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 #navigation a:hover {
@@ -214,9 +206,9 @@ ul.cplist { margin-bottom: 10px; }
 /* Preferences pane layout
 ----------------------------------------*/
 #cp-main h2 {
-	font-size: 1.5em;
-	text-transform: uppercase;
 	padding: 0;
+    font-size: 1.5em;
+	text-transform: uppercase;
 }
 
 /* Friends list */
@@ -236,8 +228,8 @@ dl.mini dt {
 }
 
 dl.mini dd {
-	border-bottom: 1px solid;
 	padding: 2px 0;
+    border-bottom: 1px solid;
 }
 
 /* PM Styles
@@ -253,10 +245,10 @@ dl.mini dd {
 }
 
 .reply-all {
-	display: block; 
+	display: block;
+    float: left;
+    clear: both;
 	padding-top: 4px; 
-	clear: both;
-	float: left;
 }
 
 .pm-panel-message {
@@ -289,11 +281,11 @@ ol.def-rules li {
 
 /* Avatar gallery */
 #gallery label {
+    float: left;
 	position: relative;
-	float: left;
+    width: auto;
 	margin: 10px;
 	padding: 5px;
-	width: auto;
 	text-align: center;
 }
 
