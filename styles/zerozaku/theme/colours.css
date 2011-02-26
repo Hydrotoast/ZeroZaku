@@ -451,11 +451,6 @@ ul.profile-icons li a {
 	background: #D0D0D0 url("{T_THEME_PATH}/images/button_bg4.gif") scroll repeat-x 0 -2px;
 	border: 1px solid #C0C0C0;
 	color: #28313F;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-	behavior: url("ie-css3.htc"); 
 }
 
 ul.profile-icons li a:hover, ul.profile-icons li a:active {
@@ -1048,8 +1043,8 @@ a.button1, input.button1 {
 	border-color: #222222;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
 	border-radius: 5px;
-	behavior: url("ie-css3.htc"); 
 }
 
 input.button3, a.button2, input.button2 { background: #E0E0E0 url("{T_THEME_PATH}/images/button_bg4.gif") repeat-x scroll; }
@@ -1061,7 +1056,6 @@ input.button3, a.button2, input.button2 {
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	behavior: url("ie-css3.htc"); 
 }
 
 input.button3 { background-image: none; }
