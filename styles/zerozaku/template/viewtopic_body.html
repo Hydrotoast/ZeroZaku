@@ -69,7 +69,7 @@
 		<p class="author">{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><br /><!-- ENDIF --><!-- IF S_CAN_VOTE -->{L_MAX_VOTES}<!-- ENDIF --><!-- IF S_DISPLAY_RESULTS --> ({L_TOTAL_VOTES} : {TOTAL_VOTES})<!-- ENDIF --></p>
 			
 		<!-- BEGIN poll_option -->
-			<dl class="<!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF --><!-- IF poll_option.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+			<dl class="rounded <!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF --><!-- IF poll_option.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
 				<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE -->{poll_option.POLL_OPTION_CAPTION}<!-- ENDIF --></dt>
 				<!-- IF S_CAN_VOTE --><dd style="width: auto;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
 				<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="pollbar <!-- IF poll_option.POLL_OPTION_PCT < 20 -->pollbar1<!-- ELSEIF poll_option.POLL_OPTION_PCT < 40 -->pollbar2<!-- ELSEIF poll_option.POLL_OPTION_PCT < 60 -->pollbar3<!-- ELSEIF poll_option.POLL_OPTION_PCT < 80 -->pollbar4<!-- ELSE -->pollbar5<!-- ENDIF -->" rel="{poll_option.POLL_OPTION_PERCENT}" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></dd>
@@ -78,14 +78,14 @@
 		<!-- END poll_option -->
 
 		<!-- IF S_CAN_VOTE -->
-			<dl>
+			<dl class="rounded">
 				<dt>&nbsp;</dt>
 				<dd class="resultbar"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="button1" /></dd>
 			</dl>
 		<!-- ENDIF -->
 
 		<!-- IF not S_DISPLAY_RESULTS -->
-			<dl>
+			<dl class="rounded">
 				<dt>&nbsp;</dt>
 				<dd class="results"><a href="{U_VIEW_RESULTS}">{L_VIEW_RESULTS}</a></dd>
 			</dl>
@@ -97,7 +97,7 @@
 <!-- ENDIF -->
 
 <h1 class="topictitle">
-	<a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a>
+	<a href="{U_VIEW_TOPIC}" class="rounded">{TOPIC_TITLE}</a>
 	<!-- IF U_PRINT_TOPIC --><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="topicactions print">{L_PRINT_TOPIC}</a><!-- ENDIF -->
 	<!-- IF U_PRINT_PM --><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="topicactions print">{L_PRINT_PM}</a><!-- ENDIF -->
 </h1>
@@ -191,7 +191,7 @@
 		<div class="caffeine">
 			<div>
 			<!-- IF postrow.S_COMMUNITY_MOD_ENABLED -->
-				<strong class="<!-- IF postrow.POST_SCORE == 0 -->neutral<!-- ELSEIF postrow.POST_SCORE > 0 -->positive<!-- ELSE -->negative<!-- ENDIF -->">{postrow.POST_SCORE}</strong>
+				<strong class="rounded <!-- IF postrow.POST_SCORE == 0 -->neutral<!-- ELSEIF postrow.POST_SCORE > 0 -->positive<!-- ELSE -->negative<!-- ENDIF -->">{postrow.POST_SCORE}</strong>
 			  	<!-- IF postrow.S_CAN_COMMUNITY_MOD and not postrow.S_HAS_VOTED -->
                 <span class="hover">
                         <a href="{postrow.U_ADD_POS}" title="{L_UPVOTE}" rel="colorbox">

@@ -138,10 +138,6 @@ li.header dl.icon dt {
 .caffeine div strong {
     float: left;
 	padding: 3px 6px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 
 .caffeine div .hover { float: right; width: 44px; padding: 2px 0; }
@@ -185,10 +181,6 @@ h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg
 	padding: 1px 0.4em;
     border: 1px solid;
 	text-decoration: none;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 
 h2.cattitle:first-child { margin-top: 0; }
@@ -790,10 +782,6 @@ fieldset.polls dl {
 	padding: 10px 15px 10px;
 	border: 1px solid;
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 
 fieldset.polls dt {
@@ -933,10 +921,6 @@ fieldset.polls dd div {
     margin: 15px 15px 15px 0;
     padding: 15px;
     border: 1px solid;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
 }
 
 .user_column dt { text-align: center; }
@@ -957,13 +941,13 @@ fieldset.polls dd div {
 }
 
 .user_column dd.reputation {
-margin-right: 1em;
-padding: 0.1em 0.4em;
-text-align: center;
--moz-border-radius: 3px;
--webkit-border-radius: 3px;
--khtml-border-radius: 3px;
-border-radius: 3px;
+    margin-right: 1em;
+    padding: 0.1em 0.4em;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .user_column dd.reputation strong {

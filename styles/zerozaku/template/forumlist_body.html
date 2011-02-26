@@ -6,7 +6,7 @@
 	<!-- ENDIF -->
 
 	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
-		<h2 class="cattitle"><!-- IF forumrow.S_IS_CAT --><a href="#" class="collapse" rel="f_{forumrow.FORUM_ID}"><img src="{T_THEME_PATH}/images/minus_alt_24x24.png" /></a> <a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a><!-- ELSE --><span>{L_SUBFORUMS}</span><!-- ENDIF --></h2>
+		<h2 class="cattitle"><!-- IF forumrow.S_IS_CAT --><a href="#" class="collapse" rel="f_{forumrow.FORUM_ID}"><img src="{T_THEME_PATH}/images/minus_alt_24x24.png" /></a> <a href="{forumrow.U_VIEWFORUM}" class="rounded">{forumrow.FORUM_NAME}</a><!-- ELSE --><span class="rounded">{L_SUBFORUMS}</span><!-- ENDIF --></h2>
 		<div class="forabg">
 			<ul class="topiclist forums">
 			<li class="row">
