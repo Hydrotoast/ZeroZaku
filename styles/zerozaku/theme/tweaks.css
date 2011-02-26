@@ -1457,17 +1457,3 @@ a.term {
     border-style: solid;
     border-width: 10px 10px 10px 10px; /* vary these values to change the angle of the vertex */
 }
-
-/* BBcode
--------------------------------------------------*/
-.bimg {
-    background-color: #F0F0F0;
-    border: 1px solid #E0E0E0;
-    width: 739px;
-}
-
-.bimg .inner {
-    overflow: hidden;
-    margin: 10px;
-    text-align: center;
-}
