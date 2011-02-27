@@ -1,7 +1,7 @@
 /* Main CP box
 ----------------------------------------*/
 #cp-menu {
-	float:left;
+	float: left;
 	width: 15%;
 	margin: 0 30px 5px 0;
 	padding-bottom: 10px;
@@ -19,20 +19,16 @@
 #cp-main .meta dt.no-icon { padding: 4px 0; }
 #cp-main .panel ol { margin-left: 2em; }
 ul.cplist { margin-bottom: 10px; }
-
 #cp-main .panel {
-    width: 100%;
-    margin-bottom: 15px;
+	width: 100%;
+	margin-bottom: 15px;
 	padding: 15px;
 }
 
-#cp-main table.table1 {
-	margin-bottom: 10px;
-}
-
+#cp-main table.table1 { margin-bottom: 10px; }
 #cp-main table.table1 thead th {
 	padding: 5px;
-    font-weight: bold;
+	font-weight: bold;
 	text-align: left;
 }
 
@@ -40,57 +36,37 @@ ul.cplist { margin-bottom: 10px; }
 	float: right;
 	width: auto;
 	padding-top: 1px;
-    list-style-type: none;
+	list-style-type: none;
 }
 
-#cp-main .postbody p {
-	font-size: 1.1em;
-}
-
+#cp-main .postbody p { font-size: 1.1em; }
 #cp-main .pm-message {
 	float: none;
-    width: auto;
+	width: auto;
 	margin: 10px 0;
 }
 
-.pm-panel-message h2 {
-	padding-bottom: 5px;
-}
-
-.pm-panel-message .postbody {
-    width: 515px;
-}
-
-#cp-main .postbody h3, #cp-main .box2 h3 {
-	margin-top: 0;
-}
-
-#cp-main hr, #cp-menu hr {
-	border: 1px solid;
-}
-
+.pm-panel-message h2 { padding-bottom: 5px; }
+.pm-panel-message .postbody { width: 515px; }
+#cp-main .postbody h3, #cp-main .box2 h3 { margin-top: 0; }
+#cp-main hr, #cp-menu hr { border: 1px solid; }
 #cp-main .buttons {
 	margin-left: 0;
 	padding: 6px 0;
 }
 
-#cp-main ul.linklist {
-}
-
+#cp-main ul.linklist { }
 /* MCP Specific tweaks */
-.mcp-main .postbody {
-	width: 100%;
-}
-
+.mcp-main .postbody { width: 100%; }
 /* CP tabbed menu
 ----------------------------------------*/
 #tabs {
-	margin: 20px 0 -1px 0;
 	min-width: 570px;
+	margin: 20px 0 -1px 0;
 }
 
 #tabs ul {
-	margin:0;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 }
@@ -102,18 +78,18 @@ ul.cplist { margin-bottom: 10px; }
 }
 
 #tabs a {
+	cursor: pointer;
 	float: left;
-    position: relative;
+	position: relative;
 	bottom: -4px;
 	margin: 0  2px 0 0;
 	padding: 6px 10px;
-    font-weight: bold;
+	font-weight: bold;
 	text-decoration: none;
-	cursor: pointer;
 }
 
 #tabs a span {
-    display: block;
+	display: block;
 	float: left;
 	white-space: nowrap;
 }
@@ -122,19 +98,19 @@ ul.cplist { margin-bottom: 10px; }
 	position: relative;
 	bottom: 0;
 	padding: 10px 10px 6px;
-    border-style: solid;
 	border-width: 1px 1px 0 1px;
+	border-style: solid;
 }
 
 /* Mini tabbed menu used in MCP
 ----------------------------------------*/
 #minitabs {
 	margin: -20px 7px 0 0;
-    line-height: normal;
+	line-height: normal;
 }
 
 #minitabs ul {
-	margin:0;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 }
@@ -142,28 +118,24 @@ ul.cplist { margin-bottom: 10px; }
 #minitabs li {
 	display: block;
 	float: right;
-	padding: 6px 10px;
 	margin-left: 2px;
+	padding: 6px 10px;
 }
 
 #minitabs li a { text-decoration: none; }
-
 /* UCP navigation menu
 ----------------------------------------*/
 /* Container for sub-navigation list */
 #navigation {
-    width: 100%;
+	width: 100%;
 	margin-top: 40px;
 	padding: 0;
 }
 
-#navigation ul {
-	list-style: none;
-}
-
+#navigation ul { list-style: none; }
 /* Default list state */
 #navigation li {
-    display: inline;
+	display: inline;
 	margin: 1px 0;
 	padding: 0;
 }
@@ -174,53 +146,41 @@ ul.cplist { margin-bottom: 10px; }
 	padding: 10px 15px;
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
-    font-weight: bold;
+	font-weight: bold;
 }
 
-#navigation li:first-child a
-{
+#navigation li:first-child a {
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	-khtml-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
 	border-width: 1px;
-    -moz-border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    -khtml-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0;
 }
 
-#navigation li:last-child a
-{
-    -moz-border-radius: 0 0 5px 5px;
-    -webkit-border-radius: 0 0 5px 5px;
-    -khtml-border-radius: 0 0 5px 5px;
-    border-radius: 0 0 5px 5px;
+#navigation li:last-child a {
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-khtml-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
 }
 
-#navigation a:hover {
-	text-decoration: none;
-}
-
-
-#navigation #active-subsection a {
-	display: block;
-}
-
+#navigation a:hover { text-decoration: none; }
+#navigation #active-subsection a { display: block; }
 /* Preferences pane layout
 ----------------------------------------*/
 #cp-main h2 {
 	padding: 0;
-    font-size: 1.5em;
+	font-size: 1.5em;
 	text-transform: uppercase;
 }
 
 /* Friends list */
 .cp-mini {
-	padding: 0 5px;
 	margin: 1em 0;
+	padding: 0 5px;
 }
 
-.cp-mini span.corners-top, .cp-mini span.corners-bottom {
-	margin: 0 -5px;
-}
-
+.cp-mini span.corners-top, .cp-mini span.corners-bottom { margin: 0 -5px; }
 dl.mini dt {
 	font-size: 1.1666em;
 	font-weight: bold;
@@ -229,51 +189,35 @@ dl.mini dt {
 
 dl.mini dd {
 	padding: 2px 0;
-    border-bottom: 1px solid;
+	border-bottom: 1px solid;
 }
 
 /* PM Styles
 ----------------------------------------*/
-#pm-menu {
-	line-height: 2.5em;
-}
-
+#pm-menu { line-height: 2.5em; }
 /* PM panel adjustments */
 .pm-panel-header {
-	margin: 0; 
-	padding-bottom: 10px; 
+	margin: 0;
+	padding-bottom: 10px;
 }
 
 .reply-all {
 	display: block;
-    float: left;
-    clear: both;
-	padding-top: 4px; 
+	float: left;
+	clear: both;
+	padding-top: 4px;
 }
 
-.pm-panel-message {
-	padding-top: 10px;
-}
-
-.pm-return-to {
-	padding-top: 23px;
-}
-
+.pm-panel-message { padding-top: 10px; }
+.pm-return-to { padding-top: 23px; }
 #cp-main .pm-message-nav {
-	margin: 0; 
-	padding: 2px 10px 5px 10px; 
+	margin: 0;
+	padding: 2px 10px 5px 10px;
 }
-
 
 /* Defined rules list for PM options */
-ol.def-rules {
-	padding-left: 0;
-}
-
-ol.def-rules li {
-	padding: 1px;
-}
-
+ol.def-rules { padding-left: 0; }
+ol.def-rules li { padding: 1px; }
 .pm-legend {
 	margin-bottom: 3px;
 	padding-left: 3px;
@@ -281,14 +225,13 @@ ol.def-rules li {
 
 /* Avatar gallery */
 #gallery label {
-    float: left;
+	float: left;
 	position: relative;
-    width: auto;
+	width: auto;
 	margin: 10px;
 	padding: 5px;
 	text-align: center;
 }
 
-ul {
-	padding: auto !important;
-}
+ul { padding: auto !important; }
+

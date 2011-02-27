@@ -7,8 +7,8 @@ ul.topiclist {
 
 ul.topiclist li {
 	display: block;
-	list-style-type: none;
 	margin: 0;
+	list-style-type: none;
 }
 
 ul.topiclist dl.icon dt {
@@ -16,14 +16,8 @@ ul.topiclist dl.icon dt {
 	min-height: 30px;
 }
 
-ul.topiclist li.row.bg1, ul.topiclist li.row.bg2 {
-	border-bottom: 1px solid;
-}
-
-ul.topiclist .col1, ul.topiclist .col2 {
-	overflow: hidden;
-}
-
+ul.topiclist li.row.bg1, ul.topiclist li.row.bg2 { border-bottom: 1px solid; }
+ul.topiclist .col1, ul.topiclist .col2 { overflow: hidden; }
 ul.topiclist dt, ul.topiclist dd {
 	display: block;
 	padding: 6px 0;
@@ -31,13 +25,13 @@ ul.topiclist dt, ul.topiclist dd {
 }
 
 ul.topiclist dt {
+	float: left;
 	width: 42.5%;
-    float: left;
 }
 
 ul.topiclist dt h3 {
 	display: inline;
-    font-size: 1em;
+	font-size: 1em;
 }
 
 ul.topiclist dd {
@@ -45,48 +39,33 @@ ul.topiclist dd {
 	height: 100%;
 }
 
-ul.topiclist dd div.inner {
-	margin: 0 15px;
-}
-
+ul.topiclist dd div.inner { margin: 0 15px; }
 ul.topiclist li.row dt a.subforum {
 	position: relative;
 	padding: 0 0 0 12px;
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
-li.header dt, li.header dd {
-	padding: 8px 0;
-}
-
-li.header dl.icon {
-	font-weight: bold;
-}
-
+li.header dt, li.header dd { padding: 8px 0; }
+li.header dl.icon { font-weight: bold; }
 li.header dl.icon dt {
-    font: 1.45em Helvetica, Arial, sans-serif;
-	text-decoration: none;
+	font: 1.45em Helvetica, Arial, sans-serif;
 	text-transform: capitalize;
+	text-decoration: none;
 }
 
-.search.bg1, .search.bg2 {
-	border-bottom: 4px solid;
-}
-
+.search.bg1, .search.bg2 { border-bottom: 4px solid; }
 /* Sidebar blocks */
 .forabg-sidebar {
-	border: 1px solid;
-	margin-bottom: 15px;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
+	margin-bottom: 15px;
+	border: 1px solid;
 }
 
-.forabg-sidebar.smooth {
-	padding: 1px;
-}
-
+.forabg-sidebar.smooth { padding: 1px; }
 .forabg-sidebar.smooth ul.topiclist {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -94,14 +73,8 @@ li.header dl.icon dt {
 	border-radius: 4px;
 }
 
-.forabg-sidebar h2.sidebar {
-	width: auto;
-}
-
-.forabg-sidebar h2 img {
-	margin-right: 4px;
-}
-
+.forabg-sidebar h2.sidebar { width: auto; }
+.forabg-sidebar h2 img { margin-right: 4px; }
 .forabg-sidebar ul.topiclist dd {
 	margin-bottom: 0;
 	padding: 10px 15px;
@@ -110,76 +83,75 @@ li.header dl.icon dt {
 .forabg-sidebar h2.sidebar {
 	margin: 0 0 0 15px;
 	padding: 6px 0;
-    font-size: 1.1em;
+	font-size: 1.1em;
 	font-weight: bold;
 }
 
-.forabg-sidebar h2.sidebar img {vertical-align: text-bottom;}
-
-.forumbg-table {
-	border: 1px solid;
-}
-
+.forabg-sidebar h2.sidebar img { vertical-align: text-bottom; }
+.forumbg-table { border: 1px solid; }
 .caffeine {
-	margin: 0 -15px 2px;
 	clear: both;
+	margin: 0 -15px 2px;
 }
 
 .caffeine div {
-    float: right;
-	padding: 8px;
-    text-decoration: none;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
+	float: right;
+	padding: 8px;
+	text-decoration: none;
 }
 
 .caffeine div strong {
-    float: left;
+	float: left;
 	padding: 3px 6px;
 }
 
-.caffeine div .hover { float: right; width: 44px; padding: 2px 0; }
+.caffeine div .hover {
+	float: right;
+	width: 44px;
+	padding: 2px 0;
+}
+
 .caffeine div a { position: relative; }
 .caffeine div a img { position: absolute; }
 .caffeine div a img.positive { left: 4px; }
 .caffeine div a img.negative { left: 24px; }
-
 .jump2post {
-    clear: both;
+	clear: both;
 	margin-top: 2px;
 }
 
 .jump2post a {
-	padding: 4px 15px;
-    text-decoration: none;
 	-moz-border-radius: 0 0 5px 5px;
 	-webkit-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
 	border-radius: 0 0 5px 5px;
+	padding: 4px 15px;
+	text-decoration: none;
 }
 
 a.topictitle { font-weight: bold; }
 a.topictitle span { text-transform: capitalize; }
-
 h2.comtitle, h1.topictitle, h2.cattitle, ul.topiclist dl.forum dt {
-    clear: both;
-    overflow: hidden;
-	padding: 9px 15px;
-    font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
-	font-size: 1.6667em;
-	font-weight: normal;
-	text-align: left;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
+	clear: both;
+	overflow: hidden;
+	padding: 9px 15px;
+	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
+	font-size: 1.6667em;
+	font-weight: normal;
+	text-align: left;
 }
 
 h2.pagetitle a, h1.topictitle a, h2.cattitle a, .forabg li.header span, .forumbg li.header span, h2.pagetitle span, h2.cattitle span {
 	padding: 1px 0.4em;
-    border: 1px solid;
+	border: 1px solid;
 	text-decoration: none;
 }
 
@@ -196,77 +168,76 @@ h2.cattitle a.collapse {
 	float: right;
 	height: 20px;
 	padding-top: 2px;
-    border: 0;
+	border: 0;
 }
 
 h2.cattitle a.collapse img {
-	height: 20px;
 	width: 20px;
+	height: 20px;
 }
 
 h2.pagetitle, h2.comtitle {
-    clear: both;
-	overflow: hidden;
-	padding: 9px 30px;
-    font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
-	font-size: 1.6667em;
-	font-weight: normal;
-    border-width: 1px 1px 0;
-	border-style: solid;
 	-moz-border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-khtml-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0;
+	clear: both;
+	overflow: hidden;
+	padding: 9px 30px;
+	border-width: 1px 1px 0;
+	border-style: solid;
+	font-family: Anivers-Regular, Arial, Helvetica, sans-serif;
+	font-size: 1.6667em;
+	font-weight: normal;
 }
 
 h2.comtitle { padding: 9px 15px; }
-
 h2.comtitle.login {
-	margin: 0 auto;
 	width: 741px;
+	margin: 0 auto;
 }
 
 h2 { font: 2em Anivers-Regular; }
-
 h3 {
 	font-size: 1.1667em;
 	font-weight: bold;
 }
 
 h4 {
-	font-weight: bold;
 	display: inline;
+	font-weight: bold;
 }
 
 .pagetitle span a {
-	padding: 0;
-    border: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
-	 
+	padding: 0;
+	border: 0;
 }
 
 h1.topictitle a.topicactions {
-    float: right;
+	float: right;
 	margin-top: 6px;
-    font-size: 0.6322em;
-	font-weight: bold;
+	font-size: 0.6322em;
 	line-height: 1.7em;
+	font-weight: bold;
 }
 
 /* Forum list column styles */
 ul.topiclist li.header dl.icon dt { margin-left: 15px; }
 dl.icon { min-height: 40px; }
-dl.icon dt, .meta dt { padding-left: 45px; } /* Space for folder icon */
-.meta dt.no-icon { padding: 4px 0; } /* Space for folder icon */
+dl.icon dt, .meta dt { padding-left: 45px; }
+/* Space for folder icon */
+.meta dt.no-icon { padding: 4px 0; }
+/* Space for folder icon */
 
 /* List in forum description */
 dl.icon dt ol,
 dl.icon dt ul {
-	margin-left
-    list-style-position: inside;: 1em;
+	margin-left: 1em;
+	list-style-position: inside;
 }
 
 dl.icon dt li {
@@ -286,7 +257,6 @@ dl.meta dt , dl.meta dd {
 
 dl.meta dt { padding-left: 45px; }
 dt.forum { padding: 0; }
-
 dd.stats {
 	width: 15%;
 	padding-right: 0.5% !important;
@@ -295,9 +265,8 @@ dd.stats {
 
 ul.topiclist dd.stats span.topics, ul.topiclist dd.stats span.posts { display: block; }
 ul.topiclist dd.stats dfn { font-style: normal; }
-
 dd.posts, dd.views {
-    width: 10%;
+	width: 10%;
 	line-height: 2.7em;
 	text-align: center;
 }
@@ -309,14 +278,10 @@ dd.lastpost {
 
 dd.lastpost .date {
 	padding-left: 0;
-    font-size: 0.9167em;
+	font-size: 0.9167em;
 }
 
-dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.topiclist dd.time span, dd.redirect span, dd.moderation span {
-	display: block;
-}
-
-
+dd.lastpost span, ul.topiclist dd.searchby span, ul.topiclist dd.info span, ul.topiclist dd.time span, dd.redirect span, dd.moderation span { display: block; }
 dt.no-icon .inner {
 	margin: 0;
 	padding: 0 15px;
@@ -325,15 +290,8 @@ dt.no-icon .inner {
 .meta dd.time { line-height: 1.3em; }
 .meta dd.views { line-height: 1.3em; }
 .meta dd.posts { line-height: 1.3em; }
-
-dd.time {
-	width: 20%;
-}
-
-dd.moderation, dd.posted {
-	width: 30%;
-}
-
+dd.time { width: 20%; }
+dd.moderation, dd.posted { width: 30%; }
 dd.extra {
 	width: 12%;
 	text-align: center;
@@ -345,37 +303,26 @@ dd.mark {
 	text-align: center;
 }
 
-dd.info {
-	width: 30%;
-}
-
-dd.option {
-	width: 15%;
-}
-
-dd.searchby {
-	width: 47%;
-}
-
+dd.info { width: 30%; }
+dd.option { width: 15%; }
+dd.searchby { width: 47%; }
 ul.topiclist dd.searchextra {
-    clear: both;
-	width: 98%;
+	clear: both;
 	overflow: hidden;
+	width: 98%;
 	margin-left: 5px;
 	padding: 0.2em 0;
 }
 
 /* Container for post/reply buttons and pagination */
 .topic-actions {
-    clear: both;
-	margin: 15px 0;
+	clear: both;
 	height: 24px;
 	min-height: 24px;
-}
-div[class].topic-actions {
-	height: auto;
+	margin: 15px 0;
 }
 
+div[class].topic-actions { height: auto; }
 /* Deep design */
 a.forumtitle {
 	font-size: 1.0909em;
@@ -384,14 +331,13 @@ a.forumtitle {
 }
 
 a.forumtitle:hover { text-decoration: underline; }
-
 /* Post body styles
 ----------------------------------------*/
 #preview .postbody { width: 690px; }
 .postbody {
-    float: right;
-    width: 741px;
+	float: right;
 	clear: both;
+	width: 741px;
 	margin: 15px 0;
 	padding: 0;
 }
@@ -403,108 +349,76 @@ a.forumtitle:hover { text-decoration: underline; }
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 }
 
-.postbody h3 img {
-	/* Also see tweaks.css */
-	vertical-align: bottom;
-}
-
-.search .postbody {
-	float: right;
-}
-
+.postbody h3 img { /* Also see tweaks.css */
+	vertical-align: bottom; }
+.search .postbody { float: right; }
 /* Posting preview
 ----------------------------------------*/
-#preview {
-	margin: 1em 0;
-}
-
+#preview { margin: 1em 0; }
 /* Topic review panel
 ----------------------------------------*/
-#review {
-	margin-top: 2em;
-}
-
+#review { margin-top: 2em; }
 #topicreview {
 	overflow: auto;
 	height: 300px;
 }
 
 #topicreview .postbody {
-    float: none;
+	float: none;
 	width: auto;
-	margin: 0;
 	height: auto;
+	margin: 0;
 }
 
 #topicreview .post {
 	height: auto;
-    border: 1px solid;
+	border: 1px solid;
 }
 
-#topicreview .post .content {
-	margin: 15px 0;
-}
-
-#topicreview h2 {
-	border-bottom-width: 0;
-}
-
-.post-ignore .postbody {
-	display: none
-}
-
+#topicreview .post .content { margin: 15px 0; }
+#topicreview h2 { border-bottom-width: 0; }
+.post-ignore .postbody { }
 /* MCP Post details
 ----------------------------------------*/
-#post_details
-{
-   /* This will only work in IE7+, plus the others */
+#post_details {
+	/* This will only work in IE7+, plus the others */
    overflow: auto;
-   max-height: 300px;
+	max-height: 300px;
 }
 
-#expand
-{
-   clear: both;
-}
-
+#expand { clear: both; }
 /* Content container styles
 ----------------------------------------*/
 .panel.login {
-	margin: 0 auto 15px auto;
 	width: 726px;
+	margin: 0 auto 15px auto;
 }
 
 .panel h3.head, .panel h3.sub {
-	border-style: solid;
-	border-width: 1px 0;
-    font-family: Anivers-Regular;
 	text-shadow: 1px 1px 0 #E0E0E0;
+	border-width: 1px 0;
+	border-style: solid;
+	font-family: Anivers-Regular;
 }
 
 .panel h3.head {
 	margin: 0 -30px 1em -30px;
 	padding: 0.25em 30px;
-    font-size: 1.6667em;
+	font-size: 1.6667em;
 	text-transform: none;
 }
 
 .panel h3.sub {
 	padding: 0.25em 6px;
-    font-size: 1.1667em;
+	font-size: 1.1667em;
 }
 
-.panel h4 {
-	font-weight: bold;
-}
-
-.panel p {
-	margin-bottom: 1em;
-}
-
+.panel h4 { font-weight: bold; }
+.panel p { margin-bottom: 1em; }
 .panel.tag .infotitle {
 	margin: 12px 0 0 67px;
 	padding: 0;
-    font: normal 2em Anivers-Regular, Arial, Helvetica, sans-serif;
+	font: normal 2em Anivers-Regular, Arial, Helvetica, sans-serif;
 	text-transform: none;
 }
 
@@ -514,9 +428,9 @@ a.forumtitle:hover { text-decoration: underline; }
 }
 
 .panel.tag img {
-    width: 48px;
-	margin: 12px 0;
+	width: 48px;
 	height: 48px;
+	margin: 12px 0;
 }
 
 .panel.info p, .panel.tag p {
@@ -529,41 +443,34 @@ a.forumtitle:hover { text-decoration: underline; }
 	border-style: solid;
 }
 
-.panel.tag h3, .panel.tag p {
-	padding-left: 68px;
-}
-
-.panel.tag p {
-	margin: 0 0 6px;
-}
-
+.panel.tag h3, .panel.tag p { padding-left: 68px; }
+.panel.tag p { margin: 0 0 6px; }
 /* panel sidebar */
 .panel-sidebar {
 	float: right;
-    width: 33%;
+	width: 33%;
 	margin: 15px 0 15px 1%;
 	padding: 1px;
 }
 
 .panel-sidebar .inner {
-	padding: 6px 15px;
 	height: 100%;
+	padding: 6px 15px;
 }
 
 .panel-sidebar h3 {
 	padding: 6px 15px;
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .panel.faq_box { margin-bottom: 0; }
 .faq_box .content { overflow: visible; }
-
 .content {
-	min-height: 3em;
 	overflow: hidden;
-	line-height: 1.8em;
-	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif; 
+	min-height: 3em;
+	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
 	font-size: 1em;
+	line-height: 1.8em;
 }
 
 .content h2, .panel h2 {
@@ -573,23 +480,19 @@ a.forumtitle:hover { text-decoration: underline; }
 }
 
 .content p { margin-bottom: 1em; }
-
 dl.faq {
 	margin-top: 1em;
 	margin-bottom: 2em;
 }
 
 .content dl.faq { margin-bottom: 0.5em; }
-
 .content li { list-style-type: inherit; }
-
 .content ul, .content ol {
 	margin-bottom: 0;
 	margin-left: 3em;
 }
 
 .posthilit { padding: 0 2px 1px 2px; }
-
 /* Post author */
 p.author {
 	margin: 0 15em 0.6em 0;
@@ -598,24 +501,23 @@ p.author {
 
 /* Post signature */
 .signature {
-    clear: left;
+	clear: left;
+	overflow: hidden;
 	width: 100%;
-    overflow: hidden;
 	margin-top: 15px;
 	padding-top: 15px;
-    border-top: 1px solid;
+	border-top: 1px solid;
 	line-height: 140%;
 }
 
 dd .signature {
-    clear: none;
+	clear: none;
 	margin: 0;
 	padding: 0;
 	border: none;
 }
 
 .signature li { list-style-type: inherit; }
-
 .signature ul, .signature ol {
 	margin-bottom: 1em;
 	margin-left: 3em;
@@ -623,7 +525,7 @@ dd .signature {
 
 /* Post noticies */
 .notice {
-    clear: left;
+	clear: left;
 	width: auto;
 	margin-top: 1.5em;
 	padding-top: 0.2em;
@@ -632,127 +534,118 @@ dd .signature {
 
 /* Jump to post link for now */
 ul.searchresults {
+	clear: both;
 	list-style: none;
 	text-align: left;
-	clear: both;
 }
 
 /* BB Code styles
 ----------------------------------------*/
 /* Quote block */
 blockquote {
-    overflow: hidden;
-	margin: 0 1px 0 0;
-	padding: 15px;
-    border: 1px solid;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	 
+	overflow: hidden;
+	margin: 0 1px 0 0;
+	padding: 15px;
+	border: 1px solid;
 }
 
-blockquote blockquote {
-	/* Nested quotes */
-	margin: 0.5em 1px 0 15px;	
-}
-
+blockquote blockquote { /* Nested quotes */
+	margin: 0.5em 1px 0 15px; }
 blockquote cite {
-    display: block;
+	display: block;
 	/* Username/source of quoter */
 	margin-left: 30px;
 }
 
 blockquote.uncited { padding-top: 25px; }
-
 /* Code block */
 dl.codebox { border: 1px solid; }
-
 dl.codebox dt {
-    display: block;
+	display: block;
 	padding: 4px;
-    border-bottom: 1px solid;
-    font-weight: bold;
+	border-bottom: 1px solid;
+	font-weight: bold;
 }
 
 dl.codebox dd { padding: 4px; }
 blockquote dl.codebox { margin-left: 0; }
-
 dl.codebox code {
 	/* Also see tweaks.css */
     display: block;
+	overflow: auto;
 	height: auto;
 	max-height: 200px;
-	overflow: auto;
-    margin: 2px 0;
+	margin: 2px 0;
 	padding-top: 5px;
-    white-space: normal;
+	white-space: normal;
 }
 
 /* Hide block */
 div.adapthide {
-    background-color: #F6F6F6;
-    padding: 1em;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	 
+	padding: 1em;
+	background-color: #F6F6F6;
 }
 
 /* Block image */
 .bimg {
-    background-color: #F0F0F0;
-    border: 1px solid #E0E0E0;
-    width: 739px;
+	width: 739px;
+	border: 1px solid #E0E0E0;
+	background-color: #F0F0F0;
 }
 
 .bimg .inner {
-    overflow: hidden;
-    margin: 10px;
-    text-align: center;
+	overflow: hidden;
+	margin: 10px;
+	text-align: center;
 }
 
 /* Attachments
 ----------------------------------------*/
 .attachbox {
 	float: left;
-    clear: left;
-	width: auto; 
+	clear: left;
+	width: auto;
 	margin: 5px 5px 5px 0;
 	padding: 6px;
-    font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
+	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
 }
 
 .attachbox dt {
 	float: left;
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .attachbox dd {
+	clear: left;
 	margin-top: 4px;
 	padding-top: 4px;
-	clear: left;
 }
 
 .attachbox dd dd { border: none; }
-
 .attachbox p {
 	clear: left;
-    font-weight: normal;
+	font-weight: normal;
 }
 
 .attachbox p.stats { clear: left; }
-
 .attach-image {
-    max-height: 350px;
 	overflow: auto;
-	margin: 3px 0;
 	width: 100%;
+	max-height: 350px;
+	margin: 3px 0;
 }
 
 .attach-image img {
-/*	cursor: move; */
+	/*	cursor: move;
+	*/
 	cursor: default;
 }
 
@@ -763,7 +656,6 @@ div.inline-attachment dl.thumbnail, div.inline-attachment dl.file {
 }
 
 dl.file { display: block; }
-
 dl.file dt {
 	margin: 0;
 	padding: 0;
@@ -772,22 +664,18 @@ dl.file dt {
 dl.file dd {
 	display: inline;
 	margin-left: 0.5em;
-	padding: 0;	
+	padding: 0;
 }
 
-dl.thumbnail img {
-	padding: 3px;
-}
-
+dl.thumbnail img { padding: 3px; }
 /* Post poll styles
 ----------------------------------------*/
-fieldset.polls {margin-bottom: 1em;}
-
+fieldset.polls { margin-bottom: 1em; }
 fieldset.polls h3 {
 	margin-top: 6px;
 	padding-top: 15px;
-    border-top: 1px solid;
-    font-size: 1.6667em;
+	border-top: 1px solid;
+	font-size: 1.6667em;
 }
 
 fieldset.polls dl {
@@ -799,47 +687,38 @@ fieldset.polls dl {
 
 fieldset.polls dt {
 	display: block;
-    float: left;
-    clear: both;
+	float: left;
+	clear: both;
 	width: 20%;
-	padding: 0 15px 0 0;
 	margin: 0;
-    font-weight: bold;
+	padding: 0 15px 0 0;
+	font-weight: bold;
 	text-align: right;
 }
 
 fieldset.polls dd {
 	float: left;
 	width: 10%;
-    margin: 0;
+	margin: 0;
 	padding: 0;
 }
 
 fieldset.polls dd.resultbar {
 	width: 65%;
-    font-weight: bold;
+	font-weight: bold;
 }
 
 fieldset.polls dd.resultbar .pollbar {
-	border-bottom: 1px solid;
 	border-right: 1px solid;
+	border-bottom: 1px solid;
 }
 
-fieldset.polls input[type=radio] {
-	margin-right: 1em;
-}
-
-fieldset.polls dd.results {
-	width: 10%;
-}
-
-fieldset.polls dd input {
-	margin: 2px 0;
-}
-
+fieldset.polls input[type=radio] { margin-right: 1em; }
+fieldset.polls dd.results { width: 10%; }
+fieldset.polls dd input { margin: 2px 0; }
 fieldset.polls dd div {
 	padding: 0 2px;
-    text-align: right;
+	text-align: right;
 }
 
 /* Poster profile block
@@ -847,162 +726,153 @@ fieldset.polls dd div {
 .postprofile {
 	/* Also see tweaks.css */
 	display: inline;
-    float: left;
-    width: 220px;
-	margin: 15px 0 15px 0;
+	float: left;
+	width: 220px;
 	min-height: 80px;
-    border-right: 1px solid;
+	margin: 15px 0 15px 0;
+	border-right: 1px solid;
 }
 
 .postprofile dt { text-align: center; }
-
 .user_status {
-	position: relative;
-    margin: 0 1em 0 0;
-	padding: 10px 15px;
-	border-bottom: 1px solid;
-	border-right: 1px solid;
-	font-size: 0.9167em;
-    word-wrap: break-word;
-    -moz-border-radius: 3px;
+	word-wrap: break-word;
+	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+	position: relative;
+	margin: 0 1em 0 0;
+	padding: 10px 15px;
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	font-size: 0.9167em;
 }
 
 /* creates triangle */
 .user_status:after {
-    display: block; /* reduce the damage in FF3.0 */
+	display: block;
+	/* reduce the damage in FF3.0 */
 	position: absolute;
-    top: -45px;
-	left: 15px;
-    border-style: solid;
-	border-width: 15px 0 15px 15px; /* vary these values to change the angle of the vertex */
+	/* vary these values to change the angle of the vertex */
     content: "\00a0";
+	top: -45px;
+	left: 15px;
+	border-width: 15px 0 15px 15px;
+	border-style: solid;
 }
 
 .postprofile dd, .postprofile dt { line-height: 1.8em; }
 .postprofile dd { margin-bottom: 0.5em; }
-
 .postprofile dd strong {
 	display: inline-block;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	width: 5em;
 	margin-right: 0.5em;
 	padding: 0.1em 0.4em;
 	text-align: center;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 }
 
 .postprofile dd.reputation {
-	margin-right: 1em;
-	padding: 0.1em 0.4em;
-	text-align: center;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+	margin-right: 1em;
+	padding: 0.1em 0.4em;
+	text-align: center;
 }
 
 .postprofile dd.reputation strong {
 	display: inline;
-	width: 0;
-	margin: 0;
-	padding: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .avatar { margin-bottom: 3px; }
-
 /* Poster profile used by search*/
-.search .postprofile {
-	float: left;
-}
-
+.search .postprofile { float: left; }
 /* User columns
 ----------------------------------------*/
 .user_column {
-    /* Also see tweaks.css */
+	/* Also see tweaks.css */
     display: inline;
-    float: left;
-    width: 200px;
-    margin: 15px 15px 15px 0;
-    padding: 15px;
-    border: 1px solid;
+	float: left;
+	width: 200px;
+	margin: 15px 15px 15px 0;
+	padding: 15px;
+	border: 1px solid;
 }
 
 .user_column dt { text-align: center; }
-
 .user_column dd, .user_column dt { line-height: 1.8em; }
 .user_column dd { margin-bottom: 0.5em; }
-
 .user_column dd strong {
-    display: inline-block;
-    width: 5em;
-    margin-right: 0.5em;
-    padding: 0.1em 0.4em;
-    text-align: center;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+	display: inline-block;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	width: 5em;
+	margin-right: 0.5em;
+	padding: 0.1em 0.4em;
+	text-align: center;
 }
 
 .user_column dd.reputation {
-    margin-right: 1em;
-    padding: 0.1em 0.4em;
-    text-align: center;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin-right: 1em;
+	padding: 0.1em 0.4em;
+	text-align: center;
 }
 
 .user_column dd.reputation strong {
-    display: inline;
-    width: 0;
-    padding: 0;
-    margin: 0;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    -khtml-border-radius: 0;
-    border-radius: 0;
+	display: inline;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
 }
 
 /* PM Styles
 ----------------------------------------*/
 .pm { border: 1px solid; }
-
 /* pm list in compose message if mass pm is enabled */
 dl.pmlist dt { width: 60% !important; }
 dl.pmlist dt textarea { width: 95%; }
-
 dl.pmlist dd {
-	margin-left: 61% !important;
 	margin-bottom: 2px;
+	margin-left: 61% !important;
 }
 
 /* Poster meta block
 ----------------------------------------*/
 .postmeta {
-    height: 24px;
+	height: 24px;
 	margin: 0 -15px;
 	padding: 4px 15px;
-	font-weight: bold;
 	line-height: 24px;
+	font-weight: bold;
 }
 
 .postmeta a { text-decoration: none; }
 .postmeta .dropdown { float: left; }
 .posmeta .username { float: left; }
-
 .postmeta .date {
-    float: right;
+	float: right;
 	font-size: 0.9166em;
 }
 
@@ -1010,8 +880,8 @@ dl.pmlist dd {
 ----------------------------------------*/
 #faction {
 	overflow: hidden;
-    margin: 20px auto;
 	width: 960px;
+	margin: 20px auto;
 }
 
 #faction .details {
@@ -1029,7 +899,7 @@ dl.pmlist dd {
 }
 
 #faction .details dl dd {
-	float: left; 
+	float: left;
 	width: 65%;
 }
 
@@ -1039,23 +909,22 @@ dl.pmlist dd {
 }
 
 #faction .buttons {
-    clear: both;
+	clear: both;
 	margin: 0.5em 0;
 }
 
 #faction .buttons li {
 	display: inline;
 	margin-right: 0.5em;
-    list-style-type: none;
+	list-style-type: none;
 }
 
 #faction .desc_disp {
-    float: right;
-    width: 630px;
+	float: right;
+	width: 630px;
 	margin: 0 0 1em 0;
 	padding: 0;
 }
 
-#faction .desc_disp .inner {
-	padding: 0 1em 0.5em 1em;
-}
+#faction .desc_disp .inner { padding: 0 1em 0.5em 1em; }
+

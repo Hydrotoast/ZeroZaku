@@ -1,42 +1,33 @@
-/* proSilver Form Styles
+/* ZeroZaku Form Styles
 ---------------------------------------- */
 
 /* General form styles
 ----------------------------------------*/
-fieldset {
-	border: none;
-}
-
+fieldset { border: none; }
 input {
 	padding: 2px 5px;
-    border: 1px solid;
-    vertical-align: middle;
+	border: 1px solid;
+	vertical-align: middle;
 }
 
-input[type=radio], input[type=checkbox] {
-	border: none;
-}
-
+input[type=radio], input[type=checkbox] { border: none; }
 select {
 	padding: 1px;
-    vertical-align: top;
+	vertical-align: top;
 }
 
-option {
-	padding-right: 1em;
-}
-
+option { padding-right: 1em; }
 textarea {
 	width: 60%;
 	padding: 2px;
-    border: 1px solid;
+	border: 1px solid;
 	text-align: left;
 }
 
 label {
+	cursor: default;
 	padding-right: 6px;
 	line-height: 2em;
-	cursor: default;
 }
 
 label input {
@@ -44,292 +35,221 @@ label input {
 	vertical-align: middle;
 }
 
-label img {
-	vertical-align: middle;
-}
-
+label img { vertical-align: middle; }
 /* Definition list layout for forms
 ---------------------------------------- */
-fieldset dl {
-	padding: 6px 0;
-}
-
+fieldset dl { padding: 6px 0; }
 fieldset dt {
-    display: block;
+	display: block;
 	float: left;
 	width: 15em;
 	text-align: right;
 }
 
 fieldset dd {
+	margin-bottom: 3px;
 	margin-left: 16em;
 	vertical-align: top;
-	margin-bottom: 3px;
 }
 
-fieldset dd span {
-	font-size: 0.9166em;
-}
-
+fieldset dd span { font-size: 0.9166em; }
 /* Specific layout 1 */
-fieldset.fields1 dt {
-	width: 12em;
-}
-
-fieldset.fields1 dd {
-	margin-left: 12em;
-}
-
-fieldset.fields1 div {
-	margin-bottom: 3px;
-}
-
+fieldset.fields1 dt { width: 12em; }
+fieldset.fields1 dd { margin-left: 12em; }
+fieldset.fields1 div { margin-bottom: 3px; }
 /* Set it back to 0px for the reCaptcha divs: PHPBB3-9587 */
-fieldset.fields1 #recaptcha_widget_div div {
-   margin-bottom: 0;
-}
-
+fieldset.fields1 #recaptcha_widget_div div { margin-bottom: 0; }
 /* Specific layout 2 */
-fieldset.fields2 dt {
-	width: 15em;
-}
-
-fieldset.fields2 dd {
-	margin-left: 16em;
-}
-
+fieldset.fields2 dt { width: 15em; }
+fieldset.fields2 dd { margin-left: 16em; }
 /* Form elements */
 dt label {
 	font-weight: bold;
 	text-align: left;
 }
 
-dd label {
-	white-space: nowrap;
-}
-
-dd input, dd textarea {
-	margin-right: 3px;
-}
-
-dd select {
-	width: auto;
-}
-
+dd label { white-space: nowrap; }
+dd input, dd textarea { margin-right: 3px; }
+dd select { width: auto; }
 dd textarea {
-	font: 12px Verdana, Helvetica, Arial, sans-serif;
 	width: 85%;
+	font: 12px Verdana, Helvetica, Arial, sans-serif;
 }
 
-#timezone {
-	width: 95%;
-}
-
-* html #timezone {
-	width: 50%;
-}
-
+#timezone { width: 95%; }
+* html #timezone { width: 50%; }
 /* Quick-login on index page */
 fieldset.quick-login {
-	text-align: left;
 	float: right;
 	width: auto;
+	text-align: left;
 }
 
 fieldset.quick-login input.inputbox {
 	width: 140px;
-	vertical-align: middle;
 	margin-right: 5px;
+	vertical-align: middle;
 }
 
 fieldset.quick-login label {
-	white-space: nowrap;
 	padding-right: 2px;
+	white-space: nowrap;
 }
 
 fieldset.quick-login .autologin {
-	text-align: left;
-	padding-top: 10px;
 	clear: both;
+	padding-top: 10px;
+	text-align: left;
 }
 
-fieldset.quick-login dl { margin: 6px 0; padding: 0; }
+fieldset.quick-login dl {
+	margin: 6px 0;
+	padding: 0;
+}
+
 fieldset.quick-login dt { width: 6em; }
 fieldset.quick-login dd { margin-left: 7em; }
-
 /* Display options on viewtopic/viewforum pages  */
 fieldset.display-options {
-	text-align: center;
-	margin: 10px 0 10px 0;
-	padding: 6px 10px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+	margin: 10px 0 10px 0;
+	padding: 6px 10px;
+	text-align: center;
 }
 
 fieldset.display-options label {
-	white-space: nowrap;
 	padding-right: 2px;
+	white-space: nowrap;
 }
 
 fieldset.display-options a {
-	border: 1px solid;
-	padding: 3px 0.4em;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+	padding: 3px 0.4em;
+	border: 1px solid;
 }
 
 fieldset.display-options a.left, fieldset.display-options a.right { border: none; }
 fieldset.display-options a.left { padding-left: 30px; }
 fieldset.display-options a.right { padding-right: 30px; }
-
 /* Display actions for ucp and mcp pages */
 fieldset.display-actions {
+	margin: 1em 0;
+	padding-right: 1em;
 	line-height: 2em;
 	text-align: right;
 	white-space: nowrap;
-	padding-right: 1em;
-	margin: 1em 0;
 }
 
 fieldset.display-actions label {
-	white-space: nowrap;
 	padding-right: 2px;
+	white-space: nowrap;
 }
 
-fieldset.sort-options {
-	line-height: 2em;
-}
-
+fieldset.sort-options { line-height: 2em; }
 /* MCP forum selection*/
 fieldset.forum-selection {
-	margin: 5px 0 3px 0;
 	float: right;
+	margin: 5px 0 3px 0;
 }
 
 fieldset.forum-selection2 {
-	margin: 13px 0 3px 0;
 	float: right;
+	margin: 13px 0 3px 0;
 }
 
 /* Jumpbox */
 fieldset.jumpbox {
-	text-align: right;
-	margin-top: 15px;
 	height: 2.5em;
+	margin-top: 15px;
+	text-align: right;
 }
 
 fieldset.quickmod {
-	width: 50%;
 	float: right;
-	text-align: right;
+	width: 50%;
 	height: 2.5em;
+	text-align: right;
 }
 
 /* Submit button fieldset */
 fieldset.submit-buttons, .submit-button {
+	margin: 5px 0;
 	text-align: center;
 	vertical-align: middle;
-	margin: 5px 0;
 }
 
 fieldset.submit-buttons input {
-	vertical-align: middle;
 	padding-top: 3px;
 	padding-bottom: 3px;
+	vertical-align: middle;
 }
 
 /* Posting page styles
 ----------------------------------------*/
 
 /* Buttons used in the editor */
-#format-buttons {
-	margin: 10px 0 2px 0;
-}
-
-#format-buttons input, #format-buttons select {
-	vertical-align: top;
-}
-
-
+#format-buttons { margin: 10px 0 2px 0; }
+#format-buttons input, #format-buttons select { vertical-align: top; }
 /* PM Message box */
-.ucp-main #message-box textarea { width: 80% }
-.ucp-main #smiley-box { width: 19% }
-
+.ucp-main #message-box textarea { }
+.ucp-main #smiley-box { }
 /* Main message box */
 #message-box { width: 700px; }
-
 #message-box textarea {
+	width: 100%;
 	font-size: 1em;
 	text-align: left;
-	width: 100%;
 }
 
 /* Emoticons panel */
 #smiley-box {
-	width: 200px;
 	float: right;
+	width: 200px;
 }
 
-#smiley-box img {
-	margin: 3px;
-}
-
+#smiley-box img { margin: 3px; }
 /* Input field styles
 ---------------------------------------- */
 .inputbox {
+	cursor: text;
+	padding: 3px;
 	font-family: Verdana, "Verdana Ref", Geneva, Helvetica, Arial, sans-serif;
 	font-size: 1em;
-	padding: 3px;
-	cursor: text;
 }
 
-.inputbox:focus {
-	outline: 1px solid;
-}
-
-input.inputbox	{ width: 85%; }
-input.medium	{ width: 50%; }
-input.narrow	{ width: 25%; }
-input.tiny		{ width: 125px; }
-
-textarea.inputbox {
-	width: 85%;
-}
-
-.autowidth {
-	width: auto !important;
-}
-
+.inputbox:focus { outline: 1px solid; }
+input.inputbox { width: 85%; }
+input.medium { width: 50%; }
+input.narrow { width: 25%; }
+input.tiny { width: 125px; }
+textarea.inputbox { width: 85%; }
+.autowidth { width: auto !important; }
 /* Form button styles
 ---------------------------------------- */
 
 a.button1, a.button2, input.button1, input.button2, input.button3 {
+	text-shadow: 1px 1px 0 #FFFFFF;
+	width: auto !important;
+	max-height: 25px;
+	border: 1px solid;
 	font-size: 0.9166em;
 	font-weight: bold;
-	vertical-align: middle;
 	text-decoration: none !important;
-	text-shadow: 1px 1px 0 #FFFFFF;
-	border: 1px solid;
-	max-height: 25px;
-	width: auto !important;
+	vertical-align: middle;
 }
 
-input.button1 {
-	text-shadow: 1px 1px 0 #000000;
-}
-
-input.button2 {
-	padding: 4px !important;
-}
-
+input.button1 { text-shadow: 1px 1px 0 #000000; }
+input.button2 { padding: 4px !important; }
 input.button3 {
-	padding: 0;
-	margin: 0;
 	height: 12px;
+	margin: 0;
+	padding: 0;
 }
 
 /* <a> button in the style of the form buttons */
@@ -349,31 +269,28 @@ a.button1:hover, a.button2:hover, input.button1:hover, input.button2:hover {
 
 /* Topic and forum Search */
 .search-box {
-	margin-left: 5px;
 	float: left;
+	margin-left: 5px;
 }
 
 input.search {
-	border: 0;
-	height: 15px;
 	width: 132px;
+	height: 15px;
 	padding: 6px 8px 4px 26px;
+	border: 0;
 }
 
 input#add_keywords {
-	background: transparent url("{T_THEME_PATH}/images/search_bg.png") no-repeat;
-	border: 0;
-	height: 15px;
 	width: 132px;
+	height: 15px;
 	padding: 6px 8px 4px 26px;
+	border: 0;
+	background: transparent url("{T_THEME_PATH}/images/search_bg.png") no-repeat;
 }
 
-input.active#add_keywords {
-	background-position-y: 25px;
-}
-
+input.active#add_keywords { background-position-y: 25px; }
 .full { width: 95%; }
-.medium { width: 50%;}
-.narrow { width: 25%;}
-.tiny { width: 10%;}
+.medium { width: 50%; }
+.narrow { width: 25%; }
+.tiny { width: 10%; }
 

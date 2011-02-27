@@ -2,7 +2,7 @@
 
 
 #site-bottom-bar, #site-bottom-bar-frame {
-	
+
 	bottom: 0;
 	left: 20px;
 	right: 20px;
@@ -28,7 +28,7 @@
 	height: 25px;
 	_height: 26px;
 	display: block;
-	/*display:none;**/
+	/*display:none;*/
 }
 
 #site-bottom-bar-frame {
@@ -252,7 +252,7 @@
 }
 
 #site-bottom-bar-frame blockquote.bubble_status {
-   margin: 0;       
+   margin: 0;
    padding: 5px 10px;
    border: 1px solid #c9c2c1;
    background-color: #fff;
@@ -329,7 +329,7 @@
 	font-size: 18px;
 	line-height: 100%;
 	width: 100%;
-} 
+}
 
 /** Chat boxes **/
 
@@ -395,7 +395,7 @@
   font-size: 11px;
 	width: 185px;
 	height:16px;
-	overflow:hidden;  
+	overflow:hidden;
 	border: 0;
   background: #ffffff;
 }
