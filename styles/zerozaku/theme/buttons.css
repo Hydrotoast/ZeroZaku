@@ -1,6 +1,8 @@
 /* ZeroZaku Button Styles
 ---------------------------------------- */
 .button1, .button2 { text-decoration: none; }
+.button1[value=x], .button2[value=x] { padding: 1px 4px !important; }
+
 /* Rollover buttons
    Based on: http://wellstyled.com/css-nopreload-rollovers.html
 ----------------------------------------*/

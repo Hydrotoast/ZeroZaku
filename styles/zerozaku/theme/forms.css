@@ -49,19 +49,23 @@ fieldset dt {
 fieldset dd {
 	margin-bottom: 3px;
 	margin-left: 16em;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 fieldset dd span { font-size: 0.9166em; }
+
 /* Specific layout 1 */
 fieldset.fields1 dt { width: 12em; }
 fieldset.fields1 dd { margin-left: 12em; }
 fieldset.fields1 div { margin-bottom: 3px; }
+
 /* Set it back to 0px for the reCaptcha divs: PHPBB3-9587 */
 fieldset.fields1 #recaptcha_widget_div div { margin-bottom: 0; }
+
 /* Specific layout 2 */
 fieldset.fields2 dt { width: 15em; }
 fieldset.fields2 dd { margin-left: 16em; }
+
 /* Form elements */
 dt label {
 	font-weight: bold;

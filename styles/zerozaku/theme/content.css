@@ -848,11 +848,12 @@ fieldset.polls dd div {
 .pm { border: 1px solid; }
 /* pm list in compose message if mass pm is enabled */
 dl.pmlist dt { width: 60% !important; }
-dl.pmlist dt textarea { width: 95%; }
-dl.pmlist dd {
-	margin-bottom: 2px;
-	margin-left: 61% !important;
+dl.pmlist dt textarea {
+    margin-left: 12em;
+    width: 95%;
 }
+
+dl.pmlist dd { clear: both; }
 
 /* Poster meta block
 ----------------------------------------*/
