@@ -334,7 +334,7 @@ a.forumtitle:hover { text-decoration: underline; }
 /* Post body styles
 ----------------------------------------*/
 #preview .postbody { width: 690px; }
-.pm .postbody { width: 490px; }
+#preview.pm .postbody { width: 490px; }
 .postbody {
 	float: right;
 	clear: both;
