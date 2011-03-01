@@ -333,11 +333,10 @@ a.forumtitle {
 a.forumtitle:hover { text-decoration: underline; }
 /* Post body styles
 ----------------------------------------*/
-#preview .postbody { width: 690px; }
 .postbody {
 	float: right;
 	clear: both;
-	width: 741px;
+	width: 490px;
 	margin: 15px 0;
 	padding: 0;
 }
