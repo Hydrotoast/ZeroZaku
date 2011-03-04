@@ -127,10 +127,9 @@ span.banned { text-decoration: line-through; }
 	top: 21px;
 	left: -1px;
 	z-index: 9999;
-	overflow: hidden;
 	width: auto;
 	margin: 0 0 10px 0;
-	padding: 10px 1.25em 0 0;
+	padding: 10px 1.7em 0 0;
 	border-width: 0 1px 1px 1px;
 	border-style: solid;
 	font-size: 1em;
@@ -184,13 +183,56 @@ span.banned { text-decoration: line-through; }
 	text-decoration: none;
 }
 
+.dropdown ul.auxiliary {
+    overflow: visible;
+    margin-bottom: 1.25em;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: -1em;
+    background-color: transparent;
+}
+
+.dropdown ul.auxiliary, .dropdown:hover ul.auxiliary {
+    border: 0 !important;
+    -moz-box-shadow: 0 !important;
+    -webkit-box-shadow: 0 !important;
+    box-shadow: 0 !important;
+}
+
+.dropdown ul.auxiliary li {
+    display: block !important;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 1.25em !important;
+    padding-left: 9px;
+    background-color: #212121;
+    border: 0;
+}
+
+.dropdown ul.auxiliary li:after {
+	position: absolute;
+	top: 17px;
+    left: -9px;
+	z-index: -1; /* displayed under bubble */
+    border-color: transparent #404040 transparent transparent;
+	border-style: solid;
+	border-width: 10px;
+    content: "";
+}
+
+.dropdown ul.auxiliary li a {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+}
+
 /* Dropdowns used by search */
 .search .dropdown:hover span img { display: none; }
+
 /* CSS Tabs
 -------------------------------------------------*/
 .tabs ul li {
 	display: inline;
-	display: ;
 }
 
 .tabs ul li a {
