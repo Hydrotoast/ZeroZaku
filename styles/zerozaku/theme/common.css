@@ -768,4 +768,13 @@ em { font-family: "Lucida Sans", Verdana, Geneva, Arial, Helvetica, sans-serif; 
 	border-radius: 5px;
 }
 
+.tier {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
 
+.tier .inner {
+    margin: 0 auto;
+    text-align: left;
+}

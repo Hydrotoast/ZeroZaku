@@ -1544,4 +1544,10 @@ a.term {
 	border-color: transparent transparent #F0F0F0;
 }
 
-
+/* Tiers
+-------------------------------------------------*/
+#footer-tier.tier {
+    background: transparent url("{T_THEME_PATH}/images/supernova.png") scroll no-repeat;
+    margin-left: -280px;
+    padding-left: 280px;
+}

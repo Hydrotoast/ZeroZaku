@@ -26,7 +26,7 @@ hr.dashed {
 #page-header { background: #EEEEEE url("{T_THEME_PATH}/images/header_bg_light.png") scroll repeat-x; }
 #board-statistics {
 	border-color: #E0E0E0;
-	background: transparent;
+	background: #FFFFFF;
 	color: #606060;
 }
 
