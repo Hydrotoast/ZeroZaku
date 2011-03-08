@@ -1550,4 +1550,5 @@ a.term {
     background: transparent url("{T_THEME_PATH}/images/supernova.png") scroll no-repeat;
     margin-left: -280px;
     padding-left: 280px;
+    clear: both;
 }
