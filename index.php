@@ -104,7 +104,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $xml = curl_exec($ch);
 curl_close($ch);
 
-$rss = simplexml_load_string($xml);
+// $rss = simplexml_load_string($xml);
     
 if(sizeof($rss->entry))
 {
