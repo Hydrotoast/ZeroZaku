@@ -52,6 +52,11 @@ if ($portal_config['portal_recent'])
 	include($phpbb_root_path . 'portal/block/popular.'.$phpEx);
 }
 
+if ($portal_config['portal_poll']) 
+{ 
+	include($phpbb_root_path . 'portal/block/poll.'.$phpEx);
+}
+
 function get_db_stat($mode)
 {
 	global $db, $user;
