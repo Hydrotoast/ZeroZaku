@@ -1,4 +1,5 @@
-<!-- DEFINE $SIDEBAR = '1' --><!-- DEFINE $CA_PAGE = 'index' --><!-- INCLUDE overall_header.html --><!-- INCLUDE portal/_block_config.html --><!-- INCLUDE portal/block/poll.html -->
+<!-- DEFINE $SIDEBAR = '1' --><!-- DEFINE $CA_PAGE = 'index' --><!-- INCLUDE overall_header.html --><!-- INCLUDE portal/_block_config.html -->
+
 	<!-- IF S_USER_LOGGED_IN -->
 	<h2 class="cattitle"><span class="rounded">{L_MCHAT_TITLE}</span></h2>
 	<script type="text/javascript">
@@ -15,6 +16,8 @@
 	</script>
 	
 	<iframe id="shoutbox" src="{ROOT_PATH}/cometchat/modules/chatrooms/index.php?roomid=3&amp;roomname=976a0a4bb610bae5b5d07265be4652ef" ></iframe>
+	
+	<!-- INCLUDE portal/block/poll.html -->
 	<!-- ENDIF -->
 	
 	<!-- IF .tutorial -->

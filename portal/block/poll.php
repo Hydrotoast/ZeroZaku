@@ -4,7 +4,7 @@
 * @package - Board3portal
 * @version $Id: poll.php 473 2009-02-21 16:18:05Z kevin74 $
 * @copyright (c) kevin / saint ( www.board3.de/ ), (c) Ice, (c) nickvergessen ( www.flying-bits.org/ ), (c) redbull254 ( www.digitalfotografie-foren.de ), (c) Christian_N ( www.phpbb-projekt.de )
-* @based on: phpBB3 Portal by Sevdin Filiz, www.phpbb3portal.com
+* @based on: phpBB3 Portal by Sevdin Filiz, www.phpbb3index.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License 
 *
 */
@@ -75,7 +75,7 @@ if ($update && $portal_config['portal_poll_allow_vote'])
 	{
 		if (!sizeof($voted_id) || sizeof($voted_id) > $topic_data['poll_max_options'] || in_array(VOTE_CONVERTED, $cur_voted_id))
 		{
-			$redirect_url = append_sid("./portal.$phpEx");
+			$redirect_url = append_sid("./index.$phpEx");
 	
 			meta_refresh(5, $redirect_url);
 			if (!sizeof($voted_id))
@@ -154,7 +154,7 @@ if ($update && $portal_config['portal_poll_allow_vote'])
 		//, topic_last_post_time = ' . time() . " -- for bumping topics with new votes, ignore for now
 		$db->sql_query($sql);
 	
-		$redirect_url = append_sid("./portal.$phpEx");
+		$redirect_url = append_sid("./index.$phpEx");
 	
 		meta_refresh(5, $redirect_url);
 		trigger_error($user->lang['VOTE_SUBMITTED'] . '<br />' . sprintf($user->lang['RETURN_PORTAL'], '<a href="' . $redirect_url . '">', '</a>'));

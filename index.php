@@ -52,7 +52,7 @@ if ($portal_config['portal_recent'])
 	include($phpbb_root_path . 'portal/block/popular.'.$phpEx);
 }
 
-if ($portal_config['portal_poll']) 
+if ($portal_config['portal_poll_topic']) 
 { 
 	include($phpbb_root_path . 'portal/block/poll.'.$phpEx);
 }

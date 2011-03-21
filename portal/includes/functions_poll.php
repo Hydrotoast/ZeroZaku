@@ -104,8 +104,8 @@ function poll_vote_block($poll_block)
 			
 	$poll_view_str = urlencode( implode(',', $make_poll_view) );
 
-	$portalpoll_url= append_sid("./portal.$phpEx", "polls=$poll_view_str");
-	$portalvote_url= append_sid("./portal.$phpEx", "f=$forum_id&amp;t=$topic_id");
+	$portalpoll_url= append_sid("./index.$phpEx", "polls=$poll_view_str");
+	$portalvote_url= append_sid("./index.$phpEx", "f=$forum_id&amp;t=$topic_id");
 	$viewtopic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=$topic_id");
 
 	$poll_end = $data['poll_length'] + $data['poll_start'];

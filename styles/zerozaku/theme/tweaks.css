@@ -559,6 +559,8 @@ li.syntax-row-first { border-top: none; }
 
 /* portal.css
 -------------------------------------------------*/
+.polls dl { background: #FFFFFF; }
+
 
 /* inner corners */
 
@@ -728,7 +730,7 @@ div.mChatBodyFix {
 #site-bottom-bar {
 	_height: 26px;
 	display: block;
-	/*display: none;
+	/*display: none;*/
 	z-index: 100;
 	height: 25px;
 	border: solid #999999;
@@ -753,7 +755,7 @@ div.mChatBodyFix {
 }
 
 #site-bottom-bar-frame ul li > a { display: block; }
-#site-bottom-bar-frame ul li:hover { /*	color: #fff; }
+#site-bottom-bar-frame ul li:hover { /*	color: #fff;*/ }
 #site-bottom-bar-frame ul li > a:hover {
 	background-color: #6D84B4;
 	color: #fff;
@@ -1552,3 +1554,4 @@ a.term {
     padding-left: 280px;
     clear: both;
 }
+
