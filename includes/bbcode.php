@@ -492,6 +492,15 @@ class bbcode
 						);
 					}
                 break;
+				
+				case 14:
+					$this->bbcode_cache[$bbcode_id] = array(
+						'preg' => array(
+							'#\[video:$uid\]((.*?))\[/video:$uid\]#ise' => "\$this->bbcode_second_pass_video('\$1')",
+						)
+					);
+				
+				break;
 
 				default:
 					if (isset($rowset[$bbcode_id]))
@@ -629,7 +638,8 @@ class bbcode
             'bimg'					=> array('{URL}'		=> '$1', '{REIMG_PROPERTIES}'	=> '$2'),
 			'flash'					=> array('{WIDTH}'		=> '$1', '{HEIGHT}'			=> '$2', '{URL}'	=> '$3'),
 			'url'					=> array('{URL}'		=> '$1', '{DESCRIPTION}'	=> '$2'),
-			'email'					=> array('{EMAIL}'		=> '$1', '{DESCRIPTION}'	=> '$2')
+			'email'					=> array('{EMAIL}'		=> '$1', '{DESCRIPTION}'	=> '$2'),
+			'video'                 => array('{EMBED}'      => '$1'),
 		);
 
 		$tpl = preg_replace('/{L_([A-Z_]+)}/e', "(!empty(\$user->lang['\$1'])) ? \$user->lang['\$1'] : ucwords(strtolower(str_replace('_', ' ', '\$1')))", $tpl);
@@ -712,6 +722,72 @@ class bbcode
 		return $quote;
 	}
 
+	/**
+	* Second parse video tag
+	*/
+	function bbcode_second_pass_video($url)
+	{	
+		$ytregex = "~^(http:\/\/)?([a-zA-Z0-9\_\-])*(\.)?(youtube){1}(\.)[a-z]*~";
+		$dmregex = "~^(http:\/\/)?([a-zA-Z0-9\_\-])*(\.)?(dailymotion){1}(\.)[a-z]*~";
+		$vmregex = "~^(http:\/\/)?([a-zA-Z0-9\_\-])*(\.)?(vimeo){1}(\.)[a-z]*~";
+		$ggregex = "~^(http:\/\/)?(video\.google){1}(\.)[a-z]*~";
+	
+		if (preg_match($ytregex, $url))
+		{
+			//This is youtube.  process the url to get the video code.
+			$tubelink = split("\?", $url);
+			$querystr = split("#", $tubelink[1]);
+			$params = split("&", $querystr[0]);
+			$vidcode = 'nothing';
+			foreach ($params as $val)
+			{
+				$val_list = split("=", $val);
+				if	($val_list[0] == "v")
+				{
+					$vidcode = $val_list[1];
+				}
+			}
+			$embed = '<iframe title="YouTube video player" width="425" height="349" src="http://www.youtube.com/embed/' . $vidcode . '" frameborder="0" allowfullscreen></iframe>';
+		
+		} elseif (preg_match($dmregex, $url)) {
+			//this is dailymotion.
+			$cleanurl = preg_replace("~(http:\/\/)~", "", $url);
+			$urlstuff = split("\/", $cleanurl);
+			$videodata = split("_", $urlstuff[2]);
+			$vidcode = $videodata[0];
+			$embed = '<object width="425" height="349"><param name="movie" value="http://www.dailymotion.com/swf/video/' . $vidcode . '?theme=none"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><param name="wmode" value="transparent"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/' . $vidcode . '?theme=none" width="425" height="349" wmode="direct" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
+	
+		} elseif (preg_match($vmregex, $url)){
+			//this is a vimeo video.  process the url.
+			$url = preg_replace("~(http:\/\/)~", "", $url);
+			$cleanurl = split("#", $url);
+			$urlstuff = split('/', $cleanurl[0]);
+			$vidcode = $urlstuff[1];
+			$embed = '<iframe src="http://player.vimeo.com/video/' . $vidcode . '" width="425" height="239" frameborder="0"></iframe>';
+	
+		} elseif (preg_match($ggregex, $url)){
+			//google video.  you know the drill
+			$googlelink = split("\?", $url);
+			$querystr = split("#", $googlelink[1]);
+			$params = split("&", $querystr[0]);
+			$vidcode = 'nothing';
+			foreach ($params as $val)
+			{
+				$val_list = split("=", $val);
+				if	($val_list[0] == "docid")
+				{
+					$vidcode = $val_list[1];
+				}
+			}
+			
+			$embed = '<object width="425" height="346"><param name="movie" value="http://video.google.com/googleplayer.swf?docid=' . $vidcode . '&hl=en&fs=true"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><param name="wmode" value="transparent"></param><embed id="VideoPlayback" src="http://video.google.com/googleplayer.swf?docid=' . $vidcode . '&hl=en&fs=true" style="width:425px;height:346px" allowFullScreen="true" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></object>';
+	
+		} else {
+			$embed = 'Unsupported video: <pre>' . $url . '</pre>';
+		}
+		return $embed;
+	}
+	
 	/**
 	* Second parse code tag
 	*/

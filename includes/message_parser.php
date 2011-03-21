@@ -123,7 +123,8 @@ class bbcode_firstpass extends bbcode
 			'u'				=> array('bbcode_id' => 7,	'regexp' => array('#\[u\](.*?)\[/u\]#ise' => "\$this->bbcode_underline('\$1')")),
 			'list'			=> array('bbcode_id' => 9,	'regexp' => array('#\[list(?:=(?:[a-z0-9]|disc|circle|square))?].*\[/list]#ise' => "\$this->bbcode_parse_list('\$0')")),
 			'email'			=> array('bbcode_id' => 10,	'regexp' => array('#\[email=?(.*?)?\](.*?)\[/email\]#ise' => "\$this->validate_email('\$1', '\$2')")),
-			'flash'			=> array('bbcode_id' => 11,	'regexp' => array('#\[flash=([0-9]+),([0-9]+)\](.*?)\[/flash\]#ie' => "\$this->bbcode_flash('\$1', '\$2', '\$3')"))
+			'flash'			=> array('bbcode_id' => 11,	'regexp' => array('#\[flash=([0-9]+),([0-9]+)\](.*?)\[/flash\]#ie' => "\$this->bbcode_flash('\$1', '\$2', '\$3')")),
+			'video'         => array('bbcode_id' => 14, 'regexp' => array('#\[video\](.*)\[/video\]#iUe' => "\$this->bbcode_video('\$1')"))
 		);
 
 		// Zero the parsed items array
@@ -190,6 +191,20 @@ class bbcode_firstpass extends bbcode
 		return str_replace($str_from, $str_to, $text);
 	}
 
+	
+	/**
+	* Parse video tag
+	*/
+	function bbcode_video($in)
+	{
+		if (!$this->check_bbcode('video', $in))
+	    {
+			return $in;
+	    }
+		
+	    return '[video:' . $this->bbcode_uid . ']' . $in . '[/video:' . $this->bbcode_uid . ']';
+	}
+	
 	/**
 	* Parse size tag
 	*/
