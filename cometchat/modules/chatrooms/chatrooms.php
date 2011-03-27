@@ -208,7 +208,8 @@ function heartbeat() {
 				FROM cometchat_chatroommessages cr
 				JOIN $usertable m ON m.$usertable_userid = cr.userid 
 				WHERE cr.chatroomid = '".mysql_real_escape_string($_POST['currentroom'])."' 
-					AND cr.id > '".mysql_real_escape_string($_POST['timestamp'])."' 
+					AND cr.id > '".mysql_real_escape_string($_POST['timestamp'])."'
+                    AND m.$usertable_userid <> $userid
 				ORDER BY cr.id DESC");
 			$reverse = 0;
 		}

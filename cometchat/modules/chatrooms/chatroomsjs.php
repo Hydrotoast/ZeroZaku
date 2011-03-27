@@ -139,7 +139,7 @@ if ($autoLogin != 0) {
 				$(chatboxtextarea).focus();
 
 				if (message != '') {
-					$.post("chatrooms.php?action=sendmessage", {message: message, currentroom: currentroom, aid: _aid} , function(data){				
+					$.post("chatrooms.php?action=sendmessage", {message: message, currentroom: currentroom, aid: _aid} , function(data){
 						if (data) {
 							addMessage('1', message, '1', '1', data,1,Math.floor(new Date().getTime()/1000));
 							$("#currentroom_convo").scrollTop($("#currentroom_convo")[0].scrollHeight);

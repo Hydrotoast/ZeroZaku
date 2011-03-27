@@ -280,7 +280,17 @@ function fetchMessages() {
 
 	if (defined('USE_COMET') && USE_COMET == 1) { return; }
 	
-	$sql = ("select cometchat.id, cometchat.from, cometchat.to, cometchat.message, cometchat.sent, cometchat.read from cometchat where ((cometchat.to = '".mysql_real_escape_string($userid)."' and cometchat.direction <> 2) or (cometchat.from = '".mysql_real_escape_string($userid)."' and cometchat.direction <> 1)) and (cometchat.id > '".mysql_real_escape_string($_POST['timestamp'])."' or (cometchat.to = '".mysql_real_escape_string($userid)."' and cometchat.read != 1)) order by cometchat.id");
+	$sql = "SELECT cometchat.id, cometchat.from, cometchat.to, cometchat.message, cometchat.sent, cometchat.read
+        FROM cometchat
+        WHERE ((cometchat.to = '".mysql_real_escape_string($userid)."'
+            AND cometchat.direction <> 2) OR (cometchat.from = '".mysql_real_escape_string($userid)."' AND cometchat.direction <> 1))
+            AND (cometchat.id > '".mysql_real_escape_string($_POST['timestamp'])."' OR (cometchat.to = '".mysql_real_escape_string($userid)."' AND cometchat.read != 1))";
+
+    if ($_POST['timestamp'] != 0) {
+        $sql .= "AND cometchat.from <> $userid";
+    }
+
+    $sql .= 'ORDER BY cometchat.id';
 	$query = mysql_query($sql);
 	if (defined('DEV_MODE') && DEV_MODE == '1') { echo mysql_error(); }
  
