@@ -51,7 +51,7 @@ function get_mutual_friends($user_id)
 
 function get_recommended_friends()
 {
-    global $template, $db, $user;
+    global $template, $db, $user, $phpbb_root_path, $phpEx;
     
 	// Get my friends
 	$sql = 'SELECT u.user_id
@@ -99,6 +99,7 @@ function get_recommended_friends()
 	    // Set template variables
 		while($row = $db->sql_fetchrow($result))
 		{
+			$zebra_id = $row['zebra_id'];
 		    if($zebra_id !== $user->data['user_id'])
 		    {
 		        $zebra_id = (in_array($row['zebra_id'], $friends)) ? $row['user_id'] : $row['zebra_id'];
