@@ -1815,7 +1815,7 @@ $template->assign_vars(array(
 	'S_SAVE_ALLOWED'			=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $mode != 'edit') ? true : false,
 	'S_HAS_DRAFTS'				=> ($auth->acl_get('u_savedrafts') && $user->data['is_registered'] && $post_data['drafts']) ? true : false,
 	'S_FORM_ENCTYPE'			=> $form_enctype,
-    'S_FIRST_POST'				=> ($post_id == $post_data['topic_first_post_id']) ? true : false,
+    'S_FIRST_POST'				=> ($mode === 'edit' && $post_id == $post_data['topic_first_post_id']) ? true : false,
     // BEGIN Term
     'S_MANAGE_TERM'				=> $manage_term,
     // END Term

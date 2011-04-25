@@ -653,7 +653,7 @@ function generate_rss(&$forum_data)
 */
 function generate_ad(&$forum_id)
 {
-    global $db, $template;
+    global $db, $template, $phpbb_root_path;
     
     $sql = 'SELECT ad.ad_id, ad.ad_url, ad.ad_img, ad.ad_text, ad.ad_enable, af.affiliate_name FROM ' . ADS_TABLE . ' ad
     	JOIN ' . AFFILIATE_TABLE . ' af
