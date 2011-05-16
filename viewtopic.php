@@ -1204,7 +1204,7 @@ while ($row = $db->sql_fetchrow($result))
 		// Start Ultimate Points
 		'points'			=> $row['user_points'],
 		'points_lock'		=> $pointslock,
-		'bank_lock'			=> $banklock,
+		'bank_lock'			=> ($points_config['bank_enable']) ? $banklock : '',
 		'bank_account'		=> $has_account,
 		// End Ultimate Points
 		// Make sure the icon actually exists
@@ -1316,7 +1316,7 @@ while ($row = $db->sql_fetchrow($result))
 				// Start Ultimate Points
 				'points'		=> $row['user_points'],
 				'points_lock'	=> $pointslock,
-				'bank_lock'		=> $banklock,
+				'bank_lock'		=> ($points_config['bank_enable']) ? $banklock : '',
 				'bank_account'	=> $has_account,
 				// End Ultimate Points
 
