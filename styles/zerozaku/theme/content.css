@@ -6,8 +6,10 @@ ul.topiclist {
 }
 
 ul.topiclist li {
+	clear: both;
 	display: block;
 	margin: 0;
+	overflow: hidden;
 	list-style-type: none;
 }
 
@@ -246,6 +248,7 @@ dl.icon dt li {
 }
 
 dl.meta {
+	height: 24px;
 	font-size: 0.9166em;
 	font-weight: bold;
 }
