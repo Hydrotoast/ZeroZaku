@@ -1400,7 +1400,7 @@ if ($submit || $preview || $refresh)
 				'topic_last_post_id'	=> (isset($post_data['topic_last_post_id'])) ? (int) $post_data['topic_last_post_id'] : 0,
 				'topic_time_limit'		=> (int) $post_data['topic_time_limit'],
 				'topic_attachment'		=> (isset($post_data['topic_attachment'])) ? (int) $post_data['topic_attachment'] : 0,
-			    'topic_terms'			=> (isset($post_data['topic_terms']) ? $post_data['topic_terms'] : array(),
+			    'topic_terms'			=> (isset($post_data['topic_terms'])) ? $post_data['topic_terms'] : array(),
 				'post_id'				=> (int) $post_id,
 				'topic_id'				=> (int) $topic_id,
 				'forum_id'				=> (int) $forum_id,
@@ -1439,7 +1439,7 @@ if ($submit || $preview || $refresh)
 			{
 				$data['topic_replies_real'] = $post_data['topic_replies_real'];
 				$data['topic_replies'] = $post_data['topic_replies'];
-				$data['topic_terms'] = $post_data['topic_terms'];
+				$data['topic_terms'] = (isset($post_data['topic_terms'])) ?  $post_data['topic_terms'] : array();
 			}
 
 			// The last parameter tells submit_post if search indexer has to be run
