@@ -1249,12 +1249,12 @@ function parse_me(&$item, $key, $preview = false)
 			{
 				$sh_bbcode->is_sig = false;
 				$sh_bbcode->pm = true;
-				$sh_bbcode->code_post_id = $item['MSG_ID'];
-				$message = $sh_bbcode->parse($item['MESSAGE']);
+				$sh_bbcode->code_post_id = (isset($item['MSG_ID'])) ? $item['MSG_ID'] : '';
+				$message = (isset($item['MESSAGE'])) ? $sh_bbcode->parse($item['MESSAGE']) : '';
 				$sh_bbcode->code_post_id = 0;
 				$item['MESSAGE'] = $message;
 				$sh_bbcode->is_sig = true;
-				$message = $sh_bbcode->parse($item['SIGNATURE']);
+				$message = (isset($item['SIGNATURE'])) ? $sh_bbcode->parse($item['SIGNATURE']) : '';
 				$item['SIGNATURE'] = $message;
 			}
 			elseif ( isset($item['SIGNATURE_PREVIEW']) )
@@ -1270,7 +1270,7 @@ function parse_me(&$item, $key, $preview = false)
 		if( isset($item['MESSAGE']) )
 		{
 			$sh_bbcode->is_sig = false;
-			$sh_bbcode->code_post_id = $item['POST_ID'];
+			$sh_bbcode->code_post_id = (isset($item['POST_ID'])) ? $item['POST_ID'] : '';
 			$message = $sh_bbcode->parse($item['MESSAGE']);
 			$sh_bbcode->code_post_id = 0;
 			if( $sh_bbcode->in_search )
