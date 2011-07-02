@@ -4663,7 +4663,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		$l_new_requests = ($friend_requests == 1) ? $user->lang['NEW_FRIEND_REQUEST'] : $user->lang['NEW_FRIEND_REQUESTS'];
 		
 		$template->assign_vars(array(
-			'NEW_REQUESTS'		=> (($l_new_requests) ? sprintf($l_new_requests, $row['friend_requests']) : false),
+			'NEW_REQUESTS'		=> (($l_new_requests) ? sprintf($l_new_requests, $friend_requests : false),
 			'U_REQUESTS_LIST'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=pending'),
 		));
 	}
