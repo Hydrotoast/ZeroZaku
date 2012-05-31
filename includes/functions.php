@@ -4620,7 +4620,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'SITE_LOGO_IMG'			=> $user->img('site_logo', $config['sitename'] . ' - ' . $config['site_desc']),
 		// BEGIN INSTANT MESSENGER
 		'S_SERVER_NAME'			=> $config['server_name'], 
-		'S_USER_STATUS'			=> $user->data['user_status'],
+		'S_USER_STATUS'			=> isset($user->data['user_status']) ? $user->data['user_status'] : '',
 		'S_ALLOW_IM'			=> $config['im_disable'] == 0 ? true : false,
 		'S_USER_ALLOW_IM'		=> $config['im_disable'] == 1 ? false : ( $config['im_override_cfg'] == 1 ? true : ( $user->data['user_deny_im'] == 0 ? true : false)), 
 		'S_USER_IM_SOUND'		=> $config['im_override_cfg'] == 1 ? ( $config['im_allow_sound'] == 1 ? '1' : '0') : ( $user->data['user_sound_im'] == 1 ? '1' : '0') ,
@@ -4663,7 +4663,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		$l_new_requests = ($friend_requests == 1) ? $user->lang['NEW_FRIEND_REQUEST'] : $user->lang['NEW_FRIEND_REQUESTS'];
 		
 		$template->assign_vars(array(
-			'NEW_REQUESTS'		=> (($l_new_requests) ? sprintf($l_new_requests, $friend_requests : false),
+			'NEW_REQUESTS'		=> sprintf($l_new_requests ? $friend_requests : false),
 			'U_REQUESTS_LIST'	=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;mode=pending'),
 		));
 	}
