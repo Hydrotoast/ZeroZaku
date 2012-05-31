@@ -113,7 +113,7 @@ function get_recommended_friends()
 		}
 		
 		$template->assign_vars(array(
-		    'REC_FRIEND_TOTAL' => $result->num_rows,
+		    'REC_FRIEND_TOTAL' => sizeof($result),
 		));
 		
 		$db->sql_freeresult($result);
