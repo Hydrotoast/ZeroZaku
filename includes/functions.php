@@ -4670,7 +4670,9 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// End MUTUAL FRIEND REQUESTS
 
 	// application/xhtml+xml not used because of IE
-	header('Content-type: text/html; charset=UTF-8');
+	// I will no longer support IE
+	header('Content-Type: application/xhtml+xml; charset=UTF-8');
+	// header('Content-type: text/html; charset=UTF-8');
 
 	header('Cache-Control: private, no-cache="set-cookie"');
 	header('Expires: 0');

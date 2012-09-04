@@ -499,7 +499,7 @@ switch ($mode)
 	// count some stuff up for the pagination
 	$pagination_friend = append_sid($phpbb_root_path . 'memberlist.' . $phpEx ,'mode=viewprofile&amp;u='.$user_id);
     
-	$total_friends = $result->num_rows;
+	$total_friends = sizeof($result); //->num_rows;
 	$db->sql_freeresult($result);
 
 	$template->assign_vars(array(
@@ -872,7 +872,7 @@ switch ($mode)
 				'USE_BANK'			=> $points_config['bank_enable'],
 				'P_NAME'			=> $config['points_name'],
 				'U_LOCKED'			=> !$locked,
-				'U_BLOCKED'			=> !$blocked,
+				'U_BLOCKED'			=> isset($blocked) ? !$blocked : true,
 				'USE_POINTS'		=> $config['points_enable'],
 				'USE_IMAGES_POINTS'	=> $points_config['images_memberlist_enable'],
 			));

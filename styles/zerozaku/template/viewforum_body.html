@@ -2,23 +2,36 @@
 
 <!-- IF FORUM_DESC or FORUM_SEO_DESC -->
 	<div class="panel smooth <!-- IF FORUM_SEO_DESC -->tag<!-- ENDIF -->">
-		<!-- IF FORUM_SEO_DESC --><img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" /><h1 class="infotitle">{FORUM_SEO_KEY}</h1><p>{FORUM_SEO_DESC}</p>
-		<!-- ELSEIF FORUM_DESC --><img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" /><p>{FORUM_DESC}</p><!-- ENDIF -->
+		<!-- IF FORUM_SEO_DESC -->
+		<img src="{T_THEME_PATH}/images/tags/speechbubble_2.png" alt="{FORUM_SEO_KEY}" />
+		<h1 class="infotitle">{FORUM_SEO_KEY}</h1>
+		<p>{FORUM_SEO_DESC}</p>
+		<!-- ELSEIF FORUM_DESC -->
+		<img src="{T_THEME_PATH}/images/info.png" alt="Forum Description" />
+		<p>{FORUM_DESC}</p>
+		<!-- ENDIF -->
 	</div>
 <!-- ENDIF -->
 
-<!-- IF AD_URL --><div class="center"><a href="{AD_URL}" title="{AD_TEXT}" class="ad" rel="{AD_ID}" target="_blank"><img src="{AD_IMG}" alt="{AD_TEXT}" /></a></div><!-- ENDIF -->
+<!-- IF AD_URL -->
+<div class="center">
+	<a href="{AD_URL}" title="{AD_TEXT}" class="ad" rel="{AD_ID}" target="_blank">
+		<img src="{AD_IMG}" alt="{AD_TEXT}" />
+	</a>
+</div><!-- ENDIF -->
 
 <!-- IF .rss -->
 <div class="aggro">
 	<h2 class="aggro_head">{FEED_NAME}</h2>
 <!-- BEGIN rss -->
-	<div class="aggro_item_quad video"><a href="{rss.LINK}">
-		<p>
-			<strong>{rss.TITLE}</strong>
-			<br /><span>{rss.DATE}</span>
-		</p>
-	</a></div>
+	<div class="aggro_item_quad video">
+		<a href="{rss.LINK}">
+			<p>
+				<strong>{rss.TITLE}</strong>
+				<br /><span>{rss.DATE}</span>
+			</p>
+		</a>
+	</div>
 <!-- END rss -->
 </div>
 <!-- ENDIF -->
@@ -26,8 +39,22 @@
 <!-- IF S_HAS_SUBFORUM -->
 <!-- IF not S_IS_BOT and U_MARK_FORUMS -->
 <ul class="linklist">
-	<!-- IF MODERATORS --><li class="moderators"><strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}</li><!-- ENDIF -->
-	<li class="rightside"><a class="button2 mark-read" href="{U_MARK_FORUMS}"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_FORUMS_READ}</a></li>
+	<!-- IF MODERATORS -->
+	<li class="moderators">
+		<strong>
+			<!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}
+			<!-- ELSE -->{L_MODERATORS}
+			<!-- ENDIF -->:
+		</strong>
+		{MODERATORS}
+	</li>
+	<!-- ENDIF -->
+	<li class="rightside">
+		<a class="button2 mark-read" href="{U_MARK_FORUMS}">
+			<img src="{T_THEME_PATH}/images/eye.png" />
+			{L_MARK_FORUMS_READ}
+		</a>
+	</li>
 </ul>
 <!-- ENDIF -->
 	<!-- INCLUDE forumlist_body.html -->
@@ -36,14 +63,12 @@
 <!-- IF S_FORUM_RULES -->
 	<div class="rules">
 		<div class="inner">
-
 		<!-- IF U_FORUM_RULES -->
-			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
 		<!-- ELSE -->
-			<strong>{L_FORUM_RULES}</strong><br />
-			{FORUM_RULES}
+		<strong>{L_FORUM_RULES}</strong><br />
+		{FORUM_RULES}
 		<!-- ENDIF -->
-
 		</div>
 	</div>
 <!-- ENDIF -->
@@ -53,7 +78,15 @@
 
 	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 		<div class="buttons">
-			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><a href="{U_POST_NEW_TOPIC}"><span></span><!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_NEW_TOPIC}<!-- ENDIF --></a></div>
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->"
+			title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->">
+				<a href="{U_POST_NEW_TOPIC}">
+					<span></span>
+					<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}
+					<!-- ELSE -->{L_NEW_TOPIC}
+					<!-- ENDIF -->
+				</a>
+			</div>
 		</div>
 	<!-- ENDIF -->
 
@@ -71,9 +104,21 @@
 
 	<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
 		<div class="pagination">
-			<!-- IF not S_IS_BOT and U_MARK_TOPICS --><a class="button2 mark-read" href="{U_MARK_TOPICS}" accesskey="m"><img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF not S_IS_BOT and U_MARK_TOPICS -->
+			<a class="button2 mark-read" href="{U_MARK_TOPICS}" accesskey="m">
+				<img src="{T_THEME_PATH}/images/eye.png" /> {L_MARK_TOPICS_READ}
+			</a> &bull;
+			<!-- ENDIF -->
+			<!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
 			<!-- IF PAGE_NUMBER -->
-				<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+				<!-- IF PAGINATION -->
+				&bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">
+					{PAGE_NUMBER}
+				</a> &bull;
+				<span>{PAGINATION}</span>
+				<!-- ELSE -->
+				&bull; {PAGE_NUMBER}
+				<!-- ENDIF -->
 			<!-- ENDIF -->
 		</div>
 	<!-- ENDIF -->
@@ -97,7 +142,12 @@
 			<div class="inner">
 
 			<div class="content">
-				<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
+				<h3>
+					<a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>
+					<!-- IF S_REGISTER_ENABLED -->
+					&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a>
+					<!-- ENDIF -->
+				</h3>
 
 				<fieldset class="fields1">
 				<dl>
@@ -107,7 +157,9 @@
 				<dl>
 					<dt><label for="password">{L_PASSWORD}:</label></dt>
 					<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" /></dd>
-					<!-- IF S_AUTOLOGIN_ENABLED --><dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd><!-- ENDIF -->
+					<!-- IF S_AUTOLOGIN_ENABLED -->
+					<dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="3" /> {L_LOG_ME_IN}</label></dd>
+					<!-- ENDIF -->
 					<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="4" /> {L_HIDE_ME}</label></dd>
 				</dl>
 				<dl>
@@ -134,46 +186,92 @@
 <!-- DEFINE $STICKY = 0 -->
 <!-- BEGIN topicrow -->
 
-<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
+	<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
 	</ul></li></ul>
-<!-- ENDIF -->	
+	<!-- ENDIF -->	
 
-<!-- IF topicrow.S_FIRST_ROW and not topicrow.S_POST_STICKY or not topicrow.S_TOPIC_TYPE_SWITCH -->
+	<!-- IF topicrow.S_FIRST_ROW and not topicrow.S_POST_STICKY or not topicrow.S_TOPIC_TYPE_SWITCH -->
 	<ul class="topiclist forums">
 	<li class="row">
 		<dl class="meta">
-			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
+			<dt class="forum">
+				<!-- IF S_DISPLAY_ACTIVE -->
+				{L_ACTIVE_TOPICS}
+				<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->
+				{L_ANNOUNCEMENTS}
+				<!-- ELSE -->
+				{L_TOPICS}
+				<!-- ENDIF -->
+			</dt>
 			<dd class="stats">{L_STATS}</dd>
 			<dd class="lastpost">{L_LAST_POST}</dd>
 		</dl>
 	</li>
 	<li><ul class="topiclist topics">	
-<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and topicrow.S_POST_STICKY and $STICKY eq 0 -->
+	<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and topicrow.S_POST_STICKY and $STICKY eq 0 -->
 	<!-- DEFINE $STICKY = 1 -->
+	</ul></li></ul>
 	<ul class="topiclist forums">
 	<li class="row">
 		<dl class="meta">
-			<dt class="forum"><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->{L_POST_STICKY}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
+			<dt class="forum">
+				<!-- IF S_DISPLAY_ACTIVE -->
+				{L_ACTIVE_TOPICS}
+				<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and (topicrow.S_POST_ANNOUNCE or topicrow.S_POST_GLOBAL) -->
+				{L_POST_STICKY}
+				<!-- ELSE -->
+				{L_TOPICS}
+				<!-- ENDIF -->
+			</dt>
 			<dd class="stats">{L_STATS}</dd>
 			<dd class="lastpost">{L_LAST_POST}</dd>
 		</dl>
 	</li>
 	<li><ul class="topiclist topics">
-<!-- ENDIF -->
+	<!-- ENDIF -->
 
 	<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL  --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED or topicrow.S_TOPIC_DELETED --> reported<!-- ENDIF -->">
 		<dl class="icon">
 			<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ELSE --> style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat; background-position: 10px center"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
-				<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle"><!-- IF topicrow.S_TOPIC_REPORTED --><span class="meta">[reported]</span><!-- ENDIF -->{topicrow.TOPIC_TITLE}</a>
-				<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
-				<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
-				<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
-				<br /><span class="author"><!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL}</span>
+				<!-- IF topicrow.S_UNREAD_TOPIC -->
+				<a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a>
+					<!-- ENDIF -->
+					<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">
+					<!-- IF topicrow.S_TOPIC_REPORTED -->
+					<span class="meta">[reported]</span>
+					<!-- ENDIF -->
+					{topicrow.TOPIC_TITLE}
+				</a>
+				<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED -->
+				<a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a>
+				<!-- ENDIF -->
+				<!-- IF topicrow.S_TOPIC_REPORTED -->
+				<a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a>
+				<!-- ENDIF -->
+				<!-- IF topicrow.PAGINATION -->
+				<strong class="pagination">
+					<span>{topicrow.PAGINATION}</span>
+				</strong>
+				<!-- ENDIF -->
+				<br />
+				<span class="author">
+					<!-- IF topicrow.ATTACH_ICON_IMG -->
+					{topicrow.ATTACH_ICON_IMG}
+					<!-- ENDIF -->
+					{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL}
+				</span>
 			</dt>
-			<dd class="stats">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn><br />{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
+			<dd class="stats">
+				{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn>
+				<br />{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn>
+			</dd>
 			<dd class="lastpost">
 				{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
-				<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br /><span class="date">{topicrow.LAST_POST_TIME}</span>
+				<!-- IF not S_IS_BOT -->
+				<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a>
+				<!-- ENDIF -->
+				<br />
+				<span class="date">{topicrow.LAST_POST_TIME}</span>
 			</dd>
 		</dl>
 	</li>
@@ -183,10 +281,11 @@
 </div>
 <!-- ENDIF -->
 
-<!-- BEGINELSE -->
+	<!-- BEGINELSE -->
 	<!-- IF S_IS_POSTABLE and not S_IS_LOCKED -->
 	<div class="panel info">
-		<img src="{T_THEME_PATH}/images/info.png" alt="{L_NO_TOPICS}" /><p><strong>{L_NO_TOPICS}</strong>
+		<img src="{T_THEME_PATH}/images/info.png" alt="{L_NO_TOPICS}" />
+		<p><strong>{L_NO_TOPICS}</strong></p>
 	</div>
 	
 			</ul>
@@ -195,21 +294,21 @@
 	<!-- ENDIF -->
 <!-- END topicrow -->
 
-<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
+	<!-- IF S_SELECT_SORT_DAYS and not S_DISPLAY_ACTIVE -->
 	<form method="post" action="{S_FORUM_ACTION}">
 		<fieldset class="display-options">
 			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
 			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-	<!-- IF not S_IS_BOT -->
+			<!-- IF not S_IS_BOT -->
 			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label>
 			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
 			<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
-	<!-- ENDIF -->
+			<!-- ENDIF -->
 		</fieldset>
 	</form>
-<!-- ENDIF -->
+	<!-- ENDIF -->
 
-<!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
+	<!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
 	<div class="topic-actions">
 		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
 		<div class="buttons">
@@ -229,27 +328,42 @@
 		</div>
 		<!-- ENDIF -->
 	</div>
-<!-- ENDIF -->
+	<!-- ENDIF -->
 
 <!-- IF QUICK_REPLY --><!-- INCLUDE quick_reply.html --><!-- ENDIF -->
 
-<!-- IF FORUM_SEO_BOTTOM --><br /><div><span>{FORUM_SEO_BOTTOM}</span></div><!-- ENDIF -->
+<!-- IF FORUM_SEO_BOTTOM -->
+<br />
+<div>
+	<span>{FORUM_SEO_BOTTOM}</span>
+</div>
+<!-- ENDIF -->
 
 <!-- INCLUDE jumpbox.html -->
 
 <div id="board-statistics" class="rounded">
 	<!-- IF S_DISPLAY_ONLINE_LIST -->
-		<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
-		<p>{LOGGED_IN_USER_LIST}</p>
+	<h3>
+		<!-- IF U_VIEWONLINE -->
+		<a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a>
+		<!-- ELSE -->
+		{L_WHO_IS_ONLINE}
+		<!-- ENDIF -->
+	</h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
 	<!-- ENDIF -->
 	
 	<!-- IF S_DISPLAY_POST_INFO -->
-		<h3>{L_FORUM_PERMISSIONS}</h3>
-		<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
+	<h3>{L_FORUM_PERMISSIONS}</h3>
+	<p>
+		<!-- BEGIN rules -->
+		{rules.RULE}<br />
+		<!-- END rules -->
+	</p>
 	<!-- ENDIF -->
 </div>
 <!-- IF .faction_member -->
-<h2 class="user-tag-head"">{L_FACTION_MEMBERS}</h2>
+<h2 class="user-tag-head">{L_FACTION_MEMBERS}</h2>
 <div class="user-tags">
     <!-- BEGIN faction_member -->
     <dl class="user-tag">
