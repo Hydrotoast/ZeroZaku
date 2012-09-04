@@ -42,7 +42,7 @@ function get_mutual_friends($user_id)
 		
 		$template->assign_vars(array(
 		    'MF'		  => true,
-		    'MF_TOTAL'    => $result->num_rows
+		    'MF_TOTAL'    => (isset($result->num_rows) ? $result->num_rows : 0)
 		));
 		
 		$db->sql_freeresult($result);
