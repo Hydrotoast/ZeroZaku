@@ -14,93 +14,129 @@
 				<div class="articlebody">
 					<div class="hb_container">
 						<!-- IF U_STATUS or U_DELETE or U_EDIT or U_HISTORY and not S_IS_BOT -->
-							<ul class="hb">
-								<!-- IF U_EDIT --><li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_ARTICLE}"><span>{L_EDIT_ARTICLE}</span></a></li><!-- ENDIF -->
-								<!-- IF U_DELETE --><li class="delete-icon"><a href="{U_DELETE}" title="{L_DELETE_ARTICLE}"><span>{L_DELETE_ARTICLE}</span></a></li><!-- ENDIF -->
-								<!-- IF U_STATUS --><li class="report-icon"><a href="{U_STATUS}" title="{L_CHANGE_STATUS}"><span>{L_CHANGE_STATUS}</span></a></li><!-- ENDIF -->
-								<!-- IF U_HISTORY --><li class="info-icon"><a href="{U_HISTORY}" title="{L_HISTORY}"><span>{L_HISTORY}</span></a></li><!-- ENDIF -->
-							</ul>								
+						<ul class="hb">
+							<!-- IF U_EDIT --><li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_ARTICLE}"><span>{L_EDIT_ARTICLE}</span></a></li><!-- ENDIF -->
+							<!-- IF U_DELETE --><li class="delete-icon"><a href="{U_DELETE}" title="{L_DELETE_ARTICLE}"><span>{L_DELETE_ARTICLE}</span></a></li><!-- ENDIF -->
+							<!-- IF U_STATUS --><li class="report-icon"><a href="{U_STATUS}" title="{L_CHANGE_STATUS}"><span>{L_CHANGE_STATUS}</span></a></li><!-- ENDIF -->
+							<!-- IF U_HISTORY --><li class="info-icon"><a href="{U_HISTORY}" title="{L_HISTORY}"><span>{L_HISTORY}</span></a></li><!-- ENDIF -->
+						</ul>								
 						<!-- ENDIF -->							
 		
-						<!-- IF S_ARTICLE_UNAPPROVED --><p class="rules"><!-- IF S_ARTICLE_UNAPPROVED -->{UNAPPROVED_IMG} <a href="{U_STATUS}"><strong>{L_ARTICLE_UNAPPROVED}</strong></a><!-- ENDIF --></p><!-- ENDIF -->
-						<!-- IF EDITED_MESSAGE --><div class="notice">{EDITED_MESSAGE}</div>	<!-- ENDIF -->								
+						<!-- IF S_ARTICLE_UNAPPROVED -->
+						<p class="rules">
+							<!-- IF S_ARTICLE_UNAPPROVED -->
+							{UNAPPROVED_IMG}
+							<a href="{U_STATUS}">
+								<strong>{L_ARTICLE_UNAPPROVED}</strong>
+							</a>
+							<!-- ENDIF -->
+						</p>
+						<!-- ENDIF -->
+						<!-- IF EDITED_MESSAGE -->
+						<div class="notice">{EDITED_MESSAGE}</div>
+						<!-- ENDIF -->								
 						<h1 class="articletitle">{ARTICLE_TITLE}</h1>
 					</div>
 						
-				<!-- IF S_EXTENDED_HEADER and not DISABLE_LEFT_MENU -->
-				<span class="article_meta">Written <em>by</em> {POST_AUTHOR_FULL} <em>on</em> {ARTICLE_TIME} | {ARTICLE_VIEWS}</span>
-				<!-- IF ARTICLE_DESC --><strong>{L_DESCRIPTION}:</strong> {ARTICLE_DESC}<br /><!-- ENDIF -->	
-				</div>
-				
-				<!-- ELSEIF DISABLE_LEFT_MENU and not S_EXTENDED_HEADER -->
+					<!-- IF S_EXTENDED_HEADER and not DISABLE_LEFT_MENU -->
+					<span class="article_meta">Written <em>by</em> {POST_AUTHOR_FULL} <em>on</em> {ARTICLE_TIME} | {ARTICLE_VIEWS}</span>
+					<!-- IF ARTICLE_DESC --><strong>{L_DESCRIPTION}:</strong> {ARTICLE_DESC}<br /><!-- ENDIF -->	
+					</div>
+					
+					<!-- ELSEIF DISABLE_LEFT_MENU and not S_EXTENDED_HEADER -->
 					<p class="author">
-						<img src="{T_IMAGESET_PATH}/icon_post_target.gif" alt="{L_PERMANENT_LINK}" />{L_WRITTEN_BY} <strong>{POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {ARTICLE_TIME} 
+						<img src="{T_IMAGESET_PATH}/icon_post_target.gif" alt="{L_PERMANENT_LINK}" />
+						{L_WRITTEN_BY} <strong>{POST_AUTHOR_FULL}</strong>
+						{L_POSTED_ON_DATE} {ARTICLE_TIME} 
 					</p>
-				<!-- ENDIF -->
+					<!-- ENDIF -->
 
-				<div class="content">{ARTICLE_MESSAGE}</div>
+					<div class="content">{ARTICLE_MESSAGE}</div>
 
-				<!-- IF S_HAS_ATTACHMENTS -->
+					<!-- IF S_HAS_ATTACHMENTS -->
 					<dl class="attachbox">
 						<dt>{L_ATTACHMENTS}</dt>
 						<!-- BEGIN attachment -->
 							<dd>{attachment.DISPLAY_ATTACHMENT}</dd>
 						<!-- END attachment -->
 					</dl>
-				<!-- ENDIF -->
+					<!-- ENDIF -->
 
-				<!-- IF S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
-				<hr /><strong>{ARTICLE_COPYRIGHT}</strong>
+					<!-- IF S_DISPLAY_NOTICE -->
+					<div class="rules">{L_DOWNLOAD_NOTICE}</div>
+					<!-- ENDIF -->
+					<hr /><strong>{ARTICLE_COPYRIGHT}</strong>
 
-				<!-- IF SIGNATURE or ARTICLE_TAGS != '' --><hr /><div id="sig" class="signature"><!-- IF SIGNATURE -->{SIGNATURE}<!-- ENDIF --><!-- IF ARTICLE_TAGS != '' --><!-- IF SIGNATURE --><br /><!-- ENDIF --><strong>{L_TAGS}:</strong> {ARTICLE_TAGS}<!-- ENDIF --></div><!-- ENDIF -->
-
+					<!-- IF SIGNATURE or ARTICLE_TAGS != '' -->
+					<hr />
+					<div id="sig" class="signature">
+						<!-- IF SIGNATURE -->{SIGNATURE}<!-- ENDIF -->
+						<!-- IF ARTICLE_TAGS != '' -->
+							<!-- IF SIGNATURE --><br /><!-- ENDIF -->
+							<strong>{L_TAGS}:</strong> {ARTICLE_TAGS}
+						<!-- ENDIF -->
+					</div>
+					<!-- ENDIF -->
+				</div>
 			</div>
 		
 		<!-- IF .postrow -->
-			<h2 class="kb_head kb_comments">{L_COMMENTS}</h2>
-			<div id="comments" class="kb_comments">
-			<!-- IF S_SORT_REPLY -->
-				<form id="view_blog" method="post" action="{S_POST_ACTION}">
-				<fieldset class="display-options" style="margin-top: 0; ">
-					<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
-					<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-					<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
-					<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> <label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
-				</fieldset>
-				</form>
-			<!-- ENDIF -->
-			<!-- BEGIN postrow -->
-				<div id="p{postrow.ID}" class="comment <!-- IF S_IS_MCP or S_IS_UCP -->pm<!-- ELSE --><!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- ENDIF --><!-- IF postrow.S_REPORTED or postrow.S_UNAPPROVED --> reported<!-- ENDIF --><!-- IF postrow.USER_FOE --> foe<!-- ENDIF --><!-- IF postrow.S_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE --> online<!-- ENDIF --> hb_container" style="<!-- IF postrow.S_DELETED or postrow.USER_FOE --> display: none;<!-- ENDIF -->">
-					<div class="avatar"><!-- IF postrow.POSTER_AVATAR -->{postrow.POSTER_AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" /><!-- ENDIF --></div>
-					<div class="body<!-- IF S_IS_MCP or S_IS_UCP --> kb-mcp-postbody<!-- ENDIF -->">
-						<div class="username">{postrow.POST_AUTHOR_FULL}
-							<!-- IF postrow.U_QUOTE or postrow.U_INFO or postrow.U_DELETE or postrow.U_EDIT -->
-							<ul class="hb">
-								<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
-								<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
-								<!-- IF postrow.U_REPORT and not postrow.S_REPORTED --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
-								<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{WARN_USER}</span></a></li><!-- ENDIF -->
-								<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
-							</ul>
-						<!-- ENDIF -->
-						</div>
-						
-						<div class="message">
-						{postrow.COMMENT_MESSAGE} <span class="date">{postrow.POST_DATE}</span></div>
-
-						<!-- IF postrow.S_HAS_ATTACHMENTS -->
-							<dl class="attachbox">
-								<dt>{L_ATTACHMENTS}</dt>
-								<!-- BEGIN attachment -->
-									<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
-								<!-- END attachment -->
-							</dl>
-						<!-- ENDIF -->
-
-						<!-- IF postrow.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
-						<!-- IF postrow.SIGNATURE --><div class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
-					</div>
+		<h2 class="kb_head kb_comments">{L_COMMENTS}</h2>
+		<div id="comments" class="kb_comments">
+		<!-- IF S_SORT_REPLY -->
+			<form id="view_blog" method="post" action="{S_POST_ACTION}">
+			<fieldset class="display-options" style="margin-top: 0; ">
+				<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+				<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+				<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
+				<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+				<label>
+					{S_SELECT_SORT_DIR}
+					<input type="submit" name="sort" value="{L_GO}" class="button2" />
+				</label>
+			</fieldset>
+			</form>
+		<!-- ENDIF -->
+		<!-- BEGIN postrow -->
+			<div id="p{postrow.ID}" class="comment <!-- IF S_IS_MCP or S_IS_UCP -->pm<!-- ELSE --><!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- ENDIF --><!-- IF postrow.S_REPORTED or postrow.S_UNAPPROVED --> reported<!-- ENDIF --><!-- IF postrow.USER_FOE --> foe<!-- ENDIF --><!-- IF postrow.S_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE --> online<!-- ENDIF --> hb_container" style="<!-- IF postrow.S_DELETED or postrow.USER_FOE --> display: none;<!-- ENDIF -->">
+				<div class="avatar">
+					<!-- IF postrow.POSTER_AVATAR -->
+					{postrow.POSTER_AVATAR}
+					<!-- ELSE -->
+					<img src="{T_THEME_PATH}/images/no-avatar.png" height="40px" width="40px" alt="Default Avatar" />
+					<!-- ENDIF -->
 				</div>
+				<div class="body<!-- IF S_IS_MCP or S_IS_UCP --> kb-mcp-postbody<!-- ENDIF -->">
+					<div class="username">{postrow.POST_AUTHOR_FULL}
+						<!-- IF postrow.U_QUOTE or postrow.U_INFO or postrow.U_DELETE or postrow.U_EDIT -->
+						<ul class="hb">
+							<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_REPORT and not postrow.S_REPORTED --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{WARN_USER}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+						</ul>
+					<!-- ENDIF -->
+					</div>
+					
+					<div class="message">
+						{postrow.COMMENT_MESSAGE}
+						<span class="date">{postrow.POST_DATE}</span>
+					</div>
+
+					<!-- IF postrow.S_HAS_ATTACHMENTS -->
+					<dl class="attachbox">
+						<dt>{L_ATTACHMENTS}</dt>
+						<!-- BEGIN attachment -->
+							<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+						<!-- END attachment -->
+					</dl>
+					<!-- ENDIF -->
+
+					<!-- IF postrow.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+					<!-- IF postrow.SIGNATURE --><div class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+				</div>
+			</div>
 			<!-- END postrow -->
 		</div>
 
@@ -109,7 +145,11 @@
 			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
 			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
 			<!-- IF not S_IS_BOT -->
-			<label>{L_KB_SORT_COMMENT_BY} {S_SORT_OPTIONS}</label> <label>{S_SORT_DIRECTION} <input type="submit" name="gosort" value="{L_GO}" class="button2" /></label>
+			<label>{L_KB_SORT_COMMENT_BY} {S_SORT_OPTIONS}</label>
+			<label>
+				{S_SORT_DIRECTION}
+				<input type="submit" name="gosort" value="{L_GO}" class="button2" />
+			</label>
 			<!-- ENDIF -->
 		</fieldset>
 	
@@ -118,11 +158,28 @@
 		<!-- ENDIF -->
 
 		<div class="topic-actions">
-			<!-- IF U_ADD_COMMENT --><div class="buttons"><!-- IF U_ADD_COMMENT --><div class="comment-icon"><a href="{U_ADD_COMMENT}" title="{L_KB_ADD_COMMENT}"><span></span>{L_KB_ADD_COMMENT}</a></div><!-- ENDIF --></div><!-- ENDIF -->
+			<!-- IF U_ADD_COMMENT -->
+			<div class="buttons">
+				<!-- IF U_ADD_COMMENT -->
+				<div class="comment-icon">
+					<a href="{U_ADD_COMMENT}" title="{L_KB_ADD_COMMENT}">
+						<span></span>{L_KB_ADD_COMMENT}
+					</a>
+				</div>
+				<!-- ENDIF -->
+			</div>
+			<!-- ENDIF -->
 			
 			<div class="pagination">
 				{TOTAL_COMMENTS} {L_COMMENTS_LC}
-				<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+				<!-- IF PAGE_NUMBER -->
+					<!-- IF PAGINATION -->
+					&bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+					&bull; <span>{PAGINATION}</span>
+					<!-- ELSE -->
+					&bull; {PAGE_NUMBER}
+					<!-- ENDIF -->
+				<!-- ENDIF -->
 			</div>
 		</div>
 <!-- INCLUDE kb/kb_footer.html -->

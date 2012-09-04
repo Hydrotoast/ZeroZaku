@@ -326,7 +326,7 @@ class ucp_zebra
 			}
 		}
 
-		if($mode == 'pending')
+		if($mode === 'pending')
 		{
 		    $sql = 'UPDATE ' . USERS_TABLE . '
 		    	SET friend_requests = 0
@@ -360,17 +360,22 @@ class ucp_zebra
 		    
 		    $template->assign_block_vars('zebra', array(
 		        'USER_ID'	        => $zebra_id,
-		        'USERNAME'	   	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
-		        'USERNAME_CLEAN'	=> get_username_string('username', $zebra_id, $row['username'], $row['user_colour']),
-		        'AVATAR'	    	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',
-		    
-		        'U_PROFILE'		=> get_username_string('profile', $zebra_id, $row['username'], $row['user_colour']),
-		    ));
+			));
+
+			if ($mode !== 'pending') {
+				$template->assign_block_vars('zebra', array(
+					'USERNAME'	   	    => get_username_string('full', $zebra_id, $row['username'], $row['user_colour']),
+					'USERNAME_CLEAN'	=> get_username_string('username', $zebra_id, $row['username'], $row['user_colour']),
+					'AVATAR'	    	=> ($user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], 40, 40) : '',
+
+					'U_PROFILE'		=> get_username_string('profile', $zebra_id, $row['username'], $row['user_colour'])
+				));
+			}
 		}
 
 		$template->assign_vars(array(
 			'L_TITLE'			=> $user->lang['UCP_ZEBRA_' . $l_mode],
-            'TOTAL'				=> $result->num_rows,
+            'TOTAL'				=> (isset($result->num_rows) ? $result->num_rows : 0),
 		
 			'U_FIND_USERNAME'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=searchuser&amp;form=ucp&amp;field=add'),
 

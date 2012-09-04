@@ -1,15 +1,24 @@
 <!-- INCLUDE kb/kb_header.html -->
-<div class="topic-actions">
-	<div class="buttons"><div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div></div>
-	<div class="pagination">
-		{TOTAL_REQUESTS} {L_REQUESTS}
-		<!-- IF PAGE_NUMBER -->
-		<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
-		<!-- ENDIF -->
+	<div class="topic-actions">
+		<div class="buttons">
+			<div class="request-icon">
+				<a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a>
+			</div>
+		</div>
+		<div class="pagination">
+			{TOTAL_REQUESTS} {L_REQUESTS}
+			<!-- IF PAGE_NUMBER -->
+			<!-- IF PAGINATION -->
+			&bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+			&bull; <span>{PAGINATION}</span>
+			<!-- ELSE -->
+			&bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+			<!-- ENDIF -->
+		</div>
 	</div>
-</div>
 
-<!-- BEGIN req_list -->
+	<!-- BEGIN req_list -->
 	<!-- IF req_list.S_FIRST_ROW -->
 	<h2 class="kb_head">{L_KB_REQS}</h2>
 	<ul class="kb_articlelist"
@@ -21,23 +30,35 @@
 	<!-- IF req_list.S_LAST_ROW -->
 	</ul>
 	<!-- ENDIF -->
-<!-- BEGINELSE -->
+	<!-- BEGINELSE -->
 	<div class="panel">
 		<div class="inner">
 		<strong>{L_KB_NO_REQS}</strong>
 		</div>
 	</div>
-<!-- END req_list -->
+	<!-- END req_list -->
 
-<!-- IF U_ADD_REQ --><!-- IF U_ADD_REQ --><br /><div class="buttons"><div class="request-icon"><a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a></div></div><!-- ENDIF --><!-- ENDIF -->
-	
-<div class="topic-actions">
-	<div class="pagination">
-	{TOTAL_REQUESTS} {L_REQUESTS}
-	<!-- IF PAGE_NUMBER -->
-	<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
-	<!-- ENDIF -->
+	<!-- IF U_ADD_REQ -->
+	<br />
+	<div class="buttons">
+		<div class="request-icon">
+			<a href="{U_ADD_REQ}" title="{L_KB_ADD_REQUEST}"><span></span>{L_KB_ADD_REQUEST}</a>
+		</div>
 	</div>
-</div>
+	<!-- ENDIF -->
+		
+	<div class="topic-actions">
+		<div class="pagination">
+		{TOTAL_REQUESTS} {L_REQUESTS}
+		<!-- IF PAGE_NUMBER -->
+			<!-- IF PAGINATION -->
+			&bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+			&bull; <span>{PAGINATION}</span>
+			<!-- ELSE -->
+			&bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		</div>
+	</div>
 
 <!-- INCLUDE kb/kb_footer.html -->		

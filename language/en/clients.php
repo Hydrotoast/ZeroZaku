@@ -38,7 +38,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ADD_ATTACHMENT'			=> 'Upload attachment',
 	
-	'CLIENTS_EXPLAIN'		=> 'Here you can view, edit and delete your clients. You can test your client by clicking on the ID and manually appending your client\'s password e.g. \'&password=mypassword\'.',
+	'CLIENTS_EXPLAIN'		=> 'Here you can view, edit and delete your clients. You can test your client by clicking on the ID and manually appending your client\'s password e.g. \'&amp;password=mypassword\'.',
 	'CLIENTS_ADD_EXPLAIN'	=> 'Here you can add up to 10 clients to your client index.',
 	
 	'CLIENT_ID'					=> 'ID',
